@@ -87,9 +87,15 @@ class MemoryDatabase {
   readonly queries: Array<{ table: string; sql: string; params: unknown[] }> = [];
   readonly updates: Array<{ table: string; sql: string; params: unknown[] }> = [];
   readonly inserted: Array<{ table: string; values: Record<string, unknown> }> = [];
+  transactionCalls = 0;
   skills: Array<Record<string, any>> = [];
   versions: Array<Record<string, any>> = [];
   questions: Array<Record<string, any>> = [];
+
+  async transaction() {
+    this.transactionCalls += 1;
+    throw new Error("Unexpected database transaction in validation test");
+  }
 
   select(selection?: unknown) {
     return new MemoryQuery(this, selection);
@@ -346,7 +352,7 @@ function makeStorage(allowedOwner: string) {
 
 async function withServer(user: User, routers: unknown[], run: (base: string) => Promise<void>) {
   const app = express();
-  app.use(express.json({ limit: "4mb" }));
+  app.use(express.json({ limit: "5mb" }));
   app.use((req, _res, next) => {
     req.isAuthenticated = () => user !== null;
     if (user) req.user = user;
@@ -380,6 +386,120 @@ async function request(
   });
 }
 
+type SkillFileFixture = { path: string; content: string };
+
+const validSkillFiles: SkillFileFixture[] = [
+  { path: "SKILL.md", content: "# A safe skill\n" },
+];
+
+const unsafeSkillUploadCases: Array<{
+  name: string;
+  files: SkillFileFixture[];
+  errorPattern?: RegExp;
+}> = [
+  {
+    name: "a traversal path",
+    files: [
+      ...validSkillFiles,
+      { path: "../secrets.md", content: "do not read" },
+    ],
+    errorPattern: /unsafe file path/i,
+  },
+  {
+    name: "an absolute path",
+    files: [...validSkillFiles, { path: "/tmp/notes.md", content: "outside" }],
+    errorPattern: /unsafe file path/i,
+  },
+  {
+    name: "a dot-segment path",
+    files: [...validSkillFiles, { path: "folder/./notes.md", content: "ambiguous" }],
+    errorPattern: /unsafe file path/i,
+  },
+  {
+    name: "a Windows drive path",
+    files: [...validSkillFiles, { path: "C:/private.md", content: "outside" }],
+    errorPattern: /unsafe file path/i,
+  },
+  {
+    name: "duplicate paths",
+    files: [
+      ...validSkillFiles,
+      { path: "SKILL.md", content: "# shadow copy\n" },
+    ],
+    errorPattern: /duplicate file paths/i,
+  },
+  {
+    name: "case-insensitive duplicate paths",
+    files: [
+      ...validSkillFiles,
+      { path: "skill.md", content: "# shadow copy\n" },
+    ],
+    errorPattern: /duplicate file paths/i,
+  },
+  {
+    name: "Unicode-normalized duplicate paths",
+    files: [
+      ...validSkillFiles,
+      { path: "café.md", content: "composed" },
+      { path: "cafe\u0301.md", content: "decomposed" },
+    ],
+    errorPattern: /duplicate file paths/i,
+  },
+  {
+    name: "a provider API token",
+    files: [
+      {
+        path: "SKILL.md",
+        content: `OPENAI_API_KEY=sk-proj-${"a".repeat(28)}`,
+      },
+    ],
+    errorPattern: /Remove passwords/i,
+  },
+  {
+    name: "a password assignment",
+    files: [
+      {
+        path: "SKILL.md",
+        content: "password=correcthorsebatterystaple",
+      },
+    ],
+    errorPattern: /Remove passwords/i,
+  },
+  {
+    name: "a credential in a supporting file",
+    files: [
+      ...validSkillFiles,
+      {
+        path: "config.yaml",
+        content: `access_token: ${"z".repeat(30)}`,
+      },
+    ],
+    errorPattern: /Remove passwords/i,
+  },
+  {
+    name: "more than 60 files",
+    files: [
+      ...validSkillFiles,
+      ...Array.from({ length: 60 }, (_, index) => ({
+        path: `reference-${index}.md`,
+        content: "safe",
+      })),
+    ],
+    errorPattern: /60/,
+  },
+  {
+    name: "more than 2.5 MB of extracted UTF-8 text",
+    files: [
+      ...validSkillFiles,
+      ...Array.from({ length: 13 }, (_, index) => ({
+        path: `part-${index}.md`,
+        content: "é".repeat(100_000),
+      })),
+    ],
+    errorPattern: /extracted skill text is too large/i,
+  },
+];
+
 const questionVersions = [
   makeVersion(firstVersionId, skillId, ownerId, "1.0", "OLD_VERSION_MARKER"),
   makeVersion(secondVersionId, skillId, ownerId, "2.0", "SELECTED_VERSION_MARKER"),
@@ -391,6 +511,53 @@ const questionVersions = [
     "OTHER_OWNER_MARKER",
   ),
 ];
+
+for (const operation of ["create skill", "add a version"] as const) {
+  for (const scenario of unsafeSkillUploadCases) {
+    test(`${operation} rejects ${scenario.name} before storage ownership or database activity`, async () => {
+      const database = new MemoryDatabase();
+      let ownershipCalls = 0;
+      const objectStorage = {
+        trySetObjectEntityAclPolicy: async () => {
+          ownershipCalls += 1;
+        },
+      };
+      const body = {
+        versionLabel: "1.0",
+        fileName: "skill.zip",
+        objectPath: "/objects/uploads/70000000-0000-4000-8000-000000000007",
+        files: scenario.files,
+        ...(operation === "create skill" ? { name: "Unsafe skill" } : {}),
+      };
+      const path =
+        operation === "create skill"
+          ? "/api/skills"
+          : `/api/skills/${skillId}/versions`;
+
+      await withServer(
+        { id: ownerId },
+        [createSkillsRouter(database as never, objectStorage as never)],
+        async (base) => {
+          const response = await request(base, path, {
+            method: "POST",
+            body,
+          });
+          assert.equal(response.status, 400);
+          const payload = await response.json();
+          assert.equal(typeof payload.error, "string");
+          if (scenario.errorPattern) {
+            assert.match(payload.error, scenario.errorPattern);
+          }
+        },
+      );
+
+      assert.equal(ownershipCalls, 0);
+      assert.equal(database.queries.length, 0);
+      assert.equal(database.transactionCalls, 0);
+      assert.equal(database.inserted.length, 0);
+    });
+  }
+}
 
 test("unauthenticated requests cannot list skills, versions, questions, upload URLs, or private ZIP objects", async () => {
   const database = new MemoryDatabase();

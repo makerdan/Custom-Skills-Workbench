@@ -42,12 +42,15 @@ function validateSkillFiles(files: SkillTextFile[]): string | null {
   const uniquePaths = new Set<string>();
   for (const file of files) {
     const path = file.path.replaceAll("\\", "/");
+    const segments = path.split("/");
     if (
       path !== file.path ||
       /[\u0000-\u001f\u007f]/.test(path) ||
       path.startsWith("/") ||
-      /^[a-z]:/i.test(path) ||
-      path.split("/").some((segment) => segment === "..")
+      path.includes(":") ||
+      segments.some(
+        (segment) => segment === "" || segment === "." || segment === "..",
+      )
     ) {
       return "The archive contains an unsafe file path.";
     }
@@ -69,11 +72,15 @@ function validateSkillFiles(files: SkillTextFile[]): string | null {
 
     const normalizedPath = path.normalize("NFC").toLowerCase();
     if (uniquePaths.has(normalizedPath)) {
-      return "The archive contains duplicate text-file paths.";
+      return "The archive contains duplicate file paths.";
     }
     uniquePaths.add(normalizedPath);
   }
-  if (!files.some((file) => file.path.split("/").at(-1)?.toLowerCase() === "skill.md")) {
+  if (
+    !files.some(
+      (file) => file.path.split("/").at(-1)?.toLowerCase() === "skill.md",
+    )
+  ) {
     return "This ZIP does not contain a SKILL.md file.";
   }
   return null;

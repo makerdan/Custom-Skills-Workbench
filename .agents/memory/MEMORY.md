@@ -1,0 +1,1 @@
+- [Skill archive path collisions](skill-archive-paths.md) — reject ambiguous paths and detect case- or Unicode-normalized filename collisions before persistence.
