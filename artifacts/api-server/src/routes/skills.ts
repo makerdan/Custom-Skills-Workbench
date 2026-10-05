@@ -7,6 +7,11 @@ import {
   CreateSkillVersionParams,
   CreateSkillVersionResponse,
   ListSkillsResponse,
+  ListPublicSkillsQueryParams,
+  ListPublicSkillsResponse,
+  UpdateSkillPublicationBody,
+  UpdateSkillPublicationParams,
+  UpdateSkillPublicationResponse,
   ListSkillVersionsParams,
   ListSkillVersionsResponse,
   UpdateSkillDetailsBody,
@@ -20,7 +25,7 @@ import {
   type SkillTextFile,
 } from "@workspace/db";
 import { openai as defaultOpenai } from "@workspace/integrations-openai-ai-server";
-import { and, desc, eq } from "drizzle-orm";
+import { and, asc, count, desc, eq, gte, ilike, isNotNull, or, sql } from "drizzle-orm";
 import { Router, type IRouter } from "express";
 
 import { ObjectOwnershipError } from "../lib/objectAcl";
@@ -132,6 +137,153 @@ export function createSkillsRouter(
   openai: typeof defaultOpenai = defaultOpenai,
 ): IRouter {
   const router: IRouter = Router();
+
+  router.get("/skills/public", async (req, res): Promise<void> => {
+    const parsed = ListPublicSkillsQueryParams.safeParse(req.query);
+    if (!parsed.success) {
+      res.status(400).json({ error: parsed.error.message });
+      return;
+    }
+    const page = Number(parsed.data.page ?? "1");
+    const pageSize = 24;
+    if (!Number.isSafeInteger(page) || page < 1 || page > 10_000) {
+      res.status(400).json({ error: "Page must be between 1 and 10,000." });
+      return;
+    }
+
+    const tags = parsed.data.tags
+      ?.split(",")
+      .map((tag) => tag.trim())
+      .filter(Boolean);
+    if (tags && (tags.length > 12 || tags.some((tag) => tag.length > 32))) {
+      res.status(400).json({ error: "Choose up to 12 tags, each 32 characters or fewer." });
+      return;
+    }
+
+    const conditions = [eq(skillsTable.isPublic, true)];
+    const search = parsed.data.q?.trim();
+    if (search) {
+      const escaped = search.replace(/[\\%_]/g, "\\$&");
+      const pattern = `%${escaped}%`;
+      conditions.push(
+        or(
+          ilike(skillsTable.name, pattern),
+          ilike(skillsTable.description, pattern),
+        )!,
+      );
+    }
+    const exactFilters = [
+      [skillsTable.publicCategory, parsed.data.category],
+      [skillsTable.publicLanguage, parsed.data.language],
+      [skillsTable.publicFramework, parsed.data.framework],
+      [skillsTable.publicUseCase, parsed.data.useCase],
+      [skillsTable.publicCreatorLabel, parsed.data.creator],
+    ] as const;
+    for (const [column, value] of exactFilters) {
+      const normalized = value?.trim();
+      if (normalized) conditions.push(eq(column, normalized));
+    }
+    const normalizedTags = [...new Set((tags ?? []).map((tag) => tag.toLocaleLowerCase()))];
+    if (normalizedTags.length) {
+      conditions.push(
+        sql`${skillsTable.publicTags} @> ${JSON.stringify(normalizedTags)}::jsonb`,
+      );
+    }
+    if (parsed.data.days) {
+      const days = Number(parsed.data.days);
+      if (!Number.isSafeInteger(days) || days > 3650) {
+        res.status(400).json({ error: "Recency must be between 1 and 3,650 days." });
+        return;
+      }
+      conditions.push(
+        gte(
+          skillsTable.publishedAt,
+          new Date(Date.now() - days * 24 * 60 * 60 * 1000),
+        ),
+      );
+    }
+    const where = and(...conditions);
+
+    const [result, totalRows] = await Promise.all([
+      database
+        .select({
+          name: skillsTable.name,
+          description: skillsTable.description,
+          category: skillsTable.publicCategory,
+          language: skillsTable.publicLanguage,
+          framework: skillsTable.publicFramework,
+          useCase: skillsTable.publicUseCase,
+          tags: skillsTable.publicTags,
+          creatorLabel: skillsTable.publicCreatorLabel,
+          publishedAt: skillsTable.publishedAt,
+        })
+        .from(skillsTable)
+        .where(where)
+        .orderBy(
+          parsed.data.sort === "oldest"
+            ? asc(skillsTable.publishedAt)
+            : desc(skillsTable.publishedAt),
+        )
+        .limit(pageSize)
+        .offset((page - 1) * pageSize),
+      database
+        .select({ value: count() })
+        .from(skillsTable)
+        .where(where),
+    ]);
+
+    const [categories, languages, frameworks, useCases, creators, tagRows] =
+      await Promise.all([
+        database.selectDistinct({ value: skillsTable.publicCategory }).from(skillsTable)
+          .where(and(eq(skillsTable.isPublic, true), isNotNull(skillsTable.publicCategory)))
+          .orderBy(asc(skillsTable.publicCategory)).limit(100),
+        database.selectDistinct({ value: skillsTable.publicLanguage }).from(skillsTable)
+          .where(and(eq(skillsTable.isPublic, true), isNotNull(skillsTable.publicLanguage)))
+          .orderBy(asc(skillsTable.publicLanguage)).limit(100),
+        database.selectDistinct({ value: skillsTable.publicFramework }).from(skillsTable)
+          .where(and(eq(skillsTable.isPublic, true), isNotNull(skillsTable.publicFramework)))
+          .orderBy(asc(skillsTable.publicFramework)).limit(100),
+        database.selectDistinct({ value: skillsTable.publicUseCase }).from(skillsTable)
+          .where(and(eq(skillsTable.isPublic, true), isNotNull(skillsTable.publicUseCase)))
+          .orderBy(asc(skillsTable.publicUseCase)).limit(100),
+        database.selectDistinct({ value: skillsTable.publicCreatorLabel }).from(skillsTable)
+          .where(and(eq(skillsTable.isPublic, true), isNotNull(skillsTable.publicCreatorLabel)))
+          .orderBy(asc(skillsTable.publicCreatorLabel)).limit(100),
+        database.select({ tags: skillsTable.publicTags }).from(skillsTable)
+          .where(eq(skillsTable.isPublic, true)).limit(1000),
+      ]);
+
+    const facetValues = (rows: Array<{ value: string | null }>) =>
+      rows.flatMap((row) => (row.value ? [row.value] : []));
+    const facets = {
+      categories: facetValues(categories),
+      languages: facetValues(languages),
+      frameworks: facetValues(frameworks),
+      useCases: facetValues(useCases),
+      creators: facetValues(creators),
+      tags: [...new Set(tagRows.flatMap((row) => row.tags ?? []))].sort().slice(0, 100),
+    };
+
+    res.json(
+      ListPublicSkillsResponse.parse({
+        skills: result.map((skill) => ({
+          name: skill.name,
+          description: skill.description,
+          category: skill.category,
+          language: skill.language,
+          framework: skill.framework,
+          useCase: skill.useCase,
+          tags: skill.tags ?? [],
+          creatorLabel: skill.creatorLabel,
+          publishedAt: skill.publishedAt,
+        })),
+        total: Number(totalRows[0]?.value ?? 0),
+        page,
+        pageSize,
+        facets,
+      }),
+    );
+  });
 
   async function setPrivateOwner(objectPath: string, ownerId: string) {
     await objectStorage.trySetObjectEntityAclPolicy(objectPath, {
@@ -363,6 +515,85 @@ export function createSkillsRouter(
       UpdateSkillDetailsResponse.parse(toSkillDto(updated, versions)),
     );
   });
+
+  router.patch(
+    "/skills/:skillId/publication",
+    async (req, res): Promise<void> => {
+      if (!req.isAuthenticated()) {
+        res.status(401).json({ error: "Unauthorized" });
+        return;
+      }
+      const params = UpdateSkillPublicationParams.safeParse(req.params);
+      const body = UpdateSkillPublicationBody.safeParse(req.body);
+      if (!params.success || !body.success) {
+        const validationError = !params.success ? params.error : body.error;
+        res.status(400).json({
+          error: validationError?.message ?? "Invalid publication settings.",
+        });
+        return;
+      }
+
+      const cleanText = (value: string | null) => value?.trim() || null;
+      const tags = [...new Set(
+        body.data.tags.map((tag) => tag.trim().normalize("NFC").toLocaleLowerCase()),
+      )];
+      if (tags.some((tag) => !tag || tag.length > 32)) {
+        res.status(400).json({ error: "Tags must contain 1 to 32 characters." });
+        return;
+      }
+
+      const [existing] = await database
+        .select()
+        .from(skillsTable)
+        .where(
+          and(
+            eq(skillsTable.id, params.data.skillId),
+            eq(skillsTable.ownerId, req.user.id),
+          ),
+        )
+        .limit(1);
+      if (!existing) {
+        res.status(404).json({ error: "Skill not found." });
+        return;
+      }
+
+      const [updated] = await database
+        .update(skillsTable)
+        .set({
+          isPublic: body.data.isPublic,
+          publicCategory: cleanText(body.data.category),
+          publicLanguage: cleanText(body.data.language),
+          publicFramework: cleanText(body.data.framework),
+          publicUseCase: cleanText(body.data.useCase),
+          publicTags: tags,
+          publicCreatorLabel: cleanText(body.data.creatorLabel),
+          publishedAt: body.data.isPublic
+            ? (existing.publishedAt ?? new Date())
+            : null,
+          updatedAt: new Date(),
+        })
+        .where(
+          and(
+            eq(skillsTable.id, params.data.skillId),
+            eq(skillsTable.ownerId, req.user.id),
+          ),
+        )
+        .returning();
+      if (!updated) {
+        res.status(404).json({ error: "Skill not found." });
+        return;
+      }
+
+      const versions = await database
+        .select()
+        .from(skillVersionsTable)
+        .where(eq(skillVersionsTable.skillId, updated.id))
+        .orderBy(desc(skillVersionsTable.uploadedAt));
+      res.json(
+        UpdateSkillPublicationResponse.parse(toSkillDto(updated, versions)),
+      );
+    },
+  );
 
   router.get("/skills/:skillId/versions", async (req, res): Promise<void> => {
   if (!req.isAuthenticated()) {

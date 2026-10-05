@@ -181,6 +181,14 @@ export const ListSkillsResponse = zod.object({
   "id": zod.string().uuid(),
   "name": zod.string(),
   "description": zod.string().nullable(),
+  "isPublic": zod.boolean(),
+  "category": zod.string().nullable(),
+  "language": zod.string().nullable(),
+  "framework": zod.string().nullable(),
+  "useCase": zod.string().nullable(),
+  "tags": zod.array(zod.string()),
+  "creatorLabel": zod.string().nullable(),
+  "publishedAt": zod.coerce.date().nullable(),
   "currentVersionId": zod.string().uuid(),
   "versions": zod.array(zod.object({
   "id": zod.string().uuid(),
@@ -234,6 +242,14 @@ export const CreateSkillResponse = zod.object({
   "id": zod.string().uuid(),
   "name": zod.string(),
   "description": zod.string().nullable(),
+  "isPublic": zod.boolean(),
+  "category": zod.string().nullable(),
+  "language": zod.string().nullable(),
+  "framework": zod.string().nullable(),
+  "useCase": zod.string().nullable(),
+  "tags": zod.array(zod.string()),
+  "creatorLabel": zod.string().nullable(),
+  "publishedAt": zod.coerce.date().nullable(),
   "currentVersionId": zod.string().uuid(),
   "versions": zod.array(zod.object({
   "id": zod.string().uuid(),
@@ -245,6 +261,67 @@ export const CreateSkillResponse = zod.object({
   "uploadedAt": zod.coerce.date()
 })),
   "createdAt": zod.coerce.date()
+})
+
+
+/**
+ * @summary Search and filter skills explicitly published to the public gallery
+ */
+export const listPublicSkillsQueryQMax = 120;
+
+export const listPublicSkillsQueryCategoryMax = 64;
+
+export const listPublicSkillsQueryLanguageMax = 64;
+
+export const listPublicSkillsQueryFrameworkMax = 80;
+
+export const listPublicSkillsQueryUseCaseMax = 80;
+
+export const listPublicSkillsQueryCreatorMax = 60;
+
+export const listPublicSkillsQueryTagsMax = 500;
+
+export const listPublicSkillsQuerySortDefault = `newest`;
+export const listPublicSkillsQueryDaysRegExp = new RegExp('^[1-9][0-9]{0,3}$');
+export const listPublicSkillsQueryPageRegExp = new RegExp('^[1-9][0-9]{0,4}$');
+
+
+export const ListPublicSkillsQueryParams = zod.object({
+  "q": zod.coerce.string().max(listPublicSkillsQueryQMax).optional(),
+  "category": zod.coerce.string().max(listPublicSkillsQueryCategoryMax).optional(),
+  "language": zod.coerce.string().max(listPublicSkillsQueryLanguageMax).optional(),
+  "framework": zod.coerce.string().max(listPublicSkillsQueryFrameworkMax).optional(),
+  "useCase": zod.coerce.string().max(listPublicSkillsQueryUseCaseMax).optional(),
+  "creator": zod.coerce.string().max(listPublicSkillsQueryCreatorMax).optional(),
+  "tags": zod.coerce.string().max(listPublicSkillsQueryTagsMax).optional().describe('Comma-separated tags; a skill must contain every selected tag.'),
+  "sort": zod.enum(['newest', 'oldest']).default(listPublicSkillsQuerySortDefault),
+  "days": zod.coerce.string().regex(listPublicSkillsQueryDaysRegExp).optional().describe('Restrict results to skills published within this many days.'),
+  "page": zod.coerce.string().regex(listPublicSkillsQueryPageRegExp).optional()
+})
+
+export const ListPublicSkillsResponse = zod.object({
+  "skills": zod.array(zod.object({
+  "name": zod.string(),
+  "description": zod.string().nullable(),
+  "category": zod.string().nullable(),
+  "language": zod.string().nullable(),
+  "framework": zod.string().nullable(),
+  "useCase": zod.string().nullable(),
+  "tags": zod.array(zod.string()),
+  "creatorLabel": zod.string().nullable(),
+  "publishedAt": zod.coerce.date()
+})),
+  "total": zod.number().int(),
+  "page": zod.number().int(),
+  "pageSize": zod.number().int(),
+  "facets": zod.object({
+  "categories": zod.array(zod.string()),
+  "languages": zod.array(zod.string()),
+  "frameworks": zod.array(zod.string()),
+  "useCases": zod.array(zod.string()),
+  "creators": zod.array(zod.string()),
+  "tags": zod.array(zod.string())
+})
 })
 
 
@@ -297,6 +374,73 @@ export const UpdateSkillDetailsResponse = zod.object({
   "id": zod.string().uuid(),
   "name": zod.string(),
   "description": zod.string().nullable(),
+  "isPublic": zod.boolean(),
+  "category": zod.string().nullable(),
+  "language": zod.string().nullable(),
+  "framework": zod.string().nullable(),
+  "useCase": zod.string().nullable(),
+  "tags": zod.array(zod.string()),
+  "creatorLabel": zod.string().nullable(),
+  "publishedAt": zod.coerce.date().nullable(),
+  "currentVersionId": zod.string().uuid(),
+  "versions": zod.array(zod.object({
+  "id": zod.string().uuid(),
+  "skillId": zod.string().uuid(),
+  "versionLabel": zod.string(),
+  "fileName": zod.string(),
+  "fileCount": zod.number().int(),
+  "filePaths": zod.array(zod.string()),
+  "uploadedAt": zod.coerce.date()
+})),
+  "createdAt": zod.coerce.date()
+})
+
+
+/**
+ * @summary Update the current owner's gallery publication settings
+ */
+export const UpdateSkillPublicationParams = zod.object({
+  "skillId": zod.coerce.string().uuid()
+})
+
+export const updateSkillPublicationBodyCategoryMax = 64;
+
+export const updateSkillPublicationBodyLanguageMax = 64;
+
+export const updateSkillPublicationBodyFrameworkMax = 80;
+
+export const updateSkillPublicationBodyUseCaseMax = 80;
+
+export const updateSkillPublicationBodyTagsItemMax = 32;
+
+export const updateSkillPublicationBodyTagsMax = 12;
+
+export const updateSkillPublicationBodyCreatorLabelMax = 60;
+
+
+
+export const UpdateSkillPublicationBody = zod.object({
+  "isPublic": zod.boolean(),
+  "category": zod.string().max(updateSkillPublicationBodyCategoryMax).nullable(),
+  "language": zod.string().max(updateSkillPublicationBodyLanguageMax).nullable(),
+  "framework": zod.string().max(updateSkillPublicationBodyFrameworkMax).nullable(),
+  "useCase": zod.string().max(updateSkillPublicationBodyUseCaseMax).nullable(),
+  "tags": zod.array(zod.string().min(1).max(updateSkillPublicationBodyTagsItemMax)).max(updateSkillPublicationBodyTagsMax),
+  "creatorLabel": zod.string().max(updateSkillPublicationBodyCreatorLabelMax).nullable()
+})
+
+export const UpdateSkillPublicationResponse = zod.object({
+  "id": zod.string().uuid(),
+  "name": zod.string(),
+  "description": zod.string().nullable(),
+  "isPublic": zod.boolean(),
+  "category": zod.string().nullable(),
+  "language": zod.string().nullable(),
+  "framework": zod.string().nullable(),
+  "useCase": zod.string().nullable(),
+  "tags": zod.array(zod.string()),
+  "creatorLabel": zod.string().nullable(),
+  "publishedAt": zod.coerce.date().nullable(),
   "currentVersionId": zod.string().uuid(),
   "versions": zod.array(zod.object({
   "id": zod.string().uuid(),

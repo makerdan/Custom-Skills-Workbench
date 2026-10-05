@@ -12,6 +12,20 @@ export interface Skill {
   name: string;
   /** @nullable */
   description: string | null;
+  isPublic: boolean;
+  /** @nullable */
+  category: string | null;
+  /** @nullable */
+  language: string | null;
+  /** @nullable */
+  framework: string | null;
+  /** @nullable */
+  useCase: string | null;
+  tags: string[];
+  /** @nullable */
+  creatorLabel: string | null;
+  /** @nullable */
+  publishedAt: Date | null;
   currentVersionId: string;
   versions: SkillVersion[];
   createdAt: Date;

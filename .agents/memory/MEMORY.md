@@ -1,1 +1,2 @@
 - [Skill archive path collisions](skill-archive-paths.md) — reject ambiguous paths and detect case- or Unicode-normalized filename collisions before persistence.
+- [Public gallery privacy boundary](public-gallery-privacy.md) — anonymous listings must expose only opted-in discovery metadata, never account, version, or archive details.

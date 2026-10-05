@@ -269,6 +269,67 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorEnvelope"
+  /skills/public:
+    get:
+      tags: [Skills]
+      operationId: listPublicSkills
+      summary: Search and filter skills explicitly published to the public gallery
+      parameters:
+        - name: q
+          in: query
+          required: false
+          schema: { type: string, maxLength: 120 }
+        - name: category
+          in: query
+          required: false
+          schema: { type: string, maxLength: 64 }
+        - name: language
+          in: query
+          required: false
+          schema: { type: string, maxLength: 64 }
+        - name: framework
+          in: query
+          required: false
+          schema: { type: string, maxLength: 80 }
+        - name: useCase
+          in: query
+          required: false
+          schema: { type: string, maxLength: 80 }
+        - name: creator
+          in: query
+          required: false
+          schema: { type: string, maxLength: 60 }
+        - name: tags
+          in: query
+          required: false
+          description: Comma-separated tags; a skill must contain every selected tag.
+          schema: { type: string, maxLength: 500 }
+        - name: sort
+          in: query
+          required: false
+          schema: { type: string, enum: [newest, oldest], default: newest }
+        - name: days
+          in: query
+          required: false
+          description: Restrict results to skills published within this many days.
+          schema: { type: string, pattern: "^[1-9][0-9]{0,3}$" }
+        - name: page
+          in: query
+          required: false
+          schema: { type: string, pattern: "^[1-9][0-9]{0,4}$" }
+      responses:
+        "200":
+          description: Bounded public metadata results and public discovery facets.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PublicSkillPage"
+        "400":
+          description: Invalid filter or pagination value.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
   /skills/analyze-description:
     post:
       tags: [Skills]
@@ -338,6 +399,47 @@ paths:
                 $ref: "#/components/schemas/ErrorEnvelope"
         "404":
           description: Skill not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+  /skills/{skillId}/publication:
+    patch:
+      tags: [Skills]
+      operationId: updateSkillPublication
+      summary: Update the current owner's gallery publication settings
+      parameters:
+        - name: skillId
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SkillPublicationUpdate"
+      responses:
+        "200":
+          description: Updated owner-visible skill.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Skill"
+        "400":
+          description: Invalid publication metadata.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: Authentication required.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: Skill not found for this owner.
           content:
             application/json:
               schema:
@@ -594,11 +696,21 @@ components:
         uploadedAt: { type: string, format: date-time }
     Skill:
       type: object
-      required: [id, name, description, currentVersionId, versions, createdAt]
+      required: [id, name, description, isPublic, category, language, framework, useCase, tags, creatorLabel, publishedAt, currentVersionId, versions, createdAt]
       properties:
         id: { type: string, format: uuid }
         name: { type: string }
         description: { type: [string, "null"] }
+        isPublic: { type: boolean }
+        category: { type: [string, "null"] }
+        language: { type: [string, "null"] }
+        framework: { type: [string, "null"] }
+        useCase: { type: [string, "null"] }
+        tags:
+          type: array
+          items: { type: string }
+        creatorLabel: { type: [string, "null"] }
+        publishedAt: { type: [string, "null"], format: date-time }
         currentVersionId: { type: string, format: uuid }
         versions:
           type: array
@@ -613,6 +725,56 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Skill"
+    SkillPublicationUpdate:
+      type: object
+      required: [isPublic, category, language, framework, useCase, tags, creatorLabel]
+      properties:
+        isPublic: { type: boolean }
+        category: { type: [string, "null"], maxLength: 64 }
+        language: { type: [string, "null"], maxLength: 64 }
+        framework: { type: [string, "null"], maxLength: 80 }
+        useCase: { type: [string, "null"], maxLength: 80 }
+        tags:
+          type: array
+          maxItems: 12
+          items: { type: string, minLength: 1, maxLength: 32 }
+        creatorLabel: { type: [string, "null"], maxLength: 60 }
+    PublicSkill:
+      type: object
+      required: [name, description, category, language, framework, useCase, tags, creatorLabel, publishedAt]
+      properties:
+        name: { type: string }
+        description: { type: [string, "null"] }
+        category: { type: [string, "null"] }
+        language: { type: [string, "null"] }
+        framework: { type: [string, "null"] }
+        useCase: { type: [string, "null"] }
+        tags:
+          type: array
+          items: { type: string }
+        creatorLabel: { type: [string, "null"] }
+        publishedAt: { type: string, format: date-time }
+    PublicSkillFacets:
+      type: object
+      required: [categories, languages, frameworks, useCases, creators, tags]
+      properties:
+        categories: { type: array, items: { type: string } }
+        languages: { type: array, items: { type: string } }
+        frameworks: { type: array, items: { type: string } }
+        useCases: { type: array, items: { type: string } }
+        creators: { type: array, items: { type: string } }
+        tags: { type: array, items: { type: string } }
+    PublicSkillPage:
+      type: object
+      required: [skills, total, page, pageSize, facets]
+      properties:
+        skills:
+          type: array
+          items: { $ref: "#/components/schemas/PublicSkill" }
+        total: { type: integer }
+        page: { type: integer }
+        pageSize: { type: integer }
+        facets: { $ref: "#/components/schemas/PublicSkillFacets" }
     SkillVersionList:
       type: object
       required: [versions]

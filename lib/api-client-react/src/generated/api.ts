@@ -25,10 +25,12 @@ import type {
   ErrorEnvelope,
   HandleBrowserLoginCallbackParams,
   HealthStatus,
+  ListPublicSkillsParams,
   LogoutBrowserSessionParams,
   LogoutSuccess,
   MobileTokenExchangeRequest,
   MobileTokenExchangeSuccess,
+  PublicSkillPage,
   Question,
   QuestionInput,
   QuestionList,
@@ -38,6 +40,7 @@ import type {
   SkillDescriptionAnalysis,
   SkillDetailsUpdate,
   SkillList,
+  SkillPublicationUpdate,
   SkillVersion,
   SkillVersionInput,
   SkillVersionList,
@@ -1049,6 +1052,90 @@ export const useCreateSkill = <TError = ErrorType<ErrorEnvelope>,
       return useMutation(getCreateSkillMutationOptions(options));
     }
 
+export const getListPublicSkillsUrl = (params?: ListPublicSkillsParams,) => {
+  const normalizedParams = new URLSearchParams();
+
+  Object.entries(params || {}).forEach(([key, value]) => {
+
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : String(value))
+    }
+  });
+
+  const stringifiedParams = normalizedParams.toString();
+
+  return stringifiedParams.length > 0 ? `/api/skills/public?${stringifiedParams}` : `/api/skills/public`
+}
+
+/**
+ * @summary Search and filter skills explicitly published to the public gallery
+ */
+export const listPublicSkills = async (params?: ListPublicSkillsParams, options?: Parameters<typeof customFetch>[1]): Promise<PublicSkillPage> => {
+
+  return customFetch<PublicSkillPage>(getListPublicSkillsUrl(params),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getListPublicSkillsQueryKey = (params?: ListPublicSkillsParams,) => {
+    return [
+    `/api/skills/public`, ...(params ? [params] : [])
+    ] as const;
+    }
+
+
+export const getListPublicSkillsQueryOptions = <TData = Awaited<ReturnType<typeof listPublicSkills>>, TError = ErrorType<ErrorEnvelope>>(params?: ListPublicSkillsParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof listPublicSkills>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getListPublicSkillsQueryKey(params);
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof listPublicSkills>>> = ({ signal }) => listPublicSkills(params, { signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof listPublicSkills>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type ListPublicSkillsQueryResult = NonNullable<Awaited<ReturnType<typeof listPublicSkills>>>
+export type ListPublicSkillsQueryError = ErrorType<ErrorEnvelope>
+
+
+/**
+ * @summary Search and filter skills explicitly published to the public gallery
+ */
+
+export function useListPublicSkills<TData = Awaited<ReturnType<typeof listPublicSkills>>, TError = ErrorType<ErrorEnvelope>>(
+ params?: ListPublicSkillsParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof listPublicSkills>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getListPublicSkillsQueryOptions(params,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+
+
+
+
+
+
 export const getAnalyzeSkillDescriptionUrl = () => {
 
 
@@ -1224,6 +1311,95 @@ export const useUpdateSkillDetails = <TError = ErrorType<ErrorEnvelope>,
         TContext
       > => {
       return useMutation(getUpdateSkillDetailsMutationOptions(options));
+    }
+
+export const getUpdateSkillPublicationUrl = (skillId: string,) => {
+
+
+
+
+  return `/api/skills/${skillId}/publication`
+}
+
+/**
+ * @summary Update the current owner's gallery publication settings
+ */
+export const updateSkillPublication = async (skillId: string,
+    skillPublicationUpdate: SkillPublicationUpdate, options?: Parameters<typeof customFetch>[1]): Promise<Skill> => {
+
+    const getHeaders = (h?: NonNullable<RequestInit['headers']>): Record<string, string | readonly string[]> => {
+    if (!h) return {};
+    if (h instanceof Headers) return Object.fromEntries(h.entries());
+    if (Symbol.iterator in h) {
+      return Object.fromEntries(
+        Array.from(h as Iterable<Iterable<string>>, (entry) => Array.from(entry) as [string, string]),
+      );
+    }
+    const headers: Record<string, string | readonly string[]> = {};
+    for (const [name, value] of Object.entries<string | readonly string[] | undefined>(h)) {
+      if (value !== undefined) headers[name] = value;
+    }
+    return headers;
+  };
+return customFetch<Skill>(getUpdateSkillPublicationUrl(skillId),
+  {
+    ...options,
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json', ...getHeaders(options?.headers) },
+    body: JSON.stringify(skillPublicationUpdate)
+  }
+);}
+
+
+
+
+
+export const getUpdateSkillPublicationMutationKey = () => ['updateSkillPublication'] as const;
+
+export const getUpdateSkillPublicationMutationOptions = <TError = ErrorType<ErrorEnvelope>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateSkillPublication>>, TError,UpdateSkillPublicationMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof updateSkillPublication>>, TError,UpdateSkillPublicationMutationVariables, TContext> => {
+
+const mutationKey = getUpdateSkillPublicationMutationKey();
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof updateSkillPublication>>, UpdateSkillPublicationMutationVariables> = (props) => {
+          const {skillId,data} = props ?? {};
+
+          return  updateSkillPublication(skillId,data,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type UpdateSkillPublicationMutationResult = NonNullable<Awaited<ReturnType<typeof updateSkillPublication>>>
+    export type UpdateSkillPublicationMutationBody = BodyType<SkillPublicationUpdate>
+    export type UpdateSkillPublicationMutationError = ErrorType<ErrorEnvelope>
+    export type UpdateSkillPublicationMutationVariables = {skillId: string;data: BodyType<SkillPublicationUpdate>}
+
+    /**
+ * @summary Update the current owner's gallery publication settings
+ */
+export const useUpdateSkillPublication = <TError = ErrorType<ErrorEnvelope>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateSkillPublication>>, TError,UpdateSkillPublicationMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof updateSkillPublication>>,
+        TError,
+        UpdateSkillPublicationMutationVariables,
+        TContext
+      > => {
+      return useMutation(getUpdateSkillPublicationMutationOptions(options));
     }
 
 export const getListSkillVersionsUrl = (skillId: string,) => {

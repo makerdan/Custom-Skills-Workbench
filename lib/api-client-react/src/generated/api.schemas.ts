@@ -159,6 +159,20 @@ export interface Skill {
   name: string;
   /** @nullable */
   description: string | null;
+  isPublic: boolean;
+  /** @nullable */
+  category: string | null;
+  /** @nullable */
+  language: string | null;
+  /** @nullable */
+  framework: string | null;
+  /** @nullable */
+  useCase: string | null;
+  tags: string[];
+  /** @nullable */
+  creatorLabel: string | null;
+  /** @nullable */
+  publishedAt: string | null;
   currentVersionId: string;
   versions: SkillVersion[];
   createdAt: string;
@@ -166,6 +180,76 @@ export interface Skill {
 
 export interface SkillList {
   skills: Skill[];
+}
+
+export interface SkillPublicationUpdate {
+  isPublic: boolean;
+  /**
+     * @maxLength 64
+     * @nullable
+     */
+  category: string | null;
+  /**
+     * @maxLength 64
+     * @nullable
+     */
+  language: string | null;
+  /**
+     * @maxLength 80
+     * @nullable
+     */
+  framework: string | null;
+  /**
+     * @maxLength 80
+     * @nullable
+     */
+  useCase: string | null;
+  /**
+     * @maxItems 12
+     * @items.minLength 1
+     * @items.maxLength 32
+     */
+  tags: string[];
+  /**
+     * @maxLength 60
+     * @nullable
+     */
+  creatorLabel: string | null;
+}
+
+export interface PublicSkill {
+  name: string;
+  /** @nullable */
+  description: string | null;
+  /** @nullable */
+  category: string | null;
+  /** @nullable */
+  language: string | null;
+  /** @nullable */
+  framework: string | null;
+  /** @nullable */
+  useCase: string | null;
+  tags: string[];
+  /** @nullable */
+  creatorLabel: string | null;
+  publishedAt: string;
+}
+
+export interface PublicSkillFacets {
+  categories: string[];
+  languages: string[];
+  frameworks: string[];
+  useCases: string[];
+  creators: string[];
+  tags: string[];
+}
+
+export interface PublicSkillPage {
+  skills: PublicSkill[];
+  total: number;
+  page: number;
+  pageSize: number;
+  facets: PublicSkillFacets;
 }
 
 export interface SkillVersionList {
@@ -227,4 +311,54 @@ iss?: string;
 export type LogoutBrowserSessionParams = {
 returnTo?: string;
 };
+
+export type ListPublicSkillsParams = {
+/**
+ * @maxLength 120
+ */
+q?: string;
+/**
+ * @maxLength 64
+ */
+category?: string;
+/**
+ * @maxLength 64
+ */
+language?: string;
+/**
+ * @maxLength 80
+ */
+framework?: string;
+/**
+ * @maxLength 80
+ */
+useCase?: string;
+/**
+ * @maxLength 60
+ */
+creator?: string;
+/**
+ * Comma-separated tags; a skill must contain every selected tag.
+ * @maxLength 500
+ */
+tags?: string;
+sort?: ListPublicSkillsSort;
+/**
+ * Restrict results to skills published within this many days.
+ * @pattern ^[1-9][0-9]{0,3}$
+ */
+days?: string;
+/**
+ * @pattern ^[1-9][0-9]{0,4}$
+ */
+page?: string;
+};
+
+export type ListPublicSkillsSort = typeof ListPublicSkillsSort[keyof typeof ListPublicSkillsSort];
+
+
+export const ListPublicSkillsSort = {
+  newest: 'newest',
+  oldest: 'oldest',
+} as const;
 

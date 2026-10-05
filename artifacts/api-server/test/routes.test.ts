@@ -79,6 +79,10 @@ class MemoryQuery {
   table: unknown;
   joins: unknown[] = [];
   condition: unknown;
+  maxRows: number | undefined;
+  skipRows = 0;
+  distinct = false;
+  ordering: unknown[] = [];
 
   constructor(
     private readonly database: MemoryDatabase,
@@ -102,11 +106,18 @@ class MemoryQuery {
     return this;
   }
 
-  orderBy() {
+  orderBy(...ordering: unknown[]) {
+    this.ordering = ordering;
     return this;
   }
 
-  limit() {
+  limit(maxRows: number) {
+    this.maxRows = maxRows;
+    return this;
+  }
+
+  offset(skipRows: number) {
+    this.skipRows = skipRows;
     return this;
   }
 
@@ -135,6 +146,12 @@ class MemoryDatabase {
     return new MemoryQuery(this, selection);
   }
 
+  selectDistinct(selection?: unknown) {
+    const query = new MemoryQuery(this, selection);
+    query.distinct = true;
+    return query;
+  }
+
   async transaction<T>(callback: (tx: this) => Promise<T>): Promise<T> {
     return callback(this);
   }
@@ -149,15 +166,111 @@ class MemoryDatabase {
 
     if (table === getTableName(skillsTable)) {
       const owner = paramFor(compiled.sql, params, "skills", "owner_id");
-      assert.ok(owner, "skill queries must filter by the authenticated owner");
-      const id = paramFor(compiled.sql, params, "skills", "id");
-      const rows = this.skills.filter(
-        (skill) =>
-          skill.ownerId === owner && (id === undefined || skill.id === id),
+      const publicFlag = paramFor(compiled.sql, params, "skills", "is_public");
+      assert.ok(
+        owner || publicFlag === true,
+        "skill queries must filter by owner or public visibility",
       );
-      return isCountSelection(query.selection)
-        ? [{ value: rows.length }]
-        : rows;
+      const id = paramFor(compiled.sql, params, "skills", "id");
+      let rows = this.skills.filter(
+        (skill) =>
+          (owner === undefined
+            ? skill.isPublic === true
+            : skill.ownerId === owner) &&
+          (id === undefined || skill.id === id),
+      );
+      const sqlText = compiled.sql;
+      const readParam = (column: string, operators: string) => {
+        const escaped = column.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        const match = sqlText.match(
+          new RegExp(`"skills"\\."${escaped}"\\s*(?:${operators})\\s*\\$(\\d+)`, "i"),
+        );
+        return match ? params[Number(match[1]) - 1] : undefined;
+      };
+      const exactFilters: Array<[string, string]> = [
+        ["public_category", "publicCategory"],
+        ["public_language", "publicLanguage"],
+        ["public_framework", "publicFramework"],
+        ["public_use_case", "publicUseCase"],
+        ["public_creator_label", "publicCreatorLabel"],
+      ];
+      for (const [column, property] of exactFilters) {
+        const filter = readParam(column, "=");
+        if (filter !== undefined) {
+          rows = rows.filter((skill) => skill[property] === filter);
+        }
+      }
+      const search =
+        readParam("name", "ILIKE") ?? readParam("description", "ILIKE");
+      if (typeof search === "string") {
+        const needle = search
+          .replace(/^%|%$/g, "")
+          .replaceAll("\\", "")
+          .toLowerCase();
+        rows = rows.filter((skill) =>
+          `${skill.name ?? ""} ${skill.description ?? ""}`
+            .toLowerCase()
+            .includes(needle),
+        );
+      }
+      const tagsFilter = readParam("public_tags", "@>");
+      if (typeof tagsFilter === "string") {
+        const requested = JSON.parse(tagsFilter) as string[];
+        rows = rows.filter((skill) =>
+          requested.every((tag) =>
+            (skill.publicTags as string[] | undefined)?.some(
+              (stored) => stored.toLowerCase() === tag,
+            ),
+          ),
+        );
+      }
+      const since = readParam("published_at", ">=");
+      if (since instanceof Date) {
+        rows = rows.filter(
+          (skill) =>
+            skill.publishedAt instanceof Date && skill.publishedAt >= since,
+        );
+      }
+      if (isCountSelection(query.selection)) {
+        return [{ value: rows.length }];
+      }
+      if (query.ordering.length) {
+        const orderSql = new PgDialect().sqlToQuery(
+          query.ordering[0] as never,
+        ).sql;
+        rows = [...rows].sort((left, right) => {
+          const delta =
+            new Date(String(left.publishedAt)).getTime() -
+            new Date(String(right.publishedAt)).getTime();
+          return orderSql.toUpperCase().includes("DESC") ? -delta : delta;
+        });
+      }
+      rows = rows.slice(
+        query.skipRows,
+        query.maxRows === undefined
+          ? undefined
+          : query.skipRows + query.maxRows,
+      );
+      if (query.selection && typeof query.selection === "object") {
+        rows = rows.map((row) =>
+          Object.fromEntries(
+            Object.entries(query.selection as Record<string, unknown>).map(
+              ([key, column]) => {
+                const field = Object.entries(skillsTable).find(
+                  ([, value]) => value === column,
+                )?.[0];
+                return [key, field ? row[field] : undefined];
+              },
+            ),
+          ),
+        );
+      }
+      if (query.distinct) {
+        rows = [
+          ...new Map(rows.map((row) => [JSON.stringify(row), row])).values(),
+        ];
+      }
+      return rows;
     }
 
     if (table === getTableName(skillVersionsTable)) {
@@ -304,11 +417,11 @@ class MemoryDatabase {
 }
 
 function isCountSelection(selection: unknown): boolean {
-  return (
-    selection !== null &&
-    typeof selection === "object" &&
-    "value" in selection
-  );
+  if (selection === null || typeof selection !== "object" || !("value" in selection)) {
+    return false;
+  }
+  const value = selection.value;
+  return value !== null && typeof value === "object" && "queryChunks" in value;
 }
 
 function makeSkill(id: string, owner: string, currentVersionId: string) {
@@ -317,9 +430,41 @@ function makeSkill(id: string, owner: string, currentVersionId: string) {
     ownerId: owner,
     name: owner === ownerId ? "Private skill A" : "Private skill B",
     description: null,
+    isPublic: false,
+    publicCategory: null,
+    publicLanguage: null,
+    publicFramework: null,
+    publicUseCase: null,
+    publicTags: [],
+    publicCreatorLabel: null,
+    publishedAt: null,
     currentVersionId,
     createdAt: testDate,
     updatedAt: testDate,
+  };
+}
+
+function makePublishedSkill(
+  id: string,
+  owner: string,
+  overrides: Record<string, unknown> = {},
+) {
+  return {
+    ...makeSkill(id, owner, firstVersionId),
+    name: "Kubernetes automation patterns",
+    description: "Build reliable deployment automation with Kubernetes.",
+    isPublic: true,
+    publicCategory: "DevOps",
+    publicLanguage: "TypeScript",
+    publicFramework: "Kubernetes",
+    publicUseCase: "Automation",
+    publicTags: ["infra", "helm"],
+    publicCreatorLabel: "Studio",
+    publishedAt: testDate,
+    privateMarker: "PRIVATE_QUESTION_AND_ACCOUNT_DATA",
+    privateObjectPath: "/objects/uploads/private/archive.zip",
+    privateFiles: [{ path: "secret.txt", content: "private archive content" }],
+    ...overrides,
   };
 }
 
@@ -982,12 +1127,24 @@ test("unauthenticated requests cannot list skills, versions, questions, upload U
         method: "PATCH",
         body: { name: "New name", description: "New description" },
       }),
+      await request(base, `/api/skills/${skillId}/publication`, {
+        method: "PATCH",
+        body: {
+          isPublic: true,
+          category: null,
+          language: null,
+          framework: null,
+          useCase: null,
+          tags: [],
+          creatorLabel: null,
+        },
+      }),
       await request(base, "/api/storage/objects/uploads/private.zip"),
     ];
 
     assert.deepEqual(
       checks.map((response) => response.status),
-      [401, 401, 401, 401, 401, 401, 401, 401, 401],
+      [401, 401, 401, 401, 401, 401, 401, 401, 401, 401],
     );
     assert.equal(database.queries.length, 0);
     assert.equal(storage.calls.getFile, 0);
@@ -1020,6 +1177,156 @@ test("a user sees only their own skills and versions", async () => {
       );
     },
   );
+});
+
+test("public gallery allows anonymous combined search and facets but returns only approved metadata", async () => {
+  const database = new MemoryDatabase();
+  database.skills = [
+    makePublishedSkill(skillId, ownerId),
+    makePublishedSkill(otherSkillId, otherOwnerId, {
+      name: "Cloud infrastructure tooling",
+      description: "Provision cloud resources with infrastructure as code.",
+      publicCategory: "Platform",
+      publicLanguage: "Go",
+      publicFramework: "Terraform",
+      publicUseCase: "Provisioning",
+      publicTags: ["cloud", "iac"],
+      publicCreatorLabel: "Cloud team",
+      publishedAt: new Date("2026-02-03T00:00:00.000Z"),
+    }),
+    {
+      ...makeSkill("90000000-0000-4000-8000-000000000009", ownerId, firstVersionId),
+      name: "Kubernetes automation private draft",
+      description: "Private matching text.",
+      publicCategory: "Private-only",
+    },
+  ];
+
+  await withServer(
+    null,
+    [createSkillsRouter(database as never, {} as never)],
+    async (base) => {
+      const filtered = await request(
+        base,
+        "/api/skills/public?q=Kubernetes&category=DevOps&language=TypeScript&framework=Kubernetes&useCase=Automation&creator=Studio&tags=infra,helm&sort=newest",
+      );
+      assert.equal(filtered.status, 200);
+      const page = await filtered.json();
+      assert.equal(page.total, 1);
+      assert.equal(page.skills.length, 1);
+      assert.deepEqual(Object.keys(page.skills[0]).sort(), [
+        "category",
+        "creatorLabel",
+        "description",
+        "framework",
+        "language",
+        "name",
+        "publishedAt",
+        "tags",
+        "useCase",
+      ]);
+      assert.equal(page.skills[0].name, "Kubernetes automation patterns");
+      assert.deepEqual(page.skills[0].tags, ["infra", "helm"]);
+      assert.equal(page.facets.categories.includes("DevOps"), true);
+      assert.equal(page.facets.categories.includes("Platform"), true);
+      assert.equal(page.facets.categories.includes("Private-only"), false);
+      assert.equal(
+        JSON.stringify(page).includes("PRIVATE_QUESTION_AND_ACCOUNT_DATA"),
+        false,
+      );
+      assert.equal(
+        JSON.stringify(page).includes("/objects/uploads/private/archive.zip"),
+        false,
+      );
+      assert.equal(JSON.stringify(page).includes("secret.txt"), false);
+
+      const publicRows = await request(base, "/api/skills/public?q=Kubernetes");
+      assert.equal(publicRows.status, 200);
+      const searchResults = await publicRows.json();
+      assert.equal(searchResults.total, 1);
+
+      const newestFirst = await request(base, "/api/skills/public?sort=newest");
+      assert.deepEqual(
+        (await newestFirst.json()).skills.map(
+          (skill: { name: string }) => skill.name,
+        ),
+        ["Cloud infrastructure tooling", "Kubernetes automation patterns"],
+      );
+      const oldestFirst = await request(base, "/api/skills/public?sort=oldest");
+      assert.deepEqual(
+        (await oldestFirst.json()).skills.map(
+          (skill: { name: string }) => skill.name,
+        ),
+        ["Kubernetes automation patterns", "Cloud infrastructure tooling"],
+      );
+    },
+  );
+});
+
+test("owners alone can change publication and unpublishing immediately removes public results", async () => {
+  const database = new MemoryDatabase();
+  database.skills = [makePublishedSkill(skillId, ownerId)];
+  const router = createSkillsRouter(database as never, {} as never);
+  const publication = {
+    isPublic: false,
+    category: "DevOps",
+    language: "TypeScript",
+    framework: "Kubernetes",
+    useCase: "Automation",
+    tags: ["infra", "helm"],
+    creatorLabel: "Studio",
+  };
+
+  await withServer({ id: otherOwnerId }, [router], async (base) => {
+    const response = await request(
+      base,
+      `/api/skills/${skillId}/publication`,
+      { method: "PATCH", body: { ...publication, isPublic: true } },
+    );
+    assert.equal(response.status, 404);
+    assert.equal(database.skills[0].isPublic, true);
+    assert.equal(database.updates.length, 0);
+  });
+
+  await withServer({ id: ownerId }, [router], async (base) => {
+    const response = await request(base, `/api/skills/${skillId}/publication`, {
+      method: "PATCH",
+      body: publication,
+    });
+    assert.equal(response.status, 200);
+    const updated = await response.json();
+    assert.equal(updated.isPublic, false);
+    assert.equal(updated.publishedAt, null);
+    assert.match(database.updates.at(-1)!.sql, /"skills"\."owner_id"/);
+  });
+
+  await withServer(null, [router], async (base) => {
+    const response = await request(
+      base,
+      "/api/skills/public?q=Kubernetes",
+    );
+    assert.equal(response.status, 200);
+    assert.equal((await response.json()).total, 0);
+  });
+});
+
+test("public gallery rejects invalid recency, tag count, and pagination inputs", async () => {
+  const database = new MemoryDatabase();
+  await withServer(
+    null,
+    [createSkillsRouter(database as never, {} as never)],
+    async (base) => {
+      for (const query of [
+        "?days=9999",
+        `?tags=${Array.from({ length: 13 }, (_, index) => `tag${index}`).join(",")}`,
+        "?page=10001",
+      ]) {
+        const response = await request(base, `/api/skills/public${query}`);
+        assert.equal(response.status, 400);
+      }
+    },
+  );
+  assert.equal(database.queries.length, 0);
 });
 
 test("skill description analysis is authenticated, bounded, and returns only a description", async () => {
@@ -1350,6 +1657,7 @@ test("skill creation accepts the caller's upload and claims it privately", async
       assert.equal(response.status, 201);
       const payload = await response.json();
       assert.equal(payload.name, "Test skill");
+      assert.equal(payload.isPublic, false);
       assert.equal(storage.policies.get(objectPath)?.owner, ownerId);
     },
   );
