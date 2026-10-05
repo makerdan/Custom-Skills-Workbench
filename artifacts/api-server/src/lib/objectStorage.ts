@@ -11,6 +11,7 @@ import {
   setObjectAclPolicy,
 } from './objectAcl';
 
+// Replit object-storage credential sidecar; this is not a project service listener.
 const REPLIT_SIDECAR_ENDPOINT = 'http://127.0.0.1:1106';
 
 function getOwnerScope(userId: string): string {

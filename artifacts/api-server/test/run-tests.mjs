@@ -1,15 +1,13 @@
 import { spawnSync } from "node:child_process";
-import { mkdir, rm } from "node:fs/promises";
+import { mkdtemp, rm } from "node:fs/promises";
+import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { build } from "esbuild";
 
 const apiDir = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
-const outputDir = path.join(apiDir, ".test-build");
+const outputDir = await mkdtemp(path.join(os.tmpdir(), "api-server-test-"));
 const bundledTest = path.join(outputDir, "routes.test.mjs");
-
-await rm(outputDir, { recursive: true, force: true });
-await mkdir(outputDir, { recursive: true });
 
 try {
   await build({

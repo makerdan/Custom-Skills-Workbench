@@ -12,6 +12,7 @@ import {
   skillVersionsTable,
   skillsTable,
 } from "@workspace/db";
+import healthRouter from "../src/routes/health";
 import { createQuestionsRouter } from "../src/routes/questions";
 import { createSkillsRouter } from "../src/routes/skills";
 import { createStorageRouter } from "../src/routes/storage";
@@ -489,6 +490,8 @@ test("upload URL requests return object paths scoped to the authenticated owner"
   let signedRequest: { bucket_name: string; object_name: string } | undefined;
   objectStorage.getPrivateObjectDir = () => "/test-bucket/private";
   globalThis.fetch = async (input, init) => {
+    // Replit object-storage credential sidecar; this mock does not open a
+    // project listener.
     if (String(input) !== "http://127.0.0.1:1106/object-storage/signed-object-url") {
       return originalFetch(input, init);
     }
@@ -642,15 +645,30 @@ async function withServer(
   app.use("/api", ...(routers as never[]));
 
   const server = app.listen(0, "127.0.0.1");
-  await new Promise<void>((resolve) => server.once("listening", resolve));
-  const address = server.address();
-  assert.ok(address && typeof address !== "string");
   try {
+    await new Promise<void>((resolve, reject) => {
+      const onError = (error: Error) => {
+        server.off("listening", onListening);
+        reject(error);
+      };
+      const onListening = () => {
+        server.off("error", onError);
+        resolve();
+      };
+      server.once("error", onError);
+      server.once("listening", onListening);
+    });
+
+    const address = server.address();
+    assert.ok(address && typeof address !== "string");
+    assert.ok(address.port > 0);
     await run(`http://127.0.0.1:${address.port}`);
   } finally {
-    await new Promise<void>((resolve, reject) =>
-      server.close((error) => (error ? reject(error) : resolve())),
-    );
+    if (server.listening) {
+      await new Promise<void>((resolve, reject) =>
+        server.close((error) => (error ? reject(error) : resolve())),
+      );
+    }
   }
 }
 
@@ -665,6 +683,38 @@ async function request(
     body: options.body === undefined ? undefined : JSON.stringify(options.body),
   });
 }
+
+test("API health is healthy JSON through the artifact's /api route", async () => {
+  await withServer(null, [healthRouter], async (base) => {
+    const response = await request(base, "/api/healthz");
+
+    assert.equal(response.status, 200);
+    assert.match(
+      response.headers.get("content-type") ?? "",
+      /^application\/json(?:;|$)/i,
+    );
+    assert.deepEqual(await response.json(), { status: "ok" });
+  });
+});
+
+test("route test servers close their ephemeral listener after success and failure", async () => {
+  let successfulBase = "";
+  await withServer(null, [], async (base) => {
+    successfulBase = base;
+  });
+  await assert.rejects(fetch(successfulBase));
+
+  let failedBase = "";
+  const callbackFailure = new Error("intentional callback failure");
+  await assert.rejects(
+    withServer(null, [], async (base) => {
+      failedBase = base;
+      throw callbackFailure;
+    }),
+    (error) => error === callbackFailure,
+  );
+  await assert.rejects(fetch(failedBase));
+});
 
 type SkillFileFixture = { path: string; content: string };
 

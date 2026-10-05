@@ -4,7 +4,9 @@ _Replace the heading above with the project's name, and this line with one sente
 
 ## Run & Operate
 
-- `pnpm --filter @workspace/api-server run dev` — run the API server (port 5000)
+- `pnpm --filter @workspace/api-server run dev` — run the API Server on its artifact-assigned port 8080; its routed health path is `/api/healthz`
+- `pnpm --filter @workspace/skills-workbench run dev` — run the Skills Workbench on its artifact-assigned port 23687 at `/`
+- `pnpm --filter @workspace/mockup-sandbox run dev` — run the Canvas preview on its artifact-assigned port 8081 at `/__mockup`
 - `pnpm run typecheck` — full typecheck across all packages
 - `pnpm run build` — typecheck + build all packages
 - `pnpm run test` — run regression-guard checks and package tests
