@@ -33,6 +33,18 @@ fixture PASSED/FAILED/BLOCKED/NOT_RUN from actual host evidence.
 
 ## Host adaptation
 
+Apply [authorized-continuation.md](authorized-continuation.md) across discovery,
+installation, policy setup, checked execution and completion. Finish feasible
+approved implementation/review/verification; a checkpoint is not a finished scope.
+At a real boundary continue independent permitted work and prepare the exact next
+proposal, not a request for the user to design routes. If inert staging excludes
+checks, implementation can continue but imports/syntax/tests/execution cannot.
+After permitted readback pin the source closure, plan and gaps for scoped execution
+approval. Plan first safely supervised readiness proof without demanding that the
+same proposed acceptance suite already passed; missing safe supervision remains
+a blocker. Neither preparing proposals nor bootstrap readiness activates ordinary
+tasks or changes task states/dependencies, authority or cutover.
+
 The contract applies to web, mobile, desktop, CLI, libraries, embedded systems,
 infrastructure, data pipelines, and documentation projects. Local tooling may
 run in the developer environment; it need not run inside the deployed application

@@ -17,10 +17,15 @@ framework-, operating-system-, storage-, and provider-neutral.
   entry point, test/hook wiring, cumulative deadlines and independent supervision.
 - `reference/staging-and-lifecycle.md`: policy applicability, per-caller staging/
   activation, retained-error recovery, independent startup gates and input shapes.
+- `reference/authorized-continuation.md`: finish feasible approved work, continue
+  independent permitted paths and proactively prepare precise next proposals
+  without turning planning into execution or new authority.
 - `tests/test_staging_lifecycle.py`: executable policy simulations only, not host
   attestation, approval, protected recovery or activation.
 - `tests/test_activation_policy_guidance.py`: proactive setup document-contract
   regressions only, not executable host policy or approval evidence.
+- `tests/test_authorized_continuation.py`: lifecycle continuation document-contract
+  regressions only, not executed host approval or acceptance.
 - `tests/test_validation_budgets.py`: test-only policy models and conditional
   local fixture watchdog checks; never a deployed supervisor or host authority.
 - `tests/test_runtime_reclaim_contract.py`: isolated policy simulations only;
@@ -44,6 +49,13 @@ source, or completion checker. No existing project's enforcement has been
 changed by authoring it.
 
 ## Adopt safely
+
+Apply [authorized continuation](reference/authorized-continuation.md) in every phase:
+finish remaining feasible approved work, identify exact blockers and prepare the
+next scoped proposal rather than wait for user-written follow-up instructions.
+Inert staging forbids any checks excluded by its actual approval. Proposals,
+source completion and fixture passes never authorize Stage B, ordinary activation,
+cutover, reclaim or retained-error recovery.
 
 Every finite validation launch needs verified finite limits, including fast/direct
 scripts, hooks, diagnostics, nested work and recovery. Read the complete
@@ -241,7 +253,7 @@ cannot pass. Installed Node support is probed before newer CLI flags are selecte
 explicit code-owned test/hook limits supply the verified fixture fallback.
 Run the combined authoring suite twice sequentially through an authorized finite
 supervisor with a 30-second suite bound, not a bare command presumed fast.
-In this authoring workspace, `artifacts/verify-failure-gate-proactive-policy.py`
+In this authoring workspace, `artifacts/verify-failure-gate-authorized-continuation.py`
 reproduces bounded suite/package checks; its current source/preservation inputs
 and report are workspace artifacts, not part of this portable skill ZIP.
 Earlier verifiers/results are historical; their unchanged-source assumptions
