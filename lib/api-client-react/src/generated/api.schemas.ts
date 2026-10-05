@@ -115,6 +115,35 @@ export type SkillCreateInput = SkillVersionInput & {
   description?: string;
 };
 
+export interface SkillAnalysisInput {
+  /**
+     * @minItems 1
+     * @maxItems 60
+     */
+  files: SkillFileInput[];
+}
+
+export interface SkillDescriptionAnalysis {
+  /**
+     * @minLength 1
+     * @maxLength 1000
+     */
+  description: string;
+}
+
+export interface SkillDetailsUpdate {
+  /**
+     * @minLength 1
+     * @maxLength 120
+     */
+  name: string;
+  /**
+     * @maxLength 1000
+     * @nullable
+     */
+  description: string | null;
+}
+
 export interface SkillVersion {
   id: string;
   skillId: string;

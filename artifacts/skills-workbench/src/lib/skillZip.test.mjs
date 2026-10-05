@@ -1,6 +1,9 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { readZipTextFiles } from "./skillZip.ts";
+import {
+  readZipTextFiles,
+  suggestSkillMetadataFromFilename,
+} from "./skillZip.ts";
 
 const encoder = new TextEncoder();
 
@@ -266,4 +269,30 @@ test("allows documented credential placeholders", async () => {
     createZip([skillFile("Set api_key=your_api_key_here in your environment.")]),
   );
   assert.equal(files.length, 1);
+});
+
+test("suggests a skill name and version from common ZIP filename formats", () => {
+  assert.deepEqual(
+    suggestSkillMetadataFromFilename("api-integration-patterns-v2.1.0.zip"),
+    { name: "api integration patterns", versionLabel: "2.1.0" },
+  );
+  assert.deepEqual(
+    suggestSkillMetadataFromFilename("design_system-version-rc2.ZIP"),
+    { name: "design system", versionLabel: "rc2" },
+  );
+  assert.deepEqual(
+    suggestSkillMetadataFromFilename("security-best-practices-beta.zip"),
+    { name: "security best practices", versionLabel: "beta" },
+  );
+});
+
+test("keeps unmatched filename text in the suggested name", () => {
+  assert.deepEqual(
+    suggestSkillMetadataFromFilename("my-custom-skill-v1.2-extra-notes.zip"),
+    { name: "my custom skill extra notes", versionLabel: "1.2" },
+  );
+  assert.deepEqual(
+    suggestSkillMetadataFromFilename("plain_skill.zip"),
+    { name: "plain skill", versionLabel: "1.0.0" },
+  );
 });

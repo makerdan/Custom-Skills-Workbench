@@ -7,10 +7,12 @@ import { readZipTextFiles } from '@/lib/skillZip';
 import {
   useAskQuestion, useCreateSkill, useCreateSkillVersion, useGetWorkbenchSummary,
   useListQuestions, useListSkills, useListSkillVersions, useRequestUploadUrl,
+  useUpdateSkillDetails,
   getGetWorkbenchSummaryQueryKey, getListQuestionsQueryKey, getListSkillsQueryKey,
   getListSkillVersionsQueryKey,
 } from '@workspace/api-client-react';
 import type { Question, Skill, SkillFileInput } from '@workspace/api-client-react';
+import BatchSkillImport from '@/components/BatchSkillImport';
 import {
   ArrowRight, ArrowUpRight, BookOpen, ChevronDown, CircleHelp,
   Clock3, Code2, FileArchive, FileCode2, Layers3, LogOut,
@@ -141,6 +143,7 @@ function SkillsPage() {
   const createVersion = useCreateSkillVersion();
   const requestUpload = useRequestUploadUrl();
   const [showCreate, setShowCreate] = useState(false);
+  const [showBatchImport, setShowBatchImport] = useState(false);
   const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -179,7 +182,8 @@ function SkillsPage() {
     } catch (err) { setError(err instanceof Error ? err.message : 'We could not upload this version. Try again.'); setUploadingTo(null); }
   };
   return <>
-    <Topline section="Skill library" title="Your skills." description="Each upload is preserved as a distinct version, ready to ground your next implementation question." action={<button className="btn-primary" onClick={() => setShowCreate(v=>!v)} data-testid="button-create-skill"><Plus size={16}/>{showCreate ? 'Close form' : 'New skill'}</button>}/>
+    <Topline section="Skill library" title="Your skills." description="Each upload is preserved as a distinct version, ready to ground your next implementation question." action={<div className="flex flex-wrap gap-2"><button className="btn-subtle" onClick={() => { setShowCreate(false); setShowBatchImport(v => !v); }} data-testid="button-toggle-bulk-import"><FileArchive size={15}/>{showBatchImport ? 'Close bulk import' : 'Bulk import ZIPs'}</button><button className="btn-primary" onClick={() => { setShowBatchImport(false); setShowCreate(v=>!v); }} data-testid="button-create-skill"><Plus size={16}/>{showCreate ? 'Close form' : 'New skill'}</button></div>}/>
+    {showBatchImport && <div className="mb-8"><BatchSkillImport onClose={() => setShowBatchImport(false)} onComplete={() => { void refreshSkills(); }}/></div>}
     {showCreate && <form onSubmit={handleCreate} className="panel p-5 sm:p-7 mb-8 page-enter" data-testid="form-create-skill">
       <div className="flex justify-between gap-3 mb-5"><div><p className="eyebrow">A new source of truth</p><h2 className="display text-2xl mt-1">Create a skill</h2></div><button type="button" className="p-2 rounded-lg hover:bg-muted h-fit" onClick={()=>setShowCreate(false)} aria-label="Close" data-testid="button-close-create"><X size={17}/></button></div>
       <div className="grid md:grid-cols-2 gap-4"><label className="text-xs font-semibold">Skill name<input className="field mt-2 text-sm font-normal" value={name} onChange={e=>setName(e.target.value)} maxLength={120} required placeholder="e.g. API integration patterns" data-testid="input-skill-name"/></label>
@@ -192,21 +196,54 @@ function SkillsPage() {
     </form>}
     {skillsQuery.isLoading ? <SkeletonLines count={3}/> : skillsQuery.isError ? <ErrorNotice retry={()=>skillsQuery.refetch()}/> : skills.length === 0 ?
       <EmptyState testId="empty-skills" title="Your library starts here." detail="Upload a skill ZIP and make the guidance inside it available for future questions." action={<button className="btn-primary" onClick={()=>setShowCreate(true)} data-testid="button-create-first-skill"><Plus size={15}/> Create your first skill</button>}/> :
-      <div className="space-y-3" data-testid="list-skills">{skills.map(skill=><SkillCard key={skill.id} skill={skill} selected={selectedSkill===skill.id} onToggle={()=>setSelectedSkill(selectedSkill===skill.id ? null : skill.id)} version={newVersion} setVersion={setNewVersion} zip={versionZip} setZip={setVersionZip} busy={uploadingTo===skill.id} onUpload={e=>handleVersion(e,skill.id)} error={error}/>)}</div>}
+       <div className="space-y-3" data-testid="list-skills">{skills.map(skill=><SkillCard key={skill.id} skill={skill} selected={selectedSkill===skill.id} onToggle={()=>setSelectedSkill(selectedSkill===skill.id ? null : skill.id)} version={newVersion} setVersion={setNewVersion} zip={versionZip} setZip={setVersionZip} busy={uploadingTo===skill.id} onUpload={e=>handleVersion(e,skill.id)} error={error} onDetailsUpdated={refreshSkills}/>)}</div>}
   </>;
 }
 
-function SkillCard({ skill, selected, onToggle, version, setVersion, zip, setZip, busy, onUpload, error }: { skill: Skill; selected: boolean; onToggle: () => void; version: string; setVersion: (v: string) => void; zip: File | null; setZip: (v: File|null) => void; busy: boolean; onUpload: (e: FormEvent) => void; error: string }) {
+function SkillCard({ skill, selected, onToggle, version, setVersion, zip, setZip, busy, onUpload, error, onDetailsUpdated }: { skill: Skill; selected: boolean; onToggle: () => void; version: string; setVersion: (v: string) => void; zip: File | null; setZip: (v: File|null) => void; busy: boolean; onUpload: (e: FormEvent) => void; error: string; onDetailsUpdated: () => Promise<unknown> }) {
+  const updateSkillDetails = useUpdateSkillDetails();
+  const [editing, setEditing] = useState(false);
+  const [editName, setEditName] = useState(skill.name);
+  const [editDescription, setEditDescription] = useState(skill.description ?? '');
+  const [detailsError, setDetailsError] = useState('');
   const versionsQuery = useListSkillVersions(skill.id, { query: { queryKey: getListSkillVersionsQueryKey(skill.id), enabled: selected } });
   const versions = versionsQuery.data?.versions ?? skill.versions ?? [];
+  const saveDetails = async (event: FormEvent) => {
+    event.preventDefault();
+    setDetailsError('');
+    const trimmedName = editName.trim();
+    if (!trimmedName) {
+      setDetailsError('Skill name cannot be empty.');
+      return;
+    }
+    try {
+      await updateSkillDetails.mutateAsync({
+        skillId: skill.id,
+        data: { name: trimmedName, description: editDescription.trim() || null },
+      });
+      await onDetailsUpdated();
+      setEditing(false);
+    } catch (err) {
+      setDetailsError(err instanceof Error ? err.message : 'Skill details could not be saved. Try again.');
+    }
+  };
   return <article className="panel overflow-hidden" data-testid={`card-skill-${skill.id}`}>
-    <button onClick={onToggle} className="w-full text-left p-5 sm:p-6 flex items-start gap-4 hover:bg-muted/30 transition-colors" data-testid={`button-expand-skill-${skill.id}`}>
-      <span className="grid place-items-center w-11 h-11 rounded-xl bg-accent/65 text-primary shrink-0"><FileCode2 size={19}/></span>
-      <span className="min-w-0 flex-1"><span className="flex flex-wrap items-center gap-2"><span className="font-semibold text-[15px]" data-testid={`text-skill-name-${skill.id}`}>{skill.name}</span><span className="text-[10px] font-mono rounded-full px-2 py-1 bg-muted text-muted-foreground">v{skill.versions.find(v=>v.id===skill.currentVersionId)?.versionLabel || versions[0]?.versionLabel || 'current'}</span></span>
-        <span className="block text-xs text-muted-foreground mt-1.5 max-w-2xl">{skill.description || 'No description added.'}</span><span className="flex gap-3 mt-3 text-[10px] text-muted-foreground"><span>{skill.versions.length || versions.length} {(skill.versions.length || versions.length) === 1 ? 'version' : 'versions'}</span><span>Added {dateLabel(skill.createdAt)}</span></span></span>
-      <ChevronDown size={17} className={`text-muted-foreground mt-1 transition-transform ${selected ? 'rotate-180' : ''}`}/>
-    </button>
+    <div className="w-full p-5 sm:p-6 flex items-start gap-4">
+      <button onClick={onToggle} className="min-w-0 flex-1 text-left flex items-start gap-4 hover:opacity-90 transition-opacity" data-testid={`button-expand-skill-${skill.id}`}>
+        <span className="grid place-items-center w-11 h-11 rounded-xl bg-accent/65 text-primary shrink-0"><FileCode2 size={19}/></span>
+        <span className="min-w-0 flex-1"><span className="flex flex-wrap items-center gap-2"><span className="font-semibold text-[15px]" data-testid={`text-skill-name-${skill.id}`}>{skill.name}</span><span className="text-[10px] font-mono rounded-full px-2 py-1 bg-muted text-muted-foreground">v{skill.versions.find(v=>v.id===skill.currentVersionId)?.versionLabel || versions[0]?.versionLabel || 'current'}</span></span>
+          <span className="block text-xs text-muted-foreground mt-1.5 max-w-2xl">{skill.description || 'No description added.'}</span><span className="flex gap-3 mt-3 text-[10px] text-muted-foreground"><span>{skill.versions.length || versions.length} {(skill.versions.length || versions.length) === 1 ? 'version' : 'versions'}</span><span>Added {dateLabel(skill.createdAt)}</span></span></span>
+        <ChevronDown size={17} className={`text-muted-foreground mt-1 transition-transform ${selected ? 'rotate-180' : ''}`}/>
+      </button>
+      <button type="button" className="btn-subtle !px-2.5 !py-2 text-[11px] shrink-0" onClick={() => { if (!selected) onToggle(); setEditName(skill.name); setEditDescription(skill.description ?? ''); setDetailsError(''); setEditing(true); }} data-testid={`button-edit-skill-details-${skill.id}`}>Edit details</button>
+    </div>
     {selected && <div className="border-t border-border px-5 py-5 sm:px-6 sm:py-6 bg-[hsl(var(--background)/.45)] page-enter">
+      {editing && <form onSubmit={saveDetails} className="panel p-4 sm:p-5 mb-6" data-testid={`form-edit-skill-details-${skill.id}`}>
+        <div className="flex flex-wrap items-start justify-between gap-3 mb-4"><div><p className="eyebrow">Skill details</p><h3 className="font-semibold text-sm mt-1">Edit name and description</h3></div><button type="button" className="p-2 rounded-lg hover:bg-muted" onClick={() => { setEditing(false); setEditName(skill.name); setEditDescription(skill.description ?? ''); setDetailsError(''); }} aria-label="Cancel editing skill details" data-testid={`button-cancel-edit-skill-details-${skill.id}`}><X size={16}/></button></div>
+        <div className="grid md:grid-cols-2 gap-4"><label className="text-xs font-semibold">Skill name<input className="field mt-2 text-sm font-normal" value={editName} onChange={event => setEditName(event.currentTarget.value)} maxLength={120} required data-testid={`input-edit-skill-name-${skill.id}`}/></label><label className="text-xs font-semibold md:col-span-2">Description <span className="font-normal text-muted-foreground">optional</span><textarea className="field mt-2 text-sm font-normal min-h-[76px] resize-y" value={editDescription} onChange={event => setEditDescription(event.currentTarget.value)} maxLength={1000} data-testid={`input-edit-skill-description-${skill.id}`}/></label></div>
+        {detailsError && <p className="text-xs text-destructive mt-3" role="alert" data-testid={`status-edit-skill-error-${skill.id}`}>{detailsError}</p>}
+        <div className="flex justify-end gap-2 mt-4"><button type="button" className="btn-subtle" onClick={() => { setEditing(false); setEditName(skill.name); setEditDescription(skill.description ?? ''); setDetailsError(''); }} data-testid={`button-cancel-edit-details-${skill.id}`}>Cancel</button><button type="submit" className="btn-primary" disabled={updateSkillDetails.isPending} data-testid={`button-save-edit-details-${skill.id}`}>{updateSkillDetails.isPending ? 'Saving…' : 'Save details'} <ArrowRight size={14}/></button></div>
+      </form>}
       <div className="grid lg:grid-cols-[1fr_300px] gap-7">
         <div><p className="eyebrow mb-3">Uploaded versions</p>{versionsQuery.isLoading ? <SkeletonLines count={2}/> : versionsQuery.isError ? <ErrorNotice retry={()=>versionsQuery.refetch()}/> :
           <div className="space-y-2">{versions.map(v=><div key={v.id} className="flex gap-3 items-center rounded-lg border border-border bg-card p-3" data-testid={`row-version-${v.id}`}><span className="w-8 h-8 grid place-items-center rounded-lg bg-muted text-primary"><FileArchive size={15}/></span><div className="flex-1 min-w-0"><p className="text-xs font-semibold font-mono" data-testid={`text-version-label-${v.id}`}>v{v.versionLabel}{v.id===skill.currentVersionId && <span className="ml-2 font-sans text-[9px] uppercase tracking-wider text-primary">Current</span>}</p><p className="text-[10px] text-muted-foreground mt-1 truncate">{v.fileName} · {v.fileCount} files · {dateLabel(v.uploadedAt)}</p></div><span title={v.filePaths.join(', ')} className="text-[10px] text-muted-foreground hidden sm:block">{v.filePaths.length} paths</span></div>)}</div>}

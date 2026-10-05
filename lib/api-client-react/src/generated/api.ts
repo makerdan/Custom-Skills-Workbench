@@ -33,7 +33,10 @@ import type {
   QuestionInput,
   QuestionList,
   Skill,
+  SkillAnalysisInput,
   SkillCreateInput,
+  SkillDescriptionAnalysis,
+  SkillDetailsUpdate,
   SkillList,
   SkillVersion,
   SkillVersionInput,
@@ -1044,6 +1047,183 @@ export const useCreateSkill = <TError = ErrorType<ErrorEnvelope>,
         TContext
       > => {
       return useMutation(getCreateSkillMutationOptions(options));
+    }
+
+export const getAnalyzeSkillDescriptionUrl = () => {
+
+
+
+
+  return `/api/skills/analyze-description`
+}
+
+/**
+ * @summary Generate a concise description from extracted skill files
+ */
+export const analyzeSkillDescription = async (skillAnalysisInput: SkillAnalysisInput, options?: Parameters<typeof customFetch>[1]): Promise<SkillDescriptionAnalysis> => {
+
+    const getHeaders = (h?: NonNullable<RequestInit['headers']>): Record<string, string | readonly string[]> => {
+    if (!h) return {};
+    if (h instanceof Headers) return Object.fromEntries(h.entries());
+    if (Symbol.iterator in h) {
+      return Object.fromEntries(
+        Array.from(h as Iterable<Iterable<string>>, (entry) => Array.from(entry) as [string, string]),
+      );
+    }
+    const headers: Record<string, string | readonly string[]> = {};
+    for (const [name, value] of Object.entries<string | readonly string[] | undefined>(h)) {
+      if (value !== undefined) headers[name] = value;
+    }
+    return headers;
+  };
+return customFetch<SkillDescriptionAnalysis>(getAnalyzeSkillDescriptionUrl(),
+  {
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...getHeaders(options?.headers) },
+    body: JSON.stringify(skillAnalysisInput)
+  }
+);}
+
+
+
+
+
+export const getAnalyzeSkillDescriptionMutationKey = () => ['analyzeSkillDescription'] as const;
+
+export const getAnalyzeSkillDescriptionMutationOptions = <TError = ErrorType<ErrorEnvelope>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof analyzeSkillDescription>>, TError,AnalyzeSkillDescriptionMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof analyzeSkillDescription>>, TError,AnalyzeSkillDescriptionMutationVariables, TContext> => {
+
+const mutationKey = getAnalyzeSkillDescriptionMutationKey();
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof analyzeSkillDescription>>, AnalyzeSkillDescriptionMutationVariables> = (props) => {
+          const {data} = props ?? {};
+
+          return  analyzeSkillDescription(data,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type AnalyzeSkillDescriptionMutationResult = NonNullable<Awaited<ReturnType<typeof analyzeSkillDescription>>>
+    export type AnalyzeSkillDescriptionMutationBody = BodyType<SkillAnalysisInput>
+    export type AnalyzeSkillDescriptionMutationError = ErrorType<ErrorEnvelope>
+    export type AnalyzeSkillDescriptionMutationVariables = {data: BodyType<SkillAnalysisInput>}
+
+    /**
+ * @summary Generate a concise description from extracted skill files
+ */
+export const useAnalyzeSkillDescription = <TError = ErrorType<ErrorEnvelope>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof analyzeSkillDescription>>, TError,AnalyzeSkillDescriptionMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof analyzeSkillDescription>>,
+        TError,
+        AnalyzeSkillDescriptionMutationVariables,
+        TContext
+      > => {
+      return useMutation(getAnalyzeSkillDescriptionMutationOptions(options));
+    }
+
+export const getUpdateSkillDetailsUrl = (skillId: string,) => {
+
+
+
+
+  return `/api/skills/${skillId}`
+}
+
+/**
+ * @summary Update a skill's name and description
+ */
+export const updateSkillDetails = async (skillId: string,
+    skillDetailsUpdate: SkillDetailsUpdate, options?: Parameters<typeof customFetch>[1]): Promise<Skill> => {
+
+    const getHeaders = (h?: NonNullable<RequestInit['headers']>): Record<string, string | readonly string[]> => {
+    if (!h) return {};
+    if (h instanceof Headers) return Object.fromEntries(h.entries());
+    if (Symbol.iterator in h) {
+      return Object.fromEntries(
+        Array.from(h as Iterable<Iterable<string>>, (entry) => Array.from(entry) as [string, string]),
+      );
+    }
+    const headers: Record<string, string | readonly string[]> = {};
+    for (const [name, value] of Object.entries<string | readonly string[] | undefined>(h)) {
+      if (value !== undefined) headers[name] = value;
+    }
+    return headers;
+  };
+return customFetch<Skill>(getUpdateSkillDetailsUrl(skillId),
+  {
+    ...options,
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json', ...getHeaders(options?.headers) },
+    body: JSON.stringify(skillDetailsUpdate)
+  }
+);}
+
+
+
+
+
+export const getUpdateSkillDetailsMutationKey = () => ['updateSkillDetails'] as const;
+
+export const getUpdateSkillDetailsMutationOptions = <TError = ErrorType<ErrorEnvelope>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateSkillDetails>>, TError,UpdateSkillDetailsMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof updateSkillDetails>>, TError,UpdateSkillDetailsMutationVariables, TContext> => {
+
+const mutationKey = getUpdateSkillDetailsMutationKey();
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof updateSkillDetails>>, UpdateSkillDetailsMutationVariables> = (props) => {
+          const {skillId,data} = props ?? {};
+
+          return  updateSkillDetails(skillId,data,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type UpdateSkillDetailsMutationResult = NonNullable<Awaited<ReturnType<typeof updateSkillDetails>>>
+    export type UpdateSkillDetailsMutationBody = BodyType<SkillDetailsUpdate>
+    export type UpdateSkillDetailsMutationError = ErrorType<ErrorEnvelope>
+    export type UpdateSkillDetailsMutationVariables = {skillId: string;data: BodyType<SkillDetailsUpdate>}
+
+    /**
+ * @summary Update a skill's name and description
+ */
+export const useUpdateSkillDetails = <TError = ErrorType<ErrorEnvelope>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateSkillDetails>>, TError,UpdateSkillDetailsMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof updateSkillDetails>>,
+        TError,
+        UpdateSkillDetailsMutationVariables,
+        TContext
+      > => {
+      return useMutation(getUpdateSkillDetailsMutationOptions(options));
     }
 
 export const getListSkillVersionsUrl = (skillId: string,) => {

@@ -21,6 +21,7 @@ const otherSkillId = "20000000-0000-4000-8000-000000000002";
 const firstVersionId = "30000000-0000-4000-8000-000000000003";
 const secondVersionId = "40000000-0000-4000-8000-000000000004";
 const savedQuestionId = "50000000-0000-4000-8000-000000000005";
+const newlyCreatedVersionId = "80000000-0000-4000-8000-000000000008";
 const testDate = new Date("2026-01-02T03:04:05.000Z");
 
 type User = { id: string } | null;
@@ -84,6 +85,7 @@ class MemoryQuery {
 
 class MemoryDatabase {
   readonly queries: Array<{ table: string; sql: string; params: unknown[] }> = [];
+  readonly updates: Array<{ table: string; sql: string; params: unknown[] }> = [];
   readonly inserted: Array<{ table: string; values: Record<string, unknown> }> = [];
   skills: Array<Record<string, any>> = [];
   versions: Array<Record<string, any>> = [];
@@ -188,18 +190,72 @@ class MemoryDatabase {
   insert(table: unknown) {
     return {
       values: (values: Record<string, unknown>) => {
-        this.inserted.push({ table: getTableName(table as never), values });
+        const tableName = getTableName(table as never);
+        this.inserted.push({ table: tableName, values });
         return {
-          returning: async () => [
-            {
+          returning: async () => {
+            const id =
+              tableName === getTableName(skillsTable)
+                ? skillId
+                : tableName === getTableName(skillVersionsTable)
+                  ? this.versions.length === 0
+                    ? firstVersionId
+                    : newlyCreatedVersionId
+                  : savedQuestionId;
+            const row = {
               ...values,
-              id: savedQuestionId,
+              id,
               createdAt: testDate,
-            },
-          ],
+              updatedAt: testDate,
+              uploadedAt: testDate,
+            };
+            if (tableName === getTableName(skillsTable)) this.skills.push(row);
+            if (tableName === getTableName(skillVersionsTable)) {
+              this.versions.push(row);
+            }
+            return [row];
+          },
         };
       },
     };
+  }
+
+  update(table: unknown) {
+    const tableName = getTableName(table as never);
+    return {
+      set: (values: Record<string, unknown>) => ({
+        where: (condition: unknown) => {
+          const applyUpdate = async () => {
+            const compiled = new PgDialect().sqlToQuery(condition as never);
+            const params = compiled.params as unknown[];
+            this.updates.push({ table: tableName, sql: compiled.sql, params });
+            if (tableName !== getTableName(skillsTable)) {
+              throw new Error(`Unexpected update table: ${tableName}`);
+            }
+            const id = paramFor(compiled.sql, params, "skills", "id");
+            const owner = paramFor(compiled.sql, params, "skills", "owner_id");
+            const matches = this.skills.filter(
+              (skill) =>
+                (id === undefined || skill.id === id) &&
+                (owner === undefined || skill.ownerId === owner),
+            );
+            for (const skill of matches) Object.assign(skill, values);
+            return matches;
+          };
+          return {
+            returning: applyUpdate,
+            then: (
+              resolve: (value: unknown[]) => unknown,
+              reject: (error: unknown) => unknown,
+            ) => Promise.resolve().then(applyUpdate).then(resolve, reject),
+          };
+        },
+      }),
+    };
+  }
+
+  transaction<T>(callback: (transaction: MemoryDatabase) => Promise<T>) {
+    return callback(this);
   }
 }
 
@@ -290,7 +346,7 @@ function makeStorage(allowedOwner: string) {
 
 async function withServer(user: User, routers: unknown[], run: (base: string) => Promise<void>) {
   const app = express();
-  app.use(express.json());
+  app.use(express.json({ limit: "4mb" }));
   app.use((req, _res, next) => {
     req.isAuthenticated = () => user !== null;
     if (user) req.user = user;
@@ -363,12 +419,20 @@ test("unauthenticated requests cannot list skills, versions, questions, upload U
         method: "POST",
         body: { name: "skill.zip", size: 100, contentType: "application/zip" },
       }),
+      await request(base, "/api/skills/analyze-description", {
+        method: "POST",
+        body: { files: [{ path: "SKILL.md", content: "# Skill" }] },
+      }),
+      await request(base, `/api/skills/${skillId}`, {
+        method: "PATCH",
+        body: { name: "New name", description: "New description" },
+      }),
       await request(base, "/api/storage/objects/uploads/private.zip"),
     ];
 
     assert.deepEqual(
       checks.map((response) => response.status),
-      [401, 401, 401, 401, 401, 401, 401],
+      [401, 401, 401, 401, 401, 401, 401, 401, 401],
     );
     assert.equal(database.queries.length, 0);
     assert.equal(storage.calls.getFile, 0);
@@ -399,6 +463,181 @@ test("a user sees only their own skills and versions", async () => {
         payload.skills[0].versions.map((version: { id: string }) => version.id),
         [firstVersionId, secondVersionId],
       );
+    },
+  );
+});
+
+test("skill description analysis is authenticated, bounded, and returns only a description", async () => {
+  const database = new MemoryDatabase();
+  const modelCalls: unknown[] = [];
+  const model = {
+    chat: {
+      completions: {
+        create: async (input: unknown) => {
+          modelCalls.push(input);
+          return {
+            choices: [
+              { message: { content: "Guides developers through API integrations." } },
+            ],
+          };
+        },
+      },
+    },
+  };
+
+  await withServer(
+    { id: ownerId },
+    [createSkillsRouter(database as never, {} as never, model as never)],
+    async (base) => {
+      const response = await request(base, "/api/skills/analyze-description", {
+        method: "POST",
+        body: {
+          files: [
+            { path: "SKILL.md", content: `# Integration patterns\n${"guide ".repeat(4_000)}` },
+            { path: "references/setup.md", content: "Install the SDK." },
+          ],
+        },
+      });
+      assert.equal(response.status, 200);
+      assert.deepEqual(await response.json(), {
+        description: "Guides developers through API integrations.",
+      });
+      assert.equal(modelCalls.length, 1);
+      const modelInput = modelCalls[0] as {
+        messages: Array<{ content: string }>;
+      };
+      assert.ok(modelInput.messages[1].content.length < 32_000);
+      assert.equal(database.queries.length, 0);
+      assert.equal(database.inserted.length, 0);
+    },
+  );
+});
+
+test("skill description analysis rejects unsafe and oversized extracted text before model access", async () => {
+  const database = new MemoryDatabase();
+  let modelCalls = 0;
+  const model = {
+    chat: {
+      completions: {
+        create: async () => {
+          modelCalls += 1;
+          return { choices: [{ message: { content: "Should not run." } }] };
+        },
+      },
+    },
+  };
+  const router = createSkillsRouter(database as never, {} as never, model as never);
+  const oversizedFiles = [
+    { path: "SKILL.md", content: "# Skill" },
+    ...Array.from({ length: 13 }, (_, index) => ({
+      path: `references/guide-${index}.md`,
+      content: "x".repeat(200_000),
+    })),
+  ];
+
+  await withServer({ id: ownerId }, [router], async (base) => {
+    const requests = [
+      { files: [{ path: "SKILL.md", content: "# Skill" }, { path: "../escape.md", content: "bad" }] },
+      { files: [{ path: "SKILL.md", content: "OPENAI_API_KEY=sk-proj-" + "a".repeat(28) }] },
+      { files: [{ path: "SKILL.md", content: "é".repeat(100_001) }] },
+      { files: oversizedFiles },
+      { files: [{ path: "SKILL.md", content: "# Skill" }, { path: "notes.exe", content: "unsupported" }] },
+    ];
+    const responses = [];
+    for (const body of requests) {
+      responses.push(
+        await request(base, "/api/skills/analyze-description", {
+          method: "POST",
+          body,
+        }),
+      );
+    }
+    assert.deepEqual(
+      responses.map((response) => response.status),
+      [400, 400, 400, 400, 400],
+    );
+    assert.equal(modelCalls, 0);
+  });
+});
+
+test("skill details update only changes the owner's metadata and preserves versions", async () => {
+  const database = new MemoryDatabase();
+  database.skills = [
+    makeSkill(skillId, ownerId, firstVersionId),
+    makeSkill(otherSkillId, otherOwnerId, secondVersionId),
+  ];
+  database.versions = questionVersions;
+
+  await withServer(
+    { id: ownerId },
+    [createSkillsRouter(database as never, {} as never)],
+    async (base) => {
+      const response = await request(base, `/api/skills/${skillId}`, {
+        method: "PATCH",
+        body: { name: "  Revised skill  ", description: "  Useful guidance  " },
+      });
+      assert.equal(response.status, 200);
+      const result = await response.json();
+      assert.equal(result.name, "Revised skill");
+      assert.equal(result.description, "Useful guidance");
+      assert.equal(result.currentVersionId, firstVersionId);
+      assert.deepEqual(
+        result.versions.map((version: { id: string }) => version.id),
+        [firstVersionId, secondVersionId],
+      );
+      assert.match(database.updates[0].sql, /"skills"\."owner_id"/);
+
+      const otherResponse = await request(base, `/api/skills/${otherSkillId}`, {
+        method: "PATCH",
+        body: { name: "Stolen update", description: null },
+      });
+      assert.equal(otherResponse.status, 404);
+      assert.equal(database.skills[1].name, "Private skill B");
+    },
+  );
+});
+
+test("single-skill creation and adding a version still save distinct versions", async () => {
+  const database = new MemoryDatabase();
+  const storage = {
+    trySetObjectEntityAclPolicy: async () => undefined,
+  };
+  const files = [{ path: "SKILL.md", content: "# Integration skill" }];
+
+  await withServer(
+    { id: ownerId },
+    [createSkillsRouter(database as never, storage as never)],
+    async (base) => {
+      const createdResponse = await request(base, "/api/skills", {
+        method: "POST",
+        body: {
+          name: "Integration skill",
+          description: "Initial description",
+          versionLabel: "1.0.0",
+          fileName: "integration.zip",
+          objectPath: "/objects/uploads/10000000-0000-4000-8000-000000000010",
+          files,
+        },
+      });
+      assert.equal(createdResponse.status, 201);
+      assert.equal(database.skills[0].currentVersionId, firstVersionId);
+
+      const versionResponse = await request(
+        base,
+        `/api/skills/${skillId}/versions`,
+        {
+          method: "POST",
+          body: {
+            versionLabel: "1.1.0",
+            fileName: "integration-1.1.0.zip",
+            objectPath: "/objects/uploads/20000000-0000-4000-8000-000000000020",
+            files,
+          },
+        },
+      );
+      assert.equal(versionResponse.status, 201);
+      assert.equal(database.skills[0].currentVersionId, newlyCreatedVersionId);
+      assert.equal(database.versions.length, 2);
     },
   );
 });

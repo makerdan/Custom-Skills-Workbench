@@ -269,6 +269,79 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorEnvelope"
+  /skills/analyze-description:
+    post:
+      tags: [Skills]
+      operationId: analyzeSkillDescription
+      summary: Generate a concise description from extracted skill files
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SkillAnalysisInput"
+      responses:
+        "200":
+          description: Description generated without persisting it.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SkillDescriptionAnalysis"
+        "400":
+          description: Invalid or unsafe extracted skill text.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: Authentication required.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "502":
+          description: The assistant could not generate a description.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+  /skills/{skillId}:
+    patch:
+      tags: [Skills]
+      operationId: updateSkillDetails
+      summary: Update a skill's name and description
+      parameters:
+        - name: skillId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SkillDetailsUpdate"
+      responses:
+        "200":
+          description: Updated skill and its unchanged version history.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Skill"
+        "400":
+          description: Invalid skill details.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: Skill not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
   /skills/{skillId}/versions:
     get:
       tags: [Skills]
@@ -485,6 +558,27 @@ components:
           properties:
             name: { type: string, minLength: 1, maxLength: 120 }
             description: { type: string, maxLength: 1000 }
+    SkillAnalysisInput:
+      type: object
+      required: [files]
+      properties:
+        files:
+          type: array
+          minItems: 1
+          maxItems: 60
+          items:
+            $ref: "#/components/schemas/SkillFileInput"
+    SkillDescriptionAnalysis:
+      type: object
+      required: [description]
+      properties:
+        description: { type: string, minLength: 1, maxLength: 1000 }
+    SkillDetailsUpdate:
+      type: object
+      required: [name, description]
+      properties:
+        name: { type: string, minLength: 1, maxLength: 120 }
+        description: { type: [string, "null"], maxLength: 1000 }
     SkillVersion:
       type: object
       required: [id, skillId, versionLabel, fileName, fileCount, filePaths, uploadedAt]

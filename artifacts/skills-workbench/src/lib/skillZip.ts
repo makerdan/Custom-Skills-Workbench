@@ -20,6 +20,31 @@ const CRC_TABLE = (() => {
   return table;
 })();
 
+export function suggestSkillMetadataFromFilename(fileName: string): {
+  name: string;
+  versionLabel: string;
+} {
+  const stem = fileName.replace(/\.zip$/i, "").trim();
+  const versionPattern =
+    /(^|[\s._-])(?:(?:version|ver)[\s._-]*|v)(\d+(?:\.\d+){0,2}(?:-(?:alpha|beta|rc|dev|preview|build)[\w.-]*)?(?:\+[\w.-]+)?|alpha|beta\d*|rc\d*|dev|preview|stable|release|nightly)(?=$|[\s._-])|(^|[\s._-])(\d+\.\d+(?:\.\d+)?(?:-(?:alpha|beta|rc|dev|preview|build)[\w.-]*)?(?:\+[\w.-]+)?)(?=$|[\s._-])|(^|[\s._-])(alpha|beta\d*|rc\d*|dev|preview|stable|release|nightly)(?=$|[\s._-])/i;
+  const match = versionPattern.exec(stem);
+  const versionLabel = match
+    ? match[2] || match[4] || match[6] || "1.0.0"
+    : "1.0.0";
+  const remaining = match
+    ? `${stem.slice(0, match.index)} ${stem.slice(match.index + match[0].length)}`
+    : stem;
+  const name = remaining
+    .replace(/[\s._-]+/g, " ")
+    .trim()
+    .slice(0, 120);
+
+  return {
+    name: name || "New skill",
+    versionLabel: versionLabel.slice(0, 80),
+  };
+}
+
 function crc32(data: Uint8Array): number {
   let value = 0xffffffff;
   for (const byte of data) {

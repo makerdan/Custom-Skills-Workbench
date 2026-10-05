@@ -249,6 +249,69 @@ export const CreateSkillResponse = zod.object({
 
 
 /**
+ * @summary Generate a concise description from extracted skill files
+ */
+export const analyzeSkillDescriptionBodyFilesItemPathMax = 512;
+
+export const analyzeSkillDescriptionBodyFilesItemContentMax = 200000;
+
+export const analyzeSkillDescriptionBodyFilesMax = 60;
+
+
+
+export const AnalyzeSkillDescriptionBody = zod.object({
+  "files": zod.array(zod.object({
+  "path": zod.string().min(1).max(analyzeSkillDescriptionBodyFilesItemPathMax),
+  "content": zod.string().max(analyzeSkillDescriptionBodyFilesItemContentMax)
+})).min(1).max(analyzeSkillDescriptionBodyFilesMax)
+})
+
+export const analyzeSkillDescriptionResponseDescriptionMax = 1000;
+
+
+
+export const AnalyzeSkillDescriptionResponse = zod.object({
+  "description": zod.string().min(1).max(analyzeSkillDescriptionResponseDescriptionMax)
+})
+
+
+/**
+ * @summary Update a skill's name and description
+ */
+export const UpdateSkillDetailsParams = zod.object({
+  "skillId": zod.coerce.string().uuid()
+})
+
+export const updateSkillDetailsBodyNameMax = 120;
+
+export const updateSkillDetailsBodyDescriptionMax = 1000;
+
+
+
+export const UpdateSkillDetailsBody = zod.object({
+  "name": zod.string().min(1).max(updateSkillDetailsBodyNameMax),
+  "description": zod.string().max(updateSkillDetailsBodyDescriptionMax).nullable()
+})
+
+export const UpdateSkillDetailsResponse = zod.object({
+  "id": zod.string().uuid(),
+  "name": zod.string(),
+  "description": zod.string().nullable(),
+  "currentVersionId": zod.string().uuid(),
+  "versions": zod.array(zod.object({
+  "id": zod.string().uuid(),
+  "skillId": zod.string().uuid(),
+  "versionLabel": zod.string(),
+  "fileName": zod.string(),
+  "fileCount": zod.number().int(),
+  "filePaths": zod.array(zod.string()),
+  "uploadedAt": zod.coerce.date()
+})),
+  "createdAt": zod.coerce.date()
+})
+
+
+/**
  * @summary List a skill's uploaded versions
  */
 export const ListSkillVersionsParams = zod.object({
