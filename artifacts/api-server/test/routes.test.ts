@@ -951,6 +951,55 @@ test("skill description analysis rejects unsafe and oversized extracted text bef
   });
 });
 
+test("skill description analysis rejects missing SKILL.md and embedded NUL bytes before model or database access", async () => {
+  const database = new MemoryDatabase();
+  let modelCalls = 0;
+  const model = {
+    chat: {
+      completions: {
+        create: async () => {
+          modelCalls += 1;
+          return { choices: [{ message: { content: "Should not run." } }] };
+        },
+      },
+    },
+  };
+  const invalidCases = [
+    {
+      name: "a missing SKILL.md file",
+      files: [{ path: "README.md", content: "No skill entry point." }],
+      errorPattern: /does not contain a SKILL\.md file/i,
+    },
+    {
+      name: "an embedded NUL byte",
+      files: [{ path: "SKILL.md", content: "text\u0000binary" }],
+      errorPattern: /not supported text/i,
+    },
+  ];
+
+  await withServer(
+    { id: ownerId },
+    [createSkillsRouter(database as never, {} as never, model as never)],
+    async (base) => {
+      for (const scenario of invalidCases) {
+        const response = await request(base, "/api/skills/analyze-description", {
+          method: "POST",
+          body: { files: scenario.files },
+        });
+        assert.equal(response.status, 400, scenario.name);
+        const payload = await response.json();
+        assert.match(payload.error, scenario.errorPattern, scenario.name);
+      }
+    },
+  );
+
+  assert.equal(modelCalls, 0);
+  assert.equal(database.queries.length, 0);
+  assert.equal(database.transactionCalls, 0);
+  assert.equal(database.inserted.length, 0);
+  assert.equal(database.updates.length, 0);
+});
+
 test("skill details update only changes the owner's metadata and preserves versions", async () => {
   const database = new MemoryDatabase();
   database.skills = [
