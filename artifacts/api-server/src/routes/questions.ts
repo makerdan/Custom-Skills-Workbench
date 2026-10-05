@@ -3,12 +3,16 @@ import {
   AskQuestionResponse,
   ListQuestionsResponse,
 } from "@workspace/api-zod";
-import { db, questionsTable, skillVersionsTable, skillsTable } from "@workspace/db";
-import { openai } from "@workspace/integrations-openai-ai-server";
+import {
+  db as defaultDb,
+  questionsTable,
+  skillVersionsTable,
+  skillsTable,
+} from "@workspace/db";
+import { openai as defaultOpenai } from "@workspace/integrations-openai-ai-server";
 import { and, desc, eq } from "drizzle-orm";
 import { Router, type IRouter } from "express";
 
-const router: IRouter = Router();
 const MAX_CONTEXT_CHARS = 32_000;
 
 function rankSkillFiles(files: Array<{ path: string; content: string }>, query: string) {
@@ -59,12 +63,18 @@ function likelyContainsCredential(value: string): boolean {
   return false;
 }
 
-router.get("/questions", async (req, res): Promise<void> => {
+export function createQuestionsRouter(
+  database: typeof defaultDb = defaultDb,
+  openai: typeof defaultOpenai = defaultOpenai,
+): IRouter {
+  const router: IRouter = Router();
+
+  router.get("/questions", async (req, res): Promise<void> => {
   if (!req.isAuthenticated()) {
     res.status(401).json({ error: "Unauthorized" });
     return;
   }
-  const questions = await db
+  const questions = await database
     .select({
       id: questionsTable.id,
       skillId: questionsTable.skillId,
@@ -86,9 +96,9 @@ router.get("/questions", async (req, res): Promise<void> => {
     .orderBy(desc(questionsTable.createdAt))
     .limit(300);
   res.json(ListQuestionsResponse.parse({ questions }));
-});
+  });
 
-router.post("/questions", async (req, res): Promise<void> => {
+  router.post("/questions", async (req, res): Promise<void> => {
   if (!req.isAuthenticated()) {
     res.status(401).json({ error: "Unauthorized" });
     return;
@@ -106,7 +116,7 @@ router.post("/questions", async (req, res): Promise<void> => {
     return;
   }
 
-  const [context] = await db
+  const [context] = await database
     .select({
       skillId: skillsTable.id,
       skillName: skillsTable.name,
@@ -174,7 +184,7 @@ router.post("/questions", async (req, res): Promise<void> => {
       res.status(502).json({ error: "The assistant returned an empty answer. Try again." });
       return;
     }
-    const [saved] = await db
+    const [saved] = await database
       .insert(questionsTable)
       .values({
         ownerId: req.user.id,
@@ -206,6 +216,9 @@ router.post("/questions", async (req, res): Promise<void> => {
       error: "The assistant could not answer right now. Your question was not saved.",
     });
   }
-});
+  });
 
-export default router;
+  return router;
+}
+
+export default createQuestionsRouter();

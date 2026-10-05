@@ -91,7 +91,7 @@ function looksLikeCredential(value: string): boolean {
     return true;
   }
   const assignments = value.matchAll(
-    /(?:api[_-]?key|secret|password|access[_-]?token)\s*[:=]\s*['"]?([A-Za-z0-9_./+=-]{12,})/gi,
+    /(?:api[_-]?key|secret(?:[_-][a-z0-9]+)*|password|access[_-]?token|auth[_-]?token)\s*[:=]\s*['"]?([A-Za-z0-9_./+=-]{12,})/gi,
   );
   for (const match of assignments) {
     const candidate = match[1];

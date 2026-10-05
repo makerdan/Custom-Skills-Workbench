@@ -11,8 +11,6 @@ import {
   ObjectStorageService,
 } from '../lib/objectStorage';
 
-const router: IRouter = Router();
-const objectStorageService = new ObjectStorageService();
 const MAX_ZIP_BYTES = 20 * 1024 * 1024;
 
 function hasAuthenticatedSession(
@@ -39,9 +37,14 @@ function hasAuthenticatedSession(
  * Then uploads the file directly to the returned presigned URL.
  * Requires auth middleware so public callers cannot mint write-capable URLs.
  */
-router.post(
-  '/storage/uploads/request-url',
-  async (req: Request, res: Response) => {
+export function createStorageRouter(
+  objectStorageService: ObjectStorageService = new ObjectStorageService(),
+): IRouter {
+  const router: IRouter = Router();
+
+  router.post(
+    '/storage/uploads/request-url',
+    async (req: Request, res: Response) => {
     if (!hasAuthenticatedSession(req)) {
       res.status(401).json({ error: 'Unauthorized' });
 
@@ -82,8 +85,8 @@ router.post(
       req.log.error({ err: error }, 'Error generating upload URL');
       res.status(500).json({ error: 'Failed to generate upload URL' });
     }
-  },
-);
+    },
+  );
 
 /**
  * GET /storage/public-objects/*
@@ -92,9 +95,9 @@ router.post(
  * These are unconditionally public — no authentication or ACL checks.
  * IMPORTANT: Always provide this endpoint when object storage is set up.
  */
-router.get(
-  '/storage/public-objects/*filePath',
-  async (req: Request, res: Response) => {
+  router.get(
+    '/storage/public-objects/*filePath',
+    async (req: Request, res: Response) => {
     try {
       const raw = req.params.filePath;
       const filePath = Array.isArray(raw) ? raw.join('/') : raw;
@@ -121,8 +124,8 @@ router.get(
       req.log.error({ err: error }, 'Error serving public object');
       res.status(500).json({ error: 'Failed to serve public object' });
     }
-  },
-);
+    },
+  );
 
 /**
  * GET /storage/objects/*
@@ -131,7 +134,7 @@ router.get(
  * These are served from a separate path from /public-objects and can optionally
  * be protected with authentication or ACL checks based on the use case.
  */
-router.get('/storage/objects/*path', async (req: Request, res: Response) => {
+  router.get('/storage/objects/*path', async (req: Request, res: Response) => {
   if (!hasAuthenticatedSession(req)) {
     res.status(401).json({ error: 'Unauthorized' });
     return;
@@ -174,6 +177,9 @@ router.get('/storage/objects/*path', async (req: Request, res: Response) => {
     req.log.error({ err: error }, 'Error serving object');
     res.status(500).json({ error: 'Failed to serve object' });
   }
-});
+  });
 
-export default router;
+  return router;
+}
+
+export default createStorageRouter();

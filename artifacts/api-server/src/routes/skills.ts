@@ -9,7 +9,7 @@ import {
   ListSkillVersionsResponse,
 } from "@workspace/api-zod";
 import {
-  db,
+  db as defaultDb,
   skillVersionsTable,
   skillsTable,
   type SkillTextFile,
@@ -20,8 +20,6 @@ import { Router, type IRouter } from "express";
 import { ObjectStorageService } from "../lib/objectStorage";
 import { toSkillDto, toSkillVersionDto } from "./skillDtos";
 
-const router: IRouter = Router();
-const objectStorage = new ObjectStorageService();
 const MAX_EXTRACTED_TEXT_BYTES = 2_500_000;
 const OBJECT_PATH_PATTERN = /^\/objects\/uploads\/[a-f0-9-]{36}$/i;
 const TEXT_FILE_EXTENSION =
@@ -95,27 +93,33 @@ function likelyContainsCredential(value: string): boolean {
   return false;
 }
 
-async function setPrivateOwner(objectPath: string, ownerId: string) {
-  await objectStorage.trySetObjectEntityAclPolicy(objectPath, {
-    owner: ownerId,
-    visibility: "private",
-  });
-}
+export function createSkillsRouter(
+  database: typeof defaultDb = defaultDb,
+  objectStorage: ObjectStorageService = new ObjectStorageService(),
+): IRouter {
+  const router: IRouter = Router();
 
-router.get("/skills", async (req, res): Promise<void> => {
+  async function setPrivateOwner(objectPath: string, ownerId: string) {
+    await objectStorage.trySetObjectEntityAclPolicy(objectPath, {
+      owner: ownerId,
+      visibility: "private",
+    });
+  }
+
+  router.get("/skills", async (req, res): Promise<void> => {
   if (!req.isAuthenticated()) {
     res.status(401).json({ error: "Unauthorized" });
     return;
   }
 
-  const skills = await db
+  const skills = await database
     .select()
     .from(skillsTable)
     .where(eq(skillsTable.ownerId, req.user.id))
     .orderBy(desc(skillsTable.updatedAt));
 
   const versionRows = skills.length
-    ? await db
+    ? await database
         .select({ version: skillVersionsTable })
         .from(skillVersionsTable)
         .innerJoin(skillsTable, eq(skillVersionsTable.skillId, skillsTable.id))
@@ -140,9 +144,9 @@ router.get("/skills", async (req, res): Promise<void> => {
       ),
     }),
   );
-});
+  });
 
-router.post("/skills", async (req, res): Promise<void> => {
+  router.post("/skills", async (req, res): Promise<void> => {
   if (!req.isAuthenticated()) {
     res.status(401).json({ error: "Unauthorized" });
     return;
@@ -160,7 +164,7 @@ router.post("/skills", async (req, res): Promise<void> => {
 
   try {
     await setPrivateOwner(parsed.data.objectPath, req.user.id);
-    const [created] = await db.transaction(async (tx) => {
+    const [created] = await database.transaction(async (tx) => {
       const [skill] = await tx
         .insert(skillsTable)
         .values({
@@ -195,9 +199,9 @@ router.post("/skills", async (req, res): Promise<void> => {
     req.log.error({ err: error }, "Failed to create skill");
     res.status(500).json({ error: "The skill could not be saved." });
   }
-});
+  });
 
-router.get("/skills/:skillId/versions", async (req, res): Promise<void> => {
+  router.get("/skills/:skillId/versions", async (req, res): Promise<void> => {
   if (!req.isAuthenticated()) {
     res.status(401).json({ error: "Unauthorized" });
     return;
@@ -207,7 +211,7 @@ router.get("/skills/:skillId/versions", async (req, res): Promise<void> => {
     res.status(400).json({ error: parsed.error.message });
     return;
   }
-  const [skill] = await db
+  const [skill] = await database
     .select({ id: skillsTable.id })
     .from(skillsTable)
     .where(
@@ -221,7 +225,7 @@ router.get("/skills/:skillId/versions", async (req, res): Promise<void> => {
     res.status(404).json({ error: "Skill not found." });
     return;
   }
-  const versions = await db
+  const versions = await database
     .select()
     .from(skillVersionsTable)
     .where(eq(skillVersionsTable.skillId, skill.id))
@@ -231,9 +235,9 @@ router.get("/skills/:skillId/versions", async (req, res): Promise<void> => {
       versions: versions.map(toSkillVersionDto),
     }),
   );
-});
+  });
 
-router.post("/skills/:skillId/versions", async (req, res): Promise<void> => {
+  router.post("/skills/:skillId/versions", async (req, res): Promise<void> => {
   if (!req.isAuthenticated()) {
     res.status(401).json({ error: "Unauthorized" });
     return;
@@ -253,7 +257,7 @@ router.post("/skills/:skillId/versions", async (req, res): Promise<void> => {
     return;
   }
 
-  const [skill] = await db
+  const [skill] = await database
     .select()
     .from(skillsTable)
     .where(
@@ -270,7 +274,7 @@ router.post("/skills/:skillId/versions", async (req, res): Promise<void> => {
 
   try {
     await setPrivateOwner(body.data.objectPath, req.user.id);
-    const [version] = await db.transaction(async (tx) => {
+    const [version] = await database.transaction(async (tx) => {
       const [inserted] = await tx
         .insert(skillVersionsTable)
         .values({
@@ -296,6 +300,9 @@ router.post("/skills/:skillId/versions", async (req, res): Promise<void> => {
       error: "The version could not be saved. Check its label and try again.",
     });
   }
-});
+  });
 
-export default router;
+  return router;
+}
+
+export default createSkillsRouter();

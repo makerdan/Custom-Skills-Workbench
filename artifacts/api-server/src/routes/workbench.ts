@@ -1,6 +1,6 @@
 import { GetWorkbenchSummaryResponse } from "@workspace/api-zod";
 import {
-  db,
+  db as defaultDb,
   questionsTable,
   skillVersionsTable,
   skillsTable,
@@ -8,31 +8,34 @@ import {
 import { and, count, desc, eq } from "drizzle-orm";
 import { Router, type IRouter } from "express";
 
-const router: IRouter = Router();
+export function createWorkbenchRouter(
+  database: typeof defaultDb = defaultDb,
+): IRouter {
+  const router: IRouter = Router();
 
-router.get("/workbench/summary", async (req, res): Promise<void> => {
+  router.get("/workbench/summary", async (req, res): Promise<void> => {
   if (!req.isAuthenticated()) {
     res.status(401).json({ error: "Unauthorized" });
     return;
   }
 
   const [[skillTotal], [versionTotal], [questionTotal]] = await Promise.all([
-    db
+    database
       .select({ value: count() })
       .from(skillsTable)
       .where(eq(skillsTable.ownerId, req.user.id)),
-    db
+    database
       .select({ value: count() })
       .from(skillVersionsTable)
       .innerJoin(skillsTable, eq(skillVersionsTable.skillId, skillsTable.id))
       .where(eq(skillsTable.ownerId, req.user.id)),
-    db
+    database
       .select({ value: count() })
       .from(questionsTable)
       .where(eq(questionsTable.ownerId, req.user.id)),
   ]);
 
-  const recentQuestions = await db
+  const recentQuestions = await database
     .select({
       id: questionsTable.id,
       skillId: questionsTable.skillId,
@@ -67,6 +70,9 @@ router.get("/workbench/summary", async (req, res): Promise<void> => {
       recentQuestions,
     }),
   );
-});
+  });
 
-export default router;
+  return router;
+}
+
+export default createWorkbenchRouter();
