@@ -268,11 +268,22 @@
 }
 
 :root { --app-display: var(--app-font-serif); }
+:root[data-typeface="serif"] {
+  --app-font-sans: var(--app-font-serif);
+  --app-display: var(--app-font-serif);
+}
+:root[data-text-size="small"] { font-size: 15px; }
+:root[data-text-size="large"] { font-size: 17px; }
 body { background: hsl(var(--background)); }
 button, a, input, textarea, select { -webkit-tap-highlight-color: transparent; }
 .workbench-shell { min-height: 100dvh; display: grid; grid-template-columns: 248px minmax(0, 1fr); }
 .workbench-sidebar { background: hsl(var(--sidebar)); color: hsl(var(--sidebar-foreground)); min-height: 100dvh; display: flex; flex-direction: column; padding: 27px 17px 20px; position: sticky; top: 0; height: 100dvh; }
 .workbench-content { min-width: 0; padding: 0 clamp(22px, 5vw, 76px) 70px; max-width: 1600px; width: 100%; margin: 0 auto; }
+.workbench-shell[data-density="compact"] .panel { padding: 0.875rem; border-radius: 11px; }
+.workbench-shell[data-density="compact"] .nav-link { padding: 7px 10px; }
+.workbench-shell[data-density="compact"] .field { padding: 9px 11px; }
+.workbench-shell[data-density="compact"] .btn-primary,
+.workbench-shell[data-density="compact"] .btn-subtle { padding-block: 8px; }
 .display { font-family: var(--app-display); letter-spacing: -0.035em; }
 .eyebrow { font-family: var(--app-font-mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: hsl(var(--muted-foreground)); }
 .page-enter { animation: arrive .42s cubic-bezier(.2,.75,.25,1) both; }
@@ -297,6 +308,7 @@ button, a, input, textarea, select { -webkit-tap-highlight-color: transparent; }
  .workbench-sidebar { display:none; }
  .mobile-top { display:flex; position:sticky; top:0; z-index:20; background:hsl(var(--background) / .96); backdrop-filter:blur(12px); border-bottom:1px solid hsl(var(--border)); padding:12px 17px; align-items:center; justify-content:space-between; }
  .workbench-content { padding:28px 18px 56px; }
+ .workbench-shell[data-density="compact"] .workbench-content { padding:20px 14px 44px; }
 }
 
 /**

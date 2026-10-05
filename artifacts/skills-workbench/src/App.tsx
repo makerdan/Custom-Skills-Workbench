@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { createContext, useContext, useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import type { FormEvent, ReactNode } from 'react';
 import { QueryClient, QueryClientProvider, useQueryClient } from '@tanstack/react-query';
 import { Link, Route, Switch, useLocation, useRoute, Router as WouterRouter } from 'wouter';
@@ -19,15 +19,30 @@ import type { ListPublicSkillsParams, Question, Skill, SkillFileInput, SkillVers
 import BatchSkillImport from '@/components/BatchSkillImport';
 import {
   ArrowRight, ArrowUpRight, ArrowDownToLine, BookOpen, ChevronDown, CircleHelp,
-  Clock3, Code2, FileArchive, FileCode2, Layers3, LogOut,
+  Clock3, Code2, FileArchive, FileCode2, Layers3, LogOut, Settings,
   MessageSquareText, Plus, ShieldCheck, Sparkles, Upload, X,
   Globe2, LockKeyhole, Search, SlidersHorizontal, Tag,
   Share2, Copy, RefreshCw, ExternalLink,
 } from 'lucide-react';
 import NotFound from '@/pages/not-found';
 import { buildDestinationHref, buildSharePageUrl, shareDestinations } from '@/lib/shareDestinations';
+import SettingsPage from '@/pages/SettingsPage';
+import {
+  DEFAULT_USER_PREFERENCES,
+  readUserPreferences,
+  resetUserPreferences,
+  writeUserPreferences,
+} from '@/lib/userPreferences';
+import type { UserPreferences } from '@/lib/userPreferences';
 
 const queryClient = new QueryClient();
+
+type UserPreferencesContextValue = {
+  preferences: UserPreferences;
+  onPreferenceChange: <K extends keyof UserPreferences>(key: K, value: UserPreferences[K]) => void;
+  onReset: () => void;
+};
+const UserPreferencesContext = createContext<UserPreferencesContextValue | null>(null);
 
 const dateLabel = (date: string) => new Intl.DateTimeFormat(undefined, { month: 'short', day: 'numeric', year: 'numeric' }).format(new Date(date));
 const firstName = (user?: { firstName?: string | null; lastName?: string | null; email?: string | null } | null) =>
@@ -66,7 +81,8 @@ function Sidebar({ path, user, logout }: { path: string; user: any; logout: () =
       <div className="border-t border-[hsl(var(--sidebar-border))] pt-4 flex items-center gap-3">
         <div className="w-9 h-9 grid place-items-center rounded-full bg-[hsl(var(--sidebar-accent))] text-xs font-semibold uppercase" data-testid="text-user-initials">{(user?.firstName?.[0] || user?.email?.[0] || 'D').toUpperCase()}</div>
         <div className="min-w-0 flex-1"><p className="truncate text-xs font-medium" data-testid="text-user-name">{firstName(user)}</p><p className="truncate text-[10px] opacity-45">{user?.email || 'Personal workspace'}</p></div>
-        <button onClick={logout} className="p-2 rounded-lg opacity-60 hover:opacity-100 hover:bg-[hsl(var(--sidebar-accent))]" aria-label="Log out" data-testid="button-logout"><LogOut size={15}/></button>
+        <Link href="/settings" className={`grid h-8 w-8 place-items-center rounded-lg opacity-70 hover:opacity-100 hover:bg-[hsl(var(--sidebar-accent))] ${path === '/settings' ? 'bg-[hsl(var(--sidebar-accent))] text-[hsl(var(--sidebar-primary))]' : ''}`} aria-label="Settings" title="Settings" data-testid="link-settings"><Settings size={15}/></Link>
+        <button onClick={logout} className="grid h-8 w-8 place-items-center rounded-lg opacity-60 hover:opacity-100 hover:bg-[hsl(var(--sidebar-accent))]" aria-label="Log out" data-testid="button-logout"><LogOut size={15}/></button>
       </div>
     </div>
   </aside>;
@@ -75,6 +91,53 @@ function Sidebar({ path, user, logout }: { path: string; user: any; logout: () =
 function Shell({ children }: { children: ReactNode }) {
   const [path] = useLocation();
   const auth = useAuth();
+  const userId = auth.isAuthenticated ? auth.user?.id ?? '' : '';
+  const [preferenceState, setPreferenceState] = useState(() => ({
+    userId,
+    preferences: readUserPreferences(userId),
+  }));
+  const preferences = preferenceState.userId === userId
+    ? preferenceState.preferences
+    : readUserPreferences(userId);
+
+  useLayoutEffect(() => {
+    setPreferenceState({ userId, preferences: readUserPreferences(userId) });
+  }, [userId]);
+
+  useLayoutEffect(() => {
+    const root = document.documentElement;
+    root.dataset.typeface = preferences.typeface;
+    root.dataset.textSize = preferences.textSize;
+    root.classList.toggle('dark', preferences.appearance === 'dark' ||
+      (preferences.appearance === 'system' &&
+        typeof window.matchMedia === 'function' &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches));
+
+    const shell = document.querySelector<HTMLElement>('.workbench-shell');
+    if (shell) shell.dataset.density = preferences.density;
+  }, [preferences]);
+
+  useEffect(() => {
+    if (preferences.appearance !== 'system' || typeof window.matchMedia !== 'function') return;
+    const media = window.matchMedia('(prefers-color-scheme: dark)');
+    const updateAppearance = () => document.documentElement.classList.toggle('dark', media.matches);
+    media.addEventListener?.('change', updateAppearance);
+    return () => media.removeEventListener?.('change', updateAppearance);
+  }, [preferences.appearance]);
+
+  const updatePreference = <K extends keyof UserPreferences>(key: K, value: UserPreferences[K]) => {
+    if (!userId) return;
+    const next = { ...preferences, [key]: value };
+    setPreferenceState({ userId, preferences: next });
+    writeUserPreferences(userId, next);
+  };
+
+  const resetPreferences = () => {
+    if (!userId) return;
+    resetUserPreferences(userId);
+    setPreferenceState({ userId, preferences: { ...DEFAULT_USER_PREFERENCES } });
+  };
+
   if (auth.isLoading) return <div className="min-h-[100dvh] grid place-items-center"><div className="w-64 space-y-3"><div className="skeleton h-7 w-36"/><div className="skeleton h-4 w-52"/></div></div>;
   if (!auth.isAuthenticated) return <main className="min-h-[100dvh] grid place-items-center p-6"><section className="panel p-9 max-w-md w-full text-center shadow-sm">
     <div className="mx-auto w-12 h-12 rounded-2xl bg-[hsl(var(--accent))] grid place-items-center"><Code2 size={22}/></div>
@@ -83,11 +146,23 @@ function Shell({ children }: { children: ReactNode }) {
     <button className="btn-primary mt-7 w-full" onClick={auth.login} data-testid="button-login">Continue to workspace <ArrowRight size={15}/></button>
     <Link href="/gallery" className="inline-flex items-center gap-1.5 mt-5 text-xs font-semibold text-primary hover:underline" data-testid="link-public-gallery">Explore public skills <ArrowUpRight size={13}/></Link>
   </section></main>;
-  return <div className="workbench-shell">
+  return <UserPreferencesContext.Provider value={{ preferences, onPreferenceChange: updatePreference, onReset: resetPreferences }}>
+    <div className="workbench-shell" data-density={preferences.density}>
     <Sidebar path={path} user={auth.user} logout={auth.logout}/>
-    <header className="mobile-top !flex-wrap"><div className="w-full flex items-center justify-between"><Link href="/" className="flex items-center gap-2 font-semibold text-sm" data-testid="link-mobile-brand"><span className="grid place-items-center w-8 h-8 rounded-lg bg-primary text-primary-foreground"><Code2 size={17}/></span> Skills Workbench</Link><button className="btn-subtle !p-2" onClick={auth.logout} data-testid="button-mobile-logout"><LogOut size={16}/></button></div><nav className="flex w-full gap-1 overflow-x-auto pt-2 pb-0.5" aria-label="Mobile navigation">{[{href:'/', label:'Overview'},{href:'/skills',label:'Skills'},{href:'/gallery',label:'Gallery'},{href:'/ask',label:'Ask'},{href:'/questions',label:'History'}].map(item=><Link key={item.href} href={item.href} className={`whitespace-nowrap rounded-full px-3 py-1.5 text-[11px] font-semibold ${path===item.href ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}`} data-testid={`link-mobile-nav-${item.href==='/'?'overview':item.href.slice(1)}`}>{item.label}</Link>)}</nav></header>
+    <header className="mobile-top !flex-wrap"><div className="w-full flex items-center justify-between"><Link href="/" className="flex items-center gap-2 font-semibold text-sm" data-testid="link-mobile-brand"><span className="grid place-items-center w-8 h-8 rounded-lg bg-primary text-primary-foreground"><Code2 size={17}/></span> Skills Workbench</Link><div className="flex items-center gap-1.5"><Link href="/settings" className={`btn-subtle !p-2 ${path === '/settings' ? 'border-primary text-primary' : ''}`} aria-label="Settings" title="Settings" data-testid="link-mobile-settings"><Settings size={16}/></Link><button className="btn-subtle !p-2" onClick={auth.logout} aria-label="Log out" data-testid="button-mobile-logout"><LogOut size={16}/></button></div></div><nav className="flex w-full gap-1 overflow-x-auto pt-2 pb-0.5" aria-label="Mobile navigation">{[{href:'/', label:'Overview'},{href:'/skills',label:'Skills'},{href:'/gallery',label:'Gallery'},{href:'/ask',label:'Ask'},{href:'/questions',label:'History'}].map(item=><Link key={item.href} href={item.href} className={`whitespace-nowrap rounded-full px-3 py-1.5 text-[11px] font-semibold ${path===item.href ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}`} data-testid={`link-mobile-nav-${item.href==='/'?'overview':item.href.slice(1)}`}>{item.label}</Link>)}</nav></header>
     <main className="workbench-content page-enter">{children}</main>
-  </div>;
+    </div>
+  </UserPreferencesContext.Provider>;
+}
+
+function SettingsRoute() {
+  const settings = useContext(UserPreferencesContext);
+  if (!settings) return <NotFound/>;
+  return <SettingsPage
+    preferences={settings.preferences}
+    onPreferenceChange={settings.onPreferenceChange}
+    onReset={settings.onReset}
+  />;
 }
 
 function Topline({ section, title, description, action }: { section: string; title: string; description: string; action?: React.ReactNode }) {
@@ -768,6 +843,7 @@ function Router() {
       <Route path="/skills" component={SkillsPage}/>
       <Route path="/ask" component={AskPage}/>
       <Route path="/questions" component={QuestionsPage}/>
+      <Route path="/settings" component={SettingsRoute}/>
       <Route component={NotFound}/>
     </Switch></Shell></Route>
   </Switch>;
