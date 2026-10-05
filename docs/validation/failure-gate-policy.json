@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "local-v1",
+  "version": "local-v1.1",
   "scope": "Skills Workbench local cooperative validation",
   "approval": "docs/validation/failure-gate-installation-approval.json",
   "eligible_plans": "Exact locally reviewed plan snapshots in the coordinator; no platform-task inference",
@@ -15,7 +15,7 @@
       "coverage": "Application, tests, validation infrastructure and material contract changes",
       "steps": [
         {"name": "typecheck", "argv": ["pnpm", "typecheck"], "parser": "exit"},
-        {"name": "tests", "argv": ["pnpm", "test"], "parser": "tap"},
+        {"name": "tests", "argv": ["pnpm", "test"], "parser": "node-native"},
         {"name": "gate-tests", "argv": ["python3", "-B", "scripts/failure_gate/tests.py"], "parser": "gate"}
       ]
     }

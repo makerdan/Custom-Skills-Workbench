@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "status": "APPROVED_LOCAL_CONVERSATION",
+  "proposal": "docs/validation/failure-gate-test-format-amendment.md",
+  "reference": "inv_1iUbbTUza9TH1OYklXXmz6VHHX6kIwsgpj:call_COt2ujLvZvm1z4wVCGgVpfeD",
+  "question": "Approve the documentation and test-report fixes with bounded rechecks?",
+  "answer": "Approve fixes and bounded rechecks",
+  "additional_comments": null,
+  "scope": "Exactly the approved proposed amendment: narrow documentation correction, strict Node report adapter revision, focused fixtures and a one-shot 20-minute additional grant with at most two complete callers",
+  "base_policy_digest": "6acdb7b9cdb8919bb205980aa0e66698616897dee00b13135e88e372d972da97",
+  "base_tooling_digest": "93fc9905a635fc6fcbe33af19d5f14be5e28562ae29a3aa9a031b3034c3efecb",
+  "source": "Actual owner conversation response, not cryptographic identity, protected host attestation or platform authorization",
+  "cutover": "NOT APPROVED",
+  "live_reclaim": "BLOCKED"
+}

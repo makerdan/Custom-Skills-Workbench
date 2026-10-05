@@ -104,7 +104,7 @@ def configuration(root):
     expected = {
         "static": [("typecheck", ["pnpm", "typecheck"], "exit")],
         "standard": [("typecheck", ["pnpm", "typecheck"], "exit"),
-                     ("tests", ["pnpm", "test"], "tap"),
+                     ("tests", ["pnpm", "test"], "node-native"),
                      ("gate-tests", ["python3", "-B", "scripts/failure_gate/tests.py"], "gate")],
     }
     for tier, steps in expected.items():
@@ -162,6 +162,43 @@ def parsed_result(parser, outcome, log):
         unsafe = re.findall(r"(?m)^# (?:fail|cancelled|skipped|todo) ([1-9]\d*)\s*$", data)
         result.update(test_counts=counts, unsupported_or_cancelled=unsafe)
         result["complete"] = result["complete"] and len(counts) >= 3 and all(counts) and not unsafe
+    elif parser == "node-native":
+        # Exact selected-package summaries, not arbitrary prefixed counters.
+        states, reports, errors = {}, [], []
+        required = {"tests", "suites", "pass", "fail", "cancelled", "skipped", "todo"}
+        for raw in data.splitlines():
+            line = re.sub(r"\x1b\[[0-9;]*m", "", raw)
+            origin = "scripts"
+            prefix = re.match(r"^(?:artifacts/|@workspace/)(api-server|skills-workbench) test: (.*)$", line)
+            if prefix:
+                origin, line = prefix.groups()
+            statistic = re.fullmatch(r"(#|ℹ) (tests|suites|pass|fail|cancelled|skipped|todo) (\d+)\s*", line)
+            ending = re.fullmatch(r"(#|ℹ) duration_ms (\d+(?:\.\d+)?)\s*", line)
+            if not statistic and not ending:
+                continue
+            marker = (statistic or ending).group(1)
+            state = states.setdefault(origin, {"format": marker})
+            if state["format"] != marker:
+                errors.append("mixed report formats")
+            if statistic:
+                key, value = statistic.group(2), int(statistic.group(3))
+                if key in state:
+                    errors.append("duplicate report field")
+                state[key] = value
+            else:
+                if not required.issubset(state):
+                    errors.append("incomplete summary")
+                elif (state["tests"] <= 0 or state["pass"] != state["tests"]
+                      or any(state[key] != 0 for key in ("fail", "cancelled", "skipped", "todo"))):
+                    errors.append("failed, cancelled, empty or unsupported tests")
+                reports.append({"origin": origin, **state})
+                del states[origin]
+        if states:
+            errors.append("unterminated summary")
+        if {entry["origin"] for entry in reports} != {"scripts", "api-server", "skills-workbench"}:
+            errors.append("missing selected-package coverage")
+        result.update(reports=reports, unsupported_or_cancelled=errors)
+        result["complete"] = result["complete"] and not errors and len(reports) >= 3
     elif parser == "gate":
         result["complete"] = result["complete"] and '"failure_gate_suite": "PASSED"' in data
     elif parser != "exit":

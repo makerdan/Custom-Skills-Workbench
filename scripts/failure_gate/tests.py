@@ -351,6 +351,41 @@ class GateTests(unittest.TestCase):
         log.write_text("# tests 1\n# tests 2\n# tests 3\n")
         self.assertTrue(parsed_result("tap", outcome, log)["complete"])
 
+    def test_native_report_adapter_accepts_complete_known_package_formats(self):
+        log = self.root / "native.log"
+        for marker in ("#", "ℹ"):
+            lines = []
+            for prefix in ("", "artifacts/api-server test: ", "artifacts/skills-workbench test: "):
+                for key, value in (("tests", 3), ("suites", 0), ("pass", 3), ("fail", 0),
+                                   ("cancelled", 0), ("skipped", 0), ("todo", 0)):
+                    lines.append(f"{prefix}{marker} {key} {value}")
+                lines.append(f"{prefix}{marker} duration_ms 1.5")
+            log.write_text("\n".join(lines))
+            self.assertTrue(parsed_result("node-native", {"pass": True}, log)["complete"])
+            self.assertFalse(parsed_result("node-native", {"pass": False}, log)["complete"])
+
+    def test_native_report_adapter_rejects_partial_unsafe_and_unrecognized_summaries(self):
+        log = self.root / "native.log"
+        valid = "\n".join(
+            f"{prefix}ℹ {key} {value}"
+            for prefix in ("", "artifacts/api-server test: ", "artifacts/skills-workbench test: ")
+            for key, value in (("tests", 3), ("suites", 0), ("pass", 3), ("fail", 0),
+                               ("cancelled", 0), ("skipped", 0), ("todo", 0), ("duration_ms", 1)))
+        invalid = ["", valid.replace("ℹ tests 3", "ℹ tests 0"),
+                   valid.replace("ℹ pass 3", "ℹ pass 2"),
+                   valid.replace("artifacts/api-server", "artifacts/unknown"),
+                   valid.replace("ℹ duration_ms 1", ""), valid.replace("ℹ todo 0", ""),
+                   valid.replace("ℹ suites 0", "ℹ tests 3"),
+                   valid.replace("ℹ pass 3", "# pass 3")]
+        invalid += [valid.replace(f"ℹ {key} 0", f"ℹ {key} 1")
+                    for key in ("fail", "cancelled", "skipped", "todo")]
+        for text in invalid:
+            log.write_text(text)
+            self.assertFalse(parsed_result("node-native", {"pass": True}, log)["complete"])
+        log.write_text(valid)
+        for malformed in ("true", 1, {}, None):
+            self.assertFalse(parsed_result("node-native", {"pass": malformed}, log)["complete"])
+
 
 class SupervisorTests(unittest.TestCase):
     def run_fixture(self, code, seconds=2):

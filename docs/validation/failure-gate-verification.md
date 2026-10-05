@@ -1,7 +1,8 @@
 # Failure Gate verification result
 
-**Result: Original incident recovered; complete caller FAILED.
-Installation remains partial / blocked. Ordinary route is not ACTIVE.**
+**Result: Original incident recovered; later complete caller FAILED;
+latest amendment fixtures FAILED. Installation remains partial / blocked.
+Ordinary route is not ACTIVE.**
 
 ## Executed checks
 
@@ -19,6 +20,10 @@ Installation remains partial / blocked. Ordinary route is not ACTIVE.**
 | Complete recovery caller | FAILED: raw exit 1, 27.25 seconds; known work stopped, complete capture, no observed gap |
 | Second real installer caller | NOT RUN |
 | Final corrective source and two added regression cases | PASSED in the corrective fixture run and the registered gate-suite step |
+| Approved documentation/native-report amendment | Authored as `local-v1.1`; not rebound or activated |
+| Latest amended fixture bundle | FAILED: 27/28 cases passed; 16.23 seconds; one supervisor completion-observation case failed |
+| Native report-adapter positive/negative cases | Both PASSED within that failed bundle; not complete bundle or host acceptance |
+| Latest amendment real callers | Neither launched; no policy rebind after failed fixtures |
 | Existing app landing page | Screenshot rendered correctly; no browser error observed. No signed-in journey claim. |
 
 The initial and expanded fixture results concern different staged source
@@ -125,8 +130,42 @@ cutover; it was not waived.
 
 See `failure-gate-test-format-amendment.md` for the newly proposed narrow
 documentation correction, test-report adapter amendment and additional bounded
-verification. No such amendment, second caller, new approval or retry has
-occurred.
+verification. Its actual approval is now recorded in
+`failure-gate-test-format-approval.json`; the documentation correction and strict
+native/TAP adapter were authored. The following fixture failure prevents
+governing rebind and real callers.
+
+## Latest approved amendment result
+
+- Operation: `b37664c6-e279-4104-a10f-9ea6aec200f7`.
+- Evidence:
+  `.failure-gate/format-rechecks/b37664c6-e279-4104-a10f-9ea6aec200f7/fixtures.json`
+  plus coordinator grant and fixture-result events.
+- Staged policy digest:
+  `b6d5094e1edf7b746d6b096f4ce1f8266797ee4492893c95c70515e4d3206ee1`.
+- Tested staged tooling:
+  `8ff80812767f3c8e2d9ab726be1e9140d19f08abde07aacd9070043dfe23bbf3`.
+- Fixture attempt count 1; caller attempt count 0; phase `failed`.
+- The original installed policy binding is still
+  `6acdb7b9cdb8919bb205980aa0e66698616897dee00b13135e88e372d972da97`.
+  The new source is not admitted to ordinary or real installation calls.
+- The port scanner, caller argv, artifact ports and service/test listener code
+  were not weakened or changed.
+
+The failing isolated positive-exit fixture reported raw exit 0, 20 captured
+bytes, complete capture, `stopped:true`, no signals or discovery gap, and
+`reason:"owned_survivors"` with `healthy_release:false`. Source review shows
+the watchdog captures `live` before `child.poll()`, then uses the older
+snapshot to classify completion. A stale-observation race is indicated;
+no isolation reruns or intermittency/baseline classification were performed.
+
+The entire 28-case bundle is FAILED, despite both new adapter cases passing.
+No retry, authority rebind or real caller was launched. Read-only coordinator
+inspection confirmed consistent journal and no currently retained run exclusion.
+
+See `failure-gate-completion-observation-proposal.md` for the exact proposed
+supervisor correction and one additional fixture pass, inheriting the original
+20-minute deadline rather than requesting a fresh budget.
 
 Full application additionally remains blocked by the applicable gaps in
 `failure-gate-implementation.md`, including ordinary cutover, writer/caller
