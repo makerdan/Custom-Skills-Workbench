@@ -2,6 +2,71 @@
 
 Date: 2026-10-05
 
+## Workspace-check route recheck — 2026-10-05
+
+**Disposition: validation BLOCKED; authoritative governance UNKNOWN.**
+This recheck is definition/evidence inspection, not validation execution. The
+historical audit below describes its earlier snapshot; its statement that no
+local runner exists must not be read as a current file-inventory claim.
+
+The current repository HEAD observed during this recheck was
+`26ea20693634b8ec7b668755eb8ce162ab8ca7ff`. The worktree also contained existing
+uncommitted installation work: `.gitignore`,
+`docs/validation/failure-gate-installation-approval.json`,
+`docs/validation/failure-gate-policy.json`, and `scripts/failure_gate/`.
+Those files were inspected but not changed, imported, or executed by this
+task. No historical service/process observations below were refreshed or
+treated as current process ownership evidence.
+
+### Newly visible evidence and its limits
+
+| Source inspected | Observed result | What it does not establish |
+| --- | --- | --- |
+| Host validation-command inventory, read through `getValidationCommands()` | Raw response: `{"commands":[],"message":""}`. | No registered validation command was returned. This inventory does not attest governance, task authorization, budgets, or supervision. |
+| `docs/validation/failure-gate-installation-approval.json` | Locally captured approval record describes policy setup and installation-only bootstrap; `cutover` and `live_reclaim` are `NOT APPROVED`. | A local capture of a separate approval is not independently verified authorization for this task. Installation approval cannot authorize ordinary-task runs. |
+| `docs/validation/failure-gate-policy.json` | Proposed local policy contains `static` and `standard` definitions and finite installation limits, with separate cutover required. | Definitions are not an assigned tier or approved cumulative allowance for this task. No values were adopted as this task's budgets. |
+| `scripts/failure_gate/cli.py` and `gate.py` | Local checked-route source exists. Ordinary activation requires stored `ACTIVE` governance and an exact approved local plan; the CLI cutover operation explicitly rejects dispatch. | Source presence is not operational readiness, an authoritative ACTIVE/INACTIVE result, a verified plan binding, or independently proved whole-tree supervision. The CLI was not invoked, including its initialization and health operations. |
+| `.failure-gate/first-proof.json` | Existing record reports `PASSED`, raw exit `0`, and scope `owned static authoring fixture tree; no host readiness`. Only this file was present in the state-directory listing at inspection. | This is a separately produced fixture record, not a workspace-check run performed by this task, ordinary cutover, complete host acceptance, or current-snapshot required-tier evidence. No fixture was rerun and no state store was initialized. |
+| Root and scripts package manifests | Existing direct `test`, `typecheck`, and `build` entry points remain available as documented below. | Availability grants neither task authorization nor finite transitive supervision. No package command was launched or modified. |
+
+No authoritative ACTIVE/INACTIVE result, local task/approved-plan binding,
+assigned tier, approved task-specific queue/execution/cleanup/evidence-capture
+and cumulative limits, or operational whole-process-tree supervision proof was
+available for this task. Thus there are **no workspace-check raw results from
+this task**, not a passing or failed suite. The existing fixture's raw exit is
+reported separately above and is not accepted as workspace validation.
+
+### Responsible owner and concrete unblock action
+
+The **host/task-validation integration owner**, working with the local Failure
+Gate installation owner, must finish the separately approved installation and
+provide:
+
+1. A reviewable authoritative governance decision (ACTIVE or INACTIVE) and
+   evidence of any separately authorized ordinary-task cutover. Do not infer
+   INACTIVE from the empty host inventory or ACTIVE from source files.
+2. For ACTIVE governance, an exact approved local task/plan binding and its
+   single assigned registered tier through the real checked route. For
+   INACTIVE governance, the verified applicable host policy and authorized
+   finite equivalent route. The Replit task number alone is not a local grant.
+3. The applicable approved limits for queue, execution, cleanup, evidence
+   capture, and cumulative task consumption, plus current remaining allowance.
+   This task will not choose limits or borrow installation-only budgets.
+4. Operational proof of independent supervision of the complete permitted
+   transitive command tree, admission/accounting, bounded termination and
+   capture, retained uncertainty, and durable raw-result storage. A shell
+   timeout, package alias, or fixture pass cannot substitute for that proof.
+
+Once these prerequisites are verified, run only the authorized tier against
+the then-current snapshot through that route and retain raw results and
+snapshot/configuration bindings. Resolve generated-output coordination within
+its separately scoped work before dispatching conflicting checks; do not wire
+an unapproved lock here. Until then validation stays BLOCKED.
+
+This task delivers the permitted blocked-route handoff, not successful route
+activation. It creates no approval service, policy, budgets, runner, tier
+assignment, bypass, process-control action, service restart, or validation run.
+
 ## Outcome
 
 The current host does not expose enough authoritative evidence to activate
