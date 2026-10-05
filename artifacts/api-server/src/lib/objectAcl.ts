@@ -36,6 +36,14 @@ export interface ObjectAclPolicy {
   aclRules?: Array<ObjectAclRule>;
 }
 
+export class ObjectOwnershipError extends Error {
+  constructor() {
+    super('Object is not owned by this user');
+    this.name = 'ObjectOwnershipError';
+    Object.setPrototypeOf(this, ObjectOwnershipError.prototype);
+  }
+}
+
 function isPermissionAllowed(
   requested: ObjectPermission,
   granted: ObjectPermission,
@@ -74,6 +82,11 @@ export async function setObjectAclPolicy(
   const [exists] = await objectFile.exists();
   if (!exists) {
     throw new Error(`Object not found: ${objectFile.name}`);
+  }
+
+  const currentPolicy = await getObjectAclPolicy(objectFile);
+  if (currentPolicy && currentPolicy.owner !== aclPolicy.owner) {
+    throw new ObjectOwnershipError();
   }
 
   await objectFile.setMetadata({

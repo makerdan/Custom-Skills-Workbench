@@ -23,13 +23,15 @@ import { openai as defaultOpenai } from "@workspace/integrations-openai-ai-serve
 import { and, desc, eq } from "drizzle-orm";
 import { Router, type IRouter } from "express";
 
+import { ObjectOwnershipError } from "../lib/objectAcl";
 import { ObjectStorageService } from "../lib/objectStorage";
 import { toSkillDto, toSkillVersionDto } from "./skillDtos";
 
 const MAX_EXTRACTED_TEXT_BYTES = 2_500_000;
 const MAX_ANALYSIS_CONTEXT_CHARS = 32_000;
 const MAX_TEXT_FILE_BYTES = 200_000;
-const OBJECT_PATH_PATTERN = /^\/objects\/uploads\/[a-f0-9-]{36}$/i;
+const OBJECT_PATH_PATTERN =
+  /^\/objects\/uploads\/(?:[a-f0-9]{64}\/)?[a-f0-9-]{36}$/i;
 const TEXT_FILE_EXTENSION =
   /\.(md|mdx|txt|rst|json|ya?ml|toml|ini|cfg|py|js|jsx|ts|tsx|html|css|sh|sql|xml|go|rs|java|rb|php|c|h|cpp|vue|svelte)$/i;
 
@@ -294,6 +296,12 @@ export function createSkillsRouter(
       ),
     );
   } catch (error) {
+    if (error instanceof ObjectOwnershipError) {
+      res.status(403).json({
+        error: "You cannot use an upload belonging to another account.",
+      });
+      return;
+    }
     req.log.error({ err: error }, "Failed to create skill");
     res.status(500).json({ error: "The skill could not be saved." });
   }
@@ -442,6 +450,12 @@ export function createSkillsRouter(
       CreateSkillVersionResponse.parse(toSkillVersionDto(version)),
     );
   } catch (error) {
+    if (error instanceof ObjectOwnershipError) {
+      res.status(403).json({
+        error: "You cannot use an upload belonging to another account.",
+      });
+      return;
+    }
     req.log.error({ err: error }, "Failed to save skill version");
     res.status(400).json({
       error: "The version could not be saved. Check its label and try again.",

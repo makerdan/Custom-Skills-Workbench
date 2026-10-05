@@ -70,7 +70,9 @@ export function createStorageRouter(
         return;
       }
 
-      const uploadURL = await objectStorageService.getObjectEntityUploadURL();
+      const uploadURL = await objectStorageService.getObjectEntityUploadURL(
+        req.user.id,
+      );
       const objectPath =
         objectStorageService.normalizeObjectEntityPath(uploadURL);
 

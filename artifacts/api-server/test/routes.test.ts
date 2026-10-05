@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { test } from "node:test";
 import express from "express";
 import { getTableName } from "drizzle-orm";
@@ -13,6 +14,11 @@ import { createQuestionsRouter } from "../src/routes/questions";
 import { createSkillsRouter } from "../src/routes/skills";
 import { createStorageRouter } from "../src/routes/storage";
 import { createWorkbenchRouter } from "../src/routes/workbench";
+import {
+  ObjectOwnershipError,
+  setObjectAclPolicy,
+} from "../src/lib/objectAcl";
+import { ObjectStorageService } from "../src/lib/objectStorage";
 
 const ownerId = "owner-aaaaaaaa";
 const otherOwnerId = "owner-bbbbbbbb";
@@ -99,6 +105,10 @@ class MemoryDatabase {
 
   select(selection?: unknown) {
     return new MemoryQuery(this, selection);
+  }
+
+  async transaction<T>(callback: (tx: this) => Promise<T>): Promise<T> {
+    return callback(this);
   }
 
   execute(query: MemoryQuery): unknown[] {
@@ -307,6 +317,201 @@ function makeVersion(
     uploadedAt: testDate,
   };
 }
+
+function makeUploadObjectPath(userId: string, objectId: string): string {
+  const ownerScope = createHash("sha256").update(userId).digest("hex");
+  return `/objects/uploads/${ownerScope}/${objectId}`;
+}
+
+function makeSkillUploadStorage(
+  existingPolicies: Map<string, { owner: string; visibility: "private" }> =
+    new Map(),
+) {
+  const calls = {
+    set: [] as Array<{
+      objectPath: string;
+      policy: { owner: string; visibility: "private" };
+    }>,
+  };
+  const service = {
+    trySetObjectEntityAclPolicy: async (
+      objectPath: string,
+      policy: { owner: string; visibility: "private" },
+    ) => {
+      const currentPolicy = existingPolicies.get(objectPath);
+      if (
+        (currentPolicy && currentPolicy.owner !== policy.owner) ||
+        (!currentPolicy &&
+          !objectPath.startsWith(
+            `/objects/uploads/${createHash("sha256").update(policy.owner).digest("hex")}/`,
+          ))
+      ) {
+        throw new ObjectOwnershipError();
+      }
+      calls.set.push({ objectPath, policy });
+      existingPolicies.set(objectPath, { ...policy });
+      return objectPath;
+    },
+  };
+  return { service, calls, policies: existingPolicies };
+}
+
+function skillFiles() {
+  return [
+    { path: "SKILL.md", content: "# Test skill\nTest guidance." },
+    { path: "notes.md", content: "Supporting notes." },
+  ];
+}
+
+function makeAclObjectFile(
+  initialPolicy: { owner: string; visibility: "private" } | null = null,
+) {
+  let metadata: Record<string, string> = initialPolicy
+    ? { "custom:aclPolicy": JSON.stringify(initialPolicy) }
+    : {};
+  let writes = 0;
+  const file = {
+    name: "private/uploads/test.zip",
+    exists: async () => [true],
+    getMetadata: async () => [{ metadata }],
+    setMetadata: async ({
+      metadata: nextMetadata,
+    }: {
+      metadata: Record<string, string>;
+    }) => {
+      metadata = { ...metadata, ...nextMetadata };
+      writes += 1;
+    },
+  };
+  return {
+    file,
+    getPolicy: () => {
+      const serialized = metadata["custom:aclPolicy"];
+      return serialized
+        ? (JSON.parse(serialized) as {
+            owner: string;
+            visibility: "private";
+          })
+        : null;
+    },
+    get writes() {
+      return writes;
+    },
+  };
+}
+
+test("object storage claims only owner-scoped uploads and preserves existing owners", async () => {
+  const ownObjectPath = makeUploadObjectPath(
+    ownerId,
+    "e0000000-0000-4000-8000-00000000000e",
+  );
+  const ownObject = makeAclObjectFile();
+  const ownStorage = new ObjectStorageService();
+  ownStorage.getObjectEntityFile = async () => ownObject.file as never;
+
+  await ownStorage.trySetObjectEntityAclPolicy(ownObjectPath, {
+    owner: ownerId,
+    visibility: "private",
+  });
+  assert.deepEqual(ownObject.getPolicy(), {
+    owner: ownerId,
+    visibility: "private",
+  });
+  assert.equal(ownObject.writes, 1);
+
+  const foreignObjectPath = makeUploadObjectPath(
+    otherOwnerId,
+    "f0000000-0000-4000-8000-00000000000f",
+  );
+  const foreignPolicy = { owner: otherOwnerId, visibility: "private" as const };
+  for (const initialPolicy of [foreignPolicy, null]) {
+    const foreignObject = makeAclObjectFile(initialPolicy);
+    const storage = new ObjectStorageService();
+    storage.getObjectEntityFile = async () => foreignObject.file as never;
+
+    await assert.rejects(
+      storage.trySetObjectEntityAclPolicy(foreignObjectPath, {
+        owner: ownerId,
+        visibility: "private",
+      }),
+      ObjectOwnershipError,
+    );
+    assert.deepEqual(foreignObject.getPolicy(), initialPolicy);
+    assert.equal(foreignObject.writes, 0);
+  }
+});
+
+test("the ACL setter refuses to transfer an existing object to another owner", async () => {
+  const originalPolicy = { owner: otherOwnerId, visibility: "private" as const };
+  const objectFile = makeAclObjectFile(originalPolicy);
+
+  await assert.rejects(
+    setObjectAclPolicy(objectFile.file as never, {
+      owner: ownerId,
+      visibility: "private",
+    }),
+    ObjectOwnershipError,
+  );
+  assert.deepEqual(objectFile.getPolicy(), originalPolicy);
+  assert.equal(objectFile.writes, 0);
+});
+
+test("upload URL requests return object paths scoped to the authenticated owner", async () => {
+  const originalFetch = globalThis.fetch;
+  const objectStorage = new ObjectStorageService();
+  let signedRequest: { bucket_name: string; object_name: string } | undefined;
+  objectStorage.getPrivateObjectDir = () => "/test-bucket/private";
+  globalThis.fetch = async (input, init) => {
+    if (String(input) !== "http://127.0.0.1:1106/object-storage/signed-object-url") {
+      return originalFetch(input, init);
+    }
+
+    signedRequest = JSON.parse(String(init?.body)) as {
+      bucket_name: string;
+      object_name: string;
+    };
+    return new Response(
+      JSON.stringify({
+        signed_url: `https://storage.googleapis.com/${signedRequest.bucket_name}/${signedRequest.object_name}`,
+      }),
+      { status: 200, headers: { "content-type": "application/json" } },
+    );
+  };
+
+  try {
+    await withServer(
+      { id: ownerId },
+      [createStorageRouter(objectStorage)],
+      async (base) => {
+        const response = await request(base, "/api/storage/uploads/request-url", {
+          method: "POST",
+          body: {
+            name: "skill.zip",
+            size: 100,
+            contentType: "application/zip",
+          },
+        });
+        assert.equal(response.status, 200);
+        const payload = await response.json();
+        const ownerScope = createHash("sha256").update(ownerId).digest("hex");
+        assert.match(
+          payload.objectPath,
+          new RegExp(`^/objects/uploads/${ownerScope}/[a-f0-9-]{36}$`, "i"),
+        );
+        assert.equal(payload.uploadURL, `https://storage.googleapis.com/${signedRequest?.bucket_name}/${signedRequest?.object_name}`);
+      },
+    );
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+
+  const ownerScope = createHash("sha256").update(ownerId).digest("hex");
+  assert.equal(signedRequest?.bucket_name, "test-bucket");
+  assert.match(
+    signedRequest?.object_name ?? "",
+    new RegExp(`^private/uploads/${ownerScope}/[a-f0-9-]{36}$`, "i"),
+  );
+});
 
 function makeQuestion(id: string, owner: string, question: string) {
   return {
@@ -886,6 +1091,161 @@ test("workbench summaries count and list only the authenticated user's questions
       );
     },
   );
+});
+
+test("skill creation accepts the caller's upload and claims it privately", async () => {
+  const database = new MemoryDatabase();
+  const storage = makeSkillUploadStorage();
+  const objectPath = makeUploadObjectPath(
+    ownerId,
+    "a0000000-0000-4000-8000-00000000000a",
+  );
+
+  await withServer(
+    { id: ownerId },
+    [createSkillsRouter(database as never, storage.service as never)],
+    async (base) => {
+      const response = await request(base, "/api/skills", {
+        method: "POST",
+        body: {
+          name: "Test skill",
+          versionLabel: "1.0",
+          fileName: "skill.zip",
+          objectPath,
+          files: skillFiles(),
+        },
+      });
+      assert.equal(response.status, 201);
+      const payload = await response.json();
+      assert.equal(payload.name, "Test skill");
+      assert.equal(storage.policies.get(objectPath)?.owner, ownerId);
+    },
+  );
+
+  assert.equal(storage.calls.set.length, 1);
+  assert.deepEqual(
+    database.inserted.map((entry) => entry.table),
+    ["skills", "skill_versions"],
+  );
+});
+
+test("skill creation rejects another user's upload without changing its ACL or writing", async () => {
+  const database = new MemoryDatabase();
+  const objectPath = makeUploadObjectPath(
+    otherOwnerId,
+    "b0000000-0000-4000-8000-00000000000b",
+  );
+  const originalPolicy = { owner: otherOwnerId, visibility: "private" as const };
+  const storage = makeSkillUploadStorage(
+    new Map([[objectPath, originalPolicy]]),
+  );
+
+  await withServer(
+    { id: ownerId },
+    [createSkillsRouter(database as never, storage.service as never)],
+    async (base) => {
+      const response = await request(base, "/api/skills", {
+        method: "POST",
+        body: {
+          name: "Stolen upload",
+          versionLabel: "1.0",
+          fileName: "skill.zip",
+          objectPath,
+          files: skillFiles(),
+        },
+      });
+      assert.equal(response.status, 403);
+      assert.deepEqual(await response.json(), {
+        error: "You cannot use an upload belonging to another account.",
+      });
+    },
+  );
+
+  assert.equal(storage.calls.set.length, 0);
+  assert.deepEqual(storage.policies.get(objectPath), originalPolicy);
+  assert.equal(database.inserted.length, 0);
+});
+
+test("version updates accept the caller's upload and claim it privately", async () => {
+  const database = new MemoryDatabase();
+  database.skills = [makeSkill(skillId, ownerId, firstVersionId)];
+  const storage = makeSkillUploadStorage();
+  const objectPath = makeUploadObjectPath(
+    ownerId,
+    "c0000000-0000-4000-8000-00000000000c",
+  );
+
+  await withServer(
+    { id: ownerId },
+    [createSkillsRouter(database as never, storage.service as never)],
+    async (base) => {
+      const response = await request(
+        base,
+        `/api/skills/${skillId}/versions`,
+        {
+          method: "POST",
+          body: {
+            versionLabel: "2.0",
+            fileName: "skill-v2.zip",
+            objectPath,
+            files: skillFiles(),
+          },
+        },
+      );
+      assert.equal(response.status, 201);
+      const payload = await response.json();
+      assert.equal(payload.versionLabel, "2.0");
+      assert.equal(storage.policies.get(objectPath)?.owner, ownerId);
+    },
+  );
+
+  assert.equal(storage.calls.set.length, 1);
+  assert.deepEqual(
+    database.inserted.map((entry) => entry.table),
+    ["skill_versions"],
+  );
+});
+
+test("version updates reject another user's upload without changing its ACL or writing", async () => {
+  const database = new MemoryDatabase();
+  database.skills = [makeSkill(skillId, ownerId, firstVersionId)];
+  const objectPath = makeUploadObjectPath(
+    otherOwnerId,
+    "d0000000-0000-4000-8000-00000000000d",
+  );
+  const originalPolicy = { owner: otherOwnerId, visibility: "private" as const };
+  const storage = makeSkillUploadStorage(
+    new Map([[objectPath, originalPolicy]]),
+  );
+
+  await withServer(
+    { id: ownerId },
+    [createSkillsRouter(database as never, storage.service as never)],
+    async (base) => {
+      const response = await request(
+        base,
+        `/api/skills/${skillId}/versions`,
+        {
+          method: "POST",
+          body: {
+            versionLabel: "2.0",
+            fileName: "foreign.zip",
+            objectPath,
+            files: skillFiles(),
+          },
+        },
+      );
+      assert.equal(response.status, 403);
+      assert.deepEqual(await response.json(), {
+        error: "You cannot use an upload belonging to another account.",
+      });
+    },
+  );
+
+  assert.equal(storage.calls.set.length, 0);
+  assert.deepEqual(storage.policies.get(objectPath), originalPolicy);
+  assert.equal(database.inserted.length, 0);
+  assert.equal(database.skills[0].currentVersionId, firstVersionId);
 });
 
 test("private ZIP object reads enforce the object owner's ACL", async () => {

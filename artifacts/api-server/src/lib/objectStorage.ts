@@ -1,4 +1,4 @@
-import { randomUUID } from 'crypto';
+import { createHash, randomUUID } from 'crypto';
 import { Readable } from 'stream';
 import { File, Storage } from '@google-cloud/storage';
 
@@ -6,11 +6,16 @@ import {
   canAccessObject,
   getObjectAclPolicy,
   ObjectAclPolicy,
+  ObjectOwnershipError,
   ObjectPermission,
   setObjectAclPolicy,
 } from './objectAcl';
 
 const REPLIT_SIDECAR_ENDPOINT = 'http://127.0.0.1:1106';
+
+function getOwnerScope(userId: string): string {
+  return createHash('sha256').update(userId).digest('hex');
+}
 
 export const objectStorageClient = new Storage({
   credentials: {
@@ -111,7 +116,7 @@ export class ObjectStorageService {
     return new Response(webStream, { headers });
   }
 
-  async getObjectEntityUploadURL(): Promise<string> {
+  async getObjectEntityUploadURL(ownerId: string): Promise<string> {
     const privateObjectDir = this.getPrivateObjectDir();
     if (!privateObjectDir) {
       throw new Error(
@@ -121,7 +126,7 @@ export class ObjectStorageService {
     }
 
     const objectId = randomUUID();
-    const fullPath = `${privateObjectDir}/uploads/${objectId}`;
+    const fullPath = `${privateObjectDir}/uploads/${getOwnerScope(ownerId)}/${objectId}`;
 
     const { bucketName, objectName } = parseObjectPath(fullPath);
 
@@ -190,6 +195,20 @@ export class ObjectStorageService {
     }
 
     const objectFile = await this.getObjectEntityFile(normalizedPath);
+    const currentPolicy = await getObjectAclPolicy(objectFile);
+    if (currentPolicy && currentPolicy.owner !== aclPolicy.owner) {
+      throw new ObjectOwnershipError();
+    }
+    if (
+      !currentPolicy &&
+      !new RegExp(
+        `^/objects/uploads/${getOwnerScope(aclPolicy.owner)}/[a-f0-9-]{36}$`,
+        'i',
+      ).test(normalizedPath)
+    ) {
+      throw new ObjectOwnershipError();
+    }
+
     await setObjectAclPolicy(objectFile, aclPolicy);
     return normalizedPath;
   }
