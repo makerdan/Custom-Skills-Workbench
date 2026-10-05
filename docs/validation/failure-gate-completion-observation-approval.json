@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "status": "APPROVED_LOCAL_CONVERSATION",
+  "proposal": "docs/validation/failure-gate-completion-observation-proposal.md",
+  "reference": "inv_1iUbbTUza9TH3tv4aTAuxiiSQsxOcUxNlL:call_BTITuycaDGAFhIdvcg3GE9mP",
+  "question": "Approve the supervisor completion fix and one additional fixture pass?",
+  "answer": "Approve the fix and additional fixture pass",
+  "additional_comments": null,
+  "parent_operation": "b37664c6-e279-4104-a10f-9ea6aec200f7",
+  "scope": "Only the referenced supervisor correction, deterministic fixture and one additional full-suite fixture attempt; the two unused callers remain conditional on success",
+  "deadline": 6320.443256004,
+  "new_time_budget": false,
+  "source": "Actual local owner conversation response; not protected host or platform authorization",
+  "cutover": "NOT APPROVED",
+  "live_reclaim": "BLOCKED"
+}

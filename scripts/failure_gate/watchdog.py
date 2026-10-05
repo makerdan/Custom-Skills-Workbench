@@ -45,6 +45,14 @@ def observe(known, root_pid=None):
     return live
 
 
+def completion_reason(known, root_pid, deadline):
+    """Refresh ownership AFTER observed exit; late observation still fails."""
+    live = observe(known, root_pid)
+    if time.monotonic() >= deadline:
+        return "execution_deadline"
+    return "owned_survivors" if live else "finished"
+
+
 def main():
     config = read_json(sys.argv[1])
     if not stat.S_ISFIFO(os.fstat(sys.stdin.fileno()).st_mode):
@@ -146,7 +154,7 @@ def main():
             elif overflow:
                 reason = "output_overflow"
             elif raw_exit is not None and not selector.get_map():
-                reason = "owned_survivors" if live else "finished"
+                reason = completion_reason(known, child.pid, deadline)
             if reason:
                 break
         execution_elapsed = time.monotonic() - start

@@ -388,6 +388,21 @@ class GateTests(unittest.TestCase):
 
 
 class SupervisorTests(unittest.TestCase):
+    def test_completion_refresh_keeps_survivor_and_deadline_denial(self):
+        from unittest.mock import patch
+        import watchdog
+        known = {123: {"pid": 123, "start": "fixture"}}
+        with patch("watchdog.observe", return_value=[]) as refresh, \
+                patch("watchdog.time.monotonic", return_value=1):
+            self.assertEqual(watchdog.completion_reason(known, 123, 2), "finished")
+            refresh.assert_called_once_with(known, 123)
+        with patch("watchdog.observe", return_value=[known[123]]), \
+                patch("watchdog.time.monotonic", return_value=1):
+            self.assertEqual(watchdog.completion_reason(known, 123, 2), "owned_survivors")
+        with patch("watchdog.observe", return_value=[]), \
+                patch("watchdog.time.monotonic", return_value=2):
+            self.assertEqual(watchdog.completion_reason(known, 123, 2), "execution_deadline")
+
     def run_fixture(self, code, seconds=2):
         temporary = tempfile.TemporaryDirectory()
         self.addCleanup(temporary.cleanup)

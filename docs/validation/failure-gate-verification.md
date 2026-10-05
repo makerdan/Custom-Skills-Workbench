@@ -1,8 +1,8 @@
 # Failure Gate verification result
 
-**Result: Original incident recovered; later complete caller FAILED;
-latest amendment fixtures FAILED. Installation remains partial / blocked.
-Ordinary route is not ACTIVE.**
+**Result: Corrected fixtures PASSED 29/29; latest real caller BLOCKED by
+watchdog error, with retained exclusion. Installation remains partial /
+blocked. Ordinary route is not ACTIVE.**
 
 ## Executed checks
 
@@ -24,6 +24,11 @@ Ordinary route is not ACTIVE.**
 | Latest amended fixture bundle | FAILED: 27/28 cases passed; 16.23 seconds; one supervisor completion-observation case failed |
 | Native report-adapter positive/negative cases | Both PASSED within that failed bundle; not complete bundle or host acceptance |
 | Latest amendment real callers | Neither launched; no policy rebind after failed fixtures |
+| Separately approved completion correction fixtures | PASSED 29/29; 16.75 seconds; original inherited deadline retained |
+| Completion-correction caller typecheck | PASSED, raw exit 0; 6.78 seconds |
+| Completion-correction caller test step | STARTED, INTERRUPTED by watchdog error; no complete result |
+| Completion-correction complete caller | BLOCKED, raw exit 4; outer owned survivors stopped; 8.73 seconds; healthy release false |
+| Completion-correction second caller | NOT RUN |
 | Existing app landing page | Screenshot rendered correctly; no browser error observed. No signed-in journey claim. |
 
 The initial and expanded fixture results concern different staged source
@@ -165,7 +170,61 @@ inspection confirmed consistent journal and no currently retained run exclusion.
 
 See `failure-gate-completion-observation-proposal.md` for the exact proposed
 supervisor correction and one additional fixture pass, inheriting the original
-20-minute deadline rather than requesting a fresh budget.
+20-minute deadline rather than requesting a fresh budget. That proposal was
+subsequently approved and executed as recorded below.
+
+## Approved completion correction and new retained incident
+
+Actual approval is captured in `failure-gate-completion-observation-approval.json`.
+The narrow fix refreshes owned-process state after observing child exit and
+checks the original deadline again. A deterministic fixture verifies refreshed
+completion, real-survivor denial and late-zero deadline priority. Existing tests
+remained; the full 29-case suite passed.
+
+- Child amendment operation: `3d658bf1-d839-4c0e-a8b4-0ab92d367d79`;
+  parent remains `b37664c6-e279-4104-a10f-9ea6aec200f7`.
+- Evidence directory:
+  `.failure-gate/completion-rechecks/3d658bf1-d839-4c0e-a8b4-0ab92d367d79/`.
+- Original inherited deadline `6320.443256004` and boot were retained;
+  no fresh budget was granted.
+- Cumulative fixture attempts: original failed pass plus exactly one approved
+  additional pass. Complete caller attempts in this amended lineage: 1.
+- Tested tooling:
+  `dea1eb3ebba74e2e25ad40fe1c8cb935e08abd2fe474d42de75cfa63b71ff54f`.
+- Staged policy `local-v1.1` was rebound for this authorized installation
+  operation only after passing fixtures and verified decision readback.
+  Ordinary governance remained STAGED.
+
+The new actual run is `62ad8676-50d9-478f-843e-1eccb6918dbf`.
+Its typecheck step finished successfully and persisted immediately. Its tests
+step was watchdog-registered and confirmed started, and its partial raw log
+contains the beginning of `pnpm test`. The aggregate still says NOT_REACHED for
+that step because the adapter threw before a terminal step result; **that label
+does not mean no dispatch occurred**.
+
+The private worker reported `watchdog failed; retain exclusion`. The parent
+adapter discards the subordinate error observation rather than recording its
+typed exception/detail, so the exact cause is unknown. Source hypotheses about
+transient process reads are not confirmed findings or approved fixes.
+
+The outer supervisor observed two remaining owned Node descendants and stopped
+them using its already authorized owned-work cleanup. It recorded complete
+worker-output capture, `stopped:true`, no discovery gap, `healthy_release:false`
+and raw exit 4. This is not healthy release or host acceptance.
+
+The run stays `running`, `recovery_required=1`, assessment INCOMPLETE.
+The continuation stays `caller_running` with one reserved attempt and no final
+successful result. No replacement, second caller, age-based clear, blind retry
+or false PASS occurred.
+
+Read-only inspection confirmed journal consistency. The recorded outer
+watchdog/worker and both inner-step watchdog/worker identities were absent.
+Known quiescence alone does not authorize release of this new retained incident.
+
+See `failure-gate-watchdog-evidence-proposal.md` for a diagnostic-only next
+phase: preserve actual error details, separately recover this exact incident,
+and collect one bounded diagnostic observation. It does **not** propose another
+full installation sweep or an unverified cause-specific fix.
 
 Full application additionally remains blocked by the applicable gaps in
 `failure-gate-implementation.md`, including ordinary cutover, writer/caller
