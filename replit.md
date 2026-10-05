@@ -53,3 +53,6 @@ _Populate as you build — sharp edges, "always run X before Y" rules._
 ## Pointers
 
 - See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and package details
+- Failure Gate local tooling is STAGED, not ordinary-task authority. See `docs/validation/failure-gate-implementation.md`, its policy/actual approval record, and `docs/validation/failure-gate-evidence-index.md`.
+- For validation overlap questions, automatically inspect the indexed local coordinator/file trail; do not start tests, clear leases, kill processes or infer approval from platform task status. Unmonitored callers remain unknown.
+- Do not use a platform task number as a local Failure Gate ID. Ordinary activation/completion, cutover, recovery and live reclaim remain blocked wherever the required actual authority or host proof is missing.

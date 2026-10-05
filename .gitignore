@@ -56,3 +56,6 @@ Thumbs.db
 /.agents/skills/.workspace-projections.transaction.json.tmp.*
 /.agents/skills/.workspace-projections.stage.*/
 /.agents/skills/.workspace-projections.backup.*/
+
+# Project-local Failure Gate state (tracked tooling/docs live elsewhere).
+/.failure-gate/

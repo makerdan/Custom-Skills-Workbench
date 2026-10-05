@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "source": "Actual owner response to the scoped chat approval form",
+  "reference": "inv_1iUbbTUza9TH58xPL4PH3cad9hYOhmvsMF:call_0C7pg6uWTpHoxjZo93mlN1Tl",
+  "question": "Approve the local Failure Gate policy and bounded installation checks?",
+  "answer": "Approve policy and installation checks",
+  "verification": "Locally captured conversation approval; not cryptographic identity or a platform plan-approval event",
+  "scopes": {
+    "policy_setup": "Local coordinator, exact owner-approved plan bindings, one registered tier, finite checked validation, complete raw evidence, failure handling, backups/health/export and writer coordination",
+    "bootstrap": "Implement and check this installation only, within the approved limits",
+    "cutover": "NOT APPROVED",
+    "live_reclaim": "NOT APPROVED"
+  },
+  "limits": {
+    "total_seconds": 2700,
+    "maximum_complete_acceptance_passes": 2,
+    "per_pass_seconds": 1200,
+    "per_step_seconds": 480,
+    "queue_seconds": 30,
+    "test_ms": 30000,
+    "hook_ms": 15000,
+    "termination_seconds": 20,
+    "evidence_seconds": 10,
+    "output_bytes_per_pass": 8388608
+  },
+  "exclusions": [
+    "Ordinary-task activation before separate verified cutover",
+    "Stopping unrelated running processes",
+    "Production changes or database schema pushes",
+    "Remote CI triggers",
+    "Pretending to control Replit Task Board completion"
+  ]
+}

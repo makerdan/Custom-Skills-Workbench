@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "version": "local-v1",
+  "scope": "Skills Workbench local cooperative validation",
+  "approval": "docs/validation/failure-gate-installation-approval.json",
+  "eligible_plans": "Exact locally reviewed plan snapshots in the coordinator; no platform-task inference",
+  "selection": "The single registered plan-stated tier, subject to coverage guards",
+  "parameters": {},
+  "tiers": {
+    "static": {
+      "coverage": "Non-governing documentation-only changes",
+      "steps": [{"name": "typecheck", "argv": ["pnpm", "typecheck"], "parser": "exit"}]
+    },
+    "standard": {
+      "coverage": "Application, tests, validation infrastructure and material contract changes",
+      "steps": [
+        {"name": "typecheck", "argv": ["pnpm", "typecheck"], "parser": "exit"},
+        {"name": "tests", "argv": ["pnpm", "test"], "parser": "tap"},
+        {"name": "gate-tests", "argv": ["python3", "-B", "scripts/failure_gate/tests.py"], "parser": "gate"}
+      ]
+    }
+  },
+  "limits": {
+    "queue_seconds": 30,
+    "step_seconds": 480,
+    "startup_seconds": 15,
+    "test_ms": 30000,
+    "hook_ms": 15000,
+    "owner_stall_seconds": 15,
+    "registration_seconds": 2,
+    "cleanup_seconds": 20,
+    "capture_seconds": 10,
+    "run_seconds": 1200,
+    "installation_seconds": 2700,
+    "max_bytes": 8388608
+  },
+  "diagnostics": [],
+  "baseline_ignores": [],
+  "reclaim": "BLOCKED: no protected host attestation/disruption approval provider",
+  "change_rule": "Changed governing tooling, policy, tiers or parameters require a new actual approval before use. Changed plans need a new exact bound decision.",
+  "cutover": "Separate actual scoped approval after two real successful bootstrap caller passes and required host proofs",
+  "retention": "No automatic pruning. Permanent task IDs and decision history. 10000 event segments then fail closed for a scoped retention review.",
+  "backup": "Explicit checkpoint after each accepted local task; isolated fenced restore only; no scheduler or production restore"
+}

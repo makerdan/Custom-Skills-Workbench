@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "status": "PROPOSED_NOT_APPROVED",
+  "requested_scope": "Approve the staged corrective tooling binding, exact retained bootstrap incident recovery, and additional bounded installation verification",
+  "project": "Skills Workbench",
+  "namespace": "d63a3d51-4dea-4a99-9e6a-d01410b7e017",
+  "local_task": "FG-00000001",
+  "retained_run": "3cafe623-6a56-495d-8108-1034564ffcb9",
+  "original_boot": "f43c3eaf-c84d-4eb0-b417-6c0fa001da5a",
+  "current_governance": "STAGED; ordinary route blocked",
+  "current_policy_version": "local-v1",
+  "policy_digest": "6acdb7b9cdb8919bb205980aa0e66698616897dee00b13135e88e372d972da97",
+  "proposed_tooling_digest": "93fc9905a635fc6fcbe33af19d5f14be5e28562ae29a3aa9a031b3034c3efecb",
+  "proposed_execution_definition_digest": "10dcbf6aa680c5830c0b3023d8d6b91eee70013145eab614322b75bf99413027",
+  "source_status": "Corrective revision staged, not tested. Original fixture results and failed real caller remain unchanged.",
+  "approval_source": "A new actual owner response to this scoped proposal; no synthetic approval reference exists yet",
+  "recovery_preconditions": [
+    "Reconcile any newly merged host-route authority, command definitions and generation/writer conflicts; no two active authorities",
+    "Verify exact original namespace/task/run and boot bindings and unchanged original incident evidence",
+    "Re-observe the recorded owned incarnations and confirm no known owned work remains; no process-name/port/age inference",
+    "Verify coordinator and file journal consistency and reconcile original committed outcomes and contenders",
+    "Record the actual newly approved correction/recovery decision transactionally with durable acknowledgement",
+    "Clear only this exact retained run after acknowledged recovery; preserve its raw failure and accounting",
+    "Source/policy/authority drift outside this proposal blocks dispatch and requires refreshed approval rather than self-approval"
+  ],
+  "owned_incarnations": [
+    {"pid": 2785, "start": "321593"},
+    {"pid": 2791, "start": "321599"},
+    {"pid": 2801, "start": "321750"},
+    {"pid": 2806, "start": "321756"}
+  ],
+  "permitted_verification": [
+    "Safely contained corrective regression fixtures using the unchanged canonical fixture supervisor",
+    "Two additional consecutive successful real standard bootstrap caller passes only after recovery and admission",
+    "Registered argv only: pnpm typecheck; pnpm test; python3 -B scripts/failure_gate/tests.py"
+  ],
+  "additional_limits": {
+    "continuation_total_seconds": 2400,
+    "maximum_corrective_fixture_passes": 1,
+    "fixture_execution_seconds": 30,
+    "maximum_additional_complete_bootstrap_passes": 2,
+    "per_pass_seconds": 1200,
+    "outer_caller_narrowed_seconds": 480,
+    "per_step_seconds": 480,
+    "queue_seconds": 30,
+    "test_ms": 30000,
+    "hook_ms": 15000,
+    "startup_seconds": 15,
+    "watchdog_registration_seconds": 2,
+    "owner_stall_seconds": 15,
+    "termination_seconds": 20,
+    "evidence_capture_seconds": 10,
+    "output_bytes_per_pass": 8388608
+  },
+  "accounting": "This is an explicit proposed additional grant, not a silent reset. Preserve the original consumed time, failed attempt, run ID, file segments and exclusion history. Any failed/uncertain continuation stops new dispatch.",
+  "acceptance": [
+    "Corrective regression fixtures pass on the approved current closure",
+    "Real configurations remain pinned; compiler caches cannot self-invalidate authorization",
+    "Completed typecheck evidence survives a later preflight rejection",
+    "Both admitted real callers finish all three registered steps with complete raw reports, finite limits and verified owned termination",
+    "No unknown lifecycle or unresolved journal/claim acknowledgement is accepted as PASS"
+  ],
+  "exclusions": [
+    "Ordinary task activation or cutover",
+    "Live process reclaim or unrelated signals",
+    "Production, schema push, external paid services or remote CI",
+    "Baseline promotion, failure ignore, repair waiver or owner closure",
+    "Platform task creation/status/dependency/completion or automatic merge",
+    "Deleting original incidents, renewing budgets without this actual grant, or additional retry after failure"
+  ],
+  "following_contingent_stage": "After successful installation evidence, prepare the separately bound ordinary writer/caller integration and cutover proposal. Do not claim full application."
+}
