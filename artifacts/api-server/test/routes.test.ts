@@ -8,12 +8,15 @@ import { getTableName } from "drizzle-orm";
 import { PgDialect } from "drizzle-orm/pg-core";
 
 import {
+  conversationTurnsTable,
+  conversationsTable,
   questionsTable,
   skillVersionsTable,
   skillsTable,
 } from "@workspace/db";
 import healthRouter from "../src/routes/health";
 import { createQuestionsRouter } from "../src/routes/questions";
+import { createConversationsRouter } from "../src/routes/conversations";
 import { createSkillsRouter } from "../src/routes/skills";
 import { createStorageRouter } from "../src/routes/storage";
 import { createWorkbenchRouter } from "../src/routes/workbench";
@@ -119,6 +122,10 @@ class MemoryQuery {
     return this;
   }
 
+  for(_strength: string) {
+    return this;
+  }
+
   offset(skipRows: number) {
     this.skipRows = skipRows;
     return this;
@@ -139,6 +146,9 @@ class MemoryDatabase {
   skills: Array<Record<string, any>> = [];
   versions: Array<Record<string, any>> = [];
   questions: Array<Record<string, any>> = [];
+  conversations: Array<Record<string, any>> = [];
+  conversationTurns: Array<Record<string, any>> = [];
+  generatedId = 0;
 
   async transaction() {
     this.transactionCalls += 1;
@@ -353,6 +363,118 @@ class MemoryDatabase {
         : rows;
     }
 
+    if (table === getTableName(conversationsTable)) {
+      const owner = paramFor(
+        compiled.sql,
+        params,
+        "skill_conversations",
+        "owner_id",
+      );
+      const id = paramFor(compiled.sql, params, "skill_conversations", "id");
+      assert.ok(owner, "conversation queries must filter by the authenticated owner");
+      let rows = this.conversations.filter(
+        (conversation) =>
+          conversation.ownerId === owner &&
+          (id === undefined || conversation.id === id),
+      );
+      if (query.joins.length > 0) {
+        rows = rows
+          .filter((conversation) => {
+            const skill = this.skills.find((item) => item.id === conversation.skillId);
+            const version = this.versions.find(
+              (item) =>
+                item.id === conversation.skillVersionId &&
+                item.skillId === conversation.skillId,
+            );
+            return skill?.ownerId === owner && Boolean(version);
+          })
+          .map((conversation) => ({
+            ...conversation,
+            skillName: this.skills.find((item) => item.id === conversation.skillId)?.name,
+            versionLabel: this.versions.find((item) => item.id === conversation.skillVersionId)?.versionLabel,
+          }));
+      }
+      if (query.ordering.length > 0) {
+        const orderSql = new PgDialect().sqlToQuery(query.ordering[0] as never).sql;
+        rows = [...rows].sort((left, right) => {
+          const delta =
+            new Date(left.updatedAt).getTime() - new Date(right.updatedAt).getTime();
+          return orderSql.toUpperCase().includes("DESC") ? -delta : delta;
+        });
+      }
+      rows = rows.slice(
+        query.skipRows,
+        query.maxRows === undefined ? undefined : query.skipRows + query.maxRows,
+      );
+      if (query.selection && typeof query.selection === "object") {
+        rows = rows.map((row) =>
+          Object.fromEntries(
+            Object.entries(query.selection as Record<string, unknown>).map(
+              ([key, column]) => {
+                const field = Object.entries(conversationsTable).find(
+                  ([, value]) => value === column,
+                )?.[0];
+                if (field) return [key, row[field]];
+                if (column === skillsTable.name) return [key, row.skillName];
+                if (column === skillVersionsTable.versionLabel) return [key, row.versionLabel];
+                return [key, undefined];
+              },
+            ),
+          ),
+        );
+      }
+      return rows;
+    }
+
+    if (table === getTableName(conversationTurnsTable)) {
+      const conversationId = paramFor(
+        compiled.sql,
+        params,
+        "skill_conversation_turns",
+        "conversation_id",
+      );
+      const inClause = compiled.sql.match(
+        /"skill_conversation_turns"\."conversation_id"\s+in\s+\(([^)]+)\)/i,
+      )?.[1];
+      const ids = inClause
+        ? [...inClause.matchAll(/\$(\d+)/g)].map(
+            (match) => params[Number(match[1]) - 1],
+          )
+        : [];
+      assert.ok(
+        conversationId || ids.length > 0,
+        "turn queries must filter by a conversation ID",
+      );
+      let rows = this.conversationTurns.filter((turn) =>
+        conversationId === undefined
+          ? ids.includes(turn.conversationId)
+          : turn.conversationId === conversationId,
+      );
+      if (query.ordering.length > 0) {
+        const orderSql = new PgDialect().sqlToQuery(query.ordering[0] as never).sql;
+        rows = [...rows].sort((left, right) =>
+          orderSql.toUpperCase().includes("DESC")
+            ? right.sequence - left.sequence
+            : left.sequence - right.sequence,
+        );
+      }
+      if (query.selection && typeof query.selection === "object") {
+        rows = rows.map((row) =>
+          Object.fromEntries(
+            Object.entries(query.selection as Record<string, unknown>).map(
+              ([key, column]) => {
+                const field = Object.entries(conversationTurnsTable).find(
+                  ([, value]) => value === column,
+                )?.[0];
+                return [key, field ? row[field] : undefined];
+              },
+            ),
+          ),
+        );
+      }
+      return rows;
+    }
+
     throw new Error(`Unexpected query table: ${table}`);
   }
 
@@ -360,31 +482,71 @@ class MemoryDatabase {
     return {
       values: (values: Record<string, unknown>) => {
         const tableName = getTableName(table as never);
-        this.inserted.push({ table: tableName, values });
-        return {
-          returning: async () => {
+        const records = (Array.isArray(values) ? values : [values]) as Array<
+          Record<string, unknown>
+        >;
+        let ignoreConflict = false;
+        const createRows = async () => {
+          const rows: Array<Record<string, any>> = [];
+          for (const record of records) {
+            this.inserted.push({ table: tableName, values: record });
+            if (
+              ignoreConflict &&
+              tableName === getTableName(conversationsTable) &&
+              record.legacyQuestionId &&
+              this.conversations.some(
+                (conversation) =>
+                  conversation.legacyQuestionId === record.legacyQuestionId,
+              )
+            ) {
+              continue;
+            }
             const id =
-              tableName === getTableName(skillsTable)
+              record.id ??
+              (tableName === getTableName(skillsTable)
                 ? skillId
                 : tableName === getTableName(skillVersionsTable)
                   ? this.versions.length === 0
                     ? firstVersionId
                     : newlyCreatedVersionId
-                  : savedQuestionId;
+                  : tableName === getTableName(questionsTable)
+                    ? savedQuestionId
+                    : `90000000-0000-4000-8000-${String(++this.generatedId).padStart(12, "0")}`);
             const row = {
-              ...values,
+              ...record,
               id,
-              createdAt: testDate,
-              updatedAt: testDate,
-              uploadedAt: testDate,
+              parentConversationId: record.parentConversationId ?? null,
+              branchFromSequence: record.branchFromSequence ?? null,
+              legacyQuestionId: record.legacyQuestionId ?? null,
+              projectName: record.projectName ?? null,
+              contextStartSequence: record.contextStartSequence ?? 0,
+              createdAt: record.createdAt ?? testDate,
+              updatedAt: record.updatedAt ?? testDate,
+              uploadedAt: record.uploadedAt ?? testDate,
             };
             if (tableName === getTableName(skillsTable)) this.skills.push(row);
-            if (tableName === getTableName(skillVersionsTable)) {
-              this.versions.push(row);
+            if (tableName === getTableName(skillVersionsTable)) this.versions.push(row);
+            if (tableName === getTableName(questionsTable)) this.questions.push(row);
+            if (tableName === getTableName(conversationsTable)) this.conversations.push(row);
+            if (tableName === getTableName(conversationTurnsTable)) {
+              this.conversationTurns.push(row);
             }
-            return [row];
-          },
+            rows.push(row);
+          }
+          return rows;
         };
+        const chain = {
+          onConflictDoNothing: () => {
+            ignoreConflict = true;
+            return chain;
+          },
+          returning: createRows,
+          then: (
+            resolve: (value: unknown[]) => unknown,
+            reject: (error: unknown) => unknown,
+          ) => Promise.resolve().then(createRows).then(resolve, reject),
+        };
+        return chain;
       },
     };
   }
@@ -400,18 +562,34 @@ class MemoryDatabase {
             this.updates.push({ table: tableName, sql: compiled.sql, params });
             if (
               tableName !== getTableName(skillsTable) &&
-              tableName !== getTableName(skillVersionsTable)
+              tableName !== getTableName(skillVersionsTable) &&
+              tableName !== getTableName(conversationsTable)
             ) {
               throw new Error(`Unexpected update table: ${tableName}`);
             }
             const isSkillsTable = tableName === getTableName(skillsTable);
-            const id = paramFor(compiled.sql, params, isSkillsTable ? "skills" : "skill_versions", "id");
+            const isVersionTable =
+              tableName === getTableName(skillVersionsTable);
+            const tableSql =
+              isSkillsTable
+                ? "skills"
+                : isVersionTable
+                  ? "skill_versions"
+                  : "skill_conversations";
+            const id = paramFor(compiled.sql, params, tableSql, "id");
             const owner = paramFor(compiled.sql, params, "skills", "owner_id");
             const skillId = paramFor(compiled.sql, params, "skill_versions", "skill_id");
-            const matches = (isSkillsTable ? this.skills : this.versions).filter(
+            const targetRows = isSkillsTable
+              ? this.skills
+              : isVersionTable
+                ? this.versions
+                : this.conversations;
+            const scopedOwner =
+              paramFor(compiled.sql, params, tableSql, "owner_id") ?? owner;
+            const matches = targetRows.filter(
               (row) =>
                 (id === undefined || row.id === id) &&
-                (owner === undefined || row.ownerId === owner) &&
+                (scopedOwner === undefined || row.ownerId === scopedOwner) &&
                 (skillId === undefined || row.skillId === skillId),
             );
             for (const skill of matches) Object.assign(skill, values);
@@ -426,6 +604,53 @@ class MemoryDatabase {
           };
         },
       }),
+    };
+  }
+
+  delete(table: unknown) {
+    const tableName = getTableName(table as never);
+    return {
+      where: (condition: unknown) => {
+        const remove = async () => {
+          const compiled = new PgDialect().sqlToQuery(condition as never);
+          const params = compiled.params as unknown[];
+          const sqlTable =
+            tableName === getTableName(conversationsTable)
+              ? "skill_conversations"
+              : "skill_questions";
+          const id = paramFor(compiled.sql, params, sqlTable, "id");
+          const owner = paramFor(compiled.sql, params, sqlTable, "owner_id");
+          const rows =
+            tableName === getTableName(conversationsTable)
+              ? this.conversations
+              : this.questions;
+          const removed = rows.filter(
+            (row) =>
+              (id === undefined || row.id === id) &&
+              (owner === undefined || row.ownerId === owner),
+          );
+          rows.splice(0, rows.length, ...rows.filter((row) => !removed.includes(row)));
+          if (tableName === getTableName(conversationsTable)) {
+            const removedIds = new Set(removed.map((row) => row.id));
+            for (const child of this.conversations) {
+              if (removedIds.has(child.parentConversationId)) {
+                child.parentConversationId = null;
+              }
+            }
+            this.conversationTurns = this.conversationTurns.filter(
+              (turn) => !removedIds.has(turn.conversationId),
+            );
+          }
+          return removed;
+        };
+        return {
+          returning: remove,
+          then: (
+            resolve: (value: unknown[]) => unknown,
+            reject: (error: unknown) => unknown,
+          ) => Promise.resolve().then(remove).then(resolve, reject),
+        };
+      },
     };
   }
 
@@ -2228,4 +2453,278 @@ test("credential-containing questions or code context are rejected before databa
     assert.equal(database.queries.length, 0);
     assert.equal(modelCalls, 0);
   }
+});
+
+test("legacy saved questions backfill as private one-turn conversations without changing their source data", async () => {
+  const database = new MemoryDatabase();
+  const foreignConversationId = "a0000000-0000-4000-8000-00000000000a";
+  database.skills = [
+    makeSkill(skillId, ownerId, firstVersionId),
+    makeSkill(otherSkillId, otherOwnerId, "60000000-0000-4000-8000-000000000006"),
+  ];
+  database.versions = questionVersions;
+  database.questions = [
+    {
+      id: savedQuestionId,
+      ownerId,
+      skillId,
+      skillVersionId: secondVersionId,
+      projectName: "Legacy project",
+      question: "How was this legacy answer created?",
+      answer: "This exact legacy answer must remain readable.",
+      createdAt: testDate,
+    },
+  ];
+  database.conversations = [
+    {
+      id: foreignConversationId,
+      ownerId: otherOwnerId,
+      skillId: otherSkillId,
+      skillVersionId: "60000000-0000-4000-8000-000000000006",
+      projectName: null,
+      title: "Another account's private conversation",
+      parentConversationId: null,
+      branchFromSequence: null,
+      contextStartSequence: 0,
+      legacyQuestionId: null,
+      createdAt: testDate,
+      updatedAt: testDate,
+    },
+  ];
+  const router = createConversationsRouter(database as never, {} as never);
+
+  await withServer({ id: ownerId }, [router], async (base) => {
+    const listResponse = await request(base, "/api/conversations");
+    assert.equal(listResponse.status, 200, await listResponse.clone().text());
+    const list = await listResponse.json();
+    assert.equal(list.conversations.length, 1);
+    const [legacy] = list.conversations;
+    assert.equal(legacy.skillVersionId, secondVersionId);
+    assert.equal(legacy.versionLabel, "2.0");
+    assert.equal(legacy.projectName, "Legacy project");
+    assert.equal(legacy.turnCount, 2);
+
+    const detailResponse = await request(
+      base,
+      `/api/conversations/${legacy.id}`,
+    );
+    assert.equal(detailResponse.status, 200);
+    const detail = await detailResponse.json();
+    assert.deepEqual(
+      detail.turns.map((turn: { role: string; content: string }) => [
+        turn.role,
+        turn.content,
+      ]),
+      [
+        ["user", "How was this legacy answer created?"],
+        ["assistant", "This exact legacy answer must remain readable."],
+      ],
+    );
+    assert.equal(database.questions.length, 1);
+    assert.equal(database.questions[0].answer, "This exact legacy answer must remain readable.");
+    assert.equal(
+      database.conversations.find((item) => item.id === legacy.id)?.legacyQuestionId,
+      savedQuestionId,
+    );
+
+    const foreignRead = await request(
+      base,
+      `/api/conversations/${foreignConversationId}`,
+    );
+    assert.equal(foreignRead.status, 404);
+    const foreignRename = await request(
+      base,
+      `/api/conversations/${foreignConversationId}`,
+      { method: "PATCH", body: { title: "Not allowed" } },
+    );
+    assert.equal(foreignRename.status, 404);
+    const foreignDelete = await request(
+      base,
+      `/api/conversations/${foreignConversationId}`,
+      { method: "DELETE" },
+    );
+    assert.equal(foreignDelete.status, 404);
+  });
+});
+
+test("conversation branches, duplicates, reset context, and deletion stay independent", async () => {
+  const database = new MemoryDatabase();
+  database.skills = [makeSkill(skillId, ownerId, firstVersionId)];
+  database.versions = questionVersions;
+  const modelRequests: Array<Array<{ role: string; content: string }>> = [];
+  const model = {
+    chat: {
+      completions: {
+        create: async ({
+          messages,
+        }: {
+          messages: Array<{ role: string; content: string }>;
+        }) => {
+          modelRequests.push(messages);
+          return {
+            choices: [
+              { message: { content: `Generated answer ${modelRequests.length}` } },
+            ],
+          };
+        },
+      },
+    },
+  };
+  const router = createConversationsRouter(database as never, model as never);
+  let sourceId = "";
+  let branchId = "";
+  let duplicateId = "";
+
+  await withServer({ id: ownerId }, [router], async (base) => {
+    const createResponse = await request(base, "/api/conversations", {
+      method: "POST",
+      body: {
+        skillVersionId: secondVersionId,
+        projectName: "Conversation project",
+        question: "How should I apply this exact skill version?",
+      },
+    });
+    assert.equal(createResponse.status, 201, await createResponse.clone().text());
+    const created = await createResponse.json();
+    sourceId = created.id;
+    assert.equal(created.skillVersionId, secondVersionId);
+    assert.equal(created.versionLabel, "2.0");
+    assert.equal(created.turns[1].content, "Generated answer 1");
+    assert.match(modelRequests[0].map((message) => message.content).join("\n"), /SELECTED_VERSION_MARKER/);
+
+    const firstFollowUp = await request(
+      base,
+      `/api/conversations/${sourceId}/turns`,
+      {
+        method: "POST",
+        body: { question: "Can you clarify the first implementation step?" },
+      },
+    );
+    assert.equal(firstFollowUp.status, 201, await firstFollowUp.clone().text());
+    const afterFirstFollowUp = await firstFollowUp.json();
+    assert.equal(afterFirstFollowUp.turns.length, 4);
+    const beforeResetPrompt = modelRequests[1]
+      .map((message) => message.content)
+      .join("\n");
+    assert.match(beforeResetPrompt, /How should I apply this exact skill version\?/);
+    assert.match(beforeResetPrompt, /Generated answer 1/);
+    assert.match(beforeResetPrompt, /Can you clarify the first implementation step\?/);
+
+    const resetResponse = await request(
+      base,
+      `/api/conversations/${sourceId}/reset-context`,
+      { method: "POST" },
+    );
+    assert.equal(resetResponse.status, 200);
+    const reset = await resetResponse.json();
+    assert.equal(reset.contextStartSequence, 4);
+    assert.equal(reset.turnCount, 4);
+    const visibleAfterReset = await request(
+      base,
+      `/api/conversations/${sourceId}`,
+    );
+    assert.equal(visibleAfterReset.status, 200);
+    const visibleTranscript = await visibleAfterReset.json();
+    assert.equal(visibleTranscript.turns.length, 4);
+    assert.equal(visibleTranscript.turns[0].content, "How should I apply this exact skill version?");
+    assert.equal(visibleTranscript.turns[3].content, "Generated answer 2");
+
+    const afterReset = await request(
+      base,
+      `/api/conversations/${sourceId}/turns`,
+      {
+        method: "POST",
+        body: { question: "Continue with a clean answer context." },
+      },
+    );
+    assert.equal(afterReset.status, 201);
+    const afterResetDetail = await afterReset.json();
+    assert.equal(afterResetDetail.turns.length, 6);
+    const afterResetPrompt = modelRequests[2]
+      .map((message) => message.content)
+      .join("\n");
+    assert.match(afterResetPrompt, /Continue with a clean answer context\./);
+    assert.doesNotMatch(afterResetPrompt, /How should I apply this exact skill version\?/);
+    assert.doesNotMatch(afterResetPrompt, /Generated answer 1/);
+    assert.doesNotMatch(afterResetPrompt, /Can you clarify the first implementation step\?/);
+    assert.doesNotMatch(afterResetPrompt, /Generated answer 2/);
+
+    const chosenTurn = afterResetDetail.turns[4];
+    const branchResponse = await request(
+      base,
+      `/api/conversations/${sourceId}/branches`,
+      { method: "POST", body: { turnId: chosenTurn.id } },
+    );
+    assert.equal(branchResponse.status, 201);
+    const branch = await branchResponse.json();
+    branchId = branch.id;
+    assert.equal(branch.parentConversationId, sourceId);
+    assert.equal(branch.branchFromSequence, 4);
+    assert.equal(branch.contextStartSequence, 4);
+    assert.deepEqual(
+      branch.turns.map((turn: { content: string }) => turn.content),
+      afterResetDetail.turns.slice(0, 5).map((turn: { content: string }) => turn.content),
+    );
+
+    const duplicateResponse = await request(
+      base,
+      `/api/conversations/${sourceId}/duplicate`,
+      { method: "POST" },
+    );
+    assert.equal(duplicateResponse.status, 201);
+    const duplicate = await duplicateResponse.json();
+    duplicateId = duplicate.id;
+    assert.notEqual(duplicate.id, sourceId);
+    assert.equal(duplicate.parentConversationId, null);
+    assert.equal(duplicate.contextStartSequence, 4);
+    assert.deepEqual(
+      duplicate.turns.map((turn: { content: string }) => turn.content),
+      afterResetDetail.turns.map((turn: { content: string }) => turn.content),
+    );
+
+    const renameResponse = await request(
+      base,
+      `/api/conversations/${duplicateId}`,
+      { method: "PATCH", body: { title: "Independent copy" } },
+    );
+    assert.equal(renameResponse.status, 200);
+    assert.equal((await renameResponse.json()).title, "Independent copy");
+
+    const branchFollowUp = await request(
+      base,
+      `/api/conversations/${branchId}/turns`,
+      { method: "POST", body: { question: "Take this branch in another direction." } },
+    );
+    assert.equal(branchFollowUp.status, 201);
+    const updatedBranch = await branchFollowUp.json();
+    assert.equal(updatedBranch.turns.length, 7);
+    assert.equal(
+      database.conversations.find((conversation) => conversation.id === sourceId)?.updatedAt instanceof Date,
+      true,
+    );
+    assert.equal(
+      database.conversationTurns.filter((turn) => turn.conversationId === sourceId).length,
+      6,
+    );
+    assert.equal(
+      database.conversationTurns.filter((turn) => turn.conversationId === duplicateId).length,
+      6,
+    );
+
+    const deleteResponse = await request(base, `/api/conversations/${sourceId}`, {
+      method: "DELETE",
+    });
+    assert.equal(deleteResponse.status, 204);
+    assert.equal(database.conversations.some((item) => item.id === sourceId), false);
+    assert.equal(database.conversations.some((item) => item.id === branchId), true);
+    assert.equal(database.conversations.some((item) => item.id === duplicateId), true);
+    assert.equal(
+      database.conversations.find((item) => item.id === branchId)?.parentConversationId,
+      null,
+    );
+    assert.equal(
+      database.conversationTurns.filter((turn) => turn.conversationId === duplicateId).length,
+      6,
+    );
+  });
 });

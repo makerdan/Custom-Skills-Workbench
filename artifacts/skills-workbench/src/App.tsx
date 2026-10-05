@@ -5,24 +5,28 @@ import { Link, Route, Switch, useLocation, useRoute, Router as WouterRouter } fr
 import { useAuth } from '@workspace/replit-auth-web';
 import { readZipTextFiles } from '@/lib/skillZip';
 import {
-  useAskQuestion, useCreateSkill, useCreateSkillVersion, useGetWorkbenchSummary,
-  useListQuestions, useListSkills, useListSkillVersions, useRequestUploadUrl,
+  useCreateConversation, useContinueConversation, useBranchConversation,
+  useDeleteConversation, useDuplicateConversation, useGetConversation,
+  useListConversations, useRenameConversation, useResetConversationContext,
+  useCreateSkill, useCreateSkillVersion, useGetWorkbenchSummary,
+  useListSkills, useListSkillVersions, useRequestUploadUrl,
   useListPublicSkills, useUpdateSkillDetails, useUpdateSkillPublication,
   useListSkillVersionShares, useCreateOrRegenerateSkillVersionShare,
   useRevokeSkillVersionShare, useGetSharedSkillVersion,
   getListSkillVersionSharesQueryKey, getGetSharedSkillVersionQueryKey,
   getDownloadSharedSkillVersionUrl,
-  getGetWorkbenchSummaryQueryKey, getListQuestionsQueryKey, getListSkillsQueryKey,
+  getGetWorkbenchSummaryQueryKey, getListConversationsQueryKey,
+  getGetConversationQueryKey, getListSkillsQueryKey,
   getListSkillVersionsQueryKey, getListPublicSkillsQueryKey,
 } from '@workspace/api-client-react';
-import type { ListPublicSkillsParams, Question, Skill, SkillFileInput, SkillVersionShare } from '@workspace/api-client-react';
+import type { Conversation, ConversationTurn, ListPublicSkillsParams, Skill, SkillFileInput, SkillVersionShare } from '@workspace/api-client-react';
 import BatchSkillImport from '@/components/BatchSkillImport';
 import {
   ArrowRight, ArrowUpRight, ArrowDownToLine, BookOpen, ChevronDown, CircleHelp,
   Clock3, Code2, FileArchive, FileCode2, Layers3, LogOut, Settings,
   MessageSquareText, Plus, ShieldCheck, Sparkles, Upload, X,
   Globe2, LockKeyhole, Search, SlidersHorizontal, Tag,
-  Share2, Copy, RefreshCw, ExternalLink,
+  Share2, Copy, RefreshCw, ExternalLink, GitBranch, Pencil, RotateCcw, Trash2,
 } from 'lucide-react';
 import NotFound from '@/pages/not-found';
 import { buildDestinationHref, buildSharePageUrl, shareDestinations } from '@/lib/shareDestinations';
@@ -61,8 +65,8 @@ function Sidebar({ path, user, logout }: { path: string; user: any; logout: () =
     { href: '/', label: 'Overview', icon: Layers3 },
     { href: '/skills', label: 'Your skills', icon: BookOpen },
     { href: '/gallery', label: 'Public gallery', icon: Globe2 },
-    { href: '/ask', label: 'Ask a question', icon: MessageSquareText },
-    { href: '/questions', label: 'Question history', icon: Clock3 },
+    { href: '/ask', label: 'Ask for help', icon: MessageSquareText },
+    { href: '/questions', label: 'Conversations', icon: Clock3 },
   ];
   return <aside className="workbench-sidebar">
     <Link href="/" className="flex items-center gap-3 px-2 mb-12" data-testid="link-brand-home">
@@ -149,7 +153,7 @@ function Shell({ children }: { children: ReactNode }) {
   return <UserPreferencesContext.Provider value={{ preferences, onPreferenceChange: updatePreference, onReset: resetPreferences }}>
     <div className="workbench-shell" data-density={preferences.density}>
     <Sidebar path={path} user={auth.user} logout={auth.logout}/>
-    <header className="mobile-top !flex-wrap"><div className="w-full flex items-center justify-between"><Link href="/" className="flex items-center gap-2 font-semibold text-sm" data-testid="link-mobile-brand"><span className="grid place-items-center w-8 h-8 rounded-lg bg-primary text-primary-foreground"><Code2 size={17}/></span> Skills Workbench</Link><div className="flex items-center gap-1.5"><Link href="/settings" className={`btn-subtle !p-2 ${path === '/settings' ? 'border-primary text-primary' : ''}`} aria-label="Settings" title="Settings" data-testid="link-mobile-settings"><Settings size={16}/></Link><button className="btn-subtle !p-2" onClick={auth.logout} aria-label="Log out" data-testid="button-mobile-logout"><LogOut size={16}/></button></div></div><nav className="flex w-full gap-1 overflow-x-auto pt-2 pb-0.5" aria-label="Mobile navigation">{[{href:'/', label:'Overview'},{href:'/skills',label:'Skills'},{href:'/gallery',label:'Gallery'},{href:'/ask',label:'Ask'},{href:'/questions',label:'History'}].map(item=><Link key={item.href} href={item.href} className={`whitespace-nowrap rounded-full px-3 py-1.5 text-[11px] font-semibold ${path===item.href ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}`} data-testid={`link-mobile-nav-${item.href==='/'?'overview':item.href.slice(1)}`}>{item.label}</Link>)}</nav></header>
+    <header className="mobile-top !flex-wrap"><div className="w-full flex items-center justify-between"><Link href="/" className="flex items-center gap-2 font-semibold text-sm" data-testid="link-mobile-brand"><span className="grid place-items-center w-8 h-8 rounded-lg bg-primary text-primary-foreground"><Code2 size={17}/></span> Skills Workbench</Link><div className="flex items-center gap-1.5"><Link href="/settings" className={`btn-subtle !p-2 ${path === '/settings' ? 'border-primary text-primary' : ''}`} aria-label="Settings" title="Settings" data-testid="link-mobile-settings"><Settings size={16}/></Link><button className="btn-subtle !p-2" onClick={auth.logout} aria-label="Log out" data-testid="button-mobile-logout"><LogOut size={16}/></button></div></div><nav className="flex w-full gap-1 overflow-x-auto pt-2 pb-0.5" aria-label="Mobile navigation">{[{href:'/', label:'Overview'},{href:'/skills',label:'Skills'},{href:'/gallery',label:'Gallery'},{href:'/ask',label:'Ask'},{href:'/questions',label:'Conversations'}].map(item=><Link key={item.href} href={item.href} className={`whitespace-nowrap rounded-full px-3 py-1.5 text-[11px] font-semibold ${path===item.href ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}`} data-testid={`link-mobile-nav-${item.href==='/'?'overview':item.href.slice(1)}`}>{item.label}</Link>)}</nav></header>
     <main className="workbench-content page-enter">{children}</main>
     </div>
   </UserPreferencesContext.Provider>;
@@ -177,20 +181,22 @@ function EmptyState({ title, detail, action, testId }: { title: string; detail: 
 
 function Overview() {
   const summary = useGetWorkbenchSummary();
+  const conversationsQuery = useListConversations();
   const data = summary.data;
+  const conversations = conversationsQuery.data?.conversations ?? [];
   return <>
-    <Topline section="Your workspace" title={`Good to see you${new Date().getHours() < 12 ? ' this morning' : ''}.`} description="A focused home for the skills you rely on and the implementation questions you've worked through." action={<Link href="/ask" className="btn-primary" data-testid="button-ask-top"><Plus size={16}/> Ask a question</Link>}/>
-    {summary.isLoading ? <><div className="grid sm:grid-cols-3 gap-3">{[1,2,3].map(n=><div key={n} className="panel p-5"><div className="skeleton h-3 w-20"/><div className="skeleton h-8 w-14 mt-5"/></div>)}</div><SkeletonLines/></> :
-      summary.isError ? <ErrorNotice retry={() => summary.refetch()}/> : <>
+    <Topline section="Your workspace" title={`Good to see you${new Date().getHours() < 12 ? ' this morning' : ''}.`} description="A focused home for the skills you rely on and your private, version-grounded conversations." action={<Link href="/ask" className="btn-primary" data-testid="button-ask-top"><Plus size={16}/> Start a conversation</Link>}/>
+    {summary.isLoading || conversationsQuery.isLoading ? <><div className="grid sm:grid-cols-3 gap-3">{[1,2,3].map(n=><div key={n} className="panel p-5"><div className="skeleton h-3 w-20"/><div className="skeleton h-8 w-14 mt-5"/></div>)}</div><SkeletonLines/></> :
+      summary.isError || conversationsQuery.isError ? <ErrorNotice retry={() => { void summary.refetch(); void conversationsQuery.refetch(); }}/> : <>
         <div className="grid sm:grid-cols-3 gap-3 mb-9">
           {[
             { label: 'Skills in your library', value: data?.skillCount ?? 0, icon: BookOpen, color: 'text-primary' },
             { label: 'Uploaded versions', value: data?.versionCount ?? 0, icon: FileArchive, color: 'text-[hsl(26_43%_54%)]' },
-            { label: 'Questions answered', value: data?.questionCount ?? 0, icon: MessageSquareText, color: 'text-[hsl(203_31%_52%)]' },
+            { label: 'Saved conversations', value: conversations.length >= 300 ? '300+' : conversations.length, icon: MessageSquareText, color: 'text-[hsl(203_31%_52%)]' },
           ].map(item => <div className="panel p-5 sm:p-6" key={item.label}><div className="flex items-center justify-between"><span className="text-xs text-muted-foreground">{item.label}</span><item.icon size={16} className={item.color}/></div><p className="display text-4xl mt-5" data-testid={`metric-${item.label.toLowerCase().replaceAll(' ', '-')}`}>{item.value}</p></div>)}
         </div>
-        <div className="flex flex-wrap items-end justify-between gap-3 mb-4"><div><p className="eyebrow">Keep your momentum</p><h2 className="display text-3xl mt-1">Recent questions</h2></div><Link href="/questions" className="text-xs font-semibold text-primary flex items-center gap-1 hover:gap-2 transition-all" data-testid="link-all-questions">View history <ArrowRight size={14}/></Link></div>
-        {(data?.recentQuestions?.length ?? 0) ? <QuestionRows questions={data!.recentQuestions.slice(0, 5)}/> : <EmptyState testId="empty-recent-questions" title="A clean slate." detail="Your saved questions and version-specific answers will gather here as you work." action={<Link href="/ask" className="btn-subtle" data-testid="button-first-question">Ask your first question <ArrowRight size={14}/></Link>}/>}
+        <div className="flex flex-wrap items-end justify-between gap-3 mb-4"><div><p className="eyebrow">Keep your momentum</p><h2 className="display text-3xl mt-1">Recent conversations</h2></div><Link href="/questions" className="text-xs font-semibold text-primary flex items-center gap-1 hover:gap-2 transition-all" data-testid="link-all-questions">View history <ArrowRight size={14}/></Link></div>
+        {conversations.length ? <ConversationOverviewRows conversations={conversations.slice(0, 5)}/> : <EmptyState testId="empty-recent-conversations" title="A clean slate." detail="Your private conversations and version-specific answers will gather here as you work." action={<Link href="/ask" className="btn-subtle" data-testid="button-first-question">Start your first conversation <ArrowRight size={14}/></Link>}/>}
         <div className="mt-7 rounded-2xl bg-primary text-primary-foreground px-6 py-7 sm:px-8 sm:flex items-center justify-between gap-8 overflow-hidden relative">
           <div className="absolute right-[-12px] top-[-36px] opacity-[.08]"><Code2 size={210}/></div>
           <div className="relative"><p className="eyebrow !text-primary-foreground/60">Start with the source</p><h2 className="display text-3xl mt-2">Bring the right version<br className="hidden sm:block"/> into the conversation.</h2></div>
@@ -200,15 +206,12 @@ function Overview() {
   </>;
 }
 
-function QuestionRows({ questions }: { questions: Question[] }) {
-  return <div className="panel divide-y divide-border overflow-hidden" data-testid="list-question-rows">{questions.map(q=><details key={q.id} className="group" data-testid={`question-row-${q.id}`}>
-    <summary className="list-none cursor-pointer px-5 py-4 sm:px-6 flex items-start gap-4 hover:bg-muted/40 transition-colors [&::-webkit-details-marker]:hidden">
-      <span className="hidden sm:grid place-items-center w-9 h-9 rounded-lg bg-muted text-primary shrink-0 mt-0.5"><MessageSquareText size={16}/></span>
-      <span className="min-w-0 flex-1"><span className="block text-sm font-semibold leading-5" data-testid={`text-question-${q.id}`}>{q.question}</span><span className="flex flex-wrap gap-x-2 gap-y-1 mt-2 text-[11px] text-muted-foreground"><span>{q.skillName}</span><span>/</span><span className="font-mono">v{q.versionLabel}</span>{q.projectName && <><span>/</span><span>{q.projectName}</span></>}<span>/</span><span>{dateLabel(q.createdAt)}</span></span></span>
-      <ChevronDown size={16} className="text-muted-foreground shrink-0 mt-1 transition-transform group-open:rotate-180"/>
-    </summary>
-    <div className="px-5 pb-5 sm:pl-[76px] sm:pr-7"><div className="border-l-2 border-[hsl(var(--accent))] pl-4 py-1"><p className="eyebrow mb-2">Grounded answer · {q.skillName} / {q.versionLabel}</p><div className="prose prose-sm max-w-none text-foreground whitespace-pre-wrap leading-6" data-testid={`text-answer-${q.id}`}>{q.answer}</div></div></div>
-  </details>)}</div>;
+function ConversationOverviewRows({ conversations }: { conversations: Conversation[] }) {
+  return <div className="panel divide-y divide-border overflow-hidden" data-testid="list-recent-conversations">{conversations.map(conversation=><Link key={conversation.id} href={`/ask/${conversation.id}`} className="block px-5 py-4 sm:px-6 hover:bg-muted/40 transition-colors" data-testid={`recent-conversation-${conversation.id}`}>
+    <div className="flex flex-wrap justify-between gap-2"><span className="text-sm font-semibold leading-5">{conversation.title}</span><span className="text-[10px] text-muted-foreground">{dateLabel(conversation.updatedAt)}</span></div>
+    <span className="flex flex-wrap gap-x-2 gap-y-1 mt-2 text-[11px] text-muted-foreground"><span>{conversation.skillName}</span><span>/</span><span className="font-mono">v{conversation.versionLabel}</span>{conversation.projectName && <><span>/</span><span>{conversation.projectName}</span></>}</span>
+    {conversation.lastMessage && <span className="block text-xs text-muted-foreground mt-2 line-clamp-2">{conversation.lastMessage}</span>}
+  </Link>)}</div>;
 }
 
 function ZipPicker({ value, onChange, id = 'zip-file', disabled = false }: { value: File | null; onChange: (f: File | null) => void; id?: string; disabled?: boolean }) {
@@ -707,37 +710,190 @@ function PublicGallery() {
 
 function AskPage() {
   const queryClient = useQueryClient();
+  const [matchedConversation, routeParams] = useRoute('/ask/:conversationId');
+  const conversationId = matchedConversation ? routeParams?.conversationId ?? '' : '';
+  const [, navigate] = useLocation();
   const skillsQuery = useListSkills();
-  const ask = useAskQuestion();
+  const conversationQuery = useGetConversation(conversationId, {
+    query: {
+      queryKey: getGetConversationQueryKey(conversationId),
+      enabled: Boolean(conversationId),
+    },
+  });
+  const createConversation = useCreateConversation();
+  const continueConversation = useContinueConversation();
+  const branchConversation = useBranchConversation();
+  const duplicateConversation = useDuplicateConversation();
+  const renameConversation = useRenameConversation();
+  const resetContext = useResetConversationContext();
+  const deleteConversation = useDeleteConversation();
   const [skillId, setSkillId] = useState('');
   const [versionId, setVersionId] = useState('');
   const [project, setProject] = useState('');
   const [question, setQuestion] = useState('');
   const [context, setContext] = useState('');
-  const [answer, setAnswer] = useState<Question | null>(null);
   const [error, setError] = useState('');
+  const [actionError, setActionError] = useState('');
+  const [actionMessage, setActionMessage] = useState('');
   const skills = skillsQuery.data?.skills ?? [];
   const selected = skills.find(s=>s.id===skillId);
   const versionsQuery = useListSkillVersions(skillId, { query: { queryKey: getListSkillVersionsQueryKey(skillId), enabled: !!skillId } });
   const versions = useMemo(() => versionsQuery.data?.versions ?? selected?.versions ?? [], [versionsQuery.data?.versions, selected?.versions]);
+  const conversation = conversationQuery.data;
+  const refreshConversations = async (id?: string) => {
+    await Promise.all([
+      queryClient.invalidateQueries({ queryKey: getListConversationsQueryKey() }),
+      queryClient.invalidateQueries({ queryKey: getGetWorkbenchSummaryQueryKey() }),
+      ...(id ? [queryClient.invalidateQueries({ queryKey: getGetConversationQueryKey(id) })] : []),
+    ]);
+  };
   const submit = async (e: FormEvent) => {
-    e.preventDefault(); setError(''); setAnswer(null);
+    e.preventDefault();
+    setError('');
+    if (conversationId) {
+      if (!question.trim()) { setError('Write a follow-up question first.'); return; }
+      try {
+        const updated = await continueConversation.mutateAsync({
+          conversationId,
+          data: { question: question.trim(), codeContext: context.trim() || undefined },
+        });
+        queryClient.setQueryData(getGetConversationQueryKey(conversationId), updated);
+        setQuestion('');
+        setContext('');
+        await refreshConversations(conversationId);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Your follow-up could not be submitted. Try again.');
+      }
+      return;
+    }
     if (!versionId) { setError('Select a skill version before asking.'); return; }
     try {
-      const result = await ask.mutateAsync({ data: { skillVersionId: versionId, projectName: project.trim() || undefined, question: question.trim(), codeContext: context.trim() || undefined } });
-      setAnswer(result); setQuestion(''); setContext('');
-      await Promise.all([queryClient.invalidateQueries({ queryKey: getListQuestionsQueryKey() }), queryClient.invalidateQueries({ queryKey: getGetWorkbenchSummaryQueryKey() })]);
+      const created = await createConversation.mutateAsync({
+        data: {
+          skillVersionId: versionId,
+          projectName: project.trim() || undefined,
+          question: question.trim(),
+          codeContext: context.trim() || undefined,
+        },
+      });
+      queryClient.setQueryData(getGetConversationQueryKey(created.id), created);
+      setQuestion('');
+      setContext('');
+      await refreshConversations(created.id);
+      navigate(`/ask/${created.id}`);
     } catch (err) { setError(err instanceof Error ? err.message : 'Your question could not be submitted. Try again.'); }
   };
+
+  const branchAtTurn = async (turn: ConversationTurn) => {
+    if (!conversation) return;
+    setActionError('');
+    setActionMessage('');
+    try {
+      const branch = await branchConversation.mutateAsync({
+        conversationId: conversation.id,
+        data: { turnId: turn.id },
+      });
+      queryClient.setQueryData(getGetConversationQueryKey(branch.id), branch);
+      await refreshConversations(branch.id);
+      navigate(`/ask/${branch.id}`);
+    } catch (err) {
+      setActionError(err instanceof Error ? err.message : 'The branch could not be created.');
+    }
+  };
+
+  const duplicateCurrent = async () => {
+    if (!conversation) return;
+    setActionError('');
+    try {
+      const copy = await duplicateConversation.mutateAsync({ conversationId: conversation.id });
+      queryClient.setQueryData(getGetConversationQueryKey(copy.id), copy);
+      await refreshConversations(copy.id);
+      navigate(`/ask/${copy.id}`);
+    } catch (err) {
+      setActionError(err instanceof Error ? err.message : 'The conversation could not be duplicated.');
+    }
+  };
+
+  const renameCurrent = async () => {
+    if (!conversation) return;
+    const title = window.prompt('Rename this conversation', conversation.title);
+    if (title === null || !title.trim()) return;
+    setActionError('');
+    try {
+      await renameConversation.mutateAsync({
+        conversationId: conversation.id,
+        data: { title: title.trim() },
+      });
+      await refreshConversations(conversation.id);
+      setActionMessage('Conversation renamed.');
+    } catch (err) {
+      setActionError(err instanceof Error ? err.message : 'The conversation could not be renamed.');
+    }
+  };
+
+  const resetCurrentContext = async () => {
+    if (!conversation || !window.confirm('Reset future answer context? The full transcript will remain visible, but earlier turns will not be sent with new questions.')) return;
+    setActionError('');
+    try {
+      await resetContext.mutateAsync({ conversationId: conversation.id });
+      await refreshConversations(conversation.id);
+      setActionMessage('Future answers will start without the earlier transcript.');
+    } catch (err) {
+      setActionError(err instanceof Error ? err.message : 'Answer context could not be reset.');
+    }
+  };
+
+  const deleteCurrent = async () => {
+    if (!conversation || !window.confirm('Delete this conversation? Its branches will remain saved.')) return;
+    setActionError('');
+    try {
+      await deleteConversation.mutateAsync({ conversationId: conversation.id });
+      await refreshConversations();
+      navigate('/questions');
+    } catch (err) {
+      setActionError(err instanceof Error ? err.message : 'The conversation could not be deleted.');
+    }
+  };
+
   return <>
-    <Topline section="Implementation help" title="Ask with context." description="Choose the skill version to ground your answer, then describe the separate project and where you're stuck."/>
-    {skillsQuery.isLoading ? <div className="panel p-6"><SkeletonLines count={3}/></div> : skillsQuery.isError ? <ErrorNotice retry={()=>skillsQuery.refetch()}/> : skills.length === 0 ?
+    <Topline section="Implementation help" title={conversationId ? 'Continue the conversation.' : 'Start a conversation.'} description={conversationId ? 'The selected skill version stays fixed. Follow-ups use this conversation’s active answer context.' : 'Choose the exact skill version to ground the conversation, then describe the project and where you are stuck.'} action={conversationId ? <Link href="/ask" className="btn-subtle" data-testid="button-new-conversation"><Plus size={15}/> New conversation</Link> : undefined}/>
+    {conversationId ? conversationQuery.isLoading ? <div className="panel p-6"><SkeletonLines count={3}/></div> : conversationQuery.isError || !conversation ? <div className="space-y-4"><ErrorNotice retry={()=>conversationQuery.refetch()}/><Link href="/questions" className="btn-subtle" data-testid="link-back-to-history">Back to history</Link></div> :
+      <div className="space-y-5">
+        <section className="panel p-5 sm:p-7" data-testid="conversation-view">
+          <div className="flex flex-wrap items-start justify-between gap-4">
+            <div className="min-w-0"><p className="eyebrow">{conversation.skillName} · v{conversation.versionLabel}{conversation.projectName ? ` · ${conversation.projectName}` : ''}</p><h2 className="display text-3xl mt-2 break-words" data-testid="text-conversation-title">{conversation.title}</h2><p className="text-xs text-muted-foreground mt-2">{conversation.turnCount} transcript turns{conversation.parentConversationId ? ' · branched conversation' : ''}</p></div>
+            <div className="flex flex-wrap gap-2" aria-label="Conversation actions">
+              <button className="btn-subtle !py-2 !px-2.5 text-xs" onClick={()=>void renameCurrent()} data-testid="button-rename-conversation" aria-label="Rename conversation"><Pencil size={13}/> Rename</button>
+              <button className="btn-subtle !py-2 !px-2.5 text-xs" onClick={()=>void duplicateCurrent()} disabled={duplicateConversation.isPending} data-testid="button-duplicate-conversation" aria-label="Duplicate conversation"><Copy size={13}/> Duplicate</button>
+              <button className="btn-subtle !py-2 !px-2.5 text-xs" onClick={()=>void resetCurrentContext()} disabled={resetContext.isPending} data-testid="button-reset-conversation-context" aria-label="Reset future answer context"><RotateCcw size={13}/> Reset context</button>
+              <button className="btn-subtle !py-2 !px-2.5 text-xs text-destructive" onClick={()=>void deleteCurrent()} disabled={deleteConversation.isPending} data-testid="button-delete-conversation" aria-label="Delete conversation"><Trash2 size={13}/> Delete</button>
+            </div>
+          </div>
+          {conversation.contextStartSequence > 0 && <p className="mt-4 rounded-lg bg-accent/35 px-3 py-2 text-xs text-muted-foreground" role="status" data-testid="status-context-reset">Earlier turns remain visible but are excluded from future answers.</p>}
+          {actionError && <p className="text-sm text-destructive mt-4" role="alert" data-testid="status-conversation-action-error">{actionError}</p>}
+          {actionMessage && <p className="text-sm text-primary mt-4" role="status" data-testid="status-conversation-action-success">{actionMessage}</p>}
+          <div className="mt-6 border-t border-border pt-2">
+            <ConversationTranscript turns={conversation.turns} onBranch={turn=>void branchAtTurn(turn)} branching={branchConversation.isPending}/>
+          </div>
+        </section>
+        <form className="panel p-5 sm:p-7" onSubmit={submit} data-testid="form-continue-conversation">
+          <label className="block text-sm font-semibold" htmlFor="follow-up-question">Continue this conversation</label>
+          <textarea id="follow-up-question" className="field mt-3 min-h-[120px] resize-y text-sm leading-6" minLength={1} maxLength={8000} required value={question} onChange={event=>setQuestion(event.target.value)} placeholder="Ask a follow-up about the same skill version…" data-testid="input-follow-up-question"/>
+          <details className="group mt-3 border border-border rounded-lg">
+            <summary className="list-none p-3 flex items-center gap-2 cursor-pointer text-xs font-semibold" data-testid="toggle-follow-up-code-context"><Code2 size={14}/> Add code context <span className="font-normal text-muted-foreground">optional</span><ChevronDown size={14} className="ml-auto"/></summary>
+            <div className="px-3 pb-3"><textarea className="field min-h-[100px] resize-y font-mono text-xs leading-5" maxLength={12000} value={context} onChange={event=>setContext(event.target.value)} placeholder="Paste a relevant snippet, configuration, or error message…" data-testid="input-follow-up-code-context"/></div>
+          </details>
+          {error && <p className="text-sm text-destructive mt-3" role="alert" data-testid="status-ask-error">{error}</p>}
+          <div className="flex justify-end mt-4"><button className="btn-primary" disabled={continueConversation.isPending || !question.trim()} data-testid="button-submit-follow-up">{continueConversation.isPending ? 'Working from your skill…' : 'Send follow-up'} <ArrowRight size={15}/></button></div>
+        </form>
+      </div>
+      : skillsQuery.isLoading ? <div className="panel p-6"><SkeletonLines count={3}/></div> : skillsQuery.isError ? <ErrorNotice retry={()=>skillsQuery.refetch()}/> : skills.length === 0 ?
       <EmptyState testId="empty-ask-skills" title="No skills to ask about yet." detail="Create a skill and upload its first ZIP before starting an implementation question." action={<Link href="/skills" className="btn-primary" data-testid="button-add-skill-from-ask"><Plus size={15}/> Add a skill</Link>}/> :
       <div className="grid xl:grid-cols-[minmax(0,1fr)_300px] gap-6 items-start">
         <form className="panel p-5 sm:p-7" onSubmit={submit} data-testid="form-ask-question">
           <div className="flex items-start gap-3 mb-6"><span className="grid place-items-center w-9 h-9 rounded-lg bg-accent/70 text-primary"><Sparkles size={17}/></span><div><h2 className="font-semibold">Set the context</h2><p className="text-xs text-muted-foreground mt-1">Answers stay attached to this exact version.</p></div></div>
           <div className="grid sm:grid-cols-2 gap-4">
-            <label className="text-xs font-semibold">Skill<select className="field mt-2 text-sm font-normal" value={skillId} onChange={e=>{setSkillId(e.target.value);setVersionId('');setAnswer(null);}} required data-testid="select-skill"><option value="">Choose a skill…</option>{skills.map(s=><option value={s.id} key={s.id}>{s.name}</option>)}</select></label>
+            <label className="text-xs font-semibold">Skill<select className="field mt-2 text-sm font-normal" value={skillId} onChange={e=>{setSkillId(e.target.value);setVersionId('');}} required data-testid="select-skill"><option value="">Choose a skill…</option>{skills.map(s=><option value={s.id} key={s.id}>{s.name}</option>)}</select></label>
             <label className="text-xs font-semibold">Skill version<select className="field mt-2 text-sm font-normal" value={versionId} onChange={e=>setVersionId(e.target.value)} required disabled={!skillId || versionsQuery.isLoading} data-testid="select-skill-version"><option value="">{versionsQuery.isLoading ? 'Loading versions…' : 'Choose a version…'}</option>{versions.map(v=><option key={v.id} value={v.id}>{v.versionLabel}{v.id===selected?.currentVersionId ? ' · current' : ''}</option>)}</select></label>
           </div>
           {versionsQuery.isError && <p className="text-xs text-destructive mt-2" data-testid="status-versions-error">Could not load versions for this skill.</p>}
@@ -749,7 +905,8 @@ function AskPage() {
             <div className="px-3 pb-3"><textarea className="field min-h-[130px] resize-y font-mono text-xs leading-5" maxLength={12000} value={context} onChange={e=>setContext(e.target.value)} placeholder="Paste a relevant snippet, config, or error message…" data-testid="input-code-context"/><p className="text-right text-[10px] text-muted-foreground mt-1">{context.length.toLocaleString()} / 12,000</p><p className="text-[10px] text-muted-foreground mt-2">Remove API keys, passwords, and tokens before submitting. Common credential patterns are rejected.</p></div>
           </details>
           {error && <p className="text-sm text-destructive mt-4" role="alert" data-testid="status-ask-error">{error}</p>}
-          <div className="mt-6 pt-5 border-t border-border flex flex-wrap justify-between items-center gap-4"><span className="text-[11px] text-muted-foreground flex items-center gap-1.5"><ShieldCheck size={14}/> Private to your workspace</span><button className="btn-primary" disabled={ask.isPending || !versionId || question.trim().length < 10} data-testid="button-submit-question">{ask.isPending ? 'Working from your skill…' : 'Get implementation help'} <ArrowRight size={15}/></button></div>
+          <div className="mt-6 pt-5 border-t border-border flex flex-wrap justify-between items-center gap-4"><span className="text-[11px] text-muted-foreground flex items-center gap-1.5"><ShieldCheck size={14}/> Private to your workspace</span><button className="btn-primary" disabled={createConversation.isPending || !versionId || question.trim().length < 10} data-testid="button-submit-question">{createConversation.isPending ? 'Working from your skill…' : 'Start conversation'} <ArrowRight size={15}/></button></div>
+          {error && <p className="text-sm text-destructive mt-4" role="alert" data-testid="status-ask-error">{error}</p>}
         </form>
         <aside className="space-y-4">
           <div className="panel p-5"><p className="eyebrow">How answers stay grounded</p><ol className="mt-4 space-y-4">{[
@@ -760,21 +917,90 @@ function AskPage() {
           {selected && <div className="rounded-xl border border-[hsl(var(--primary)/.2)] bg-[hsl(var(--accent)/.22)] p-4" data-testid="card-selected-skill"><p className="eyebrow">Selected skill</p><p className="font-semibold text-sm mt-2">{selected.name}</p><p className="text-xs text-muted-foreground mt-1">{selected.description || 'No description added.'}</p></div>}
         </aside>
       </div>}
-    {answer && <section className="panel mt-7 p-5 sm:p-7 page-enter" data-testid={`card-new-answer-${answer.id}`}><div className="flex flex-wrap justify-between gap-3 items-start"><div><p className="eyebrow">Saved answer · {answer.skillName} / {answer.versionLabel}</p><h2 className="display text-2xl mt-2">A way forward.</h2></div><span className="rounded-full bg-accent/60 text-primary px-3 py-1.5 text-[10px] font-mono">v{answer.versionLabel}</span></div><p className="text-sm text-muted-foreground mt-4 border-l-2 border-accent pl-3">{answer.question}</p><div className="prose prose-sm max-w-none mt-5 whitespace-pre-wrap leading-6" data-testid={`text-new-answer-${answer.id}`}>{answer.answer}</div><Link href="/questions" className="btn-subtle mt-5" data-testid="link-answer-history">Open question history <ArrowRight size={14}/></Link></section>}
   </>;
 }
 
+function ConversationTranscript({ turns, onBranch, branching }: { turns: ConversationTurn[]; onBranch: (turn: ConversationTurn) => void; branching: boolean }) {
+  return <div className="space-y-4" aria-label="Conversation transcript" data-testid="list-conversation-turns">
+    {turns.map(turn=><article key={turn.id} className={`rounded-xl p-4 sm:p-5 ${turn.role === 'assistant' ? 'bg-muted/55 border border-border/70' : 'bg-[hsl(var(--accent)/.2)] border border-[hsl(var(--accent)/.45)]'}`} data-testid={`conversation-turn-${turn.sequence}`}>
+      <div className="flex flex-wrap items-center justify-between gap-2"><p className="eyebrow !text-[11px]">{turn.role === 'assistant' ? 'Assistant' : 'You'}</p><button className="text-[10px] font-semibold text-primary hover:underline inline-flex items-center gap-1" onClick={()=>onBranch(turn)} disabled={branching} data-testid={`button-branch-turn-${turn.sequence}`} aria-label={`Branch from turn ${turn.sequence + 1}`}><GitBranch size={12}/> Branch from here</button></div>
+      <div className="prose prose-sm max-w-none mt-3 whitespace-pre-wrap leading-6 text-foreground" data-testid={`text-turn-content-${turn.sequence}`}>{turn.content}</div>
+      {turn.codeContext && <details className="mt-3"><summary className="text-xs text-muted-foreground cursor-pointer">Code context included</summary><pre className="mt-2 overflow-x-auto rounded-lg bg-background p-3 text-[11px] leading-5 whitespace-pre-wrap">{turn.codeContext}</pre></details>}
+    </article>)}
+    {turns.length === 0 && <p className="text-sm text-muted-foreground py-6 text-center">This conversation has no turns yet. Add a follow-up below.</p>}
+  </div>;
+}
+
 function QuestionsPage() {
-  const questionsQuery = useListQuestions();
+  const queryClient = useQueryClient();
+  const [, navigate] = useLocation();
+  const conversationsQuery = useListConversations();
+  const duplicateConversation = useDuplicateConversation();
+  const renameConversation = useRenameConversation();
+  const resetContext = useResetConversationContext();
+  const deleteConversation = useDeleteConversation();
   const [search, setSearch] = useState('');
-  const questions = questionsQuery.data?.questions ?? [];
-  const filtered = useMemo(() => questions.filter(q=>`${q.question} ${q.answer} ${q.skillName} ${q.projectName || ''}`.toLowerCase().includes(search.toLowerCase())), [questions, search]);
+  const [actionError, setActionError] = useState('');
+  const conversations = conversationsQuery.data?.conversations ?? [];
+  const filtered = useMemo(() => conversations.filter(item=>`${item.title} ${item.lastMessage || ''} ${item.skillName} ${item.versionLabel} ${item.projectName || ''}`.toLowerCase().includes(search.toLowerCase())), [conversations, search]);
+  const refresh = async () => {
+    await Promise.all([
+      queryClient.invalidateQueries({ queryKey: getListConversationsQueryKey() }),
+      queryClient.invalidateQueries({ queryKey: getGetWorkbenchSummaryQueryKey() }),
+    ]);
+  };
+  const duplicate = async (item: Conversation) => {
+    setActionError('');
+    try {
+      const copy = await duplicateConversation.mutateAsync({ conversationId: item.id });
+      await refresh();
+      navigate(`/ask/${copy.id}`);
+    } catch (err) { setActionError(err instanceof Error ? err.message : 'The conversation could not be duplicated.'); }
+  };
+  const rename = async (item: Conversation) => {
+    const title = window.prompt('Rename this conversation', item.title);
+    if (title === null || !title.trim()) return;
+    setActionError('');
+    try {
+      await renameConversation.mutateAsync({ conversationId: item.id, data: { title: title.trim() } });
+      await refresh();
+    } catch (err) { setActionError(err instanceof Error ? err.message : 'The conversation could not be renamed.'); }
+  };
+  const reset = async (item: Conversation) => {
+    if (!window.confirm('Reset future answer context? The transcript stays visible, but new answers will not use earlier turns.')) return;
+    setActionError('');
+    try {
+      await resetContext.mutateAsync({ conversationId: item.id });
+      await refresh();
+    } catch (err) { setActionError(err instanceof Error ? err.message : 'Answer context could not be reset.'); }
+  };
+  const remove = async (item: Conversation) => {
+    if (!window.confirm('Delete this conversation? Its branches will remain saved.')) return;
+    setActionError('');
+    try {
+      await deleteConversation.mutateAsync({ conversationId: item.id });
+      await refresh();
+    } catch (err) { setActionError(err instanceof Error ? err.message : 'The conversation could not be deleted.'); }
+  };
   return <>
-    <Topline section="Saved work" title="Question history." description="Return to earlier implementation decisions with the skill version and answer that informed them." action={<Link href="/ask" className="btn-primary" data-testid="button-ask-another"><Plus size={15}/> New question</Link>}/>
-    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5"><p className="text-xs text-muted-foreground" data-testid="text-question-count">{questions.length} {questions.length===1 ? 'question' : 'questions'} saved</p><label className="relative w-full sm:w-72"><span className="sr-only">Search question history</span><input className="field !py-2.5 !pl-9 text-xs" value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search questions and answers" data-testid="input-search-questions"/><MessageSquareText size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"/></label></div>
-    {questionsQuery.isLoading ? <SkeletonLines count={3}/> : questionsQuery.isError ? <ErrorNotice retry={()=>questionsQuery.refetch()}/> : filtered.length === 0 ?
-      <EmptyState testId="empty-question-history" title={questions.length ? 'No matching questions.' : 'Nothing saved yet.'} detail={questions.length ? 'Try a different phrase to find the answer you need.' : 'Ask an implementation question and its exact skill context will be saved here.'} action={questions.length ? <button className="btn-subtle" onClick={()=>setSearch('')} data-testid="button-clear-search">Clear search <X size={14}/></button> : <Link href="/ask" className="btn-primary" data-testid="button-start-question"><MessageSquareText size={15}/> Ask a question</Link>}/> :
-      <QuestionRows questions={filtered}/>}
+    <Topline section="Saved work" title="Conversations." description="Continue version-specific implementation help or manage saved transcripts and independent branches." action={<Link href="/ask" className="btn-primary" data-testid="button-ask-another"><Plus size={15}/> New conversation</Link>}/>
+    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5"><p className="text-xs text-muted-foreground" data-testid="text-conversation-count">{conversations.length} {conversations.length===1 ? 'conversation' : 'conversations'} saved</p><label className="relative w-full sm:w-72"><span className="sr-only">Search conversations</span><input className="field !py-2.5 !pl-9 text-xs" value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search saved conversations" data-testid="input-search-conversations"/><MessageSquareText size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"/></label></div>
+    {actionError && <p className="text-sm text-destructive mb-4" role="alert" data-testid="status-history-action-error">{actionError}</p>}
+    {conversationsQuery.isLoading ? <SkeletonLines count={3}/> : conversationsQuery.isError ? <ErrorNotice retry={()=>conversationsQuery.refetch()}/> : filtered.length === 0 ?
+      <EmptyState testId="empty-conversation-history" title={conversations.length ? 'No matching conversations.' : 'Nothing saved yet.'} detail={conversations.length ? 'Try a different phrase to find a saved transcript.' : 'Start an implementation conversation and its full transcript will stay here.'} action={conversations.length ? <button className="btn-subtle" onClick={()=>setSearch('')} data-testid="button-clear-conversation-search">Clear search <X size={14}/></button> : <Link href="/ask" className="btn-primary" data-testid="button-start-question"><MessageSquareText size={15}/> Start a conversation</Link>}/> :
+      <div className="space-y-3" data-testid="list-conversations">{filtered.map(item=><article key={item.id} className="panel p-4 sm:p-5" data-testid={`conversation-row-${item.id}`}>
+        <Link href={`/ask/${item.id}`} className="block group" data-testid={`link-open-conversation-${item.id}`}>
+          <div className="flex flex-wrap justify-between items-start gap-3"><div className="min-w-0"><h2 className="font-semibold leading-5 group-hover:text-primary" data-testid={`text-history-title-${item.id}`}>{item.title}</h2><p className="text-[11px] text-muted-foreground mt-2">{item.skillName} <span>/</span> <span className="font-mono">v{item.versionLabel}</span>{item.projectName && <> <span>/</span> {item.projectName}</>}</p></div><span className="text-[10px] text-muted-foreground shrink-0">{item.turnCount} turns</span></div>
+          {item.lastMessage && <p className="text-xs text-muted-foreground mt-3 line-clamp-2">{item.lastMessage}</p>}
+          {item.parentConversationId && <span className="inline-flex items-center gap-1 text-[10px] text-primary mt-3"><GitBranch size={12}/> Branch</span>}
+        </Link>
+        <div className="flex flex-wrap gap-1.5 border-t border-border mt-4 pt-3" aria-label={`Actions for ${item.title}`}>
+          <button className="btn-subtle !py-1.5 !px-2 text-[10px]" onClick={()=>void rename(item)} data-testid={`button-history-rename-${item.id}`}><Pencil size={12}/> Rename</button>
+          <button className="btn-subtle !py-1.5 !px-2 text-[10px]" onClick={()=>void duplicate(item)} data-testid={`button-history-duplicate-${item.id}`}><Copy size={12}/> Duplicate</button>
+          <button className="btn-subtle !py-1.5 !px-2 text-[10px]" onClick={()=>void reset(item)} data-testid={`button-history-reset-${item.id}`}><RotateCcw size={12}/> Reset context</button>
+          <button className="btn-subtle !py-1.5 !px-2 text-[10px] text-destructive" onClick={()=>void remove(item)} data-testid={`button-history-delete-${item.id}`}><Trash2 size={12}/> Delete</button>
+        </div>
+      </article>)}</div>}
   </>;
 }
 
@@ -841,6 +1067,7 @@ function Router() {
     <Route><Shell><Switch>
       <Route path="/" component={Overview}/>
       <Route path="/skills" component={SkillsPage}/>
+      <Route path="/ask/:conversationId" component={AskPage}/>
       <Route path="/ask" component={AskPage}/>
       <Route path="/questions" component={QuestionsPage}/>
       <Route path="/settings" component={SettingsRoute}/>

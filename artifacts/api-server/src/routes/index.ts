@@ -4,6 +4,7 @@ import authRouter from "./auth";
 import storageRouter from "./storage";
 import skillsRouter from "./skills";
 import questionsRouter from "./questions";
+import conversationsRouter from "./conversations";
 import workbenchRouter from "./workbench";
 
 const router: IRouter = Router();
@@ -13,6 +14,7 @@ router.use(authRouter);
 router.use(storageRouter);
 router.use(skillsRouter);
 router.use(questionsRouter);
+router.use(conversationsRouter);
 router.use(workbenchRouter);
 
 export default router;

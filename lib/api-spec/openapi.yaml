@@ -18,6 +18,8 @@ tags:
     description: Skill libraries and uploaded versions.
   - name: Questions
     description: Implementation questions grounded in a selected skill version.
+  - name: Conversations
+    description: Private, version-grounded implementation conversations.
   - name: Workbench
     description: Workbench overview and recent activity.
 paths:
@@ -681,8 +683,254 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorEnvelope"
+  /conversations:
+    get:
+      tags: [Conversations]
+      operationId: listConversations
+      summary: List the current user's conversations
+      responses:
+        "200":
+          description: Private conversations ordered by recent activity.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConversationList"
+        "401":
+          description: Authentication required.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+    post:
+      tags: [Conversations]
+      operationId: createConversation
+      summary: Start a conversation using one specific skill version
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ConversationInput"
+      responses:
+        "201":
+          description: The first answer and conversation were saved.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConversationDetail"
+        "400":
+          description: Invalid question or credential-containing content.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: Authentication required.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: Skill version not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "502":
+          description: The assistant could not answer.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+  /conversations/{conversationId}:
+    get:
+      tags: [Conversations]
+      operationId: getConversation
+      summary: Load one private conversation with its ordered transcript
+      parameters:
+        - $ref: "#/components/parameters/ConversationId"
+      responses:
+        "200":
+          description: The conversation and its full visible transcript.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConversationDetail"
+        "401":
+          description: Authentication required.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: Conversation not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+    patch:
+      tags: [Conversations]
+      operationId: renameConversation
+      summary: Rename one private conversation
+      parameters:
+        - $ref: "#/components/parameters/ConversationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ConversationRename"
+      responses:
+        "200":
+          description: The renamed conversation.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Conversation"
+        "400":
+          description: Invalid conversation title.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: Conversation not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+    delete:
+      tags: [Conversations]
+      operationId: deleteConversation
+      summary: Delete one conversation without deleting its descendants
+      parameters:
+        - $ref: "#/components/parameters/ConversationId"
+      responses:
+        "204":
+          description: Conversation deleted.
+        "401":
+          description: Authentication required.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: Conversation not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+  /conversations/{conversationId}/turns:
+    post:
+      tags: [Conversations]
+      operationId: continueConversation
+      summary: Add a user turn and grounded assistant response
+      parameters:
+        - $ref: "#/components/parameters/ConversationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ConversationTurnInput"
+      responses:
+        "201":
+          description: The updated transcript.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConversationDetail"
+        "400":
+          description: Invalid question or credential-containing content.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: Conversation not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "502":
+          description: The assistant could not answer.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+  /conversations/{conversationId}/branches:
+    post:
+      tags: [Conversations]
+      operationId: branchConversation
+      summary: Create an independent branch through a chosen transcript turn
+      parameters:
+        - $ref: "#/components/parameters/ConversationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ConversationBranchInput"
+      responses:
+        "201":
+          description: A branch with copied transcript through the selected turn.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConversationDetail"
+        "404":
+          description: Conversation or selected turn not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+  /conversations/{conversationId}/duplicate:
+    post:
+      tags: [Conversations]
+      operationId: duplicateConversation
+      summary: Duplicate the full transcript as an independent conversation
+      parameters:
+        - $ref: "#/components/parameters/ConversationId"
+      responses:
+        "201":
+          description: Independent copy of the conversation.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConversationDetail"
+        "404":
+          description: Conversation not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+  /conversations/{conversationId}/reset-context:
+    post:
+      tags: [Conversations]
+      operationId: resetConversationContext
+      summary: Exclude existing turns from future answer context without hiding them
+      parameters:
+        - $ref: "#/components/parameters/ConversationId"
+      responses:
+        "200":
+          description: Updated context boundary; the visible transcript is unchanged.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Conversation"
+        "404":
+          description: Conversation not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
 components:
   parameters:
+    ConversationId:
+      name: conversationId
+      in: path
+      required: true
+      schema: { type: string, format: uuid }
     AuthorizationSessionHeader:
       name: Authorization
       in: header
@@ -983,4 +1231,73 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Question"
+    ConversationInput:
+      type: object
+      required: [skillVersionId, question]
+      properties:
+        skillVersionId: { type: string, format: uuid }
+        projectName: { type: string, maxLength: 120 }
+        question: { type: string, minLength: 10, maxLength: 8000 }
+        codeContext: { type: string, maxLength: 12000 }
+    ConversationTurnInput:
+      type: object
+      required: [question]
+      properties:
+        question: { type: string, minLength: 1, maxLength: 8000 }
+        codeContext: { type: string, maxLength: 12000 }
+    ConversationRename:
+      type: object
+      required: [title]
+      properties:
+        title: { type: string, minLength: 1, maxLength: 160 }
+    ConversationBranchInput:
+      type: object
+      required: [turnId]
+      properties:
+        turnId: { type: string, format: uuid }
+    Conversation:
+      type: object
+      required: [id, skillId, skillName, skillVersionId, versionLabel, projectName, title, parentConversationId, branchFromSequence, contextStartSequence, turnCount, lastMessage, createdAt, updatedAt]
+      properties:
+        id: { type: string, format: uuid }
+        skillId: { type: string, format: uuid }
+        skillName: { type: string }
+        skillVersionId: { type: string, format: uuid }
+        versionLabel: { type: string }
+        projectName: { type: [string, "null"] }
+        title: { type: string }
+        parentConversationId: { type: [string, "null"], format: uuid }
+        branchFromSequence: { type: ["integer", "null"] }
+        contextStartSequence: { type: integer }
+        turnCount: { type: integer }
+        lastMessage: { type: [string, "null"] }
+        createdAt: { type: string, format: date-time }
+        updatedAt: { type: string, format: date-time }
+    ConversationTurn:
+      type: object
+      required: [id, conversationId, sequence, role, content, codeContext, createdAt]
+      properties:
+        id: { type: string, format: uuid }
+        conversationId: { type: string, format: uuid }
+        sequence: { type: integer }
+        role: { type: string, enum: [user, assistant] }
+        content: { type: string }
+        codeContext: { type: [string, "null"] }
+        createdAt: { type: string, format: date-time }
+    ConversationDetail:
+      allOf:
+        - $ref: "#/components/schemas/Conversation"
+        - type: object
+          required: [turns]
+          properties:
+            turns:
+              type: array
+              items: { $ref: "#/components/schemas/ConversationTurn" }
+    ConversationList:
+      type: object
+      required: [conversations]
+      properties:
+        conversations:
+          type: array
+          items: { $ref: "#/components/schemas/Conversation" }
 

@@ -22,6 +22,13 @@ import type {
 import type {
   AuthUserEnvelope,
   BeginBrowserLoginParams,
+  Conversation,
+  ConversationBranchInput,
+  ConversationDetail,
+  ConversationInput,
+  ConversationList,
+  ConversationRename,
+  ConversationTurnInput,
   ErrorEnvelope,
   HandleBrowserLoginCallbackParams,
   HealthStatus,
@@ -2117,5 +2124,736 @@ export const useAskQuestion = <TError = ErrorType<ErrorEnvelope>,
         TContext
       > => {
       return useMutation(getAskQuestionMutationOptions(options));
+    }
+
+export const getListConversationsUrl = () => {
+
+
+
+
+  return `/api/conversations`
+}
+
+/**
+ * @summary List the current user's conversations
+ */
+export const listConversations = async ( options?: Parameters<typeof customFetch>[1]): Promise<ConversationList> => {
+
+  return customFetch<ConversationList>(getListConversationsUrl(),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getListConversationsQueryKey = () => {
+    return [
+    `/api/conversations`
+    ] as const;
+    }
+
+
+export const getListConversationsQueryOptions = <TData = Awaited<ReturnType<typeof listConversations>>, TError = ErrorType<ErrorEnvelope>>( options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof listConversations>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getListConversationsQueryKey();
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof listConversations>>> = ({ signal }) => listConversations({ signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof listConversations>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type ListConversationsQueryResult = NonNullable<Awaited<ReturnType<typeof listConversations>>>
+export type ListConversationsQueryError = ErrorType<ErrorEnvelope>
+
+
+/**
+ * @summary List the current user's conversations
+ */
+
+export function useListConversations<TData = Awaited<ReturnType<typeof listConversations>>, TError = ErrorType<ErrorEnvelope>>(
+  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof listConversations>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getListConversationsQueryOptions(options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+
+
+
+
+
+
+export const getCreateConversationUrl = () => {
+
+
+
+
+  return `/api/conversations`
+}
+
+/**
+ * @summary Start a conversation using one specific skill version
+ */
+export const createConversation = async (conversationInput: ConversationInput, options?: Parameters<typeof customFetch>[1]): Promise<ConversationDetail> => {
+
+    const getHeaders = (h?: NonNullable<RequestInit['headers']>): Record<string, string | readonly string[]> => {
+    if (!h) return {};
+    if (h instanceof Headers) return Object.fromEntries(h.entries());
+    if (Symbol.iterator in h) {
+      return Object.fromEntries(
+        Array.from(h as Iterable<Iterable<string>>, (entry) => Array.from(entry) as [string, string]),
+      );
+    }
+    const headers: Record<string, string | readonly string[]> = {};
+    for (const [name, value] of Object.entries<string | readonly string[] | undefined>(h)) {
+      if (value !== undefined) headers[name] = value;
+    }
+    return headers;
+  };
+return customFetch<ConversationDetail>(getCreateConversationUrl(),
+  {
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...getHeaders(options?.headers) },
+    body: JSON.stringify(conversationInput)
+  }
+);}
+
+
+
+
+
+export const getCreateConversationMutationKey = () => ['createConversation'] as const;
+
+export const getCreateConversationMutationOptions = <TError = ErrorType<ErrorEnvelope>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createConversation>>, TError,CreateConversationMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof createConversation>>, TError,CreateConversationMutationVariables, TContext> => {
+
+const mutationKey = getCreateConversationMutationKey();
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof createConversation>>, CreateConversationMutationVariables> = (props) => {
+          const {data} = props ?? {};
+
+          return  createConversation(data,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type CreateConversationMutationResult = NonNullable<Awaited<ReturnType<typeof createConversation>>>
+    export type CreateConversationMutationBody = BodyType<ConversationInput>
+    export type CreateConversationMutationError = ErrorType<ErrorEnvelope>
+    export type CreateConversationMutationVariables = {data: BodyType<ConversationInput>}
+
+    /**
+ * @summary Start a conversation using one specific skill version
+ */
+export const useCreateConversation = <TError = ErrorType<ErrorEnvelope>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createConversation>>, TError,CreateConversationMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof createConversation>>,
+        TError,
+        CreateConversationMutationVariables,
+        TContext
+      > => {
+      return useMutation(getCreateConversationMutationOptions(options));
+    }
+
+export const getGetConversationUrl = (conversationId: string,) => {
+
+
+
+
+  return `/api/conversations/${conversationId}`
+}
+
+/**
+ * @summary Load one private conversation with its ordered transcript
+ */
+export const getConversation = async (conversationId: string, options?: Parameters<typeof customFetch>[1]): Promise<ConversationDetail> => {
+
+  return customFetch<ConversationDetail>(getGetConversationUrl(conversationId),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getGetConversationQueryKey = (conversationId: string,) => {
+    return [
+    `/api/conversations/${conversationId}`
+    ] as const;
+    }
+
+
+export const getGetConversationQueryOptions = <TData = Awaited<ReturnType<typeof getConversation>>, TError = ErrorType<ErrorEnvelope>>(conversationId: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getConversation>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGetConversationQueryKey(conversationId);
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getConversation>>> = ({ signal }) => getConversation(conversationId, { signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, enabled: conversationId !== null && conversationId !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getConversation>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type GetConversationQueryResult = NonNullable<Awaited<ReturnType<typeof getConversation>>>
+export type GetConversationQueryError = ErrorType<ErrorEnvelope>
+
+
+/**
+ * @summary Load one private conversation with its ordered transcript
+ */
+
+export function useGetConversation<TData = Awaited<ReturnType<typeof getConversation>>, TError = ErrorType<ErrorEnvelope>>(
+ conversationId: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getConversation>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getGetConversationQueryOptions(conversationId,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+
+
+
+
+
+
+export const getRenameConversationUrl = (conversationId: string,) => {
+
+
+
+
+  return `/api/conversations/${conversationId}`
+}
+
+/**
+ * @summary Rename one private conversation
+ */
+export const renameConversation = async (conversationId: string,
+    conversationRename: ConversationRename, options?: Parameters<typeof customFetch>[1]): Promise<Conversation> => {
+
+    const getHeaders = (h?: NonNullable<RequestInit['headers']>): Record<string, string | readonly string[]> => {
+    if (!h) return {};
+    if (h instanceof Headers) return Object.fromEntries(h.entries());
+    if (Symbol.iterator in h) {
+      return Object.fromEntries(
+        Array.from(h as Iterable<Iterable<string>>, (entry) => Array.from(entry) as [string, string]),
+      );
+    }
+    const headers: Record<string, string | readonly string[]> = {};
+    for (const [name, value] of Object.entries<string | readonly string[] | undefined>(h)) {
+      if (value !== undefined) headers[name] = value;
+    }
+    return headers;
+  };
+return customFetch<Conversation>(getRenameConversationUrl(conversationId),
+  {
+    ...options,
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json', ...getHeaders(options?.headers) },
+    body: JSON.stringify(conversationRename)
+  }
+);}
+
+
+
+
+
+export const getRenameConversationMutationKey = () => ['renameConversation'] as const;
+
+export const getRenameConversationMutationOptions = <TError = ErrorType<ErrorEnvelope>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof renameConversation>>, TError,RenameConversationMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof renameConversation>>, TError,RenameConversationMutationVariables, TContext> => {
+
+const mutationKey = getRenameConversationMutationKey();
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof renameConversation>>, RenameConversationMutationVariables> = (props) => {
+          const {conversationId,data} = props ?? {};
+
+          return  renameConversation(conversationId,data,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type RenameConversationMutationResult = NonNullable<Awaited<ReturnType<typeof renameConversation>>>
+    export type RenameConversationMutationBody = BodyType<ConversationRename>
+    export type RenameConversationMutationError = ErrorType<ErrorEnvelope>
+    export type RenameConversationMutationVariables = {conversationId: string;data: BodyType<ConversationRename>}
+
+    /**
+ * @summary Rename one private conversation
+ */
+export const useRenameConversation = <TError = ErrorType<ErrorEnvelope>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof renameConversation>>, TError,RenameConversationMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof renameConversation>>,
+        TError,
+        RenameConversationMutationVariables,
+        TContext
+      > => {
+      return useMutation(getRenameConversationMutationOptions(options));
+    }
+
+export const getDeleteConversationUrl = (conversationId: string,) => {
+
+
+
+
+  return `/api/conversations/${conversationId}`
+}
+
+/**
+ * @summary Delete one conversation without deleting its descendants
+ */
+export const deleteConversation = async (conversationId: string, options?: Parameters<typeof customFetch>[1]): Promise<void> => {
+
+  return customFetch<void>(getDeleteConversationUrl(conversationId),
+  {
+    ...options,
+    method: 'DELETE'
+
+
+  }
+);}
+
+
+
+
+
+export const getDeleteConversationMutationKey = () => ['deleteConversation'] as const;
+
+export const getDeleteConversationMutationOptions = <TError = ErrorType<ErrorEnvelope>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteConversation>>, TError,DeleteConversationMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof deleteConversation>>, TError,DeleteConversationMutationVariables, TContext> => {
+
+const mutationKey = getDeleteConversationMutationKey();
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof deleteConversation>>, DeleteConversationMutationVariables> = (props) => {
+          const {conversationId} = props ?? {};
+
+          return  deleteConversation(conversationId,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type DeleteConversationMutationResult = NonNullable<Awaited<ReturnType<typeof deleteConversation>>>
+
+    export type DeleteConversationMutationError = ErrorType<ErrorEnvelope>
+    export type DeleteConversationMutationVariables = {conversationId: string}
+
+    /**
+ * @summary Delete one conversation without deleting its descendants
+ */
+export const useDeleteConversation = <TError = ErrorType<ErrorEnvelope>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteConversation>>, TError,DeleteConversationMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof deleteConversation>>,
+        TError,
+        DeleteConversationMutationVariables,
+        TContext
+      > => {
+      return useMutation(getDeleteConversationMutationOptions(options));
+    }
+
+export const getContinueConversationUrl = (conversationId: string,) => {
+
+
+
+
+  return `/api/conversations/${conversationId}/turns`
+}
+
+/**
+ * @summary Add a user turn and grounded assistant response
+ */
+export const continueConversation = async (conversationId: string,
+    conversationTurnInput: ConversationTurnInput, options?: Parameters<typeof customFetch>[1]): Promise<ConversationDetail> => {
+
+    const getHeaders = (h?: NonNullable<RequestInit['headers']>): Record<string, string | readonly string[]> => {
+    if (!h) return {};
+    if (h instanceof Headers) return Object.fromEntries(h.entries());
+    if (Symbol.iterator in h) {
+      return Object.fromEntries(
+        Array.from(h as Iterable<Iterable<string>>, (entry) => Array.from(entry) as [string, string]),
+      );
+    }
+    const headers: Record<string, string | readonly string[]> = {};
+    for (const [name, value] of Object.entries<string | readonly string[] | undefined>(h)) {
+      if (value !== undefined) headers[name] = value;
+    }
+    return headers;
+  };
+return customFetch<ConversationDetail>(getContinueConversationUrl(conversationId),
+  {
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...getHeaders(options?.headers) },
+    body: JSON.stringify(conversationTurnInput)
+  }
+);}
+
+
+
+
+
+export const getContinueConversationMutationKey = () => ['continueConversation'] as const;
+
+export const getContinueConversationMutationOptions = <TError = ErrorType<ErrorEnvelope>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof continueConversation>>, TError,ContinueConversationMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof continueConversation>>, TError,ContinueConversationMutationVariables, TContext> => {
+
+const mutationKey = getContinueConversationMutationKey();
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof continueConversation>>, ContinueConversationMutationVariables> = (props) => {
+          const {conversationId,data} = props ?? {};
+
+          return  continueConversation(conversationId,data,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type ContinueConversationMutationResult = NonNullable<Awaited<ReturnType<typeof continueConversation>>>
+    export type ContinueConversationMutationBody = BodyType<ConversationTurnInput>
+    export type ContinueConversationMutationError = ErrorType<ErrorEnvelope>
+    export type ContinueConversationMutationVariables = {conversationId: string;data: BodyType<ConversationTurnInput>}
+
+    /**
+ * @summary Add a user turn and grounded assistant response
+ */
+export const useContinueConversation = <TError = ErrorType<ErrorEnvelope>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof continueConversation>>, TError,ContinueConversationMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof continueConversation>>,
+        TError,
+        ContinueConversationMutationVariables,
+        TContext
+      > => {
+      return useMutation(getContinueConversationMutationOptions(options));
+    }
+
+export const getBranchConversationUrl = (conversationId: string,) => {
+
+
+
+
+  return `/api/conversations/${conversationId}/branches`
+}
+
+/**
+ * @summary Create an independent branch through a chosen transcript turn
+ */
+export const branchConversation = async (conversationId: string,
+    conversationBranchInput: ConversationBranchInput, options?: Parameters<typeof customFetch>[1]): Promise<ConversationDetail> => {
+
+    const getHeaders = (h?: NonNullable<RequestInit['headers']>): Record<string, string | readonly string[]> => {
+    if (!h) return {};
+    if (h instanceof Headers) return Object.fromEntries(h.entries());
+    if (Symbol.iterator in h) {
+      return Object.fromEntries(
+        Array.from(h as Iterable<Iterable<string>>, (entry) => Array.from(entry) as [string, string]),
+      );
+    }
+    const headers: Record<string, string | readonly string[]> = {};
+    for (const [name, value] of Object.entries<string | readonly string[] | undefined>(h)) {
+      if (value !== undefined) headers[name] = value;
+    }
+    return headers;
+  };
+return customFetch<ConversationDetail>(getBranchConversationUrl(conversationId),
+  {
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...getHeaders(options?.headers) },
+    body: JSON.stringify(conversationBranchInput)
+  }
+);}
+
+
+
+
+
+export const getBranchConversationMutationKey = () => ['branchConversation'] as const;
+
+export const getBranchConversationMutationOptions = <TError = ErrorType<ErrorEnvelope>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof branchConversation>>, TError,BranchConversationMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof branchConversation>>, TError,BranchConversationMutationVariables, TContext> => {
+
+const mutationKey = getBranchConversationMutationKey();
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof branchConversation>>, BranchConversationMutationVariables> = (props) => {
+          const {conversationId,data} = props ?? {};
+
+          return  branchConversation(conversationId,data,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type BranchConversationMutationResult = NonNullable<Awaited<ReturnType<typeof branchConversation>>>
+    export type BranchConversationMutationBody = BodyType<ConversationBranchInput>
+    export type BranchConversationMutationError = ErrorType<ErrorEnvelope>
+    export type BranchConversationMutationVariables = {conversationId: string;data: BodyType<ConversationBranchInput>}
+
+    /**
+ * @summary Create an independent branch through a chosen transcript turn
+ */
+export const useBranchConversation = <TError = ErrorType<ErrorEnvelope>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof branchConversation>>, TError,BranchConversationMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof branchConversation>>,
+        TError,
+        BranchConversationMutationVariables,
+        TContext
+      > => {
+      return useMutation(getBranchConversationMutationOptions(options));
+    }
+
+export const getDuplicateConversationUrl = (conversationId: string,) => {
+
+
+
+
+  return `/api/conversations/${conversationId}/duplicate`
+}
+
+/**
+ * @summary Duplicate the full transcript as an independent conversation
+ */
+export const duplicateConversation = async (conversationId: string, options?: Parameters<typeof customFetch>[1]): Promise<ConversationDetail> => {
+
+  return customFetch<ConversationDetail>(getDuplicateConversationUrl(conversationId),
+  {
+    ...options,
+    method: 'POST'
+
+
+  }
+);}
+
+
+
+
+
+export const getDuplicateConversationMutationKey = () => ['duplicateConversation'] as const;
+
+export const getDuplicateConversationMutationOptions = <TError = ErrorType<ErrorEnvelope>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof duplicateConversation>>, TError,DuplicateConversationMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof duplicateConversation>>, TError,DuplicateConversationMutationVariables, TContext> => {
+
+const mutationKey = getDuplicateConversationMutationKey();
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof duplicateConversation>>, DuplicateConversationMutationVariables> = (props) => {
+          const {conversationId} = props ?? {};
+
+          return  duplicateConversation(conversationId,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type DuplicateConversationMutationResult = NonNullable<Awaited<ReturnType<typeof duplicateConversation>>>
+
+    export type DuplicateConversationMutationError = ErrorType<ErrorEnvelope>
+    export type DuplicateConversationMutationVariables = {conversationId: string}
+
+    /**
+ * @summary Duplicate the full transcript as an independent conversation
+ */
+export const useDuplicateConversation = <TError = ErrorType<ErrorEnvelope>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof duplicateConversation>>, TError,DuplicateConversationMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof duplicateConversation>>,
+        TError,
+        DuplicateConversationMutationVariables,
+        TContext
+      > => {
+      return useMutation(getDuplicateConversationMutationOptions(options));
+    }
+
+export const getResetConversationContextUrl = (conversationId: string,) => {
+
+
+
+
+  return `/api/conversations/${conversationId}/reset-context`
+}
+
+/**
+ * @summary Exclude existing turns from future answer context without hiding them
+ */
+export const resetConversationContext = async (conversationId: string, options?: Parameters<typeof customFetch>[1]): Promise<Conversation> => {
+
+  return customFetch<Conversation>(getResetConversationContextUrl(conversationId),
+  {
+    ...options,
+    method: 'POST'
+
+
+  }
+);}
+
+
+
+
+
+export const getResetConversationContextMutationKey = () => ['resetConversationContext'] as const;
+
+export const getResetConversationContextMutationOptions = <TError = ErrorType<ErrorEnvelope>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof resetConversationContext>>, TError,ResetConversationContextMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof resetConversationContext>>, TError,ResetConversationContextMutationVariables, TContext> => {
+
+const mutationKey = getResetConversationContextMutationKey();
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof resetConversationContext>>, ResetConversationContextMutationVariables> = (props) => {
+          const {conversationId} = props ?? {};
+
+          return  resetConversationContext(conversationId,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type ResetConversationContextMutationResult = NonNullable<Awaited<ReturnType<typeof resetConversationContext>>>
+
+    export type ResetConversationContextMutationError = ErrorType<ErrorEnvelope>
+    export type ResetConversationContextMutationVariables = {conversationId: string}
+
+    /**
+ * @summary Exclude existing turns from future answer context without hiding them
+ */
+export const useResetConversationContext = <TError = ErrorType<ErrorEnvelope>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof resetConversationContext>>, TError,ResetConversationContextMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof resetConversationContext>>,
+        TError,
+        ResetConversationContextMutationVariables,
+        TContext
+      > => {
+      return useMutation(getResetConversationContextMutationOptions(options));
     }
 

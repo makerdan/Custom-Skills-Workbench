@@ -314,6 +314,89 @@ export interface WorkbenchSummary {
   recentQuestions: Question[];
 }
 
+export interface ConversationInput {
+  skillVersionId: string;
+  /** @maxLength 120 */
+  projectName?: string;
+  /**
+     * @minLength 10
+     * @maxLength 8000
+     */
+  question: string;
+  /** @maxLength 12000 */
+  codeContext?: string;
+}
+
+export interface ConversationTurnInput {
+  /**
+     * @minLength 1
+     * @maxLength 8000
+     */
+  question: string;
+  /** @maxLength 12000 */
+  codeContext?: string;
+}
+
+export interface ConversationRename {
+  /**
+     * @minLength 1
+     * @maxLength 160
+     */
+  title: string;
+}
+
+export interface ConversationBranchInput {
+  turnId: string;
+}
+
+export interface Conversation {
+  id: string;
+  skillId: string;
+  skillName: string;
+  skillVersionId: string;
+  versionLabel: string;
+  /** @nullable */
+  projectName: string | null;
+  title: string;
+  /** @nullable */
+  parentConversationId: string | null;
+  /** @nullable */
+  branchFromSequence: number | null;
+  contextStartSequence: number;
+  turnCount: number;
+  /** @nullable */
+  lastMessage: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export type ConversationTurnRole = typeof ConversationTurnRole[keyof typeof ConversationTurnRole];
+
+
+export const ConversationTurnRole = {
+  user: 'user',
+  assistant: 'assistant',
+} as const;
+
+export interface ConversationTurn {
+  id: string;
+  conversationId: string;
+  sequence: number;
+  role: ConversationTurnRole;
+  content: string;
+  /** @nullable */
+  codeContext: string | null;
+  createdAt: string;
+}
+
+export type ConversationDetail = Conversation & {
+  turns: ConversationTurn[];
+};
+
+export interface ConversationList {
+  conversations: Conversation[];
+}
+
 /**
  * Opaque session token — Bearer <sid>.
  */

@@ -649,3 +649,296 @@ export const AskQuestionResponse = zod.object({
 })
 
 
+/**
+ * @summary List the current user's conversations
+ */
+export const ListConversationsResponse = zod.object({
+  "conversations": zod.array(zod.object({
+  "id": zod.string().uuid(),
+  "skillId": zod.string().uuid(),
+  "skillName": zod.string(),
+  "skillVersionId": zod.string().uuid(),
+  "versionLabel": zod.string(),
+  "projectName": zod.string().nullable(),
+  "title": zod.string(),
+  "parentConversationId": zod.string().uuid().nullable(),
+  "branchFromSequence": zod.number().int().nullable(),
+  "contextStartSequence": zod.number().int(),
+  "turnCount": zod.number().int(),
+  "lastMessage": zod.string().nullable(),
+  "createdAt": zod.coerce.date(),
+  "updatedAt": zod.coerce.date()
+}))
+})
+
+
+/**
+ * @summary Start a conversation using one specific skill version
+ */
+export const createConversationBodyProjectNameMax = 120;
+
+export const createConversationBodyQuestionMin = 10;
+export const createConversationBodyQuestionMax = 8000;
+
+export const createConversationBodyCodeContextMax = 12000;
+
+
+
+export const CreateConversationBody = zod.object({
+  "skillVersionId": zod.string().uuid(),
+  "projectName": zod.string().max(createConversationBodyProjectNameMax).optional(),
+  "question": zod.string().min(createConversationBodyQuestionMin).max(createConversationBodyQuestionMax),
+  "codeContext": zod.string().max(createConversationBodyCodeContextMax).optional()
+})
+
+export const CreateConversationResponse = zod.object({
+  "id": zod.string().uuid(),
+  "skillId": zod.string().uuid(),
+  "skillName": zod.string(),
+  "skillVersionId": zod.string().uuid(),
+  "versionLabel": zod.string(),
+  "projectName": zod.string().nullable(),
+  "title": zod.string(),
+  "parentConversationId": zod.string().uuid().nullable(),
+  "branchFromSequence": zod.number().int().nullable(),
+  "contextStartSequence": zod.number().int(),
+  "turnCount": zod.number().int(),
+  "lastMessage": zod.string().nullable(),
+  "createdAt": zod.coerce.date(),
+  "updatedAt": zod.coerce.date()
+}).and(zod.object({
+  "turns": zod.array(zod.object({
+  "id": zod.string().uuid(),
+  "conversationId": zod.string().uuid(),
+  "sequence": zod.number().int(),
+  "role": zod.enum(['user', 'assistant']),
+  "content": zod.string(),
+  "codeContext": zod.string().nullable(),
+  "createdAt": zod.coerce.date()
+}))
+}))
+
+
+/**
+ * @summary Load one private conversation with its ordered transcript
+ */
+export const GetConversationParams = zod.object({
+  "conversationId": zod.coerce.string().uuid()
+})
+
+export const GetConversationResponse = zod.object({
+  "id": zod.string().uuid(),
+  "skillId": zod.string().uuid(),
+  "skillName": zod.string(),
+  "skillVersionId": zod.string().uuid(),
+  "versionLabel": zod.string(),
+  "projectName": zod.string().nullable(),
+  "title": zod.string(),
+  "parentConversationId": zod.string().uuid().nullable(),
+  "branchFromSequence": zod.number().int().nullable(),
+  "contextStartSequence": zod.number().int(),
+  "turnCount": zod.number().int(),
+  "lastMessage": zod.string().nullable(),
+  "createdAt": zod.coerce.date(),
+  "updatedAt": zod.coerce.date()
+}).and(zod.object({
+  "turns": zod.array(zod.object({
+  "id": zod.string().uuid(),
+  "conversationId": zod.string().uuid(),
+  "sequence": zod.number().int(),
+  "role": zod.enum(['user', 'assistant']),
+  "content": zod.string(),
+  "codeContext": zod.string().nullable(),
+  "createdAt": zod.coerce.date()
+}))
+}))
+
+
+/**
+ * @summary Rename one private conversation
+ */
+export const RenameConversationParams = zod.object({
+  "conversationId": zod.coerce.string().uuid()
+})
+
+export const renameConversationBodyTitleMax = 160;
+
+
+
+export const RenameConversationBody = zod.object({
+  "title": zod.string().min(1).max(renameConversationBodyTitleMax)
+})
+
+export const RenameConversationResponse = zod.object({
+  "id": zod.string().uuid(),
+  "skillId": zod.string().uuid(),
+  "skillName": zod.string(),
+  "skillVersionId": zod.string().uuid(),
+  "versionLabel": zod.string(),
+  "projectName": zod.string().nullable(),
+  "title": zod.string(),
+  "parentConversationId": zod.string().uuid().nullable(),
+  "branchFromSequence": zod.number().int().nullable(),
+  "contextStartSequence": zod.number().int(),
+  "turnCount": zod.number().int(),
+  "lastMessage": zod.string().nullable(),
+  "createdAt": zod.coerce.date(),
+  "updatedAt": zod.coerce.date()
+})
+
+
+/**
+ * @summary Delete one conversation without deleting its descendants
+ */
+export const DeleteConversationParams = zod.object({
+  "conversationId": zod.coerce.string().uuid()
+})
+
+export const DeleteConversationResponse = zod.void()
+
+
+/**
+ * @summary Add a user turn and grounded assistant response
+ */
+export const ContinueConversationParams = zod.object({
+  "conversationId": zod.coerce.string().uuid()
+})
+
+export const continueConversationBodyQuestionMax = 8000;
+
+export const continueConversationBodyCodeContextMax = 12000;
+
+
+
+export const ContinueConversationBody = zod.object({
+  "question": zod.string().min(1).max(continueConversationBodyQuestionMax),
+  "codeContext": zod.string().max(continueConversationBodyCodeContextMax).optional()
+})
+
+export const ContinueConversationResponse = zod.object({
+  "id": zod.string().uuid(),
+  "skillId": zod.string().uuid(),
+  "skillName": zod.string(),
+  "skillVersionId": zod.string().uuid(),
+  "versionLabel": zod.string(),
+  "projectName": zod.string().nullable(),
+  "title": zod.string(),
+  "parentConversationId": zod.string().uuid().nullable(),
+  "branchFromSequence": zod.number().int().nullable(),
+  "contextStartSequence": zod.number().int(),
+  "turnCount": zod.number().int(),
+  "lastMessage": zod.string().nullable(),
+  "createdAt": zod.coerce.date(),
+  "updatedAt": zod.coerce.date()
+}).and(zod.object({
+  "turns": zod.array(zod.object({
+  "id": zod.string().uuid(),
+  "conversationId": zod.string().uuid(),
+  "sequence": zod.number().int(),
+  "role": zod.enum(['user', 'assistant']),
+  "content": zod.string(),
+  "codeContext": zod.string().nullable(),
+  "createdAt": zod.coerce.date()
+}))
+}))
+
+
+/**
+ * @summary Create an independent branch through a chosen transcript turn
+ */
+export const BranchConversationParams = zod.object({
+  "conversationId": zod.coerce.string().uuid()
+})
+
+export const BranchConversationBody = zod.object({
+  "turnId": zod.string().uuid()
+})
+
+export const BranchConversationResponse = zod.object({
+  "id": zod.string().uuid(),
+  "skillId": zod.string().uuid(),
+  "skillName": zod.string(),
+  "skillVersionId": zod.string().uuid(),
+  "versionLabel": zod.string(),
+  "projectName": zod.string().nullable(),
+  "title": zod.string(),
+  "parentConversationId": zod.string().uuid().nullable(),
+  "branchFromSequence": zod.number().int().nullable(),
+  "contextStartSequence": zod.number().int(),
+  "turnCount": zod.number().int(),
+  "lastMessage": zod.string().nullable(),
+  "createdAt": zod.coerce.date(),
+  "updatedAt": zod.coerce.date()
+}).and(zod.object({
+  "turns": zod.array(zod.object({
+  "id": zod.string().uuid(),
+  "conversationId": zod.string().uuid(),
+  "sequence": zod.number().int(),
+  "role": zod.enum(['user', 'assistant']),
+  "content": zod.string(),
+  "codeContext": zod.string().nullable(),
+  "createdAt": zod.coerce.date()
+}))
+}))
+
+
+/**
+ * @summary Duplicate the full transcript as an independent conversation
+ */
+export const DuplicateConversationParams = zod.object({
+  "conversationId": zod.coerce.string().uuid()
+})
+
+export const DuplicateConversationResponse = zod.object({
+  "id": zod.string().uuid(),
+  "skillId": zod.string().uuid(),
+  "skillName": zod.string(),
+  "skillVersionId": zod.string().uuid(),
+  "versionLabel": zod.string(),
+  "projectName": zod.string().nullable(),
+  "title": zod.string(),
+  "parentConversationId": zod.string().uuid().nullable(),
+  "branchFromSequence": zod.number().int().nullable(),
+  "contextStartSequence": zod.number().int(),
+  "turnCount": zod.number().int(),
+  "lastMessage": zod.string().nullable(),
+  "createdAt": zod.coerce.date(),
+  "updatedAt": zod.coerce.date()
+}).and(zod.object({
+  "turns": zod.array(zod.object({
+  "id": zod.string().uuid(),
+  "conversationId": zod.string().uuid(),
+  "sequence": zod.number().int(),
+  "role": zod.enum(['user', 'assistant']),
+  "content": zod.string(),
+  "codeContext": zod.string().nullable(),
+  "createdAt": zod.coerce.date()
+}))
+}))
+
+
+/**
+ * @summary Exclude existing turns from future answer context without hiding them
+ */
+export const ResetConversationContextParams = zod.object({
+  "conversationId": zod.coerce.string().uuid()
+})
+
+export const ResetConversationContextResponse = zod.object({
+  "id": zod.string().uuid(),
+  "skillId": zod.string().uuid(),
+  "skillName": zod.string(),
+  "skillVersionId": zod.string().uuid(),
+  "versionLabel": zod.string(),
+  "projectName": zod.string().nullable(),
+  "title": zod.string(),
+  "parentConversationId": zod.string().uuid().nullable(),
+  "branchFromSequence": zod.number().int().nullable(),
+  "contextStartSequence": zod.number().int(),
+  "turnCount": zod.number().int(),
+  "lastMessage": zod.string().nullable(),
+  "createdAt": zod.coerce.date(),
+  "updatedAt": zod.coerce.date()
+})
+
+
