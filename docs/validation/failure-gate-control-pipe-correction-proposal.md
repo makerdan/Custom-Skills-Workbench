@@ -1,6 +1,9 @@
 # Proposed parent control-pipe correction and bounded diagnostic continuation
 
-**PROPOSED — no approval, pipe correction, rerun or recovery performed.**
+**APPROVED AND EXECUTED** — actual response in
+`failure-gate-control-pipe-approval.json`. Correction PASSED 33/33; exact recovery
+acknowledged; one non-tier diagnostic exited 0. Historical proposed scope below
+is preserved; current result is in `failure-gate-verification.md`.
 
 ## Confirmed observation, not original-cause inference
 

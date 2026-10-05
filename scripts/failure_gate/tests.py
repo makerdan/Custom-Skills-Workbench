@@ -388,6 +388,37 @@ class GateTests(unittest.TestCase):
 
 
 class SupervisorTests(unittest.TestCase):
+    def control_pipe_fixture(self, complete):
+        from unittest.mock import patch
+        import supervisor
+        with tempfile.TemporaryDirectory() as temporary:
+            directory = Path(temporary)
+            helper = directory / "watchdog.py"
+            helper.write_text(
+                "import os,sys,json,time\n"
+                "config=json.load(open(sys.argv[1]))\n"
+                "os.close(0)\n"
+                "time.sleep(0.1)\n" +
+                ("print(json.dumps({'event':'result','raw_exit':7,'pass':False,"
+                 "'healthy_release':True,'stopped':True,'capture_complete':True}),flush=True)\n"
+                 if complete else "print('{\"event\":',end='',flush=True)\n") +
+                "time.sleep(0.15)\n")
+            events = []
+            with patch.object(supervisor, "__file__", str(directory / "supervisor.py")):
+                return run([sys.executable, "-c", "pass"], ROOT, directory / "output",
+                           lambda *args: events.append(args),
+                           dict(LIMITS, step_seconds=2, cleanup_seconds=1, capture_seconds=1))
+
+    def test_closed_control_complete_result_preserves_raw_failure(self):
+        result = self.control_pipe_fixture(True)
+        self.assertEqual(result["raw_exit"], 7)
+        self.assertFalse(result["pass"])
+        self.assertTrue(result["healthy_release"])
+
+    def test_closed_control_partial_result_never_passes(self):
+        with self.assertRaisesRegex(Blocked, "watchdog lost"):
+            self.control_pipe_fixture(False)
+
     def test_error_evidence_bounded_typed_and_without_messages_or_environment(self):
         from watchdog import error_evidence
         from supervisor import preserve_error

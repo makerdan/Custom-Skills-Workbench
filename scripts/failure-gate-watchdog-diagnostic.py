@@ -15,13 +15,13 @@ from store import Store
 from supervisor import LIMITS, run
 
 STATE = ROOT / ".failure-gate"
-REF = "inv_1iUbbTUza9TH3yPcBIRyzdioGA02uIIG0V:call_QSbv63drw9jOF8cMGfDmpv87"
-KEY = "watchdog-diagnostic:" + hashlib.sha256(REF.encode()).hexdigest()
+REF = "inv_1iUbbTUza9TH3mW8SiX3KiUISnua7B2Y93:call_1HrJtFPODmMlHQA8H43mlmr1"
+KEY = "control-pipe:" + hashlib.sha256(REF.encode()).hexdigest()
 
 
 def context(store):
     value = json.loads(store.meta(KEY) or "null")
-    approval = read_json(ROOT / "docs/validation/failure-gate-watchdog-evidence-approval.json")
+    approval = read_json(ROOT / "docs/validation/failure-gate-control-pipe-approval.json")
     if (value is None or value["reference"] != REF or approval["reference"] != REF
             or approval["answer"] != value["answer"] or approval["status"] != "APPROVED_LOCAL_CONVERSATION"
             or value["boot"] != read_bytes("/proc/sys/kernel/random/boot_id", 100).decode().strip()
@@ -52,8 +52,7 @@ def main():
             definition = execution_definition(ROOT)
             old, new = value["base_definition"]["files"], definition["files"]
             changes = {p for p in set(old) | set(new) if old.get(p) != new.get(p)}
-            if changes != {"scripts/failure_gate/supervisor.py", "scripts/failure_gate/watchdog.py",
-                           "scripts/failure_gate/tests.py"}:
+            if changes != {"scripts/failure_gate/supervisor.py", "scripts/failure_gate/tests.py"}:
                 raise Blocked("unapproved source change")
             value.update(phase="fixtures", fixture_attempts=1, tooling=tooling(ROOT),
                          definition=definition, driver=hashlib.sha256(read_bytes(__file__)).hexdigest(),
@@ -149,8 +148,8 @@ def main():
                      encoded({"assessment": "INCOMPLETE", "operation": value["operation"],
                               "command": ["pnpm", "test"], "eligible_for_tier": False})))
                 save(store, value, "watchdog_diagnostic_reserved", identifier)
-            limits = dict(LIMITS, step_seconds=min(300, int(remaining - 31)),
-                          run_seconds=600, installation_seconds=600)
+            limits = dict(LIMITS, step_seconds=min(180, int(remaining - 31)),
+                          run_seconds=300, installation_seconds=300)
             def record(kind, detail):
                 with store.transaction():
                     store.event(kind, value["task"], identifier, detail)

@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "status": "APPROVED_LOCAL_CONVERSATION",
+  "reference": "inv_1iUbbTUza9TH3mW8SiX3KiUISnua7B2Y93:call_1HrJtFPODmMlHQA8H43mlmr1",
+  "question": "Approve the control-pipe fix and a 5-minute diagnostic continuation?",
+  "answer": "Approve pipe fix and 5-minute continuation",
+  "additional_comments": null,
+  "proposal": "docs/validation/failure-gate-control-pipe-correction-proposal.md",
+  "grant_seconds": 300,
+  "scope": "Parent control-pipe correction, one additional fixture pass, conditional exact retained incident recovery and one non-tier pnpm test diagnostic",
+  "source": "Actual local owner conversation; not protected host or platform authorization",
+  "cutover": "NOT APPROVED"
+}

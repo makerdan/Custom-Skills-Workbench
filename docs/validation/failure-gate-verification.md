@@ -1,9 +1,10 @@
 # Failure Gate verification result
 
-**Result: Latest evidence-hardening fixtures FAILED 30/31 with parent-side
-BrokenPipeError. Earlier completion fixtures PASSED 29/29. Original latest
-real caller remains retained; diagnostic NOT RUN. Installation remains
-partial / blocked. Ordinary route is not ACTIVE.**
+**Result: Approved pipe correction PASSED 33/33 fixtures. Exact incident
+recovery acknowledged; one non-tier `pnpm test` diagnostic exited 0 with
+137/137 package tests passing and complete owned termination/capture.
+This continuation is complete; full installation remains partial.
+Ordinary route is STAGED, not ACTIVE.**
 
 ## Executed checks
 
@@ -33,6 +34,9 @@ partial / blocked. Ordinary route is not ACTIVE.**
 | Approved diagnostic-phase evidence fixtures | FAILED 30/31; 16.99 seconds; both new error-evidence/cleanup checks PASSED |
 | Diagnostic-phase exact recovery | NOT PERFORMED after failed fixture gate |
 | Diagnostic-phase `pnpm test` | NOT RUN; zero diagnostic attempts |
+| Approved parent control-pipe correction | PASSED 33/33; 10.736 seconds of tests, 11.041 seconds contained elapsed |
+| Exact retained incident recovery after correction | ACKNOWLEDGED; original failure preserved; no administrative PASS |
+| Single non-tier `pnpm test` diagnostic | Raw exit 0; scripts 30/30, Workbench 45/45, API 62/62; 4.648 seconds; complete capture, known work stopped, no gap |
 | Existing app landing page | Screenshot rendered correctly; no browser error observed. No signed-in journey claim. |
 
 The initial and expanded fixture results concern different staged source
@@ -275,3 +279,70 @@ source amendment and separately accounted bounded continuation.
 Full application additionally remains blocked by the applicable gaps in
 `failure-gate-implementation.md`, including ordinary cutover, writer/caller
 integration, protected reclaim and independent router verification.
+
+## Approved pipe correction and completed diagnostic continuation
+
+Actual response: `Approve pipe fix and 5-minute continuation`, retained in
+`failure-gate-control-pipe-approval.json`.
+
+- Operation `d57bbc46-c42a-46ed-bf03-74dcb9cca9fb`.
+- Grant reserved before code edits; 300 seconds including inspection/authoring,
+  fixtures, recovery, diagnostic and readback. Prior grants/failures were neither
+  refunded nor overwritten.
+- Current boot `4a7c5b18-9710-4929-a167-5842d38a9ea9`, original new-grant
+  deadline `439.65356752`. Historical boot/deadlines remain in prior records.
+  The resumed environment changed clock domain; the new explicitly approved
+  allowance was bound to its actual boot before dispatch, not borrowed from
+  the expired historical timer.
+- Corrected core tooling:
+  `a8b120234a249cd00c33d056a8eeb228d72af30b503a1bf5b861620976f96977`.
+- Scoped driver:
+  `98c148b80c27a0e9753d723f62b1a81e60349b2360037838e69f721f29402a45`.
+- Canonical supervisor remains unchanged, hash
+  `c759dee01e36b2ea0acee65d80b7e2a0d2b0977725f52d09dc6ccf2d672a7698`.
+- Evidence:
+  `.failure-gate/watchdog-diagnostics/d57bbc46-c42a-46ed-bf03-74dcb9cca9fb/fixtures.json`
+  and `diagnostic/{supervision.json,raw.log,outcome.json}`, coordinator
+  `control-pipe:967ddd7db207f5e126a500234af8701738c437c772a120684ded48c6fd86d6b9`
+  and its events/decision.
+
+The parent now stops heartbeats after terminal receipt. A broken heartbeat pipe
+disables further heartbeat writes but cannot establish an outcome; bounded
+draining and watchdog-exit verification continue under the original deadlines.
+Actual stdout EOF without a complete result blocks promptly. Only stdin's
+BrokenPipeError on final close is suppressed, preventing it from replacing the
+primary outcome/error. Registration and owned cleanup remain unchanged.
+
+Both deterministic new closed-control cases passed: a complete synthetic raw
+nonzero result remains failed with its raw exit preserved; a partial/missing
+terminal result remains BLOCKED. These are isolated transport models, not
+authentic host attestations. The full 33-case bundle, including real zero/nonzero,
+owner stall/death, watchdog loss, journal failure and typed-private evidence,
+passed in its one approved corrective attempt. Diagnostic lineage therefore
+has two cumulative fixture attempts: failed 30/31 followed by passed 33/33.
+
+Exact recovery decision `d509cb2d-a5ab-44d4-a3c1-4fa5a064b5b3` preserves the
+original failure for run `62ad8676-50d9-478f-843e-1eccb6918dbf`; its status is
+now `recovered`, `recovery_required=0`. All eight recorded PID slots were
+observed absent. The transaction/recovery acknowledgement was checked on a
+fresh read-only connection before diagnostic launch. The installed binding was
+updated only for this approved scope, with prior binding retained in the decision.
+
+Diagnostic run `9114a038-802c-480e-a146-de62fe53b3c2` is `finished`,
+`recovery_required=0`, explicitly `eligible_for_tier:false`. Its recorded
+observation is raw exit 0, reason `finished`, affirmative registration/stop/
+capture, 17,252 bytes, no signals and no gap. It used a 180-second execution cap
+within the shared 300-second parent, 20-second cleanup/10-second capture,
+30-second queue, 15-second startup/stall, 2-second registration, 30,000-ms tests,
+15,000-ms hooks and 8 MiB raw output cap.
+
+Final read-only coordinator initialization verified file-journal consistency;
+both diagnostic watchdog/worker identities were absent; no retained run remains.
+Governance remains STAGED. No additional fixture, diagnostic, full installer
+caller, activation or platform mutation was performed.
+
+The original subordinate watchdog error did not recur and remains unclassified.
+One passing diagnostic is not proof of the original cause, fixed intermittency,
+two-caller acceptance or completed application of the entire skill.
+The next bounded installer-acceptance proposal is
+`failure-gate-installer-acceptance-proposal.md`; it is not execution permission.

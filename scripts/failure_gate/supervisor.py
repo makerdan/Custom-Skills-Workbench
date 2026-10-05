@@ -93,11 +93,19 @@ def run(argv, cwd, directory, event, limits=None, lock_fd=None, parent_deadline=
     journal_failure = False
     watchdog = incarnation(child.pid)
     owned = {}
+    open_streams = [child.stdout, child.stderr]
+    control_open = True
+    stdout_eof = False
     try:
         while time.monotonic() < deadline:
-            readable, _, _ = select.select([child.stdout, child.stderr], [], [], 0.05)
+            readable, _, _ = select.select(open_streams, [], [], 0.05)
             for stream in readable:
                 chunk = os.read(stream.fileno(), 65536)
+                if not chunk:
+                    open_streams.remove(stream)
+                    if stream is child.stdout:
+                        stdout_eof = True
+                    continue
                 total += len(chunk)
                 if total > 1048576:
                     raise Blocked("watchdog evidence overflow")
@@ -126,13 +134,17 @@ def run(argv, cwd, directory, event, limits=None, lock_fd=None, parent_deadline=
                 # Drain already available result bytes before deciding anything.
                 if result is not None:
                     break
-                if not readable:
+                if stdout_eof:
                     raise Blocked("watchdog lost; retain exclusion")
             if not registered and time.monotonic() - started > limits["registration_seconds"] + 1:
                 raise Blocked("no independent registration")
-            if child.poll() is None:
-                child.stdin.write(b"H")
-                child.stdin.flush()
+            if result is None and control_open and child.poll() is None:
+                try:
+                    child.stdin.write(b"H")
+                    child.stdin.flush()
+                except BrokenPipeError:
+                    # Closure is not an outcome. Drain only within existing bounds.
+                    control_open = False
         if result is None or alive(watchdog):
             raise Blocked("incomplete watchdog outcome")
         if result.get("stopped") is not True or result.get("capture_complete") is not True:
@@ -171,7 +183,11 @@ def run(argv, cwd, directory, event, limits=None, lock_fd=None, parent_deadline=
         raise
     finally:
         for stream in (child.stdin, child.stdout, child.stderr):
-            stream.close()
+            try:
+                stream.close()
+            except BrokenPipeError:
+                if stream is not child.stdin:
+                    raise
         if journal_failure:
             # No DB/file write here can falsely finalize the original run.
             pass
