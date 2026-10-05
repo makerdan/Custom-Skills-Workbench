@@ -603,6 +603,24 @@ const unsafeSkillUploadCases: Array<{
   errorPattern?: RegExp;
 }> = [
   {
+    name: "a missing SKILL.md file",
+    files: [{ path: "README.md", content: "A skill without its entry point." }],
+    errorPattern: /does not contain a SKILL\.md file/i,
+  },
+  {
+    name: "an unsupported file extension",
+    files: [
+      ...validSkillFiles,
+      { path: "payload.exe", content: "not a supported text file" },
+    ],
+    errorPattern: /not supported text/i,
+  },
+  {
+    name: "an embedded NUL byte",
+    files: [{ path: "SKILL.md", content: "text\u0000binary" }],
+    errorPattern: /not supported text/i,
+  },
+  {
     name: "a traversal path",
     files: [
       ...validSkillFiles,
@@ -760,6 +778,7 @@ for (const operation of ["create skill", "add a version"] as const) {
       assert.equal(database.queries.length, 0);
       assert.equal(database.transactionCalls, 0);
       assert.equal(database.inserted.length, 0);
+      assert.equal(database.updates.length, 0);
     });
   }
 }
