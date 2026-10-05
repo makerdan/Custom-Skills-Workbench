@@ -31,6 +31,11 @@ const newlyCreatedVersionId = "80000000-0000-4000-8000-000000000008";
 const testDate = new Date("2026-01-02T03:04:05.000Z");
 
 type User = { id: string } | null;
+type CapturedLogRecord = {
+  level: "warn";
+  fields: Record<string, unknown>;
+  message: string;
+};
 
 function paramFor(
   sql: string,
@@ -555,13 +560,23 @@ function makeStorage(allowedOwner: string) {
   return { service, calls };
 }
 
-async function withServer(user: User, routers: unknown[], run: (base: string) => Promise<void>) {
+async function withServer(
+  user: User,
+  routers: unknown[],
+  run: (base: string) => Promise<void>,
+  logRecords: CapturedLogRecord[] = [],
+) {
   const app = express();
   app.use(express.json({ limit: "5mb" }));
   app.use((req, _res, next) => {
     req.isAuthenticated = () => user !== null;
     if (user) req.user = user;
-    req.log = { error() {}, warn() {} } as never;
+    req.log = {
+      error() {},
+      warn(fields: Record<string, unknown>, message: string) {
+        logRecords.push({ level: "warn", fields, message });
+      },
+    } as never;
     next();
   });
   app.use("/api", ...(routers as never[]));
@@ -1207,6 +1222,10 @@ test("skill creation rejects another user's upload without changing its ACL or w
   const storage = makeSkillUploadStorage(
     new Map([[objectPath, originalPolicy]]),
   );
+  const logRecords: CapturedLogRecord[] = [];
+  const uploadFiles = skillFiles();
+  uploadFiles[0].content += "\nZIP_CONTENT_SENTINEL";
+  const credentialSentinel = "CREDENTIAL_SENTINEL";
 
   await withServer(
     { id: ownerId },
@@ -1219,7 +1238,8 @@ test("skill creation rejects another user's upload without changing its ACL or w
           versionLabel: "1.0",
           fileName: "skill.zip",
           objectPath,
-          files: skillFiles(),
+          files: uploadFiles,
+          credential: credentialSentinel,
         },
       });
       assert.equal(response.status, 403);
@@ -1227,8 +1247,24 @@ test("skill creation rejects another user's upload without changing its ACL or w
         error: "You cannot use an upload belonging to another account.",
       });
     },
+    logRecords,
   );
 
+  assert.deepEqual(logRecords, [
+    {
+      level: "warn",
+      fields: {
+        event: "upload_ownership_denied",
+        requestType: "skill_create",
+        actorId: ownerId,
+      },
+      message: "Upload ownership check denied",
+    },
+  ]);
+  const serializedLogs = JSON.stringify(logRecords);
+  assert.equal(serializedLogs.includes(objectPath), false);
+  assert.equal(serializedLogs.includes("ZIP_CONTENT_SENTINEL"), false);
+  assert.equal(serializedLogs.includes(credentialSentinel), false);
   assert.equal(storage.calls.set.length, 0);
   assert.deepEqual(storage.policies.get(objectPath), originalPolicy);
   assert.equal(database.inserted.length, 0);
@@ -1285,6 +1321,10 @@ test("version updates reject another user's upload without changing its ACL or w
   const storage = makeSkillUploadStorage(
     new Map([[objectPath, originalPolicy]]),
   );
+  const logRecords: CapturedLogRecord[] = [];
+  const uploadFiles = skillFiles();
+  uploadFiles[0].content += "\nZIP_CONTENT_SENTINEL";
+  const credentialSentinel = "CREDENTIAL_SENTINEL";
 
   await withServer(
     { id: ownerId },
@@ -1299,7 +1339,8 @@ test("version updates reject another user's upload without changing its ACL or w
             versionLabel: "2.0",
             fileName: "foreign.zip",
             objectPath,
-            files: skillFiles(),
+            files: uploadFiles,
+            credential: credentialSentinel,
           },
         },
       );
@@ -1308,8 +1349,24 @@ test("version updates reject another user's upload without changing its ACL or w
         error: "You cannot use an upload belonging to another account.",
       });
     },
+      logRecords,
   );
 
+  assert.deepEqual(logRecords, [
+    {
+      level: "warn",
+      fields: {
+        event: "upload_ownership_denied",
+        requestType: "skill_version_create",
+        actorId: ownerId,
+      },
+      message: "Upload ownership check denied",
+    },
+  ]);
+  const serializedLogs = JSON.stringify(logRecords);
+  assert.equal(serializedLogs.includes(objectPath), false);
+  assert.equal(serializedLogs.includes("ZIP_CONTENT_SENTINEL"), false);
+  assert.equal(serializedLogs.includes(credentialSentinel), false);
   assert.equal(storage.calls.set.length, 0);
   assert.deepEqual(storage.policies.get(objectPath), originalPolicy);
   assert.equal(database.inserted.length, 0);

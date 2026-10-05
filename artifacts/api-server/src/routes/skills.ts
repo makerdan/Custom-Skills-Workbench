@@ -297,6 +297,14 @@ export function createSkillsRouter(
     );
   } catch (error) {
     if (error instanceof ObjectOwnershipError) {
+      req.log.warn(
+        {
+          event: "upload_ownership_denied",
+          requestType: "skill_create",
+          actorId: req.user.id,
+        },
+        "Upload ownership check denied",
+      );
       res.status(403).json({
         error: "You cannot use an upload belonging to another account.",
       });
@@ -451,6 +459,14 @@ export function createSkillsRouter(
     );
   } catch (error) {
     if (error instanceof ObjectOwnershipError) {
+      req.log.warn(
+        {
+          event: "upload_ownership_denied",
+          requestType: "skill_version_create",
+          actorId: req.user.id,
+        },
+        "Upload ownership check denied",
+      );
       res.status(403).json({
         error: "You cannot use an upload belonging to another account.",
       });
