@@ -1,8 +1,9 @@
 # Failure Gate verification result
 
-**Result: Corrected fixtures PASSED 29/29; latest real caller BLOCKED by
-watchdog error, with retained exclusion. Installation remains partial /
-blocked. Ordinary route is not ACTIVE.**
+**Result: Latest evidence-hardening fixtures FAILED 30/31 with parent-side
+BrokenPipeError. Earlier completion fixtures PASSED 29/29. Original latest
+real caller remains retained; diagnostic NOT RUN. Installation remains
+partial / blocked. Ordinary route is not ACTIVE.**
 
 ## Executed checks
 
@@ -29,6 +30,9 @@ blocked. Ordinary route is not ACTIVE.**
 | Completion-correction caller test step | STARTED, INTERRUPTED by watchdog error; no complete result |
 | Completion-correction complete caller | BLOCKED, raw exit 4; outer owned survivors stopped; 8.73 seconds; healthy release false |
 | Completion-correction second caller | NOT RUN |
+| Approved diagnostic-phase evidence fixtures | FAILED 30/31; 16.99 seconds; both new error-evidence/cleanup checks PASSED |
+| Diagnostic-phase exact recovery | NOT PERFORMED after failed fixture gate |
+| Diagnostic-phase `pnpm test` | NOT RUN; zero diagnostic attempts |
 | Existing app landing page | Screenshot rendered correctly; no browser error observed. No signed-in journey claim. |
 
 The initial and expanded fixture results concern different staged source
@@ -224,7 +228,49 @@ Known quiescence alone does not authorize release of this new retained incident.
 See `failure-gate-watchdog-evidence-proposal.md` for a diagnostic-only next
 phase: preserve actual error details, separately recover this exact incident,
 and collect one bounded diagnostic observation. It does **not** propose another
-full installation sweep or an unverified cause-specific fix.
+full installation sweep or an unverified cause-specific fix. This phase was
+subsequently approved and attempted as recorded below.
+
+## Actual diagnostic-phase fixture result
+
+- Actual response: `Approve diagnostic-only phase`, recorded in
+  `failure-gate-watchdog-evidence-approval.json`.
+- Operation `d7a4ad5b-b450-468d-b850-85565e4e3bc2`.
+- Evidence:
+  `.failure-gate/watchdog-diagnostics/d7a4ad5b-b450-468d-b850-85565e4e3bc2/fixtures.json`
+  and coordinator grant, fixture-reservation/result and blocked events.
+- Typed error evidence records exception class/errno and up to four bounded
+  frame locations, never exception messages, source text, environment or locals.
+  Parent adapter preserves bounded non-success evidence before its BLOCKED
+  result. File/journal failure remains on the existing owned cleanup path.
+- Both new cases passed: bounded typed/private evidence, and actual isolated
+  post-registration error with owned cleanup despite injected journal failure.
+- Full suite FAILED: 30/31 passed; one ERROR in the existing real nonzero-exit
+  fixture. Full readiness cannot be inferred from the new cases passing.
+- Tested core tooling:
+  `f2bff6cbf911da20c31f4cb195b9dc6e6b272521478bf6d3db026ab74fddae42`.
+- Source review corrected the staged diagnostic driver's `run_seconds` to fit
+  its 600-second parent allowance. That driver change was not reexecuted; the
+  previously pinned driver digest remains historical evidence, not renewed
+  dispatch permission.
+- One fixture attempt consumed; zero recovery operations and zero diagnostics.
+- Half the 600-second grant was conservatively reserved for initial preparation;
+  all admitted remaining phases shared deadline `7391.502211772`. That deadline
+  was expired at the last readback. No reset, refund or unused-slot reuse.
+- Coordinator phase `blocked_by_fixtures`; journal consistent; original run
+  still retained with `recovery_required=1`. No governing source rebind occurred.
+
+The precise new observed failure was parent-side `BrokenPipeError: [Errno 32]`
+at heartbeat flush in `supervisor.run`, followed by another BrokenPipeError
+closing the stream in `finally`. Terminal receipt timing is not retained in that
+trace. Source review confirms the adapter can send a heartbeat after receiving a
+result, and its final close can replace the original exception. This supports a
+focused parent-control-pipe correction; it does **not** establish the cause of the
+earlier subordinate watchdog error.
+
+No additional fixture, recovery, diagnostic or installation caller was launched.
+See `failure-gate-control-pipe-correction-proposal.md` for the exact pending
+source amendment and separately accounted bounded continuation.
 
 Full application additionally remains blocked by the applicable gaps in
 `failure-gate-implementation.md`, including ordinary cutover, writer/caller

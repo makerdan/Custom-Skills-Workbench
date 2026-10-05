@@ -13,6 +13,27 @@ import time
 from common import alive, encoded, incarnation, read_json
 
 
+def error_evidence(error):
+    """Typed frames only: never exception messages, source text, locals or env."""
+    frames = []
+    current = error.__traceback__
+    while current is not None:
+        code = current.tb_frame.f_code
+        frames.append({"file": Path(code.co_filename).name[:128],
+                       "function": code.co_name[:128], "line": current.tb_lineno})
+        frames = frames[-4:]
+        current = current.tb_next
+    number = getattr(error, "errno", None)
+    value = {"event": "error", "schema": 1, "reason": type(error).__name__[:128],
+             "error_type": type(error).__name__[:128],
+             "errno": number if type(number) is int else None,
+             "phase": "watchdog_exception", "frames": frames,
+             "healthy_release": False, "pass": False}
+    while len(encoded(value).encode()) > 8192 and value["frames"]:
+        value["frames"].pop(0)
+    return value
+
+
 def observe(known, root_pid=None):
     """Only this isolated watchdog's descendants, including adopted sessions."""
     result = {}
@@ -218,5 +239,5 @@ if __name__ == "__main__":
         raise SystemExit(main())
     except Exception as error:
         # No claimed clean release. Parent preserves its run/resource exclusion.
-        print(encoded({"event": "error", "reason": type(error).__name__}), flush=True)
+        print(encoded(error_evidence(error)), flush=True)
         raise SystemExit(4)

@@ -9,7 +9,7 @@ import sys
 import time
 import uuid
 
-from common import Blocked, alive, atomic_json, incarnation
+from common import Blocked, alive, atomic_json, encoded, incarnation
 
 
 LIMITS = {
@@ -30,6 +30,20 @@ def validate_limits(values):
             raise Blocked(f"invalid or enlarged limit: {key}")
     if values["run_seconds"] > values["installation_seconds"]:
         raise Blocked("parent deadline exceeded")
+
+
+def preserve_error(directory, event, observation, gate):
+    """Bounded non-success evidence; write/callback failure still reaches cleanup."""
+    detail = {key: observation[key] for key in
+              ("event", "schema", "reason", "error_type", "errno", "phase", "frames")
+              if key in observation}
+    value = {"schema": 1, "gate": gate, "accepted_for_success": False,
+             "disposition": "BLOCKED; retain exclusion", "observation": detail}
+    if len(encoded(value).encode()) > 8192:
+        value["observation"] = {"event": "error", "reason": "overbound_error_evidence",
+                                "detail_truncated": True}
+    atomic_json(Path(directory) / "watchdog-error.json", value)
+    event("watchdog_error", value)
 
 
 def run(argv, cwd, directory, event, limits=None, lock_fd=None, parent_deadline=None):
@@ -106,6 +120,7 @@ def run(argv, cwd, directory, event, limits=None, lock_fd=None, parent_deadline=
                         elif observation.get("event") == "result":
                             result = observation
                         else:
+                            preserve_error(directory, event, observation, gate)
                             raise Blocked("watchdog failed; retain exclusion")
             if child.poll() is not None:
                 # Drain already available result bytes before deciding anything.

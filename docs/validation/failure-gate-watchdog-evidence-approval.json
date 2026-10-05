@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "status": "APPROVED_LOCAL_CONVERSATION",
+  "reference": "inv_1iUbbTUza9TH3yPcBIRyzdioGA02uIIG0V:call_QSbv63drw9jOF8cMGfDmpv87",
+  "question": "Approve a diagnostic-only phase to capture the watchdog failure?",
+  "answer": "Approve diagnostic-only phase",
+  "additional_comments": null,
+  "proposal": "docs/validation/failure-gate-watchdog-evidence-proposal.md",
+  "scope": "Bounded typed error evidence and focused fixtures, exact recorded incident recovery, and one registered non-tier pnpm test diagnostic",
+  "grant_seconds": 600,
+  "preparation_reserve_seconds": 300,
+  "accounting": "Conservatively reserve half the grant for initial inspection/preparation; all remaining phases share the durable 300-second narrowed deadline. No refund or reset.",
+  "source": "Actual local owner conversation; not protected host or platform authorization",
+  "cause_specific_repair": "NOT APPROVED",
+  "cutover": "NOT APPROVED"
+}

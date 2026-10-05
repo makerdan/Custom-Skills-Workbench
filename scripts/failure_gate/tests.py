@@ -388,6 +388,73 @@ class GateTests(unittest.TestCase):
 
 
 class SupervisorTests(unittest.TestCase):
+    def test_error_evidence_bounded_typed_and_without_messages_or_environment(self):
+        from watchdog import error_evidence
+        from supervisor import preserve_error
+        try:
+            raise OSError(3, "DO_NOT_PERSIST_SECRET")
+        except OSError as error:
+            value = error_evidence(error)
+        self.assertEqual(value["errno"], 3)
+        self.assertEqual(value["error_type"], "ProcessLookupError")
+        self.assertTrue(value["frames"])
+        self.assertNotIn("DO_NOT_PERSIST_SECRET", encoded(value))
+        with tempfile.TemporaryDirectory() as directory:
+            events = []
+            preserve_error(directory, lambda *args: events.append(args),
+                           {**value, "environment": "DO_NOT_PERSIST_SECRET", "pass": True}, "fixture")
+            evidence = read_json(Path(directory) / "watchdog-error.json")
+            self.assertFalse(evidence["accepted_for_success"])
+            self.assertNotIn("DO_NOT_PERSIST_SECRET", encoded(evidence))
+            preserve_error(directory, lambda *_: None,
+                           {"event": "error", "reason": "x" * 100000}, "fixture")
+            self.assertLessEqual(len(read_bytes(Path(directory) / "watchdog-error.json")), 8192)
+
+    def test_typed_watchdog_error_and_journal_failure_preserve_owned_cleanup(self):
+        from unittest.mock import patch
+        import supervisor
+        for failed_journal in (False, True):
+            with self.subTest(failed_journal=failed_journal), tempfile.TemporaryDirectory() as temporary:
+                directory = Path(temporary)
+                marker = directory / "started"
+                helper = directory / "watchdog.py"
+                helper.write_text(
+                    "import sys,time;from pathlib import Path\n"
+                    f"sys.path.insert(0,{str(ROOT / 'scripts/failure_gate')!r})\n"
+                    "import watchdog\n"
+                    "def fail_owned(known,root_pid=None):\n"
+                    f" if Path({str(marker)!r}).exists(): raise OSError(3,'DO_NOT_PERSIST_SECRET')\n"
+                    " return [watchdog.incarnation(root_pid)]\n"
+                    "watchdog.observe=fail_owned\n"
+                    "try: watchdog.main()\n"
+                    "except Exception as error:\n"
+                    " print(watchdog.encoded(watchdog.error_evidence(error)),flush=True)\n"
+                    " sys.exit(4)\n")
+                owned, observations = [], []
+
+                def record(kind, value):
+                    observations.append((kind, value))
+                    if kind == "watchdog_registered":
+                        owned.append(value["worker"])
+                    if failed_journal and kind == "watchdog_error":
+                        raise RuntimeError("fixture journal failed")
+
+                with patch.object(supervisor, "__file__", str(directory / "supervisor.py")):
+                    with self.assertRaises((Blocked, RuntimeError)):
+                        run([sys.executable, "-c",
+                             f"from pathlib import Path;import time;Path({str(marker)!r}).touch();time.sleep(60)"],
+                            ROOT, directory / "output", record,
+                            dict(LIMITS, step_seconds=3, cleanup_seconds=2, capture_seconds=1,
+                                 owner_stall_seconds=2))
+                self.assertTrue(marker.exists())
+                self.assertTrue(owned)
+                self.assertTrue(any(kind == "watchdog_error" for kind, _ in observations))
+                evidence = read_json(directory / "output/watchdog-error.json")
+                self.assertEqual(evidence["observation"]["error_type"], "ProcessLookupError")
+                self.assertFalse(evidence["accepted_for_success"])
+                current = incarnation(owned[0]["pid"])
+                self.assertTrue(current is None or current["state"] == "Z")
+
     def test_completion_refresh_keeps_survivor_and_deadline_denial(self):
         from unittest.mock import patch
         import watchdog
