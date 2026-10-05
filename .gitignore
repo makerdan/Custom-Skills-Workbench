@@ -47,3 +47,12 @@ Thumbs.db
 # Replit
 .cache/
 .local/
+
+# Workspace-managed skill projections and refresh transaction artifacts
+/.agents/skills/.workspace-projections/
+/.agents/skills/.workspace-projections.lock
+/.agents/skills/.workspace-projections.lock.stale.*/
+/.agents/skills/.workspace-projections.transaction.json
+/.agents/skills/.workspace-projections.transaction.json.tmp.*
+/.agents/skills/.workspace-projections.stage.*/
+/.agents/skills/.workspace-projections.backup.*/
