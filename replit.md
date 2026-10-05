@@ -7,9 +7,17 @@ _Replace the heading above with the project's name, and this line with one sente
 - `pnpm --filter @workspace/api-server run dev` — run the API server (port 5000)
 - `pnpm run typecheck` — full typecheck across all packages
 - `pnpm run build` — typecheck + build all packages
+- `pnpm run test` — run regression-guard checks and package tests
 - `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
 - `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
 - Required env: `DATABASE_URL` — Postgres connection string
+
+## Task Planning
+
+- Before the first heading of every plan, emit the exact Planner Announcement from `.agents/skills/regression-guard/SKILL.md`.
+- Apply that canonical skill by substance, not title keywords; use its exclusions, declaration format, section order, N/A reasons, and follow-up conditions. Do not copy or redefine the contract here.
+- For the plan checker, add exactly one metadata comment: `<!-- regression-guard: required -->` when the human classification says the plan qualifies, or `<!-- regression-guard: not-applicable -->` when it is excluded. This marker only communicates the Planner's decision to the checker; it does not classify plans or replace the canonical contract.
+- Put any required `## Regression Guard` section after `## Pre-existing failures to ignore` and `## Validation`, and before `## Relevant files`, as specified by the canonical skill.
 
 ## Stack
 
