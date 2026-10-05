@@ -17,6 +17,10 @@ import { createSkillsRouter } from "../src/routes/skills";
 import { createStorageRouter } from "../src/routes/storage";
 import { createWorkbenchRouter } from "../src/routes/workbench";
 import {
+  ABANDONED_UPLOAD_RETENTION_MS,
+  cleanupAbandonedSkillUploads,
+} from "../src/lib/skillUploadCleanup";
+import {
   ObjectOwnershipError,
   setObjectAclPolicy,
 } from "../src/lib/objectAcl";
@@ -534,6 +538,44 @@ test("upload URL requests return object paths scoped to the authenticated owner"
     signedRequest?.object_name ?? "",
     new RegExp(`^private/uploads/${ownerScope}/[a-f0-9-]{36}$`, "i"),
   );
+});
+
+test("abandoned upload cleanup deletes expired unreferenced ZIPs only", async () => {
+  const now = new Date("2026-10-05T12:00:00.000Z");
+  const expiredPath =
+    "/objects/uploads/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/10000000-0000-4000-8000-000000000010";
+  const activePath =
+    "/objects/uploads/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb/20000000-0000-4000-8000-000000000020";
+  const savedPath =
+    "/objects/uploads/cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc/30000000-0000-4000-8000-000000000030";
+  const deleted: string[] = [];
+  const result = await cleanupAbandonedSkillUploads({
+    now,
+    objectStorage: {
+      listSkillUploadObjects: async () => [
+        {
+          objectPath: expiredPath,
+          createdAt: new Date(now.getTime() - ABANDONED_UPLOAD_RETENTION_MS - 1),
+        },
+        {
+          objectPath: activePath,
+          createdAt: new Date(now.getTime() - ABANDONED_UPLOAD_RETENTION_MS + 1),
+        },
+        {
+          objectPath: savedPath,
+          createdAt: new Date(now.getTime() - ABANDONED_UPLOAD_RETENTION_MS - 1),
+        },
+      ],
+      deleteSkillUploadObject: async (objectPath) => {
+        deleted.push(objectPath);
+      },
+    },
+    findSavedPaths: async (candidates) =>
+      new Set(candidates.filter((path) => path === savedPath)),
+  });
+
+  assert.deepEqual(deleted, [expiredPath]);
+  assert.deepEqual(result, { deleted: 1, active: 1, saved: 1, failed: 0 });
 });
 
 function makeQuestion(id: string, owner: string, question: string) {

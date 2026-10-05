@@ -44,7 +44,9 @@ export class ObjectNotFoundError extends Error {
 }
 
 export class ObjectStorageService {
-  constructor() {}
+  constructor(
+    private readonly storageClient: Storage = objectStorageClient,
+  ) {}
 
   getPublicObjectSearchPaths(): Array<string> {
     const pathsStr = process.env.PUBLIC_OBJECT_SEARCH_PATHS || '';
@@ -81,7 +83,7 @@ export class ObjectStorageService {
       const fullPath = `${searchPath}/${filePath}`;
 
       const { bucketName, objectName } = parseObjectPath(fullPath);
-      const bucket = objectStorageClient.bucket(bucketName);
+      const bucket = this.storageClient.bucket(bucketName);
       const file = bucket.file(objectName);
 
       const [exists] = await file.exists();
@@ -155,13 +157,79 @@ export class ObjectStorageService {
     }
     const objectEntityPath = `${entityDir}${entityId}`;
     const { bucketName, objectName } = parseObjectPath(objectEntityPath);
-    const bucket = objectStorageClient.bucket(bucketName);
+    const bucket = this.storageClient.bucket(bucketName);
     const objectFile = bucket.file(objectName);
     const [exists] = await objectFile.exists();
     if (!exists) {
       throw new ObjectNotFoundError();
     }
     return objectFile;
+  }
+
+  async listSkillUploadObjects(): Promise<
+    Array<{ objectPath: string; createdAt: Date }>
+  > {
+    const privateObjectDir = this.getPrivateObjectDir().replace(/\/+$/, '');
+    const { bucketName, objectName: uploadPrefix } = parseObjectPath(
+      `${privateObjectDir}/uploads/`,
+    );
+    const bucket = this.storageClient.bucket(bucketName);
+    const [files] = await bucket.getFiles({ prefix: uploadPrefix });
+
+    return (
+      await Promise.all(
+        files.map(async (file) => {
+          const relativePath = file.name.slice(uploadPrefix.length);
+          if (
+            !/^[a-f0-9]{64}\/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i.test(
+              relativePath,
+            )
+          ) {
+            return null;
+          }
+
+          let timeCreated = file.metadata?.timeCreated;
+          if (!timeCreated) {
+            const [metadata] = await file.getMetadata();
+            timeCreated = metadata.timeCreated;
+          }
+          if (typeof timeCreated !== 'string') {
+            return null;
+          }
+
+          const createdAt = new Date(timeCreated);
+          if (!Number.isFinite(createdAt.getTime())) {
+            return null;
+          }
+
+          return {
+            objectPath: `/objects/uploads/${relativePath}`,
+            createdAt,
+          };
+        }),
+      )
+    ).filter(
+      (upload): upload is { objectPath: string; createdAt: Date } =>
+        upload !== null,
+    );
+  }
+
+  async deleteSkillUploadObject(objectPath: string): Promise<void> {
+    const match = objectPath.match(
+      /^\/objects\/(uploads\/[a-f0-9]{64}\/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$/i,
+    );
+    if (!match) {
+      throw new Error('Refusing to delete an object outside skill uploads');
+    }
+
+    const privateObjectDir = this.getPrivateObjectDir().replace(/\/+$/, '');
+    const { bucketName, objectName } = parseObjectPath(
+      `${privateObjectDir}/${match[1]}`,
+    );
+    await this.storageClient
+      .bucket(bucketName)
+      .file(objectName)
+      .delete({ ignoreNotFound: true });
   }
 
   normalizeObjectEntityPath(rawPath: string): string {
