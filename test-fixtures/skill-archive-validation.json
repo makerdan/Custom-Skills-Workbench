@@ -1,0 +1,56 @@
+{
+  "supportedExtensions": [
+    ".md",
+    ".mdx",
+    ".txt",
+    ".rst",
+    ".json",
+    ".yaml",
+    ".yml",
+    ".toml",
+    ".ini",
+    ".cfg",
+    ".py",
+    ".js",
+    ".jsx",
+    ".ts",
+    ".tsx",
+    ".html",
+    ".css",
+    ".sh",
+    ".sql",
+    ".xml",
+    ".go",
+    ".rs",
+    ".java",
+    ".rb",
+    ".php",
+    ".c",
+    ".h",
+    ".cpp",
+    ".vue",
+    ".svelte"
+  ],
+  "invalidArchives": [
+    {
+      "name": "a missing SKILL.md file",
+      "files": [
+        {
+          "path": "README.md",
+          "content": "A skill without its entry point."
+        }
+      ],
+      "serverErrorIncludes": "does not contain a SKILL.md file"
+    },
+    {
+      "name": "an embedded NUL byte",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "content": "text\u0000binary"
+        }
+      ],
+      "serverErrorIncludes": "not supported text"
+    }
+  ]
+}

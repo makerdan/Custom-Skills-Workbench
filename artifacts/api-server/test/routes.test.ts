@@ -1,5 +1,7 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
+import path from "node:path";
 import { test } from "node:test";
 import express from "express";
 import { getTableName } from "drizzle-orm";
@@ -29,6 +31,22 @@ const secondVersionId = "40000000-0000-4000-8000-000000000004";
 const savedQuestionId = "50000000-0000-4000-8000-000000000005";
 const newlyCreatedVersionId = "80000000-0000-4000-8000-000000000008";
 const testDate = new Date("2026-01-02T03:04:05.000Z");
+const sharedValidationCases = JSON.parse(
+  readFileSync(
+    path.resolve(
+      process.cwd(),
+      "../../test-fixtures/skill-archive-validation.json",
+    ),
+    "utf8",
+  ),
+) as {
+  supportedExtensions: string[];
+  invalidArchives: Array<{
+    name: string;
+    files: SkillFileFixture[];
+    serverErrorIncludes: string;
+  }>;
+};
 
 type User = { id: string } | null;
 type CapturedLogRecord = {
@@ -616,23 +634,19 @@ const unsafeSkillUploadCases: Array<{
   name: string;
   files: SkillFileFixture[];
   errorPattern?: RegExp;
+  errorIncludes?: string;
 }> = [
-  {
-    name: "a missing SKILL.md file",
-    files: [{ path: "README.md", content: "A skill without its entry point." }],
-    errorPattern: /does not contain a SKILL\.md file/i,
-  },
+  ...sharedValidationCases.invalidArchives.map((scenario) => ({
+    name: scenario.name,
+    files: scenario.files,
+    errorIncludes: scenario.serverErrorIncludes,
+  })),
   {
     name: "an unsupported file extension",
     files: [
       ...validSkillFiles,
       { path: "payload.exe", content: "not a supported text file" },
     ],
-    errorPattern: /not supported text/i,
-  },
-  {
-    name: "an embedded NUL byte",
-    files: [{ path: "SKILL.md", content: "text\u0000binary" }],
     errorPattern: /not supported text/i,
   },
   {
@@ -786,6 +800,9 @@ for (const operation of ["create skill", "add a version"] as const) {
           if (scenario.errorPattern) {
             assert.match(payload.error, scenario.errorPattern);
           }
+          if (scenario.errorIncludes) {
+            assert.ok(payload.error.includes(scenario.errorIncludes));
+          }
         },
       );
 
@@ -797,6 +814,46 @@ for (const operation of ["create skill", "add a version"] as const) {
     });
   }
 }
+
+test("accepts every supported extension in the shared browser validation matrix", async () => {
+  const database = new MemoryDatabase();
+  const storage = makeSkillUploadStorage();
+  const files = [
+    ...validSkillFiles,
+    ...sharedValidationCases.supportedExtensions.map((extension) => ({
+      path: `references/example${extension}`,
+      content: `Text in ${extension}`,
+    })),
+  ];
+
+  await withServer(
+    { id: ownerId },
+    [createSkillsRouter(database as never, storage.service as never)],
+    async (base) => {
+      const response = await request(base, "/api/skills", {
+        method: "POST",
+        body: {
+          name: "Supported extension matrix",
+          versionLabel: "1.0",
+          fileName: "skill.zip",
+          objectPath: makeUploadObjectPath(
+            ownerId,
+            "70000000-0000-4000-8000-000000000007",
+          ),
+          files,
+        },
+      });
+      assert.equal(response.status, 201);
+    },
+  );
+
+  assert.deepEqual(
+    (database.versions[0]?.files as SkillFileFixture[]).map(
+      ({ path: filePath }) => path.extname(filePath).toLowerCase(),
+    ),
+    [".md", ...sharedValidationCases.supportedExtensions],
+  );
+});
 
 test("unauthenticated requests cannot list skills, versions, questions, upload URLs, or private ZIP objects", async () => {
   const database = new MemoryDatabase();

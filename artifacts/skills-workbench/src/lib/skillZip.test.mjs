@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import {
   readZipTextFiles,
@@ -6,6 +7,15 @@ import {
 } from "./skillZip.ts";
 
 const encoder = new TextEncoder();
+const sharedValidationCases = JSON.parse(
+  readFileSync(
+    new URL(
+      "../../../../test-fixtures/skill-archive-validation.json",
+      import.meta.url,
+    ),
+    "utf8",
+  ),
+);
 
 function crc32(bytes) {
   let value = 0xffffffff;
@@ -115,11 +125,37 @@ test("reads a valid SKILL.md archive and supported text files", async () => {
   ]);
 });
 
-test("rejects a ZIP without SKILL.md", async () => {
-  await assert.rejects(
-    readZipTextFiles(createZip([{ name: "README.md", content: "Not a skill." }])),
-    /does not contain a SKILL\.md/,
+test("accepts every supported file extension in the shared API validation matrix", async () => {
+  const entries = [
+    skillFile(),
+    ...sharedValidationCases.supportedExtensions.map((extension) => ({
+      name: `references/example${extension}`,
+      content: `Text in ${extension}`,
+    })),
+  ];
+  const files = await readZipTextFiles(createZip(entries));
+
+  assert.deepEqual(
+    files.map(({ path }) => path),
+    entries.map(({ name }) => name),
   );
+});
+
+test("rejects the shared invalid archive cases used by API validation", async (t) => {
+  for (const scenario of sharedValidationCases.invalidArchives) {
+    await t.test(scenario.name, async () => {
+      await assert.rejects(
+        readZipTextFiles(
+          createZip(
+            scenario.files.map(({ path, content }) => ({
+              name: path,
+              content,
+            })),
+          ),
+        ),
+      );
+    });
+  }
 });
 
 test("rejects traversal, absolute, and drive-prefixed paths", async (t) => {
