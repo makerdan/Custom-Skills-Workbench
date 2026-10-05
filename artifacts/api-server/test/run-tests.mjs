@@ -1,12 +1,13 @@
 import { spawnSync } from "node:child_process";
 import { mkdtemp, rm } from "node:fs/promises";
-import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { build } from "esbuild";
 
 const apiDir = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
-const outputDir = await mkdtemp(path.join(os.tmpdir(), "api-server-test-"));
+// Keep the bundled file beneath the package root so Node can resolve its
+// external dependencies through this package's pnpm node_modules links.
+const outputDir = await mkdtemp(path.join(apiDir, ".api-server-test-"));
 const bundledTest = path.join(outputDir, "routes.test.mjs");
 
 try {

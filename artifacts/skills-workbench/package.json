@@ -7,7 +7,7 @@
     "dev": "vite --config vite.config.ts --host 0.0.0.0",
     "build": "vite build --config vite.config.ts",
     "serve": "vite preview --config vite.config.ts --host 0.0.0.0",
-    "test": "node --experimental-strip-types --test src/lib/skillZip.test.mjs src/lib/skillBatch.test.mjs",
+    "test": "node --experimental-strip-types --test src/lib/skillZip.test.mjs src/lib/skillBatch.test.mjs src/lib/shareDestinations.test.mjs",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "devDependencies": {

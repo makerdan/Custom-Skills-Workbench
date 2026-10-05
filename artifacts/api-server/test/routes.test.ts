@@ -25,7 +25,10 @@ import {
   ObjectOwnershipError,
   setObjectAclPolicy,
 } from "../src/lib/objectAcl";
-import { ObjectStorageService } from "../src/lib/objectStorage";
+import {
+  ObjectStorageService,
+  SharedObjectAccessError,
+} from "../src/lib/objectStorage";
 
 const ownerId = "owner-aaaaaaaa";
 const otherOwnerId = "owner-bbbbbbbb";
@@ -167,15 +170,17 @@ class MemoryDatabase {
     if (table === getTableName(skillsTable)) {
       const owner = paramFor(compiled.sql, params, "skills", "owner_id");
       const publicFlag = paramFor(compiled.sql, params, "skills", "is_public");
-      assert.ok(
-        owner || publicFlag === true,
-        "skill queries must filter by owner or public visibility",
-      );
       const id = paramFor(compiled.sql, params, "skills", "id");
+      assert.ok(
+        owner || publicFlag === true || id,
+        "skill queries must filter by owner, public visibility, or a token-resolved ID",
+      );
       let rows = this.skills.filter(
         (skill) =>
           (owner === undefined
-            ? skill.isPublic === true
+            ? publicFlag === true
+              ? skill.isPublic === true
+              : true
             : skill.ownerId === owner) &&
           (id === undefined || skill.id === id),
       );
@@ -293,12 +298,19 @@ class MemoryDatabase {
         "skill_versions",
         "skill_id",
       );
+      const shareToken = paramFor(
+        compiled.sql,
+        params,
+        "skill_versions",
+        "share_token",
+      );
       let rows = this.versions.filter(
         (version) =>
           (owner === undefined || version.ownerId === owner) &&
           (versionId === undefined || version.id === versionId) &&
           (requestedSkillId === undefined ||
-            version.skillId === requestedSkillId),
+            version.skillId === requestedSkillId) &&
+          (shareToken === undefined || version.shareToken === shareToken),
       );
       if (isCountSelection(query.selection)) {
         return [{ value: rows.length }];
@@ -386,15 +398,21 @@ class MemoryDatabase {
             const compiled = new PgDialect().sqlToQuery(condition as never);
             const params = compiled.params as unknown[];
             this.updates.push({ table: tableName, sql: compiled.sql, params });
-            if (tableName !== getTableName(skillsTable)) {
+            if (
+              tableName !== getTableName(skillsTable) &&
+              tableName !== getTableName(skillVersionsTable)
+            ) {
               throw new Error(`Unexpected update table: ${tableName}`);
             }
-            const id = paramFor(compiled.sql, params, "skills", "id");
+            const isSkillsTable = tableName === getTableName(skillsTable);
+            const id = paramFor(compiled.sql, params, isSkillsTable ? "skills" : "skill_versions", "id");
             const owner = paramFor(compiled.sql, params, "skills", "owner_id");
-            const matches = this.skills.filter(
-              (skill) =>
-                (id === undefined || skill.id === id) &&
-                (owner === undefined || skill.ownerId === owner),
+            const skillId = paramFor(compiled.sql, params, "skill_versions", "skill_id");
+            const matches = (isSkillsTable ? this.skills : this.versions).filter(
+              (row) =>
+                (id === undefined || row.id === id) &&
+                (owner === undefined || row.ownerId === owner) &&
+                (skillId === undefined || row.skillId === skillId),
             );
             for (const skill of matches) Object.assign(skill, values);
             return matches;
@@ -629,6 +647,44 @@ test("the ACL setter refuses to transfer an existing object to another owner", a
   assert.equal(objectFile.writes, 0);
 });
 
+test("public share downloads stream only privately owned object entities without caching", async () => {
+  const privateObject = makeAclObjectFile({
+    owner: ownerId,
+    visibility: "private",
+  });
+  const service = new ObjectStorageService();
+  service.getObjectEntityFile = async () => privateObject.file as never;
+  service.downloadObject = async (_file, cacheTtl) => {
+    assert.equal(cacheTtl, 0);
+    return new Response("EXACT_PRIVATE_ZIP");
+  };
+
+  const response = await service.downloadPrivateObjectEntity(
+    "/objects/uploads/private.zip",
+    ownerId,
+  );
+  assert.equal(await response.text(), "EXACT_PRIVATE_ZIP");
+  assert.equal(response.headers.get("cache-control"), "private, no-store");
+  assert.equal(response.headers.get("content-type"), "application/zip");
+
+  for (const policy of [
+    { owner: otherOwnerId, visibility: "private" as const },
+    { owner: ownerId, visibility: "public" as const },
+    null,
+  ]) {
+    const object = makeAclObjectFile(policy);
+    const guarded = new ObjectStorageService();
+    guarded.getObjectEntityFile = async () => object.file as never;
+    guarded.downloadObject = async () => {
+      throw new Error("must not stream an invalid shared object");
+    };
+    await assert.rejects(
+      guarded.downloadPrivateObjectEntity("/objects/uploads/private.zip", ownerId),
+      SharedObjectAccessError,
+    );
+  }
+});
+
 test("upload URL requests return object paths scoped to the authenticated owner", async () => {
   const originalFetch = globalThis.fetch;
   const objectStorage = new ObjectStorageService();
@@ -787,7 +843,7 @@ async function withServer(
     } as never;
     next();
   });
-  app.use("/api", ...(routers as never[]));
+  if (routers.length > 0) app.use("/api", ...(routers as never[]));
 
   const server = app.listen(0, "127.0.0.1");
   try {
@@ -1570,6 +1626,190 @@ test("a user cannot read another owner's skill versions", async () => {
       assert.deepEqual(await response.json(), { error: "Skill not found." });
     },
   );
+});
+
+test("share links are private by default, owner controlled, revocable, and pinned to one version", async () => {
+  const database = new MemoryDatabase();
+  database.skills = [
+    makeSkill(skillId, ownerId, firstVersionId),
+    makeSkill(otherSkillId, otherOwnerId, secondVersionId),
+  ];
+  database.skills[0].description = "Approved public share description";
+  database.versions = [
+    makeVersion(firstVersionId, skillId, ownerId, "1.0.0", "FIRST_ARCHIVE"),
+    makeVersion(secondVersionId, skillId, ownerId, "2.0.0", "SECOND_ARCHIVE"),
+    makeVersion(
+      "60000000-0000-4000-8000-000000000006",
+      otherSkillId,
+      otherOwnerId,
+      "9.0.0",
+      "OTHER_OWNER_ARCHIVE",
+    ),
+  ];
+  const downloadedObjects: Array<{ objectPath: string; ownerId: string }> = [];
+  const storage = {
+    downloadPrivateObjectEntity: async (objectPath: string, expectedOwnerId: string) => {
+      downloadedObjects.push({ objectPath, ownerId: expectedOwnerId });
+      return new Response(`ZIP_BYTES_FOR:${objectPath}`, {
+        headers: { "content-type": "application/zip" },
+      });
+    },
+  };
+  const router = createSkillsRouter(database as never, storage as never);
+  const unknownToken = "a".repeat(43);
+
+  await withServer(null, [router], async (base) => {
+    for (const path of [
+      `/api/skills/shared/${unknownToken}`,
+      `/api/skills/shared/${unknownToken}/download`,
+    ]) {
+      const response = await request(base, path);
+      assert.equal(response.status, 404);
+    }
+  });
+
+  let firstToken = "";
+  let activeToken = "";
+  await withServer({ id: ownerId }, [router], async (base) => {
+    const initialShares = await request(base, `/api/skills/${skillId}/shares`);
+    assert.equal(initialShares.status, 200);
+    assert.deepEqual(await initialShares.json(), { shares: [] });
+
+    const foreignSkillShare = await request(
+      base,
+      `/api/skills/${otherSkillId}/versions/${database.versions[2].id}/share`,
+      { method: "POST" },
+    );
+    const foreignVersionShare = await request(
+      base,
+      `/api/skills/${skillId}/versions/${database.versions[2].id}/share`,
+      { method: "POST" },
+    );
+    assert.equal(foreignSkillShare.status, 404);
+    assert.equal(foreignVersionShare.status, 404);
+
+    const created = await request(
+      base,
+      `/api/skills/${skillId}/versions/${firstVersionId}/share`,
+      { method: "POST" },
+    );
+    assert.equal(created.status, 200);
+    const createdBody = await created.json();
+    assert.deepEqual(Object.keys(createdBody).sort(), [
+      "createdAt",
+      "token",
+      "versionId",
+      "versionLabel",
+    ]);
+    assert.equal(createdBody.versionId, firstVersionId);
+    assert.equal(createdBody.versionLabel, "1.0.0");
+    assert.match(createdBody.token, /^[A-Za-z0-9_-]{43}$/);
+    firstToken = createdBody.token;
+
+    const listed = await request(base, `/api/skills/${skillId}/shares`);
+    const listedBody = await listed.json();
+    assert.equal(listedBody.shares.length, 1);
+    assert.equal(listedBody.shares[0].token, firstToken);
+
+    const publicDetailsResponse = await request(
+      base,
+      `/api/skills/shared/${firstToken}`,
+    );
+    assert.equal(publicDetailsResponse.status, 200);
+    assert.equal(publicDetailsResponse.headers.get("cache-control"), "private, no-store");
+    const publicDetails = await publicDetailsResponse.json();
+    assert.deepEqual(Object.keys(publicDetails).sort(), [
+      "description",
+      "fileCount",
+      "name",
+      "uploadedAt",
+      "versionLabel",
+    ]);
+    assert.equal(publicDetails.name, "Private skill A");
+    assert.equal(publicDetails.description, "Approved public share description");
+    assert.equal(publicDetails.versionLabel, "1.0.0");
+    const publicJson = JSON.stringify(publicDetails);
+    assert.equal(publicJson.includes(ownerId), false);
+    assert.equal(publicJson.includes("/objects/"), false);
+    assert.equal(publicJson.includes("FIRST_ARCHIVE"), false);
+    assert.equal(publicJson.includes("SECOND_ARCHIVE"), false);
+
+    const galleryResponse = await request(base, "/api/skills/public");
+    assert.equal(galleryResponse.status, 200);
+    assert.equal((await galleryResponse.json()).total, 0);
+
+    const download = await request(
+      base,
+      `/api/skills/shared/${firstToken}/download`,
+    );
+    assert.equal(download.status, 200);
+    assert.match(download.headers.get("content-type") ?? "", /^application\/zip/);
+    assert.equal(download.headers.get("cache-control"), "private, no-store");
+    assert.match(download.headers.get("content-disposition") ?? "", /^attachment;/);
+    const bytes = await download.text();
+    assert.equal(bytes, `ZIP_BYTES_FOR:${database.versions[0].objectPath}`);
+    assert.deepEqual(downloadedObjects, [
+      { objectPath: database.versions[0].objectPath, ownerId },
+    ]);
+    assert.equal(database.versions[1].shareToken, undefined);
+
+    const regenerated = await request(
+      base,
+      `/api/skills/${skillId}/versions/${firstVersionId}/share`,
+      { method: "POST" },
+    );
+    assert.equal(regenerated.status, 200);
+    activeToken = (await regenerated.json()).token;
+    assert.notEqual(activeToken, firstToken);
+
+    for (const path of [
+      `/api/skills/shared/${firstToken}`,
+      `/api/skills/shared/${firstToken}/download`,
+    ]) {
+      const response = await request(base, path);
+      assert.equal(response.status, 404);
+    }
+    assert.equal(
+      (await (await request(base, `/api/skills/shared/${activeToken}`)).json())
+        .versionLabel,
+      "1.0.0",
+    );
+  });
+
+  await withServer({ id: otherOwnerId }, [router], async (base) => {
+    for (const [path, method] of [
+      [`/api/skills/${skillId}/shares`, "GET"],
+      [`/api/skills/${skillId}/versions/${firstVersionId}/share`, "POST"],
+      [`/api/skills/${skillId}/versions/${firstVersionId}/share`, "DELETE"],
+    ] as const) {
+      const response = await request(base, path, { method });
+      assert.equal(response.status, 404);
+    }
+    assert.deepEqual(downloadedObjects, [
+      { objectPath: database.versions[0].objectPath, ownerId },
+    ]);
+  });
+
+  await withServer({ id: ownerId }, [router], async (base) => {
+    const revoked = await request(
+      base,
+      `/api/skills/${skillId}/versions/${firstVersionId}/share`,
+      { method: "DELETE" },
+    );
+    assert.equal(revoked.status, 204);
+    assert.equal(
+      (await request(base, `/api/skills/shared/${activeToken}`)).status,
+      404,
+    );
+    assert.equal(
+      (await request(base, `/api/skills/shared/${activeToken}/download`)).status,
+      404,
+    );
+    assert.deepEqual(
+      await (await request(base, `/api/skills/${skillId}/shares`)).json(),
+      { shares: [] },
+    );
+  });
 });
 
 test("a user sees only their own saved questions", async () => {

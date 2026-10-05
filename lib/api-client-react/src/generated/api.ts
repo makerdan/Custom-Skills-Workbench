@@ -34,6 +34,7 @@ import type {
   Question,
   QuestionInput,
   QuestionList,
+  SharedSkillVersion,
   Skill,
   SkillAnalysisInput,
   SkillCreateInput,
@@ -44,6 +45,8 @@ import type {
   SkillVersion,
   SkillVersionInput,
   SkillVersionList,
+  SkillVersionShare,
+  SkillVersionShareList,
   UploadUrlRequest,
   UploadUrlResponse,
   WorkbenchSummary
@@ -1136,6 +1139,160 @@ export function useListPublicSkills<TData = Awaited<ReturnType<typeof listPublic
 
 
 
+export const getGetSharedSkillVersionUrl = (token: string,) => {
+
+
+
+
+  return `/api/skills/shared/${token}`
+}
+
+/**
+ * @summary Get the approved details for one active, unlisted version share
+ */
+export const getSharedSkillVersion = async (token: string, options?: Parameters<typeof customFetch>[1]): Promise<SharedSkillVersion> => {
+
+  return customFetch<SharedSkillVersion>(getGetSharedSkillVersionUrl(token),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getGetSharedSkillVersionQueryKey = (token: string,) => {
+    return [
+    `/api/skills/shared/${token}`
+    ] as const;
+    }
+
+
+export const getGetSharedSkillVersionQueryOptions = <TData = Awaited<ReturnType<typeof getSharedSkillVersion>>, TError = ErrorType<ErrorEnvelope>>(token: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getSharedSkillVersion>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGetSharedSkillVersionQueryKey(token);
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getSharedSkillVersion>>> = ({ signal }) => getSharedSkillVersion(token, { signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, enabled: token !== null && token !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getSharedSkillVersion>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type GetSharedSkillVersionQueryResult = NonNullable<Awaited<ReturnType<typeof getSharedSkillVersion>>>
+export type GetSharedSkillVersionQueryError = ErrorType<ErrorEnvelope>
+
+
+/**
+ * @summary Get the approved details for one active, unlisted version share
+ */
+
+export function useGetSharedSkillVersion<TData = Awaited<ReturnType<typeof getSharedSkillVersion>>, TError = ErrorType<ErrorEnvelope>>(
+ token: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getSharedSkillVersion>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getGetSharedSkillVersionQueryOptions(token,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+
+
+
+
+
+
+export const getDownloadSharedSkillVersionUrl = (token: string,) => {
+
+
+
+
+  return `/api/skills/shared/${token}/download`
+}
+
+/**
+ * @summary Stream the ZIP archive for one active, unlisted version share
+ */
+export const downloadSharedSkillVersion = async (token: string, options?: Parameters<typeof customFetch>[1]): Promise<Blob> => {
+
+  return customFetch<Blob>(getDownloadSharedSkillVersionUrl(token),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getDownloadSharedSkillVersionQueryKey = (token: string,) => {
+    return [
+    `/api/skills/shared/${token}/download`
+    ] as const;
+    }
+
+
+export const getDownloadSharedSkillVersionQueryOptions = <TData = Awaited<ReturnType<typeof downloadSharedSkillVersion>>, TError = ErrorType<ErrorEnvelope>>(token: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof downloadSharedSkillVersion>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getDownloadSharedSkillVersionQueryKey(token);
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof downloadSharedSkillVersion>>> = ({ signal }) => downloadSharedSkillVersion(token, { signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, enabled: token !== null && token !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof downloadSharedSkillVersion>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type DownloadSharedSkillVersionQueryResult = NonNullable<Awaited<ReturnType<typeof downloadSharedSkillVersion>>>
+export type DownloadSharedSkillVersionQueryError = ErrorType<ErrorEnvelope>
+
+
+/**
+ * @summary Stream the ZIP archive for one active, unlisted version share
+ */
+
+export function useDownloadSharedSkillVersion<TData = Awaited<ReturnType<typeof downloadSharedSkillVersion>>, TError = ErrorType<ErrorEnvelope>>(
+ token: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof downloadSharedSkillVersion>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getDownloadSharedSkillVersionQueryOptions(token,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+
+
+
+
+
+
 export const getAnalyzeSkillDescriptionUrl = () => {
 
 
@@ -1566,6 +1723,235 @@ export const useCreateSkillVersion = <TError = ErrorType<ErrorEnvelope>,
         TContext
       > => {
       return useMutation(getCreateSkillVersionMutationOptions(options));
+    }
+
+export const getListSkillVersionSharesUrl = (skillId: string,) => {
+
+
+
+
+  return `/api/skills/${skillId}/shares`
+}
+
+/**
+ * @summary List active version-share links for the current owner's skill
+ */
+export const listSkillVersionShares = async (skillId: string, options?: Parameters<typeof customFetch>[1]): Promise<SkillVersionShareList> => {
+
+  return customFetch<SkillVersionShareList>(getListSkillVersionSharesUrl(skillId),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getListSkillVersionSharesQueryKey = (skillId: string,) => {
+    return [
+    `/api/skills/${skillId}/shares`
+    ] as const;
+    }
+
+
+export const getListSkillVersionSharesQueryOptions = <TData = Awaited<ReturnType<typeof listSkillVersionShares>>, TError = ErrorType<ErrorEnvelope>>(skillId: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof listSkillVersionShares>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getListSkillVersionSharesQueryKey(skillId);
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof listSkillVersionShares>>> = ({ signal }) => listSkillVersionShares(skillId, { signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, enabled: skillId !== null && skillId !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof listSkillVersionShares>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type ListSkillVersionSharesQueryResult = NonNullable<Awaited<ReturnType<typeof listSkillVersionShares>>>
+export type ListSkillVersionSharesQueryError = ErrorType<ErrorEnvelope>
+
+
+/**
+ * @summary List active version-share links for the current owner's skill
+ */
+
+export function useListSkillVersionShares<TData = Awaited<ReturnType<typeof listSkillVersionShares>>, TError = ErrorType<ErrorEnvelope>>(
+ skillId: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof listSkillVersionShares>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getListSkillVersionSharesQueryOptions(skillId,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+
+
+
+
+
+
+export const getCreateOrRegenerateSkillVersionShareUrl = (skillId: string,
+    versionId: string,) => {
+
+
+
+
+  return `/api/skills/${skillId}/versions/${versionId}/share`
+}
+
+/**
+ * @summary Create or regenerate the current owner's link for an exact version
+ */
+export const createOrRegenerateSkillVersionShare = async (skillId: string,
+    versionId: string, options?: Parameters<typeof customFetch>[1]): Promise<SkillVersionShare> => {
+
+  return customFetch<SkillVersionShare>(getCreateOrRegenerateSkillVersionShareUrl(skillId,versionId),
+  {
+    ...options,
+    method: 'POST'
+
+
+  }
+);}
+
+
+
+
+
+export const getCreateOrRegenerateSkillVersionShareMutationKey = () => ['createOrRegenerateSkillVersionShare'] as const;
+
+export const getCreateOrRegenerateSkillVersionShareMutationOptions = <TError = ErrorType<ErrorEnvelope>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createOrRegenerateSkillVersionShare>>, TError,CreateOrRegenerateSkillVersionShareMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof createOrRegenerateSkillVersionShare>>, TError,CreateOrRegenerateSkillVersionShareMutationVariables, TContext> => {
+
+const mutationKey = getCreateOrRegenerateSkillVersionShareMutationKey();
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof createOrRegenerateSkillVersionShare>>, CreateOrRegenerateSkillVersionShareMutationVariables> = (props) => {
+          const {skillId,versionId} = props ?? {};
+
+          return  createOrRegenerateSkillVersionShare(skillId,versionId,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type CreateOrRegenerateSkillVersionShareMutationResult = NonNullable<Awaited<ReturnType<typeof createOrRegenerateSkillVersionShare>>>
+
+    export type CreateOrRegenerateSkillVersionShareMutationError = ErrorType<ErrorEnvelope>
+    export type CreateOrRegenerateSkillVersionShareMutationVariables = {skillId: string;versionId: string}
+
+    /**
+ * @summary Create or regenerate the current owner's link for an exact version
+ */
+export const useCreateOrRegenerateSkillVersionShare = <TError = ErrorType<ErrorEnvelope>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createOrRegenerateSkillVersionShare>>, TError,CreateOrRegenerateSkillVersionShareMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof createOrRegenerateSkillVersionShare>>,
+        TError,
+        CreateOrRegenerateSkillVersionShareMutationVariables,
+        TContext
+      > => {
+      return useMutation(getCreateOrRegenerateSkillVersionShareMutationOptions(options));
+    }
+
+export const getRevokeSkillVersionShareUrl = (skillId: string,
+    versionId: string,) => {
+
+
+
+
+  return `/api/skills/${skillId}/versions/${versionId}/share`
+}
+
+/**
+ * @summary Revoke the current owner's link for an exact version
+ */
+export const revokeSkillVersionShare = async (skillId: string,
+    versionId: string, options?: Parameters<typeof customFetch>[1]): Promise<void> => {
+
+  return customFetch<void>(getRevokeSkillVersionShareUrl(skillId,versionId),
+  {
+    ...options,
+    method: 'DELETE'
+
+
+  }
+);}
+
+
+
+
+
+export const getRevokeSkillVersionShareMutationKey = () => ['revokeSkillVersionShare'] as const;
+
+export const getRevokeSkillVersionShareMutationOptions = <TError = ErrorType<ErrorEnvelope>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof revokeSkillVersionShare>>, TError,RevokeSkillVersionShareMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof revokeSkillVersionShare>>, TError,RevokeSkillVersionShareMutationVariables, TContext> => {
+
+const mutationKey = getRevokeSkillVersionShareMutationKey();
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof revokeSkillVersionShare>>, RevokeSkillVersionShareMutationVariables> = (props) => {
+          const {skillId,versionId} = props ?? {};
+
+          return  revokeSkillVersionShare(skillId,versionId,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type RevokeSkillVersionShareMutationResult = NonNullable<Awaited<ReturnType<typeof revokeSkillVersionShare>>>
+
+    export type RevokeSkillVersionShareMutationError = ErrorType<ErrorEnvelope>
+    export type RevokeSkillVersionShareMutationVariables = {skillId: string;versionId: string}
+
+    /**
+ * @summary Revoke the current owner's link for an exact version
+ */
+export const useRevokeSkillVersionShare = <TError = ErrorType<ErrorEnvelope>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof revokeSkillVersionShare>>, TError,RevokeSkillVersionShareMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof revokeSkillVersionShare>>,
+        TError,
+        RevokeSkillVersionShareMutationVariables,
+        TContext
+      > => {
+      return useMutation(getRevokeSkillVersionShareMutationOptions(options));
     }
 
 export const getListQuestionsUrl = () => {

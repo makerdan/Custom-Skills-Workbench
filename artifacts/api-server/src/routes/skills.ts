@@ -6,9 +6,16 @@ import {
   CreateSkillVersionBody,
   CreateSkillVersionParams,
   CreateSkillVersionResponse,
+  CreateOrRegenerateSkillVersionShareParams,
+  CreateOrRegenerateSkillVersionShareResponse,
+  DownloadSharedSkillVersionParams,
+  GetSharedSkillVersionParams,
+  GetSharedSkillVersionResponse,
   ListSkillsResponse,
   ListPublicSkillsQueryParams,
   ListPublicSkillsResponse,
+  ListSkillVersionSharesParams,
+  ListSkillVersionSharesResponse,
   UpdateSkillPublicationBody,
   UpdateSkillPublicationParams,
   UpdateSkillPublicationResponse,
@@ -17,7 +24,9 @@ import {
   UpdateSkillDetailsBody,
   UpdateSkillDetailsParams,
   UpdateSkillDetailsResponse,
+  RevokeSkillVersionShareParams,
 } from "@workspace/api-zod";
+import { randomBytes } from "crypto";
 import {
   db as defaultDb,
   skillVersionsTable,
@@ -26,10 +35,16 @@ import {
 } from "@workspace/db";
 import { openai as defaultOpenai } from "@workspace/integrations-openai-ai-server";
 import { and, asc, count, desc, eq, gte, ilike, isNotNull, or, sql } from "drizzle-orm";
+import { Readable } from "stream";
+import { pipeline } from "stream/promises";
 import { Router, type IRouter } from "express";
 
 import { ObjectOwnershipError } from "../lib/objectAcl";
-import { ObjectStorageService } from "../lib/objectStorage";
+import {
+  ObjectNotFoundError,
+  ObjectStorageService,
+  SharedObjectAccessError,
+} from "../lib/objectStorage";
 import { toSkillDto, toSkillVersionDto } from "./skillDtos";
 
 const MAX_EXTRACTED_TEXT_BYTES = 2_500_000;
@@ -137,6 +152,268 @@ export function createSkillsRouter(
   openai: typeof defaultOpenai = defaultOpenai,
 ): IRouter {
   const router: IRouter = Router();
+
+  async function findActiveSharedVersion(token: string) {
+    const [version] = await database
+      .select()
+      .from(skillVersionsTable)
+      .where(eq(skillVersionsTable.shareToken, token))
+      .limit(1);
+    if (!version) return null;
+    const [skill] = await database
+      .select()
+      .from(skillsTable)
+      .where(eq(skillsTable.id, version.skillId))
+      .limit(1);
+    if (!skill) return null;
+    return { skill, version };
+  }
+
+  router.get("/skills/shared/:token", async (req, res): Promise<void> => {
+    const parsed = GetSharedSkillVersionParams.safeParse(req.params);
+    if (!parsed.success) {
+      res.status(404).json({ error: "Share link not found." });
+      return;
+    }
+    const shared = await findActiveSharedVersion(parsed.data.token);
+    if (!shared) {
+      res.status(404).json({ error: "Share link not found." });
+      return;
+    }
+    res.setHeader("Cache-Control", "private, no-store");
+    res.setHeader("Referrer-Policy", "no-referrer");
+    res.json(
+      GetSharedSkillVersionResponse.parse({
+        name: shared.skill.name,
+        description: shared.skill.description,
+        versionLabel: shared.version.versionLabel,
+        fileCount: shared.version.files.length,
+        uploadedAt: shared.version.uploadedAt,
+      }),
+    );
+  });
+
+  router.get(
+    "/skills/shared/:token/download",
+    async (req, res): Promise<void> => {
+      const parsed = DownloadSharedSkillVersionParams.safeParse(req.params);
+      if (!parsed.success) {
+        res.status(404).json({ error: "Share link not found." });
+        return;
+      }
+      const shared = await findActiveSharedVersion(parsed.data.token);
+      if (!shared) {
+        res.status(404).json({ error: "Share link not found." });
+        return;
+      }
+      try {
+        const response = await objectStorage.downloadPrivateObjectEntity(
+          shared.version.objectPath,
+          shared.skill.ownerId,
+        );
+        res.status(response.status);
+        response.headers.forEach((value, key) => res.setHeader(key, value));
+        res.setHeader("Content-Type", "application/zip");
+        res.setHeader("Cache-Control", "private, no-store");
+        res.setHeader("Referrer-Policy", "no-referrer");
+        res.setHeader("X-Content-Type-Options", "nosniff");
+        const safeBaseName = `${shared.skill.name}-${shared.version.versionLabel}`
+          .replace(/[^\p{L}\p{N}._-]+/gu, "_")
+          .slice(0, 120) || "skill";
+        const asciiBaseName = safeBaseName.replace(/[^\x20-\x7E]/g, "_");
+        res.setHeader(
+          "Content-Disposition",
+          `attachment; filename="${asciiBaseName}.zip"; filename*=UTF-8''${encodeURIComponent(`${safeBaseName}.zip`)}`,
+        );
+        if (response.body) {
+          await pipeline(
+            Readable.fromWeb(response.body as ReadableStream<Uint8Array>),
+            res,
+          );
+        } else {
+          res.end();
+        }
+      } catch (error) {
+        if (res.destroyed) return;
+        if (
+          error instanceof ObjectNotFoundError ||
+          error instanceof SharedObjectAccessError
+        ) {
+          res.status(404).json({ error: "Shared archive not found." });
+          return;
+        }
+        if (res.headersSent) {
+          res.destroy();
+          return;
+        }
+        req.log.error({ err: error }, "Failed to stream shared skill archive");
+        res.status(500).json({ error: "Shared archive could not be downloaded." });
+      }
+    },
+  );
+
+  router.get("/skills/:skillId/shares", async (req, res): Promise<void> => {
+    if (!req.isAuthenticated()) {
+      res.status(401).json({ error: "Unauthorized" });
+      return;
+    }
+    const parsed = ListSkillVersionSharesParams.safeParse(req.params);
+    if (!parsed.success) {
+      res.status(400).json({ error: parsed.error.message });
+      return;
+    }
+    const [skill] = await database
+      .select({ id: skillsTable.id })
+      .from(skillsTable)
+      .where(
+        and(
+          eq(skillsTable.id, parsed.data.skillId),
+          eq(skillsTable.ownerId, req.user.id),
+        ),
+      )
+      .limit(1);
+    if (!skill) {
+      res.status(404).json({ error: "Skill not found." });
+      return;
+    }
+    const versions = await database
+      .select()
+      .from(skillVersionsTable)
+      .where(eq(skillVersionsTable.skillId, skill.id));
+    res.json(
+      ListSkillVersionSharesResponse.parse({
+        shares: versions.flatMap((version) =>
+          version.shareToken && version.shareCreatedAt
+            ? [{
+                versionId: version.id,
+                versionLabel: version.versionLabel,
+                token: version.shareToken,
+                createdAt: version.shareCreatedAt,
+              }]
+            : [],
+        ),
+      }),
+    );
+  });
+
+  router.post(
+    "/skills/:skillId/versions/:versionId/share",
+    async (req, res): Promise<void> => {
+      if (!req.isAuthenticated()) {
+        res.status(401).json({ error: "Unauthorized" });
+        return;
+      }
+      const parsed = CreateOrRegenerateSkillVersionShareParams.safeParse(req.params);
+      if (!parsed.success) {
+        res.status(400).json({ error: parsed.error.message });
+        return;
+      }
+      const [skill] = await database
+        .select({ id: skillsTable.id })
+        .from(skillsTable)
+        .where(
+          and(
+            eq(skillsTable.id, parsed.data.skillId),
+            eq(skillsTable.ownerId, req.user.id),
+          ),
+        )
+        .limit(1);
+      if (!skill) {
+        res.status(404).json({ error: "Skill not found." });
+        return;
+      }
+      const [version] = await database
+        .select()
+        .from(skillVersionsTable)
+        .where(
+          and(
+            eq(skillVersionsTable.id, parsed.data.versionId),
+            eq(skillVersionsTable.skillId, skill.id),
+          ),
+        )
+        .limit(1);
+      if (!version) {
+        res.status(404).json({ error: "Version not found." });
+        return;
+      }
+      const token = randomBytes(32).toString("base64url");
+      const [updated] = await database
+        .update(skillVersionsTable)
+        .set({ shareToken: token, shareCreatedAt: new Date() })
+        .where(
+          and(
+            eq(skillVersionsTable.id, version.id),
+            eq(skillVersionsTable.skillId, skill.id),
+          ),
+        )
+        .returning();
+      if (!updated) {
+        res.status(404).json({ error: "Version not found." });
+        return;
+      }
+      res.json(
+        CreateOrRegenerateSkillVersionShareResponse.parse({
+          versionId: updated.id,
+          versionLabel: updated.versionLabel,
+          token: updated.shareToken,
+          createdAt: updated.shareCreatedAt,
+        }),
+      );
+    },
+  );
+
+  router.delete(
+    "/skills/:skillId/versions/:versionId/share",
+    async (req, res): Promise<void> => {
+      if (!req.isAuthenticated()) {
+        res.status(401).json({ error: "Unauthorized" });
+        return;
+      }
+      const parsed = RevokeSkillVersionShareParams.safeParse(req.params);
+      if (!parsed.success) {
+        res.status(400).json({ error: parsed.error.message });
+        return;
+      }
+      const [skill] = await database
+        .select({ id: skillsTable.id })
+        .from(skillsTable)
+        .where(
+          and(
+            eq(skillsTable.id, parsed.data.skillId),
+            eq(skillsTable.ownerId, req.user.id),
+          ),
+        )
+        .limit(1);
+      if (!skill) {
+        res.status(404).json({ error: "Skill not found." });
+        return;
+      }
+      const [version] = await database
+        .select()
+        .from(skillVersionsTable)
+        .where(
+          and(
+            eq(skillVersionsTable.id, parsed.data.versionId),
+            eq(skillVersionsTable.skillId, skill.id),
+          ),
+        )
+        .limit(1);
+      if (!version) {
+        res.status(404).json({ error: "Version not found." });
+        return;
+      }
+      await database
+        .update(skillVersionsTable)
+        .set({ shareToken: null, shareCreatedAt: null })
+        .where(
+          and(
+            eq(skillVersionsTable.id, version.id),
+            eq(skillVersionsTable.skillId, skill.id),
+          ),
+        );
+      res.status(204).end();
+    },
+  );
 
   router.get("/skills/public", async (req, res): Promise<void> => {
     const parsed = ListPublicSkillsQueryParams.safeParse(req.query);

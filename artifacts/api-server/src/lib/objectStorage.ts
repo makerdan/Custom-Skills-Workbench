@@ -44,6 +44,14 @@ export class ObjectNotFoundError extends Error {
   }
 }
 
+export class SharedObjectAccessError extends Error {
+  constructor() {
+    super('Shared object is unavailable');
+    this.name = 'SharedObjectAccessError';
+    Object.setPrototypeOf(this, SharedObjectAccessError.prototype);
+  }
+}
+
 export class ObjectStorageService {
   constructor(
     private readonly storageClient: Storage = objectStorageClient,
@@ -117,6 +125,30 @@ export class ObjectStorageService {
     }
 
     return new Response(webStream, { headers });
+  }
+
+  async downloadPrivateObjectEntity(
+    objectPath: string,
+    expectedOwnerId: string,
+  ): Promise<Response> {
+    const objectFile = await this.getObjectEntityFile(objectPath);
+    const policy = await getObjectAclPolicy(objectFile);
+    if (
+      !policy ||
+      policy.owner !== expectedOwnerId ||
+      policy.visibility !== 'private'
+    ) {
+      throw new SharedObjectAccessError();
+    }
+
+    const response = await this.downloadObject(objectFile, 0);
+    const headers = new Headers(response.headers);
+    headers.set('Cache-Control', 'private, no-store');
+    headers.set('Content-Type', 'application/zip');
+    return new Response(response.body, {
+      status: response.status,
+      headers,
+    });
   }
 
   async getObjectEntityUploadURL(ownerId: string): Promise<string> {

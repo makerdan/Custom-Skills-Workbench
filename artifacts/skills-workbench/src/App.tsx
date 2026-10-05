@@ -1,25 +1,31 @@
 import { useEffect, useMemo, useState } from 'react';
 import type { FormEvent, ReactNode } from 'react';
 import { QueryClient, QueryClientProvider, useQueryClient } from '@tanstack/react-query';
-import { Link, Route, Switch, useLocation, Router as WouterRouter } from 'wouter';
+import { Link, Route, Switch, useLocation, useRoute, Router as WouterRouter } from 'wouter';
 import { useAuth } from '@workspace/replit-auth-web';
 import { readZipTextFiles } from '@/lib/skillZip';
 import {
   useAskQuestion, useCreateSkill, useCreateSkillVersion, useGetWorkbenchSummary,
   useListQuestions, useListSkills, useListSkillVersions, useRequestUploadUrl,
   useListPublicSkills, useUpdateSkillDetails, useUpdateSkillPublication,
+  useListSkillVersionShares, useCreateOrRegenerateSkillVersionShare,
+  useRevokeSkillVersionShare, useGetSharedSkillVersion,
+  getListSkillVersionSharesQueryKey, getGetSharedSkillVersionQueryKey,
+  getDownloadSharedSkillVersionUrl,
   getGetWorkbenchSummaryQueryKey, getListQuestionsQueryKey, getListSkillsQueryKey,
   getListSkillVersionsQueryKey, getListPublicSkillsQueryKey,
 } from '@workspace/api-client-react';
-import type { ListPublicSkillsParams, Question, Skill, SkillFileInput } from '@workspace/api-client-react';
+import type { ListPublicSkillsParams, Question, Skill, SkillFileInput, SkillVersionShare } from '@workspace/api-client-react';
 import BatchSkillImport from '@/components/BatchSkillImport';
 import {
-  ArrowRight, ArrowUpRight, BookOpen, ChevronDown, CircleHelp,
+  ArrowRight, ArrowUpRight, ArrowDownToLine, BookOpen, ChevronDown, CircleHelp,
   Clock3, Code2, FileArchive, FileCode2, Layers3, LogOut,
   MessageSquareText, Plus, ShieldCheck, Sparkles, Upload, X,
   Globe2, LockKeyhole, Search, SlidersHorizontal, Tag,
+  Share2, Copy, RefreshCw, ExternalLink,
 } from 'lucide-react';
 import NotFound from '@/pages/not-found';
+import { buildDestinationHref, buildSharePageUrl, shareDestinations } from '@/lib/shareDestinations';
 
 const queryClient = new QueryClient();
 
@@ -203,10 +209,117 @@ function SkillsPage() {
   </>;
 }
 
+function VersionShareControl({
+  skillId,
+  versionId,
+  versionLabel,
+  skillName,
+  activeShare,
+  sharesLoading,
+  sharesError,
+  onRetryShares,
+  triggerLabel,
+  testId,
+}: {
+  skillId: string;
+  versionId: string;
+  versionLabel: string;
+  skillName: string;
+  activeShare?: SkillVersionShare;
+  sharesLoading: boolean;
+  sharesError: boolean;
+  onRetryShares: () => void;
+  triggerLabel: string;
+  testId: string;
+}) {
+  const queryClient = useQueryClient();
+  const createShare = useCreateOrRegenerateSkillVersionShare();
+  const revokeShare = useRevokeSkillVersionShare();
+  const [open, setOpen] = useState(false);
+  const [error, setError] = useState('');
+  const [copied, setCopied] = useState('');
+  const shareUrl = activeShare
+    ? buildSharePageUrl(activeShare.token, window.location.origin, import.meta.env.BASE_URL)
+    : '';
+
+  const refreshShares = async () => {
+    await queryClient.invalidateQueries({
+      queryKey: getListSkillVersionSharesQueryKey(skillId),
+    });
+  };
+  const generateLink = async () => {
+    setError('');
+    try {
+      await createShare.mutateAsync({ skillId, versionId });
+      await refreshShares();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'The share link could not be created.');
+    }
+  };
+  const revokeLink = async () => {
+    setError('');
+    try {
+      await revokeShare.mutateAsync({ skillId, versionId });
+      await refreshShares();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'The share link could not be revoked.');
+    }
+  };
+  const copyUrl = async (label: string) => {
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setCopied(`${label} copied.`);
+    } catch {
+      setCopied('Copy failed. Select and copy the link above.');
+    }
+  };
+
+  return <div className="relative" data-testid={`share-controls-${testId}`}>
+    <button
+      type="button"
+      className="btn-subtle !px-2.5 !py-2 text-[11px]"
+      onClick={() => setOpen(value => !value)}
+      aria-expanded={open}
+      data-testid={`button-${testId}`}
+    >
+      <Share2 size={13}/>{triggerLabel}
+    </button>
+    {open && <section className="absolute right-0 top-full z-20 mt-2 w-[min(22rem,calc(100vw-2.5rem))] rounded-xl border border-border bg-card p-4 shadow-lg sm:w-96" aria-label={`Share version ${versionLabel}`}>
+      <div className="flex items-start justify-between gap-3">
+        <div><p className="eyebrow">Unlisted version link</p><p className="text-xs font-semibold mt-1">{skillName} · v{versionLabel}</p></div>
+        <button type="button" className="rounded-md p-1.5 text-muted-foreground hover:bg-muted" onClick={() => setOpen(false)} aria-label="Close share controls"><X size={14}/></button>
+      </div>
+      <p className="text-[11px] leading-5 text-muted-foreground mt-2">This link shares only this version’s details and ZIP. It does not publish the skill to the gallery.</p>
+      {sharesLoading && <p className="text-[11px] text-muted-foreground mt-3" role="status">Checking active links…</p>}
+      {sharesError && <div className="mt-3 text-[11px] text-destructive" role="alert"><p>Active link status could not be checked.</p><button type="button" className="underline mt-1" onClick={onRetryShares}>Try again</button></div>}
+      {activeShare && <div className="mt-3">
+        <label className="block text-[10px] font-semibold" htmlFor={`share-url-${testId}`}>Active share URL</label>
+        <input id={`share-url-${testId}`} className="field mt-1 !py-2 text-[11px] font-normal" value={shareUrl} readOnly onFocus={event => event.currentTarget.select()} data-testid={`input-share-url-${testId}`}/>
+        <div className="flex flex-wrap gap-1.5 mt-2" aria-label="Share destinations">
+          {shareDestinations.map(destination => destination.kind === 'copy'
+            ? <button type="button" key={destination.id} className="btn-subtle !px-2 !py-1.5 text-[10px]" onClick={() => { void copyUrl(destination.label); }} data-testid={`button-destination-${destination.id}-${testId}`}><Copy size={12}/>{destination.label}</button>
+            : <a key={destination.id} className="btn-subtle !px-2 !py-1.5 text-[10px]" href={buildDestinationHref(destination.id, shareUrl, skillName) ?? undefined} target="_blank" rel="noopener noreferrer" data-testid={`link-destination-${destination.id}-${testId}`}>{destination.label}<ExternalLink size={11}/></a>)}
+        </div>
+        {copied && <p className="text-[10px] text-primary mt-2" role="status">{copied}</p>}
+        <p className="text-[10px] text-muted-foreground mt-2">Regenerating replaces this URL and immediately disables the old one.</p>
+      </div>}
+      {error && <p className="text-[11px] text-destructive mt-3" role="alert" data-testid={`status-share-error-${testId}`}>{error}</p>}
+      <div className="flex flex-wrap justify-end gap-2 mt-3">
+        {activeShare && <button type="button" className="btn-subtle !px-2.5 !py-2 text-[11px] text-destructive" disabled={revokeShare.isPending || sharesLoading || sharesError} onClick={() => { void revokeLink(); }} data-testid={`button-revoke-share-${testId}`}>Revoke link</button>}
+        <button type="button" className="btn-primary !px-2.5 !py-2 text-[11px]" disabled={createShare.isPending || sharesLoading || sharesError} onClick={() => { void generateLink(); }} data-testid={`button-generate-share-${testId}`}>
+          {createShare.isPending ? 'Saving…' : activeShare ? <><RefreshCw size={12}/>Regenerate link</> : 'Create share link'}
+        </button>
+      </div>
+    </section>}
+  </div>;
+}
+
 function SkillCard({ skill, selected, onToggle, version, setVersion, zip, setZip, busy, onUpload, error, onDetailsUpdated }: { skill: Skill; selected: boolean; onToggle: () => void; version: string; setVersion: (v: string) => void; zip: File | null; setZip: (v: File|null) => void; busy: boolean; onUpload: (e: FormEvent) => void; error: string; onDetailsUpdated: () => Promise<unknown> }) {
   const queryClient = useQueryClient();
   const updateSkillDetails = useUpdateSkillDetails();
   const updatePublication = useUpdateSkillPublication();
+  const sharesQuery = useListSkillVersionShares(skill.id);
+  const activeShares = sharesQuery.data?.shares ?? [];
   const [editing, setEditing] = useState(false);
   const [shareOpen, setShareOpen] = useState(false);
   const [publicEnabled, setPublicEnabled] = useState(skill.isPublic);
@@ -280,7 +393,7 @@ function SkillCard({ skill, selected, onToggle, version, setVersion, zip, setZip
       setPublicationError(err instanceof Error ? err.message : 'Sharing settings could not be saved. Try again.');
     }
   };
-  return <article className="panel overflow-hidden" data-testid={`card-skill-${skill.id}`}>
+  return <article className="panel overflow-visible" data-testid={`card-skill-${skill.id}`}>
     <div className="w-full p-5 sm:p-6 flex items-start gap-4">
       <button onClick={onToggle} className="min-w-0 flex-1 text-left flex items-start gap-4 hover:opacity-90 transition-opacity" data-testid={`button-expand-skill-${skill.id}`}>
         <span className="grid place-items-center w-11 h-11 rounded-xl bg-accent/65 text-primary shrink-0"><FileCode2 size={19}/></span>
@@ -289,6 +402,18 @@ function SkillCard({ skill, selected, onToggle, version, setVersion, zip, setZip
         <ChevronDown size={17} className={`text-muted-foreground mt-1 transition-transform ${selected ? 'rotate-180' : ''}`}/>
       </button>
        <div className="flex flex-wrap justify-end gap-2 shrink-0">
+          {skill.currentVersionId && <VersionShareControl
+            skillId={skill.id}
+            versionId={skill.currentVersionId}
+            versionLabel={skill.versions.find(v => v.id === skill.currentVersionId)?.versionLabel ?? 'current'}
+            skillName={skill.name}
+            activeShare={activeShares.find(share => share.versionId === skill.currentVersionId)}
+            sharesLoading={sharesQuery.isLoading}
+            sharesError={sharesQuery.isError}
+            onRetryShares={() => { void sharesQuery.refetch(); }}
+            triggerLabel="Share current"
+            testId={`share-current-${skill.id}`}
+          />}
          <button type="button" className="btn-subtle !px-2.5 !py-2 text-[11px]" onClick={() => { setPublicEnabled(skill.isPublic); setPublicCategory(skill.category ?? ''); setPublicLanguage(skill.language ?? ''); setPublicFramework(skill.framework ?? ''); setPublicUseCase(skill.useCase ?? ''); setPublicTags(skill.tags.join(', ')); setPublicCreator(skill.creatorLabel ?? ''); setPublicationError(''); setShareOpen(v => !v); }} data-testid={`button-share-skill-${skill.id}`}><Globe2 size={13}/>{skill.isPublic ? 'Public settings' : 'Share'}</button>
          <button type="button" className="btn-subtle !px-2.5 !py-2 text-[11px]" onClick={() => { if (!selected) onToggle(); setEditName(skill.name); setEditDescription(skill.description ?? ''); setDetailsError(''); setEditing(true); }} data-testid={`button-edit-skill-details-${skill.id}`}>Edit details</button>
        </div>
@@ -319,7 +444,7 @@ function SkillCard({ skill, selected, onToggle, version, setVersion, zip, setZip
       </form>}
       <div className="grid lg:grid-cols-[1fr_300px] gap-7">
         <div><p className="eyebrow mb-3">Uploaded versions</p>{versionsQuery.isLoading ? <SkeletonLines count={2}/> : versionsQuery.isError ? <ErrorNotice retry={()=>versionsQuery.refetch()}/> :
-          <div className="space-y-2">{versions.map(v=><div key={v.id} className="flex gap-3 items-center rounded-lg border border-border bg-card p-3" data-testid={`row-version-${v.id}`}><span className="w-8 h-8 grid place-items-center rounded-lg bg-muted text-primary"><FileArchive size={15}/></span><div className="flex-1 min-w-0"><p className="text-xs font-semibold font-mono" data-testid={`text-version-label-${v.id}`}>v{v.versionLabel}{v.id===skill.currentVersionId && <span className="ml-2 font-sans text-[9px] uppercase tracking-wider text-primary">Current</span>}</p><p className="text-[10px] text-muted-foreground mt-1 truncate">{v.fileName} · {v.fileCount} files · {dateLabel(v.uploadedAt)}</p></div><span title={v.filePaths.join(', ')} className="text-[10px] text-muted-foreground hidden sm:block">{v.filePaths.length} paths</span></div>)}</div>}
+          <div className="space-y-2">{versions.map(v=><div key={v.id} className="flex flex-wrap gap-3 items-center rounded-lg border border-border bg-card p-3" data-testid={`row-version-${v.id}`}><span className="w-8 h-8 grid place-items-center rounded-lg bg-muted text-primary"><FileArchive size={15}/></span><div className="flex-1 min-w-0"><p className="text-xs font-semibold font-mono" data-testid={`text-version-label-${v.id}`}>v{v.versionLabel}{v.id===skill.currentVersionId && <span className="ml-2 font-sans text-[9px] uppercase tracking-wider text-primary">Current</span>}</p><p className="text-[10px] text-muted-foreground mt-1 truncate">{v.fileName} · {v.fileCount} files · {dateLabel(v.uploadedAt)}</p></div><span title={v.filePaths.join(', ')} className="text-[10px] text-muted-foreground hidden sm:block">{v.filePaths.length} paths</span><VersionShareControl skillId={skill.id} versionId={v.id} versionLabel={v.versionLabel} skillName={skill.name} activeShare={activeShares.find(share => share.versionId === v.id)} sharesLoading={sharesQuery.isLoading} sharesError={sharesQuery.isError} onRetryShares={() => { void sharesQuery.refetch(); }} triggerLabel="Share version" testId={`share-version-${v.id}`}/></div>)}</div>}
         </div>
         <form onSubmit={onUpload} className="lg:border-l lg:border-border lg:pl-6" data-testid={`form-upload-version-${skill.id}`}>
           <p className="eyebrow">Keep it current</p><h3 className="font-semibold text-sm mt-1 mb-4">Upload a new version</h3>
@@ -578,9 +703,66 @@ function QuestionsPage() {
   </>;
 }
 
+function SharedSkillPage() {
+  const [matched, params] = useRoute('/share/:token');
+  const token = matched ? params?.token ?? '' : '';
+  const sharedQuery = useGetSharedSkillVersion(token, {
+    query: {
+      queryKey: getGetSharedSkillVersionQueryKey(token),
+      enabled: Boolean(token),
+      retry: false,
+    },
+  });
+  const shared = sharedQuery.data;
+  useEffect(() => {
+    const robotsMeta = document.querySelector<HTMLMetaElement>('meta[name="robots"]');
+    const previousRobots = robotsMeta?.content;
+    if (robotsMeta) robotsMeta.content = 'noindex, nofollow';
+    const previousTitle = document.title;
+    document.title = shared ? `${shared.name} · Skills Workbench` : 'Shared skill · Skills Workbench';
+    return () => {
+      if (robotsMeta && previousRobots !== undefined) robotsMeta.content = previousRobots;
+      document.title = previousTitle;
+    };
+  }, [shared]);
+
+  return <main className="min-h-[100dvh] px-5 py-10 sm:px-8 sm:py-16">
+    <div className="mx-auto max-w-3xl">
+      <Link href="/gallery" className="inline-flex items-center gap-2 text-sm font-semibold" data-testid="link-shared-brand">
+        <span className="grid place-items-center w-9 h-9 rounded-xl bg-primary text-primary-foreground"><Code2 size={18}/></span>
+        Skills Workbench
+      </Link>
+      {sharedQuery.isLoading ? <section className="panel mt-10 p-7"><SkeletonLines count={2}/></section> :
+        sharedQuery.isError || !shared ? <section className="panel mt-10 p-7 sm:p-10 text-center" data-testid="shared-link-unavailable">
+          <div className="mx-auto grid place-items-center w-12 h-12 rounded-full bg-muted text-muted-foreground"><LockKeyhole size={20}/></div>
+          <p className="eyebrow mt-5">Unlisted skill version</p>
+          <h1 className="display text-3xl mt-2">This link is unavailable.</h1>
+          <p className="text-sm text-muted-foreground mt-3">It may have been revoked or is no longer valid.</p>
+          <Link href="/gallery" className="btn-subtle mt-6" data-testid="link-unavailable-gallery">Explore public skills <ArrowRight size={14}/></Link>
+        </section> : <article className="panel mt-10 overflow-hidden" data-testid="shared-skill-page">
+          <div className="bg-[hsl(var(--accent)/.32)] px-6 py-7 sm:px-10 sm:py-9">
+            <p className="eyebrow">Unlisted version share</p>
+            <h1 className="display text-4xl sm:text-5xl mt-3" data-testid="text-shared-skill-name">{shared.name}</h1>
+            <p className="mt-3 text-sm text-muted-foreground">Version <span className="font-mono font-semibold">v{shared.versionLabel}</span> · {shared.fileCount} files</p>
+          </div>
+          <div className="px-6 py-6 sm:px-10 sm:py-8">
+            <p className="text-xs text-muted-foreground">Uploaded {dateLabel(shared.uploadedAt)}</p>
+            {shared.description && <p className="text-sm leading-6 mt-4 whitespace-pre-wrap" data-testid="text-shared-skill-description">{shared.description}</p>}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-7 border-t border-border pt-6">
+              <p className="text-xs leading-5 text-muted-foreground">This link provides access only to the selected version’s ZIP archive.</p>
+              <a className="btn-primary shrink-0" href={getDownloadSharedSkillVersionUrl(token)} data-testid="link-download-shared-version"><FileArchive size={15}/> Download version ZIP <ArrowDownToLine size={14}/></a>
+            </div>
+          </div>
+        </article>}
+      <p className="text-[11px] text-muted-foreground text-center mt-6">This page is unlisted and does not appear in the public gallery.</p>
+    </div>
+  </main>;
+}
+
 function Router() {
   return <Switch>
     <Route path="/gallery" component={PublicGallery}/>
+    <Route path="/share/:token" component={SharedSkillPage}/>
     <Route><Shell><Switch>
       <Route path="/" component={Overview}/>
       <Route path="/skills" component={SkillsPage}/>

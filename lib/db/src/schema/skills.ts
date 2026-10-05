@@ -49,6 +49,8 @@ export const skillVersionsTable = pgTable(
     fileName: varchar("file_name", { length: 255 }).notNull(),
     objectPath: text("object_path").notNull(),
     files: jsonb("files").$type<SkillTextFile[]>().notNull(),
+    shareToken: varchar("share_token", { length: 64 }).unique(),
+    shareCreatedAt: timestamp("share_created_at", { withTimezone: true }),
     uploadedAt: timestamp("uploaded_at", { withTimezone: true })
       .notNull()
       .defaultNow(),

@@ -256,6 +256,27 @@ export interface SkillVersionList {
   versions: SkillVersion[];
 }
 
+export interface SkillVersionShare {
+  versionId: string;
+  versionLabel: string;
+  /** @pattern ^[A-Za-z0-9_-]{43}$ */
+  token: string;
+  createdAt: string;
+}
+
+export interface SkillVersionShareList {
+  shares: SkillVersionShare[];
+}
+
+export interface SharedSkillVersion {
+  name: string;
+  /** @nullable */
+  description: string | null;
+  versionLabel: string;
+  fileCount: number;
+  uploadedAt: string;
+}
+
 export interface QuestionInput {
   skillVersionId: string;
   /** @maxLength 120 */

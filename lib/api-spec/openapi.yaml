@@ -330,6 +330,51 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorEnvelope"
+  /skills/shared/{token}:
+    get:
+      tags: [Skills]
+      operationId: getSharedSkillVersion
+      summary: Get the approved details for one active, unlisted version share
+      parameters:
+        - name: token
+          in: path
+          required: true
+          schema: { type: string, pattern: "^[A-Za-z0-9_-]{43}$" }
+      responses:
+        "200":
+          description: Approved details for the exact shared version.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SharedSkillVersion"
+        "404":
+          description: The share link is invalid or revoked.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+  /skills/shared/{token}/download:
+    get:
+      tags: [Skills]
+      operationId: downloadSharedSkillVersion
+      summary: Stream the ZIP archive for one active, unlisted version share
+      parameters:
+        - name: token
+          in: path
+          required: true
+          schema: { type: string, pattern: "^[A-Za-z0-9_-]{43}$" }
+      responses:
+        "200":
+          description: The private archive associated with this exact share.
+          content:
+            application/zip:
+              schema: { type: string, format: binary }
+        "404":
+          description: The share link is invalid, revoked, or its archive is unavailable.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
   /skills/analyze-description:
     post:
       tags: [Skills]
@@ -501,6 +546,96 @@ paths:
                 $ref: "#/components/schemas/ErrorEnvelope"
         "404":
           description: Skill not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+  /skills/{skillId}/shares:
+    get:
+      tags: [Skills]
+      operationId: listSkillVersionShares
+      summary: List active version-share links for the current owner's skill
+      parameters:
+        - name: skillId
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: Active links and exact version labels, visible only to the owner.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SkillVersionShareList"
+        "401":
+          description: Authentication required.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: Skill not found for this owner.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+  /skills/{skillId}/versions/{versionId}/share:
+    post:
+      tags: [Skills]
+      operationId: createOrRegenerateSkillVersionShare
+      summary: Create or regenerate the current owner's link for an exact version
+      parameters:
+        - name: skillId
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+        - name: versionId
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: The active unlisted link; any previous link for this version is revoked.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SkillVersionShare"
+        "401":
+          description: Authentication required.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: Skill or version not found for this owner.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+    delete:
+      tags: [Skills]
+      operationId: revokeSkillVersionShare
+      summary: Revoke the current owner's link for an exact version
+      parameters:
+        - name: skillId
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+        - name: versionId
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "204":
+          description: The link is revoked. Revoking an already unshared version is safe.
+        "401":
+          description: Authentication required.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: Skill or version not found for this owner.
           content:
             application/json:
               schema:
@@ -783,6 +918,31 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/SkillVersion"
+    SkillVersionShare:
+      type: object
+      required: [versionId, versionLabel, token, createdAt]
+      properties:
+        versionId: { type: string, format: uuid }
+        versionLabel: { type: string }
+        token: { type: string, pattern: "^[A-Za-z0-9_-]{43}$" }
+        createdAt: { type: string, format: date-time }
+    SkillVersionShareList:
+      type: object
+      required: [shares]
+      properties:
+        shares:
+          type: array
+          items:
+            $ref: "#/components/schemas/SkillVersionShare"
+    SharedSkillVersion:
+      type: object
+      required: [name, description, versionLabel, fileCount, uploadedAt]
+      properties:
+        name: { type: string }
+        description: { type: ["string", "null"] }
+        versionLabel: { type: string }
+        fileCount: { type: integer }
+        uploadedAt: { type: string, format: date-time }
     QuestionInput:
       type: object
       required: [skillVersionId, question]

@@ -326,6 +326,38 @@ export const ListPublicSkillsResponse = zod.object({
 
 
 /**
+ * @summary Get the approved details for one active, unlisted version share
+ */
+export const getSharedSkillVersionPathTokenRegExp = new RegExp('^[A-Za-z0-9_-]{43}$');
+
+
+export const GetSharedSkillVersionParams = zod.object({
+  "token": zod.coerce.string().regex(getSharedSkillVersionPathTokenRegExp)
+})
+
+export const GetSharedSkillVersionResponse = zod.object({
+  "name": zod.string(),
+  "description": zod.string().nullable(),
+  "versionLabel": zod.string(),
+  "fileCount": zod.number().int(),
+  "uploadedAt": zod.coerce.date()
+})
+
+
+/**
+ * @summary Stream the ZIP archive for one active, unlisted version share
+ */
+export const downloadSharedSkillVersionPathTokenRegExp = new RegExp('^[A-Za-z0-9_-]{43}$');
+
+
+export const DownloadSharedSkillVersionParams = zod.object({
+  "token": zod.coerce.string().regex(downloadSharedSkillVersionPathTokenRegExp)
+})
+
+export const DownloadSharedSkillVersionResponse = zod.unknown()
+
+
+/**
  * @summary Generate a concise description from extracted skill files
  */
 export const analyzeSkillDescriptionBodyFilesItemPathMax = 512;
@@ -515,6 +547,56 @@ export const CreateSkillVersionResponse = zod.object({
   "filePaths": zod.array(zod.string()),
   "uploadedAt": zod.coerce.date()
 })
+
+
+/**
+ * @summary List active version-share links for the current owner's skill
+ */
+export const ListSkillVersionSharesParams = zod.object({
+  "skillId": zod.coerce.string().uuid()
+})
+
+export const listSkillVersionSharesResponseSharesItemTokenRegExp = new RegExp('^[A-Za-z0-9_-]{43}$');
+
+
+export const ListSkillVersionSharesResponse = zod.object({
+  "shares": zod.array(zod.object({
+  "versionId": zod.string().uuid(),
+  "versionLabel": zod.string(),
+  "token": zod.string().regex(listSkillVersionSharesResponseSharesItemTokenRegExp),
+  "createdAt": zod.coerce.date()
+}))
+})
+
+
+/**
+ * @summary Create or regenerate the current owner's link for an exact version
+ */
+export const CreateOrRegenerateSkillVersionShareParams = zod.object({
+  "skillId": zod.coerce.string().uuid(),
+  "versionId": zod.coerce.string().uuid()
+})
+
+export const createOrRegenerateSkillVersionShareResponseTokenRegExp = new RegExp('^[A-Za-z0-9_-]{43}$');
+
+
+export const CreateOrRegenerateSkillVersionShareResponse = zod.object({
+  "versionId": zod.string().uuid(),
+  "versionLabel": zod.string(),
+  "token": zod.string().regex(createOrRegenerateSkillVersionShareResponseTokenRegExp),
+  "createdAt": zod.coerce.date()
+})
+
+
+/**
+ * @summary Revoke the current owner's link for an exact version
+ */
+export const RevokeSkillVersionShareParams = zod.object({
+  "skillId": zod.coerce.string().uuid(),
+  "versionId": zod.coerce.string().uuid()
+})
+
+export const RevokeSkillVersionShareResponse = zod.void()
 
 
 /**
