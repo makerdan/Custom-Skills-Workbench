@@ -10,6 +10,16 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: Auth
+    description: Browser and mobile authentication endpoints.
+  - name: Storage
+    description: Private object upload and serving endpoints.
+  - name: Skills
+    description: Skill libraries and uploaded versions.
+  - name: Questions
+    description: Implementation questions grounded in a selected skill version.
+  - name: Workbench
+    description: Workbench overview and recent activity.
 paths:
   /healthz:
     get:
@@ -24,7 +34,359 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /auth/user:
+    get:
+      tags: [Auth]
+      operationId: getCurrentAuthUser
+      summary: Get the currently authenticated user
+      parameters:
+        - $ref: "#/components/parameters/AuthorizationSessionHeader"
+        - $ref: "#/components/parameters/SessionCookie"
+      responses:
+        "200":
+          description: Authentication state resolved.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthUserEnvelope"
+  /login:
+    get:
+      tags: [Auth]
+      operationId: beginBrowserLogin
+      summary: Start the browser OIDC login flow
+      parameters:
+        - name: returnTo
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "302":
+          description: Redirect to the OIDC authorization endpoint.
+  /callback:
+    get:
+      tags: [Auth]
+      operationId: handleBrowserLoginCallback
+      summary: Complete the browser OIDC login flow
+      parameters:
+        - name: code
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: state
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: iss
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uri
+      responses:
+        "302":
+          description: Redirect to the requested path after login.
+  /logout:
+    get:
+      tags: [Auth]
+      operationId: logoutBrowserSession
+      summary: Clear the current browser session
+      parameters:
+        - $ref: "#/components/parameters/AuthorizationSessionHeader"
+        - $ref: "#/components/parameters/SessionCookie"
+        - name: returnTo
+          in: query
+          required: false
+          schema:
+            type: string
+            default: /
+      responses:
+        "302":
+          description: Redirect to the OIDC provider logout URL.
+  /mobile-auth/token-exchange:
+    post:
+      tags: [Auth]
+      operationId: exchangeMobileAuthorizationCode
+      summary: Exchange a mobile OIDC code for a session token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MobileTokenExchangeRequest"
+      responses:
+        "200":
+          description: Session created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MobileTokenExchangeSuccess"
+        "400":
+          description: Missing or invalid required fields.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: Token did not contain usable claims.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: Token exchange failed.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+  /mobile-auth/logout:
+    post:
+      tags: [Auth]
+      operationId: logoutMobileSession
+      summary: Delete a mobile session token
+      parameters:
+        - $ref: "#/components/parameters/AuthorizationSessionHeader"
+      responses:
+        "200":
+          description: Logout processed.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LogoutSuccess"
+  /storage/uploads/request-url:
+    post:
+      tags: [Storage]
+      operationId: requestUploadUrl
+      summary: Request a presigned URL for a private ZIP upload
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UploadUrlRequest"
+      responses:
+        "200":
+          description: Presigned upload URL generated.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UploadUrlResponse"
+        "400":
+          description: Missing or invalid required fields.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: Authentication required.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+  /storage/objects/{objectPath}:
+    get:
+      tags: [Storage]
+      operationId: getStorageObject
+      summary: Read a private uploaded object
+      parameters:
+        - name: objectPath
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Object content streamed with its content type.
+          content:
+            "*/*":
+              schema:
+                type: string
+                format: binary
+        "401":
+          description: Authentication required.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: The object belongs to another user.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: Object not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+  /workbench/summary:
+    get:
+      tags: [Workbench]
+      operationId: getWorkbenchSummary
+      summary: Get skill and question counts with recent questions
+      responses:
+        "200":
+          description: Current user's workbench summary.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WorkbenchSummary"
+  /skills:
+    get:
+      tags: [Skills]
+      operationId: listSkills
+      summary: List the current user's skills
+      responses:
+        "200":
+          description: Skills and their current versions.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SkillList"
+    post:
+      tags: [Skills]
+      operationId: createSkill
+      summary: Create a skill with its first uploaded version
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SkillCreateInput"
+      responses:
+        "201":
+          description: Skill created.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Skill"
+        "400":
+          description: Invalid skill metadata or extracted text.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+  /skills/{skillId}/versions:
+    get:
+      tags: [Skills]
+      operationId: listSkillVersions
+      summary: List a skill's uploaded versions
+      parameters:
+        - name: skillId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Versions ordered from newest to oldest.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SkillVersionList"
+        "404":
+          description: Skill not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+    post:
+      tags: [Skills]
+      operationId: createSkillVersion
+      summary: Upload a new version of an existing skill
+      parameters:
+        - name: skillId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SkillVersionInput"
+      responses:
+        "201":
+          description: Version created and made current.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SkillVersion"
+        "400":
+          description: Invalid version metadata or extracted text.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: Skill not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+  /questions:
+    get:
+      tags: [Questions]
+      operationId: listQuestions
+      summary: List saved implementation questions
+      responses:
+        "200":
+          description: Recent questions and answers for the current user.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QuestionList"
+    post:
+      tags: [Questions]
+      operationId: askQuestion
+      summary: Ask a question using one specific skill version as context
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QuestionInput"
+      responses:
+        "201":
+          description: Answer generated and saved.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Question"
+        "400":
+          description: Invalid question or selected version.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: Skill version not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
 components:
+  parameters:
+    AuthorizationSessionHeader:
+      name: Authorization
+      in: header
+      required: false
+      description: Opaque session token — Bearer <sid>.
+      schema:
+        type: string
+    SessionCookie:
+      name: sid
+      in: cookie
+      required: false
+      description: Browser session cookie.
+      schema:
+        type: string
   schemas:
     HealthStatus:
       type: object
@@ -33,4 +395,176 @@ components:
           type: string
       required:
         - status
+    ErrorEnvelope:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: string
+    AuthUser:
+      type: object
+      required: [id, email, firstName, lastName, profileImageUrl]
+      properties:
+        id:
+          type: string
+        email:
+          type: [string, "null"]
+          format: email
+        firstName:
+          type: [string, "null"]
+        lastName:
+          type: [string, "null"]
+        profileImageUrl:
+          type: [string, "null"]
+    AuthUserEnvelope:
+      type: object
+      required: [user]
+      properties:
+        user:
+          oneOf:
+            - $ref: "#/components/schemas/AuthUser"
+            - type: "null"
+    MobileTokenExchangeRequest:
+      type: object
+      required: [code, code_verifier, redirect_uri, state]
+      properties:
+        code: { type: string, minLength: 1 }
+        code_verifier: { type: string, minLength: 1 }
+        redirect_uri: { type: string, minLength: 1, format: uri }
+        state: { type: string, minLength: 1 }
+        nonce: { type: string, minLength: 1 }
+    MobileTokenExchangeSuccess:
+      type: object
+      required: [token]
+      properties:
+        token: { type: string }
+    LogoutSuccess:
+      type: object
+      required: [success]
+      properties:
+        success: { type: boolean, const: true }
+    UploadUrlRequest:
+      type: object
+      required: [name, size, contentType]
+      properties:
+        name: { type: string, minLength: 1, maxLength: 255 }
+        size: { type: integer, minimum: 1, maximum: 20971520 }
+        contentType: { type: string, minLength: 1 }
+    UploadUrlResponse:
+      type: object
+      required: [uploadURL, objectPath]
+      properties:
+        uploadURL: { type: string, format: uri }
+        objectPath: { type: string }
+        metadata:
+          $ref: "#/components/schemas/UploadUrlRequest"
+    SkillFileInput:
+      type: object
+      required: [path, content]
+      properties:
+        path: { type: string, minLength: 1, maxLength: 512 }
+        content: { type: string, maxLength: 200000 }
+    SkillVersionInput:
+      type: object
+      required: [versionLabel, fileName, objectPath, files]
+      properties:
+        versionLabel: { type: string, minLength: 1, maxLength: 80 }
+        fileName: { type: string, minLength: 1, maxLength: 255 }
+        objectPath: { type: string, minLength: 1, maxLength: 1024 }
+        files:
+          type: array
+          minItems: 1
+          maxItems: 60
+          items:
+            $ref: "#/components/schemas/SkillFileInput"
+    SkillCreateInput:
+      allOf:
+        - $ref: "#/components/schemas/SkillVersionInput"
+        - type: object
+          required: [name]
+          properties:
+            name: { type: string, minLength: 1, maxLength: 120 }
+            description: { type: string, maxLength: 1000 }
+    SkillVersion:
+      type: object
+      required: [id, skillId, versionLabel, fileName, fileCount, filePaths, uploadedAt]
+      properties:
+        id: { type: string, format: uuid }
+        skillId: { type: string, format: uuid }
+        versionLabel: { type: string }
+        fileName: { type: string }
+        fileCount: { type: integer }
+        filePaths:
+          type: array
+          items: { type: string }
+        uploadedAt: { type: string, format: date-time }
+    Skill:
+      type: object
+      required: [id, name, description, currentVersionId, versions, createdAt]
+      properties:
+        id: { type: string, format: uuid }
+        name: { type: string }
+        description: { type: [string, "null"] }
+        currentVersionId: { type: string, format: uuid }
+        versions:
+          type: array
+          items:
+            $ref: "#/components/schemas/SkillVersion"
+        createdAt: { type: string, format: date-time }
+    SkillList:
+      type: object
+      required: [skills]
+      properties:
+        skills:
+          type: array
+          items:
+            $ref: "#/components/schemas/Skill"
+    SkillVersionList:
+      type: object
+      required: [versions]
+      properties:
+        versions:
+          type: array
+          items:
+            $ref: "#/components/schemas/SkillVersion"
+    QuestionInput:
+      type: object
+      required: [skillVersionId, question]
+      properties:
+        skillVersionId: { type: string, format: uuid }
+        projectName: { type: string, maxLength: 120 }
+        question: { type: string, minLength: 10, maxLength: 8000 }
+        codeContext: { type: string, maxLength: 12000 }
+    Question:
+      type: object
+      required: [id, skillId, skillName, skillVersionId, versionLabel, projectName, question, answer, createdAt]
+      properties:
+        id: { type: string, format: uuid }
+        skillId: { type: string, format: uuid }
+        skillName: { type: string }
+        skillVersionId: { type: string, format: uuid }
+        versionLabel: { type: string }
+        projectName: { type: [string, "null"] }
+        question: { type: string }
+        answer: { type: string }
+        createdAt: { type: string, format: date-time }
+    QuestionList:
+      type: object
+      required: [questions]
+      properties:
+        questions:
+          type: array
+          items:
+            $ref: "#/components/schemas/Question"
+    WorkbenchSummary:
+      type: object
+      required: [skillCount, versionCount, questionCount, recentQuestions]
+      properties:
+        skillCount: { type: integer }
+        versionCount: { type: integer }
+        questionCount: { type: integer }
+        recentQuestions:
+          type: array
+          items:
+            $ref: "#/components/schemas/Question"
 

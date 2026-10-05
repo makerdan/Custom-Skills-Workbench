@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Skills Workbench"
+description = "A private workbench for uploading and versioning custom skills, then asking implementation questions grounded in the selected skill's contents."
+version = "1.0.0"
+id = "artifacts/skills-workbench"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23687
+
+[services.development]
+run = "pnpm --filter @workspace/skills-workbench run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/skills-workbench", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/skills-workbench/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23687"
+BASE_PATH = "/"
