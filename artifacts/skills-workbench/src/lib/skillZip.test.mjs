@@ -322,6 +322,47 @@ test("suggests a skill name and version from common ZIP filename formats", () =>
   );
 });
 
+test("recognizes valid ISO and compact dates in ZIP filenames", () => {
+  assert.deepEqual(
+    suggestSkillMetadataFromFilename(
+      "api-integration-patterns-2025-04-18.zip",
+    ),
+    { name: "api integration patterns", versionLabel: "2025-04-18" },
+  );
+  assert.deepEqual(
+    suggestSkillMetadataFromFilename("design_system_20250418.ZIP"),
+    { name: "design system", versionLabel: "2025-04-18" },
+  );
+});
+
+test("rejects impossible or ambiguous filename dates", () => {
+  assert.deepEqual(
+    suggestSkillMetadataFromFilename("skill-2025-02-30.zip"),
+    { name: "skill 2025 02 30", versionLabel: "1.0.0" },
+  );
+  assert.deepEqual(
+    suggestSkillMetadataFromFilename("skill_20250230.zip"),
+    { name: "skill 20250230", versionLabel: "1.0.0" },
+  );
+  assert.deepEqual(
+    suggestSkillMetadataFromFilename("skill-2025-4-18.zip"),
+    { name: "skill 2025 4 18", versionLabel: "1.0.0" },
+  );
+});
+
+test("explicit semantic versions and release tags take precedence over dates", () => {
+  assert.deepEqual(
+    suggestSkillMetadataFromFilename(
+      "skill-2025-04-18-v2.1.0.zip",
+    ),
+    { name: "skill 2025 04 18", versionLabel: "2.1.0" },
+  );
+  assert.deepEqual(
+    suggestSkillMetadataFromFilename("skill-2025-04-18-beta.zip"),
+    { name: "skill 2025 04 18", versionLabel: "beta" },
+  );
+});
+
 test("keeps unmatched filename text in the suggested name", () => {
   assert.deepEqual(
     suggestSkillMetadataFromFilename("my-custom-skill-v1.2-extra-notes.zip"),

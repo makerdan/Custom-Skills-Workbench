@@ -27,13 +27,48 @@ export function suggestSkillMetadataFromFilename(fileName: string): {
   const stem = fileName.replace(/\.zip$/i, "").trim();
   const versionPattern =
     /(^|[\s._-])(?:(?:version|ver)[\s._-]*|v)(\d+(?:\.\d+){0,2}(?:-(?:alpha|beta|rc|dev|preview|build)[\w.-]*)?(?:\+[\w.-]+)?|alpha|beta\d*|rc\d*|dev|preview|stable|release|nightly)(?=$|[\s._-])|(^|[\s._-])(\d+\.\d+(?:\.\d+)?(?:-(?:alpha|beta|rc|dev|preview|build)[\w.-]*)?(?:\+[\w.-]+)?)(?=$|[\s._-])|(^|[\s._-])(alpha|beta\d*|rc\d*|dev|preview|stable|release|nightly)(?=$|[\s._-])/i;
-  const match = versionPattern.exec(stem);
+  const datePattern = /(^|[\s._-])(\d{4}-\d{2}-\d{2}|\d{8})(?=$|[\s._-])/g;
+  const dates = Array.from(stem.matchAll(datePattern), (match) => {
+    const token = match[2]!;
+    const start = match.index + match[1]!.length;
+    return {
+      start,
+      end: start + token.length,
+      token,
+      normalized: normalizeFilenameDate(token),
+    };
+  }).filter(
+    (
+      date,
+    ): date is (typeof date) & {
+      normalized: string;
+    } => date.normalized !== null,
+  );
+  const versionMatches = Array.from(
+    stem.matchAll(new RegExp(versionPattern.source, "gi")),
+  );
+  const explicitVersionMatches = versionMatches.filter((match) => {
+    const value = match[2] || match[4] || match[6];
+    if (!value || match.index === undefined) return false;
+    const valueStart = match.index + match[0].indexOf(value);
+    const overlapsDate = dates.some(
+      (date) => valueStart >= date.start && valueStart + value.length <= date.end,
+    );
+    if (!overlapsDate) return true;
+
+    const prefix = match[0].slice(0, match[0].indexOf(value));
+    return /(?:version|ver|v)[\s._-]*$/i.test(prefix);
+  });
+  const match = explicitVersionMatches[0] ?? null;
+  const selectedDate = match ? null : dates[0] ?? null;
   const versionLabel = match
     ? match[2] || match[4] || match[6] || "1.0.0"
-    : "1.0.0";
+    : selectedDate?.normalized ?? "1.0.0";
   const remaining = match
     ? `${stem.slice(0, match.index)} ${stem.slice(match.index + match[0].length)}`
-    : stem;
+    : selectedDate
+      ? `${stem.slice(0, selectedDate.start)} ${stem.slice(selectedDate.end)}`
+      : stem;
   const name = remaining
     .replace(/[\s._-]+/g, " ")
     .trim()
@@ -43,6 +78,47 @@ export function suggestSkillMetadataFromFilename(fileName: string): {
     name: name || "New skill",
     versionLabel: versionLabel.slice(0, 80),
   };
+}
+
+function normalizeFilenameDate(token: string): string | null {
+  const parts =
+    token.length === 8
+      ? [token.slice(0, 4), token.slice(4, 6), token.slice(6, 8)]
+      : token.split("-");
+  const [yearText, monthText, dayText] = parts;
+  if (!yearText || !monthText || !dayText) return null;
+
+  const year = Number(yearText);
+  const month = Number(monthText);
+  const day = Number(dayText);
+  const leapYear = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+  const daysInMonth = [
+    31,
+    leapYear ? 29 : 28,
+    31,
+    30,
+    31,
+    30,
+    31,
+    31,
+    30,
+    31,
+    30,
+    31,
+  ][month - 1];
+
+  if (
+    !Number.isInteger(year) ||
+    month < 1 ||
+    month > 12 ||
+    !daysInMonth ||
+    day < 1 ||
+    day > daysInMonth
+  ) {
+    return null;
+  }
+
+  return `${yearText}-${monthText}-${dayText}`;
 }
 
 function crc32(data: Uint8Array): number {

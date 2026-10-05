@@ -20,7 +20,7 @@ import {
   readZipTextFiles,
   suggestSkillMetadataFromFilename,
 } from "@/lib/skillZip";
-import { runRetryableBatch } from "@/lib/skillBatch";
+import { runIndependentBatch, runRetryableBatch } from "@/lib/skillBatch";
 
 type RowStatus = "queued" | "uploading" | "saved" | "failed";
 type BatchRow = {
@@ -45,6 +45,8 @@ type BatchSkillImportProps = {
 const errorMessage = (error: unknown, fallback: string) =>
   error instanceof Error ? error.message : fallback;
 
+const ANALYSIS_CONCURRENCY = 3;
+
 const rowId = () =>
   typeof crypto !== "undefined" && "randomUUID" in crypto
     ? crypto.randomUUID()
@@ -60,6 +62,10 @@ export default function BatchSkillImport({
 }: BatchSkillImportProps) {
   const [rows, setRows] = useState<BatchRow[]>([]);
   const [submitting, setSubmitting] = useState(false);
+  const [analysisBatchProgress, setAnalysisBatchProgress] = useState<{
+    total: number;
+    completed: number;
+  } | null>(null);
   const [selectionError, setSelectionError] = useState("");
   const [batchMessage, setBatchMessage] = useState("");
   const requestUpload = useRequestUploadUrl();
@@ -108,24 +114,35 @@ export default function BatchSkillImport({
     if (additions.length > 0) setRows((current) => [...current, ...additions]);
   };
 
+  const runDescriptionAnalysis = async (row: BatchRow) => {
+    const files = await readZipTextFiles(row.file);
+    const result = await analyzeDescription.mutateAsync({ data: { files } });
+    return { files, description: result.description };
+  };
+
+  const applyDescriptionAnalysis = (
+    id: string,
+    result: { files: SkillFileInput[]; description: string },
+  ) => {
+    setRows((current) =>
+      current.map((row) =>
+        row.id === id
+          ? {
+              ...row,
+              files: result.files,
+              description: result.description,
+              analyzing: false,
+              analysisError: undefined,
+            }
+          : row,
+      ),
+    );
+  };
+
   const analyzeRow = async (row: BatchRow) => {
     updateRow(row.id, { analyzing: true, analysisError: undefined });
     try {
-      const files = await readZipTextFiles(row.file);
-      const result = await analyzeDescription.mutateAsync({ data: { files } });
-      setRows((current) =>
-        current.map((currentRow) =>
-          currentRow.id === row.id
-            ? {
-                ...currentRow,
-                files,
-                description: result.description,
-                analyzing: false,
-                analysisError: undefined,
-              }
-            : currentRow,
-        ),
-      );
+      applyDescriptionAnalysis(row.id, await runDescriptionAnalysis(row));
     } catch (error) {
       updateRow(row.id, {
         analyzing: false,
@@ -135,6 +152,43 @@ export default function BatchSkillImport({
         ),
       });
     }
+  };
+
+  const analyzeAllDescriptions = async () => {
+    if (submitting || analysisBatchProgress) return;
+    const targets = rows.filter(
+      (row) => row.status !== "saved" && !row.analyzing,
+    );
+    if (targets.length === 0) return;
+
+    setAnalysisBatchProgress({ total: targets.length, completed: 0 });
+    await runIndependentBatch(
+      targets,
+      ANALYSIS_CONCURRENCY,
+      async (row) => {
+        updateRow(row.id, { analyzing: true, analysisError: undefined });
+        return runDescriptionAnalysis(row);
+      },
+      (result) => {
+        if (result.status === "succeeded") {
+          applyDescriptionAnalysis(result.item.id, result.value);
+        } else {
+          updateRow(result.item.id, {
+            analyzing: false,
+            analysisError: errorMessage(
+              result.error,
+              "Description analysis could not finish. Try again.",
+            ),
+          });
+        }
+        setAnalysisBatchProgress((current) =>
+          current
+            ? { ...current, completed: current.completed + 1 }
+            : current,
+        );
+      },
+    );
+    setAnalysisBatchProgress(null);
   };
 
   const processRows = async (targetIds: string[]) => {
@@ -211,9 +265,13 @@ export default function BatchSkillImport({
 
   const queuedRows = rows.filter((row) => row.status === "queued");
   const failedRows = rows.filter((row) => row.status === "failed");
+  const unsavedRows = rows.filter((row) => row.status !== "saved");
+  const eligibleAnalysisRows = unsavedRows.filter((row) => !row.analyzing);
   const savedCount = rows.filter((row) => row.status === "saved").length;
   const activeCount = rows.filter((row) => row.status === "uploading").length;
-  const analysisActive = rows.some((row) => row.analyzing);
+  const analysisActive =
+    rows.some((row) => row.analyzing) || analysisBatchProgress !== null;
+  const analysisBatchActive = analysisBatchProgress !== null;
 
   const submitQueued = () => {
     void processRows(queuedRows.map((row) => row.id));
@@ -256,7 +314,9 @@ export default function BatchSkillImport({
       <div className="space-y-5 p-5 sm:p-7">
         <label
           className={`group flex cursor-pointer flex-col items-center rounded-xl border border-dashed border-[hsl(var(--input))] bg-[hsl(var(--background)/.5)] px-5 py-6 text-center transition-colors hover:border-primary/60 hover:bg-accent/20 ${
-            submitting ? "pointer-events-none opacity-55" : ""
+            submitting || analysisBatchActive
+              ? "pointer-events-none opacity-55"
+              : ""
           }`}
           data-testid="dropzone-batch-skill-zips"
         >
@@ -266,7 +326,7 @@ export default function BatchSkillImport({
             multiple
             className="sr-only"
             onChange={handleFiles}
-            disabled={submitting}
+            disabled={submitting || analysisBatchActive}
             data-testid="input-batch-skill-zips"
           />
           <span className="grid h-11 w-11 place-items-center rounded-xl bg-accent/65 text-primary transition-transform group-hover:-translate-y-0.5">
@@ -302,9 +362,38 @@ export default function BatchSkillImport({
                   {failedRows.length > 0 ? ` · ${failedRows.length} need attention` : ""}
                 </p>
               </div>
-              <span className="font-mono text-[10px] text-muted-foreground">
-                MAX 3 IN PARALLEL
-              </span>
+              <div className="flex flex-wrap items-center gap-2">
+                {unsavedRows.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={() => void analyzeAllDescriptions()}
+                    disabled={
+                      submitting ||
+                      analysisBatchActive ||
+                      eligibleAnalysisRows.length === 0
+                    }
+                    className="btn-subtle !px-2.5 !py-1.5 text-[11px] disabled:cursor-not-allowed disabled:opacity-50"
+                    data-testid="button-analyze-all-descriptions"
+                  >
+                    {analysisBatchActive ? (
+                      <>
+                        <LoaderCircle size={13} className="animate-spin" />
+                        Analyzing descriptions (
+                        {analysisBatchProgress.completed}/
+                        {analysisBatchProgress.total})…
+                      </>
+                    ) : (
+                      <>
+                        <Sparkles size={13} />
+                        Analyze All Descriptions
+                      </>
+                    )}
+                  </button>
+                )}
+                <span className="font-mono text-[10px] text-muted-foreground">
+                  MAX 3 IN PARALLEL
+                </span>
+              </div>
             </div>
 
             {rows.map((row, index) => {
@@ -362,7 +451,10 @@ export default function BatchSkillImport({
                         {row.status === "uploading" ? ` · ${row.progress}%` : ""}
                       </p>
                     </div>
-                    {!submitting && row.status !== "saved" && (
+                    {!submitting &&
+                      !analysisBatchActive &&
+                      !row.analyzing &&
+                      row.status !== "saved" && (
                       <button
                         type="button"
                         onClick={() =>
@@ -436,7 +528,12 @@ export default function BatchSkillImport({
                       <button
                         type="button"
                         onClick={() => void analyzeRow(row)}
-                        disabled={submitting || row.status === "saved" || row.analyzing}
+                        disabled={
+                          submitting ||
+                          analysisBatchActive ||
+                          row.status === "saved" ||
+                          row.analyzing
+                        }
                         className="btn-subtle !px-2.5 !py-1.5 text-[11px] disabled:cursor-not-allowed disabled:opacity-50"
                         data-testid={`button-auto-analyze-${row.id}`}
                       >
@@ -505,11 +602,21 @@ export default function BatchSkillImport({
           aria-live="polite"
           aria-atomic="true"
           data-testid="status-batch-progress"
-          data-status={submitting ? "uploading" : failedRows.length ? "attention" : "idle"}
+          data-status={
+            submitting
+              ? "uploading"
+              : analysisBatchActive
+                ? "analyzing"
+                : failedRows.length
+                  ? "attention"
+                  : "idle"
+          }
         >
           {submitting
             ? `Importing ${activeCount} ${activeCount === 1 ? "archive" : "archives"} now. ${savedCount} saved so far.`
-            : batchMessage}
+            : analysisBatchProgress
+              ? `Analyzing descriptions: ${analysisBatchProgress.completed} of ${analysisBatchProgress.total} complete. Up to ${ANALYSIS_CONCURRENCY} run at once.`
+              : batchMessage}
         </p>
 
         <footer className="flex flex-col-reverse gap-2 border-t border-border pt-4 sm:flex-row sm:items-center sm:justify-between">

@@ -1,6 +1,40 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { runRetryableBatch } from "./skillBatch.ts";
+import { runIndependentBatch, runRetryableBatch } from "./skillBatch.ts";
+
+test("independent batches bound concurrency and continue after row failures", async () => {
+  const items = ["first", "second", "third", "fourth"];
+  const completed = [];
+  let active = 0;
+  let maxActive = 0;
+
+  const results = await runIndependentBatch(
+    items,
+    2,
+    async (item) => {
+      active += 1;
+      maxActive = Math.max(maxActive, active);
+      await new Promise((resolve) => setTimeout(resolve, 2));
+      active -= 1;
+      if (item === "second") throw new Error("analysis failed");
+      return `${item} description`;
+    },
+    (result) => completed.push(result.item),
+  );
+
+  assert.ok(maxActive <= 2);
+  assert.deepEqual(completed.sort(), [...items].sort());
+  assert.deepEqual(
+    results.map((result) => result.status),
+    ["succeeded", "failed", "succeeded", "succeeded"],
+  );
+  assert.deepEqual(results[0], {
+    item: "first",
+    status: "succeeded",
+    value: "first description",
+  });
+  assert.match(results[1].error.message, /analysis failed/);
+});
 
 test("batch processing isolates failures, bounds concurrency, and skips saved rows on retry", async () => {
   const rows = [
