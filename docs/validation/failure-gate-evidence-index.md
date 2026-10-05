@@ -16,6 +16,8 @@ No protected host identity or tamper resistance is claimed.
 | First containment proof | `.failure-gate/first-proof.json` | Actual fixture result and original monotonic installation budget. Never used as ordinary-task evidence. |
 | Later caller fixtures | `.failure-gate/caller-fixtures.json` | Isolated fixture status and tested tooling digest. Distinct from real caller acceptance. |
 | Installer caller trail | `.failure-gate/installer-caller/{1,2}/events/`, `outcome.json` | Actual parent supervisor registration, launch, raw outcome and coverage. A failure is not an ordinary-route pass. |
+| Actual scoped recovery approval | `failure-gate-recovery-approval.json` | Owner's real conversation response; local scope only, not host attestation or cutover. |
+| Approved one-shot continuation | `.failure-gate/continuations/721fb9bc-fa10-446c-96d7-a10f8205b27e/`, coordinator continuation metadata/decisions/events | Corrective fixtures passed; exact original recovery acknowledged; first full caller FAILED; second NOT RUN. No automatic retry. |
 | Raw step results and tested inputs | `.failure-gate/runs/<run UUID>/<step>/raw.log`, coordinator `runs.payload` | Bounded combined output, raw exits, parser results, digests, snapshot/environment, effective limits and missing steps. |
 | Baseline catalog / earlier corroboration | No approved catalog or comparison capability | `never_collected`; no ignore authority. Failure observations remain unresolved rather than being called pre-existing. |
 | Repair ownership | Coordinator `repairs` | Persistent obligations; later passes cannot waive them. No unapproved repair-removal endpoint. |

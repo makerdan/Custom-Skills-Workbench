@@ -1,3 +1,4 @@
 - [Skill archive path collisions](skill-archive-paths.md) — reject ambiguous paths and detect case- or Unicode-normalized filename collisions before persistence.
 - [Public gallery privacy boundary](public-gallery-privacy.md) — anonymous listings must expose only opted-in discovery metadata, never account, version, or archive details.
 - [Node test bundle resolution](node-test-bundles.md) — ESM bundles with external dependencies must live under the package root for pnpm links to resolve.
+- [Node test report formats](node-test-reporters.md) — piped Node test output can use native text summaries; bind the format instead of assuming TAP.

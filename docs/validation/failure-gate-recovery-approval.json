@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "status": "APPROVED_LOCAL_CONVERSATION",
+  "proposal": "docs/validation/failure-gate-recovery-proposal.json",
+  "reference": "inv_1iUbbTUza9TH3WRkBmG0gfmnxk2hAhihqN:call_x8CRdZo4nKbuixIlkfGwGIzh",
+  "question": "Approve recovery of the failed installation record and the bounded rechecks?",
+  "answer": "Approve recovery and rechecks",
+  "additional_comments": null,
+  "scope": "Exactly the referenced proposal, including its limits, preconditions and exclusions",
+  "source": "Actual owner response through the conversation form; not cryptographic identity, protected host attestation or platform task authorization",
+  "merge_reconciliation": {
+    "result": "The merged host-route work added only a blocked-evidence handoff, not a runner or active authority. Proposed command and tooling digests still match.",
+    "evidence": "docs/validation/port-authority-apply-handoff.md",
+    "unresolved": "Generation/writer integration and host runtime authorization remain blocked; no waiver for ordinary cutover"
+  }
+}
