@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "status": "APPROVED_LOCAL_CONVERSATION",
+  "reference": "inv_1iUbbTUza9TH2lmVbECcIvAD7xNJ4PuIs9:call_AWP3bWPubhTyMmYlQXlqanCz",
+  "question": "Approve 5 minutes for the two complete installation checks?",
+  "answer": "Approve bounded installation checks",
+  "additional_comments": null,
+  "proposal": "docs/validation/failure-gate-installer-acceptance-proposal.md",
+  "grant_seconds": 300,
+  "scope": "At most two consecutive complete standard installer callers; stop on first failure or uncertainty; no extra fixture, diagnostic, repair, recovery or activation",
+  "source": "Actual local owner conversation; not protected host or platform authorization"
+}

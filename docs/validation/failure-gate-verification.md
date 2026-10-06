@@ -1,10 +1,10 @@
 # Failure Gate verification result
 
-**Result: Approved pipe correction PASSED 33/33 fixtures. Exact incident
-recovery acknowledged; one non-tier `pnpm test` diagnostic exited 0 with
-137/137 package tests passing and complete owned termination/capture.
-This continuation is complete; full installation remains partial.
-Ordinary route is STAGED, not ACTIVE.**
+**Result: Two approved complete installer callers PASSED consecutively.
+Each passed typechecking, 137/137 package tests and 33/33 gate cases with
+complete owned termination/capture. Bounded installer acceptance is complete.
+Full application remains partial: ordinary governance is STAGED, and
+writer/caller integration, ordinary completion and other host gaps remain.**
 
 ## Executed checks
 
@@ -37,6 +37,8 @@ Ordinary route is STAGED, not ACTIVE.**
 | Approved parent control-pipe correction | PASSED 33/33; 10.736 seconds of tests, 11.041 seconds contained elapsed |
 | Exact retained incident recovery after correction | ACKNOWLEDGED; original failure preserved; no administrative PASS |
 | Single non-tier `pnpm test` diagnostic | Raw exit 0; scripts 30/30, Workbench 45/45, API 62/62; 4.648 seconds; complete capture, known work stopped, no gap |
+| Approved full installer caller 1 | PASSED all 3 standard steps; outer raw exit 0; 26.684 seconds; complete capture/owned stop |
+| Approved full installer caller 2 | PASSED all 3 standard steps; outer raw exit 0; 27.231 seconds; complete capture/owned stop |
 | Existing app landing page | Screenshot rendered correctly; no browser error observed. No signed-in journey claim. |
 
 The initial and expanded fixture results concern different staged source
@@ -346,3 +348,57 @@ One passing diagnostic is not proof of the original cause, fixed intermittency,
 two-caller acceptance or completed application of the entire skill.
 The next bounded installer-acceptance proposal is
 `failure-gate-installer-acceptance-proposal.md`; it is not execution permission.
+
+## Two complete approved installer callers
+
+That proposal was subsequently approved as `Approve bounded installation checks`.
+The actual reference is captured in `failure-gate-installer-acceptance-approval.json`.
+Operation `4cb1465a-627c-4e91-8d35-5eae96ddc7f8` reserved 300 additional seconds
+before inspection/authoring. All previous grants, failures and attempts remain
+unchanged; no earlier wrapper was reentered.
+
+- Namespace/local task unchanged. Current boot
+  `03557306-f58c-4249-aa8d-ab861714d902`, deadline `394.346878193`.
+- Core tooling remained
+  `a8b120234a249cd00c33d056a8eeb228d72af30b503a1bf5b861620976f96977`.
+- New scoped driver `scripts/failure-gate-installer-acceptance.py`, digest
+  `acd39e128a5b590eebe60388b4a34529a8f0833d50dc446053fed879bee090ee`.
+- Admitted decision `b12adc1e-8b58-4931-870b-a132414f75d5`.
+- Coordinator metadata
+  `installer-acceptance:041d4263c816eb69f0f2866d8a2ea5eb7db3d53fdbce9242cf3d50fc9833b165`;
+  two consumed attempts, phase `passed_twice`.
+- Outer file trail:
+  `.failure-gate/installer-acceptance/4cb1465a-627c-4e91-8d35-5eae96ddc7f8/caller-{1,2}/`
+  with per-event records, raw worker output and outcomes.
+- Inner results: `.failure-gate/runs/<run UUID>/`, coordinator run rows and
+  step registration/start/outcome events.
+
+| Caller / actual run | Typecheck | Package tests | Gate cases | Aggregate |
+| --- | --- | --- | --- | --- |
+| 1 / `a717428d-e602-422f-bc14-d591aa4c9ae7` | raw 0; complete; 5.508 s | raw 0; all three reports complete; 5.433 s | raw 0; complete; 14.214 s | PASSED; finished; recovery_required=0 |
+| 2 / `ca28eb4d-5b66-4dc9-8b04-c4661a7304d3` | raw 0; complete; 5.512 s | raw 0; all three reports complete; 5.415 s | raw 0; complete; 15.141 s | PASSED; finished; recovery_required=0 |
+
+Each package report records scripts 30/30, Workbench 45/45, API 62/62, with zero
+failed/cancelled/skipped/todo tests. The standard gate step ran the unchanged
+33-case bundle, not an extra discretionary fixture or diagnostic.
+
+Each outer caller used an execution limit of 90 seconds narrowed to an 89-second
+effective parent, 20-second cleanup/10-second capture, 30-second queue,
+15-second startup/stall, 2-second registration, 30,000-ms tests/15,000-ms hooks
+and bounded 8 MiB output. Inner run/step allowances were further narrowed from
+the inherited parent, reserving cleanup. Both callers shared the original
+300-second grant including authoring, queue, capture and final readback.
+
+Final fresh read-only initialization checked journal consistency and read both
+terminal run rows. All 16 recorded inner/outer watchdog/worker PID slots were
+absent; no retained run remained. No core amendment, retry, extra diagnostic,
+recovery, workflow change, ordinary activation or platform-task mutation occurred.
+
+This proves these two real installer observations on the admitted cooperative
+local closure. It does not prove tamper resistance, participating live writers,
+ordinary-plan activation/completion, protected reclaim or final whole-project
+task completion. Historical failures remain historical failures; the original
+watchdog error's cause remains unclassified.
+
+Next proposal: `failure-gate-host-integration-inventory-proposal.md`, a read-only
+mapping phase before any integration amendment or cutover is requested.

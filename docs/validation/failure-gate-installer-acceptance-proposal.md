@@ -1,6 +1,9 @@
 # Proposed bounded full installer acceptance on corrected tooling
 
-**PROPOSED ONLY — no additional caller, approval or budget reserved.**
+**APPROVED AND EXECUTED** — actual response in
+`failure-gate-installer-acceptance-approval.json`. Both complete callers PASSED
+within the newly reserved grant; ordinary governance remains STAGED. Historical
+scope below is preserved; current results are in `failure-gate-verification.md`.
 
 ## Current boundary
 

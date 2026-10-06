@@ -5,6 +5,11 @@
 **Status:** Partial implementation; ordinary governance STAGED, not ACTIVE.
 **Catalog status:** incomplete; canonical files are authoritative.
 
+Bounded installer acceptance now has two consecutive complete real caller passes:
+typechecking, all 137 package tests and 33 gate cases per caller. This does not
+resolve the remaining host-integration/cutover requirements below. Current
+evidence and actual scoped approvals are in `failure-gate-verification.md`.
+
 The machine-readable capability locator is `failure-gate-capabilities.json`;
 the evidence index is `failure-gate-evidence-index.md`. Neither is a competing
 live coordinator or an authorization record.
