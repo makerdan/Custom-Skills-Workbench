@@ -52,6 +52,16 @@ const dateLabel = (date: string) => new Intl.DateTimeFormat(undefined, { month: 
 const firstName = (user?: { firstName?: string | null; lastName?: string | null; email?: string | null } | null) =>
   user?.firstName || user?.email?.split('@')[0] || 'Developer';
 
+const primaryNavigationItems = [
+  { href: '/', label: 'Overview', mobileLabel: 'Overview', icon: Layers3 },
+  { href: '/skills', label: 'Your skills', mobileLabel: 'Skills', icon: BookOpen },
+  { href: '/gallery', label: 'Public gallery', mobileLabel: 'Gallery', icon: Globe2 },
+  { href: '/ask', label: 'Ask for help', mobileLabel: 'Ask', icon: MessageSquareText },
+  { href: '/questions', label: 'Conversations', mobileLabel: 'Conversations', icon: Clock3 },
+];
+
+const navigationTestKey = (href: string) => href === '/' ? 'overview' : href.slice(1);
+
 async function uploadZip(file: File, requestUpload: ReturnType<typeof useRequestUploadUrl>['mutateAsync']) {
   const files = await readZipTextFiles(file);
   const signed = await requestUpload({ data: { name: file.name, size: file.size, contentType: 'application/zip' } });
@@ -61,13 +71,6 @@ async function uploadZip(file: File, requestUpload: ReturnType<typeof useRequest
 }
 
 function Sidebar({ path, user, logout }: { path: string; user: any; logout: () => void }) {
-  const links = [
-    { href: '/', label: 'Overview', icon: Layers3 },
-    { href: '/skills', label: 'Your skills', icon: BookOpen },
-    { href: '/gallery', label: 'Public gallery', icon: Globe2 },
-    { href: '/ask', label: 'Ask for help', icon: MessageSquareText },
-    { href: '/questions', label: 'Conversations', icon: Clock3 },
-  ];
   return <aside className="workbench-sidebar">
     <Link href="/" className="flex items-center gap-3 px-2 mb-12" data-testid="link-brand-home">
       <span className="grid place-items-center w-9 h-9 rounded-xl bg-[hsl(var(--sidebar-primary))] text-[hsl(var(--sidebar-primary-foreground))]"><Code2 size={19}/></span>
@@ -75,7 +78,7 @@ function Sidebar({ path, user, logout }: { path: string; user: any; logout: () =
     </Link>
     <p className="eyebrow !text-[hsl(var(--sidebar-foreground)/.42)] px-3 mb-3">Workspace</p>
     <nav className="space-y-1" aria-label="Primary navigation">
-      {links.map(({ href, label, icon: Icon }) => <Link key={href} href={href} className={`nav-link ${path === href ? 'active' : ''}`} data-testid={`link-nav-${href === '/' ? 'overview' : href.slice(1)}`}><Icon size={16}/><span>{label}</span>{href === '/ask' && <ArrowUpRight size={13} className="ml-auto opacity-45"/>}</Link>)}
+      {primaryNavigationItems.map(({ href, label, icon: Icon }) => <Link key={href} href={href} aria-current={path === href ? 'page' : undefined} className={`nav-link ${path === href ? 'active' : ''}`} data-testid={`link-nav-${navigationTestKey(href)}`}><Icon size={16}/><span>{label}</span>{href === '/ask' && <ArrowUpRight size={13} className="ml-auto opacity-45"/>}</Link>)}
     </nav>
     <div className="mt-auto">
       <div className="rounded-xl border border-[hsl(var(--sidebar-border))] bg-[hsl(var(--sidebar-accent)/.52)] p-4 mb-5">
@@ -153,7 +156,7 @@ function Shell({ children }: { children: ReactNode }) {
   return <UserPreferencesContext.Provider value={{ preferences, onPreferenceChange: updatePreference, onReset: resetPreferences }}>
     <div className="workbench-shell" data-density={preferences.density}>
     <Sidebar path={path} user={auth.user} logout={auth.logout}/>
-    <header className="mobile-top !flex-wrap"><div className="w-full flex items-center justify-between"><Link href="/" className="flex items-center gap-2 font-semibold text-sm" data-testid="link-mobile-brand"><span className="grid place-items-center w-8 h-8 rounded-lg bg-primary text-primary-foreground"><Code2 size={17}/></span> Skills Workbench</Link><div className="flex items-center gap-1.5"><Link href="/settings" className={`btn-subtle !p-2 ${path === '/settings' ? 'border-primary text-primary' : ''}`} aria-label="Settings" title="Settings" data-testid="link-mobile-settings"><Settings size={16}/></Link><button className="btn-subtle !p-2" onClick={auth.logout} aria-label="Log out" data-testid="button-mobile-logout"><LogOut size={16}/></button></div></div><nav className="flex w-full gap-1 overflow-x-auto pt-2 pb-0.5" aria-label="Mobile navigation">{[{href:'/', label:'Overview'},{href:'/skills',label:'Skills'},{href:'/gallery',label:'Gallery'},{href:'/ask',label:'Ask'},{href:'/questions',label:'Conversations'}].map(item=><Link key={item.href} href={item.href} className={`whitespace-nowrap rounded-full px-3 py-1.5 text-[11px] font-semibold ${path===item.href ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}`} data-testid={`link-mobile-nav-${item.href==='/'?'overview':item.href.slice(1)}`}>{item.label}</Link>)}</nav></header>
+    <header className="mobile-top !flex-wrap"><div className="w-full flex items-center justify-between"><Link href="/" className="flex items-center gap-2 font-semibold text-sm" data-testid="link-mobile-brand"><span className="grid place-items-center w-8 h-8 rounded-lg bg-primary text-primary-foreground"><Code2 size={17}/></span> Skills Workbench</Link><div className="flex items-center gap-1.5"><Link href="/settings" className={`btn-subtle !p-2 ${path === '/settings' ? 'border-primary text-primary' : ''}`} aria-label="Settings" title="Settings" data-testid="link-mobile-settings"><Settings size={16}/></Link><button className="btn-subtle !p-2" onClick={auth.logout} aria-label="Log out" data-testid="button-mobile-logout"><LogOut size={16}/></button></div></div><nav className="flex w-full gap-1 overflow-x-auto pt-2 pb-0.5" aria-label="Mobile navigation">{primaryNavigationItems.map(item=><Link key={item.href} href={item.href} aria-current={path === item.href ? 'page' : undefined} className={`whitespace-nowrap rounded-full px-3 py-1.5 text-[11px] font-semibold ${path===item.href ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}`} data-testid={`link-mobile-nav-${navigationTestKey(item.href)}`}>{item.mobileLabel}</Link>)}</nav></header>
     <main className="workbench-content page-enter">{children}</main>
     </div>
   </UserPreferencesContext.Provider>;
@@ -727,6 +730,12 @@ function PublicGallery() {
         </Link>
         <Link href="/" className="btn-subtle !py-2 !px-3 text-xs" data-testid="link-gallery-workspace">Your workspace <ArrowRight size={13}/></Link>
       </div>
+      <nav className="mx-auto flex max-w-7xl gap-1 overflow-x-auto border-t border-border/70 px-5 py-2 sm:px-8" aria-label="Primary navigation" data-testid="gallery-primary-navigation">
+        {primaryNavigationItems.map(({ href, label, mobileLabel, icon: Icon }) => {
+          const active = href === '/gallery';
+          return <Link key={href} href={href} aria-current={active ? 'page' : undefined} className={`flex shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-[11px] font-semibold transition-colors sm:text-xs ${active ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:bg-muted hover:text-foreground'}`} data-testid={`link-gallery-nav-${navigationTestKey(href)}`}><Icon size={15} className="hidden sm:block"/><span className="sm:hidden">{mobileLabel}</span><span className="hidden sm:inline">{label}</span></Link>;
+        })}
+      </nav>
     </header>
     <div className="mx-auto max-w-7xl px-5 pb-16 sm:px-8">
       <section className="py-11 sm:py-14 border-b border-border/80">

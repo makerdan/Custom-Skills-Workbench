@@ -11,7 +11,7 @@ export default defineConfig({
   },
   test: {
     environment: 'jsdom',
-    include: ['src/components/**/*.test.tsx'],
+    include: ['src/components/**/*.test.tsx', 'src/lib/galleryNavigation.test.mjs'],
     clearMocks: true,
   },
 });
