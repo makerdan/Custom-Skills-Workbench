@@ -187,3 +187,57 @@ and task-status/lifecycle-only signals. These fixtures are source-level test
 coverage only: they were not executed and cannot prove a host approval source.
 No current finite approved route for this changed Failure Gate source was
 verified, so validation and real operational verification remain blocked.
+
+## Task 81 — intended cleanup-control caller review (2026-10-06)
+
+**Result: protected reclaim is applicable to the intended Port Authority
+process-cleanup control, but no application caller is wired in the checked-in
+project sources. The control remains BLOCKED. This is not a live host review.**
+
+### Read-only source boundary
+
+Reviewed the named Port Authority skill and runtime contract, the canonical
+`free-ports.mjs`, `validation-lock.mjs`, and `host-capabilities.mjs` sources, and
+the project caller/configuration paths in root and artifact package manifests,
+`.replit`, artifact service manifests, `scripts/`, `lib/`, and `artifacts/`.
+Searched the tracked source/configuration tree for Port Authority cleanup
+invocations, aliases, process-signal paths, startup hooks and cleanup callers.
+Generated output, dependency trees, attached archives, services, stores and
+runtime state were not queried. No project command, test, script, service or
+workflow was invoked.
+
+### Intended controls and observed project callers
+
+| Control / source caller | Protected reclaim required? | Source-only finding |
+| --- | --- | --- |
+| `.agents/skills/port-authority/scripts/free-ports.mjs`, action mode (`--authorized-cleanup`) | **Yes.** Before signals it requires independent host attestation, a checked Failure Gate `runtime.process-reclaim` claim, fresh per-signal authorization, ownership checks and acknowledged outcome recording. | This is the canonical intended process-cleanup control under the Port Authority skill. No application package alias, startup hook, workflow command or project script caller was found. The action invocations in `.agents/skills/port-authority/tests/hardening.test.mjs` are isolated test fixtures with a fixture host adapter; they are not a deployed caller and were not run. Applicability to the intended control is affirmative; no live use is claimed. |
+| `.agents/skills/port-authority/scripts/free-ports.mjs`, dry-run/inventory mode | **No signal/reclaim claim.** | The source returns a non-success protected/skipped result without sending signals. Inventory is only an observation and does not establish host identity, authorization or a reservation. No application caller was found. |
+| `.agents/skills/port-authority/scripts/validation-lock.mjs` lease-owned child shutdown | **No protected reclaim of unrelated runtime processes.** | Its cleanup is for the command tree owned by its local lease, not port-holder takeover. No project alias, hook or startup caller was found. Any future use still needs its own authorized finite supervision, caller/conflict map and host acceptance; the template's presence does not prove wiring. |
+| Failure Gate `supervisor.py` / `watchdog.py` owned-work cleanup | **No protected Port Authority reclaim.** | The inspected path stops exact already-owned validation child incarnations; unknown escaped/adopted work retains exclusion. This is Failure Gate's own-work supervision boundary, not permission to reclaim another listener or process. Its validation supervision and acceptance are separate from this reclaim-applicability review. |
+| API Server `startAbandonedSkillUploadCleanup()` startup caller | **No.** | `artifacts/api-server/src/index.ts` starts periodic cleanup after `app.listen`; `skillUploadCleanup.ts` removes expired unreferenced upload objects. It does not discover or signal processes or reclaim ports. |
+
+The inspected root/package commands, artifact service commands, `.replit`
+post-merge path and deployment post-build command contain no `free-ports`
+invocation. The API Server's `dev` command builds and starts its server; its
+production service starts the built server. Neither path calls Port Authority
+cleanup. This inventory is bounded to checked-in local source and does not
+establish the absence of unpublished, remote, external or future callers.
+
+### Applicability and disposition
+
+The intended installation scope includes the Port Authority action-mode cleanup
+control, so protected reclaim is **applicable**, even though no project
+application caller is currently wired. Do not mark P17 not applicable based on
+the absent caller wiring or unavailable providers. This conclusion establishes
+control applicability only; it does not establish an installed or deployed
+caller.
+
+The local `host-capabilities.mjs` still throws unavailable for both trusted host
+attestation and Failure Gate reclaim authorization. No independently verified
+host source, protected approval/claim route, or authoritative Port Authority
+outcome acknowledgement was supplied or established by this read-only review.
+Accordingly, the intended action-mode control remains **BLOCKED**; no
+`NON_RECLAIM_VERIFIED` or `LIVE_RECLAIM_ENABLED` status is claimed. Task 80's
+separate owner-approved host-evidence gate remains unresolved. No services,
+stores or runtime state were queried, and no signal or cleanup operation was
+performed.

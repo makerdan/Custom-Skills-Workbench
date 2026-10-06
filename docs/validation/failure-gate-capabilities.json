@@ -43,7 +43,16 @@
     "restore": {"interface": "Store.restore_fenced", "state": "isolated stale checkpoint stays fenced; live reconciliation/resumption not verified"},
     "recovery": {"interface": "scripts/failure-gate-continuation.py / scripts/failure-gate-watchdog-diagnostic.py", "state": "named original and later watchdog incidents separately recovered and acknowledged, preserving failures", "limits": "one-shot actual local grants; no general recovery API or automatic retries"},
     "failure_lineage": {"state": "partial", "default": "Unresolved potential regression; no unapproved ignore or ownership discharge"},
-    "live_reclaim": {"state": "BLOCKED", "attestation": "unavailable", "protected_approval_claims": "unavailable", "signals": "none"},
+    "live_reclaim": {
+      "state": "BLOCKED",
+      "scope_applicability": "APPLICABLE_TO_INTENDED_PORT_AUTHORITY_ACTION_MODE_CLEANUP",
+      "source_review": "Task 81 source-only review: .agents/skills/port-authority/scripts/free-ports.mjs action mode needs host attestation, a checked Failure Gate claim, per-signal authorization, and acknowledged outcomes; no application alias/hook/startup caller found in checked-in project sources",
+      "actual_application_callers": "NONE_FOUND_IN_CHECKED_IN_PROJECT_SOURCES",
+      "attestation": "unavailable",
+      "protected_approval_claims": "unavailable",
+      "outcome_acknowledgement": "not independently verified",
+      "signals": "none"
+    },
     "independent_verifier": {
       "state": "DOCUMENT_READBACK_COMPLETE; TASK_API_CROSS_CHECK_UNAVAILABLE; host/runtime acceptance remains blocked",
       "prior_observation": "No finalized primary/dependency route for the earlier direct Build request; no task invented",
