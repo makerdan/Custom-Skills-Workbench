@@ -288,3 +288,37 @@ Accordingly, the intended action-mode control remains **BLOCKED**; no
 separate owner-approved host-evidence gate remains unresolved. No services,
 stores or runtime state were queried, and no signal or cleanup operation was
 performed.
+
+## Task 87 — source-level writer lock wiring
+
+**Observation:** 2026-10-06. This section records source changes only. No
+writer, build, code generator, workflow, coordinator store, or validation
+command was invoked to prove runtime participation. The local Gate remains
+STAGED; `writer_coverage` is still unset, and this cooperative wiring is not
+host-level or exhaustive writer coverage.
+
+| In-scope writer and nested action | Current configured path | Shared-lock scope |
+| --- | --- | --- |
+| Regression Guard `--fix-stub` plan write | `scripts/check-regression-guard.mjs` routes workspace writes through `scripts/failure_gate/run_writer.py --write-stdin`; the helper checks the before-digest while holding the Gate lock. External plan files retain the existing direct-write behavior because they are outside this workspace snapshot. | Each workspace plan update takes `.failure-gate/writers.lock`; a concurrent content change is rejected rather than overwritten. |
+| Orval generated API outputs | `lib/api-spec/package.json:codegen` calls `run_codegen.py`. That helper holds the Gate lock over Orval (`clean:true` deletion and regeneration of both generated targets) and the nested `tsc --build` over project references. | Cleanup, generation, and the nested library build are one lock interval on the same `writers.lock` inode used by `Gate.complete`. |
+| Root TypeScript project builds | Root `typecheck:libs` uses `run_writer.py` around `tsc --build`; referenced `dist` declarations and incremental metadata are within that command's lock interval. | The standalone script remains callable; the process returns the underlying command's exit status. |
+| Recursive TypeScript checks with incremental metadata | `scripts`, Skills Workbench, Canvas, and API Server `typecheck` package scripts call `run_writer.py`; API Server's nested `api-zod` build also uses the same helper. `--noEmit` checks can still write TypeScript build-info files due to inherited incremental settings. | Each emitting or build-info-producing TypeScript command takes the same lock. |
+| API Server build output | Its package `build` command wraps `node ./build.mjs` with `run_writer.py`. The existing build removes `artifacts/api-server/dist` recursively before esbuild writes the replacement. API Server `dev` reaches this same wrapped build before start. | The delete and replacement build are held together under the Gate lock. |
+| API Server test bundle lifecycle | Its `test` package command wraps `node ./test/run-tests.mjs`; the runner creates `.api-server-test-*` beneath the package, bundles the test entry, executes it, then removes the temporary directory in `finally`. | Temporary bundle creation, nested test run, and cleanup are held under the Gate lock. |
+| Skills Workbench and Canvas Vite build outputs | Both package `build` scripts wrap `vite build`; their configured `emptyOutDir:true` cleanup and subsequent output writes execute under the helper. | Each whole Vite build/cleanup action uses the Gate lock. |
+| Canvas preview generator and watcher actions | `mockupPreviewPlugin.ts` runs the new `generateMockupComponents.mjs` worker. In dev/serve mode the Python writer helper holds the lock while the worker discovers files, creates `.generated` if needed, compares, and writes the generated module. The mockup input directory creation is also routed through the helper. In build mode, the package build wrapper already holds the same lock. `add`, `unlink`, and 404-triggered rescans all reach this refresh path. | Dev refreshes hold the lock across discovery and output replacement; build refresh participates in the enclosing Vite build lock. |
+
+The callers retain their package-script entry points and original operations;
+lock acquisition failures are explicit and bounded to the existing 30-second
+writer queue. Source wiring now covers the listed project-owned paths only.
+Correction to the earlier Task 78 wording: `scripts` typecheck uses
+`tsc -p tsconfig.json --noEmit`, so it does not emit JavaScript into
+`scripts/dist`; the inherited `incremental:true` setting can still write build
+metadata, which is why this check now participates in the lock.
+Direct ad hoc tool invocations that bypass package scripts, Vite/framework
+internal cache writers, editor/Agent writes, checkout/merge, package install,
+post-merge schema changes, deployment pruning, and remote/external callers are
+not thereby covered. No immutable accepted snapshot or external participant
+adapter was added. Keep final-writer acceptance **BLOCKED** and do not set
+`writer_coverage` until the complete participant boundary is independently
+established and separately approved.

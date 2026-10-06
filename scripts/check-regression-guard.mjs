@@ -1,11 +1,15 @@
 #!/usr/bin/env node
 
 import { execFileSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import { readFileSync, statSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import process from "node:process";
+import { fileURLToPath } from "node:url";
 
 const SCRIPT_NAME = "check-regression-guard";
+const PROJECT_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const WRITER = path.join(PROJECT_ROOT, "scripts", "failure_gate", "run_writer.py");
 const REGRESSION_HEADING = /^## Regression Guard\s*$/gm;
 const TASK_STRUCTURE_HEADINGS = [
   /^## What & Why\s*$/m,
@@ -26,6 +30,28 @@ const FIX_STUB = `## Regression Guard
 function fail(message) {
   console.error(`${SCRIPT_NAME}: ${message}`);
   process.exitCode = 1;
+}
+
+function writePlan(file, previousContents, updatedContents) {
+  const relative = path.relative(PROJECT_ROOT, file);
+  const isWorkspaceFile =
+    relative !== "" && !relative.startsWith(`..${path.sep}`) &&
+    relative !== ".." && !path.isAbsolute(relative);
+  if (!isWorkspaceFile) {
+    // A caller may intentionally validate an external plan. It cannot affect
+    // this workspace's accepted snapshot, so preserve the standalone behavior.
+    writeFileSync(file, updatedContents);
+    return;
+  }
+
+  const expectedDigest = createHash("sha256")
+    .update(Buffer.from(previousContents, "utf8"))
+    .digest("hex");
+  execFileSync(
+    "python3",
+    ["-B", WRITER, "--write-stdin", relative, expectedDigest],
+    { cwd: PROJECT_ROOT, input: updatedContents, encoding: "utf8" },
+  );
 }
 
 function parseMode(args) {
@@ -324,7 +350,11 @@ function validatePlan(file, mode) {
         insertion >= 0
           ? `${contents.slice(0, insertion).replace(/\s*$/, "\n\n")}${FIX_STUB}\n${contents.slice(insertion)}`
           : `${contents.replace(/\s*$/, "")}\n\n${FIX_STUB}\n`;
-      writeFileSync(file, updated);
+      try {
+        writePlan(file, contents, updated);
+      } catch (error) {
+        return [`could not safely write plan: ${error.message}`];
+      }
       console.log(`${path.relative(process.cwd(), file)}: inserted Regression Guard stub.`);
     }
     return [];

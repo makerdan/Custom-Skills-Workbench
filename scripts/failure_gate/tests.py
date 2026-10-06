@@ -18,6 +18,7 @@ from store import Store
 from supervisor import LIMITS, run, validate_limits
 from unittest.mock import patch
 import bootstrap
+from run_writer import run_command, write_if_unchanged
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -260,6 +261,54 @@ class InputTests(unittest.TestCase):
             original = (Path(temporary) / "writers.lock").stat().st_ino
             with writer_lock(temporary):
                 self.assertEqual((Path(temporary) / "writers.lock").stat().st_ino, original)
+
+    def test_external_writer_uses_gate_lock_and_preserves_child_exit(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            started = root / "started"
+            outcome = []
+
+            def contender():
+                try:
+                    outcome.append(run_command(
+                        [sys.executable, "-c", "from pathlib import Path; Path('started').write_text('yes')"],
+                        root=root,
+                        cwd=root,
+                        timeout=0.05,
+                    ))
+                except Blocked:
+                    outcome.append("blocked")
+
+            with writer_lock(root / ".failure-gate"):
+                thread = threading.Thread(target=contender)
+                thread.start()
+                thread.join(timeout=1)
+                self.assertFalse(thread.is_alive())
+                self.assertEqual(outcome, ["blocked"])
+                self.assertFalse(started.exists())
+
+            self.assertEqual(
+                run_command(
+                    [sys.executable, "-c", "raise SystemExit(17)"],
+                    root=root,
+                    cwd=root,
+                    timeout=1,
+                ),
+                17,
+            )
+
+    def test_regression_guard_writer_rejects_stale_plan_and_writes_under_gate_lock(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            plan = root / "plan.md"
+            plan.write_text("before")
+            before = hashlib.sha256(plan.read_bytes()).hexdigest()
+            write_if_unchanged(root, "plan.md", before, b"after")
+            self.assertEqual(plan.read_text(), "after")
+
+            with self.assertRaises(Blocked):
+                write_if_unchanged(root, "plan.md", before, b"lost update")
+            self.assertEqual(plan.read_text(), "after")
 
 
 class StoreTests(unittest.TestCase):

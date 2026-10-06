@@ -286,3 +286,50 @@ test("root validation commands run the fix-stub pass before strict checking", ()
   assert.match(packageJson.scripts.build, /pnpm run typecheck/);
   assert.match(packageJson.scripts.test, /@workspace\/scripts run test/);
 });
+
+test("workspace plan writes use the Failure Gate writer and standalone temp plans still work", () => {
+  const guardSource = readFileSync(
+    path.join(repoRoot, "scripts", "check-regression-guard.mjs"),
+    "utf8",
+  );
+  const writerSource = readFileSync(
+    path.join(repoRoot, "scripts", "failure_gate", "run_writer.py"),
+    "utf8",
+  );
+  assert.match(guardSource, /--write-stdin/);
+  assert.match(guardSource, /writeFileSync\(file, updatedContents\)/);
+  assert.match(writerSource, /writer_lock\(root \/ "\.failure-gate", timeout\)/);
+  assert.match(writerSource, /stale writer input/);
+});
+
+test("generated and build-output package writers share the Failure Gate lock", () => {
+  const packageScripts = [
+    ["package.json", ["typecheck:libs"]],
+    ["lib/api-spec/package.json", ["codegen"]],
+    ["lib/api-zod/package.json", ["build"]],
+    ["scripts/package.json", ["typecheck"]],
+    ["artifacts/api-server/package.json", ["build", "test", "typecheck"]],
+    ["artifacts/skills-workbench/package.json", ["build", "typecheck"]],
+    ["artifacts/mockup-sandbox/package.json", ["build", "typecheck"]],
+  ];
+  for (const [packagePath, scriptNames] of packageScripts) {
+    const scripts = JSON.parse(
+      readFileSync(path.join(repoRoot, packagePath), "utf8"),
+    ).scripts;
+    for (const scriptName of scriptNames) {
+      assert.match(
+        scripts[scriptName],
+        /run_writer\.py|run_codegen\.py/,
+        `${packagePath} ${scriptName} must use the shared writer lock`,
+      );
+    }
+  }
+
+  const pluginSource = readFileSync(
+    path.join(repoRoot, "artifacts", "mockup-sandbox", "mockupPreviewPlugin.ts"),
+    "utf8",
+  );
+  assert.match(pluginSource, /generateMockupComponents\.mjs/);
+  assert.match(pluginSource, /run_writer\.py/);
+  assert.match(pluginSource, /--mkdir/);
+});

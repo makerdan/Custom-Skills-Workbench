@@ -8,7 +8,7 @@
     "test": "pnpm run regression-guard && pnpm --filter @workspace/scripts run test && pnpm --filter @workspace/api-server --filter @workspace/skills-workbench run test",
     "workspace-skill:status": "node scripts/workspace-skill-status.mjs",
     "regression-guard": "node scripts/check-regression-guard.mjs --fix-stub && node scripts/check-regression-guard.mjs",
-    "typecheck:libs": "tsc --build",
+    "typecheck:libs": "python3 -B scripts/failure_gate/run_writer.py -- tsc --build",
     "typecheck": "pnpm run regression-guard && pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck"
   },
   "private": true,

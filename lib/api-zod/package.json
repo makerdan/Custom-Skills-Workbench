@@ -7,7 +7,7 @@
     ".": "./src/index.ts"
   },
   "scripts": {
-    "build": "tsc --build"
+    "build": "python3 -B ../../scripts/failure_gate/run_writer.py -- tsc --build"
   },
   "dependencies": {
     "zod": "catalog:"

@@ -159,3 +159,28 @@ source bindings and requirement-by-requirement status are in
 
 The ordinary execution route remains **BLOCKED**. This confirmation does not
 change the separate Port Authority lock/reclaim assessment.
+
+### Task 87 source-level writer lock wiring — 2026-10-06
+
+This is a source-only update. The checked-in configured writers named for this
+scope now call the shared Failure Gate writer lock as documented in
+`failure-gate-host-integration-map.md`. The Regression Guard helper uses a
+before-digest check; Orval cleanup/generation and its nested library build share
+one lock interval; TypeScript build/output commands, API Server dist removal
+and replacement, temporary API Server test bundle creation and cleanup, both
+Vite build output cleanups, and Canvas dev-preview generation/watcher refreshes
+use the same `.failure-gate/writers.lock`.
+
+No local command or workflow was launched. This does not establish that the
+helpers run successfully in the configured environment, that all direct tool
+invocations use the package scripts, or that all framework caches and host
+writers participate. Editor/Agent, checkout/merge, install/schema/deployment,
+workflow-host internals, and remote/external participants remain outside the
+verified set. `writer_coverage` remains unset; final-writer acceptance and
+ordinary cutover remain **BLOCKED** pending separate approval and independent
+end-to-end boundary evidence.
+
+Correction to the earlier Task 78 source row: the scripts package invokes
+`tsc -p tsconfig.json --noEmit`, so it does not emit JavaScript to `scripts/dist`.
+Its inherited incremental setting can still update build metadata; that is the
+reason its configured typecheck command is included in the shared lock.
