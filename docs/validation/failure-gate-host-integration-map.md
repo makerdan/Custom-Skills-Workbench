@@ -359,3 +359,25 @@ not thereby covered. No immutable accepted snapshot or external participant
 adapter was added. Keep final-writer acceptance **BLOCKED** and do not set
 `writer_coverage` until the complete participant boundary is independently
 established and separately approved.
+
+## Task 90 — post-merge schema and deployment-pruning boundary
+
+**Observation:** 2026-10-06. This is a read-only source review. The post-merge
+script, install, database push, deployment lifecycle, Gate runtime, and
+coordinator store were not invoked or queried.
+
+| Local action and nested effects | Paths/state it can change | Relationship to Gate acceptance |
+| --- | --- | --- |
+| `.replit` configures `[postMerge]` to run `scripts/post-merge.sh` with a 120-second timeout. The script uses `set -e`, then runs `pnpm install --frozen-lockfile` followed by `pnpm --filter db push`. A failing install prevents the DB command from running. There is no script-level trap or cleanup command. | The install runs the root `preinstall`, which removes `package-lock.json` and `yarn.lock` before checking the pnpm user-agent. Those two files are not enumerated by `gate.snapshot`; only `pnpm-lock.yaml` is. A frozen install is configured, not a lockfile update. Install materializes/updates `node_modules`, including `.pnpm/lock.yaml` and `.modules.yaml`; `gate.snapshot` explicitly hashes those two metadata files while excluding the rest of `node_modules`. Transitive package lifecycle side effects were not exhaustively resolved from installed package contents and must not be treated as a closed write set. | An install that changes either included dependency-metadata digest can make the before/after or completion digest check fail. This is detection at sample points, not coordination: the install does not acquire `.failure-gate/writers.lock`, and it can race between a snapshot read and the terminal commit. Other dependency files and the deleted non-pnpm lockfiles are outside the hashed manifest. |
+| The `db` workspace maps `push` to `drizzle-kit push --config ./drizzle.config.ts`. The config points to `lib/db/src/schema/index.ts`, PostgreSQL, and `DATABASE_URL`. `push-force` is a separate command and is not called by the post-merge script. | The configured operation applies schema changes to the database named by `DATABASE_URL`; database state is external to the local file manifest. No migration-file output is configured by this command. The schema and config source files are under `lib/` and are included in the source manifest, but this route reads them rather than writing them. | Database changes are not represented by the Gate snapshot or its mock-database fixture declaration. The push command does not acquire the Gate lock. |
+| `.replit` configures deployment `[postBuild]` as `pnpm store prune` with `CI=true`. A read-only `pnpm store path` query returned `.local/share/pnpm/store/v10`. | The command prunes unreferenced data in that workspace-local pnpm store. `.local` is not one of `gate.snapshot`'s input roots, so this cleanup does not target files in the manifest. No project-file cleanup or nested project command is configured here. | No shared Gate lock or snapshot binding is present. Pruning changes workspace package-cache state excluded from the accepted file manifest; behavior during a concurrent install was not exercised. |
+
+`Gate.execute` holds the cooperative writer lock around the validation steps
+and records before/after file-manifest digests. `Gate.complete` holds that same
+lock while it rechecks the current manifest and commits completion. These
+checks can reject a visible digest change, but they are not an immutable
+snapshot and cannot exclude either uncoordinated operation or observe database
+and package-store state. The configured post-merge and deployment paths do not
+use the lock. No separately approved scope for changing these paths or the
+acceptance boundary was present, so their standalone behavior is unchanged;
+`writer_coverage` remains unset and final-writer acceptance remains **BLOCKED**.

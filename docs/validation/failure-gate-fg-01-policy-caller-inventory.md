@@ -184,3 +184,40 @@ Correction to the earlier Task 78 source row: the scripts package invokes
 `tsc -p tsconfig.json --noEmit`, so it does not emit JavaScript to `scripts/dist`.
 Its inherited incremental setting can still update build metadata; that is the
 reason its configured typecheck command is included in the shared lock.
+
+### Task 90 post-merge schema and deployment-pruning source review — 2026-10-06
+
+This is a read-only inventory; none of these commands or lifecycle operations
+was run. The configured post-merge route is `.replit` → `scripts/post-merge.sh`
+(`timeoutMs = 120000`). The script's exact sequence is `pnpm install
+--frozen-lockfile`, then `pnpm --filter db push`, under `set -e` (so a failed
+install stops before the push). The only declared root install hook is the
+root `preinstall`: it deletes `package-lock.json` and `yarn.lock`, then checks
+the pnpm user-agent. Those files are not part of Gate's snapshot manifest.
+The install can write dependency installation state; Gate explicitly hashes
+`node_modules/.pnpm/lock.yaml` and `node_modules/.modules.yaml`, but excludes
+other `node_modules` content. Transitive lifecycle scripts were not exhaustively
+audited, and no script-level cleanup/trap is configured in `post-merge.sh`.
+
+The `db` package's `push` script invokes
+`drizzle-kit push --config ./drizzle.config.ts`; that config reads
+`lib/db/src/schema/index.ts` and applies changes to the PostgreSQL database
+selected by `DATABASE_URL`. It does not configure migration-file generation;
+`push-force` is a separate package script not invoked here. The database
+mutation is outside the local file snapshot, while the schema/config source is
+inside it and is read by the push route.
+
+The deployment post-build action is exactly `pnpm store prune` with `CI=true`.
+A read-only `pnpm store path` query returned `.local/share/pnpm/store/v10`.
+This workspace-local cache is under `.local`, which is not one of
+`gate.snapshot`'s input roots; pruning does not target files in the acceptance
+manifest. Its interaction with concurrent package operations was not
+exercised. `.replit` itself is not in `gate.snapshot`'s root-file list.
+
+Neither configured route calls the Gate writer-lock helper. The lock protects
+only cooperating writers. Gate's before/after and completion-time digest
+checks can detect a changed included digest at those sample points, but do not
+freeze accepted files or cover out-of-band races, database state, or the
+package store. No separately approved boundary expansion was supplied, so
+standalone behavior is unchanged, `writer_coverage` remains unset, and
+final-writer acceptance remains **BLOCKED**.
