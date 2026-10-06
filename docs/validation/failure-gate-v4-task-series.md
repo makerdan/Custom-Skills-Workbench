@@ -584,12 +584,12 @@ These were the observed normative entry-point digests while writing this series.
 | `reference/staging-and-lifecycle.md` | `a9ab52d787e44c7aa4e199c8662882521d8ccf0ef8a6de0706c7853b5fa69800` |
 | `reference/validation-budgets.md` | `62c19d7ef9cbedf9505ba45b3d45460fa909126db30a83fbeb43fa2ae7a09866` |
 
-Routing/verification requirements also come from the following canonical Router files. Pin their full applicable closure in Piece 01.
+Routing/verification requirements also come from the following canonical Router files. Pin their full applicable closure in Piece 01. The historical planning digests formerly listed here were removed from the current tracked record at the user's direction on 2026-10-06 because no authoritative original snapshot or provenance is available. Start a new comparison only after a source custodian identifies an immutable original snapshot and its provenance; do not infer historical contents or a cause.
 
-| Canonical path relative to `.agents/skills/skill-application-router/` | Observed SHA-256 |
+| Canonical path relative to `.agents/skills/skill-application-router/` | Historical planning digest |
 |---|---|
-| `SKILL.md` | `710a92d8347026ca8f3e0a928335f51e5114befb173a6785efd4b45d84599d19` |
-| `references/installation-verification-plan.md` | `6d9da115f654e26252d5c188c34b927d8787b1978546e70fb766ba8f0ad5223a` |
-| `references/handoff-binding-and-recovery.md` | `1c8f4198af23d8c904520835c29062677da382b774baa2f850b2adbfa9198ce1` |
+| `SKILL.md` | Removed; original bytes and provenance unavailable |
+| `references/installation-verification-plan.md` | Removed; original bytes and provenance unavailable |
+| `references/handoff-binding-and-recovery.md` | Removed; original bytes and provenance unavailable |
 
 The paired definition-confirmation criteria, when applicable, come from Failure Gate's canonical `reference/acceptance.md`. Material regression protection comes from its acceptance contract and existing host requirements. No absent companion skill is silently replaced with a copied definition.
