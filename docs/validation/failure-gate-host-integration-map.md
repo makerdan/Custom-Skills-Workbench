@@ -209,6 +209,29 @@ No current finite approved route for this changed Failure Gate source was
 verified, so validation and real operational verification remain blocked.
 
 
+## Task 79 source-level ordinary supervision audit — 2026-10-06
+
+The focused source bindings and full disposition are recorded in
+`failure-gate-ordinary-supervision-proof.md`. This was a source/retained-document
+review only; no live coordinator, process, workflow, external service, or
+ordinary caller was queried, and no check or runtime operation was run.
+
+The CLI's ordinary `run` operation calls `Gate.required_run` without an
+independent outer supervisor at that entry. The checked local path invokes
+`supervisor.run` per validation step. In that function, the watchdog reports its
+matching registration, the parent records the event, and only then releases the
+worker's pipe gate. This confirms a source-level registration-before-worker
+handshake for that implementation path, not independent host admission of all
+ordinary callers.
+
+The code and tracked policy define finite limit values, and the cooperative
+watchdog source contains cancellation, escalation, owned-process tracking,
+bounded capture, and result-acknowledgement paths. No current ordinary-operation
+authority, independent host supervisor, effective budget/remaining-consumption
+readback, or real stop/loss/capture acknowledgement is available. Those required
+host proofs remain **UNKNOWN / BLOCKED**; ordinary execution remains blocked.
+This source-level finding does not establish any Port Authority lock, lease, or
+reclaim property.
 ### Task 78 disposition
 
 This expansion identifies actual source-level routes, nested actions, destructive cleanup, and configured workflows; it does not establish which ran, the exhaustive set of host writers, or end-to-end participation through handoff. Only the Gate's own cooperative entry points are shown using `.failure-gate/writers.lock`; the projection utility uses a different lock. No writer set has been proved to share one effective lock or immutable accepted-state boundary with `Gate.complete`. Keep `writer_coverage` unset, final-writer acceptance **BLOCKED**, and ordinary cutover **NOT APPROVED**. Host/editor/Agent/checkout/merge/external evidence and any actual workflow participation must come from an authorized, independently reviewable source; no inference from hashes or command configuration substitutes for it.

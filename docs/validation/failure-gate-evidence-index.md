@@ -32,6 +32,7 @@ No protected host identity or tamper resistance is claimed.
 | Restore | `Store.restore_fenced(checkpoint, absent_isolated_directory)` | Restored allocation stays fenced, active grants suspended, ordinary route STAGED. Missing post-checkpoint IDs cannot be silently reused. |
 | Reclaim attestations and disruption approvals | No available protected provider | `unavailable`, live reclaim BLOCKED; no cleanup signals to unrelated processes. |
 | Independent callers / remote CI | Not monitored by this local route | `unknown` coverage. Existing invocation strings and workflows are unchanged. |
+| Ordinary supervision and capture audit | `failure-gate-ordinary-supervision-proof.md`; source digests and bounded documentary review only | Source-level per-step registration and finite implementation declarations recorded. No current independent host admission, exact ordinary-operation grant, remaining-budget readback, or stop/capture acknowledgement; ordinary execution remains **BLOCKED**. |
 
 ## Non-terminal plan-approval source discovery
 

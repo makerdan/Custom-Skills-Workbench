@@ -141,3 +141,21 @@ The source map proves several additional possible project writers and nested act
 - **Task #69 verifier:** independently check this inventory against the original permitted read sources after the full Piece 01 delivery. It was pending in the primary's discovery snapshot; the later task API readback shows `#69` IN_PROGRESS. Neither lifecycle state is a local authorization or verification pass.
 
 No remote authority, person, approval, missing caller, or absent catalog was invented. All unknowns remain explicit.
+
+### Task 79 documentary confirmation — ordinary supervision and capture
+
+**Observation date:** 2026-10-06. This is a source and retained-record review
+only; no live coordinator, process, workflow, remote service, or current caller
+state was read, and no validation or runtime operation was performed. Full
+source bindings and requirement-by-requirement status are in
+`failure-gate-ordinary-supervision-proof.md`.
+
+| Requirement | Current finding |
+| --- | --- |
+| Ordinary entry scope | `cli.py` dispatches through `Gate.required_run` without an independent outer supervisor. The checked local runner calls its cooperative `supervisor.run` per step; this does not establish independent host admission for ordinary CLI or other callers. |
+| Registration before dispatch | Within `supervisor.run`, the parent records the watchdog registration before releasing the worker's pipe gate. This is source-level per-step behavior only; no host evidence proves ordinary entry is independently registered before dispatch. |
+| Finite limits and remaining consumption | The policy/source contain finite declarations, but no current exact ordinary-operation grant, clock binding, or remaining-consumption readback is available. Do not use historical values or the consumed 900-second health-only bootstrap. |
+| Stop, cancellation/escalation, owned-tree termination, supervisor loss, capture, and acknowledgement | Cooperative source paths exist, but no current ordinary operation exercised or acknowledged them. Ordinary host acceptance remains **UNKNOWN / BLOCKED**. |
+
+The ordinary execution route remains **BLOCKED**. This confirmation does not
+change the separate Port Authority lock/reclaim assessment.

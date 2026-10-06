@@ -171,6 +171,19 @@
       }
     }
   },
+
+  "task_79_ordinary_supervision": {
+    "report": "docs/validation/failure-gate-ordinary-supervision-proof.md",
+    "observed_on": "2026-10-06",
+    "status": "SOURCE_REVIEW_COMPLETE_HOST_ACCEPTANCE_BLOCKED",
+    "ordinary_execution": "BLOCKED; current governing policy classification UNKNOWN; last captured ordinary state STAGED",
+    "entry_scope": "CLI has no independent outer supervisor; checked Gate path invokes cooperative supervisor per step",
+    "registration": "Source-level per-step registration is journaled before the worker pipe gate is released; no independent host admission proof for ordinary entry",
+    "limits_and_remaining_consumption": "Finite policy/source declarations exist; no current exact-operation grant, clock binding, or remaining-budget readback",
+    "stop_capture_acknowledgement": "Cooperative implementation paths reviewed; no current ordinary host operation or acknowledgement accepted",
+    "port_authority": "Separate capability; no lock, lease, host-attestation, or reclaim claim made",
+    "runtime_operations": "NONE"
+  },
   "not_a_live_registry": true,
   "readiness": "Use original coordinator/artifacts, not these descriptive statuses, for current authority and evidence"
 }

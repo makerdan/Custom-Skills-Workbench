@@ -13,6 +13,14 @@ Canonical source is present; that fact does not prove that the Project has the c
 
 The recorded 900-second health-only bootstrap is consumed. The prior 2,700-second installation allowance, separate 300-second installer-acceptance grant, and 300-second integration-inventory grant belong to completed/historical operations; they are not current grants. The inventory grant closed as budget-exhausted with completion timing unverified. Remaining consumption for current host operations is unknown. Do not revive any allowance or use its historical phase values as defaults.
 
+Task 79's source-level ordinary supervision review is recorded in
+`failure-gate-ordinary-supervision-proof.md`. The local per-step supervisor
+contains a registration-before-worker handshake and finite code/policy
+declarations, but the ordinary CLI has no independent outer supervisor and no
+current host grant, remaining-consumption readback, or ordinary stop/capture
+acknowledgement was established. This documentary result does not authorize a
+runtime operation or alter any of the stage gates below.
+
 ## Stage gates and proposed owner sequence
 
 This is a dependency/permission proposal, not a task-card list. The existing `#69` verifier must be used as the next independent review; no Pieces 02–18 cards are created or surfaced by this document.
