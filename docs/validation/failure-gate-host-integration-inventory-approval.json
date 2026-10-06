@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "status": "APPROVED_LOCAL_CONVERSATION",
+  "reference": "inv_1iUbbTUza9TH41U1hqn2DK7MoJ8xcgnbZ7:call_Zz0MMdKTw490XzMkwBOzP8bQ",
+  "question": "Approve five minutes to map the remaining Failure Gate integration requirements?",
+  "answer": "Approve read-only integration review",
+  "additional_comments": null,
+  "proposal": "docs/validation/failure-gate-host-integration-inventory-proposal.md",
+  "grant_seconds": 300,
+  "started_monotonic": 607.294026956,
+  "deadline_monotonic": 907.294026956,
+  "boot": "03557306-f58c-4249-aa8d-ab861714d902",
+  "closeout_status": "BUDGET_EXHAUSTED_COMPLETION_TIMING_UNVERIFIED",
+  "last_observed_monotonic": 1104.920802672,
+  "closeout_note": "Source/coordinator observations occurred within allowance; final clock read was past deadline. Exact documentation completion timing was not captured. No in-budget completion claim, renewed grant, or further review authorized.",
+  "scope": "Bounded existing-file and read-only coordinator review; write sanitized integration map/proposal only",
+  "excluded": "Code changes, project imports, tests, builds, generation, registry mutations, activation, signals, workflow changes, database/schema changes, remote calls, platform task mutations",
+  "source": "Actual local owner conversation; no protected identity or execution authority"
+}

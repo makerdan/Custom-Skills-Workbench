@@ -1,6 +1,10 @@
 # Proposed read-only host integration inventory
 
-**PROPOSED — not approved or executed as an integration phase. No cutover.**
+**APPROVED READ-ONLY REVIEW — BUDGET EXHAUSTED AT CLOSEOUT.** Actual response is retained in
+`failure-gate-host-integration-inventory-approval.json`; observations and next
+scope are in `failure-gate-host-integration-map.md`. In-budget completion timing
+is unverified. No implementation or cutover; no further review authorized.
+Historical requested scope below is preserved.
 
 ## Current stage and exact authority boundary
 

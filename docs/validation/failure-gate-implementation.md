@@ -14,6 +14,12 @@ The machine-readable capability locator is `failure-gate-capabilities.json`;
 the evidence index is `failure-gate-evidence-index.md`. Neither is a competing
 live coordinator or an authorization record.
 
+The saved read-only host inventory draft is `failure-gate-host-integration-map.md`;
+its budget was exhausted at closeout and in-budget completion is unverified.
+It identifies actual Orval/Regression Guard/merge writers, the terminal-only
+review path and missing ordinary admission/participation proof. The staged next
+scope is proposed separately; no cutover follows from the inventory.
+
 ## Approval and scope
 
 The actual owner response is retained in

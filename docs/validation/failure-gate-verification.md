@@ -402,3 +402,32 @@ watchdog error's cause remains unclassified.
 
 Next proposal: `failure-gate-host-integration-inventory-proposal.md`, a read-only
 mapping phase before any integration amendment or cutover is requested.
+
+## Approved read-only host integration review
+
+That review was approved under the separately reserved five-minute
+scope in `failure-gate-host-integration-inventory-approval.json`.
+Source/coordinator observations were within allowance, but the final clock
+observation `1104.920802672` exceeded deadline `907.294026956`. Exact documentation
+completion timing was not captured; in-budget completion is not established.
+Its actual map is `failure-gate-host-integration-map.md`.
+
+Bounded source reads and read-only coordinator queries observed STAGED governance,
+no writer-coverage value, zero ordinary required-tier runs/review decisions and
+zero retained runs. Concrete unverified writers include Orval's cleaned generated
+directories, Regression Guard fix-stub writes and dependency/schema merge setup.
+Actual plan approval currently requires a real interactive terminal; a non-TTY
+approval bridge was not established. The inspected CLI has no ordinary outer
+admission wrapper. Existing generation-coordination work must be reconciled,
+not duplicated on the strength of an outdated task label.
+
+No project code, canonical skill, command, workflow, registry, database/schema or
+task state was modified; no project import, test, build, generation or cleanup ran.
+Only review documentation/evidence locators were written. This phase is stopped
+with saved observations/draft and a budget-exhausted disposition, not certified
+in-budget completion, ordinary acceptance or cutover. No grant was renewed.
+
+The next concrete source/proof scope is
+`failure-gate-staged-admission-proposal.md`: staged finite CLI admission and a
+participating-writer contract, with real approval intake prerequisites retained.
+That proposal is unapproved and grants no execution.
