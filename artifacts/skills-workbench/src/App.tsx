@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useLayoutEffect, useMemo, useState } from 'react';
+import { createContext, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { FormEvent, ReactNode } from 'react';
 import { QueryClient, QueryClientProvider, useQueryClient } from '@tanstack/react-query';
 import { Link, Route, Switch, useLocation, useRoute, Router as WouterRouter } from 'wouter';
@@ -25,7 +25,7 @@ import {
   ArrowRight, ArrowUpRight, ArrowDownToLine, BookOpen, ChevronDown, CircleHelp,
   Clock3, Code2, FileArchive, FileCode2, Layers3, LogOut, Settings,
   MessageSquareText, Plus, ShieldCheck, Sparkles, Upload, X,
-  Globe2, LockKeyhole, Search, SlidersHorizontal, Tag,
+  Globe2, LockKeyhole, Search, SlidersHorizontal, Tag, LayoutGrid, List,
   Share2, Copy, RefreshCw, ExternalLink, GitBranch, Pencil, RotateCcw, Trash2,
 } from 'lucide-react';
 import NotFound from '@/pages/not-found';
@@ -225,6 +225,7 @@ function ZipPicker({ value, onChange, id = 'zip-file', disabled = false }: { val
 
 function SkillsPage() {
   const queryClient = useQueryClient();
+  const [, navigate] = useLocation();
   const skillsQuery = useListSkills();
   const createSkill = useCreateSkill();
   const createVersion = useCreateSkillVersion();
@@ -241,7 +242,25 @@ function SkillsPage() {
   const [uploadingTo, setUploadingTo] = useState<string | null>(null);
   const [creating, setCreating] = useState(false);
   const [error, setError] = useState('');
+  const [search, setSearch] = useState('');
+  const [visibility, setVisibility] = useState<'all' | 'public' | 'private'>('all');
+  const [sort, setSort] = useState<'recent' | 'oldest' | 'name'>('recent');
+  const [display, setDisplay] = useState<'grid' | 'list'>('list');
   const skills = skillsQuery.data?.skills ?? [];
+  const visibleSkills = useMemo(() => {
+    const needle = search.trim().toLocaleLowerCase();
+    return skills
+      .filter(skill => visibility === 'all' || skill.isPublic === (visibility === 'public'))
+      .filter(skill => !needle || `${skill.name}\n${skill.description ?? ''}`.toLocaleLowerCase().includes(needle))
+      .sort((a, b) => {
+        if (sort === 'name') return a.name.localeCompare(b.name, undefined, { sensitivity: 'base', numeric: true });
+        const dateOrder = Date.parse(a.createdAt) - Date.parse(b.createdAt);
+        return sort === 'recent' ? -dateOrder : dateOrder;
+      });
+  }, [search, skills, sort, visibility]);
+  useEffect(() => {
+    if (selectedSkill && !skills.some(skill => skill.id === selectedSkill)) setSelectedSkill(null);
+  }, [selectedSkill, skills]);
   const refreshSkills = () => Promise.all([
     queryClient.invalidateQueries({ queryKey: getListSkillsQueryKey() }),
     queryClient.invalidateQueries({ queryKey: getGetWorkbenchSummaryQueryKey() }),
@@ -268,6 +287,12 @@ function SkillsPage() {
       setVersionZip(null); setUploadingTo(null);
     } catch (err) { setError(err instanceof Error ? err.message : 'We could not upload this version. Try again.'); setUploadingTo(null); }
   };
+  const resetBrowsing = () => {
+    setSearch('');
+    setVisibility('all');
+    setSort('recent');
+    setDisplay('list');
+  };
   return <>
     <Topline section="Skill library" title="Your skills." description="Each upload is preserved as a distinct version, ready to ground your next implementation question." action={<div className="flex flex-wrap gap-2"><button className="btn-subtle" onClick={() => { setShowCreate(false); setShowBatchImport(v => !v); }} data-testid="button-toggle-bulk-import"><FileArchive size={15}/>{showBatchImport ? 'Close bulk import' : 'Bulk import ZIPs'}</button><button className="btn-primary" onClick={() => { setShowBatchImport(false); setShowCreate(v=>!v); }} data-testid="button-create-skill"><Plus size={16}/>{showCreate ? 'Close form' : 'New skill'}</button></div>}/>
     {showBatchImport && <div className="mb-8"><BatchSkillImport onClose={() => setShowBatchImport(false)} onComplete={() => { void refreshSkills(); }}/></div>}
@@ -281,9 +306,39 @@ function SkillsPage() {
       {error && <p className="text-sm text-destructive mt-4" role="alert" data-testid="status-upload-error">{error}</p>}
       <div className="flex justify-end mt-5"><button disabled={creating || createSkill.isPending || requestUpload.isPending} className="btn-primary" data-testid="button-submit-create">{creating || createSkill.isPending || requestUpload.isPending ? 'Uploading and indexing…' : 'Create skill'} <ArrowRight size={15}/></button></div>
     </form>}
-    {skillsQuery.isLoading ? <SkeletonLines count={3}/> : skillsQuery.isError ? <ErrorNotice retry={()=>skillsQuery.refetch()}/> : skills.length === 0 ?
+     {skillsQuery.isLoading ? <SkeletonLines count={3}/> : skillsQuery.isError ? <ErrorNotice retry={()=>skillsQuery.refetch()}/> : skills.length === 0 ?
       <EmptyState testId="empty-skills" title="Your library starts here." detail="Upload a skill ZIP and make the guidance inside it available for future questions." action={<button className="btn-primary" onClick={()=>setShowCreate(true)} data-testid="button-create-first-skill"><Plus size={15}/> Create your first skill</button>}/> :
-       <div className="space-y-3" data-testid="list-skills">{skills.map(skill=><SkillCard key={skill.id} skill={skill} selected={selectedSkill===skill.id} onToggle={()=>setSelectedSkill(selectedSkill===skill.id ? null : skill.id)} version={newVersion} setVersion={setNewVersion} zip={versionZip} setZip={setVersionZip} busy={uploadingTo===skill.id} onUpload={e=>handleVersion(e,skill.id)} error={error} onDetailsUpdated={refreshSkills}/>)}</div>}
+       <section aria-label="Your skill library" data-testid="skills-library">
+         <div className="panel p-4 sm:p-5 mb-4">
+           <div className="grid gap-3 lg:grid-cols-[minmax(220px,1fr)_180px_180px_auto] lg:items-end">
+             <label className="text-xs font-semibold" htmlFor="skills-search">Search your skills
+               <span className="relative block mt-2"><Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"/><input id="skills-search" type="search" className="field !py-2.5 !pl-9 text-sm font-normal" value={search} onChange={event=>setSearch(event.currentTarget.value)} placeholder="Name or description" data-testid="input-search-skills"/></span>
+             </label>
+             <label className="text-xs font-semibold" htmlFor="skills-visibility">Publication
+               <select id="skills-visibility" className="field mt-2 !py-2.5 text-sm font-normal" value={visibility} onChange={event=>setVisibility(event.currentTarget.value as typeof visibility)} data-testid="select-skill-visibility">
+                 <option value="all">All skills</option><option value="public">Public</option><option value="private">Private</option>
+               </select>
+             </label>
+             <label className="text-xs font-semibold" htmlFor="skills-sort">Sort
+               <select id="skills-sort" className="field mt-2 !py-2.5 text-sm font-normal" value={sort} onChange={event=>setSort(event.currentTarget.value as typeof sort)} data-testid="select-skill-sort">
+                 <option value="recent">Recently added</option><option value="oldest">Oldest added</option><option value="name">Name A–Z</option>
+               </select>
+             </label>
+             <div className="flex items-center gap-1 lg:justify-end" role="group" aria-label="Skill display mode">
+               <button type="button" className={`btn-subtle !p-2.5 ${display === 'grid' ? 'border-primary text-primary' : ''}`} aria-label="Grid view" aria-pressed={display === 'grid'} onClick={()=>setDisplay('grid')} data-testid="button-skills-grid-view"><LayoutGrid size={16}/></button>
+               <button type="button" className={`btn-subtle !p-2.5 ${display === 'list' ? 'border-primary text-primary' : ''}`} aria-label="List view" aria-pressed={display === 'list'} onClick={()=>setDisplay('list')} data-testid="button-skills-list-view"><List size={16}/></button>
+             </div>
+           </div>
+         </div>
+         <div className="flex flex-wrap items-center justify-between gap-2 mb-3 text-xs text-muted-foreground">
+           <p aria-live="polite" data-testid="skills-result-count">Showing {visibleSkills.length} of {skills.length} {skills.length === 1 ? 'skill' : 'skills'}</p>
+           {(search || visibility !== 'all' || sort !== 'recent' || display !== 'list') && <button type="button" className="inline-flex items-center gap-1.5 font-semibold text-primary hover:underline" onClick={resetBrowsing} data-testid="button-reset-skill-browsing"><RotateCcw size={13}/> Reset controls</button>}
+         </div>
+         {visibleSkills.length === 0 ? <EmptyState testId="empty-skill-results" title="No skills match these controls." detail="Try a different search or publication filter, or reset the controls to see your full library." action={<button type="button" className="btn-subtle" onClick={resetBrowsing} data-testid="button-reset-empty-skill-results">Reset search and filters</button>}/> :
+           <div className={display === 'grid' ? 'grid gap-3 md:grid-cols-2 2xl:grid-cols-3 items-start' : 'space-y-3'} data-testid="list-skills" data-view-mode={display}>
+             {visibleSkills.map(skill=><SkillCard key={skill.id} skill={skill} selected={selectedSkill===skill.id} onToggle={()=>setSelectedSkill(current => current===skill.id ? null : skill.id)} onStartConversation={()=>navigate(`/ask?skillId=${encodeURIComponent(skill.id)}`)} version={newVersion} setVersion={setNewVersion} zip={versionZip} setZip={setVersionZip} busy={uploadingTo===skill.id} onUpload={e=>handleVersion(e,skill.id)} error={error} onDetailsUpdated={refreshSkills}/>)}
+           </div>}
+       </section>}
   </>;
 }
 
@@ -392,7 +447,7 @@ function VersionShareControl({
   </div>;
 }
 
-function SkillCard({ skill, selected, onToggle, version, setVersion, zip, setZip, busy, onUpload, error, onDetailsUpdated }: { skill: Skill; selected: boolean; onToggle: () => void; version: string; setVersion: (v: string) => void; zip: File | null; setZip: (v: File|null) => void; busy: boolean; onUpload: (e: FormEvent) => void; error: string; onDetailsUpdated: () => Promise<unknown> }) {
+function SkillCard({ skill, selected, onToggle, onStartConversation, version, setVersion, zip, setZip, busy, onUpload, error, onDetailsUpdated }: { skill: Skill; selected: boolean; onToggle: () => void; onStartConversation: () => void; version: string; setVersion: (v: string) => void; zip: File | null; setZip: (v: File|null) => void; busy: boolean; onUpload: (e: FormEvent) => void; error: string; onDetailsUpdated: () => Promise<unknown> }) {
   const queryClient = useQueryClient();
   const updateSkillDetails = useUpdateSkillDetails();
   const updatePublication = useUpdateSkillPublication();
@@ -411,6 +466,15 @@ function SkillCard({ skill, selected, onToggle, version, setVersion, zip, setZip
   const [editName, setEditName] = useState(skill.name);
   const [editDescription, setEditDescription] = useState(skill.description ?? '');
   const [detailsError, setDetailsError] = useState('');
+  const [detailsMessage, setDetailsMessage] = useState('');
+  const hasUnsavedPublicationChanges =
+    publicEnabled !== skill.isPublic ||
+    publicCategory !== (skill.category ?? '') ||
+    publicLanguage !== (skill.language ?? '') ||
+    publicFramework !== (skill.framework ?? '') ||
+    publicUseCase !== (skill.useCase ?? '') ||
+    publicTags !== skill.tags.join(', ') ||
+    publicCreator !== (skill.creatorLabel ?? '');
   useEffect(() => {
     setPublicEnabled(skill.isPublic);
     setPublicCategory(skill.category ?? '');
@@ -437,6 +501,7 @@ function SkillCard({ skill, selected, onToggle, version, setVersion, zip, setZip
       });
       await onDetailsUpdated();
       setEditing(false);
+      setDetailsMessage('Skill details saved.');
     } catch (err) {
       setDetailsError(err instanceof Error ? err.message : 'Skill details could not be saved. Try again.');
     }
@@ -471,12 +536,35 @@ function SkillCard({ skill, selected, onToggle, version, setVersion, zip, setZip
       setPublicationError(err instanceof Error ? err.message : 'Sharing settings could not be saved. Try again.');
     }
   };
+  const cancelDetails = () => {
+    setEditing(false);
+    setEditName(skill.name);
+    setEditDescription(skill.description ?? '');
+    setDetailsError('');
+    setDetailsMessage('Edit cancelled. Unsaved changes were discarded.');
+  };
+  const toggleShareSettings = () => {
+    if (shareOpen) {
+      if (hasUnsavedPublicationChanges && !window.confirm('Discard unsaved sharing settings?')) return;
+      setShareOpen(false);
+      return;
+    }
+    setPublicEnabled(skill.isPublic);
+    setPublicCategory(skill.category ?? '');
+    setPublicLanguage(skill.language ?? '');
+    setPublicFramework(skill.framework ?? '');
+    setPublicUseCase(skill.useCase ?? '');
+    setPublicTags(skill.tags.join(', '));
+    setPublicCreator(skill.creatorLabel ?? '');
+    setPublicationError('');
+    setShareOpen(true);
+  };
   return <article className="panel overflow-visible" data-testid={`card-skill-${skill.id}`}>
     <div className="w-full p-5 sm:p-6 flex items-start gap-4">
-      <button onClick={onToggle} className="min-w-0 flex-1 text-left flex items-start gap-4 hover:opacity-90 transition-opacity" data-testid={`button-expand-skill-${skill.id}`}>
+      <button type="button" onClick={onToggle} className="min-w-0 flex-1 text-left flex items-start gap-4 hover:opacity-90 transition-opacity" aria-expanded={selected} aria-controls={`skill-details-${skill.id}`} aria-label={`${selected ? 'Collapse' : 'Expand'} ${skill.name} details`} data-testid={`button-expand-skill-${skill.id}`}>
         <span className="grid place-items-center w-11 h-11 rounded-xl bg-accent/65 text-primary shrink-0"><FileCode2 size={19}/></span>
         <span className="min-w-0 flex-1"><span className="flex flex-wrap items-center gap-2"><span className="font-semibold text-[15px]" data-testid={`text-skill-name-${skill.id}`}>{skill.name}</span><span className="text-[10px] font-mono rounded-full px-2 py-1 bg-muted text-muted-foreground">v{skill.versions.find(v=>v.id===skill.currentVersionId)?.versionLabel || versions[0]?.versionLabel || 'current'}</span></span>
-          <span className="block text-xs text-muted-foreground mt-1.5 max-w-2xl">{skill.description || 'No description added.'}</span><span className="flex gap-3 mt-3 text-[10px] text-muted-foreground"><span>{skill.versions.length || versions.length} {(skill.versions.length || versions.length) === 1 ? 'version' : 'versions'}</span><span>Added {dateLabel(skill.createdAt)}</span></span></span>
+          <span className="block text-xs text-muted-foreground mt-1.5 max-w-2xl">{skill.description || 'No description added.'}</span><span className="flex flex-wrap items-center gap-2 mt-3 text-[10px] text-muted-foreground"><span>{skill.versions.length || versions.length} {(skill.versions.length || versions.length) === 1 ? 'version' : 'versions'}</span><span>Added {dateLabel(skill.createdAt)}</span><span className={`rounded-full px-2 py-1 font-semibold ${skill.isPublic ? 'bg-primary/10 text-primary' : 'bg-muted text-muted-foreground'}`} data-testid={`status-gallery-public-${skill.id}`}>{skill.isPublic ? 'Public gallery' : 'Private'}</span></span></span>
         <ChevronDown size={17} className={`text-muted-foreground mt-1 transition-transform ${selected ? 'rotate-180' : ''}`}/>
       </button>
        <div className="flex flex-wrap justify-end gap-2 shrink-0">
@@ -489,15 +577,20 @@ function SkillCard({ skill, selected, onToggle, version, setVersion, zip, setZip
             sharesLoading={sharesQuery.isLoading}
             sharesError={sharesQuery.isError}
             onRetryShares={() => { void sharesQuery.refetch(); }}
-            triggerLabel="Share current"
+            triggerLabel="Unlisted link"
             testId={`share-current-${skill.id}`}
           />}
-         <button type="button" className="btn-subtle !px-2.5 !py-2 text-[11px]" onClick={() => { setPublicEnabled(skill.isPublic); setPublicCategory(skill.category ?? ''); setPublicLanguage(skill.language ?? ''); setPublicFramework(skill.framework ?? ''); setPublicUseCase(skill.useCase ?? ''); setPublicTags(skill.tags.join(', ')); setPublicCreator(skill.creatorLabel ?? ''); setPublicationError(''); setShareOpen(v => !v); }} data-testid={`button-share-skill-${skill.id}`}><Globe2 size={13}/>{skill.isPublic ? 'Public settings' : 'Share'}</button>
-         <button type="button" className="btn-subtle !px-2.5 !py-2 text-[11px]" onClick={() => { if (!selected) onToggle(); setEditName(skill.name); setEditDescription(skill.description ?? ''); setDetailsError(''); setEditing(true); }} data-testid={`button-edit-skill-details-${skill.id}`}>Edit details</button>
+         <button type="button" className="btn-subtle !px-2.5 !py-2 text-[11px]" onClick={toggleShareSettings} aria-expanded={shareOpen} data-testid={`button-share-skill-${skill.id}`}><Globe2 size={13}/>{shareOpen ? 'Close settings' : skill.isPublic ? 'Public settings' : 'Share'}</button>
+          <button type="button" className="btn-subtle !px-2.5 !py-2 text-[11px]" disabled={editing || updateSkillDetails.isPending} onClick={() => { if (!selected) onToggle(); setEditName(skill.name); setEditDescription(skill.description ?? ''); setDetailsError(''); setDetailsMessage(''); setEditing(true); }} data-testid={`button-edit-skill-details-${skill.id}`}>Edit details</button>
+         <button type="button" className="btn-primary !px-2.5 !py-2 text-[11px]" onClick={onStartConversation} data-testid={`button-start-conversation-${skill.id}`}><MessageSquareText size={13}/>Start conversation</button>
        </div>
     </div>
     {shareOpen && <form onSubmit={savePublication} className="border-t border-border bg-[hsl(var(--background)/.45)] px-5 py-5 sm:px-6" data-testid={`form-skill-publication-${skill.id}`}>
-      <div className="flex items-start gap-3 mb-4"><span className="grid place-items-center w-9 h-9 rounded-xl bg-accent/60 text-primary shrink-0"><Globe2 size={16}/></span><div><p className="eyebrow">Public discovery</p><h3 className="font-semibold text-sm mt-1">Choose what to share</h3><p className="text-xs leading-5 text-muted-foreground mt-1">When enabled, this skill’s name, description, category, technologies, tags, and optional creator label appear in the public gallery. ZIP contents, file paths, account details, and question history stay private. Unpublishing removes it from gallery results immediately.</p></div></div>
+      <div className="flex items-start gap-3 mb-4"><span className="grid place-items-center w-9 h-9 rounded-xl bg-accent/60 text-primary shrink-0"><Globe2 size={16}/></span><div><p className="eyebrow">Public discovery</p><h3 className="font-semibold text-sm mt-1">Choose what to share</h3><p className="text-xs leading-5 text-muted-foreground mt-1">When enabled, this skill’s name, description, category, technologies, tags, and optional creator label appear in the public gallery. ZIP contents, file paths, account details, and question history stay private. Unpublishing removes it from gallery results immediately. Gallery publication is separate from unlisted links for individual versions.</p></div></div>
+      <div className="rounded-lg border border-border bg-card px-3.5 py-3 mb-4 text-xs">
+        <p data-testid={`status-gallery-saved-${skill.id}`}>Saved gallery status: <strong>{skill.isPublic ? 'Public' : 'Private'}</strong></p>
+        <p className="mt-1" data-testid={`status-gallery-draft-${skill.id}`}>Current choice: <strong>{publicEnabled ? 'Public' : 'Private'}</strong>{hasUnsavedPublicationChanges ? ' · unsaved changes' : ' · saved'}</p>
+      </div>
       <label className="flex items-start gap-3 rounded-lg border border-border p-3.5 cursor-pointer">
         <input type="checkbox" className="mt-0.5 accent-[hsl(var(--primary))]" checked={publicEnabled} onChange={event => setPublicEnabled(event.currentTarget.checked)} data-testid={`checkbox-publish-skill-${skill.id}`}/>
         <span><span className="block text-xs font-semibold">{publicEnabled ? 'Listed in the public gallery' : 'Keep this skill private'}</span><span className="block text-[11px] text-muted-foreground mt-1">Skills are private by default. You can change this at any time.</span></span>
@@ -511,18 +604,20 @@ function SkillCard({ skill, selected, onToggle, version, setVersion, zip, setZip
          <label className="text-xs font-semibold">Creator label <span className="font-normal text-muted-foreground">optional</span><input className="field mt-1.5 text-sm font-normal" maxLength={60} value={publicCreator} onChange={event => setPublicCreator(event.currentTarget.value)} placeholder="A name shown on this skill" data-testid={`input-public-creator-${skill.id}`}/></label>
       </div>
       {publicationError && <p className="text-xs text-destructive mt-3" role="alert" data-testid={`status-publication-error-${skill.id}`}>{publicationError}</p>}
-      <div className="flex justify-end gap-2 mt-4"><button type="button" className="btn-subtle" onClick={() => setShareOpen(false)}>Cancel</button><button type="submit" className="btn-primary" disabled={updatePublication.isPending} data-testid={`button-save-publication-${skill.id}`}>{updatePublication.isPending ? 'Saving…' : publicEnabled ? 'Publish skill' : 'Save private settings'} <ArrowRight size={14}/></button></div>
+      <div className="flex justify-end gap-2 mt-4"><button type="button" className="btn-subtle" onClick={() => setShareOpen(false)}>Cancel</button><button type="submit" className="btn-primary" disabled={updatePublication.isPending} data-testid={`button-save-publication-${skill.id}`}>{updatePublication.isPending ? 'Saving…' : 'Save sharing settings'} <ArrowRight size={14}/></button></div>
     </form>}
-    {selected && <div className="border-t border-border px-5 py-5 sm:px-6 sm:py-6 bg-[hsl(var(--background)/.45)] page-enter">
+    <div id={`skill-details-${skill.id}`} hidden={!selected}>
+    {selected && <div role="region" aria-label={`${skill.name} details`} className="border-t border-border px-5 py-5 sm:px-6 sm:py-6 bg-[hsl(var(--background)/.45)] page-enter">
+      {detailsMessage && <p role="status" className="text-xs text-primary mb-4" data-testid={`status-edit-skill-details-${skill.id}`}>{detailsMessage}</p>}
       {editing && <form onSubmit={saveDetails} className="panel p-4 sm:p-5 mb-6" data-testid={`form-edit-skill-details-${skill.id}`}>
-        <div className="flex flex-wrap items-start justify-between gap-3 mb-4"><div><p className="eyebrow">Skill details</p><h3 className="font-semibold text-sm mt-1">Edit name and description</h3></div><button type="button" className="p-2 rounded-lg hover:bg-muted" onClick={() => { setEditing(false); setEditName(skill.name); setEditDescription(skill.description ?? ''); setDetailsError(''); }} aria-label="Cancel editing skill details" data-testid={`button-cancel-edit-skill-details-${skill.id}`}><X size={16}/></button></div>
-        <div className="grid md:grid-cols-2 gap-4"><label className="text-xs font-semibold">Skill name<input className="field mt-2 text-sm font-normal" value={editName} onChange={event => setEditName(event.currentTarget.value)} maxLength={120} required data-testid={`input-edit-skill-name-${skill.id}`}/></label><label className="text-xs font-semibold md:col-span-2">Description <span className="font-normal text-muted-foreground">optional</span><textarea className="field mt-2 text-sm font-normal min-h-[76px] resize-y" value={editDescription} onChange={event => setEditDescription(event.currentTarget.value)} maxLength={1000} data-testid={`input-edit-skill-description-${skill.id}`}/></label></div>
+        <div className="flex flex-wrap items-start justify-between gap-3 mb-4"><div><p className="eyebrow">Skill details</p><h3 className="font-semibold text-sm mt-1">Edit name and description</h3></div><button type="button" className="p-2 rounded-lg hover:bg-muted" onClick={cancelDetails} aria-label="Cancel editing skill details" disabled={updateSkillDetails.isPending} data-testid={`button-cancel-edit-skill-details-${skill.id}`}><X size={16}/></button></div>
+        <div className="grid md:grid-cols-2 gap-4"><label className="text-xs font-semibold">Skill name<input className="field mt-2 text-sm font-normal" value={editName} onChange={event => setEditName(event.currentTarget.value)} maxLength={120} required disabled={updateSkillDetails.isPending} data-testid={`input-edit-skill-name-${skill.id}`}/></label><label className="text-xs font-semibold md:col-span-2">Description <span className="font-normal text-muted-foreground">optional</span><textarea className="field mt-2 text-sm font-normal min-h-[76px] resize-y" value={editDescription} onChange={event => setEditDescription(event.currentTarget.value)} maxLength={1000} disabled={updateSkillDetails.isPending} data-testid={`input-edit-skill-description-${skill.id}`}/></label></div>
         {detailsError && <p className="text-xs text-destructive mt-3" role="alert" data-testid={`status-edit-skill-error-${skill.id}`}>{detailsError}</p>}
-        <div className="flex justify-end gap-2 mt-4"><button type="button" className="btn-subtle" onClick={() => { setEditing(false); setEditName(skill.name); setEditDescription(skill.description ?? ''); setDetailsError(''); }} data-testid={`button-cancel-edit-details-${skill.id}`}>Cancel</button><button type="submit" className="btn-primary" disabled={updateSkillDetails.isPending} data-testid={`button-save-edit-details-${skill.id}`}>{updateSkillDetails.isPending ? 'Saving…' : 'Save details'} <ArrowRight size={14}/></button></div>
+        <div className="flex justify-end gap-2 mt-4"><button type="button" className="btn-subtle" onClick={cancelDetails} disabled={updateSkillDetails.isPending} data-testid={`button-cancel-edit-details-${skill.id}`}>Cancel</button><button type="submit" className="btn-primary" disabled={updateSkillDetails.isPending} data-testid={`button-save-edit-details-${skill.id}`}>{updateSkillDetails.isPending ? 'Saving…' : 'Save details'} <ArrowRight size={14}/></button></div>
       </form>}
       <div className="grid lg:grid-cols-[1fr_300px] gap-7">
         <div><p className="eyebrow mb-3">Uploaded versions</p>{versionsQuery.isLoading ? <SkeletonLines count={2}/> : versionsQuery.isError ? <ErrorNotice retry={()=>versionsQuery.refetch()}/> :
-          <div className="space-y-2">{versions.map(v=><div key={v.id} className="flex flex-wrap gap-3 items-center rounded-lg border border-border bg-card p-3" data-testid={`row-version-${v.id}`}><span className="w-8 h-8 grid place-items-center rounded-lg bg-muted text-primary"><FileArchive size={15}/></span><div className="flex-1 min-w-0"><p className="text-xs font-semibold font-mono" data-testid={`text-version-label-${v.id}`}>v{v.versionLabel}{v.id===skill.currentVersionId && <span className="ml-2 font-sans text-[9px] uppercase tracking-wider text-primary">Current</span>}</p><p className="text-[10px] text-muted-foreground mt-1 truncate">{v.fileName} · {v.fileCount} files · {dateLabel(v.uploadedAt)}</p></div><span title={v.filePaths.join(', ')} className="text-[10px] text-muted-foreground hidden sm:block">{v.filePaths.length} paths</span><VersionShareControl skillId={skill.id} versionId={v.id} versionLabel={v.versionLabel} skillName={skill.name} activeShare={activeShares.find(share => share.versionId === v.id)} sharesLoading={sharesQuery.isLoading} sharesError={sharesQuery.isError} onRetryShares={() => { void sharesQuery.refetch(); }} triggerLabel="Share version" testId={`share-version-${v.id}`}/></div>)}</div>}
+          <div className="space-y-2">{versions.map(v=><div key={v.id} className="flex flex-wrap gap-3 items-center rounded-lg border border-border bg-card p-3" data-testid={`row-version-${v.id}`}><span className="w-8 h-8 grid place-items-center rounded-lg bg-muted text-primary"><FileArchive size={15}/></span><div className="flex-1 min-w-0"><p className="text-xs font-semibold font-mono" data-testid={`text-version-label-${v.id}`}>v{v.versionLabel}{v.id===skill.currentVersionId && <span className="ml-2 font-sans text-[9px] uppercase tracking-wider text-primary">Current</span>}</p><p className="text-[10px] text-muted-foreground mt-1 truncate">{v.fileName} · {v.fileCount} files · {dateLabel(v.uploadedAt)}</p></div><span title={v.filePaths.join(', ')} className="text-[10px] text-muted-foreground hidden sm:block">{v.filePaths.length} paths</span><VersionShareControl skillId={skill.id} versionId={v.id} versionLabel={v.versionLabel} skillName={skill.name} activeShare={activeShares.find(share => share.versionId === v.id)} sharesLoading={sharesQuery.isLoading} sharesError={sharesQuery.isError} onRetryShares={() => { void sharesQuery.refetch(); }} triggerLabel="Unlisted link" testId={`share-version-${v.id}`}/></div>)}</div>}
         </div>
         <form onSubmit={onUpload} className="lg:border-l lg:border-border lg:pl-6" data-testid={`form-upload-version-${skill.id}`}>
           <p className="eyebrow">Keep it current</p><h3 className="font-semibold text-sm mt-1 mb-4">Upload a new version</h3>
@@ -533,6 +628,7 @@ function SkillCard({ skill, selected, onToggle, version, setVersion, zip, setZip
         </form>
       </div>
     </div>}
+    </div>
   </article>;
 }
 
@@ -736,10 +832,26 @@ function AskPage() {
   const [actionError, setActionError] = useState('');
   const [actionMessage, setActionMessage] = useState('');
   const skills = skillsQuery.data?.skills ?? [];
+  const requestedSkillId = new URLSearchParams(window.location.search).get('skillId') ?? '';
+  const appliedSkillSeed = useRef('');
   const selected = skills.find(s=>s.id===skillId);
   const versionsQuery = useListSkillVersions(skillId, { query: { queryKey: getListSkillVersionsQueryKey(skillId), enabled: !!skillId } });
   const versions = useMemo(() => versionsQuery.data?.versions ?? selected?.versions ?? [], [versionsQuery.data?.versions, selected?.versions]);
   const conversation = conversationQuery.data;
+  useEffect(() => {
+    if (!requestedSkillId) {
+      appliedSkillSeed.current = '';
+      return;
+    }
+    if (skillsQuery.isLoading || appliedSkillSeed.current === requestedSkillId) return;
+    const requestedSkill = skills.find(skill => skill.id === requestedSkillId);
+    if (!requestedSkill) return;
+    appliedSkillSeed.current = requestedSkillId;
+    const currentVersion = requestedSkill.versions.find(version => version.id === requestedSkill.currentVersionId);
+    setSkillId(requestedSkill.id);
+    setVersionId(currentVersion?.id ?? '');
+    setError('');
+  }, [requestedSkillId, skills, skillsQuery.isLoading]);
   const refreshConversations = async (id?: string) => {
     await Promise.all([
       queryClient.invalidateQueries({ queryKey: getListConversationsQueryKey() }),
