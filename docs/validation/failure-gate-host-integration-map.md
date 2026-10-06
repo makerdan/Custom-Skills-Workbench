@@ -147,6 +147,43 @@ verified lock ordering, lease acceptance, or live reclaim from these source
 findings. Keep dependent claims blocked until the responsible owner supplies
 the explicit authorization and authentic read-only route.
 
+
+### Authorization intake disposition — 2026-10-06
+
+**Result: BLOCKED preserved; authorization and current host-evidence intake
+remain unmet. This is a documentary disposition, not host acceptance.**
+
+In response to the explicit authorization/locator request, the user stated:
+“I cannot supply a genuine live-operation grant or verified approval locator.”
+The user also reported an Authorization Status & Evidence Locators document
+covering canonical contract ranges, a verification summary, two isolated-test
+exports and checksum manifests. The reported logs are fixture evidence only,
+marked `hostActivationEvidence:false`; the user explicitly stated that they do
+not establish owner authorization or live-host acceptance.
+
+The document was offered for attachment, but no actual attachment, exact path,
+revision, authenticated evidence locator or authority reference was supplied in
+this response. No matching document was located in the workspace's attachment
+and documentation file listings. Its contents, exports and checksums were not
+read or independently verified; the fixture classification above is the user's
+report, not a new test result. No returned upstream source revision or authority
+can therefore be bound to the comparison.
+
+The four existing `PA-SKILL`, `PA-RC`, `PA-LOCK` and `PA-HOST` workspace hashes
+were rechecked and match the comparison table above. These remain local-byte
+bindings only. A missing live-operation grant is distinct from the required
+source-owner read authorization: neither that read authorization nor an
+authenticated current host-evidence route has been established.
+
+No services, stores or runtime state were queried. No scripts, tests, builds,
+workflow operations, signals, provider calls or activation were performed.
+Host attestation, protected reclaim and dependent acceptance remain **BLOCKED**.
+Next intake requires the responsible source owner's explicit read-only
+authorization, authentic document/export locators for the current canonical
+contract and host evidence, their revision/content bindings and a verifiable
+authority reference. A fixture export or checksum manifest alone cannot meet
+that gate. This intake grants no live operation.
+
 ## Implementation order and stop conditions
 
 1. **Define the controlled caller/writer scope and approval intake.** Specify real
