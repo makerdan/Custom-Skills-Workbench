@@ -117,10 +117,10 @@ does not become a fresh live observation merely because this index is updated.
 | Piece 01 discovery report | `failure-gate-fg-01-discovery.md`; direct tracked-document read | **Present.** Project/task context, source/runtime stages, owner roles, historical observations, UNKNOWN assessment and disclosed read-only inspection deviation are recorded. No host acceptance is claimed. |
 | Piece 01 host/caller inventory | `failure-gate-fg-01-policy-caller-inventory.md`; direct read of tracked source, policy, plan and approval records; hashes in the source manifest | **Present as historical/original-source inventory.** Current coordinator, remaining grants, live writers, external callers and deployment state remain unqueried or unknown where stated. |
 | Piece 01 installation-scope proposal | `failure-gate-fg-01-installation-proposal.md`; direct tracked-document read | **Present; proposal only.** No runtime permission, task-card creation, activation, cutover or grant is issued. |
-| Piece 01 installer handoff | `failure-gate-fg-01-installer-handoff.md`; direct tracked-document read | **Present; addressed to existing verifier task `#69`.** The primary snapshot showed it pending; the verifier task API readback shows it IN_PROGRESS. Neither state is a verification pass. |
+| Piece 01 installer handoff | `failure-gate-fg-01-installer-handoff.md`; direct tracked-document read/hash | **Present; addressed to existing verifier task `#69`.** Both #68/#69 are MERGED; original pending/IN_PROGRESS observations are historical. Refreshed handoff hashes bind repaired delivered bytes, not runtime proof. |
 | Piece 01 verifier report | `failure-gate-fg-01-verifier-report.md`; direct tracked-document read | **Present;** records task/source bindings, pre-edit gaps, corrections, and independent readback status. Documentary only; not local authority or runtime acceptance. |
-| Platform Project/task binding | Verifier's current task API readback; tracked plans `failure-gate-task-plan-fg-01-i.md` and `failure-gate-task-plan-fg-01-v.md` | **Verified by the verifier's readback:** Skills Workbench, root `/home/runner/workspace`, `#68 MERGED`, `#69 IN_PROGRESS`, exact dependency `#68`, and matching plan digests. The fresh independent document reviewer had no task API access to recheck these records. No separate immutable Project UUID. Task refs are not Failure Gate IDs or approvals. |
-| Original planning-time Router digests | `failure-gate-v4-task-series.md:591-593`; `failure-gate-fg-01-source-manifest.md`, baseline reconciliation section | Three historical values are **RECORDED** in the task series and reconciled to current values. Historical file bytes/provenance and the cause remain **UNKNOWN / BLOCKED**; do not reconstruct them from hashes. |
+| Platform Project/task binding | Full authoritative task records, merged independent #70 readback in verifier report; unchanged tracked plans `failure-gate-task-plan-fg-01-i.md` and `failure-gate-task-plan-fg-01-v.md` | **Independently VERIFIED and reconfirmed:** Skills Workbench, root `/home/runner/workspace`, #68/#69 MERGED, exact dependency #68, both full descriptions match unchanged pinned plan bytes/digests. Original document review's API-access gap is historical and resolved. No separate immutable Project UUID. Task refs are not Failure Gate IDs or approvals. |
+| Original planning-time Router digests | Original pre-sync task-series snapshot hash `7bd8aadd...69eb026`, retained in `failure-gate-fg-01-source-manifest.md` and verifier report; current task series hash `16d61237...09bf1c` | Three historical values remain **RECORDED in the bound historical snapshot and existing report/manifest**; the current series marks them removed/unavailable. They are reconciled against current canonical hashes in the source manifest. Historical file bytes/provenance/cause remain **UNKNOWN / BLOCKED**; do not reconstruct them from hashes. |
 | Current coordinator/policy status | Registered location remains `.failure-gate/coordinator.sqlite3`; no current safe read route was established for this task | **Not opened/read.** Current ACTIVE/INACTIVE is **UNKNOWN**. Last recorded ordinary status is STAGED; current availability, live grants, retained runs and remaining consumption are not asserted. Do not initialize a missing store. |
 | Retained original installer outcomes | Original `.failure-gate/installer-caller/1/outcome.json` and two `.failure-gate/installer-acceptance/.../caller-{1,2}/outcome.json` paths; digests in source manifest | Bounded direct outcome files were read; raw logs were hashed but not semantically parsed in this discovery. Original result is `pass:false`, raw exit 4; later separately approved outcomes are `pass:true`, raw exit 0. Preserve the failure; the later operation does not prove ordinary route readiness. Cooperative records are not protected attestations. |
 | Current execution budget/supervision | No current approval/read route was exposed. Historical values and their original records are listed in the Piece 01 inventory. | **Unavailable for new execution.** Prior bootstrap one-shot was consumed; other allowances were operation-scoped and/or expired. Current remaining consumption is unknown; no check/command was run. |
@@ -132,11 +132,32 @@ does not become a fresh live observation merely because this index is updated.
   adds a clearly documentary Piece 01 entry. It is still marked
   `not_a_live_registry`; the current policy classification there is UNKNOWN,
   while `ordinary_state: STAGED` records only the last captured status.
-- A prior `independent_verifier` locator described an earlier direct Build
-  review. The new entry records the supplied current `#69` snapshot without
-  representing it as a persisted/API-verified task or accepted verifier result.
+- Earlier direct Build and original pending/IN_PROGRESS observations are
+  historical. The current `independent_verifier` locator records the independent
+  #70 task API corroboration, not a local approval or runtime acceptance.
 - The historical bootstrap ID `FG-00000001` belongs to the prior bounded
   health-only bootstrap. No local ID was allocated for Piece 01.
 - Filesystem reads and hashes are limited to the listed source/report records.
   This section does not authorize SQLite access, CLI, tests, builds, workflows,
   remote checks, signals, recovery, or any other runtime operation.
+
+
+### Piece 01 acceptance reconciliation
+
+The existing verifier report is the sole stage-decision destination:
+`failure-gate-fg-01-verifier-report.md#requirement-to-evidence-acceptance-matrix`.
+It contains the pre-edit snapshot/gaps, exact original and approved-plan clauses,
+current discovery evidence, fresh independent readback, and each capability's
+integration role/action/dependent runtime gate. The handoff binds actual delivered
+document bytes; the source manifest preserves the original host-input snapshot
+and current canonical comparison. No competing manifest or live registry is added.
+
+Task API corroboration is VERIFIED through the merged #70 record. Fresh
+independent post-sync readback ACCEPTS planning/discovery only: factual
+recorded/current baseline explanation meets #68 criterion 3 without a causal
+claim, historical reconstruction or plan amendment. Historical Router
+bytes/provenance/cause remain UNKNOWN/BLOCKED; the exact values are preserved in
+the hash-bound original series attachment and source manifest. Later runtime gaps
+do not block factual discovery. Current policy remains UNKNOWN, fixture/runtime
+checks NOT_RUN, and all future authority remains separately gated. Unfinished
+#76/#78–#81 outputs are not accepted delivery evidence.

@@ -54,7 +54,7 @@ SHA-256 is over each file's bytes at the captured repository snapshot. Every reg
 
 ## Planning baseline reconciliation
 
-The original task plan stated that ten listed Failure Gate entry digests matched at planning time and that three Router digests differed. Current hashes for the ten Failure Gate entries are those above and match the ten-entry source baseline recorded in the prior bootstrap approval binding. The 18-piece series formerly contained three planning-time Router digest strings. At the user's direction on 2026-10-06, those strings were removed from the current tracked validation documents because no authoritative original snapshot or provenance was available. The prior search results remain historical records, but the omitted values cannot be independently rechecked from the current documents. Start over with source-custodian identification; do not reconstruct historical bytes or infer a cause.
+The original task plan stated that ten listed Failure Gate entry digests matched at planning time and that three Router digests differed. Current hashes for the ten Failure Gate entries are those above and match the ten-entry source baseline recorded in the prior bootstrap approval binding. The original full series attachment and pre-sync tracked-series snapshot below preserve the three exact Router digest strings. At the user's direction on 2026-10-06, those strings were removed from the current tracked series; the current series hash is recorded in the project-sync table below. Prior searches of Git blobs remain historical and are not repeated. The old digest strings are records only: original Router file bytes/provenance/cause remain unavailable or UNKNOWN/BLOCKED. Do not reconstruct contents or infer a cause.
 
 | Router path | Historical planning digest | Current SHA-256 | Reconciliation |
 | --- | --- | --- | --- |
@@ -68,6 +68,14 @@ Task 71 extended the read-only search to all locally available Git objects and c
 
 Those earlier searches did not recover the original bytes from the local object database or advertised origin history then searched; they do not establish that no separate backup or source custodian has them. The historical file contents, their provenance, and the reason for the former differences remain **UNKNOWN / BLOCKED**. The current tracked record is reset: identify an authoritative source custodian and immutable original snapshot before restarting comparison. Do not reconstruct old contents or infer a cause.
 
+The full original series attachment `attached_assets/failure-gate-v4-piecemeal-task-series_1791259976201.txt` is a directly bound input (SHA-256 `7bd8aadd6007ed7c01f118d6cbb83d70ea52d79cecfc6eaafc2234ee869eb026`), identical by digest to the pre-sync tracked-series snapshot. Its lines 591–593 record the three planning digest strings shown below. “Removed” in the table above means removed from the current tracked series, not forgotten or unavailable as a recorded digest. The actual historical Router file bytes, provenance and cause remain UNKNOWN/BLOCKED and are not reconstructed.
+
+| Router path | Value recorded in the original series snapshot | Current canonical SHA-256 |
+| --- | --- | --- |
+| `.agents/skills/skill-application-router/SKILL.md` | `710a92d8347026ca8f3e0a928335f51e5114befb173a6785efd4b45d84599d19` | `49e3db86b0f5b8c7efba871d7404c40336cb3caf544427a429065b1088f6586f` |
+| `.agents/skills/skill-application-router/references/installation-verification-plan.md` | `6d9da115f654e26252d5c188c34b927d8787b1978546e70fb766ba8f0ad5223a` | `99bc98079967ed47f8f524c187b9823fc99dddca55d4b61a9220dcbb5b3f8cb9` |
+| `.agents/skills/skill-application-router/references/handoff-binding-and-recovery.md` | `1c8f4198af23d8c904520835c29062677da382b774baa2f850b2adbfa9198ce1` | `7e95d74645e0c1184b2ae24488ffd5936237fb6fc1d9596734a3e57bb1fe0ff5` |
+
 The current `delivery-reconciliation.md` and `router-task-handoff-acceptance.md` digests above remain pinned. No canonical source is missing inside either authorized package directory.
 
 ## Host and project snapshot inputs
@@ -77,6 +85,7 @@ These are original workspace records or source files read for discovery. Their h
 | Input | SHA-256 |
 | --- | --- |
 | `docs/validation/failure-gate-v4-task-series.md` | `7bd8aadd6007ed7c01f118d6cbb83d70ea52d79cecfc6eaafc2234ee869eb026` |
+| `attached_assets/failure-gate-v4-piecemeal-task-series_1791259976201.txt` | `7bd8aadd6007ed7c01f118d6cbb83d70ea52d79cecfc6eaafc2234ee869eb026` |
 | `attached_assets/Pasted-Piece-01-Project-binding-contract-extraction-and-instal_1791259061084.txt` | `2e34492c0eaae24ccef3730dd0eb9bd567355bddf8b74b09e39fe507b5806ad7` |
 | `docs/validation/failure-gate-task-plan-fg-01-i.md` | `51fc06aa165a36c0f881068fbcd4f078888b3b35e75c20a755b33545412ccd1f` |
 | `docs/validation/failure-gate-task-plan-fg-01-v.md` | `9a2ce68cda1a6bcd448ae86936751b811376d59e4aa98b8fffb0f0df9965d85f` |
@@ -131,3 +140,36 @@ These are cooperative workspace files; hashes establish byte identity only. They
 - Configured web/API/Canvas workflows came from the execution environment snapshot, not a validation route. Their workflows were not started or inspected.
 - `.failure-gate/coordinator.sqlite3` was not opened. No coordinator/CLI command, service, workflow, database query, remote check, package script, project import, test, build, or typecheck ran.
 - One inline `node -e` expression read `package.json` to display its script metadata; it did not execute project code or a project script. The file was then read directly. This was an unnecessary read-only method outside the plan's strict no-import wording and is disclosed as a scope deviation; no result from it is treated as validation.
+
+
+## Current acceptance-reconciliation binding — 2026-10-06
+
+The canonical and original host-input tables above remain the **original discovery snapshot**, not silently replaced current hashes. In this review, all 31 current Failure Gate/Router hashes match that canonical table. Recomparison of all 62 digest-only input rows found exactly three pre-reconciliation mutable-document changes: capability locator, evidence index and host integration map. Their original hashes above remain historical; the actual current readback hashes are respectively `fcffa47810f450b2342c81ba3c83da176d5fe2f083ef295101a16a3b33ba5323`, `77ec9902ffdcaa63820e77ba4963b92f1159b38880a49761f28e900924abf1c6`, and `121584772f2c504e2ff8d5fdcc0546270d43c2252f5d9863d5f82ab35582c81e`. The first two are repaired again in this reconciliation; current delivered bytes are bound in the **existing installer handoff**, not in a competing manifest. All other listed digest-only input rows, including the series/supplement, both complete task plans, original host source/config and captured approvals/reports, matched at readback. The separately listed historical outcome/log digests are retained, not re-collected runtime evidence.
+
+Full current authoritative #68/#69 descriptions match the unchanged plan files byte-for-byte, with exact #69 dependency #68 and both MERGED. Merged #70 independently corroborates those bindings. #71's unsuccessful historical-source search is preserved as its original observation; no remote/history recovery was rerun. #72/#74/#75 delivered documentary limitations remain distinct from runtime readiness. Later unfinished task outputs are not evidence.
+
+The original Port Authority source-boundary paragraph above describes the primary snapshot. #75 subsequently delivered a local-source comparison and its canonical-source hash bindings in `failure-gate-host-integration-map.md#port-authority-contract-comparison`. This manifest does not claim authentic current host evidence, source-owner authorization, installed caller wiring or runtime reclaim proof from that comparison.
+
+The report's pre-readback D04 concern about #68 criterion 3 was independently assessed against the full unchanged plan. The fresh reviewer found factual preservation/explanation of recorded-versus-current differences and documented unavailable provenance satisfies “explain/reconcile”; the plan does not require invented causal history or reconstructed bytes. Planning/discovery is ACCEPTED only. Historical bytes/provenance/cause remain UNKNOWN/BLOCKED; no value is reconstructed, normalized away or called verified history. Any future stronger historical-content claim must bind authentic original evidence separately.
+
+## Project-sync input rebinding — 2026-10-06
+
+A later task-completion sync brought additional main-branch source/document changes in while this task was being completed. The earlier acceptance readback remains a decision about the pinned pre-sync discovery snapshot; fresh reviewer `post-sync-piece01-review` separately checked the repaired current inputs and delivery bindings. The unchanged 31-file canonical `.agents` closure still matches the canonical table above. The complete plan texts and Piece 01 supplement remain unchanged. The current task series' non-historical clauses remain present; its Router table now says the three planning values were removed and the old bytes/provenance are unavailable. Those values remain preserved as **historical snapshot evidence** in the report, the original source-manifest table and the original series attachment. Do not claim the current task-series table still contains the values or infer provenance from its removal.
+
+The following source/input/document bytes differed from the original snapshot table after sync. Old digests remain historical; actual current SHA-256 values are:
+
+| Current file | Original snapshot SHA-256 | Post-sync current SHA-256 | Readback note |
+| --- | --- | --- | --- |
+| `docs/validation/failure-gate-v4-task-series.md` | `7bd8aadd6007ed7c01f118d6cbb83d70ea52d79cecfc6eaafc2234ee869eb026` | `16d612374ae20b6dff178cb52c37839c2d1e48c0390410fc2fb64b22e109bf1c` | Current Router rows now state old planning values removed/unavailable; this report retains the prior pinned snapshot facts without undoing that edit. |
+| `docs/validation/failure-gate-v4-series-checkpoint.md` | `75a4e9b689d56e61bec7975d306db437eb27bb55e5d0f6cf40158418e0920deb` | `8afa805bbd91c5f9ee94fc7ad6289a27b6aac2511a934d988ca13bb9177b5b3c` | Updated after fresh independent post-sync readback; exact next-pair condition retained. |
+| `.replit` | `f17bce42064e7aadb31f21c0d24463b1b35ca366ba4039b062221a9a6a1cd14e` | `5b7e1b668f20ccbb1fb44189d3a4fe146d9ac5a84c05b7571fe5e6d8fbc40528` | Configured post-merge timeout changed; no workflow/post-merge operation was run. |
+| `package.json` | `24683c01abb5395c927a9f3ac3cd693062e1f80ac5253b11ad8a7d318d00d9cf` | `959946dcd0b7bb8139a72a66f189fd079443097c2e38825208a03b88baeabeed` | `typecheck:libs` now routes `tsc --build` through the writer helper. |
+| `lib/api-spec/package.json` | `2c0f6e86a51350d26ad83e057f0ae4a886b1d8fd484965b34a6a762c0495f088` | `33a2031c7ede5cad80222d8b58d9d979443a139f53a69366080479644c41ed38` | `codegen` now routes through the codegen/writer helper. |
+| `scripts/check-regression-guard.mjs` | `e2321457302e09e7aa00a49caaae077b834c2414fddfb0de20e0f2eea7c3d2cf` | `9e01ff9eaba4edfeac766dbe7e774ee252e09731818ffcc32db47c2fed0eee96` | Workspace plan writes now route through the bounded writer helper; no command was run. |
+| `scripts/failure_gate/run_writer.py` | Not in original input list | `19925163c0ff516424d25ebddcabbabeee6ab613434c08f859580583d8dc49f5` | Direct text read confirms bounded source-level shared-lock write/mkdir/command helpers; not invoked. |
+| `scripts/failure_gate/run_codegen.py` | Not in original input list | `93fd6ebba285518f976242935e20b6fe5655ae34896001ec127c6d12830125eb` | Direct text read confirms source-level Orval plus nested build lock interval; not invoked. |
+| `docs/validation/failure-gate-capabilities.json` | `46bb486ff2dcdfa53653f40f350026272394bae79a93b98c29e30c4920b15645` | `b83f0f0f39344f09dcc2aed96b05ed8218ff24bf4cacae24d119025a57971c9e` | Repaired descriptive locator; not live authority. |
+| `docs/validation/failure-gate-evidence-index.md` | `f6a0db5499a4085177c31d1d28133af08f9f14d37794c3800d1447fc79183ce8` | `e2e01f32df305834388f231c22a570162663ee0610ef365997a7699b9a06b2d4` | Repaired existing evidence locator; not a new registry. |
+| `docs/validation/failure-gate-host-integration-map.md` | `4c936c27f38393baba8c6b13a4afdfe0ea3d64c5ec9dc948be4ec443a89dd7c6` | `7d1e3009caa569cf01e018f29436cea32ddefe995ed62bf69c6ce570bc8e6acb` | Existing source map reflects later inputs; still no authentic live host proof. |
+
+Direct readback of `scripts/failure_gate/run_writer.py`, `run_codegen.py`, and the unchanged `common.py` confirms source-level bounded shared-lock wrappers and the codegen lock spanning Orval plus nested library build. Together with the changed package scripts and regression-guard helper, these are source-inventory facts only: no script ran and no host lock participation, task admission, current authority, all-writer coverage or final-writer acceptance was verified. Preserve later existing records' expanded scope; do not turn a source lock into runtime proof.

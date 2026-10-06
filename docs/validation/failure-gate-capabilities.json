@@ -54,7 +54,7 @@
       "signals": "none"
     },
     "independent_verifier": {
-      "state": "DOCUMENT_READBACK_COMPLETE; TASK_API_CROSS_CHECK_UNAVAILABLE; host/runtime acceptance remains blocked",
+      "state": "DOCUMENT_READBACK_COMPLETE; TASK_API_CROSS_CHECK_VERIFIED_BY_MERGED_FOLLOW_UP; discovery stage decision in verifier report; host/runtime acceptance remains blocked",
       "prior_observation": "No finalized primary/dependency route for the earlier direct Build request; no task invented",
       "task_record_readback": {
         "read_on": "2026-10-06",
@@ -62,7 +62,8 @@
         "primary_state": "MERGED",
         "primary_description_sha256": "51fc06aa165a36c0f881068fbcd4f078888b3b35e75c20a755b33545412ccd1f",
         "verifier_ref": "69",
-        "verifier_state": "IN_PROGRESS",
+        "verifier_state": "MERGED",
+        "prior_verifier_state": "IN_PROGRESS at original verifier observation",
         "verifier_description_sha256": "9a2ce68cda1a6bcd448ae86936751b811376d59e4aa98b8fffb0f0df9965d85f",
         "depends_on": ["68"],
         "project_uuid": "UNAVAILABLE"
@@ -70,7 +71,7 @@
       "independent_readback": {
         "document_content": "VERIFIED",
         "handoff_hash_bindings": "MATCH",
-        "platform_task_api": "BLOCKED; reviewer had no API access to independently recheck persisted task records",
+        "platform_task_api": "VERIFIED by independent merged Task 70 full-record readback; both tasks MERGED, descriptions match pinned plans, exact dependency; original document reviewer lacked API access",
         "port_authority_evidence": "BLOCKED; local contract source compared, but responsible source-owner authorization and an authentic read-only route to current host-capability evidence were not provided",
         "port_authority_contract_review": {
           "status": "LOCAL_SOURCE_COMPARISON_COMPLETE; OWNER_AUTHORIZATION_AND_HOST_CAPABILITY_EVIDENCE_BLOCKED",
@@ -113,7 +114,7 @@
           }
         }
       },
-      "reason": "The verifier's task API readback confirms lifecycle and binding, but the fresh independent document reviewer could not query that API. Neither task metadata nor source parity establishes local policy, authority, runtime readiness, or host acceptance."
+      "reason": "Independent Task 70 and current full matching records close the former task API evidence gap. The verifier report records independent planning/discovery-only acceptance and separately carries the post-sync source and delivery rebind. Neither task metadata nor source parity establishes local policy, authority, runtime readiness, or host acceptance."
     },
     "piece_01_discovery": {
       "record_status": "DOCUMENTED_ONLY; this locator is not authority",
@@ -136,7 +137,8 @@
         "primary_state": "MERGED",
         "primary_description_sha256": "51fc06aa165a36c0f881068fbcd4f078888b3b35e75c20a755b33545412ccd1f",
         "verifier_ref": "69",
-        "verifier_state": "IN_PROGRESS",
+        "verifier_state": "MERGED",
+        "prior_verifier_state": "IN_PROGRESS at original verifier observation",
         "verifier_description_sha256": "9a2ce68cda1a6bcd448ae86936751b811376d59e4aa98b8fffb0f0df9965d85f",
         "depends_on": ["68"],
         "project_uuid": "UNAVAILABLE"
@@ -152,7 +154,7 @@
       "canonical_sources": {
         "failure_gate_v4": "PRESENT_AND_PINNED",
         "skill_application_router": "PRESENT_AND_PINNED",
-        "original_three_router_planning_digests": "RECORDED_IN_SERIES; historical file contents/provenance and cause remain UNKNOWN_BLOCKED"
+        "original_three_router_planning_digests": "RETAINED AS PRE-SYNC SNAPSHOT VALUES IN THE SOURCE MANIFEST AND VERIFIER REPORT; current series marks them removed/unavailable; historical bytes/provenance/cause remain UNKNOWN_BLOCKED"
       },
       "piece_01_documents": {
         "source_manifest": "docs/validation/failure-gate-fg-01-source-manifest.md",
@@ -165,7 +167,16 @@
       },
       "runtime_scope": "NOT_AUTHORIZED; no tests, scripts, CLI, imports, builds, store operations, workflows, signals, recovery, remote checks, activation or cutover",
       "current_execution_limits_or_grant": "UNAVAILABLE; historical operation-specific allowances do not transfer",
-      "next_action": "Task 74 documentary readback recorded; keep unavailable historical source provenance, current host authority, and runtime gates blocked.",
+      "next_action": "Use the verifier report's ACCEPTED planning/discovery-only decision for this bound snapshot. Preserve unavailable historical Router bytes/provenance/cause as unsupported claims; obtain actual authority/capability proof for each later runtime gate. No FG-02 preparation without the explicit user request.",
+      "acceptance_reconciliation": {
+        "stage": "planning/discovery only",
+        "task_binding": "VERIFIED; independent merged Task 70 and current unchanged complete task records; no UUID invented",
+        "stage_decision": "ACCEPTED for planning/discovery only after fresh independent post-sync readback. Factual recorded/current Router reconciliation satisfies primary criterion 3 without causal reconstruction or amendment",
+        "historical_router_bytes_provenance_cause": "UNKNOWN_BLOCKED; recorded values only; no reconstruction",
+        "runtime_checks": "NOT_RUN",
+        "capability_roles_actions_gates": "docs/validation/failure-gate-fg-01-verifier-report.md#unresolved-capability-integration-roles-and-dependent-gates",
+        "authority": "NONE; source parity, lifecycle and documentary review do not activate runtime work"
+      },
       "task_74_documentary_confirmation": {
         "observed_on": "2026-10-06",
         "source_boundary": "Retained inventory, proposal, host map, bootstrap report, capability locator and canonical Failure Gate contract only; no live coordinator, process, workflow or remote read",
