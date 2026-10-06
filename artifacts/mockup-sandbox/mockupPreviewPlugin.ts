@@ -1,4 +1,5 @@
 import { spawnSync } from "node:child_process";
+import type { StdioOptions } from "node:child_process";
 import process from "node:process";
 import path from "path";
 import chokidar from "chokidar";
@@ -9,8 +10,21 @@ const MOCKUPS_DIR = "src/components/mockups";
 
 export function mockupPreviewPlugin(): Plugin {
   let root = "";
-  let isBuildCommand = false;
   let watcher: FSWatcher | null = null;
+
+  function inheritedLockFd(): number | null {
+    const value = process.env.FAILURE_GATE_WRITER_FD;
+    if (value === undefined) return null;
+    const fd = Number(value);
+    if (!Number.isSafeInteger(fd) || fd < 3) {
+      throw new Error("invalid inherited Failure Gate writer descriptor");
+    }
+    return fd;
+  }
+
+  function writerStdio(fd: number | null): StdioOptions {
+    return fd === null ? "inherit" : ["inherit", "inherit", "inherit", fd];
+  }
 
   function getMockupsAbsDir(): string {
     return path.join(root, MOCKUPS_DIR);
@@ -30,25 +44,12 @@ export function mockupPreviewPlugin(): Plugin {
   }
 
   function invokeGenerator(): void {
-    const command = [
+    const fd = inheritedLockFd();
+    const result = spawnSync(
       process.execPath,
-      path.join(root, "generateMockupComponents.mjs"),
-    ];
-    const result = isBuildCommand
-      ? spawnSync(command[0], command.slice(1), {
-          cwd: root,
-          stdio: "inherit",
-        })
-      : spawnSync(
-          "python3",
-          [
-            "-B",
-            path.resolve(root, "../../scripts/failure_gate/run_writer.py"),
-            "--",
-            ...command,
-          ],
-          { cwd: root, stdio: "inherit" },
-        );
+      [path.join(root, "generateMockupComponents.mjs")],
+      { cwd: root, stdio: writerStdio(fd) },
+    );
 
     if (result.error) throw result.error;
     if (result.signal) {
@@ -61,15 +62,17 @@ export function mockupPreviewPlugin(): Plugin {
 
   function ensureMockupsDirectory(): void {
     const workspaceRoot = path.resolve(root, "../..");
+    const fd = inheritedLockFd();
+    const args = [
+      "-B",
+      path.resolve(root, "../../scripts/failure_gate/run_writer.py"),
+    ];
+    if (fd !== null) args.push("--inherited-lock-fd", String(fd));
+    args.push("--mkdir", path.relative(workspaceRoot, getMockupsAbsDir()));
     const result = spawnSync(
       "python3",
-      [
-        "-B",
-        path.resolve(root, "../../scripts/failure_gate/run_writer.py"),
-        "--mkdir",
-        path.relative(workspaceRoot, getMockupsAbsDir()),
-      ],
-      { cwd: root, stdio: "inherit" },
+      args,
+      { cwd: root, stdio: writerStdio(fd) },
     );
     if (result.error) throw result.error;
     if (result.status !== 0) {
@@ -119,7 +122,6 @@ export function mockupPreviewPlugin(): Plugin {
 
     configResolved(config) {
       root = config.root;
-      isBuildCommand = config.command === "build";
     },
 
     async buildStart() {

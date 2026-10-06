@@ -3,3 +3,4 @@
 - [Node test bundle resolution](node-test-bundles.md) — ESM bundles with external dependencies must live under the package root for pnpm links to resolve.
 - [Node test report formats](node-test-reporters.md) — piped Node test output can use native text summaries; bind the format instead of assuming TAP.
 - [Resumed budget clocks](resumed-budget-clocks.md) — workspace resumption can change boot and monotonic origin; bind new explicit grants freshly, preserving historical clocks.
+- [Orval workspace barrels](orval-workspace-barrels.md) — staging its generation target alone is insufficient; Orval also writes the `output.workspace` barrel.

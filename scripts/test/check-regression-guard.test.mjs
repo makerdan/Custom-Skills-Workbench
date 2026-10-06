@@ -333,3 +333,47 @@ test("generated and build-output package writers share the Failure Gate lock", (
   assert.match(pluginSource, /run_writer\.py/);
   assert.match(pluginSource, /--mkdir/);
 });
+
+test("direct Orval and Canvas generation cannot write accepted output outside the lock", () => {
+  const orvalSource = readFileSync(
+    path.join(repoRoot, "lib", "api-spec", "orval.config.ts"),
+    "utf8",
+  );
+  const codegenSource = readFileSync(
+    path.join(repoRoot, "scripts", "failure_gate", "run_codegen.py"),
+    "utf8",
+  );
+  const generatorSource = readFileSync(
+    path.join(repoRoot, "artifacts", "mockup-sandbox", "generateMockupComponents.mjs"),
+    "utf8",
+  );
+  const pluginSource = readFileSync(
+    path.join(repoRoot, "artifacts", "mockup-sandbox", "mockupPreviewPlugin.ts"),
+    "utf8",
+  );
+  const gitignore = readFileSync(path.join(repoRoot, ".gitignore"), "utf8");
+  const writerSource = readFileSync(
+    path.join(repoRoot, "scripts", "failure_gate", "run_writer.py"),
+    "utf8",
+  );
+
+  assert.match(orvalSource, /WORKSPACE_ORVAL_STAGE_ID/);
+  assert.match(orvalSource, /workspace: apiClientStage/);
+  assert.match(orvalSource, /workspace: apiZodStage/);
+  assert.match(orvalSource, /copyFileSync\(path\.join\(source, "index\.ts"\)/);
+  assert.match(orvalSource, /target: "generated"/);
+  assert.match(orvalSource, /"api-client-react",\s+"dist"/);
+  assert.match(orvalSource, /"api-zod",\s+"dist"/);
+  assert.match(codegenSource, /promote_staged_outputs\(ROOT, stage_id\)/);
+  assert.match(codegenSource, /with writer_lock\(ROOT \/ "\.failure-gate"\)/);
+  assert.match(gitignore, /^\s*dist\s*$/m);
+
+  assert.match(generatorSource, /run_writer\.py/);
+  assert.match(generatorSource, /--failure-gate-writer-worker/);
+  assert.match(generatorSource, /--verify-lock-fd/);
+  assert.match(generatorSource, /writeFileSync\(outputPath, source\)/);
+  assert.match(pluginSource, /FAILURE_GATE_WRITER_FD/);
+  assert.match(pluginSource, /writerStdio\(fd\)/);
+  assert.match(writerSource, /inherited_writer_lock/);
+  assert.match(writerSource, /pass_fds=\(fd,\)/);
+});

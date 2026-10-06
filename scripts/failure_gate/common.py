@@ -131,6 +131,32 @@ def writer_lock(directory, timeout=30):
         os.close(fd)
 
 
+@contextmanager
+def inherited_writer_lock(directory, fd):
+    """Verify an inherited descriptor refers to the active workspace lock."""
+    directory = Path(directory)
+    if directory.is_symlink() or not directory.is_dir():
+        raise Blocked("writer state directory is unavailable")
+    path = directory / "writers.lock"
+    if path.is_symlink():
+        raise Blocked("unsafe writer lock")
+    try:
+        info = os.fstat(fd)
+        current = path.stat()
+    except OSError as error:
+        raise Blocked("inherited writer lock is unavailable") from error
+    if (not stat.S_ISREG(info.st_mode) or info.st_uid != os.getuid() or
+            (info.st_dev, info.st_ino) != (current.st_dev, current.st_ino)):
+        raise Blocked("inherited writer lock does not match this workspace")
+    try:
+        fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except BlockingIOError as error:
+        raise Blocked("inherited writer lock is not held by this caller") from error
+    if (info.st_dev, info.st_ino) != (path.stat().st_dev, path.stat().st_ino):
+        raise Blocked("writer lock inode changed")
+    yield fd
+
+
 def incarnation(pid):
     try:
         text = Path(f"/proc/{pid}/stat").read_text()

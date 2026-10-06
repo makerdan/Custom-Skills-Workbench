@@ -1,5 +1,6 @@
 """Isolated contract fixtures. Never approve/activate the actual host."""
 import hashlib
+import fcntl
 import json
 import os
 from pathlib import Path
@@ -18,6 +19,7 @@ from store import Store
 from supervisor import LIMITS, run, validate_limits
 from unittest.mock import patch
 import bootstrap
+from run_codegen import STAGED_OUTPUTS, cleanup_stages, promote_staged_outputs
 from run_writer import run_command, write_if_unchanged
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -297,6 +299,81 @@ class InputTests(unittest.TestCase):
                 17,
             )
 
+    def test_writer_command_passes_the_active_lock_descriptor_to_children(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            lock_directory = root / ".failure-gate"
+            command = (
+                "import fcntl, os; from pathlib import Path; "
+                "fd=int(os.environ['FAILURE_GATE_WRITER_FD']); "
+                "lock=Path('.failure-gate/writers.lock'); "
+                "assert (os.fstat(fd).st_dev, os.fstat(fd).st_ino) == "
+                "(lock.stat().st_dev, lock.stat().st_ino); "
+                "fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB); "
+                "Path('child-wrote').write_text('locked')"
+            )
+            with writer_lock(lock_directory):
+                self.assertEqual(
+                    run_command(
+                        [sys.executable, "-c", command],
+                        root=root,
+                        cwd=root,
+                    ),
+                    0,
+                )
+                self.assertEqual((root / "child-wrote").read_text(), "locked")
+
+    def test_inherited_writer_descriptor_is_workspace_bound_and_effective(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            writer_directory = root / "scripts" / "failure_gate"
+            writer_directory.mkdir(parents=True)
+            for name in ("run_writer.py", "common.py"):
+                shutil.copyfile(
+                    ROOT / "scripts" / "failure_gate" / name,
+                    writer_directory / name,
+                )
+            writer_script = writer_directory / "run_writer.py"
+            lock_directory = root / ".failure-gate"
+            lock_directory.mkdir()
+            output = root / "must-not-write"
+            command = [
+                sys.executable,
+                "-B",
+                str(writer_script),
+                "--inherited-lock-fd",
+            ]
+            with writer_lock(lock_directory) as held_fd:
+                result = subprocess.run(
+                    command + [str(held_fd), "--verify-lock-fd"],
+                    cwd=root,
+                    pass_fds=(held_fd,),
+                    check=False,
+                )
+                self.assertEqual(result.returncode, 0)
+
+                other_fd = os.open(
+                    lock_directory / "writers.lock",
+                    os.O_RDWR | os.O_NOFOLLOW,
+                )
+                try:
+                    denied = subprocess.run(
+                        command + [
+                            str(other_fd),
+                            "--",
+                            sys.executable,
+                            "-c",
+                            f"from pathlib import Path; Path({str(output)!r}).write_text('bad')",
+                        ],
+                        cwd=root,
+                        pass_fds=(other_fd,),
+                        check=False,
+                    )
+                    self.assertEqual(denied.returncode, 2)
+                    self.assertFalse(output.exists())
+                finally:
+                    os.close(other_fd)
+
     def test_regression_guard_writer_rejects_stale_plan_and_writes_under_gate_lock(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
@@ -309,6 +386,149 @@ class InputTests(unittest.TestCase):
             with self.assertRaises(Blocked):
                 write_if_unchanged(root, "plan.md", before, b"lost update")
             self.assertEqual(plan.read_text(), "after")
+
+    def test_writer_creates_only_an_explicitly_missing_generated_file(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            output = root / "src" / "generated.ts"
+            write_if_unchanged(root, "src/generated.ts", "missing", b"generated")
+            self.assertEqual(output.read_bytes(), b"generated")
+            with self.assertRaises(Blocked):
+                write_if_unchanged(
+                    root, "src/generated.ts", "missing", b"stale generated",
+                )
+            self.assertEqual(output.read_bytes(), b"generated")
+
+
+class CodegenWriterTests(unittest.TestCase):
+    def test_orval_output_promotion_is_complete_and_preserves_declarations(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            stage_id = "fixture-123"
+            stages = []
+            for stage_parent_relative, source_relative, destination_relative, required in STAGED_OUTPUTS:
+                source_root = root / source_relative
+                stage_parent = root / stage_parent_relative
+                stage_root = stage_parent / f".orval-stage-{stage_id}"
+                staged = stage_root / "generated"
+                destination = root / destination_relative
+                staged.mkdir(parents=True)
+                destination.mkdir(parents=True)
+                (destination / "kept.d.ts").write_text("declaration")
+                (destination / "old.ts").write_text("stale generated file")
+                (destination.parent / "index.ts").write_text("old barrel")
+                (stage_root / "index.ts").write_text("new barrel")
+                for relative in required:
+                    output = staged / relative
+                    output.parent.mkdir(parents=True, exist_ok=True)
+                    output.write_text(f"new {relative}")
+                stages.append((stage_root, staged))
+
+            promote_staged_outputs(root, stage_id)
+
+            for (_, _, destination_relative, required), (stage_root, staged) in zip(
+                    STAGED_OUTPUTS, stages):
+                destination = root / destination_relative
+                self.assertFalse(staged.exists())
+                self.assertFalse((stage_root / "index.ts").exists())
+                self.assertFalse((destination / "old.ts").exists())
+                self.assertEqual((destination / "kept.d.ts").read_text(), "declaration")
+                self.assertEqual(
+                    (destination.parent / "index.ts").read_text(),
+                    "new barrel",
+                )
+                for relative in required:
+                    self.assertEqual(
+                        (destination / relative).read_text(),
+                        f"new {relative}",
+                    )
+
+            cleanup_stages(root, stage_id)
+            for stage_root, _ in stages:
+                self.assertFalse(stage_root.exists())
+
+    def test_incomplete_orval_stage_does_not_replace_accepted_output(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            stage_id = "fixture-incomplete"
+            for index, (
+                    stage_parent_relative, source_relative, destination_relative, required,
+            ) in enumerate(STAGED_OUTPUTS):
+                source_root = root / source_relative
+                stage_parent = root / stage_parent_relative
+                stage_root = stage_parent / f".orval-stage-{stage_id}"
+                staged = stage_root / "generated"
+                staged.mkdir(parents=True)
+                destination = root / destination_relative
+                destination.mkdir(parents=True)
+                (destination / "current.ts").write_text("accepted")
+                (destination.parent / "index.ts").write_text("accepted barrel")
+                (stage_root / "index.ts").write_text("staged barrel")
+                for relative in required:
+                    if index == 1 and relative == "types/index.ts":
+                        continue
+                    output = staged / relative
+                    output.parent.mkdir(parents=True, exist_ok=True)
+                    output.write_text("new")
+
+            with self.assertRaises(Blocked):
+                promote_staged_outputs(root, stage_id)
+            for _, _, destination_relative, _ in STAGED_OUTPUTS:
+                self.assertEqual(
+                    (root / destination_relative / "current.ts").read_text(),
+                    "accepted",
+                )
+                self.assertEqual(
+                    (root / destination_relative.parent / "index.ts").read_text(),
+                    "accepted barrel",
+                )
+
+    def test_failed_orval_promotion_restores_all_accepted_outputs(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            stage_id = "fixture-rollback"
+            stages = []
+            for stage_parent_relative, source_relative, destination_relative, required in STAGED_OUTPUTS:
+                stage_root = root / stage_parent_relative / f".orval-stage-{stage_id}"
+                staged = stage_root / "generated"
+                destination = root / destination_relative
+                staged.mkdir(parents=True)
+                destination.mkdir(parents=True)
+                (destination / "current.ts").write_text("accepted generated tree")
+                (destination.parent / "index.ts").write_text("accepted barrel")
+                (stage_root / "index.ts").write_text("staged barrel")
+                for relative in required:
+                    output = staged / relative
+                    output.parent.mkdir(parents=True, exist_ok=True)
+                    output.write_text("new generated output")
+                stages.append((stage_root, staged, destination))
+
+            stage_root, _, destination = stages[0]
+            staged_index = stage_root / "index.ts"
+            destination_index = destination.parent / "index.ts"
+            real_replace = os.replace
+
+            def fail_on_first_barrel_promotion(source, target):
+                if Path(source) == staged_index and Path(target) == destination_index:
+                    raise OSError("injected barrel promotion failure")
+                return real_replace(source, target)
+
+            with patch(
+                    "run_codegen.os.replace",
+                    side_effect=fail_on_first_barrel_promotion):
+                with self.assertRaisesRegex(OSError, "injected barrel promotion failure"):
+                    promote_staged_outputs(root, stage_id)
+
+            for _, _, output_root in stages:
+                self.assertEqual(
+                    (output_root / "current.ts").read_text(),
+                    "accepted generated tree",
+                )
+                self.assertEqual(
+                    (output_root.parent / "index.ts").read_text(),
+                    "accepted barrel",
+                )
+            cleanup_stages(root, stage_id)
 
 
 class StoreTests(unittest.TestCase):
