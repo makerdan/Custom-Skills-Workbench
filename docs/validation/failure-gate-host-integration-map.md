@@ -92,6 +92,41 @@ task retrieval was performed, so this review neither declares those tasks
 delivered nor duplicates them. The inspected current code, not their labels,
 is the integration evidence.
 
+<a id="port-authority-contract-comparison"></a>
+
+## Port Authority contract comparison — 2026-10-06
+
+**Result: local source comparison complete; source-owner authorization and current
+host-capability evidence remain BLOCKED. No services, stores, or runtime state
+were queried, and no Port Authority script was invoked.**
+
+The read-only route used was the workspace's `.agents/skills/port-authority/`
+source tree. These bindings identify the exact local bytes inspected; they do
+not independently authenticate an upstream publisher, source-owner approval,
+deployed copy, or host behavior.
+
+| Binding | Local source and content binding |
+| --- | --- |
+| `PA-SKILL` | `.agents/skills/port-authority/SKILL.md`, SHA-256 `da160d1c6e044676b7f624633afd9797d5eab0a59fcfd2ef67f0eb817c87919e` |
+| `PA-RC` | `.agents/skills/port-authority/reference/runtime-contract.md`, SHA-256 `70f62c4e066422df14a1ff05548138eb5f275dc16714356e411e540f625227b2` |
+| `PA-LOCK` | `.agents/skills/port-authority/scripts/validation-lock.mjs`, SHA-256 `d819f38df10b914751471066e36239d843cdbfd3aaa5540563047f9ca49797bb` |
+| `PA-HOST` | `.agents/skills/port-authority/scripts/host-capabilities.mjs`, SHA-256 `cde66e139ecbb541f168edf34adbf6583369fd14e6c0590b9f67716fc0514061` |
+
+| Claim area | Canonical contract/source binding | Comparison with this map | Assessment |
+| --- | --- | --- | --- |
+| Lock identity and order | `PA-RC:427-469` | The contract requires every conflicting caller to use the same canonical lock path, or to acquire all overlapping resources in a globally consistent order. `global` is an independent resource, not a hierarchy; a same-named lock at a different path does not coordinate. The existing map's row 60 correctly says the named Port Authority leases are separate from Failure Gate task single-flight and requires lock-order reconciliation. No complete caller-to-resource map, common lock identity, or cross-system acquisition order is verified here. | **BLOCKED** for any claim that current project callers are mutually serialized or have a safe combined order. |
+| Lease lifecycle and recovery | `PA-RC:491-515,528-547`; `PA-LOCK:235-254,419-435,563-576` | The contract requires `recoveryRequired` before dispatch, clears it only during verified healthy release, disallows age/heartbeat takeover, and limits dead-owner recovery to compatible finalized leases with no surviving work. Error/uncertain states retain exclusion for separately authorized recovery. The source implements these local lease checks, but the integration map row 60 does not establish that project callers use them; these leases also do not provide Failure Gate authorization, evidence acceptance, or task single-flight. | **Source-level contract/code only.** No project wiring or host recovery acceptance is established. |
+| Protected reclaim and host attestation | `PA-RC:8-23,228-273,290-355`; `PA-HOST:1-25` | The contract assigns runtime attestation to a trusted host and exact approval/claim/recheck/outcome to Failure Gate. The code-owned adapter is deliberately unconfigured: both exported calls throw unavailable errors. This agrees with map row 62 and the capability record's blocked/unknown external-provider status. | **BLOCKED.** No actual host attestation, protected approval provider, checked reclaim route, or outcome evidence was provided or queried. |
+
+No separate responsible-source-owner authorization or authenticated read-only
+locator for current host-capability evidence was supplied in the task context or
+found in the reviewed project documents. Local file reads and SHA-256 bindings
+are not that authorization or evidence. Therefore the task's authorization /
+host-evidence gate is **NOT MET**; do not infer an installed host adapter,
+verified lock ordering, lease acceptance, or live reclaim from these source
+findings. Keep dependent claims blocked until the responsible owner supplies
+the explicit authorization and authentic read-only route.
+
 ## Implementation order and stop conditions
 
 1. **Define the controlled caller/writer scope and approval intake.** Specify real

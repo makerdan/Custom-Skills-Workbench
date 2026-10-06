@@ -62,7 +62,34 @@
         "document_content": "VERIFIED",
         "handoff_hash_bindings": "MATCH",
         "platform_task_api": "BLOCKED; reviewer had no API access to independently recheck persisted task records",
-        "port_authority_evidence": "BLOCKED; outside the permitted Piece 01 source scope"
+        "port_authority_evidence": "BLOCKED; local contract source compared, but responsible source-owner authorization and an authentic read-only route to current host-capability evidence were not provided",
+        "port_authority_contract_review": {
+          "status": "LOCAL_SOURCE_COMPARISON_COMPLETE; OWNER_AUTHORIZATION_AND_HOST_CAPABILITY_EVIDENCE_BLOCKED",
+          "read_only_scope": "Workspace-local .agents/skills/port-authority files only; no services, stores, runtime state, or scripts queried or invoked",
+          "source_bindings": {
+            "skill": {
+              "path": ".agents/skills/port-authority/SKILL.md",
+              "sha256": "da160d1c6e044676b7f624633afd9797d5eab0a59fcfd2ef67f0eb817c87919e"
+            },
+            "runtime_contract": {
+              "path": ".agents/skills/port-authority/reference/runtime-contract.md",
+              "sha256": "70f62c4e066422df14a1ff05548138eb5f275dc16714356e411e540f625227b2"
+            },
+            "validation_lock_source": {
+              "path": ".agents/skills/port-authority/scripts/validation-lock.mjs",
+              "sha256": "d819f38df10b914751471066e36239d843cdbfd3aaa5540563047f9ca49797bb"
+            },
+            "host_adapter_source": {
+              "path": ".agents/skills/port-authority/scripts/host-capabilities.mjs",
+              "sha256": "cde66e139ecbb541f168edf34adbf6583369fd14e6c0590b9f67716fc0514061"
+            },
+            "comparison_report": "docs/validation/failure-gate-host-integration-map.md#port-authority-contract-comparison"
+          },
+          "lock_order": "PA-RC:427-469 requires a shared canonical lock identity for conflicting callers or a globally consistent order; global is not hierarchical. Current project-wide caller bindings/order are unverified.",
+          "lease_recovery": "PA-RC:491-515,528-547; PA-LOCK:235-254,419-435,563-576. Local lease source rules do not prove project caller wiring or host acceptance.",
+          "reclaim": "PA-RC:8-23,228-273,290-355; PA-HOST:1-25. Host attestation and checked reclaim providers remain unavailable; live reclaim remains BLOCKED.",
+          "authority_gap": "No separate responsible-source-owner authorization or authenticated read-only locator for current host-capability evidence was supplied or verified. Local hashes bind workspace bytes only."
+        }
       },
       "reason": "The verifier's task API readback confirms lifecycle and binding, but the fresh independent document reviewer could not query that API. Neither task metadata nor source parity establishes local policy, authority, runtime readiness, or host acceptance."
     },
