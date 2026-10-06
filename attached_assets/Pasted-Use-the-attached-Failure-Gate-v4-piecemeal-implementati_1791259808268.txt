@@ -1,0 +1,97 @@
+Use the attached "Failure Gate v4: piecemeal implementation and
+
+verification task series" as the specification for a staged installation.
+
+For now, create and surface exactly TWO proposed project tasks:
+
+1. FG-01-I -- implementation of Piece 01.
+
+2. FG-01-V -- independent verification and scoped repair of Piece 01.
+
+Do not implement or execute either task yet. Leave them proposed and
+
+awaiting my approval through the normal task UI.
+
+Task construction requirements:
+
+- Use the actual project task interface and returned task IDs.
+- Expand the document's shared task contract and the piece-specific
+
+instructions into each complete task plan. Do not create title-only
+
+tasks or merely link to the attachment.
+
+- Include scope, inputs, outputs, acceptance criteria, validation,
+
+evidence/report requirements, blocked conditions, and applicable
+
+Regression Guard sections.
+
+- Make the verification task dependent on actual delivery of the
+
+implementation task. Approval of the verifier must not permit it to
+
+run before its required inputs are available.
+
+- The verifier must inspect the delivered implementation independently,
+
+list missing or incorrect pieces before editing, repair them within
+
+that task's authorized scope, renew affected validation, and obtain
+
+an independent post-repair readback.
+
+- Repair permission does not authorize self-approval, budget increases,
+
+disruption, recovery, activation, cutover, CI changes, merge, or deploy.
+
+- Use only canonical skill sources under .agents. Do not substitute
+
+copied definitions or runtime mirrors.
+
+- Read back both complete persisted task plans and verify their scope,
+
+dependency, and payload before reporting that they were created.
+
+- Reuse correctly bound existing tasks rather than creating duplicates.
+
+Keep Pieces 02--18 in a durable, tracked backlog outside .local, preserving
+
+the complete attached specification. Do not create or surface their
+
+task cards yet.
+
+Progression:
+
+- Work through one pair at a time.
+- The current pair is finished only when implementation is delivered and
+
+its verifier has accepted the piece's declared stage with evidence.
+
+A Done label alone is insufficient.
+
+- If verification fails or is blocked, keep that pair current; do not
+
+advance or treat an owner-directed closure as verification success.
+
+- After the current pair is accepted, create and surface only the next
+
+pair as proposed tasks awaiting my approval. This instruction authorizes
+
+preparing those next two tasks, not executing or approving them.
+
+- Continue this pattern through Piece 18. Never have more than one
+
+unfinished pair surfaced by this staged workflow.
+
+- If the host cannot perform this progression automatically, preserve
+
+the next-pair checkpoint and tell me to request "Prepare the next
+
+Failure Gate pair." Do not claim an automatic hook exists.
+
+After creating the first pair, show me the two actual task references,
+
+their dependency, and confirmation that neither has been approved or
+
+executed.

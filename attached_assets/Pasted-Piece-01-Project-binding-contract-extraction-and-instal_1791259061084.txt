@@ -1,0 +1,21 @@
+Piece 01 — Project binding, contract extraction, and installation scope
+FG-01-I — Discover and bind the actual host
+Input/dependency: Intended project must be explicitly resolved before substantive project reads or any target writes. No preceding implementation.
+
+Implement:
+
+Inspect canonical instructions and Failure Gate package/reference closure. Pin immutable snapshots/digests; traverse reference cycles once.
+Inventory languages/runtimes, real validation commands and callers, existing governance and coverage, task/plan formats, transactional persistence, actual approval sources, completion writer, locks, supervisor/provider capabilities, and recovery.
+Build a clause-by-clause requirement ledger from the core skill and all applicable implementation/acceptance references. Assign every obligation and acceptance case to one of the 18 pieces, including relevant acceptance cases in multiple pieces where integration spans them.
+Publish the capability manifest and initial tracked evidence index, using real safe locations/access procedures and explicit present/missing/unavailable states.
+Bind report destinations, roles, stage gates, and the scope allowed for subsequent source staging and runtime work. Map optional history/catalog absence without inventing authority.
+Acceptance: Verified host identity; immutable canonical baseline; complete obligation allocation; actual host capability/approval inventory; preserved existing coverage; explicit source-stage versus runtime permissions. An unresolved capability is recorded, not falsely marked ready.
+
+Evidence: Discovery report, source manifest, requirement ledger, capability manifest, evidence index, prior-policy/caller inventory, and installation proposal.
+
+FG-01-V — Verify discovery and repair missing records
+Independently inspect the target and canonical closure. Check every inventory claim, tracked destination, requirement allocation, role, and ACTIVE/INACTIVE/UNKNOWN assessment. Repair missing or inaccurate discovery documents and mappings within scope. Do not implement runtime enforcement yet.
+
+Exit: The planning/discovery deliverable is complete and factual. Any unresolved capability has a named integration role, next action, and dependent runtime gate.
+
+Definition-install exception: This series implements the contract; it does not implicitly authorize rewriting or copying SKILL.md. If the target lacks the canonical package, use only an authorized original specification/package and expected .agents destination. Add a separately authorized definition-install task, immediately followed by a SKILL.md-only confirmation-and-correction task whose criteria match that install task. Verify referenced resources separately in this piece. Do not substitute mirrors or claim a missing source was verified. If this prerequisite cannot be supplied, block source-dependent work.
