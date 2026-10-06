@@ -1,0 +1,178 @@
+## Ordered implementation plan
+
+### 1. Inventory the existing command graph without launching it
+
+Read the listed files and identify, without executing codegen/build/test commands:
+
+- `lib/api-spec/package.json`
+  - Orval/codegen script names.
+  - Typecheck, bundling, test, and lifecycle scripts that read generated outputs.
+  - `pre*` / `post*` scripts and nested package-manager invocations.
+- `lib/api-spec/orval.config.ts`
+  - All generated output paths.
+  - Whether generation cleans output directories before writing.
+- root `package.json`
+  - Workspace aliases, root-level build/test/typecheck scripts, and recursive workspace dispatch.
+- `artifacts/api-server/package.json`
+  - Startup/build/test scripts and any script that indirectly invokes API generation or reads generated client/Zod output.
+- `artifacts/api-server/build.mjs`
+  - Direct process spawning, imports, or file reads that overlap with generated outputs.
+- `artifacts/api-server/test/run-tests.mjs`
+  - Nested commands and startup/test flows that can overlap with generation.
+- `docs/validation/port-authority-apply-handoff.md`
+  - Existing approved handoff boundaries, authority model, any resource identity conventions, and documented exclusions.
+
+Produce a command graph that distinguishes:
+
+| Category | What to record |
+|---|---|
+| Writer | Every Orval/codegen path that deletes, cleans, or writes generated client/Zod files |
+| Reader | Typechecks, API bundles, builds, API startup, and tests that read or compile those paths |
+| Nested caller | Scripts invoked via lifecycle hooks, `exec`, spawned processes, workspace recursion, or startup helpers |
+| Root alias | Root commands that dispatch into `lib/api-spec` or `artifacts/api-server` |
+| Output set | Exact configured generated directories/files, not inferred names |
+| Existing guard | Any existing lock, mutex, port authority call, or serialization mechanism |
+
+Do not label a command as protected merely because it happens to run serially in one observed script.
+
+### 2. Define one canonical resource lock contract
+
+After the Port Authority Runtime Hygiene contract is supplied/verified, define a **single resource identity** for the generated-output critical section.
+
+The concrete identity must be derived from the verified project-local namespace plus the configured generated-output resource. For example, the shape could be documented as:
+
+```text
+<verified-project-namespace>:api-generated-output
+```
+
+The exact format must come from the project’s approved Port Authority contract; do not assume this example is acceptable.
+
+The lock contract must define:
+
+- canonical lock identity;
+- acquisition order relative to any existing API startup/build locks;
+- whether the lock covers:
+  - output cleanup,
+  - generation,
+  - post-generation writes,
+  - reader startup,
+  - reader execution;
+- re-entrancy/nesting behavior for a caller that already holds the lock;
+- timeout/attempt budget;
+- cancellation and release semantics;
+- durable authority/evidence records;
+- mismatch handling: wrong resource, wrong order, stale/missing authority, or unauthorized nested acquisition must fail closed.
+
+**Interpretation:** the critical section must protect the *entire destructive writer operation* and the *whole reader operation that consumes its outputs*, rather than only wrapping the top-level `orval` process.
+
+### 3. Add a single checked dispatch wrapper, not scattered ad hoc locks
+
+Implement one project-local checked wrapper/adapter using the actual Runtime Hygiene interface. Every relevant entry point must call this same adapter.
+
+Required categories to route through it:
+
+1. **Codegen writer**
+   - The Orval invocation configured by `lib/api-spec/package.json`.
+   - It must acquire the generated-output writer authority before cleanup or generation begins.
+
+2. **Generated-output readers**
+   - `lib/api-spec` typechecks and API bundling commands that read generated sources.
+   - The API server’s build and startup flows in:
+     - `artifacts/api-server/package.json`
+     - `artifacts/api-server/build.mjs`
+     - `artifacts/api-server/test/run-tests.mjs`
+
+3. **Nested callers**
+   - Any lifecycle hook or subprocess route that invokes one of the above.
+   - It must propagate the verified lock context only through the approved Runtime Hygiene mechanism—not through an unvalidated environment-variable convention invented for this task.
+
+4. **Root aliases**
+   - Root `package.json` scripts that invoke workspace-level writer or reader operations.
+
+Do not add a separate lock implementation in each package. The “one verified resource-lock contract” requirement means all paths must resolve to one identity and one ordering policy.
+
+### 4. Preserve direct-command behavior as intentionally unauthorized
+
+Do **not** modify raw Orval, test, typecheck, or build tools to claim they are authorized merely because they can be invoked directly.
+
+Instead:
+
+- direct commands remain outside task evidence and cannot create authority;
+- direct writer/reader invocation must either:
+  - be refused before touching generated output, if it is routed through the protected adapter without authority; or
+  - remain explicitly documented as an unsupported/unmanaged invocation if the host cannot intercept it.
+
+The latter is not sufficient for “every caller participates.” If direct package scripts are user-facing aliases, replace their implementation with checked adapter dispatch rather than leaving a bypassing script behind.
+
+### 5. Add isolated tests before live validation
+
+Use isolated, instrumented fixtures that never run the real Orval/build/test commands and never modify actual generated sources.
+
+The tests should prove at minimum:
+
+| Scenario | Expected result |
+|---|---|
+| Writer with no lock authority | Fails before cleanup/write dispatch |
+| Reader with no lock authority | Fails before typecheck/build/start dispatch |
+| Mismatched lock identity | Fails closed |
+| Wrong acquisition order | Fails closed |
+| Writer and reader route through separate aliases | Both resolve to the identical canonical resource identity |
+| Nested caller | Inherits/uses the authorized lock context only according to the approved contract |
+| Nested caller with invalid context | Fails closed; no fallback acquisition or direct launch |
+| Root alias | Routes to the same checked adapter as workspace-local scripts |
+| Concurrent simulated writer and reader | Reader cannot observe the destructive rewrite window; dispatch serialization is observable |
+| Release/error path | Lock is released only through the authorized finalization path; retained failures are recorded according to the actual Port Authority contract |
+
+Record fixture outcomes separately from host validation, as required by `.agents/skills/failure-gate-v4/reference/acceptance.md` → **“Required host tests”**. Fixture success is not proof that the production/host route is live.
+
+### 6. Register the finite approved validation route
+
+Only after the host provides the required route, register a task-local validation plan containing:
+
+- canonical task/plan binding;
+- the exact permitted checked command(s);
+- canonical tier/route definition and digest;
+- one resource identity and lock ordering;
+- finite phase/session/attempt/time budgets;
+- independent outer supervision;
+- allowed nested-caller propagation;
+- generated-output snapshot/environment evidence requirements;
+- explicit exclusions: no direct build/test/codegen fallback.
+
+This is required by `.agents/skills/failure-gate-v4/SKILL.md` → **“Core invariants”** and its reference to `reference/validation-budgets.md`. The supplied excerpts state that missing budget/supervision capability blocks that route.
+
+### 7. Run live verification only through the approved route
+
+Once authorized, perform only the specifically admitted finite checks. Capture:
+
+- the route and task/plan authorization used;
+- resolved lock identity/order;
+- attempted versus actually launched commands;
+- evidence that each listed alias/caller entered the common wrapper;
+- snapshot/environment identity;
+- result and release/finalization records;
+- any unavailable caller path as a blocker, rather than claiming complete coverage.
+
+### 8. Update the handoff documentation
+
+Update `docs/validation/port-authority-apply-handoff.md` with:
+
+- the canonical resource identity and ordering;
+- the authoritative Runtime Hygiene interface used;
+- all writer/reader/root/nested caller mappings;
+- the approved validation route and finite budgets;
+- the exact failure-closed behavior;
+- how to inspect records and recover from interrupted lock ownership;
+- known exclusions or unavailable routes.
+
+Do not record a successful validation, deployed lock, or completed Port Authority integration until the authorized live route has actually run and produced evidence.
+
+## Proposed change boundaries
+
+Once the missing authority is available, likely change targets are limited to the files named in the task plus the project’s existing canonical Port Authority implementation/test locations discovered during inventory. Do not introduce a parallel runner or lock service solely for this task.
+
+## Current blocker
+
+The supplied task explicitly identifies the absence of an approved route and finite budgets, while the requested **Port Authority Runtime Hygiene** contract itself was not included in the available skill material. Under Failure Gate, that means preparation and static discovery are permissible, but implementing or asserting live lock enforcement is not yet justified.
+
+Please provide the project’s approved **Port Authority Runtime Hygiene** contract/location and the authorized finite validation route (including its budget/supervision mechanism).
