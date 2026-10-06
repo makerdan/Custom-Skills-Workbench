@@ -36,7 +36,7 @@ These SHA-256 values bind the delivered bytes after the documentary edits. The v
 | `docs/validation/failure-gate-fg-01-installation-proposal.md` | `077484a94c92cb06fe489dcde3c81686bcd44455e4c0c6146e9ba3fd2231697d` |
 | `docs/validation/failure-gate-capabilities.json` | `724eaff7c1022116a728e1b17a6a4ae8433db9b2867b578140a37b9cfc520014` |
 | `docs/validation/failure-gate-evidence-index.md` | `77ec9902ffdcaa63820e77ba4963b92f1159b38880a49761f28e900924abf1c6` |
-| `docs/validation/failure-gate-fg-01-verifier-report.md` | `9c3675e48d399071e338a5f803a3278cd87e405cc1a37bd529e71b4d173010d4` |
+| `docs/validation/failure-gate-fg-01-verifier-report.md` | `9adb03b0f1ac78f83412dfc7cd9c60648a36c60fe1d1a1f5f72419d56042b7e3` |
 
 ## Known gap list before verifier edits
 
@@ -73,6 +73,10 @@ Follow the full tracked verifier plan; do not rely on this handoff's summaries:
 
 ### Verifier task API readback — 2026-10-06
 
-This verifier's task API readback shows `#68 MERGED` and `#69 IN_PROGRESS`; persisted `#69.dependsOn` contains exactly `#68`. The primary description SHA-256 is `51fc06aa165a36c0f881068fbcd4f078888b3b35e75c20a755b33545412ccd1f`; the verifier description matches the tracked plan SHA-256 `9a2ce68cda1a6bcd448ae86936751b811376d59e4aa98b8fffb0f0df9965d85f`. The fresh independent document reviewer could not query the task API to recheck these values. This lifecycle readback does not establish local policy, authority, or runtime readiness.
+At the original verifier task API readback, `#68` was `MERGED` and `#69` was `IN_PROGRESS`; persisted `#69.dependsOn` contained exactly `#68`. The primary description SHA-256 was `51fc06aa165a36c0f881068fbcd4f078888b3b35e75c20a755b33545412ccd1f`; the verifier description matched the tracked plan SHA-256 `9a2ce68cda1a6bcd448ae86936751b811376d59e4aa98b8fffb0f0df9965d85f`. The independent document reviewer at that time could not query the task API. This historical lifecycle readback does not establish local policy, authority, or runtime readiness.
 
-No Piece 02–18 task has been created or surfaced. After #69 completes, preserve the series checkpoint. No automatic progression or cutover follows from this handoff.
+### Independent task API follow-up — 2026-10-06
+
+A separate read-only API lookup subsequently retrieved the full current records for `#68` and `#69`. Both are now `MERGED`; `#69.dependsOn` contains exactly `#68`; both full stored descriptions match their pinned task plans byte-for-byte and retain the same SHA-256 values above. The verifier report records all returned task fields and the individual comparisons. This confirms task-record bindings only; it does not expose an immutable Project UUID or establish local authorization.
+
+As of the original handoff, no Piece 02–18 task had been created or surfaced. The later task lifecycle is recorded in the independent follow-up above. Preserve the series checkpoint; no automatic progression or cutover follows from this handoff.
