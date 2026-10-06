@@ -60,6 +60,15 @@ Retain the original installer caller `pass:false`/raw exit 4 and the two later, 
 | Port Authority source-owner authorization and current host-capability evidence route missing | Responsible Port Authority source owner and trusted host/platform evidence owner | Supply explicit authorization and an authentic read-only locator for the canonical current contract and host-capability evidence. Local workspace hashes are source bindings only, not authority or host proof. |
 | Backup/restore/read-health routes are not live-proved | Storage/recovery owner | Under a separate exact grant, produce current backup/checkpoint, fenced isolated restore, history reconciliation and acknowledgement evidence. |
 
+
+## Task 78 source-level writer addendum — 2026-10-06
+
+The read-only expansion in `failure-gate-host-integration-map.md` and `failure-gate-fg-01-policy-caller-inventory.md` confirmed additional source-level writer routes: root Regression Guard plan-stub writes; Orval clean/write plus nested TypeScript project-reference output; recursive/API/Vite build cleanup and output, including `scripts/dist`; the Canvas development preview generator; pnpm preinstall/post-merge and Drizzle schema push; deployment package-store pruning; and the workspace skill-projection refresh utility, which has a separate lock. The configured API Server workflow invokes a build on startup; the configured Canvas workflow can write its generated module. A caller-supplied image output path and unexhaustively inspected framework caches remain conditional/unknown routes.
+
+This is source evidence only, not proof those routes ran or are the complete live writer set. The Gate lock is shown only on Gate-owned writes and local completion. No other listed path is shown to use it or a common immutable accepted-state boundary through handoff. Editor/Agent, checkout/merge, remote/external providers, current workflow participation, and any unobserved utility caller remain unavailable or unknown. `writer_coverage` stays unset; final-writer acceptance and ordinary cutover remain **BLOCKED / NOT APPROVED**.
+
+No new authority is granted by this addendum. The next permitted stage still requires an exact separately authorized plan, actual host participant evidence, a verified shared-lock or immutable-state protocol spanning deletions and nested actions through final handoff, independent review, and a distinct cutover decision. Do not wire, wrap, launch, or reclassify these paths under this documentary record.
+
 ## Exclusions
 
 No coordinator/database access, store initialization/mutation, local ID allocation, policy or approval change, tier/budget change, imports/syntax/tests/typechecks/builds, workflow/service startup, CLI call, process signal, recovery/reclaim, caller wiring, remote CI, merge, deployment, or Piece 02–18 task-card creation is proposed or authorized here. Existing services, commands, workflows, state, task records, unresolved outcomes and failure history remain unchanged.
