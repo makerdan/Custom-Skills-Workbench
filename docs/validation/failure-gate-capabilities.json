@@ -116,7 +116,23 @@
       },
       "runtime_scope": "NOT_AUTHORIZED; no tests, scripts, CLI, imports, builds, store operations, workflows, signals, recovery, remote checks, activation or cutover",
       "current_execution_limits_or_grant": "UNAVAILABLE; historical operation-specific allowances do not transfer",
-      "next_action": "Complete the independent documentary readback; keep unavailable historical source provenance, current host authority, and runtime gates blocked."
+      "next_action": "Task 74 documentary readback recorded; keep unavailable historical source provenance, current host authority, and runtime gates blocked.",
+      "task_74_documentary_confirmation": {
+        "observed_on": "2026-10-06",
+        "source_boundary": "Retained inventory, proposal, host map, bootstrap report, capability locator and canonical Failure Gate contract only; no live coordinator, process, workflow or remote read",
+        "identified_writer_participants": [
+          "Regression Guard --fix-stub and root typecheck/test/build callers",
+          "pnpm preinstall lockfile deletion; post-merge frozen install and database push; deployment store prune",
+          "Orval clean/write to lib/api-client-react/src/generated and lib/api-zod/src/generated; tsc --build and recursive build outputs (full paths unknown)",
+          "Editor and direct Agent file tools; workspace checkout/merge",
+          "Remote CI, external jobs, additional workspaces/branches and unpublished callers (actual participants unknown)"
+        ],
+        "writer_lock_or_isolation": "UNVERIFIED; only Gate.write/Gate.complete primitive and isolated fixtures use the stable local writer lock; no complete live participant set or common accepted-state boundary is proved; writer_coverage remains unset",
+        "ordinary_supervision": "UNKNOWN_BLOCKED; CLI entry has no outer supervisor call; cooperative /proc, subreaper and watchdog evidence is not independent ordinary whole-tree admission",
+        "finite_limits_and_remaining_budget": "UNKNOWN_BLOCKED for ordinary work; retained finite values are historical, operation-specific, and not reusable; the 900-second health-only bootstrap was consumed",
+        "stop_and_capture": "Confirmed only for the two historical health callers and their exact bootstrap: natural finish, owned work reported stopped, acknowledged, complete capture; ordinary stop/cancellation/escalation/loss handling and capture remain UNKNOWN_BLOCKED",
+        "task_74_runtime_operations": "NONE; no checks or runtime operations run"
+      }
     }
   },
   "not_a_live_registry": true,

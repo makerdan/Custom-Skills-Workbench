@@ -89,6 +89,29 @@ No authoritative current phase/queue/step/startup/test/hook/teardown/cancellatio
 | Catalog/history | No approved baseline/comparison catalog; prior index says catalog `never_collected`. | No ignore authority or “pre-existing failure” waiver. Historical raw results are not a catalog. |
 | Independent/remote callers | Existing map/index explicitly says independent callers/remote CI are not monitored by this local route. | External and transitive caller coverage **UNKNOWN**; no CI workflow run or configuration mutation. |
 
+### Task 74 documentary confirmation — writer and supervisor boundary
+
+**Observation date:** 2026-10-06. This is a readback of the retained inventory, installation proposal, capability locator, host map, and bootstrap report. No live coordinator, process, workflow, remote service, or current caller state was read. The rows below identify participants documented by those sources; they are not an exhaustive live writer list.
+
+| Writer area | Identified participant(s) in retained sources | Lock/isolation evidence | Owner role identified by the records |
+| --- | --- | --- | --- |
+| Task-plan/file writes | `scripts/check-regression-guard.mjs --fix-stub`, reached by root typecheck/test/build; `Gate.write` for its own approved-path writes; direct editor and Agent file tools | The Regression Guard path has no demonstrated Gate lock. `Gate.write` uses the stable local lock, but no ordinary live caller was observed. Editor/Agent participation is unknown. | Regression Guard/validation owner; local Gate integration owner; editor/Agent host-integration owner |
+| Package/dependency/schema and setup writes | `pnpm preinstall` deletes non-pnpm lockfiles; `scripts/post-merge.sh` runs frozen install and `pnpm --filter db push`; deployment post-build runs `pnpm store prune` | No shared Gate admission/lock was demonstrated. The install/schema and deployment actions have separate authority and coordination boundaries. | Package-manager/setup owner; database/schema owner; deployment lifecycle owner |
+| Generated/build outputs | Orval codegen cleans and writes `lib/api-client-react/src/generated` and `lib/api-zod/src/generated`; `tsc --build` and recursive workspace builds may emit outputs | Orval has no Gate/lease wrapper in the inspected route. Exact build-output paths and all build writers are not inventoried in the retained evidence. | API-spec/codegen owner; build/artifact owners |
+| Editor, Agent, checkout, and merge | Direct file tools, editor saves, Agent edits, and workspace checkout/merge writers are named as host paths; specific instances are not inventoried | No common lock or immutable accepted-state boundary is evidenced for these paths. | Editor/Agent host-integration owner; merge/checkout owner |
+| External and independent callers | Remote CI, external jobs, additional workspaces/branches, and unpublished callers are explicitly not established | The project-local route does not monitor or serialize these callers; actual participants and any coordination are **UNKNOWN**. | Remote CI/provider and external-caller owners |
+
+Accordingly, the documented paths are a minimum known set, not proof of the complete live set. No writer category has confirmed end-to-end participation in a single effective lock or accepted-state isolation boundary. `writer_coverage` remains unset; final-writer acceptance is **BLOCKED**.
+
+| Supervision question | Evidence that can be confirmed from retained records | Current ordinary-task finding |
+| --- | --- | --- |
+| Scope and independence | The implementation is cooperative and uses Linux `/proc`, subreaper, and watchdog mechanisms. The CLI entry path does not call an outer supervisor. The bootstrap report records `supervisor.run`/watchdog for its exact health workers only. | Independent admission and whole-tree supervision for ordinary callers are **UNKNOWN/BLOCKED**; this is not protected host or remote supervision. |
+| Finite limits | Historical policy/bootstrap records specify finite limits, including a single 900-second boot-bound health-only session and its named fixture/health attempts. The bootstrap report says the one-shot was consumed. | Historical limits are not a current grant, remaining budget, or limits for ordinary tasks. Current ordinary limits/consumption are **UNKNOWN/BLOCKED**. |
+| Stop and acknowledgement | The two recorded health callers finished naturally (`reason: finished`), reported owned work stopped, and were acknowledged. No cleanup signals were delivered. The bootstrap fixture suite recorded bounded termination/capture cases. | This does not establish ordinary stop, cancellation, escalation, timeout, or loss-of-supervisor behavior. Those remain **UNKNOWN/BLOCKED** for ordinary dispatch. |
+| Capture | For those two health callers, the report records complete capture and indexed outcome hashes; fixture output was complete and bounded. | Current ordinary-run capture, output bounds, durable acknowledgement, and loss handling are **UNKNOWN/BLOCKED**. |
+
+The accepted bootstrap evidence is limited to its exact consumed decision and callers. It does not support relying on Failure Gate for ordinary writer isolation, supervisor admission, process termination, or evidence capture. No check or runtime operation was performed for this Task 74 readback.
+
 ## Ownership and next action
 
 - **Local approval owner:** owns any new exact plan/authority/budget request; prior local conversation approvals cannot be recycled. Do not infer a person beyond the role named in original records.

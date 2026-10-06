@@ -62,6 +62,18 @@ There is no ordinary-task acceptance evidence to infer from them.
 | Protected reclaim / external providers | Existing CLI denies before signals; no new provider inspection performed | Project denies; protected external capability availability not newly verified | Keep distinct and blocked for this scope; do not infer runtime disruption permission from installer passes |
 | Independent verifier / platform plan integration | No platform adapter or verifier task created in this review | Previously documented gap remains | Existing platform task labels are not local IDs or approval; any new task/mapping needs its own authorized route |
 
+## Task 74 documentary readback: coverage and supervision
+
+This section records a documentary readback on 2026-10-06 of the retained host map, caller inventory, installation proposal, capability locator, bootstrap report, and canonical Failure Gate contract. It is not a fresh live host read or proof that the named participant list is exhaustive.
+
+The sources identify the following writer classes: Regression Guard task-plan writes; package-manager lockfile deletion and dependency installation; database schema push; deployment package-store pruning; Orval generated-output cleanup and writes; possible `tsc --build` and recursive build outputs; editor/direct Agent writes; checkout/merge; and remote or otherwise external callers. The API codegen targets are explicitly identified as `lib/api-client-react/src/generated` and `lib/api-zod/src/generated`. The complete build-output path set and the actual live editor, Agent, merge, and external caller instances are not identified. Owner roles are the corresponding script/validation, package/setup, database/schema, deployment, API codegen/build, editor/Agent, merge/checkout, and remote-provider owners; no individual owner identity is asserted.
+
+Only the Gate writer primitive and isolated fixtures are evidenced using `.failure-gate/writers.lock`. No retained source shows every identified writer, including deletion/setup paths, participating in that lock or an equivalent immutable accepted-state boundary. Consequently the participant set is incomplete, `writer_coverage` remains unset, and final-writer acceptance remains **BLOCKED**.
+
+The retained bootstrap report confirms an independent `supervisor.run`/watchdog path only for its exact health callers. Its single 900-second boot-bound grant was consumed. Those two callers finished naturally, reported owned work stopped, were acknowledged, and had complete indexed capture; the bootstrap fixture record also covers bounded output and termination cases. The recorded historic limits and health evidence do not bind ordinary task work. The ordinary CLI entry has no outer supervisor call, and no current ordinary finite budget, independent admission, whole-tree stop/cancellation/escalation, supervisor-loss handling, or capture acknowledgement was established. These ordinary host proofs are **UNKNOWN/BLOCKED**. Port Authority remains a separate named-lock capability with no established common host adapter or lock-order proof.
+
+No live coordinator or process state, workflow, external service, or current caller was queried for this readback. No validation command, check, or runtime operation was run. Do not use this section to infer ACTIVE/INACTIVE governance, current remaining budget, complete writer coverage, or ordinary runtime readiness.
+
 ## Evidence links and source scope
 
 Inspected the named project sources and canonical Failure Gate implementation
