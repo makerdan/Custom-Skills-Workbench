@@ -33,6 +33,19 @@ No protected host identity or tamper resistance is claimed.
 | Reclaim attestations and disruption approvals | No available protected provider | `unavailable`, live reclaim BLOCKED; no cleanup signals to unrelated processes. |
 | Independent callers / remote CI | Not monitored by this local route | `unknown` coverage. Existing invocation strings and workflows are unchanged. |
 
+## Non-terminal plan-approval source discovery
+
+| Evidence stage | Result |
+| --- | --- |
+| Source discovery | **BLOCKED:** no trusted plan-approval event/reference or exact approved-plan snapshot with local task/namespace mapping was exposed in the workspace. The official documentation search returned no relevant interface; the workspace has no configured integrations. |
+| Adapter implementation | **NOT IMPLEMENTED:** no verified source exists here to adapt. The interactive terminal review path remains unchanged. |
+| Rejection fixtures | Added in `scripts/failure_gate/tests.py` for stale content, wrong-task replay, tier/policy mismatch, unregistered decision kind, and status/lifecycle-only inputs. **NOT RUN**; isolated fixtures would not establish a working host source. |
+| Operational verification | **BLOCKED / NOT RUN:** no actual approval event or approved plan was available; no current finite approved route for the changed gate source was verified. No approval evidence was generated and no task was activated. |
+
+The task assignment and its plan text are not approval evidence. Platform-wide
+availability remains unknown; this record states only that no reviewable source
+was exposed or verified in this workspace.
+
 ## Inspection
 
 The inner CLI is `scripts/failure_gate/cli.py`. `health` and `events` use

@@ -102,3 +102,41 @@ is the integration evidence.
 The next proposed source scope is
 `failure-gate-staged-admission-proposal.md`. It does not promise that a CLI
 adapter alone can cover platform editors/merges or activate ordinary governance.
+
+## Follow-up: non-terminal plan-approval source discovery
+
+**Source discovery: BLOCKED. Adapter implementation: NOT IMPLEMENTED.
+Operational verification: NOT RUN. Ordinary activation remains STAGED.**
+
+The current workspace surface was checked for an explicit, reviewable plan
+approval action and a way to retrieve the exact approved contents:
+
+- The available task-assignment/update/completion surface does not provide a
+  plan-approval event reference, an authoritative approved-plan snapshot, or a
+  mapping from that snapshot to one local Failure Gate task ID and namespace.
+  This task assignment and its plan text are not approval evidence.
+- Replit documentation search for a supported Agent plan-approval API, webhook,
+  or event source returned no relevant documentation. This is not a claim that
+  no such platform capability exists elsewhere; none is exposed or verified in
+  this workspace.
+- The workspace reports no configured integrations. No trusted approval
+  connector or provider is available here.
+- The inspected project route remains `Gate.approve_plan`: it requires an
+  interactive terminal and the exact digest phrase. No non-terminal adapter
+  was found in the project source or configuration.
+
+The exact missing capability is a trusted source that exposes the real approval
+action and stable evidence for the exact approved plan contents/version/digest,
+then supports verification of its binding to one local ID/namespace, registered
+tier and definition, parameters, policy version, and authorization version.
+Without that evidence, status, labels, command approval, merge/apply events,
+caller-written receipts, and copied task text remain insufficient.
+
+No adapter, external approval service, credentials, approval receipt, or
+activation was created. Existing interactive terminal review was not changed.
+Isolated rejection cases were added for stale plan contents, a decision attached
+to another local task, mismatched tier/policy data, unregistered decision kinds,
+and task-status/lifecycle-only signals. These fixtures are source-level test
+coverage only: they were not executed and cannot prove a host approval source.
+No current finite approved route for this changed Failure Gate source was
+verified, so validation and real operational verification remain blocked.

@@ -193,6 +193,87 @@ class GateTests(unittest.TestCase):
             self.gate.store.event("fixture_review", self.task, payload={"simulation_only": True})
         return self.gate.activate(self.task, "plan.json")
 
+    def fixture_review_payload(self, plan=None, relative="plan.json", **overrides):
+        plan = self.plan if plan is None else plan
+        payload = {
+            "plan": plan,
+            "plan_digest": digest(plan),
+            "policy_digest": digest(self.gate.policy),
+            "tier_digest": digest(self.gate.policy["tiers"][plan["tier"]]),
+            "source": "actual interactive local review; identity not authenticated",
+            "parameters": {},
+            "relative": relative,
+        }
+        payload.update(overrides)
+        return payload
+
+    def fixture_record_review(self, task_id, plan=None, relative="plan.json",
+                              kind="plan_review", **overrides):
+        """Synthetic coordinator rows only; never evidence of a host approval event."""
+        payload = self.fixture_review_payload(plan, relative, **overrides)
+        with self.gate.store.transaction():
+            return self.gate.store.decision(kind, task_id, payload)
+
+    def test_stale_review_and_another_tasks_decision_cannot_authorize_activation(self):
+        with self.gate.store.transaction():
+            self.gate.store.set_meta("governance", "ACTIVE")
+        self.fixture_record_review(self.task)
+
+        self.plan["version"] = 2
+        atomic_json(self.root / "plan.json", self.plan)
+        with self.assertRaises(Blocked):
+            self.gate.activate(self.task, "plan.json")
+
+        other_task = self.gate.store.allocate()
+        other_plan = dict(self.plan, task_id=other_task)
+        atomic_json(self.root / "other-plan.json", other_plan)
+        # The row is deliberately attached to the first task to simulate a replay.
+        self.fixture_record_review(self.task, other_plan, "other-plan.json")
+        with self.assertRaises(Blocked):
+            self.gate.activate(other_task, "other-plan.json")
+
+    def test_mismatched_tier_policy_or_unregistered_decision_kind_cannot_authorize(self):
+        with self.gate.store.transaction():
+            self.gate.store.set_meta("governance", "ACTIVE")
+
+        # No review decision or approval contents is not an authorization.
+        with self.assertRaises(Blocked):
+            self.gate.activate(self.task, "plan.json")
+
+        self.fixture_record_review(self.task, kind="unregistered_approval_event")
+        with self.assertRaises(Blocked):
+            self.gate.activate(self.task, "plan.json")
+
+        self.fixture_record_review(self.task, tier_digest="not-the-registered-tier-digest")
+        with self.assertRaises(Blocked):
+            self.gate.activate(self.task, "plan.json")
+
+        self.fixture_record_review(self.task, policy_digest="stale-policy-digest")
+        with self.assertRaises(Blocked):
+            self.gate.activate(self.task, "plan.json")
+
+        self.plan["tier"] = "standard"
+        atomic_json(self.root / "plan.json", self.plan)
+        with self.assertRaises(Blocked):
+            self.gate.activate(self.task, "plan.json")
+
+    def test_task_status_and_lifecycle_events_alone_cannot_authorize_activation(self):
+        with self.gate.store.transaction():
+            self.gate.store.set_meta("governance", "ACTIVE")
+
+        for status, event_kind in (("draft", "plan_drafted"), ("active", "task_activated")):
+            with self.subTest(status=status, event_kind=event_kind):
+                with self.gate.store.transaction():
+                    self.gate.store.db.execute(
+                        "UPDATE tasks SET status=? WHERE public_id=?", (status, self.task))
+                    self.gate.store.event(event_kind, self.task, payload={"simulation_only": True})
+                    self.gate.store.event("command_approved", self.task,
+                                          payload={"simulation_only": True})
+                    self.gate.store.event("merge_applied", self.task,
+                                          payload={"simulation_only": True})
+                with self.assertRaises(Blocked):
+                    self.gate.activate(self.task, "plan.json")
+
     def test_no_cutover_no_self_review_no_tier_fallback(self):
         with self.assertRaises(Blocked):
             self.gate.activate(self.task, "plan.json")
