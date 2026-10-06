@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "source": "actual owner response to final bootstrap approval form",
+  "reference": "inv_1fdbHV8F4cCl55dEoL6nPWfMY92xS8VMkN:call_lbsPmVHm1AaRWDLLW9O5poPL",
+  "question": "Approve this exact bounded bootstrap proof?",
+  "answer": "Approve the pinned bootstrap proof",
+  "binding": {
+    "plan": {
+      "schema": 1,
+      "operation": "installation.coordination-bootstrap",
+      "namespace": "d63a3d51-4dea-4a99-9e6a-d01410b7e017",
+      "local_id": "FG-00000001",
+      "policy_version": "local-v1.1",
+      "effects": [
+        "append bootstrap decision/reservation/evidence",
+        "isolated fixture stores",
+        "read coordinator health",
+        "supervise exact owned cooperative children"
+      ],
+      "order": [
+        "fixtures-1",
+        "fixtures-2",
+        "health-1",
+        "health-2"
+      ],
+      "parent_seconds": 900,
+      "fixture_execution_seconds": 120,
+      "fixture_grace_seconds": 0.2,
+      "fixture_verification_seconds": 2,
+      "fixture_capture_seconds": 1,
+      "fixture_output_bytes": 1048576,
+      "health_limits": {
+        "queue_seconds": 30,
+        "step_seconds": 30,
+        "startup_seconds": 15,
+        "test_ms": 30000,
+        "hook_ms": 15000,
+        "owner_stall_seconds": 15,
+        "registration_seconds": 2,
+        "cleanup_seconds": 20,
+        "capture_seconds": 10,
+        "run_seconds": 900,
+        "installation_seconds": 900,
+        "max_bytes": 1048576
+      }
+    },
+    "plan_digest": "3fa0fb99a03b7b091d942e9925075bfd709fbbeba5d09d4770bf0a71dc842c2a",
+    "source_files": {
+      ".agents/skills/failure-gate-v4/README.md": "c7bcae08f4e707413bf8f3a4d8bb9563e66bb75b6c4942fb1875411644973860",
+      ".agents/skills/failure-gate-v4/SKILL.md": "c62037ac28404b815808fdc2428c2d17b52465d4c1f023fa50c0d5622898b4bb",
+      ".agents/skills/failure-gate-v4/reference/acceptance.md": "5d89de3cac03813485cc1781fa67c47c59e659c46fae59ef1d39dd2b1db21bfe",
+      ".agents/skills/failure-gate-v4/reference/adapters/posix-writer-lock/README.md": "3d635b1ae2307beb79e2369a616ac7b2a9d28bedec6daf80655fd1d4aa9a39d2",
+      ".agents/skills/failure-gate-v4/reference/adapters/posix-writer-lock/tests/test_writer_lock.py": "777035d2a9ceae4c976734125869686b9d713f0dec008dba18692e119a8eedb8",
+      ".agents/skills/failure-gate-v4/reference/adapters/posix-writer-lock/writer_lock.py": "791a20ee9909127f2d03b577a6573cc382317cf8a58a898f146a89db5befe503",
+      ".agents/skills/failure-gate-v4/reference/authorized-continuation.md": "3dc5590aca87c679b4dbfdcc0fe29c5fdc73192a816b3f82bfd326b28933d8b3",
+      ".agents/skills/failure-gate-v4/reference/evidence-and-recovery.md": "d2c79cd89a5ab8eb6a229df78c07ed0a05d89889446317b724c457bb60667d9a",
+      ".agents/skills/failure-gate-v4/reference/execution-monitoring.md": "b67b9ccc044bcedee8e8b056ccf91a74cee479535b91aaa3455642e09200377b",
+      ".agents/skills/failure-gate-v4/reference/implementation.md": "4b1b756c0d1726b240451a6a82e563a722be2dc9c879f4bb7d54f347d26f2a16",
+      ".agents/skills/failure-gate-v4/reference/owner-directed-closure.md": "9dff9d6e28e10b70224755d63a0f1aeb44be9f789c47a5700bab86dc46d3b4e4",
+      ".agents/skills/failure-gate-v4/reference/runtime-reclaim.md": "bceea11fe66e7d4ef0433ee8306f87f3ec5cdc1520215fdf59393afcbbedb51f",
+      ".agents/skills/failure-gate-v4/reference/staging-and-lifecycle.md": "a9ab52d787e44c7aa4e199c8662882521d8ccf0ef8a6de0706c7853b5fa69800",
+      ".agents/skills/failure-gate-v4/reference/validation-budgets.md": "62c19d7ef9cbedf9505ba45b3d45460fa909126db30a83fbeb43fa2ae7a09866",
+      ".agents/skills/failure-gate-v4/scripts/run-authoring-tests.py": "02e14d9c90eb07d214de1c0b7cc64ba546d891a882feadf292477b85d861b094",
+      ".agents/skills/failure-gate-v4/tests/authoring_supervision.py": "c759dee01e36b2ea0acee65d80b7e2a0d2b0977725f52d09dc6ccf2d672a7698",
+      ".agents/skills/failure-gate-v4/tests/test_activation_policy_guidance.py": "de8f609fe222255d68c471c86d3735d983fabc4ca54583f9aadd7858f72a6e44",
+      ".agents/skills/failure-gate-v4/tests/test_audit_regressions.py": "f27ec34c92cbac232df86d31dc909784e8c2ed27bacc91a733df050a9fec0df9",
+      ".agents/skills/failure-gate-v4/tests/test_authorized_continuation.py": "b527434f87f37a36f1fcbea9f0946ac8f5c1d6a1ddab3b3b0712d6b21dfb24d0",
+      ".agents/skills/failure-gate-v4/tests/test_runtime_reclaim_contract.py": "4c4d5d589b662642e8eef20347af34514a0cb6fb657b0eb81e61fcd7626b2bbd",
+      ".agents/skills/failure-gate-v4/tests/test_staging_lifecycle.py": "ac1e3a013980d051e99ee182b5ae2200497af19d415d76c64961365742020381",
+      ".agents/skills/failure-gate-v4/tests/test_validation_budgets.py": "75823a4f3b274a58b7312b77409c722df5a89136be71f98fc026b36f068c26e2",
+      ".agents/skills/port-authority/SKILL.md": "da160d1c6e044676b7f624633afd9797d5eab0a59fcfd2ef67f0eb817c87919e",
+      ".agents/skills/port-authority/reference/runtime-contract.md": "70f62c4e066422df14a1ff05548138eb5f275dc16714356e411e540f625227b2",
+      ".agents/skills/port-authority/scripts/free-ports.mjs": "d31d5817fe4635e7e586631be91846cc26ba6683337399d2b969b1fd223cda4f",
+      ".agents/skills/port-authority/scripts/host-capabilities.mjs": "cde66e139ecbb541f168edf34adbf6583369fd14e6c0590b9f67716fc0514061",
+      ".agents/skills/port-authority/scripts/runtime-environment.mjs": "ded3050e2f4505bfc192378ae031f059ba0d6361f1ea3a4c0b7f36beb40bfc4e",
+      ".agents/skills/port-authority/scripts/validation-lock.mjs": "d819f38df10b914751471066e36239d843cdbfd3aaa5540563047f9ca49797bb",
+      ".agents/skills/port-authority/tests/hardening.test.mjs": "3681a1286b418e0d4efd68f58f51fef79b897f3b3ed21197681383fa5227b054",
+      "docs/validation/failure-gate-bootstrap-plan.json": "2d80af0404f2117fe8ca34111c41d73924cdf503cc6f35279529fd7a4399313c",
+      "docs/validation/failure-gate-policy.json": "d945a2970c8721c23b658ea1cee51e6b6a89395280405adbba687614808610ac",
+      "scripts/failure-gate-bootstrap.py": "821027f96ed66408a716d66676a6b1ea2626b3a42a6813bd228f28e44f64e030",
+      "scripts/failure_gate/acceptance.py": "e36f0c5c481d153cc630c459aeb6d2bd0b92a9375c7cf36af45e8eaec1d99d4a",
+      "scripts/failure_gate/bootstrap.py": "d925b5d117ab60e4b7af546dd9feb27d3c47170d578682221bec44eb01e8d601",
+      "scripts/failure_gate/cli.py": "61ea7b2ea972ff729bc7d155b8b8c912fb503bedc3afbb3d6b853a4ad8dd1b3d",
+      "scripts/failure_gate/common.py": "e38f490a60e408522d526b545d9c5125e342ad617697072ec7fcd34245e290ad",
+      "scripts/failure_gate/gate.py": "54d0667da862876d7e395bccef84149f4ade5cf86f76f08017e35777bd233406",
+      "scripts/failure_gate/register-test-bounds.mjs": "894094258b8f416dc673f964a04a7d10e13d69e30720d805c076c2fd35b34143",
+      "scripts/failure_gate/store.py": "5439028213dea6d8350efe8f3a5e279c382bb18ab50357c279e5d9ce75dd1d9a",
+      "scripts/failure_gate/supervisor.py": "b92f99fbc5a93ae921e5b620412a12f408bbb9480742fb3ae911ff5da665bf28",
+      "scripts/failure_gate/test-bounds.mjs": "010356b7c90eb0eca08a188650507c0e01301b14a8aa117a31ea7048bf5550c2",
+      "scripts/failure_gate/tests.py": "101283e68777c72cccce413e032859b9288c8eec1621000a0feaf9c0eb5948b2",
+      "scripts/failure_gate/watchdog.py": "1c4ce0dcf6fe6ad8d07f733582eb18b0eb5007c428164c2ace01f18ce118e974"
+    },
+    "source_digest": "84aaa2f16bba9bfcab0e6663f80eb9a8c5a2342ef992d9f3d5f1e205eca0c266",
+    "policy_digest": "b6d5094e1edf7b746d6b096f4ce1f8266797ee4492893c95c70515e4d3206ee1",
+    "root": "/home/runner/workspace",
+    "namespace": "d63a3d51-4dea-4a99-9e6a-d01410b7e017",
+    "local_id": "FG-00000001",
+    "operation": "installation.coordination-bootstrap",
+    "execution": {
+      "fixture": [
+        "/nix/store/yp3s28b4xjvcq53wapb1v7hv5hlmmmma-python-wrapped-0.1.0/bin/python3",
+        "-B",
+        "scripts/failure_gate/tests.py"
+      ],
+      "health": [
+        "/nix/store/yp3s28b4xjvcq53wapb1v7hv5hlmmmma-python-wrapped-0.1.0/bin/python3",
+        "-B",
+        "scripts/failure-gate-bootstrap.py",
+        "--private-health"
+      ]
+    }
+  }
+}

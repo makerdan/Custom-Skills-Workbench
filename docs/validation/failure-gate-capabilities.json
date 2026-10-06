@@ -9,6 +9,20 @@
   "policy": "docs/validation/failure-gate-policy.json",
   "approval": "docs/validation/failure-gate-installation-approval.json",
   "capabilities": {
+    "installation_bootstrap": {
+      "interface": "scripts/failure-gate-bootstrap.py review/prove",
+      "operation": "installation.coordination-bootstrap",
+      "plan": "docs/validation/failure-gate-bootstrap-plan.json",
+      "handoff": "docs/validation/failure-gate-bootstrap-handoff.md",
+      "state": "NON_RECLAIM_VERIFIED for this exact health-only bootstrap; one-shot decision consumed; ordinary governance remains STAGED",
+      "fixtures": "PASSED twice, 46/46 each",
+      "real_health_callers": "PASSED twice consecutively, registered, known stopped and acknowledged; no manual cleanup",
+      "approval": "docs/validation/failure-gate-bootstrap-approval.json",
+      "report": "docs/validation/failure-gate-bootstrap-report.md",
+      "accounting": "Existing coordinator decisions/runs/events and meta.bounded-bootstrap-v1; one fresh 900-second boot-bound session, two fixture passes and two health callers only",
+      "authority_limit": "Cooperative actual terminal/local conversation review; not protected platform identity or ordinary activation",
+      "api_codegen": "DENIED"
+    },
     "allocator": {"interface": "Store.allocate", "store": ".failure-gate/coordinator.sqlite3", "proof": "isolated host-format fixtures passed"},
     "plans": {"interface": "guard_plan", "format": "Exact versioned local JSON plan", "state": "implemented; isolated guards passed"},
     "planning_baseline": {"state": "BLOCKED", "reason": "No approved comparison/diagnostic capability or baseline catalog"},

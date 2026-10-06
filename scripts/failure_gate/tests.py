@@ -16,8 +16,204 @@ from common import Blocked, atomic_json, digest, encoded, incarnation, inside, r
 from gate import Gate, configuration, execution_definition, guard_plan, parsed_result, snapshot, tooling
 from store import Store
 from supervisor import LIMITS, run, validate_limits
+from unittest.mock import patch
+import bootstrap
 
 ROOT = Path(__file__).resolve().parents[2]
+
+
+class BootstrapTests(unittest.TestCase):
+    """Simulated authority only in isolated stores; never host approval."""
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory()
+        self.root = Path(self.temporary.name)
+        for base in ("scripts/failure_gate", ".agents/skills/failure-gate-v4",
+                     ".agents/skills/port-authority"):
+            shutil.copytree(ROOT / base, self.root / base,
+                            ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
+        for file in (bootstrap.PLAN, bootstrap.ENTRY, "docs/validation/failure-gate-policy.json"):
+            target = self.root / file
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(ROOT / file, target)
+        self.store = Store(self.root / ".failure-gate", True)
+        task = self.store.allocate()
+        with self.store.transaction():
+            self.store.set_meta("bootstrap_task", task)
+            self.store.set_meta("installation_decision", "isolated-fixture-registration")
+        plan = read_json(self.root / bootstrap.PLAN)
+        plan.update(namespace=self.store.meta("namespace"), local_id=task)
+        atomic_json(self.root / bootstrap.PLAN, plan)
+
+    def tearDown(self):
+        self.store.close()
+        self.temporary.cleanup()
+
+    def authorize(self):
+        binding = bootstrap.subject(self.root, self.store)
+        return bootstrap.approve(self.store, binding,
+                                 {"source": "ISOLATED TEST SIMULATION", "reference": "fixture"})
+
+    def test_bootstrap_missing_wrong_operation_namespace_policy_and_graph_denied(self):
+        with self.assertRaises(Blocked):
+            bootstrap.reserve(self.root, self.store, "health-1")
+        for key, bad in (("operation", "run"), ("namespace", "other"),
+                         ("local_id", "65"), ("policy_version", "other"),
+                         ("effects", ["codegen"]), ("order", ["health-1"]),
+                         ("parent_seconds", 901)):
+            original = read_json(self.root / bootstrap.PLAN)
+            altered = dict(original, **{key: bad})
+            atomic_json(self.root / bootstrap.PLAN, altered)
+            with self.assertRaises(Blocked):
+                bootstrap.subject(self.root, self.store)
+            atomic_json(self.root / bootstrap.PLAN, original)
+        self.authorize()
+        (self.root / bootstrap.ENTRY).write_text("changed governing source")
+        with self.assertRaises(Blocked):
+            bootstrap.reserve(self.root, self.store, "fixtures-1")
+        self.assertEqual(self.store.db.execute("SELECT count(*) FROM runs").fetchone()[0], 0)
+
+    def test_bootstrap_arbitrary_callers_and_receipt_flags_do_not_authorize(self):
+        for actual in ({}, {"approved": True}, {"reference": "invented"}, []):
+            atomic_json(self.root / bootstrap.APPROVAL, actual)
+            with self.assertRaises(Blocked):
+                bootstrap.capture_owner_decision(self.root)
+        self.authorize()
+        for caller in ("run", "standard", "codegen", "fixtures-2", "health-1", ["fixtures-1"]):
+            with self.assertRaises(Blocked):
+                bootstrap.reserve(self.root, self.store, caller)
+        self.assertEqual(self.store.db.execute("SELECT count(*) FROM runs").fetchone()[0], 0)
+
+    def test_bootstrap_replay_conflict_and_concurrent_reservation_share_one_slot(self):
+        self.authorize()
+        results = []
+        def contender():
+            store = Store(self.root / ".failure-gate")
+            try:
+                with writer_lock(store.directory):
+                    try:
+                        bootstrap.reserve(self.root, store, "fixtures-1")
+                        results.append("reserved")
+                    except Blocked:
+                        results.append("denied")
+            finally:
+                store.close()
+        threads = [threading.Thread(target=contender) for _ in range(2)]
+        for thread in threads:
+            thread.start()
+        for thread in threads:
+            thread.join(timeout=5)
+        self.assertEqual(sorted(results), ["denied", "reserved"])
+        self.assertEqual(self.store.db.execute("SELECT count(*) FROM runs").fetchone()[0], 1)
+        with self.assertRaises(Blocked):
+            self.authorize()
+        with self.assertRaises(Blocked):
+            bootstrap.reserve(self.root, self.store, "fixtures-1")
+
+    def test_bootstrap_boot_expiry_enlargement_and_cleanup_reservation_deny(self):
+        value = self.authorize()
+        original = encoded(value)
+        for changed in (dict(value, boot="resumed-other-boot"),
+                        dict(value, deadline=value["deadline"] + 1),
+                        dict(value, started=value["started"] + 100, deadline=value["deadline"] + 100),
+                        dict(value, started=0, deadline=900)):
+            with self.store.transaction():
+                self.store.set_meta(bootstrap.KEY, encoded(changed))
+            with self.assertRaises(Blocked):
+                bootstrap.reserve(self.root, self.store, "fixtures-1")
+        with self.store.transaction():
+            self.store.set_meta(bootstrap.KEY, original)
+        with patch("bootstrap.time.monotonic", return_value=value["deadline"] - 120):
+            with self.assertRaises(Blocked):
+                bootstrap.reserve(self.root, self.store, "fixtures-1")
+        self.assertEqual(self.store.db.execute("SELECT count(*) FROM runs").fetchone()[0], 0)
+
+    def test_bootstrap_decision_mutation_and_missing_registration_fail_closed(self):
+        value = self.authorize()
+        self.store.db.execute("UPDATE decisions SET digest='corrupt' WHERE id=?", (value["decision"],))
+        with self.assertRaises(Blocked):
+            bootstrap.context(self.root, self.store)
+        with patch("bootstrap.sys.stdin.isatty", return_value=False):
+            with self.assertRaises(Blocked):
+                bootstrap.review(self.root)
+        with self.assertRaises(Blocked):
+            bootstrap.private_health(self.root)
+
+    def test_bootstrap_typed_capture_termination_evidence_not_truthiness(self):
+        healthy = {"pass": True, "registered": True, "stopped": True,
+                   "capture_complete": True, "healthy_release": True,
+                   "raw_exit": 0, "reason": "finished"}
+        self.assertTrue(bootstrap.accept_outcome(healthy))
+        for key in healthy:
+            for bad in (None, "true", "unknown", {}, False):
+                self.assertFalse(bootstrap.accept_outcome(dict(healthy, **{key: bad})))
+        fixture = {"pass_": True, "known_stopped": True, "capture_complete": True,
+                   "raw_exit": 0, "deadline": False, "surviving_work": False,
+                   "output_overflow": False, "exclusion": False, "error": None}
+        self.assertTrue(bootstrap.accept_outcome(fixture, True))
+        self.assertFalse(bootstrap.accept_outcome(dict(fixture, exclusion=True), True))
+        self.assertFalse(bootstrap.accept_outcome(dict(fixture, output_overflow=True), True))
+
+    def test_bootstrap_failed_capture_retains_consumption_and_exclusion(self):
+        self.authorize()
+        failed = {"pass_": False, "known_stopped": True, "capture_complete": False,
+                  "raw_exit": 0, "output": "", "error": None}
+        sys.path.insert(0, str(ROOT / ".agents/skills/failure-gate-v4/tests"))
+        with patch("authoring_supervision.supervise_static", return_value=failed):
+            with self.assertRaises(Blocked):
+                bootstrap.dispatch(self.root, "fixtures-1")
+        value = json.loads(self.store.meta(bootstrap.KEY))
+        self.assertEqual(value["phase"], "failed")
+        self.assertEqual(value["next"], 1)
+        self.assertEqual(self.store.db.execute(
+            "SELECT recovery_required FROM runs").fetchone()[0], 1)
+        with self.assertRaises(Blocked):
+            bootstrap.reserve(self.root, self.store, "fixtures-1")
+
+    def test_bootstrap_health_evidence_does_not_change_protected_state(self):
+        before = bootstrap.protected_state(self.store)
+        self.authorize()
+        bootstrap.reserve(self.root, self.store, "fixtures-1")
+        self.assertEqual(before, bootstrap.protected_state(self.store))
+        with self.store.transaction():
+            self.store.set_meta("writer_coverage", "invented")
+        self.assertNotEqual(before, bootstrap.protected_state(self.store))
+
+    def test_bootstrap_prior_raw_evidence_required_before_next_caller(self):
+        self.authorize()
+        fixture = {"pass_": True, "known_stopped": True, "capture_complete": True,
+                   "raw_exit": 0, "deadline": False, "surviving_work": False,
+                   "output_overflow": False, "exclusion": False, "error": None,
+                   "output": '{"failure_gate_suite":"PASSED","tests":1,"isolated_fixtures":true}\n'}
+        sys.path.insert(0, str(ROOT / ".agents/skills/failure-gate-v4/tests"))
+        with patch("authoring_supervision.supervise_static", return_value=fixture):
+            result = bootstrap.dispatch(self.root, "fixtures-1")
+        self.assertEqual(result["status"], "PASSED")
+        value = json.loads(self.store.meta(bootstrap.KEY))
+        evidence = self.store.directory / value["attempts"][0]["evidence"]
+        evidence.write_text('{"altered":true}')
+        with self.assertRaises(Blocked):
+            bootstrap.reserve(self.root, self.store, "fixtures-2")
+        self.assertEqual(self.store.db.execute("SELECT count(*) FROM runs").fetchone()[0], 1)
+
+    def test_bootstrap_private_health_requires_original_narrowing_and_real_registration(self):
+        value = self.authorize()
+        end = time.monotonic() + 10
+        attempt = {"caller": "health-1", "run": "isolated-health", "deadline": end,
+                   "status": "reserved", "events": []}
+        value.update(phase="reserved", attempts=[attempt])
+        with self.store.transaction():
+            self.store.set_meta(bootstrap.KEY, encoded(value))
+            self.store.db.execute("INSERT INTO runs VALUES(?,?,?,?,?,?,?,?)",
+                                  ("isolated-health", value["binding"]["local_id"],
+                                   bootstrap.OPERATION, 0, "installation-only", "reserved", 1,
+                                   encoded(attempt)))
+        # Synthetic IPC is deliberately insufficient. Even a narrower budget
+        # needs the exact independently registered worker/watchdog incarnations.
+        with patch("bootstrap.stat.S_ISFIFO", return_value=True):
+            for deadline in (end + 1, end - 1, float("inf"), float("nan")):
+                with patch.dict(os.environ, {"FAILURE_GATE_PARENT_DEADLINE": str(deadline)}):
+                    with self.assertRaises(Blocked):
+                        bootstrap.private_health(self.root)
 
 
 class InputTests(unittest.TestCase):

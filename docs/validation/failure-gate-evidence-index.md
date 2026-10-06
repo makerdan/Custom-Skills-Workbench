@@ -48,6 +48,23 @@ was exposed or verified in this workspace.
 
 ## Inspection
 
+### Installation-only coordination bootstrap
+
+See `failure-gate-bootstrap-handoff.md` and the fixed
+`failure-gate-bootstrap-plan.json`. The final owner decision and outcome report
+are `failure-gate-bootstrap-approval.json` and `failure-gate-bootstrap-report.md`.
+Both complete isolated suites passed 46/46; the two real read-only coordinator
+health callers passed consecutively. This health-only bootstrap is
+**NON_RECLAIM_VERIFIED** under one consumed fresh allowance.
+No historical allowance is reusable.
+The final static review binding is `failure-gate-bootstrap-review.json`.
+Private outcomes reside under
+`.failure-gate/bootstrap/<decision UUID>/<caller>/`, indexed by
+`meta.bounded-bootstrap-v1`, existing run rows and file-journal events.
+No ordinary activation, API-lock acceptance, writer-coverage upgrade or reclaim
+authority follows. Readback must report actual consumed reservations and
+retained exclusion, not infer success from source placement.
+
 The inner CLI is `scripts/failure_gate/cli.py`. `health` and `events` use
 read-only SQLite connections and bounded regular-file inputs. `events` returns
 at most 200 events; original segments and sequence numbers locate older history.
