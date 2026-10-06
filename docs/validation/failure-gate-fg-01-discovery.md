@@ -8,9 +8,9 @@
 
 ## Project and task binding
 
-The current execution context identifies the target as the Skills Workbench Project; its registered web artifact is `artifacts/skills-workbench`. The task context lists `#68` as `IN_PROGRESS` and verifier `#69` as `PENDING` with a parent blocker. The Project surface exposed no separate immutable UUID or durable task-record readback in this task. These task refs are platform lifecycle identifiers, not local Failure Gate IDs or approvals.
+The primary's discovery snapshot at `2026-10-06T17:05:42Z` identified the target as the Skills Workbench Project; its registered web artifact is `artifacts/skills-workbench`. That snapshot listed `#68` as `IN_PROGRESS` and verifier `#69` as `PENDING` with a parent blocker. The Project surface exposed no separate immutable UUID or task API readback during that primary task. These task refs are platform lifecycle identifiers, not local Failure Gate IDs or approvals.
 
-The tracked checkpoint `failure-gate-v4-series-checkpoint.md` says the pair was Draft when that checkpoint was written. Preserve that as a historical statement; the current task snapshot is the freshest available lifecycle view, not an authenticated API read. Task #69’s tracked plan expects a dependency on #68, but its persisted dependency payload was not independently read. No task was created, updated, approved, activated, or closed here.
+The tracked checkpoint `failure-gate-v4-series-checkpoint.md` says the pair was Draft when that checkpoint was written. Preserve that as a historical statement. The primary task did not read back the persisted #69 dependency; the verifier's later task API readback confirms that it is exactly #68, as recorded below. No task was created, updated, approved, activated, or closed by the primary discovery work.
 
 The exact tracked Piece 01 output destinations are:
 
@@ -31,7 +31,7 @@ All are under `docs/validation/`. The source manifest fixes pre-write source byt
 | --- | --- | --- |
 | Project owner / local approval owner | Existing approval records call their source an actual local owner response; no personal name or protected identity is asserted. | Provide a fresh, exact-scope approval only when a later task needs authority; do not reuse consumed grants. |
 | Implementation agent | Task #68 plan assigns this role for documentary discovery; this report is its delivery. | Do not claim independent review; hand off to the separate verifier task. |
-| Independent verifier | Task #69 plan describes the separate readback role; current task snapshot shows it pending and parent-blocked. | After delivery/dependency readiness, independently verify the complete payload and report gaps before any permitted documentary repair. |
+| Independent verifier | Task #69 plan describes the separate readback role; the primary's discovery snapshot showed it pending and parent-blocked. | After delivery/dependency readiness, independently verify the complete payload and report gaps before any permitted documentary repair. |
 | Local Failure Gate maintainer / record reader | Project code contains the local store, CLI, and health/event readers, but no current approved read-only route or outer supervision was verified for this task. | Obtain a separately approved, finite, safe read route before any current-store claim. Do not invoke the CLI or open the store under this task. |
 | Participating writer owners | Source evidence identifies Regression Guard stub writes, Orval generated-output cleanup/writes, post-merge dependency/schema writes, and direct editor/agent tools; actual cooperation is unverified. | Inventory every real participant and bind a single approved coordination/isolation protocol before claiming final-writer coverage. |
 | Approval-source / platform integration owner | No verified non-terminal plan-approval event, exact approved-plan snapshot, or mapping to one local ID/namespace is exposed in the inspected workspace records. | Supply a trusted binding source or keep activation blocked; task labels and owner-written receipts are not substitutes. |
@@ -50,7 +50,7 @@ Under the canonical `ACTIVE / INACTIVE / UNKNOWN` contract, the present ordinary
 | Claim | Current classification | Evidence and limits |
 | --- | --- | --- |
 | Canonical Failure Gate / Router sources | **Present; pinned** | All regular files under both permitted canonical roots are hashed in the source manifest. This establishes source availability, not host installation or readiness. |
-| Piece 01 host identity | **Bound from current execution context; UUID unavailable** | Project artifact/task snapshot plus confirmed root and Git revision. No project UUID or platform API readback was available. |
+| Piece 01 host identity | **Bound from the primary execution context; UUID unavailable** | Project artifact/task snapshot plus confirmed root and Git revision. No project UUID or platform API readback was available during the primary task. |
 | Ordinary governance | **Last captured as STAGED; current ACTIVE/INACTIVE assessment UNKNOWN** | Prior approval/report/integration-map records and checked route source; current coordinator was not opened. |
 | One-shot health-only bootstrap | **Recorded consumed; not reusable** | Exact approval binds local bootstrap ID `FG-00000001`, 900-second parent, fixtures and two health calls. The original report states consumption and no ordinary cutover. Current consumption was not queried. `FG-00000001` is historical bootstrap state, not Task #68 and not allocated here. |
 | API code generation | **Denied under the prior bootstrap scope; not a current grant** | The approved bootstrap handoff explicitly denies API codegen. Current `lib/api-spec/package.json` still defines a direct Orval writer and nested library typecheck; existence of a command does not authorize its use. |
@@ -69,7 +69,7 @@ The original caller failure remains an unresolved historical outcome. The subseq
 - **Project implementation:** partial. Local Gate, Store, supervisor, watchdog, policy, and readers exist in source; code presence is not registered operational wiring.
 - **Registered/approved ordinary route:** not established. The prior captured state is STAGED; current normative assessment is UNKNOWN.
 - **Operational proof:** prior scoped installer and bootstrap evidence exists as historical evidence, but this task performed no validation and no fresh host acceptance.
-- **Platform task lifecycle:** `#68` is in progress and `#69` pending per the supplied snapshot. This does not allocate a local ID or authorize local work.
+- **Platform task lifecycle at primary snapshot:** `#68` was in progress and `#69` pending per the supplied snapshot. This does not allocate a local ID or authorize local work.
 - **Current task permission:** tracked Piece 01 documentation and locator reconciliation only. No runtime gate, execution tier, attempt/phase/capture budget, supervisor binding, or remaining consumption was discovered for new runtime work.
 
 ## Read/write scope and deviations
@@ -78,8 +78,12 @@ Permitted work was bounded readback of canonical sources, original records and w
 
 One inline `node -e` expression loaded only root `package.json` to display script metadata. It did not run project source or a discovered project command; the package file was then read directly. This was an unnecessary read-only method outside the plan’s strict no-import wording. It is disclosed rather than represented as validation.
 
-The actual original planning-time Router digest values are absent from the tracked checkpoint and task-plan text. The assignment says three entries differed, while the available checkpoint lists the same values now observed. Git parent inspection finds no change in those three files in the discovery-plan commit. The old comparison values and cause remain **BLOCKED / UNKNOWN** pending retrieval of the authoritative original planning table; no hash is fabricated.
+The tracked 18-piece series records the three planning-time Router values at lines 591–593: `710a92d8347026ca8f3e0a928335f51e5114befb173a6785efd4b45d84599d19`, `6d9da115f654e26252d5c188c34b927d8787b1978546e70fb766ba8f0ad5223a`, and `1c8f4198af23d8c904520835c29062677da382b774baa2f850b2adbfa9198ce1`. They differ from the current values `49e3db86b0f5b8c7efba871d7404c40336cb3caf544427a429065b1088f6586f`, `99bc98079967ed47f8f524c187b9823fc99dddca55d4b61a9220dcbb5b3f8cb9`, and `7e95d74645e0c1184b2ae24488ffd5936237fb6fc1d9596734a3e57bb1fe0ff5`. The series authenticates only what values it records; a read-only search of the first 100 reachable Git revisions found no corresponding historical file blobs. Historical contents/provenance and the cause remain **BLOCKED / UNKNOWN**; no content or cause is reconstructed.
 
 ## Delivery result
 
-The documentary deliverables and evidence locators are published. Acceptance remains **PARTIAL / BLOCKED** on the missing original three Router digest values and on current live host state/authority that cannot be read within this task. Task #69 is the existing independent verifier and must perform its own binding/readiness check; this report does not certify itself.
+The documentary deliverables and evidence locators are published. At primary delivery, the historical Router source-file provenance and current live host state/authority remained **BLOCKED / UNKNOWN**. The separate verifier's later task-record readback and documentary findings are recorded in `failure-gate-fg-01-verifier-report.md`; this primary report is not self-certifying.
+
+## Verifier task-record readback
+
+On 2026-10-06, the verifier read the current Project task records. Task `#68` is `MERGED`; task `#69` is `IN_PROGRESS` and its persisted dependency is exactly `#68`. The authoritative stored `#68` description SHA-256 is `51fc06aa165a36c0f881068fbcd4f078888b3b35e75c20a755b33545412ccd1f`; the persisted verifier description matches the tracked `#69` plan SHA-256 `9a2ce68cda1a6bcd448ae86936751b811376d59e4aa98b8fffb0f0df9965d85f`. No separate immutable Project UUID is exposed. A fresh independent document reviewer could not access the task API to recheck this binding. These are platform task-record facts only; they do not establish local Failure Gate authority or runtime readiness.

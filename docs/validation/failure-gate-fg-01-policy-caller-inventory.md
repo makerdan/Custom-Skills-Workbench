@@ -96,6 +96,6 @@ No authoritative current phase/queue/step/startup/test/hook/teardown/cancellatio
 - **Platform/task integration owner:** provide an authoritative task/plan lifecycle and approval binding if such an interface is in scope; otherwise keep platform and local IDs separate.
 - **Runtime supervision/provider owner:** provide verified independent full-tree supervision, termination and capture semantics before any permitted dispatch; missing Port Authority proof remains blocked.
 - **Participating writer owners:** identify and prove all real file/config/generated/dependency/schema writers and lock/isolation behavior before final-writer acceptance.
-- **Task #69 verifier:** independently check this inventory against the original permitted read sources after the full Piece 01 delivery. Its pending status is not a pass.
+- **Task #69 verifier:** independently check this inventory against the original permitted read sources after the full Piece 01 delivery. It was pending in the primary's discovery snapshot; the later task API readback shows `#69` IN_PROGRESS. Neither lifecycle state is a local authorization or verification pass.
 
 No remote authority, person, approval, missing caller, or absent catalog was invented. All unknowns remain explicit.

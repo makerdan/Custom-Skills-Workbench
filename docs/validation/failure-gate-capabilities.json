@@ -44,7 +44,28 @@
     "recovery": {"interface": "scripts/failure-gate-continuation.py / scripts/failure-gate-watchdog-diagnostic.py", "state": "named original and later watchdog incidents separately recovered and acknowledged, preserving failures", "limits": "one-shot actual local grants; no general recovery API or automatic retries"},
     "failure_lineage": {"state": "partial", "default": "Unresolved potential regression; no unapproved ignore or ownership discharge"},
     "live_reclaim": {"state": "BLOCKED", "attestation": "unavailable", "protected_approval_claims": "unavailable", "signals": "none"},
-    "independent_verifier": {"state": "BLOCKED", "prior_observation": "No finalized primary/dependency route for this direct Build request; no task invented", "reason": "The prior observation is retained as historical. The supplied current task snapshot now lists verifier #69 as PENDING/parent-blocked; its persisted payload/dependency was not API-read. Verification/readiness remains blocked until the delivered Piece 01 handoff is independently accepted."},
+    "independent_verifier": {
+      "state": "DOCUMENT_READBACK_COMPLETE; TASK_API_CROSS_CHECK_UNAVAILABLE; host/runtime acceptance remains blocked",
+      "prior_observation": "No finalized primary/dependency route for the earlier direct Build request; no task invented",
+      "task_record_readback": {
+        "read_on": "2026-10-06",
+        "primary_ref": "68",
+        "primary_state": "MERGED",
+        "primary_description_sha256": "51fc06aa165a36c0f881068fbcd4f078888b3b35e75c20a755b33545412ccd1f",
+        "verifier_ref": "69",
+        "verifier_state": "IN_PROGRESS",
+        "verifier_description_sha256": "9a2ce68cda1a6bcd448ae86936751b811376d59e4aa98b8fffb0f0df9965d85f",
+        "depends_on": ["68"],
+        "project_uuid": "UNAVAILABLE"
+      },
+      "independent_readback": {
+        "document_content": "VERIFIED",
+        "handoff_hash_bindings": "MATCH",
+        "platform_task_api": "BLOCKED; reviewer had no API access to independently recheck persisted task records",
+        "port_authority_evidence": "BLOCKED; outside the permitted Piece 01 source scope"
+      },
+      "reason": "The verifier's task API readback confirms lifecycle and binding, but the fresh independent document reviewer could not query that API. Neither task metadata nor source parity establishes local policy, authority, runtime readiness, or host acceptance."
+    },
     "piece_01_discovery": {
       "record_status": "DOCUMENTED_ONLY; this locator is not authority",
       "observed_at": "2026-10-06T17:05:42Z",
@@ -53,12 +74,23 @@
       "repository_snapshot": "799443de19aab77f78b2dafe827d4095f181a6e4; clean immediately before Piece 01 document writes",
       "project_uuid": "UNAVAILABLE in the supplied current task context and inspected tracked records",
       "platform_task_snapshot": {
-        "source": "Supplied Replit project/task context; no platform task API readback",
+        "source": "Primary's supplied Replit task snapshot at observed_at; no task API readback occurred in the primary task",
         "primary_ref": "68",
         "primary_state": "IN_PROGRESS",
         "verifier_ref": "69",
         "verifier_state": "PENDING_PARENT_BLOCKED",
         "local_failure_gate_id_allocated_for_piece_01": false
+      },
+      "verifier_task_api_readback": {
+        "read_on": "2026-10-06",
+        "primary_ref": "68",
+        "primary_state": "MERGED",
+        "primary_description_sha256": "51fc06aa165a36c0f881068fbcd4f078888b3b35e75c20a755b33545412ccd1f",
+        "verifier_ref": "69",
+        "verifier_state": "IN_PROGRESS",
+        "verifier_description_sha256": "9a2ce68cda1a6bcd448ae86936751b811376d59e4aa98b8fffb0f0df9965d85f",
+        "depends_on": ["68"],
+        "project_uuid": "UNAVAILABLE"
       },
       "last_recorded_ordinary_state": "STAGED",
       "current_policy_assessment": "UNKNOWN",
@@ -71,7 +103,7 @@
       "canonical_sources": {
         "failure_gate_v4": "PRESENT_AND_PINNED",
         "skill_application_router": "PRESENT_AND_PINNED",
-        "original_three_router_planning_digests": "UNKNOWN_BLOCKED; available checkpoint values equal current values, but the distinct original comparison values are absent"
+        "original_three_router_planning_digests": "RECORDED_IN_SERIES; historical file contents/provenance and cause remain UNKNOWN_BLOCKED"
       },
       "piece_01_documents": {
         "source_manifest": "docs/validation/failure-gate-fg-01-source-manifest.md",
@@ -79,11 +111,12 @@
         "discovery_report": "docs/validation/failure-gate-fg-01-discovery.md",
         "prior_policy_caller_inventory": "docs/validation/failure-gate-fg-01-policy-caller-inventory.md",
         "installation_proposal": "docs/validation/failure-gate-fg-01-installation-proposal.md",
-        "installer_handoff": "docs/validation/failure-gate-fg-01-installer-handoff.md"
+        "installer_handoff": "docs/validation/failure-gate-fg-01-installer-handoff.md",
+        "verifier_report": "docs/validation/failure-gate-fg-01-verifier-report.md"
       },
       "runtime_scope": "NOT_AUTHORIZED; no tests, scripts, CLI, imports, builds, store operations, workflows, signals, recovery, remote checks, activation or cutover",
       "current_execution_limits_or_grant": "UNAVAILABLE; historical operation-specific allowances do not transfer",
-      "next_action": "Existing verifier #69 independently rechecks all Piece 01 claims within its documentary-only scope; keep unsupported evidence and runtime gates blocked."
+      "next_action": "Complete the independent documentary readback; keep unavailable historical source provenance, current host authority, and runtime gates blocked."
     }
   },
   "not_a_live_registry": true,

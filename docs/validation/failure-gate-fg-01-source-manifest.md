@@ -54,15 +54,15 @@ SHA-256 is over each file's bytes at the captured repository snapshot. Every reg
 
 ## Planning baseline reconciliation
 
-The task plan states that ten listed Failure Gate entry digests matched at planning time and that three Router digests differed. Current hashes for the ten Failure Gate entries are those above and match the ten-entry source baseline recorded in the prior bootstrap approval binding. The three Router values available in `failure-gate-v4-series-checkpoint.md` and the task plan are:
+The task plan states that ten listed Failure Gate entry digests matched at planning time and that three Router digests differed. Current hashes for the ten Failure Gate entries are those above and match the ten-entry source baseline recorded in the prior bootstrap approval binding. The tracked 18-piece series records the following three Router planning-time values at lines 591–593. They are recorded historical digest values, not the historical file bytes or proof of their provenance:
 
-| Router path | Available checkpoint/task value | Current SHA-256 | Reconciliation |
+| Router path | Series planning SHA-256 | Current SHA-256 | Reconciliation |
 | --- | --- | --- | --- |
-| `SKILL.md` | `49e3db86b0f5b8c7efba871d7404c40336cb3caf544427a429065b1088f6586f` | same | The checkpoint's available value matches current; its distinct original comparison value is not present in the tracked checkpoint or task-plan file. |
-| `references/installation-verification-plan.md` | `99bc98079967ed47f8f524c187b9823fc99dddca55d4b61a9220dcbb5b3f8cb9` | same | Same missing-original-value limitation. |
-| `references/handoff-binding-and-recovery.md` | `7e95d74645e0c1184b2ae24488ffd5936237fb6fc1d9596734a3e57bb1fe0ff5` | same | Same missing-original-value limitation. |
+| `SKILL.md` | `710a92d8347026ca8f3e0a928335f51e5114befb173a6785efd4b45d84599d19` | `49e3db86b0f5b8c7efba871d7404c40336cb3caf544427a429065b1088f6586f` | The recorded planning value differs from the current source-manifest value. |
+| `references/installation-verification-plan.md` | `6d9da115f654e26252d5c188c34b927d8787b1978546e70fb766ba8f0ad5223a` | `99bc98079967ed47f8f524c187b9823fc99dddca55d4b61a9220dcbb5b3f8cb9` | The recorded planning value differs from the current source-manifest value. |
+| `references/handoff-binding-and-recovery.md` | `1c8f4198af23d8c904520835c29062677da382b774baa2f850b2adbfa9198ce1` | `7e95d74645e0c1184b2ae24488ffd5936237fb6fc1d9596734a3e57bb1fe0ff5` | The recorded planning value differs from the current source-manifest value. |
 
-Read-only Git history shows the current values also match the parent of the discovery-plan commit; no change to these Router files occurred in that commit. This narrows the observed repository history but does not supply the missing earlier hashes. The available documents preserve the *claim* that the three rows differed, not the old digest values or the reason for that difference. Those old values and cause remain **UNKNOWN / BLOCKED**, not reconstructed or silently normalized. The verifier should retrieve the authoritative planning-time digest table if it is available from the actual task record and bind it alongside this manifest.
+Read-only Git history shows the current values also match the parent of the discovery-plan commit; no change to these Router files occurred in that commit. A read-only search of the first 100 reachable revisions did not locate blobs matching the three recorded planning values. The series therefore establishes that these values were recorded, but the historical file contents, their provenance, and the reason for the differences remain **UNKNOWN / BLOCKED**. Do not reconstruct old contents from digests or silently normalize the baseline. If an authoritative original source snapshot becomes available, compare it read-only and bind that evidence separately.
 
 The current `delivery-reconciliation.md` and `router-task-handoff-acceptance.md` digests above are pinned in addition to the three named Router rows. No canonical source is missing inside either authorized package directory.
 
