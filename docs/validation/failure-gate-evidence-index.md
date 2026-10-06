@@ -101,3 +101,40 @@ environment. Raw logs remain protected references; bundles are not self-containe
   admitted operations. No invented external service or named approver is implied.
 
 See `failure-gate-implementation.md` for capability status and readiness gaps.
+
+## FG-01-I Piece 01 reconciliation — 2026-10-06
+
+This section adds Piece 01 discovery locators to this existing index. It does not
+create a registry, authority source, task ID, new store or runtime read procedure.
+Original entries above are preserved as prior captured statements; their status
+does not become a fresh live observation merely because this index is updated.
+
+| Category | Location and bounded access | Availability / authority |
+| --- | --- | --- |
+| Piece 01 canonical source manifest | `failure-gate-fg-01-source-manifest.md`; direct read/hash of tracked canonical sources under `.agents/skills/failure-gate-v4/` and `.agents/skills/skill-application-router/` only | **Present and pinned** at pre-write Git snapshot `799443de19aab77f78b2dafe827d4095f181a6e4`. Digests establish byte identity only, not approval/authentication. |
+| Piece 01 obligation allocation | `failure-gate-fg-01-obligation-ledger.md`; direct tracked-document read | **Present; documentary mapping only.** All 18 piece-specific acceptance contracts, core, budget, staging, reclaim, Router handoff and verification-plan cases are mapped. Later runtime cases remain NOT RUN/BLOCKED unless their own evidence exists. |
+| Piece 01 discovery report | `failure-gate-fg-01-discovery.md`; direct tracked-document read | **Present.** Project/task context, source/runtime stages, owner roles, historical observations, UNKNOWN assessment and disclosed read-only inspection deviation are recorded. No host acceptance is claimed. |
+| Piece 01 host/caller inventory | `failure-gate-fg-01-policy-caller-inventory.md`; direct read of tracked source, policy, plan and approval records; hashes in the source manifest | **Present as historical/original-source inventory.** Current coordinator, remaining grants, live writers, external callers and deployment state remain unqueried or unknown where stated. |
+| Piece 01 installation-scope proposal | `failure-gate-fg-01-installation-proposal.md`; direct tracked-document read | **Present; proposal only.** No runtime permission, task-card creation, activation, cutover or grant is issued. |
+| Piece 01 installer handoff | `failure-gate-fg-01-installer-handoff.md`; direct tracked-document read | **Present; addressed to existing verifier task `#69`, which is pending/parent-blocked in the supplied task context.** Not a verification pass. |
+| Platform Project/task binding | Current supplied task context; tracked plans `failure-gate-task-plan-fg-01-i.md` and `failure-gate-task-plan-fg-01-v.md` | **Snapshot only:** Skills Workbench, root `/home/runner/workspace`, `#68 IN_PROGRESS`, `#69 PENDING`/parent-blocked. No immutable Project UUID or platform task API readback. Task refs are not Failure Gate IDs or approvals. |
+| Original planning-time Router digests | `failure-gate-fg-01-source-manifest.md`, baseline reconciliation section | Three current values are pinned, but the distinct old values implied by the task plan are **UNAVAILABLE / BLOCKED** in the tracked planning records inspected. Do not manufacture values or cause. |
+| Current coordinator/policy status | Registered location remains `.failure-gate/coordinator.sqlite3`; no current safe read route was established for this task | **Not opened/read.** Current ACTIVE/INACTIVE is **UNKNOWN**. Last recorded ordinary status is STAGED; current availability, live grants, retained runs and remaining consumption are not asserted. Do not initialize a missing store. |
+| Retained original installer outcomes | Original `.failure-gate/installer-caller/1/outcome.json` and two `.failure-gate/installer-acceptance/.../caller-{1,2}/outcome.json` paths; digests in source manifest | Bounded direct outcome files were read; raw logs were hashed but not semantically parsed in this discovery. Original result is `pass:false`, raw exit 4; later separately approved outcomes are `pass:true`, raw exit 0. Preserve the failure; the later operation does not prove ordinary route readiness. Cooperative records are not protected attestations. |
+| Current execution budget/supervision | No current approval/read route was exposed. Historical values and their original records are listed in the Piece 01 inventory. | **Unavailable for new execution.** Prior bootstrap one-shot was consumed; other allowances were operation-scoped and/or expired. Current remaining consumption is unknown; no check/command was run. |
+| External/remote caller and catalog history | Root package/config and existing host integration map; no remote workflow query | **Unknown/unobserved.** No approved baseline catalog; no remote CI proof or caller-wide coverage claim. |
+
+### Reconciliation notes
+
+- The capability manifest retains its existing ordinary-state/source fields and
+  adds a clearly documentary Piece 01 entry. It is still marked
+  `not_a_live_registry`; the current policy classification there is UNKNOWN,
+  while `ordinary_state: STAGED` records only the last captured status.
+- A prior `independent_verifier` locator described an earlier direct Build
+  review. The new entry records the supplied current `#69` snapshot without
+  representing it as a persisted/API-verified task or accepted verifier result.
+- The historical bootstrap ID `FG-00000001` belongs to the prior bounded
+  health-only bootstrap. No local ID was allocated for Piece 01.
+- Filesystem reads and hashes are limited to the listed source/report records.
+  This section does not authorize SQLite access, CLI, tests, builds, workflows,
+  remote checks, signals, recovery, or any other runtime operation.

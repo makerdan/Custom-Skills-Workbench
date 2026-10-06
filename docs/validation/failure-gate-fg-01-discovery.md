@@ -1,0 +1,85 @@
+# FG-01-I discovery report
+
+**Result:** planning/discovery records delivered with explicit blockers; no runtime installation, host acceptance, or validation pass is claimed.  
+**Observed:** 2026-10-06; exact initial snapshot time `2026-10-06T17:05:42Z`.  
+**Bound task:** Replit project-task-board `#68`, `FG-01-I — Discover and Bind Host`.  
+**Root:** `/home/runner/workspace` (confirmed by `pwd`).  
+**Source snapshot:** Git `799443de19aab77f78b2dafe827d4095f181a6e4`, clean before these documentary writes.
+
+## Project and task binding
+
+The current execution context identifies the target as the Skills Workbench Project; its registered web artifact is `artifacts/skills-workbench`. The task context lists `#68` as `IN_PROGRESS` and verifier `#69` as `PENDING` with a parent blocker. The Project surface exposed no separate immutable UUID or durable task-record readback in this task. These task refs are platform lifecycle identifiers, not local Failure Gate IDs or approvals.
+
+The tracked checkpoint `failure-gate-v4-series-checkpoint.md` says the pair was Draft when that checkpoint was written. Preserve that as a historical statement; the current task snapshot is the freshest available lifecycle view, not an authenticated API read. Task #69’s tracked plan expects a dependency on #68, but its persisted dependency payload was not independently read. No task was created, updated, approved, activated, or closed here.
+
+The exact tracked Piece 01 output destinations are:
+
+1. `failure-gate-fg-01-source-manifest.md`
+2. `failure-gate-fg-01-obligation-ledger.md`
+3. `failure-gate-fg-01-discovery.md`
+4. `failure-gate-fg-01-policy-caller-inventory.md`
+5. `failure-gate-fg-01-installation-proposal.md`
+6. `failure-gate-fg-01-installer-handoff.md`
+7. Existing descriptive locator `failure-gate-capabilities.json` (reconciled in place)
+8. Existing evidence locator `failure-gate-evidence-index.md` (reconciled in place)
+
+All are under `docs/validation/`. The source manifest fixes pre-write source bytes and distinguishes canonical skill files, original host files, historical records, and unavailable inputs.
+
+## Actual roles and current authority boundary
+
+| Role | Evidence / boundary | Required next action |
+| --- | --- | --- |
+| Project owner / local approval owner | Existing approval records call their source an actual local owner response; no personal name or protected identity is asserted. | Provide a fresh, exact-scope approval only when a later task needs authority; do not reuse consumed grants. |
+| Implementation agent | Task #68 plan assigns this role for documentary discovery; this report is its delivery. | Do not claim independent review; hand off to the separate verifier task. |
+| Independent verifier | Task #69 plan describes the separate readback role; current task snapshot shows it pending and parent-blocked. | After delivery/dependency readiness, independently verify the complete payload and report gaps before any permitted documentary repair. |
+| Local Failure Gate maintainer / record reader | Project code contains the local store, CLI, and health/event readers, but no current approved read-only route or outer supervision was verified for this task. | Obtain a separately approved, finite, safe read route before any current-store claim. Do not invoke the CLI or open the store under this task. |
+| Participating writer owners | Source evidence identifies Regression Guard stub writes, Orval generated-output cleanup/writes, post-merge dependency/schema writes, and direct editor/agent tools; actual cooperation is unverified. | Inventory every real participant and bind a single approved coordination/isolation protocol before claiming final-writer coverage. |
+| Approval-source / platform integration owner | No verified non-terminal plan-approval event, exact approved-plan snapshot, or mapping to one local ID/namespace is exposed in the inspected workspace records. | Supply a trusted binding source or keep activation blocked; task labels and owner-written receipts are not substitutes. |
+| Independent supervision / protected reclaim provider owner | Local cooperative `/proc`/subreaper code exists; protected Port Authority evidence is not pinned or verified under this source scope. Project CLI denies live reclaim. | Provide a verified independent provider and separate exact authority only if reclaim is applicable; otherwise retain BLOCKED. |
+
+No names, services, integrations, budgets, UUIDs, or approval channels are invented.
+
+## Policy assessment: UNKNOWN
+
+The latest captured project record reports ordinary governance `STAGED`, with no `writer_coverage` value, no required-tier runs, and no plan-review decisions. The captured bootstrap report says the health-only one-shot was consumed and explicitly kept ordinary governance staged. Those are recorded prior observations, not a fresh coordinator read in this task.
+
+Under the canonical `ACTIVE / INACTIVE / UNKNOWN` contract, the present ordinary route is **UNKNOWN**: this task did not have an authorized current store-read route; no checked ACTIVE route was proved; and no independently verified INACTIVE host policy with equivalent finite supervision was proved. `STAGED` is preserved as the last recorded Project status but is not silently translated to INACTIVE. Dependent execution, ordinary activation, and cutover remain blocked.
+
+## Reconciled host facts and evidence status
+
+| Claim | Current classification | Evidence and limits |
+| --- | --- | --- |
+| Canonical Failure Gate / Router sources | **Present; pinned** | All regular files under both permitted canonical roots are hashed in the source manifest. This establishes source availability, not host installation or readiness. |
+| Piece 01 host identity | **Bound from current execution context; UUID unavailable** | Project artifact/task snapshot plus confirmed root and Git revision. No project UUID or platform API readback was available. |
+| Ordinary governance | **Last captured as STAGED; current ACTIVE/INACTIVE assessment UNKNOWN** | Prior approval/report/integration-map records and checked route source; current coordinator was not opened. |
+| One-shot health-only bootstrap | **Recorded consumed; not reusable** | Exact approval binds local bootstrap ID `FG-00000001`, 900-second parent, fixtures and two health calls. The original report states consumption and no ordinary cutover. Current consumption was not queried. `FG-00000001` is historical bootstrap state, not Task #68 and not allocated here. |
+| API code generation | **Denied under the prior bootstrap scope; not a current grant** | The approved bootstrap handoff explicitly denies API codegen. Current `lib/api-spec/package.json` still defines a direct Orval writer and nested library typecheck; existence of a command does not authorize its use. |
+| Live writer coverage | **Unverified / UNKNOWN** | Earlier original inventory reports no `writer_coverage`; current source inspection finds direct writers outside `Gate.write`. No fresh metadata query or live writer acceptance ran. |
+| Runtime reclaim | **BLOCKED** | Project CLI rejects reclaim before signals because protected attestation/disruption approval is unavailable; policy/map also records it blocked. No signal, claim, provider query, or live attestation occurred. |
+| Existing installer acceptance | **Historical evidence preserved, not current validation** | One original caller outcome is `pass:false`, raw exit 4. A later, separately approved operation records two consecutive complete caller outcomes with raw exit 0. The later approval did not erase, relabel, or re-run the original failure. Details and digests are in the manifest and original verification report. |
+| Baseline catalog / failure history | **No approved catalog; never collected** | Existing evidence index says no approved baseline/comparison catalog. The failure remains unresolved; no ignore or ownership discharge is created. Historical logs are not a catalog. |
+| Current store, run ledger, active grants, remaining budget | **Unavailable under this task** | No current safe read route was established. Prior one-shot/acceptance grants are consumed; inventory review records budget exhaustion and unverified closeout timing. Remaining consumption cannot be asserted from a stale summary. |
+| Remote CI / external task writers | **Unknown** | No remote workflow was queried or triggered. Current workspace file inventory did not expose a `.github` validation workflow, which does not prove no external or unpublished caller exists. |
+
+The original caller failure remains an unresolved historical outcome. The subsequent two PASS records are confined to their separately approved installer-acceptance operation and do not prove ordinary route readiness, writer coverage, cutover, or Task #68 completion.
+
+## Source stage versus runtime stage
+
+- **Canonical source availability:** present and hashed.
+- **Project implementation:** partial. Local Gate, Store, supervisor, watchdog, policy, and readers exist in source; code presence is not registered operational wiring.
+- **Registered/approved ordinary route:** not established. The prior captured state is STAGED; current normative assessment is UNKNOWN.
+- **Operational proof:** prior scoped installer and bootstrap evidence exists as historical evidence, but this task performed no validation and no fresh host acceptance.
+- **Platform task lifecycle:** `#68` is in progress and `#69` pending per the supplied snapshot. This does not allocate a local ID or authorize local work.
+- **Current task permission:** tracked Piece 01 documentation and locator reconciliation only. No runtime gate, execution tier, attempt/phase/capture budget, supervisor binding, or remaining consumption was discovered for new runtime work.
+
+## Read/write scope and deviations
+
+Permitted work was bounded readback of canonical sources, original records and workspace configuration, plus writing this Piece 01 document set and reconciling the two existing descriptive locators. No coordinator/SQLite query, CLI, package script, project module, test, build, typecheck, service, workflow, signal, recovery, remote check, task mutation, deploy, secret read, or store mutation was performed.
+
+One inline `node -e` expression loaded only root `package.json` to display script metadata. It did not run project source or a discovered project command; the package file was then read directly. This was an unnecessary read-only method outside the plan’s strict no-import wording. It is disclosed rather than represented as validation.
+
+The actual original planning-time Router digest values are absent from the tracked checkpoint and task-plan text. The assignment says three entries differed, while the available checkpoint lists the same values now observed. Git parent inspection finds no change in those three files in the discovery-plan commit. The old comparison values and cause remain **BLOCKED / UNKNOWN** pending retrieval of the authoritative original planning table; no hash is fabricated.
+
+## Delivery result
+
+The documentary deliverables and evidence locators are published. Acceptance remains **PARTIAL / BLOCKED** on the missing original three Router digest values and on current live host state/authority that cannot be read within this task. Task #69 is the existing independent verifier and must perform its own binding/readiness check; this report does not certify itself.
