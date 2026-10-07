@@ -707,6 +707,19 @@ class GateTests(unittest.TestCase):
         (self.root / "node_modules/.pnpm").mkdir(parents=True)
         (self.root / "node_modules/.pnpm/lock.yaml").write_text("fixture only\n")
         (self.root / "node_modules/.modules.yaml").write_text("fixture only\n")
+        esbuild = self.root / "node_modules/.pnpm/esbuild@fixture/node_modules/esbuild"
+        (esbuild / "bin").mkdir(parents=True)
+        (esbuild / "lib").mkdir()
+        (esbuild / "package.json").write_text(json.dumps({"name": "esbuild", "version": "fixture"}))
+        self.esbuild_binary = esbuild / "bin/esbuild"
+        self.esbuild_binary.write_bytes(b"fixture generated esbuild binary\n")
+        (esbuild / "lib/main.js").write_text("fixture esbuild entrypoint\n")
+        self.esbuild_platform_binary = (
+            self.root / "node_modules/.pnpm/@esbuild+linux-x64@fixture"
+            "/node_modules/@esbuild/linux-x64/bin/esbuild"
+        )
+        self.esbuild_platform_binary.parent.mkdir(parents=True)
+        self.esbuild_platform_binary.write_bytes(b"fixture platform esbuild binary\n")
         (self.root / "a.md").write_text("initial")
         self.gate = Gate(self.root, True)
         self.task = self.gate.store.allocate()
@@ -930,6 +943,38 @@ class GateTests(unittest.TestCase):
         with self.assertRaises(Blocked):
             self.gate.complete(self.task, "plan.json", "fixture")
         self.assertEqual(self.gate.store.task(self.task)["status"], "active")
+
+    def test_completion_rejects_esbuild_artifact_mutated_after_validation(self):
+        self.fixture_activate()
+        validation_snapshot = snapshot(self.root)
+        self.assertIn(str(self.esbuild_binary.relative_to(self.root)), validation_snapshot["files"])
+        self.assertIn(
+            str(self.esbuild_platform_binary.relative_to(self.root)), validation_snapshot["files"])
+        log = self.gate.state / "runs" / "fixture" / "typecheck" / "raw.log"
+        log.parent.mkdir(parents=True)
+        log.write_text("isolated fixture compiler result\n")
+        outcome = {"pass": True, "registered": True, "healthy_release": True,
+                   "raw_exit": 0, "reason": "finished"}
+        payload = {"assessment": "PASSED", "snapshot": validation_snapshot,
+                   "tier_digest": digest(self.gate.policy["tiers"]["static"]),
+                   "policy_digest": digest(self.gate.policy), "tooling_digest": tooling(self.root),
+                   "steps": [{"name": "typecheck", "status": "PASSED", "outcome": outcome,
+                              "report": parsed_result("exit", outcome, log),
+                              "raw_log": "runs/fixture/typecheck/raw.log",
+                              "log_digest": hashlib.sha256(read_bytes(log)).hexdigest()}]}
+        with self.gate.store.transaction():
+            self.gate.store.db.execute(
+                "INSERT INTO runs VALUES('fixture',?,'required_tier_validation',1,'static','finished',0,?)",
+                (self.task, encoded(payload)))
+            for name in ("run_reserved", "launch_intent", "watchdog_registered", "confirmed_start",
+                         "step_outcome", "run_finished"):
+                self.gate.store.event(name, self.task, "fixture", {"simulation_only": True})
+
+        self.esbuild_binary.write_bytes(b"mutated after validation\n")
+        with self.assertRaisesRegex(Blocked, "stale"):
+            self.gate.complete(self.task, "plan.json", "fixture")
+        self.assertEqual(self.gate.store.task(self.task)["status"], "active")
+        self.assertIsNone(self.gate.store.meta("writer_coverage"))
 
     def test_coordinated_terminal_commit_and_repairs_preserved(self):
         self.fixture_activate()

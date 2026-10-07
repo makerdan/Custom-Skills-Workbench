@@ -18,6 +18,48 @@ CONFIG = "docs/validation/failure-gate-policy.json"
 APPROVAL = "docs/validation/failure-gate-installation-approval.json"
 SKIP = {"node_modules", ".git", ".local", ".cache", ".failure-gate", "__pycache__",
         "dist", "coverage", ".workspace-projections"}
+DEPENDENCY_ARTIFACT_MAXIMUM = 16 * 1024 * 1024
+
+
+def install_generated_dependency_files(root):
+    """Return bounded esbuild install outputs which can affect checked commands."""
+    root = Path(root)
+    virtual_store = root / "node_modules/.pnpm"
+    packages = sorted(virtual_store.glob("esbuild@*/node_modules/esbuild"))
+    if not packages:
+        raise Blocked("installed esbuild outputs unavailable")
+
+    files = set()
+    for package in packages:
+        relative = str(package.relative_to(root))
+        manifest = read_json(inside(root, f"{relative}/package.json"))
+        if not isinstance(manifest, dict) or manifest.get("name") != "esbuild":
+            raise Blocked("installed esbuild package identity unavailable")
+        if any((package / name).exists() or (package / name).is_symlink()
+               for name in ("npm-install", "bin-esbuild")):
+            raise Blocked("incomplete esbuild install output")
+
+        for name in ("bin/esbuild", "lib/main.js"):
+            path = f"{relative}/{name}"
+            inside(root, path)
+            files.add(path)
+        for path in package.glob("downloaded-*"):
+            relative_path = str(path.relative_to(root))
+            inside(root, relative_path)
+            files.add(relative_path)
+
+    for package in sorted(virtual_store.glob("@esbuild+*/node_modules/@esbuild/*")):
+        if not package.is_dir():
+            continue
+        binaries = [package / "bin/esbuild", package / "esbuild.exe"]
+        present = [path for path in binaries if path.exists()]
+        if not present:
+            raise Blocked("installed esbuild platform binary unavailable")
+        for path in present:
+            relative = str(path.relative_to(root))
+            inside(root, relative)
+            files.add(relative)
+    return [root / relative for relative in sorted(files)]
 
 
 def snapshot(root):
@@ -31,6 +73,7 @@ def snapshot(root):
     files = [root / item for item in ("package.json", "pnpm-lock.yaml", "pnpm-workspace.yaml",
                                      "tsconfig.json", "tsconfig.base.json", "replit.md",
                                      "package-lock.json", "yarn.lock")]
+    files.extend(install_generated_dependency_files(root))
     for directory in roots:
         for current, dirs, names in os.walk(directory, followlinks=False):
             dirs[:] = sorted(name for name in dirs if name not in SKIP and
@@ -53,7 +96,9 @@ def snapshot(root):
         if not path.exists():
             continue
         inside(root, relative)
-        data = read_bytes(path)
+        maximum = (DEPENDENCY_ARTIFACT_MAXIMUM
+                   if relative.startswith("node_modules/.pnpm/") else 8 * 1024 * 1024)
+        data = read_bytes(path, maximum)
         total += len(data)
         if total > 64 * 1024 * 1024 or len(result) >= 10000:
             raise Blocked("input manifest size exceeded")
@@ -64,7 +109,7 @@ def snapshot(root):
             raise Blocked("installed dependency identity unavailable")
         result[relative] = hashlib.sha256(read_bytes(path)).hexdigest()
     return {"schema": 1, "files": result, "digest": digest(result),
-            "dependency_identity": "pnpm installed lock/modules metadata; no hostile-mutation attestation",
+            "dependency_identity": "pnpm installed metadata and esbuild runtime outputs; no hostile-mutation attestation",
             "exclusions": sorted(SKIP), "external_state": "Tests use local mock DB/storage/model fixtures"}
 
 
