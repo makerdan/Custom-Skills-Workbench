@@ -1,0 +1,387 @@
+{
+  "schema": "pto-documentary-readiness-evidence-v1",
+  "observedAt": "2026-10-07T04:45:38.603Z",
+  "project": {
+    "root": "/home/runner/workspace",
+    "origin": "https://github.com/makerdan/Custom-Skills-Workbench",
+    "revision": "89dd74c44890e4c5a5117bd531451b3a93a683c9",
+    "taskNamespace": "current Skills Workbench Project task-board",
+    "immutableProjectUuid": "UNAVAILABLE"
+  },
+  "scope": "Bounded documentary prerequisite assessment and visible evidence-intake suggestions only; no confirmation/verifier attachment, existing native task mutation or substantive independent verification.",
+  "nativeReadback": {
+    "source": "actual getProjectTask calls for exact #102 and #103 in this invocation",
+    "primary": {
+      "task": {
+        "artifactKinds": [],
+        "createdAt": "2026-10-07T04:30:13.436Z",
+        "dependsOn": [],
+        "description": "# Update Orchestration and Replan Series\n\n<!-- regression-guard: not-applicable -->\n\n## What & Why\nInstall the user's latest Paired Task Orchestration package in its canonical `.agents/skills/paired-task-orchestration/` destination and replace the current active 18-piece Failure Gate plan entirely with a project-bound, invocation-driven orchestration plan. Prepare the independent verification handoff and exact continuation that restarts Piece 02 as a fresh implementation/verifier generation after the updated package and replacement plan are independently confirmed.\n\nThe user's request authorizes the definition update, replacement plan, and FG-02 restart. It does not supply Failure Gate runtime grants, approve future task plans, authorize optional hooks, or erase unmet implementation obligations. This task is package/document authoring and planning, not FG-02 implementation.\n\n## Done looks like\n- The canonical package contains the attachment's SKILL.md and all three references with exact content parity; no alternate definition or runtime mirror was used. Canonical package absence at planning time is documented rather than called an existing update.\n- The active `docs/validation/failure-gate-v4-task-series.md` is completely rewritten, not supplemented with a competing plan. All 18 ordered pieces, full implementation/verifier payloads, shared protections, declared stages, exclusions, repair requirements and deferred runtime obligations remain traceable to the original baseline.\n- The checkpoint is reconciled to delivered evidence, not its obsolete Piece 01-only state. Piece 01 acceptance remains planning/discovery only; current unfinished piece is FG-02, fresh generation pending preparation.\n- Each piece has explicit expected/allowed outcomes, required evidence, and task-level acceptance mapping. Correct rejection or a valid negative finding is not repaired merely to obtain zero/PASS; missing required adapter implementation is not accepted merely because its blocker was documented.\n- A complete independent definition/package and replacement-plan verification payload is published, with a continuation that prepares only a new FG-02-I task and its dependent FG-02-V task after independent acceptance and full native-plan readback. It is not represented as a created task until actual creation is confirmed.\n- Every user deliverable is in canonical `.agents` or tracked `docs/validation` paths. A tracked installer handoff identifies actual delivered inputs, original obligations, expected changes, limitations and report destinations.\n\n## Out of scope\nFG-02 adapter implementation or fixture execution; local allocation, store access/mutation, approval capture, budget issuance/renewal, checked validation, services, remote CI, process cleanup, cutover, deployment, automatic hooks/polling, automatic merging, reopening archived tasks, or modifying unrelated tasks/product features. Do not publish the skill to an account-level service or claim runtime-mirror parity without independent evidence.\n\n## Steps\n1. **Pin source and current history** — Reconfirm the current repository/task-board identity and pin the complete attachment, original 18-piece specification, relevant current canonical contracts, and authoritative full plans/evidence for historical FG-01 and FG-02 tasks. Preserve administrative closure separately from stage acceptance and inspect any intervening work before selecting the fresh restart generation.\n2. **Install the canonical package** — Safely install only the authorized four package files, preserving their contents and relative references. Independently read back the package against the pinned archive and record future runtime visibility as unverified unless authentic evidence exists.\n3. **Replace the full active plan** — Rewrite the existing backlog as one current pair plus the remaining ordered backlog, integrating the complete installed orchestration contract with the original Failure Gate obligations. Expand full primary/verifier payloads, outcome contracts, source/bootstrap/runtime gates, delivery readiness, audit-first scoped repair, independent post-repair review, and concrete blocked/resume routes for all 18 pieces.\n4. **Reconcile checkpoint and restart scope** — Record project/specification/source bindings, orchestration revision, FG-02 generation, retained blockers, history, capability limits and interrupted-write strategy in the existing checkpoint. Preserve historical tasks; do not treat owner closure, archived verification, or merged intake dossiers as implementation acceptance or execution permission.\n5. **Publish independent verification handoff** — Publish the installer handoff and complete fixed-obligation verifier plan under tracked validation documentation, including definition confirmation, all resources and replacement-plan verification, authoritative primary-plan binding, delivery gate, report destination, and bounded method discovery. Reconcile/create the real dependent verifier only through the verified permitted host route after primary finalization; missing attachment capability or required companion contract is reported blocked, not replaced by a copied definition.\n6. **Hand off FG-02 preparation** — Make the independent verifier's authorized continuation explicit: after package/plan acceptance, prepare a fresh FG-02 primary, verify its full finalized readback, then attach/read back the independent verifier and update the checkpoint with actual refs. No later-piece cards or execution follow merely from preparation; if task interfaces or required readiness/authority are unavailable, retain complete tracked payloads and the smallest concrete next action.\n\n## Source and delivery bindings\nProject evidence: repository `/home/runner/workspace`, origin `https://github.com/makerdan/Custom-Skills-Workbench`, observed revision `e8038f36ba88615ea7cd4c8c288cf39f396baf6c`; re-establish current stable Project/task namespace rather than inventing a UUID.\n\nAuthorized ZIP: `attached_assets/paired-task-orchestration_1791347147544.zip`, SHA-256 `5e99a095a57a7646ac5203b43642312ffa0bd2cef19106c8b77897fdb2a520b7`. It contains SKILL.md plus `references/host-hook-contract.md`, `references/series-state-and-handoff.md`, and `references/acceptance-and-confirmation.md` in the intended canonical package. Reject unexpected paths or resource substitution.\n\nOriginal series: `attached_assets/failure-gate-v4-piecemeal-task-series_1791259976201.txt`, SHA-256 `7bd8aadd6007ed7c01f118d6cbb83d70ea52d79cecfc6eaafc2234ee869eb026`. Pin the pre-replacement tracked plan separately; preserve historical provenance without reconstructing unavailable canonical bytes. The replacement supersedes the active plan but never destroys original source/evidence/history.\n\nHistorical FG-02: Task #96 was merged after owner-directed documentary/proposal closure; no inert adapter/schema or regression cases were delivered. Task #97 is archived. Tasks #99–#101 delivered evidence-intake findings, not the required new grants/providers. This request authorizes a new generation, not silent reopening or inherited validation authority. Task #2 is unrelated Bulk Skill ZIP Import.\n\nTracked outputs: replace existing series/checkpoint; add `docs/validation/paired-task-orchestration-install-handoff.md`, `docs/validation/paired-task-orchestration-verification-plan.md`, and a content/digest manifest or immutable references in those records. Independent report destination: `docs/validation/paired-task-orchestration-verification.md`. New FG-02 full payloads belong in the established tracked task-plan layout, not ignored directories.\n\n## Verification handoff and continuation\nFollow the canonical Router's finalized-primary barrier, normalized duplicate key, full-payload bracketing readback, uncertainty reconciliation, separate obligation/pre-install/delivered baselines and two-phase method resolution. The follow-up is an independent package and replacement-plan verifier, not another installer; it creates no recursive verification task.\n\nFreeze a requirement matrix covering: exact four-file package parity/frontmatter/links; canonical-only source selection; all 18 pieces and shared obligations preserved; stage and expected-outcome contracts; one-current-pair limit; historical closure/cancellation honesty; actual native refs/full plans/finalization/dependencies; delivered-input gates; duplicate/unknown-write recovery; independent repair review; tracked durability; invocation-only progression and no unauthorized grants/hooks. Each item identifies source clause, expected outcome, method/evidence, responsible role and next action. Pending native refs/methods are filled only from actual host readback after readiness.\n\nAfter verification passes, the explicit user restart instruction permits draft preparation of the fresh FG-02 pair only. Any genuine implementation prerequisite remains blocked until actual applicable authority is supplied. Scope/definition defects require a gap list and authorized repair; missing external trust/approval cannot be repaired by assertion. A third distinct confirmation obligation must be surfaced for a narrow batching decision if an applicable canonical companion requires it; do not drop or fabricate it.\n\n## Pre-existing failures to ignore\nNo catalog-authorized ignores established. Existing missing approval, current grant/accounting and independent supervisor evidence remain capability/authority findings, not failed tests or reusable ignores. A passing retry would not prove provenance.\n\n## Validation\nReadback-only package/document verification; execution is not authorized by this plan. Do not run imports, syntax checks, tests, builds, package hooks, coordinator commands, or full validation merely to validate prose. Reconfirm actual governance and applicable planning/document-authoring scope before work; UNKNOWN cannot imply inactive permission. If a governed executable check is required, stop at the exact supported approval/budget/supervision proposal rather than inventing a tier or claiming PASS. Independent verification remains pending until delivered inputs and its actual task/readiness bindings exist.\n\n## Regression Guard\n**Self-satisfying** — this is instruction-package/document planning and verification, with no runtime enforcement change. Its guard is the pinned clause-by-clause acceptance/readback matrix in `docs/validation/paired-task-orchestration-verification-plan.md`, independently checked before restarting FG-02.\n\n## Relevant files\n- `attached_assets/paired-task-orchestration_1791347147544.zip`\n- `attached_assets/failure-gate-v4-piecemeal-task-series_1791259976201.txt`\n- `docs/validation/failure-gate-v4-task-series.md`\n- `docs/validation/failure-gate-v4-series-checkpoint.md`\n- `docs/validation/failure-gate-fg-01-verifier-report.md`\n- `docs/validation/failure-gate-fg-02-stage-handoff.md`\n- `docs/validation/failure-gate-fg-02-owner-closeout.md`\n- `docs/validation/failure-gate-fg-02-bootstrap-admission-proposal.md`\n- `docs/validation/failure-gate-fg-02-factual-recheck.md`\n- `docs/validation/failure-gate-capabilities.json`\n- `.agents/skills/skill-application-router/SKILL.md`\n- `.agents/skills/skill-application-router/references/installation-verification-plan.md`\n- `.agents/skills/skill-application-router/references/handoff-binding-and-recovery.md`\n- `.agents/skills/skill-application-router/references/delivery-reconciliation.md`\n- `.agents/skills/failure-gate-v4/SKILL.md`\n- `.agents/skills/regression-guard/SKILL.md`\n- `replit.md`\n",
+        "displayState": "MERGED",
+        "state": "MERGED",
+        "taskRef": "#102",
+        "title": "Update Orchestration and Replan Series",
+        "updatedAt": "2026-10-07T04:41:02.658Z"
+      }
+    },
+    "readiness": {
+      "task": {
+        "artifactKinds": [],
+        "createdAt": "2026-10-07T04:38:40.008Z",
+        "dependsOn": [
+          "#102"
+        ],
+        "description": "# Resolve the prerequisites for independent orchestration review\n\n## What & Why\nDocumentary readiness finding only, not another installer or the independent package/plan verifier. The canonical Paired package and full 18-piece replacement are delivered by #102, but the referenced canonical skill-install-confirmation companion and native finalized-primary/attachment evidence are missing/unverified. Do not execute verification or claim this proposal attaches the verifier.\n\n## Done looks like\nRead the complete docs/validation/paired-task-orchestration-verification-plan.md, installer handoff, manifest and native readback, plus canonical Router/Paired contracts. Resolve the confirmation companion through canonical .agents only or report its exact unavailable obligation. Obtain the narrow user batching decision for a distinct SKILL.md-only confirmation alongside resource/plan verification, without creating hidden tasks. Identify the actual permitted host finalized-primary/readback/attachment route, dependency delivery semantics and cooperative concurrency limits using bounded allowed documentary evidence. Do not infer finalization from assignment/hash/status or invent APIs.\n\nDeliver docs/validation/paired-task-orchestration-readiness.md with genuine source/binding/evidence, satisfied versus blocked prerequisites, actual owner/action and exact continuation. If missing evidence remains, report BLOCKED. Only after actual finalized-primary, companion/batching and permitted creation route are established may an authorized continuation attach the complete independent payload with real #102 dependency, full primary/verifier bracketing readback and normalized key. This task itself grants no native verifier creation, verification acceptance or FG-02 preparation.\n\n## Out of scope\nNo package edits, substitute/mirror skill, native attachment/status change, recursive verifier, runtime grants/store access, imports/tests/builds/hooks/services/signals/CI/recovery/cutover/deploy. Existing full FG-02 g02 drafts remain pending actual independent acceptance and fresh native full-plan binding; no later-piece cards.\n\n## Validation\nReadback-only / execution not authorized. UNKNOWN governance is not INACTIVE permission. Missing authority is a finding, never reusable allowance.\n\n## Regression Guard\nSelf-satisfying fixed prerequisite source/readback finding; no runtime change.\n\n## Relevant files\n- docs/validation/paired-task-orchestration-verification-plan.md\n- docs/validation/paired-task-orchestration-install-handoff.md\n- docs/validation/paired-task-orchestration-manifest.json\n- docs/validation/paired-task-orchestration-native-readback.json\n- docs/validation/failure-gate-v4-series-checkpoint.md",
+        "displayState": "IN_PROGRESS",
+        "followUpCategory": "incomplete_scope",
+        "proposedFromRef": "#102",
+        "state": "IN_PROGRESS",
+        "taskRef": "#103",
+        "title": "Resolve the prerequisites for independent orchestration review",
+        "updatedAt": "2026-10-07T04:44:48.318Z"
+      }
+    },
+    "observedPrimaryDescriptionSha256": "6b2a457b2d3cbe1ffc06e3edb6ce0efa3cc1e579637297ead8b1660ed853cd06",
+    "finalizedPrimaryEvidence": "UNAVAILABLE; digest/lifecycle/Git delivery are not final-write proof."
+  },
+  "batching": {
+    "source": "direct successful user AskQuestion response",
+    "question": "Allow a separate SKILL.md-only confirmation alongside the resource and plan verifier?",
+    "answer": "allow_separate",
+    "label": "Allow separate visible confirmation (recommended)",
+    "comments": "not provided",
+    "limit": "Visible batching exception only; no creation, execution, companion waiver, finalization evidence or FG-02 permission."
+  },
+  "documentationSearches": [
+    {
+      "query": "Agent project tasks finalized published plan committed final write evidence full task description dependency release merge isolated workspace task creation idempotency version precondition",
+      "result": {
+        "relevantPages": [
+          {
+            "title": "Task system",
+            "url": "https://docs.replit.com/core-concepts/agent/task-system"
+          },
+          {
+            "title": "Task board",
+            "url": "https://docs.replit.com/features/agent/task-board"
+          },
+          {
+            "title": "Task lifecycle",
+            "url": "https://docs.replit.com/features/agent/task-lifecycle"
+          },
+          {
+            "title": "Follow-up tasks",
+            "url": "https://docs.replit.com/features/agent/follow-up-tasks"
+          },
+          {
+            "title": "Build in parallel",
+            "url": "https://docs.replit.com/learn/build-in-parallel"
+          }
+        ],
+        "response": "The Replit task system enables Agent to break down large goals into discrete units of work called tasks. These tasks operate on a board with four stages: Drafts (planned but not started), Active (running in an isolated project copy), Ready (finished and awaiting review), and Done (merged or finalized). Background tasks run in parallel, and Agent automatically manages dependencies and state isolation, ensuring your main version remains untouched until you explicitly apply changes."
+      }
+    },
+    {
+      "query": "Does Replit Agent expose an authoritative finalized published primary task plan revision or committed final-write receipt beyond task state, updatedAt and description? Supported task creation full description dependency release on merged outputs, atomic version preconditions and idempotency API.",
+      "result": {
+        "relevantPages": [],
+        "response": "No relevant information found in the documentation."
+      }
+    }
+  ],
+  "limitations": "Search summaries are documentary evidence only, not finalization attestation, release guarantee or current permission. No finalize/attachment mutation attempted.",
+  "followupCandidateSearch": {
+    "query": "\"confirmation\" OR \"finalized\" OR \"orchestration\"",
+    "limit": 15,
+    "result": {
+      "results": [
+        {
+          "artifactKinds": [],
+          "createdAt": "2026-10-07T04:30:13.436Z",
+          "dependsOn": [],
+          "description": "# Update Orchestration and Replan Series\n\n<!-- regression-guard: not-applicable -->\n\n## What & Why\nInstall the user's latest Paired Task Orchestration package in its canonical `.agents/skills/paired-task-orchestration/` destination and replace the current active 18-piece Failure Gate plan entirely with a project-bound, invocation-driven orchestration plan. Prepare the independent verification handoff and exact continuation that restarts Piece 02 as a fresh implementation/verifier generation a...",
+          "displayState": "MERGED",
+          "matchType": "fts",
+          "score": 0.4698316752910614,
+          "state": "MERGED",
+          "taskRef": "#102",
+          "title": "Update Orchestration and Replan Series",
+          "updatedAt": "2026-10-07T04:41:02.658Z"
+        },
+        {
+          "artifactKinds": [],
+          "createdAt": "2026-10-07T04:38:40.008Z",
+          "dependsOn": [
+            "#102"
+          ],
+          "description": "# Resolve the prerequisites for independent orchestration review\n\n## What & Why\nDocumentary readiness finding only, not another installer or the independent package/plan verifier. The canonical Paired package and full 18-piece replacement are delivered by #102, but the referenced canonical skill-install-confirmation companion and native finalized-primary/attachment evidence are missing/unverified. Do not execute verification or claim this proposal attaches the verifier.\n\n## Done looks like\nRe...",
+          "displayState": "IN_PROGRESS",
+          "followUpCategory": "incomplete_scope",
+          "matchType": "fts",
+          "proposedFromRef": "#102",
+          "score": 0.4486276805400848,
+          "state": "IN_PROGRESS",
+          "taskRef": "#103",
+          "title": "Resolve the prerequisites for independent orchestration review",
+          "updatedAt": "2026-10-07T04:44:48.318Z"
+        },
+        {
+          "artifactKinds": [],
+          "createdAt": "2026-10-06T18:10:40.665Z",
+          "dependsOn": [
+            "#78"
+          ],
+          "description": "# Confirm which Replit tools can edit or replace the workspace\n\n## What & Why\nProject sources cannot identify the actual editor and Agent file tools, checkout/merge operations, or remote participants. Until their participation is known, local validation cannot be treated as protected through final handoff.\n\n## Done looks like\n- Use an owner-approved, read-only host source to identify actual editor/Agent, checkout/merge, workflow, and external writer participants.\n- For each available particip...",
+          "displayState": "MERGED",
+          "followUpCategory": "incomplete_scope",
+          "matchType": "fts",
+          "proposedFromRef": "#78",
+          "score": 0.32422778010368347,
+          "state": "MERGED",
+          "taskRef": "#88",
+          "title": "Confirm which Replit tools can edit or replace the workspace",
+          "updatedAt": "2026-10-06T20:14:48.028Z"
+        },
+        {
+          "artifactKinds": [],
+          "createdAt": "2026-10-06T17:58:39.298Z",
+          "dependsOn": [
+            "#72"
+          ],
+          "description": "# Confirm which live writers and supervisors are covered before relying on Failure Gate\n\n## What & Why\nThe records describe writer mechanisms but do not establish that all real writers participate in one effective lock or isolation boundary. Ordinary independent supervision, termination, and capture are also not accepted. Without positive evidence, final-writer and runtime-safety claims must remain blocked.\n\n## Done looks like\n- Owners identify actual file, generated-output, dependency/schema...",
+          "displayState": "MERGED",
+          "followUpCategory": "incomplete_scope",
+          "matchType": "fts",
+          "proposedFromRef": "#72",
+          "score": 0.3129698932170868,
+          "state": "MERGED",
+          "taskRef": "#74",
+          "title": "Confirm which live writers and supervisors are covered before relying on Failure Gate",
+          "updatedAt": "2026-10-06T18:05:48.424Z"
+        },
+        {
+          "artifactKinds": [],
+          "createdAt": "2026-10-06T17:58:39.298Z",
+          "dependsOn": [
+            "#72"
+          ],
+          "description": "# Establish a safe read-only path to confirm current Failure Gate policy and budget\n\n## What & Why\nThe current records say ordinary governance was last recorded as STAGED, while the present ACTIVE/INACTIVE state, coordinator/store availability, and remaining budget are UNKNOWN. There is no owner-provided current read route or remaining-budget record, so these claims cannot be accepted.\n\n## Done looks like\n- The local host/approval maintainer supplies the authentic source and exact permitted r...",
+          "displayState": "CANCELLED",
+          "followUpCategory": "incomplete_scope",
+          "matchType": "fts",
+          "proposedFromRef": "#72",
+          "score": 0.23191292583942413,
+          "state": "CANCELLED",
+          "taskRef": "#73",
+          "title": "Establish a safe read-only path to confirm current Failure Gate policy and budget",
+          "updatedAt": "2026-10-06T18:02:31.992Z"
+        },
+        {
+          "artifactKinds": [],
+          "createdAt": "2026-10-06T17:55:44.419Z",
+          "dependsOn": [
+            "#69"
+          ],
+          "description": "# Confirm the Project task binding through an independent read-only check\n\n## What & Why\nThe Piece 01 reviewer verified the delivered documents and hashes, but its separate context had no task API access to recheck the stored #68/#69 descriptions, states, exact dependency, and plan digests. The current report therefore treats those task-record facts as the assigned verifier's readback only.\n\n## Done looks like\n- An authorized read-only reviewer checks the full current records for #68 and #69\n...",
+          "displayState": "MERGED",
+          "followUpCategory": "incomplete_scope",
+          "matchType": "fts",
+          "proposedFromRef": "#69",
+          "score": 0.22740979492664337,
+          "state": "MERGED",
+          "taskRef": "#70",
+          "title": "Confirm the Project task binding through an independent read-only check",
+          "updatedAt": "2026-10-06T18:02:15.431Z"
+        },
+        {
+          "artifactKinds": [],
+          "createdAt": "2026-10-06T18:04:08.926Z",
+          "dependsOn": [
+            "#75"
+          ],
+          "description": "# Confirm whether any in-scope cleanup caller requires protected reclaim\n\n## What & Why\nThe current evidence does not prove that the intended installation scope is reclaim-independent, so protected reclaim cannot be marked not applicable. A scoped source review can establish applicability without touching live processes.\n\n## Done looks like\n- Under an explicit read-only source scope, identify the intended cleanup controls and their actual project callers, aliases, hooks, and startup paths.\n- ...",
+          "displayState": "MERGED",
+          "followUpCategory": "incomplete_scope",
+          "matchType": "fts",
+          "proposedFromRef": "#75",
+          "score": 0.22290658950805664,
+          "state": "MERGED",
+          "taskRef": "#81",
+          "title": "Confirm whether any in-scope cleanup caller requires protected reclaim",
+          "updatedAt": "2026-10-06T19:53:24.296Z"
+        },
+        {
+          "artifactKinds": [],
+          "createdAt": "2026-10-06T03:59:53.024Z",
+          "dependsOn": [
+            "#66"
+          ],
+          "description": "# Verify Host Discovery Records\n<!-- regression-guard: not-applicable -->\n\n## What & Why\nImplement FG-01-V as the specific independent verification of FG-01-I. Reinspect the actual Skills Workbench target and canonical Failure Gate closure rather than treating the main task's narrative, hashes or task status as proof. Correct missing or inaccurate discovery documents and mappings only; do not implement runtime enforcement.\n\nUse a separate verifier task after the main discovery task is deliver...",
+          "displayState": "CANCELLED",
+          "matchType": "fts",
+          "score": 0.22065502405166623,
+          "state": "CANCELLED",
+          "taskRef": "#67",
+          "title": "FG-01-V — Verify Host Discovery Records",
+          "updatedAt": "2026-10-06T04:08:09.924Z"
+        },
+        {
+          "artifactKinds": [],
+          "createdAt": "2026-10-06T04:27:05.571Z",
+          "dependsOn": [
+            "#68"
+          ],
+          "description": "# FG-01-V — Verify Host Discovery\n<!-- regression-guard: not-applicable -->\n\n## What & Why\n\nFreshly and independently verify the dependent FG-01-I Piece 01 planning/discovery deliverable against original host evidence and the canonical source closure. Audit all inventory claims, tracked destinations, obligation allocations, roles, and ACTIVE/INACTIVE/UNKNOWN assessment. Publish the gap list before edits; repair missing/inaccurate discovery documents only; obtain independent post-repair readba...",
+          "displayState": "MERGED",
+          "matchType": "fts",
+          "score": 0.21995703876018524,
+          "state": "MERGED",
+          "taskRef": "#69",
+          "title": "FG-01-V — Verify Host Discovery",
+          "updatedAt": "2026-10-06T17:57:40.358Z"
+        },
+        {
+          "artifactKinds": [],
+          "createdAt": "2026-10-06T03:18:20.165Z",
+          "dependsOn": [],
+          "description": "# Bounded API Coordination Bootstrap\n<!-- regression-guard: required -->\n\n## What & Why\nAdd a narrowly scoped installation/bootstrap admission entry around the existing Failure Gate coordinator and supervisor so API-generation protection can be implemented and verified without first activating ordinary governance. Task #44 owns generated-output locking; Task #55 depends on it for writer coverage, and Task #57 then owns ordinary CLI admission. Requiring Task #57's completed ordinary route befo...",
+          "displayState": "MERGED",
+          "matchType": "fts",
+          "score": 0.2197769284248352,
+          "state": "MERGED",
+          "taskRef": "#65",
+          "title": "Bounded API Coordination Bootstrap",
+          "updatedAt": "2026-10-06T03:54:09.666Z"
+        },
+        {
+          "artifactKinds": [],
+          "createdAt": "2026-10-06T18:08:24.721Z",
+          "dependsOn": [
+            "#74",
+            "#70",
+            "#71",
+            "#69",
+            "#72",
+            "#75"
+          ],
+          "description": "# Reconcile Piece 01 Acceptance\n\n## What & Why\nIndependently reassess the current Piece 01 planning/discovery deliverable after the merged follow-ups to the original implementation and verifier. The verifier report now confirms independent task-record corroboration but still contains stale G0 wording and an overall blocked disposition alongside separate historical-source and runtime-capability gaps. The original Piece 01 specification permits unresolved capabilities when their integration rol...",
+          "displayState": "MERGED",
+          "matchType": "fts",
+          "score": 0.20264236629009247,
+          "state": "MERGED",
+          "taskRef": "#82",
+          "title": "Reconcile Piece 01 Acceptance",
+          "updatedAt": "2026-10-06T20:59:05.880Z"
+        },
+        {
+          "artifactKinds": [],
+          "createdAt": "2026-10-06T02:28:04.739Z",
+          "dependsOn": [
+            "#59"
+          ],
+          "description": "# Authorize Routine Check Cutover\n\n## What & Why\nEven after validation is proven ready, routine workspace checks must remain staged until a separate, genuine owner or trusted-platform decision authorizes the exact cutover. This task records that decision through the verified route rather than treating readiness as permission.\n\n## Done looks like\n- Confirm the preceding readiness task passed with two actual bounded bootstrap runs and current host proofs for the exact policy, workspace, and cal...",
+          "displayState": "CANCELLED",
+          "matchType": "fts",
+          "score": 0.1823781281709671,
+          "state": "CANCELLED",
+          "taskRef": "#60",
+          "title": "Authorize Routine Check Cutover",
+          "updatedAt": "2026-10-06T03:35:22.938Z"
+        },
+        {
+          "artifactKinds": [
+            "web"
+          ],
+          "blockedBy": "WAITING_FOR_INPUT",
+          "createdAt": "2026-10-06T21:08:41.679Z",
+          "dependsOn": [],
+          "description": "# Add Private Text Notes\n\n<!-- regression-guard: not-applicable -->\n\n## What & Why\nAdd an account-private Notes page to Skills Workbench so users can write or paste plain text, save it, and browse it later without starting a conversation or creating a skill. Include one-click text copying and linked note branches for independently developing related notes, clear save status, recently edited sorting, and recoverable deletion. Add Notes immediately below Conversations in the existing navigation...",
+          "displayState": "IN_PROGRESS",
+          "matchType": "fts",
+          "score": 0.12380816787481308,
+          "state": "IN_PROGRESS",
+          "taskRef": "#98",
+          "title": "Add Private Text Notes",
+          "updatedAt": "2026-10-07T03:15:11.137Z"
+        },
+        {
+          "artifactKinds": [],
+          "createdAt": "2026-10-07T03:58:09.292Z",
+          "dependsOn": [],
+          "description": "# Capture Source Stage Approval\n\n<!-- regression-guard: not-applicable -->\n\n## What & Why\n\nCapture and verify an authentic current operation-specific decision for the proposed FG-02-I adapter, schema, and regression-case source stage in Skills Workbench. This is evidence intake and documentation only, not an approval action, route implementation, or permission to stage sources.\n\nThe proposed subject is installation.bootstrap-admission-contract-stage, one source-authoring bounded capability, e...",
+          "displayState": "MERGED",
+          "followUpCategory": "incomplete_scope",
+          "matchType": "fts",
+          "proposedFromRef": "#96",
+          "score": 0.11032751202583312,
+          "state": "MERGED",
+          "taskRef": "#99",
+          "title": "Capture operation-specific source-stage approval",
+          "updatedAt": "2026-10-07T04:05:30.416Z"
+        },
+        {
+          "artifactKinds": [],
+          "createdAt": "2026-10-06T18:03:06.704Z",
+          "dependsOn": [
+            "#74"
+          ],
+          "description": "# Keep untracked writers from invalidating Failure Gate results\n\n## What & Why\nThe Task 74 readback identifies a minimum known set of file, generated-output, dependency/schema, editor/Agent, checkout/merge, deployment, and external writer paths, but it does not prove that the list is complete or that all writers share one accepted-state boundary. Final-writer acceptance must remain blocked until actual participation is proven.\n\n## Done looks like\n- Identify the actual in-scope local, generate...",
+          "displayState": "MERGED",
+          "followUpCategory": "incomplete_scope",
+          "matchType": "fts",
+          "proposedFromRef": "#74",
+          "score": 0.10132118314504623,
+          "state": "MERGED",
+          "taskRef": "#78",
+          "title": "Keep untracked writers from invalidating Failure Gate results",
+          "updatedAt": "2026-10-06T19:55:45.700Z"
+        }
+      ]
+    },
+    "limitNote": "Text-search evidence for suggestion overlap only; not authoritative exact-key duplicate reconciliation."
+  },
+  "evidenceIntakeSuggestions": {
+    "proposed": [
+      {
+        "artifactKinds": [],
+        "createdAt": "2026-10-07T04:48:38.079Z",
+        "dependsOn": [
+          "#103"
+        ],
+        "description": "# Obtain Canonical Confirmation Evidence\n\n## What & Why\nTask #103 completed a documentary readiness finding, not confirmation. The required canonical skill-install-confirmation source is absent. Obtain authentic owner-supplied canonical source/applicability evidence before the independent confirmation workflow can be planned. This is documentary intake only, not an installer or verifier.\n\n## Done looks like\n- Read the readiness report/evidence and preserve the already approved separate visible SKILL.md-only confirmation alongside resource/plan verification; no repeat batching question for unchanged scope.\n- The canonical skill owner supplies authentic .agents/skills/skill-install-confirmation/SKILL.md and required references through separately authorized installation, or an authoritative applicability resolution reconciling Router/Paired requirements. This task cannot perform that installation or use a runtime mirror. Missing owner input remains BLOCKED with exact source/owner/action.\n- Once supplied and permitted, read the complete canonical closure once; pin actual source/version/digests and identify existing-primary reconciliation ordering, file-only correction/acceptance limits and report requirements. Compare only these prerequisites, not package or replacement-plan acceptance.\n- Publish docs/validation/paired-task-orchestration-confirmation-intake.md with actual source/read-permission bindings and satisfied versus blocked fields. A precise blocked intake finding may complete this intake criterion but does not satisfy the companion requirement.\n\n## Out of scope\nNo package/skill edits, substitute sources, native task creation/attachment/status/dependency changes, confirmation execution, independent package/plan verification, FG-02 preparation, imports/tests/builds, local grants/store access, hooks/services/signals/CI/recovery/cutover/deploy. No recursive verifier or new series pieces.\n\n## Validation\nReadback-only / execution not authorized. UNKNOWN is not INACTIVE. Do not infer authority from task acceptance, reports or supplied copied text.\n\n## Regression Guard\nSelf-satisfying prerequisite source/binding matrix; no runtime changes.\n\n## Relevant files\n- docs/validation/paired-task-orchestration-readiness.md\n- docs/validation/paired-task-orchestration-readiness-evidence.json\n- docs/validation/paired-task-orchestration-verification-plan.md\n- .agents/skills/skill-application-router/SKILL.md\n- .agents/skills/paired-task-orchestration/references/acceptance-and-confirmation.md",
+        "displayState": "PROPOSED",
+        "followUpCategory": "incomplete_scope",
+        "proposedFromRef": "#103",
+        "state": "PROPOSED",
+        "taskRef": "#104",
+        "title": "Obtain the canonical confirmation contract before review",
+        "updatedAt": "2026-10-07T04:48:38.079Z"
+      },
+      {
+        "artifactKinds": [],
+        "createdAt": "2026-10-07T04:48:38.079Z",
+        "dependsOn": [
+          "#103"
+        ],
+        "description": "# Obtain Finalized Handoff Evidence\n\n## What & Why\nTask #103 established actual full #102 native readback and current output accessibility but no genuine final-write barrier or compatible permitted full-payload attachment route. Obtain authentic task-provider evidence, not another general capability search or installation verifier. This is documentary intake only.\n\n## Done looks like\n- Bind the readiness report/evidence and actual existing #102 to the current project/root/native namespace. Current merged lifecycle, timestamps, observed description hash and Git delivery are not finalization proof. Preserve original and any current primary description binding separately.\n- The task integration owner supplies a supported authoritative finalized-plan/final-write receipt or equivalent evidence/read route bound to exact #102 full native description and revision/digest; record genuine source/version/read permission. If absent, report the exact missing field and owner action as BLOCKED without inventing an API.\n- Establish from authentic provider evidence a compatible complete tracked/inline payload creation/amendment/readback route, size constraints and real #102 dependency support, without writing deliverables under .local. Document atomic version/idempotency guarantees only if evidenced; otherwise preserve cooperative bracketing and race limits.\n- Establish actual dependency release semantics/delivered-input readiness and bounded resume mapping, not a scheduling guarantee from an instruction. No native writes or delivery manufacture.\n- Publish docs/validation/paired-task-orchestration-native-handoff-intake.md with actual provider evidence, exact bindings, supported versus blocked routes, source/delivery/concurrency limits and the next separately authorized continuation. A precise blocked intake finding may complete this intake criterion but does not establish finalization or attachment.\n\n## Out of scope\nNo primary rewrite, new native confirmation/verifier/FG-02 tasks, attachment/status/dependency changes, independent acceptance, package/plan edits, imports/tests/builds, coordinator/store/grant access, hooks/services/signals/CI/recovery/cutover/deploy, private endpoints, scraping or credentials. Do not repeat unchanged failed discovery or poll.\n\n## Validation\nReadback-only / execution not authorized. One bounded current primary read and supplied provider-source readback when permitted; no project executable checks. UNKNOWN is not INACTIVE; missing authority is not an allowance.\n\n## Regression Guard\nSelf-satisfying finalized-primary/delivery/full-payload route evidence matrix; no runtime changes.\n\n## Relevant files\n- docs/validation/paired-task-orchestration-readiness.md\n- docs/validation/paired-task-orchestration-readiness-evidence.json\n- docs/validation/paired-task-orchestration-verification-plan.md\n- docs/validation/paired-task-orchestration-manifest.json\n- .agents/skills/skill-application-router/references/handoff-binding-and-recovery.md\n- .agents/skills/skill-application-router/references/delivery-reconciliation.md",
+        "displayState": "PROPOSED",
+        "followUpCategory": "incomplete_scope",
+        "proposedFromRef": "#103",
+        "state": "PROPOSED",
+        "taskRef": "#105",
+        "title": "Obtain finalized-plan evidence before attaching reviewers",
+        "updatedAt": "2026-10-07T04:48:38.079Z"
+      }
+    ]
+  },
+  "canonicalCompanionDiscovery": {
+    "expectedPath": ".agents/skills/skill-install-confirmation/SKILL.md",
+    "result": "ABSENT in current canonical inventory and exact-path inspection of available local Git ref tips/reachable path history",
+    "boundary": "No remote fetch, installation, mirror/copy read, or contract reconstruction."
+  },
+  "currentDeliveryObservation": {
+    "method": "Read-only filesystem content digests of the 13 manifest.deliveredFiles paths",
+    "result": "All present and matching the retained manifest at the observed snapshot",
+    "claimLimit": "Accessible/coherently published bytes only; no archive parity, 18/36 requirement acceptance or future dependency release proof."
+  }
+}
