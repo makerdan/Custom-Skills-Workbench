@@ -1,0 +1,28 @@
+Keep Task 96 / `FG-02-I` blocked and perform no implementation or validation work.
+>
+> The next prerequisite is to obtain and verify, through a supported and applicable project-local route:
+>
+> 1. **A current operation-specific approval record** for the exact proposed source-stage operation: staging the adapter, schema, and regression cases.
+> 2. **A current finite budget record** bound to that same operation, including authoritative current-consumption accounting.
+> 3. **Verified independent outer supervision** before any later validation launch. This must be a distinct, supported supervisor/watchdog route with finite limits and evidence recording; ordinary CLI availability, policy ceilings, or default Agent settings are not substitutes.
+>
+> Do not stage files, edit implementation sources, allocate or invent a local task ID, invoke ordinary plan review, consume/reuse the bootstrap approval, read coordinator accounting through an unapproved route, initialize stores, or run imports, syntax checks, tests, builds, CI, or validation commands.
+>
+> First determine whether there is a documented supported route that is applicable to this exact bootstrap-admission source-stage operation. If there is one, prepare the smallest read-only request or invocation proposal needed to obtain:
+>
+> - the decision/approval record and its task/plan/source-closure/operation binding;
+> - the budget grant, expiration, limits, and safe authoritative accounting-read route;
+> - the separate outer-supervision registration/attestation needed before a future validation launch.
+>
+> Do not execute that route unless its own authorization is already demonstrably present.
+>
+> Return:
+>
+> | Prerequisite | Supported applicable route | Current matching record | Missing evidence | Exact next decision/action | Status |
+> |---|---|---|---|---|---|
+>
+> Use `FOUND`, `BLOCKED`, or `UNKNOWN` only. Treat absent, expired, consumed, malformed, conflicting, or unverifiable records as `BLOCKED`. Do not treat the manifest, old receipts, a new task assignment, policy ceilings, or a proposal as authority.
+>
+> If no applicable supported route exists, state that explicitly and draft the exact owner decision needed to establish one, without creating or assuming any authorization.
+
+This preserves the distinction the skill requires between verified approval, an actual finite budget, and later validation supervision. Relevant guidance: `.agents/skills/failure-gate-v4/SKILL.md`, **“1. Discover, then install or operate”** and **“Core invariants”**; `.agents/skills/failure-gate-v4/reference/implementation.md`, **“Host adaptation.”**

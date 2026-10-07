@@ -4,3 +4,5 @@
 - [Node test report formats](node-test-reporters.md) — piped Node test output can use native text summaries; bind the format instead of assuming TAP.
 - [Resumed budget clocks](resumed-budget-clocks.md) — workspace resumption can change boot and monotonic origin; bind new explicit grants freshly, preserving historical clocks.
 - [Orval workspace barrels](orval-workspace-barrels.md) — staging its generation target alone is insufficient; Orval also writes the `output.workspace` barrel.
+- [Tracked task plan intake](tracked-task-plan-intake.md) — task API path/size constraints and inherited dependencies need care when creating prerequisites from durable plans.
+- [Failure Gate evidence precedence](failure-gate-evidence-precedence.md) — actual source-query observations outrank documentary summaries, within scope/time; they create no authority.

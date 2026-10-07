@@ -8,6 +8,73 @@
   "host_integration_review": "docs/validation/failure-gate-host-integration-map.md",
   "policy": "docs/validation/failure-gate-policy.json",
   "approval": "docs/validation/failure-gate-installation-approval.json",
+  "query_evidence_reconciliation": {
+    "precedence": "Direct source-query results are authoritative for the returned fields/records at observation time; descriptive status snapshots do not override them or grant authority.",
+    "coordinator_observation": "Earlier read-only Store query returned governance STAGED, one historical draft FG-00000001 task with authorization version 0 and no plan, zero plan_review/bounded_bootstrap_review decisions, no plan_reviewed events, and no bounded-bootstrap-v1 metadata.",
+    "historical_bootstrap_conflict": "The report decision, four run IDs, and associated bootstrap evidence were absent from the inspected sources. Reported consumption is not corroborated current accounting or a reusable grant.",
+    "platform_task_observation": "Task query returned approval/budget/supervisor intake Tasks 99/100/101 MERGED with no dependencies. Result dossiers were then read from unsynced Git refs; all three completed documentary intake with BLOCKED prerequisite outcomes. Lifecycle state alone is not prerequisite satisfaction.",
+    "intake_git_records": {
+      "approval": "249e7a83c0ca14d81da5464aee1159ffd08bbf40:docs/validation/failure-gate-fg-02-source-stage-approval-intake.md",
+      "budget_accounting": "902b8b8b2191d137e4805115a2b5827bb36f08e9:docs/validation/failure-gate-fg-02-budget-accounting-intake.md",
+      "supervisor": "3151b83eea52c3cc78b9288d6311ed2ee47e9778:docs/validation/failure-gate-fg-02-supervisor-evidence-intake.md"
+    },
+    "intake_snapshot_boundary": "Dossiers inspected an older checkout lacking the current subject documents and performed no coordinator reads themselves. Their absent-document/UNKNOWN findings do not override current document availability or earlier primary source-query results. No approval, grant/accounting or outer supervision record was captured.",
+    "scope": "Documentary reconciliation only; no new coordinator read, approval, budget, registration, source-stage grant or execution permission.",
+    "accepted_task_closeout": {
+      "platform_task": "96",
+      "completion_mode": "owner_direction",
+      "decision": "The owner accepts the found answers as satisfying the requisites and fulfilling the task requirements.",
+      "accepted_outcome": "Documentary assessments and proposal; adapter/schema/regression-case implementation not staged.",
+      "validation": "NOT_RUN; closure does not grant execution authority or establish local validated completion.",
+      "record": "docs/validation/failure-gate-fg-02-owner-closeout.md"
+    },
+    "report": "docs/validation/failure-gate-fg-02-factual-recheck.md"
+  },
+  "decision_sources": {
+    "ordinary_plan_review": {
+      "interface": "scripts/failure_gate/gate.py:Gate.approve_plan",
+      "route": "guard the local task plan and installation bindings; require an interactive TTY and exact `approve <local_id> <plan_digest>` phrase",
+      "record": ".failure-gate/coordinator.sqlite3 decisions(kind=plan_review, task_id=local_id, pinned payload digest) plus events(kind=plan_reviewed), committed in one transaction",
+      "binding": "exact guarded plan and digest, policy digest, selected tier-definition digest, relative plan path, empty parameters, local task ID",
+      "verification": "Source route is present; the earlier coordinator query returned zero plan_review decisions and no plan_reviewed events. Local review identity is not authenticated. No FG-02-I decision was established.",
+      "scope": "Ordinary local plan review only; this route is not established as bootstrap/maintenance approval."
+    },
+    "installation": {
+      "interface": "scripts/failure_gate/gate.py:Gate.install",
+      "source": "docs/validation/failure-gate-installation-approval.json",
+      "record": ".failure-gate/coordinator.sqlite3 installation decision and bound installation metadata",
+      "binding": "exact captured approval reference and answer, policy/tooling digests, and execution definition",
+      "verification": "Historical installation decision; not current approval or reusable budget for another operation."
+    },
+    "bootstrap_maintenance": {
+      "interface": "scripts/failure-gate-bootstrap.py review/prove; scripts/failure_gate/bootstrap.py:capture_owner_decision",
+      "source": "docs/validation/failure-gate-bootstrap-approval.json",
+      "record": ".failure-gate/coordinator.sqlite3 decisions(kind=bounded_bootstrap_review), meta.bounded-bootstrap-v1, run/event reservations, and .failure-gate/bootstrap/<decision>/<caller>/ evidence",
+      "binding": "installation.coordination-bootstrap, namespace/local ID, fixed plan and source closure, policy version, fixed caller order, 900-second boot-bound parent",
+      "verification": "Historical captured response for the pinned four-caller health-only proof; report says allowance consumed. Matching decision/accounting lineage was absent in the inspected store. No current grant established; does not approve FG-02-I or ordinary activation."
+    },
+    "replit_platform_plan_event": {
+      "source": "No trusted platform event/capture adapter was exposed or verified in this workspace.",
+      "verification": "Unavailable; do not infer an event from task status, Agent settings, a task assignment, command approval, merge/apply event, or local receipt."
+    }
+  },
+  "budget_sources": {
+    "ordinary": {
+      "definitions": "docs/validation/failure-gate-policy.json limits and scripts/failure_gate/supervisor.py:LIMITS",
+      "current_authority_and_consumption": ".failure-gate/coordinator.sqlite3 task/authorization/run/event records under the approved current route",
+      "outer_supervision": "The ordinary CLI entry has no independent outer supervisor; current finite budget, remaining-consumption readback, and ordinary host acceptance are UNKNOWN/BLOCKED."
+    },
+    "bootstrap_maintenance": {
+      "authorization_and_limit_source": "docs/validation/failure-gate-bootstrap-approval.json",
+      "current_consumption_source": ".failure-gate/coordinator.sqlite3 meta.bounded-bootstrap-v1, decisions/runs/events, and .failure-gate/bootstrap/<decision>/<caller>/ evidence",
+      "outer_supervision": "scripts/failure_gate/supervisor.py:run and watchdog.py for the exact fixed bootstrap callers",
+      "status": "Historical report says the 900-second one-shot was consumed. A limited read-only query occurred and found no matching bootstrap decision/meta/run lineage; complete current accounting was not established. No remaining budget or reusable grant is established."
+    },
+    "code_owned_limits": {
+      "source": "docs/validation/failure-gate-policy.json and scripts/failure_gate/supervisor.py:LIMITS",
+      "status": "Finite implementation ceilings/representations only; not an operation-specific approval, current grant, remaining budget, or independent supervision."
+    }
+  },
   "capabilities": {
     "installation_bootstrap": {
       "interface": "scripts/failure-gate-bootstrap.py review/prove",

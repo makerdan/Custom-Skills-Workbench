@@ -1,0 +1,21 @@
+Perform **read-only discovery only** to locate the project’s current authoritative approval/decision records and current validation-budget/supervision records for the unstaged adapter, schema, and regression-case work.
+>
+> Do not edit files, create tasks, consume/renew approvals or budgets, run validation commands, initialize stores, trigger CI, or infer authority from old receipts, task assignments, environment variables, or undocumented defaults.
+>
+> 1. First inspect the project’s canonical instructions and any existing Failure Gate capability manifest, task/plan records, execution coordinator configuration, approval-event/decision source, and budget/supervision configuration.
+> 2. Identify the **authoritative supported source/interface** for a current approval that is bound to the intended task/plan/operation. Report:
+>    - exact file path, database/query interface, API, or documented project command;
+>    - whether a currently valid matching approval record is present;
+>    - record identifier and non-secret metadata needed to establish scope, status, expiration/consumption state, and task/plan/operation binding;
+>    - why any found older receipts do or do not apply.
+> 3. Identify the **authoritative supported source/interface** for a current finite validation budget and its outer supervision. Report:
+>    - exact file path, database/query interface, API, or documented project command;
+>    - whether a current matching budget exists;
+>    - non-secret metadata establishing permitted scope, remaining attempts/time, status, expiration, and supervision/watchdog binding;
+>    - whether it authorizes only discovery or also the proposed staging and validation operations.
+> 4. Treat missing, malformed, expired, consumed, conflicting, or unverifiable records as **BLOCKED**. Do not substitute a new task assignment, an old receipt, or a general project setting.
+> 5. Return a concise evidence table with columns: `Requirement`, `Authoritative source`, `Current matching record`, `Status (FOUND/BLOCKED/UNKNOWN)`, `Reason`, and `Next exact action`.
+>
+> If the project has no documented authoritative approval or budget source, say so explicitly and identify the smallest specific decision or record needed to proceed. Do not invent Failure Gate APIs, storage paths, or platform integrations.
+
+This follows the Failure Gate guidance that approval and budget sources must be **verified project-local interfaces**, and that stale or unsupported authority fails closed. See `.agents/skills/failure-gate-v4/SKILL.md` under **“1. Discover, then install or operate”** and **“Core invariants”**, plus `.agents/skills/failure-gate-v4/reference/implementation.md` under **“Host adaptation.”**
