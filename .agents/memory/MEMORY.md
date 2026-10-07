@@ -7,3 +7,4 @@
 - [Tracked task plan intake](tracked-task-plan-intake.md) — task API path/size constraints and inherited dependencies need care when creating prerequisites from durable plans.
 - [Failure Gate evidence precedence](failure-gate-evidence-precedence.md) — actual source-query observations outrank documentary summaries, within scope/time; they create no authority.
 - [Notebook callable persistence](notebook-callable-persistence.md) — retained data can remain usable when a saved helper function fails across execution calls.
+- [Active task stop is not resumable](task-stop-resume.md) — Replit documents Stop as interrupting a task that cannot later resume, so it is not a safe pause for continuing the same review.
