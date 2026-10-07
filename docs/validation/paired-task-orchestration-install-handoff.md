@@ -79,3 +79,13 @@ If accepted, prepare only FG-02 g02 from the full tracked payloads, finalize/rea
 Readback-only: archive inventory/digest and exact four-file content comparison; repository/Git/native-plan/document source inspection; per-piece text/coverage and delivered-path readback. No imports, syntax checks, tests, builds, hooks, coordinator/store operations or full executable validation ran. No validation PASS or independent acceptance is claimed.
 
 If the completion mechanism requests governed executable checks, this plan does not authorize them. Stop with the exact supported approval/budget/supervision proposal rather than assigning a tier. Independent review/repair is a future separately bound obligation, not an installer-run review round.
+
+## Named-series cooperative snapshot overlay
+
+For `Custom-Skills-Workbench/failure-gate-v4/18-piece` only, the owner selected `cooperative_snapshot` to prepare a repair draft. See `failure-gate-v4-series-handoff-policy.md`. The observed #102 description (11,539 UTF-8 bytes; SHA-256 `6b2a457b2d3cbe1ffc06e3edb6ce0efa3cc1e579637297ead8b1660ed853cd06`) is an owner-pinned content snapshot, not provider finalization, immutable provider revision, atomic linkage, or proof that no writer exists.
+
+The two complete future review payloads are the full tracked `task-plans/paired-task-orchestration-definition-confirmation.md` and `paired-task-orchestration-verification-plan.md`. They remain unamended/unattached in native records until a later explicit owner-authorized operation establishes a safe pause/readiness and full-record amendment/readback route for existing #107/#108. Preserve both active records and any work/reports. Their complete bindings, actual dependencies, exact keys, byte counts/digests, and the one-invocation owner action are in `paired-task-orchestration-review-amendments.md` and `paired-task-orchestration-handoff-amendment-manifest.json`.
+
+Definition-only confirmation and resource/plan verification stay distinct, with their own correction boundaries and report paths. #102 remains the actual installation dependency; #106 is retained but cannot replace #102; #109 is the repair-delivery prerequisite after actual delivery. Missing delivered files in a reviewer workspace yield `AWAITING_DELIVERY` rather than a pass. No native review has started or been accepted by this authoring work.
+
+After independent acceptance only, the existing continuation may prepare the fresh FG-02 g02 pair. Any cooperative native planning handoff there needs a new key bound to the actual complete FG-02-I record; the #102 snapshot cannot be reused. This does not approve tasks or waive local Failure Gate authority, tier, budget, supervision, final-writer, recovery/reclaim, cutover, or runtime requirements.

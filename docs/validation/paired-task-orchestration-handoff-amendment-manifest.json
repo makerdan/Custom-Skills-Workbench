@@ -1,0 +1,269 @@
+{
+  "schema": "paired-task-orchestration-handoff-amendment-manifest-v1",
+  "lifecycle": {
+    "profileRevision": "fgv4-owner-snapshot-handoff-2026-10-07-v1",
+    "policyProposal": "PROPOSED_SERIES_SPECIFIC",
+    "authoringApproval": "OBSERVED_ACTIVE_ASSIGNMENT",
+    "nativeAmendments": "NOT_ATTEMPTED",
+    "reviewWorkspaceDelivery": "NOT_VERIFIED",
+    "independentAcceptance": "PENDING",
+    "runtimeAuthority": "NONE_GRANTED"
+  },
+  "scope": {
+    "project": "repository=https://github.com/makerdan/Custom-Skills-Workbench;root=/home/runner/workspace;current Skills Workbench Project task-board namespace;immutable UUID unavailable",
+    "series": "Custom-Skills-Workbench/failure-gate-v4/18-piece",
+    "handoffPolicy": "cooperative_snapshot",
+    "nonGlobal": true
+  },
+  "ownerDecision": {
+    "source": "Direct owner AskQuestion answer to “Which handoff guarantee should the Failure Gate paired series use?”",
+    "answer": "handoff_policy=cooperative_snapshot",
+    "additionalComments": "none",
+    "authorized": "repair draft preparation only; no native amendment, review execution, acceptance, policy application, or runtime authority"
+  },
+  "authoringApproval": {
+    "route": "Current authentic Project task assignment; do not infer local Failure Gate permission from its platform ref",
+    "taskRef": "#109",
+    "title": "Repair the Failure Gate series handoff and prepare existing review amendments",
+    "state": "IN_PROGRESS",
+    "updatedAt": "2026-10-07T06:26:24.942Z",
+    "descriptionUtf8Bytes": 18478,
+    "descriptionSha256": "23ceb738787478e575b839089f086050aea78fefd4e5a9284d4df0d7c7d4b44e",
+    "dependsOn": ["#106", "#102"],
+    "scope": "tracked documents, complete payloads, overlays, and inert test source only"
+  },
+  "pinnedInputs": {
+    "primary": {
+      "taskRef": "#102",
+      "title": "Update Orchestration and Replan Series",
+      "state": "MERGED",
+      "dependsOn": [],
+      "updatedAt": "2026-10-07T04:41:02.658Z",
+      "descriptionUtf8Bytes": 11539,
+      "descriptionSha256": "6b2a457b2d3cbe1ffc06e3edb6ce0efa3cc1e579637297ead8b1660ed853cd06",
+      "interpretation": "owner-pinned observed content only; not provider finalization, immutable revision, approval, or no-writer proof"
+    },
+    "activeReviewRecords": [
+      {
+        "taskRef": "#107",
+        "title": "Confirm the SKILL.md-only orchestration review",
+        "state": "IN_PROGRESS",
+        "dependsOn": ["#106"],
+        "updatedAt": "2026-10-07T06:02:40.544Z",
+        "descriptionUtf8Bytes": 1600,
+        "descriptionSha256": "69d624225277bc83313b847920a54870c5acd1787dfdc362b8254a4911d8b527",
+        "substantiveWorkOrIsolatedReport": "UNKNOWN"
+      },
+      {
+        "taskRef": "#108",
+        "title": "Verify orchestration resources and the full plan",
+        "state": "IN_PROGRESS",
+        "dependsOn": ["#106"],
+        "updatedAt": "2026-10-07T06:23:28.130Z",
+        "descriptionUtf8Bytes": 1737,
+        "descriptionSha256": "62199e6860e9ccaec78d55946fc54cf3dcc1c7d96593618fd8193a033e313309",
+        "substantiveWorkOrIsolatedReport": "UNKNOWN"
+      }
+    ],
+    "repairTask": {
+      "taskRef": "#109",
+      "state": "IN_PROGRESS",
+      "deliveredToReviewWorkspaces": "NOT_VERIFIED"
+    },
+    "absentCanonicalCompanion": {
+      "path": ".agents/skills/skill-install-confirmation/SKILL.md",
+      "status": "ABSENT",
+      "claimedRepairedInstalledOrVerified": false,
+      "mirrorOrPrivateSubstituteUsed": false
+    },
+    "reportsInCurrentCheckout": {
+      "definition": "ABSENT",
+      "resourcePlan": "ABSENT",
+      "isolatedReviewerWorkspaceStatus": "UNKNOWN"
+    }
+  },
+  "contentBindings": {
+    "originalSpecification": {
+      "path": "attached_assets/failure-gate-v4-piecemeal-task-series_1791259976201.txt",
+      "utf8Bytes": 59658,
+      "sha256": "7bd8aadd6007ed7c01f118d6cbb83d70ea52d79cecfc6eaafc2234ee869eb026"
+    },
+    "replacementPlanBeforeOverlay": {
+      "path": "docs/validation/failure-gate-v4-task-series.md",
+      "utf8Bytes": 461089,
+      "sha256": "fe60160406a3be4be56122b757cc06a5fac19685891318bd6d0c81baff4f3c29"
+    },
+    "replacementPlanPreservedPrefix": {
+      "utf8Bytes": 461089,
+      "sha256": "fe60160406a3be4be56122b757cc06a5fac19685891318bd6d0c81baff4f3c29",
+      "verification": "head -c of current file matches immutable pre-edit Git baseline; overlay is append-only"
+    },
+    "pairedOriginalVerifierPlan": {
+      "path": "docs/validation/paired-task-orchestration-verification-plan.md",
+      "beforeUtf8Bytes": 24126,
+      "beforeSha256": "1de46d28e6fb0780b2c4bdf17c023721ab5ecb53d9e833b535127dc2ebbfa8e0"
+    },
+    "pairedSourceManifestUnchanged": {
+      "path": "docs/validation/paired-task-orchestration-manifest.json",
+      "utf8Bytes": 14755,
+      "sha256": "490cda28a2285690c18971ac3f697a7bd6fcbe83b44346204fef8751616086f1"
+    },
+    "originalArchiveAndTaskReadbackPreserved": true
+  },
+  "policy": {
+    "path": "docs/validation/failure-gate-v4-series-handoff-policy.md",
+    "revision": "fgv4-owner-snapshot-handoff-2026-10-07-v1",
+    "utf8Bytes": 13129,
+    "sha256": "5ba6bbc5cf3a9106ed6d4ed2cbacca80fc20b95a3d2fa43ceec5bbe91c3d4228"
+  },
+  "reviewBindings": {
+    "#107": {
+      "scope": "definition-only:paired-task-orchestration/SKILL.md;report:docs/validation/paired-task-orchestration-definition-confirmation.md;corrections:SKILL.md-only",
+      "key": [
+        "owner-snapshot-handoff-v1",
+        "https://github.com/makerdan/Custom-Skills-Workbench|/home/runner/workspace|Skills Workbench Project task-board (immutable UUID unavailable)",
+        "Custom-Skills-Workbench/failure-gate-v4/18-piece",
+        "paired-task-orchestration",
+        "#102",
+        "sha256:6b2a457b2d3cbe1ffc06e3edb6ce0efa3cc1e579637297ead8b1660ed853cd06",
+        "definition-only:paired-task-orchestration/SKILL.md;report:docs/validation/paired-task-orchestration-definition-confirmation.md;corrections:SKILL.md-only",
+        "fgv4-owner-snapshot-handoff-2026-10-07-v1",
+        "sha256:5ba6bbc5cf3a9106ed6d4ed2cbacca80fc20b95a3d2fa43ceec5bbe91c3d4228"
+      ],
+      "proposedDependencies": ["#102", "#106", "#109"],
+      "completeDescription": {
+        "path": "docs/validation/task-plans/paired-task-orchestration-definition-confirmation.md",
+        "utf8Bytes": 12385,
+        "sha256": "60f7ec6e83d96399d1826bbcd4672cae01efb5ce6c242dd1879e5273fd0f0c5c",
+        "byteForByteNativeDescription": true
+      },
+      "report": "docs/validation/paired-task-orchestration-definition-confirmation.md",
+      "correctionScope": "paired-task-orchestration/SKILL.md only"
+    },
+    "#108": {
+      "scope": "resource-plan:paired-task-orchestration/three-references+failure-gate-v4/18-pieces+shared-protections+checkpoint-history+FG-02-g02-I/V;report:docs/validation/paired-task-orchestration-verification.md;corrections:resources-and-plan-documents-only",
+      "key": [
+        "owner-snapshot-handoff-v1",
+        "https://github.com/makerdan/Custom-Skills-Workbench|/home/runner/workspace|Skills Workbench Project task-board (immutable UUID unavailable)",
+        "Custom-Skills-Workbench/failure-gate-v4/18-piece",
+        "paired-task-orchestration",
+        "#102",
+        "sha256:6b2a457b2d3cbe1ffc06e3edb6ce0efa3cc1e579637297ead8b1660ed853cd06",
+        "resource-plan:paired-task-orchestration/three-references+failure-gate-v4/18-pieces+shared-protections+checkpoint-history+FG-02-g02-I/V;report:docs/validation/paired-task-orchestration-verification.md;corrections:resources-and-plan-documents-only",
+        "fgv4-owner-snapshot-handoff-2026-10-07-v1",
+        "sha256:5ba6bbc5cf3a9106ed6d4ed2cbacca80fc20b95a3d2fa43ceec5bbe91c3d4228"
+      ],
+      "proposedDependencies": ["#102", "#106", "#109"],
+      "completeDescription": {
+        "path": "docs/validation/paired-task-orchestration-verification-plan.md",
+        "utf8Bytes": 34043,
+        "sha256": "af09da23dbd98184315f232d223f5eb5a120e444f6a37b9870b75df18cd3702d",
+        "byteForByteNativeDescription": true
+      },
+      "report": "docs/validation/paired-task-orchestration-verification.md",
+      "correctionScope": "three references, series/checkpoint/handoff plan documents; no SKILL.md correction"
+    }
+  },
+  "futureFg02KeyTemplate": {
+    "materialized": false,
+    "purpose": "conditional future FG-02 g02 native planning handoff only, after both independent review acceptances and separate authorized continuation",
+    "compactJsonComponents": [
+      "owner-snapshot-handoff-v1",
+      "verified composite Project identity",
+      "Custom-Skills-Workbench/failure-gate-v4/18-piece",
+      "failure-gate-v4",
+      "<actual returned FG-02-I task namespace/ref>",
+      "sha256:<full actual persisted FG-02-I description>",
+      "FG-02-g02-V exact scope and report/correction boundary",
+      "fgv4-owner-snapshot-handoff-2026-10-07-v1",
+      "sha256:5ba6bbc5cf3a9106ed6d4ed2cbacca80fc20b95a3d2fa43ceec5bbe91c3d4228"
+    ],
+    "neverReuse": ["#102 snapshot", "#107 key", "#108 key"],
+    "currentNativePair": "NOT_CREATED"
+  },
+  "preservationLedger": {
+    "originalSpecificationPieceCount": 18,
+    "fullPrimaryVerifierPayloadCount": 36,
+    "sourceRangesAndReplacementRangesLineBase": 1,
+    "pieces": [
+      {"piece": "01", "title": "Project binding, contract extraction, and installation scope", "sourceLines": [92, 116], "replacementLines": [74, 276], "primary": {"heading": "FG-01-I", "lines": [76, 175]}, "verifier": {"heading": "FG-01-V", "lines": [176, 276]}},
+      {"piece": "02", "title": "Bootstrap authority and finite-budget contract", "sourceLines": [117, 139], "replacementLines": [277, 477], "primary": {"heading": "FG-02-I", "lines": [279, 378]}, "verifier": {"heading": "FG-02-V", "lines": [379, 477]}},
+      {"piece": "03", "title": "Transactional identity and coordinator foundation", "sourceLines": [140, 163], "replacementLines": [478, 679], "primary": {"heading": "FG-03-I", "lines": [480, 580]}, "verifier": {"heading": "FG-03-V", "lines": [581, 679]}},
+      {"piece": "04", "title": "Independent supervision and bounded capture", "sourceLines": [164, 188], "replacementLines": [680, 882], "primary": {"heading": "FG-04-I", "lines": [682, 783]}, "verifier": {"heading": "FG-04-V", "lines": [784, 882]}},
+      {"piece": "05", "title": "Safely admitted bootstrap runtime proof", "sourceLines": [189, 213], "replacementLines": [883, 1085], "primary": {"heading": "FG-05-I", "lines": [885, 986]}, "verifier": {"heading": "FG-05-V", "lines": [987, 1085]}},
+      {"piece": "06", "title": "Tier registry and pre-activation planning", "sourceLines": [214, 237], "replacementLines": [1086, 1287], "primary": {"heading": "FG-06-I", "lines": [1088, 1188]}, "verifier": {"heading": "FG-06-V", "lines": [1189, 1287]}},
+      {"piece": "07", "title": "Approval, activation, and authorized changes", "sourceLines": [238, 261], "replacementLines": [1288, 1489], "primary": {"heading": "FG-07-I", "lines": [1290, 1390]}, "verifier": {"heading": "FG-07-V", "lines": [1391, 1489]}},
+      {"piece": "08", "title": "Configuration, snapshots, and raw result integrity", "sourceLines": [262, 284], "replacementLines": [1490, 1690], "primary": {"heading": "FG-08-I", "lines": [1492, 1591]}, "verifier": {"heading": "FG-08-V", "lines": [1592, 1690]}},
+      {"piece": "09", "title": "Checked execution, transitive scope, and concurrency", "sourceLines": [285, 309], "replacementLines": [1691, 1893], "primary": {"heading": "FG-09-I", "lines": [1693, 1794]}, "verifier": {"heading": "FG-09-V", "lines": [1795, 1893]}},
+      {"piece": "10", "title": "Durable execution telemetry and automatic lookup", "sourceLines": [310, 333], "replacementLines": [1894, 2095], "primary": {"heading": "FG-10-I", "lines": [1896, 1996]}, "verifier": {"heading": "FG-10-V", "lines": [1997, 2095]}},
+      {"piece": "11", "title": "Bounded diagnostics and provenance comparisons", "sourceLines": [334, 357], "replacementLines": [2096, 2297], "primary": {"heading": "FG-11-I", "lines": [2098, 2198]}, "verifier": {"heading": "FG-11-V", "lines": [2199, 2297]}},
+      {"piece": "12", "title": "Classification, baseline policy, and repair ownership", "sourceLines": [358, 381], "replacementLines": [2298, 2499], "primary": {"heading": "FG-12-I", "lines": [2300, 2400]}, "verifier": {"heading": "FG-12-V", "lines": [2401, 2499]}},
+      {"piece": "13", "title": "Final-writer coordination and local validated completion", "sourceLines": [382, 405], "replacementLines": [2500, 2701], "primary": {"heading": "FG-13-I", "lines": [2502, 2602]}, "verifier": {"heading": "FG-13-V", "lines": [2603, 2701]}},
+      {"piece": "14", "title": "Owner-directed administrative closure", "sourceLines": [406, 429], "replacementLines": [2702, 2903], "primary": {"heading": "FG-14-I", "lines": [2704, 2804]}, "verifier": {"heading": "FG-14-V", "lines": [2805, 2903]}},
+      {"piece": "15", "title": "Backup/restore and retained-error recovery", "sourceLines": [430, 453], "replacementLines": [2904, 3105], "primary": {"heading": "FG-15-I", "lines": [2906, 3006]}, "verifier": {"heading": "FG-15-V", "lines": [3007, 3105]}},
+      {"piece": "16", "title": "Evidence health, retention, export, and visibility", "sourceLines": [454, 478], "replacementLines": [3106, 3308], "primary": {"heading": "FG-16-I", "lines": [3108, 3209]}, "verifier": {"heading": "FG-16-V", "lines": [3210, 3308]}},
+      {"piece": "17", "title": "Separately gated runtime reclaim, if applicable", "sourceLines": [479, 505], "replacementLines": [3309, 3513], "primary": {"heading": "FG-17-I", "lines": [3311, 3412]}, "verifier": {"heading": "FG-17-V", "lines": [3413, 3513]}},
+      {"piece": "18", "title": "Real caller acceptance, authorized cutover, and full verification", "sourceLines": [506, 595], "replacementLines": [3514, 3744], "primary": {"heading": "FG-18-I", "lines": [3516, 3617]}, "verifier": {"heading": "FG-18-V", "lines": [3618, 3744]}}
+    ],
+    "sharedOriginalContract": {
+      "sourceLines": [48, 90],
+      "replacement": "Preserved in the pre-overlay 461,089-byte replacement-plan prefix and mapped across each full I/V payload; no shared or technical payload body was edited in this task."
+    },
+    "overlayChangesOnly": [
+      "handoff finalization prerequisite for the two #102-bound review drafts",
+      "owner-snapshot key version and full-read comparison boundary",
+      "legacy/uncertain native write reconciliation",
+      "independent reviewer-workspace delivery gate",
+      "separate confirmation applicability/batching record",
+      "conditional FG-02 g02 planning-only handoff"
+    ],
+    "fullPlanAcceptance": "PENDING independent #108 review; preservation ledger is not acceptance"
+  },
+  "amendmentLedger": [
+    {"clause": "D4", "change": "owner-approved separate visible confirmation/resource review; absent companion recorded; no invented contract", "unmodifiedBoundary": "distinct reports/correction scopes and canonical applicability outside this series"},
+    {"clause": "B1", "change": "for #107/#108 planning only, exact #102 owner snapshot substitutes for unavailable provider-finalization receipt", "unmodifiedBoundary": "canonical Router premise is not claimed satisfied; other consumers unchanged"},
+    {"clause": "B2", "change": "fully bracket primary/reviewer reads at linkage, review start, report acceptance", "unmodifiedBoundary": "no CAS, atomicity, global exclusion, scheduler, or no-writer claim"},
+    {"clause": "B3", "change": "separate owner-snapshot-handoff-v1 keys and bounded exact/legacy reconciliation", "unmodifiedBoundary": "no blind retry/delete/replacement/approval/activation"},
+    {"clause": "B4", "change": "draft inputs may be pending; independent workspace inventory gates substantive review as AWAITING_DELIVERY", "unmodifiedBoundary": "no dependency/status/merge as delivery proof or scheduler gate"},
+    {"clause": "C3", "change": "future FG-02 g02 planning handoff uses a newly generated snapshot from actual FG-02-I primary", "unmodifiedBoundary": "pair remains uncreated until both independent acceptances and existing authorized continuation"},
+    {"clause": "C4", "change": "bind separate reports and actual snapshots at report acceptance", "unmodifiedBoundary": "no self-certification, no source-readback-as-host-proof"}
+  ],
+  "guaranteesNotClaimed": [
+    "provider-finalization receipt",
+    "immutable provider revision",
+    "compare-and-swap",
+    "atomic task linkage",
+    "global writer exclusion",
+    "scheduler enforcement",
+    "proof that no writer exists",
+    "provider-wide size ceiling or truncation guarantee",
+    "delivery into either isolated reviewer workspace"
+  ],
+  "regressionSource": {
+    "path": "scripts/test/paired-task-handoff-policy.test.mjs",
+    "status": "NOT_RUN",
+    "proves": "instruction/source fixture invariants only when separately authorized and executed",
+    "doesNotProve": "live provider behavior, scheduler control, atomicity, or host capability"
+  },
+  "originalRecordsUnmodified": [
+    "Project task #102 full description and lifecycle",
+    "docs/validation/paired-task-orchestration-manifest.json",
+    "docs/validation/paired-task-orchestration-native-readback.json",
+    "docs/validation/paired-task-orchestration-task-106-resume.md",
+    "original source archives and source specification"
+  ],
+  "artifactBindings": [
+    {"path": "docs/validation/failure-gate-v4-series-handoff-policy.md", "utf8Bytes": 13129, "sha256": "5ba6bbc5cf3a9106ed6d4ed2cbacca80fc20b95a3d2fa43ceec5bbe91c3d4228"},
+    {"path": "docs/validation/task-plans/paired-task-orchestration-definition-confirmation.md", "utf8Bytes": 12385, "sha256": "60f7ec6e83d96399d1826bbcd4672cae01efb5ce6c242dd1879e5273fd0f0c5c"},
+    {"path": "docs/validation/paired-task-orchestration-verification-plan.md", "utf8Bytes": 34043, "sha256": "af09da23dbd98184315f232d223f5eb5a120e444f6a37b9870b75df18cd3702d"},
+    {"path": "docs/validation/paired-task-orchestration-review-amendments.md", "utf8Bytes": 11572, "sha256": "38fde01dd8890716b83c14a1f970a78821d4be882fe20ec9c69437c87e32f97a"},
+    {"path": "docs/validation/failure-gate-v4-task-series.md", "utf8Bytes": 464209, "sha256": "e675b914aff0909113d9994fba71d4a548b7c2f4a976e0b40dfd45c7491b828f"},
+    {"path": "docs/validation/failure-gate-v4-series-checkpoint.md", "utf8Bytes": 12174, "sha256": "3a4a6f3126ad7cdfe026fa08ad709d877c712fa9df39e5dc8d23bf9a4edf2f44"},
+    {"path": "docs/validation/paired-task-orchestration-install-handoff.md", "utf8Bytes": 11914, "sha256": "44fbbba343c04ff089def0db6cbcecc304fa72c91ad0037d5543ca9ac1a0a82e"},
+    {"path": "docs/validation/task-plans/fg-02-g02-i.md", "utf8Bytes": 13427, "sha256": "9b12181fdc7b2452b8a363399113b691bd44bd92459706482a0a610d38f3c285"},
+    {"path": "docs/validation/task-plans/fg-02-g02-v.md", "utf8Bytes": 14850, "sha256": "deef19878c27227913bbee179fc59e5a4678467756c8f049f7047f0e05f3b804"},
+    {"path": "scripts/test/paired-task-handoff-policy.test.mjs", "utf8Bytes": 6620, "sha256": "2951eaefd3d096e230ef07151e117c127df240187b3b8f3e3777b0857318e8e9"},
+    {"path": "replit.md", "utf8Bytes": 3717, "sha256": "8ec46d5583f215fbc46b7be3cb02d2b1d45276b343b48c539ecc616473e3e3bd"},
+    {"path": "docs/validation/paired-task-orchestration-handoff-repair.md", "utf8Bytes": 13435, "sha256": "3fdfd9e12dc8eb8038d325297c153c90c94dc457c253940eb384d2693de01d3a"}
+  ]
+}
