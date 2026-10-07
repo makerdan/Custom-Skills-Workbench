@@ -619,6 +619,84 @@ class StoreTests(unittest.TestCase):
         self.assertEqual(self.store.db.execute("SELECT recovery_required FROM runs").fetchone()[0], 1)
 
 
+class PostMergeTests(unittest.TestCase):
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory()
+        self.root = Path(self.temporary.name)
+        writer_directory = self.root / "scripts/failure_gate"
+        writer_directory.mkdir(parents=True)
+        for name in ("run_writer.py", "common.py"):
+            shutil.copyfile(ROOT / "scripts/failure_gate" / name, writer_directory / name)
+        post_merge = self.root / "scripts/post-merge.sh"
+        post_merge.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(ROOT / "scripts/post-merge.sh", post_merge)
+        self.fake_bin = self.root / "fake-bin"
+        self.fake_bin.mkdir()
+        self.call_log = self.root / "pnpm-calls.jsonl"
+        fake_pnpm = self.fake_bin / "pnpm"
+        fake_pnpm.write_text(
+            "#!/usr/bin/env python3\n"
+            "import fcntl, json, os, pathlib, sys\n"
+            "root = pathlib.Path(os.environ['TEST_ROOT'])\n"
+            "fd = os.open(root / '.failure-gate/writers.lock', os.O_RDWR)\n"
+            "try:\n"
+            "    fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)\n"
+            "except BlockingIOError:\n"
+            "    locked = True\n"
+            "else:\n"
+            "    locked = False\n"
+            "    fcntl.flock(fd, fcntl.LOCK_UN)\n"
+            "finally:\n"
+            "    os.close(fd)\n"
+            "with open(os.environ['CALL_LOG'], 'a') as stream:\n"
+            "    stream.write(json.dumps({'args': sys.argv[1:], 'locked': locked}) + chr(10))\n"
+            "if os.environ.get('FAIL_INSTALL') == '1' and sys.argv[1:] == ['install', '--frozen-lockfile']:\n"
+            "    raise SystemExit(17)\n"
+        )
+        fake_pnpm.chmod(0o700)
+
+    def tearDown(self):
+        self.temporary.cleanup()
+
+    def invoke_hook(self, fail_install=False):
+        environment = {
+            "PATH": str(self.fake_bin) + os.pathsep + os.environ.get("PATH", ""),
+            "TEST_ROOT": str(self.root),
+            "CALL_LOG": str(self.call_log),
+        }
+        if fail_install:
+            environment["FAIL_INSTALL"] = "1"
+        return subprocess.run(
+            ["bash", "scripts/post-merge.sh"],
+            cwd=self.root,
+            env=environment,
+            capture_output=True,
+            text=True,
+            timeout=10,
+            check=False,
+        )
+
+    def recorded_calls(self):
+        return [json.loads(line) for line in self.call_log.read_text().splitlines()]
+
+    def test_post_merge_commands_share_gate_lock_and_keep_order(self):
+        result = self.invoke_hook()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        calls = self.recorded_calls()
+        self.assertEqual(
+            [call["args"] for call in calls],
+            [["install", "--frozen-lockfile"], ["--filter", "db", "push"]],
+        )
+        self.assertEqual([call["locked"] for call in calls], [True, True])
+
+    def test_post_merge_install_failure_still_prevents_schema_push(self):
+        result = self.invoke_hook(fail_install=True)
+        self.assertEqual(result.returncode, 17, result.stderr)
+        calls = self.recorded_calls()
+        self.assertEqual([call["args"] for call in calls], [["install", "--frozen-lockfile"]])
+        self.assertEqual([call["locked"] for call in calls], [True])
+
+
 class GateTests(unittest.TestCase):
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory()
@@ -646,6 +724,19 @@ class GateTests(unittest.TestCase):
     def tearDown(self):
         self.gate.close()
         self.temporary.cleanup()
+
+    def test_snapshot_tracks_presence_and_removal_of_alternate_lockfiles(self):
+        initial = snapshot(self.root)
+        lockfile = self.root / "package-lock.json"
+        lockfile.write_text("{}\n")
+        present = snapshot(self.root)
+        lockfile.unlink()
+        removed = snapshot(self.root)
+
+        self.assertNotEqual(initial["digest"], present["digest"])
+        self.assertNotEqual(initial["digest"], removed["digest"])
+        self.assertIn("package-lock.json", initial["files"])
+        self.assertIn("yarn.lock", initial["files"])
 
     def fixture_activate(self):
         with self.gate.store.transaction():

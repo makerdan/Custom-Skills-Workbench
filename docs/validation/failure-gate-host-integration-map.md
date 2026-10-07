@@ -381,3 +381,22 @@ and package-store state. The configured post-merge and deployment paths do not
 use the lock. No separately approved scope for changing these paths or the
 acceptance boundary was present, so their standalone behavior is unchanged;
 `writer_coverage` remains unset and final-writer acceptance remains **BLOCKED**.
+
+## Task 92 — post-merge writer coordination and database boundary
+
+**Observation:** 2026-10-07. This was a source and installed-manifest inventory.
+The post-merge hook, real dependency install, Drizzle push, and live Gate run
+were not invoked.
+
+| Local action and nested effects | Paths/state it can change | Relationship to Gate acceptance |
+| --- | --- | --- |
+| Root `preinstall` removes `package-lock.json` and `yarn.lock` before validating the pnpm user-agent. Neither alternate lockfile existed during this review. Tracked workspace manifests declare no other install lifecycle hook. `pnpm-workspace.yaml` allows dependency build scripts only for `@swc/core`, `esbuild`, `msw`, and `unrs-resolver`; among installed dependency manifests, only `esbuild@0.28.2` declared an install-time hook (`postinstall: node install.js`). | The configured cleanup can remove the two alternate lockfiles. `pnpm install --frozen-lockfile` materializes/prunes `node_modules`, updates `.pnpm/lock.yaml` and `.modules.yaml`, and can update pnpm's package store. The inspected esbuild hook can create/replace its package binary and has an npm-install/network-download fallback under `node_modules`; its fallback directory is cleaned afterward. | The Gate manifest already hashes pnpm's lock and module metadata, but did not represent the presence or absence of the alternate lockfiles. It now records both, including an explicit missing-state digest, so cleanup or later recreation changes the manifest. The package tree and pnpm store remain outside that manifest. |
+| `.replit` still calls `scripts/post-merge.sh` with the existing 120-second timeout. The hook now runs the same frozen install followed by the same `db push`, as one `run_writer.py` command under `.failure-gate/writers.lock`. A failed install still prevents the schema push. Isolated fixture tests assert that both commands execute while holding the shared lock and that install failure short-circuits the push. | The shared lock serializes this configured route with Gate's cooperative writer sections. It does not make arbitrary editor, Agent, checkout, or external writers cooperate. The lock is released between `Gate.execute` and `Gate.complete`; a post-merge operation in that gap is not proven harmless for files excluded from the manifest. | This is the selected coordination boundary for the post-merge route, not proof of complete writer coverage. No real post-merge event or install was run. |
+| `db push` maps to `drizzle-kit push --config ./drizzle.config.ts`, reads `lib/db/src/schema/index.ts`, and mutates the PostgreSQL database named by `DATABASE_URL`; it does not configure migration-file output. | Database state is external to the source/dependency manifest. The registered Gate tiers run typecheck, tests, and Gate contract tests. API tests substitute a local mock for `@workspace/db`, and the Gate declares local mock DB/storage/model fixtures. | The schema push is isolated from current accepted validation: current validation uses mocks and does not accept evidence based on the external database. The push remains in the standalone post-merge hook and runs under the shared lock. If validation begins using a real database, its identity/schema state must be bound to evidence or the test DB must be isolated; the source hash alone is insufficient. |
+
+The shared lock is cooperative and protects Gate's active execution and terminal
+commit sections from this post-merge writer. It does not by itself bind every
+install side effect across the gap between those sections, and the full host
+writer/handoff set remains unproven. `writer_coverage` therefore remains unset;
+final-writer acceptance remains **BLOCKED**. The independent writer-coverage
+claims in the earlier integration map remain in force.

@@ -29,7 +29,8 @@ def snapshot(root):
               ".agents/skills/failure-gate-v4"]
     roots = [root / item for item in inputs]
     files = [root / item for item in ("package.json", "pnpm-lock.yaml", "pnpm-workspace.yaml",
-                                     "tsconfig.json", "tsconfig.base.json", "replit.md")]
+                                     "tsconfig.json", "tsconfig.base.json", "replit.md",
+                                     "package-lock.json", "yarn.lock")]
     for directory in roots:
         for current, dirs, names in os.walk(directory, followlinks=False):
             dirs[:] = sorted(name for name in dirs if name not in SKIP and
@@ -38,9 +39,19 @@ def snapshot(root):
                 if not name.endswith((".tsbuildinfo", ".pyc")):
                     files.append(Path(current) / name)
     for path in sorted(set(files)):
+        relative = str(path.relative_to(root))
+        if relative in ("package-lock.json", "yarn.lock"):
+            try:
+                path.lstat()
+            except FileNotFoundError:
+                result[relative] = hashlib.sha256(b"failure-gate:missing-input").hexdigest()
+                continue
+            except OSError as error:
+                raise Blocked(f"alternate lockfile state unavailable: {relative}") from error
+            if path.is_symlink():
+                inside(root, relative, must_exist=False)
         if not path.exists():
             continue
-        relative = str(path.relative_to(root))
         inside(root, relative)
         data = read_bytes(path)
         total += len(data)
