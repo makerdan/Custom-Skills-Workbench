@@ -1,0 +1,130 @@
+Yes—provided as a **project-local, read-only inspection route**, not as a claim that the current host already has one.
+
+## What the skill explicitly requires
+
+- A capability manifest must map actual host interfaces for approvals, task/plan records, checked execution, completion, persistence, recovery, and monitoring. It must identify each capability as available, missing, or unavailable.  
+  Source: `.agents/skills/failure-gate-v4/SKILL.md`, **“1. Discover, then install or operate”**; `.agents/skills/failure-gate-v4/reference/implementation.md`, **“Host adaptation”**.
+
+- The manifest must also include monitor health, durable file-log location/access, automatic read/query mappings, evidence-health, lineage, retention, export, and completion-mode reporting.  
+  Source: `.agents/skills/failure-gate-v4/reference/implementation.md`, **“Host adaptation”**.
+
+- For overlap/duplicate/unauthorized-validation questions, use the execution-monitoring contract’s **bounded read-only investigation route**.  
+  Source: `.agents/skills/failure-gate-v4/SKILL.md`, **“1. Discover, then install or operate”**; `.agents/skills/failure-gate-v4/reference/implementation.md`, opening paragraphs.
+
+- Skill-bundled tests are only policy/fixture simulations; they do **not** attest a host, approve activity, activate a route, or prove a live completion checker.  
+  Source: `.agents/skills/failure-gate-v4/README.md`, **“Package contents”**.
+
+## Recommended read-only handoff inspection
+
+Implement or use a single command/endpoint conceptually equivalent to:
+
+```text
+failure-gate inspect-handoffs --task <local-task-id> --read-only
+```
+
+Use the project’s real host tooling and storage—not this literal command name. It should perform no task activation, validation launch, approval creation, claim, lock acquisition, cleanup, or state repair.
+
+### 1. Resolve the authoritative records
+
+Read and identify:
+
+1. Local task record and local task ID.
+2. Canonical plan and its digest.
+3. Tier definition and its digest.
+4. Authorization/decision record and authorization version.
+5. Latest applicable validation evidence and tested snapshot identity.
+6. Completion-checker result, if a local checker exists.
+7. Execution-monitor records and durable telemetry for that task.
+8. Evidence-index entries and health/availability metadata.
+9. If runtime reclaim is configured: attestation, scoped approval, claim, and outcome evidence.
+
+Report the source location, record identifier, digest/version, timestamp, and parser/reader result for every item. Redact secrets and credentials.
+
+### 2. Classify every handoff without mutating state
+
+For each boundary, produce one of:
+
+- `VERIFIED`: authoritative source exists and bindings agree.
+- `MISMATCH`: records exist but task ID, plan digest, tier digest, snapshot, policy version, or authorization version disagree.
+- `MISSING`: required record or route is absent.
+- `UNAVAILABLE`: the host interface cannot currently be read.
+- `UNSUPPORTED`: the project has no configured implementation for that handoff.
+- `NOT_APPLICABLE`: e.g., runtime reclaim is not configured.
+
+Suggested handoff rows:
+
+| Handoff | Read-only verification |
+|---|---|
+| Plan → activation decision | Task ID, plan digest, tier digest, policy/auth version match |
+| Decision → checked runner | Runner record names same local task ID and only authorized tier |
+| Runner → evidence | Evidence binds actual tested snapshot/environment and parsed outcome |
+| Evidence → completion | Completion reader recognizes applicable current evidence; do not convert missing/failed evidence into pass |
+| Execution → monitor | Monitor log shows known run identity, timing, resource/single-flight status, and no conflicting active run |
+| Evidence → recovery/export | Evidence index resolves the actual store and read-only health/lineage/export metadata |
+| Approval → runtime reclaim, if applicable | Only inspect attestation, approval scope, claim status, revocation/time state, and outcome journal; never signal or reclaim |
+
+### 3. Run safe fixture tests separately
+
+A read-only host inspection proves only what can be read now. Test the inspector itself with **synthetic fixtures**, kept separate from live host evidence:
+
+- valid aligned handoff chain → `VERIFIED`
+- missing authorization → `MISSING`
+- changed plan/tier digest → `MISMATCH`
+- stale tested snapshot after source change → evidence not current
+- duplicate active-run monitor records → conflict detected
+- unavailable telemetry/evidence store → `UNAVAILABLE`
+- malformed record/parser error → fail closed
+- unsupported reclaim route → `UNSUPPORTED`
+
+Label these as **fixture results**, never as production/host evidence. This distinction is required by the skill’s staging/lifecycle guidance and README caveats.
+
+### 4. Enforce read-only boundaries
+
+The inspector should be designed to reject or omit any operation that would:
+
+- create/update task, approval, evidence, completion, allocator, or baseline records;
+- launch tests, scripts, hooks, diagnostics, or recovery actions;
+- acquire writer locks or alter monitor state;
+- invoke reclaim signals, cleanup, or runtime ownership changes;
+- call platform task-completion/merge/apply actions.
+
+A read-only inspection may discover that a required route is absent. Per the skill, that is a blocker for the related claim—not a reason to infer success or fall back to a lighter check.
+
+## Practical output format
+
+Produce a durable report outside `.local/`, for example in the project’s existing diagnostics/report location:
+
+```json
+{
+  "mode": "read-only",
+  "task_id": "local-task-id",
+  "overall": "BLOCKED",
+  "handoffs": [
+    {
+      "name": "plan_to_activation",
+      "status": "VERIFIED",
+      "sources": ["<authoritative project-local source>"],
+      "bindings_checked": ["task_id", "plan_digest", "tier_digest", "policy_version"]
+    },
+    {
+      "name": "runner_to_evidence",
+      "status": "MISSING",
+      "reason": "No evidence record could be resolved for the current tested snapshot"
+    }
+  ],
+  "writes_performed": false,
+  "validation_launched": false,
+  "fixture_tests": {
+    "status": "NOT_RUN"
+  }
+}
+```
+
+`overall` should be `VERIFIED` only when every **applicable required** handoff is verified. It should be `BLOCKED` for missing, unavailable, malformed, or conflicting required records.
+
+## Important limitation
+
+This is cooperative, project-local verification—not tamper-proof enforcement and not proof of a platform task lifecycle. The supplied skill does not include an installed registry, runner, approval source, monitor, or completion checker.  
+Source: `.agents/skills/failure-gate-v4/SKILL.md`, **“Purpose and boundary”**; `.agents/skills/failure-gate-v4/README.md`, **“Package contents”**.
+
+To turn this into a concrete project command, the needed next input is the project’s capability manifest (or the actual locations/interfaces for task records, approvals, evidence, monitor logs, and completion checks).
