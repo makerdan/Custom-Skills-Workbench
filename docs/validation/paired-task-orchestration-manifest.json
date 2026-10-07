@@ -1,0 +1,339 @@
+{
+  "schema": "pto-document-delivery-manifest-v1",
+  "observationDate": "2026-10-07",
+  "project": {
+    "root": "/home/runner/workspace",
+    "origin": "https://github.com/makerdan/Custom-Skills-Workbench",
+    "taskNamespace": "current Skills Workbench Project task-board",
+    "immutableUuid": "UNAVAILABLE",
+    "preAuthoringRevision": "e8038f36ba88615ea7cd4c8c288cf39f396baf6c"
+  },
+  "primary": {
+    "taskRef": "#102",
+    "observedFullNativeDescriptionSha256": "6b2a457b2d3cbe1ffc06e3edb6ce0efa3cc1e579637297ead8b1660ed853cd06",
+    "finalizationEvidence": "UNAVAILABLE; not inferred from assignment/hash/status"
+  },
+  "obligationSources": [
+    {
+      "path": "attached_assets/paired-task-orchestration_1791347147544.zip",
+      "sha256": "5e99a095a57a7646ac5203b43642312ffa0bd2cef19106c8b77897fdb2a520b7",
+      "expectedDirectories": [
+        ".agents/skills/paired-task-orchestration/",
+        ".agents/skills/paired-task-orchestration/references/"
+      ],
+      "expectedFiles": [
+        ".agents/skills/paired-task-orchestration/SKILL.md",
+        ".agents/skills/paired-task-orchestration/references/host-hook-contract.md",
+        ".agents/skills/paired-task-orchestration/references/series-state-and-handoff.md",
+        ".agents/skills/paired-task-orchestration/references/acceptance-and-confirmation.md"
+      ]
+    },
+    {
+      "path": "attached_assets/failure-gate-v4-piecemeal-task-series_1791259976201.txt",
+      "sha256": "7bd8aadd6007ed7c01f118d6cbb83d70ea52d79cecfc6eaafc2234ee869eb026",
+      "pieces": 18,
+      "taskPayloads": 36
+    }
+  ],
+  "preInstall": {
+    "canonicalPackage": "ABSENT",
+    "activePlan": {
+      "gitLocator": "e8038f36ba88615ea7cd4c8c288cf39f396baf6c:docs/validation/failure-gate-v4-task-series.md",
+      "sha256": "16d612374ae20b6dff178cb52c37839c2d1e48c0390410fc2fb64b22e109bf1c"
+    },
+    "checkpoint": {
+      "gitLocator": "e8038f36ba88615ea7cd4c8c288cf39f396baf6c:docs/validation/failure-gate-v4-series-checkpoint.md",
+      "sha256": "8afa805bbd91c5f9ee94fc7ad6289a27b6aac2511a934d988ca13bb9177b5b3c"
+    }
+  },
+  "canonicalClosure": [
+    {
+      "path": ".agents/skills/failure-gate-v4/README.md",
+      "sha256": "c7bcae08f4e707413bf8f3a4d8bb9563e66bb75b6c4942fb1875411644973860"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/SKILL.md",
+      "sha256": "c62037ac28404b815808fdc2428c2d17b52465d4c1f023fa50c0d5622898b4bb"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/acceptance.md",
+      "sha256": "5d89de3cac03813485cc1781fa67c47c59e659c46fae59ef1d39dd2b1db21bfe"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/adapters/posix-writer-lock/README.md",
+      "sha256": "3d635b1ae2307beb79e2369a616ac7b2a9d28bedec6daf80655fd1d4aa9a39d2"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/adapters/posix-writer-lock/tests/test_writer_lock.py",
+      "sha256": "777035d2a9ceae4c976734125869686b9d713f0dec008dba18692e119a8eedb8"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/adapters/posix-writer-lock/writer_lock.py",
+      "sha256": "791a20ee9909127f2d03b577a6573cc382317cf8a58a898f146a89db5befe503"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/authorized-continuation.md",
+      "sha256": "3dc5590aca87c679b4dbfdcc0fe29c5fdc73192a816b3f82bfd326b28933d8b3"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/evidence-and-recovery.md",
+      "sha256": "d2c79cd89a5ab8eb6a229df78c07ed0a05d89889446317b724c457bb60667d9a"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/execution-monitoring.md",
+      "sha256": "b67b9ccc044bcedee8e8b056ccf91a74cee479535b91aaa3455642e09200377b"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/implementation.md",
+      "sha256": "4b1b756c0d1726b240451a6a82e563a722be2dc9c879f4bb7d54f347d26f2a16"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/owner-directed-closure.md",
+      "sha256": "9dff9d6e28e10b70224755d63a0f1aeb44be9f789c47a5700bab86dc46d3b4e4"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/runtime-reclaim.md",
+      "sha256": "bceea11fe66e7d4ef0433ee8306f87f3ec5cdc1520215fdf59393afcbbedb51f"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/staging-and-lifecycle.md",
+      "sha256": "a9ab52d787e44c7aa4e199c8662882521d8ccf0ef8a6de0706c7853b5fa69800"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/validation-budgets.md",
+      "sha256": "62c19d7ef9cbedf9505ba45b3d45460fa909126db30a83fbeb43fa2ae7a09866"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/scripts/run-authoring-tests.py",
+      "sha256": "02e14d9c90eb07d214de1c0b7cc64ba546d891a882feadf292477b85d861b094"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/tests/authoring_supervision.py",
+      "sha256": "c759dee01e36b2ea0acee65d80b7e2a0d2b0977725f52d09dc6ccf2d672a7698"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/tests/test_activation_policy_guidance.py",
+      "sha256": "de8f609fe222255d68c471c86d3735d983fabc4ca54583f9aadd7858f72a6e44"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/tests/test_audit_regressions.py",
+      "sha256": "f27ec34c92cbac232df86d31dc909784e8c2ed27bacc91a733df050a9fec0df9"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/tests/test_authorized_continuation.py",
+      "sha256": "b527434f87f37a36f1fcbea9f0946ac8f5c1d6a1ddab3b3b0712d6b21dfb24d0"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/tests/test_runtime_reclaim_contract.py",
+      "sha256": "4c4d5d589b662642e8eef20347af34514a0cb6fb657b0eb81e61fcd7626b2bbd"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/tests/test_staging_lifecycle.py",
+      "sha256": "ac1e3a013980d051e99ee182b5ae2200497af19d415d76c64961365742020381"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/tests/test_validation_budgets.py",
+      "sha256": "75823a4f3b274a58b7312b77409c722df5a89136be71f98fc026b36f068c26e2"
+    },
+    {
+      "path": ".agents/skills/regression-guard/SKILL.md",
+      "sha256": "99b8edc59eeac835656b1098402d18b53525163fd763e18f832c6ebda2f91285"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/CHANGELOG.md",
+      "sha256": "5fdc24c93ff3db13866f6d80e37df10f780be4fa292b5476e4818cf1e6885b51"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/README.md",
+      "sha256": "873ea815bfbd1d0f88834e0e2c6a5b66b69d39bc21681f21d4bfa51bb1da6a12"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/SKILL.md",
+      "sha256": "49e3db86b0f5b8c7efba871d7404c40336cb3caf544427a429065b1088f6586f"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/references/custom-skill-command-manifest.json",
+      "sha256": "4b143695c17095a9321e024b540ebb0459088cb6851507e83a9322ae72d3644c"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/references/custom-skill-commands.md",
+      "sha256": "b65b8d5ff288b289fc7ab0ca2d11cc9bd45ae7a0cc6d22045d73016208260bd2"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/references/delivery-reconciliation.md",
+      "sha256": "fd908bd54a3d2db4d25cc6a3f2e6fbdfece0e9276a28e02db48d5dcfdfa3f3ca"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/references/handoff-binding-and-recovery.md",
+      "sha256": "7e95d74645e0c1184b2ae24488ffd5936237fb6fc1d9596734a3e57bb1fe0ff5"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/references/installation-verification-plan.md",
+      "sha256": "99bc98079967ed47f8f524c187b9823fc99dddca55d4b61a9220dcbb5b3f8cb9"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/references/router-task-handoff-acceptance.md",
+      "sha256": "811bc5201d5067a4dc09d74c73880c4798f3407d7955182a923c95b3b897c849"
+    },
+    {
+      "path": ".agents/skills/paired-task-orchestration/SKILL.md",
+      "sha256": "cbc4e9209b00c7b9bf9eee4966cc5e1e31252942b1001b027b923ab5c00d9415"
+    },
+    {
+      "path": ".agents/skills/paired-task-orchestration/references/host-hook-contract.md",
+      "sha256": "7b9fe6dfaf0290450e4f1ffdeefcf1b58158fc8546628e643ea1351d3da2f43e"
+    },
+    {
+      "path": ".agents/skills/paired-task-orchestration/references/series-state-and-handoff.md",
+      "sha256": "e0fb9d7e2e2e80c7c7f2b36c2356aceda09f10f56118255392cda97899fb5b3c"
+    },
+    {
+      "path": ".agents/skills/paired-task-orchestration/references/acceptance-and-confirmation.md",
+      "sha256": "c83bb5977a42866b67bb7c029ca16512df23c4fd7da2aae04884ce3b4f39db3c"
+    }
+  ],
+  "historicalEvidence": [
+    {
+      "path": "replit.md",
+      "sha256": "88b670b53cdf68bd145b1283c89dd7b945e9ef006f016b88db9ab37f7d6c9ad5"
+    },
+    {
+      "path": "docs/validation/failure-gate-fg-01-source-manifest.md",
+      "sha256": "40034926aa094bef673a67623146783d52f682b63a54b7ef58312a5d875c885b"
+    },
+    {
+      "path": "docs/validation/failure-gate-fg-01-obligation-ledger.md",
+      "sha256": "9f4801eaba872423abb9cd565e3de59c30950d514f1589a8643c037847e0ce77"
+    },
+    {
+      "path": "docs/validation/failure-gate-fg-01-verifier-report.md",
+      "sha256": "6be495b2168d499633bdfb6dbac019762e93e80aa7ceb71c3a0746643589ec30"
+    },
+    {
+      "path": "docs/validation/failure-gate-fg-02-stage-handoff.md",
+      "sha256": "3e53c935b9698bf92c8d6d9941610291f9ced6716559beb333640b5c16ff341f"
+    },
+    {
+      "path": "docs/validation/failure-gate-fg-02-owner-closeout.md",
+      "sha256": "9f42ab4be0f58995924b8de8564798c55657bdd59e7f1115344d4c6f47cc4b83"
+    },
+    {
+      "path": "docs/validation/failure-gate-fg-02-bootstrap-admission-proposal.md",
+      "sha256": "7a518dfe3d1fbee07df004405abc74a5be136564863378b46a5b427461e84117"
+    },
+    {
+      "path": "docs/validation/failure-gate-fg-02-factual-recheck.md",
+      "sha256": "91820486267c7132479ea9470a4789965bfe15c6b487e80c343972b7e2419baa"
+    },
+    {
+      "path": "docs/validation/failure-gate-capabilities.json",
+      "sha256": "494adf686f8694f0f7d1b22e129e253d921a09eef39d1cf2e552710692f03be2"
+    }
+  ],
+  "immutableIntakeResults": [
+    {
+      "taskRef": "#99",
+      "gitLocator": "249e7a83c0ca14d81da5464aee1159ffd08bbf40:docs/validation/failure-gate-fg-02-source-stage-approval-intake.md"
+    },
+    {
+      "taskRef": "#100",
+      "gitLocator": "902b8b8b2191d137e4805115a2b5827bb36f08e9:docs/validation/failure-gate-fg-02-budget-accounting-intake.md"
+    },
+    {
+      "taskRef": "#101",
+      "gitLocator": "3151b83eea52c3cc78b9288d6311ed2ee47e9778:docs/validation/failure-gate-fg-02-supervisor-evidence-intake.md"
+    }
+  ],
+  "packageParity": [
+    {
+      "path": ".agents/skills/paired-task-orchestration/SKILL.md",
+      "bytes": 15475,
+      "parity": "exact-content-match-on-separate-archive-and-canonical-readback"
+    },
+    {
+      "path": ".agents/skills/paired-task-orchestration/references/host-hook-contract.md",
+      "bytes": 8642,
+      "parity": "exact-content-match-on-separate-archive-and-canonical-readback"
+    },
+    {
+      "path": ".agents/skills/paired-task-orchestration/references/series-state-and-handoff.md",
+      "bytes": 10535,
+      "parity": "exact-content-match-on-separate-archive-and-canonical-readback"
+    },
+    {
+      "path": ".agents/skills/paired-task-orchestration/references/acceptance-and-confirmation.md",
+      "bytes": 7200,
+      "parity": "exact-content-match-on-separate-archive-and-canonical-readback"
+    }
+  ],
+  "deliveredFiles": [
+    {
+      "path": ".agents/skills/paired-task-orchestration/SKILL.md",
+      "sha256": "cbc4e9209b00c7b9bf9eee4966cc5e1e31252942b1001b027b923ab5c00d9415"
+    },
+    {
+      "path": ".agents/skills/paired-task-orchestration/references/host-hook-contract.md",
+      "sha256": "7b9fe6dfaf0290450e4f1ffdeefcf1b58158fc8546628e643ea1351d3da2f43e"
+    },
+    {
+      "path": ".agents/skills/paired-task-orchestration/references/series-state-and-handoff.md",
+      "sha256": "e0fb9d7e2e2e80c7c7f2b36c2356aceda09f10f56118255392cda97899fb5b3c"
+    },
+    {
+      "path": ".agents/skills/paired-task-orchestration/references/acceptance-and-confirmation.md",
+      "sha256": "c83bb5977a42866b67bb7c029ca16512df23c4fd7da2aae04884ce3b4f39db3c"
+    },
+    {
+      "path": "docs/validation/failure-gate-v4-task-series.md",
+      "sha256": "fe60160406a3be4be56122b757cc06a5fac19685891318bd6d0c81baff4f3c29"
+    },
+    {
+      "path": "docs/validation/failure-gate-v4-series-checkpoint.md",
+      "sha256": "5b17202c08525d68cb69e95e56747e1e595685df7575d03778ae36c5405ca2fa"
+    },
+    {
+      "path": "docs/validation/task-plans/fg-02-g02-i.md",
+      "sha256": "33e6c69ae0f914d987f1addcb11e588d11a32ea7b9757fe84006029a3c038a62"
+    },
+    {
+      "path": "docs/validation/task-plans/fg-02-g02-v.md",
+      "sha256": "aab5c9f1bbda2a337ac407b5d212b397f125ac720df344c61c4f5d7cddcbc740"
+    },
+    {
+      "path": "docs/validation/paired-task-orchestration-install-handoff.md",
+      "sha256": "098a03fcbbbfac78942596b2c8a102e1850b98770b04d24f405ffac4d1c9e5b3"
+    },
+    {
+      "path": "docs/validation/paired-task-orchestration-verification-plan.md",
+      "sha256": "1de46d28e6fb0780b2c4bdf17c023721ab5ecb53d9e833b535127dc2ebbfa8e0"
+    },
+    {
+      "path": "docs/validation/paired-task-orchestration-native-readback.json",
+      "sha256": "0443cf3d759f455b1e6df56a26cc37f334a1bbd18e6231add38481e06ab3587a"
+    },
+    {
+      "path": "docs/validation/paired-task-orchestration-readiness-proposal.json",
+      "sha256": "3fcf2436ff86caccb10b25f506820b043a61149c7829ab620e2cd990cb4bf958"
+    }
+  ],
+  "readbackEvidence": {
+    "method": "Separate complete archive/canonical content reads, immutable Git/native/document readback. No executable validation.",
+    "independentReview": "PENDING; installer source parity is not independent verification",
+    "runtimeMirror": "UNVERIFIED / not used",
+    "canonicalConfirmationCompanion": "skill-install-confirmation absent; applicable contract resolution required",
+    "nativeVerifier": "NOT CREATED; finalization/companion/batching gate unresolved",
+    "readinessProposal": {
+      "taskRef": "#103",
+      "dependsOn": [
+        "#102"
+      ],
+      "role": "Documentary prerequisite finding only, not independent verifier or series task"
+    },
+    "freshFG02Pair": "NOT CREATED; full tracked g02 drafts only",
+    "reportDestinations": {
+      "definitionOnly": "docs/validation/paired-task-orchestration-definition-confirmation.md",
+      "packagePlan": "docs/validation/paired-task-orchestration-verification.md"
+    }
+  },
+  "publicationRule": "Manifest deliberately excludes itself. Missing/mismatched files suspend downstream preparation until authorized coherent publication/readback. No atomic multi-file or clone-wide exclusion claim."
+}

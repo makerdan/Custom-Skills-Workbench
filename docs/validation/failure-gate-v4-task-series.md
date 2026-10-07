@@ -1,59 +1,118 @@
-# Failure Gate v4: piecemeal implementation and verification task series
+# Failure Gate v4 — project-bound invocation-driven paired series
 
-## What this delivers
+<!-- regression-guard: not-applicable -->
 
-Eighteen dependency-ordered pieces, each with an implementation task followed by a separate verification-and-repair task: 36 proposed tasks.
+## Binding and authorized mode
 
-This is a written task series, not an installation, approval, validation result, or set of created platform tasks. No target project has been selected. Bind it to the intended project in Piece 01; do not assume a project, previous task IDs, commands, budgets, stack, or approval interface.
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Reconfirm the actual repository and task context on every invocation; a display title alone is insufficient. Series identity: Custom-Skills-Workbench/failure-gate-v4/18-piece. Orchestration revision: paired-package-2026-10-07, bound by the four-file digest manifest.
 
-Labels such as `FG-03-I` and `FG-03-V` are planning labels only. Replace them with actual host task references if these tasks are subsequently created. Platform task IDs and Failure Gate project-local authorization IDs remain different identities.
+This document REPLACES the prior active generic plan entirely. It is the single active backlog, not a second specification. The immutable original attachment remains the obligation source, SHA-256 7bd8aadd6007ed7c01f118d6cbb83d70ea52d79cecfc6eaafc2234ee869eb026. Prior active-plan bytes are recoverable at e8038f36ba88615ea7cd4c8c288cf39f396baf6c:docs/validation/failure-gate-v4-task-series.md (SHA-256 16d612374ae20b6dff178cb52c37839c2d1e48c0390410fc2fb64b22e109bf1c). No unavailable historical Router bytes are reconstructed.
 
-Authoritative implementation requirements come exclusively from the canonical `.agents/skills/failure-gate-v4/` package, including its linked references. The canonical `.agents/skills/skill-application-router/` package supplies verification/handoff requirements. Do not substitute alternate skill definitions or runtime mirrors.
+Scope: Install definition/package + Plan/reconcile this series. Current request permits conditional draft preparation of the fresh FG-02 pair only AFTER independent package and replacement-plan acceptance. It grants no future task approval, code staging, launch, repair execution, budget, authority, hooks, polling, automatic merge or deployment. Reuse canonical .agents sources only. The package was absent before this new installation.
 
-## Execution order
+## Current pair, history and ordered window
 
-Default sequence:
+Piece 01 planning/discovery alone is accepted by the existing independent report/reconciliation (#68/#69 and #82). Historical FG-02 #96 is MERGED by owner-directed documentary/proposal closure; adapter/schema/regression sources were NOT delivered. #97 is archived and is not a viable verifier. #99–#101 delivered assessment dossiers with missing applicable decision, grant/accounting and independent supervisor, not those prerequisites themselves. Actual full task readback is retained in paired-task-orchestration-native-readback.json. Task #2 is unrelated and supplies no series binding.
 
-`FG-01-I → FG-01-V → FG-02-I → FG-02-V → … → FG-18-I → FG-18-V`
+Earliest unfinished piece: FG-02, generation g02 (fresh successor to historical g01, not reopening). Current native pair: NONE CREATED; full draft payloads prepared in docs/validation/task-plans/fg-02-g02-i.md and fg-02-g02-v.md. State: BACKLOG_READY / preparation gated on independent acceptance and host binding prerequisites. Later FG-03–FG-18 remain backlog only. Historical accepted cards and unrelated tasks are untouched.
 
-Each verifier depends on the delivered output of its implementation task. Each subsequent implementation task depends on accepted verification of the preceding piece's **declared stage**, not merely a Done label.
+| Piece | Stage | Window / prerequisite |
+|---|---|---|
+| 01 | Planning/discovery | Historical accepted planning/discovery; no new pair |
+| 02 | Source/proposal | Fresh g02 pair only, after independent package/plan acceptance |
+| 03 | Source | Backlog; accepted FG-02-V declared stage and actual delivered inputs |
+| 04 | Source | Backlog; accepted FG-03-V declared stage and actual delivered inputs |
+| 05 | Bootstrap runtime | Backlog; accepted FG-04-V declared stage and actual delivered inputs |
+| 06 | Bootstrap runtime | Backlog; accepted FG-05-V declared stage and actual delivered inputs |
+| 07 | Bootstrap runtime | Backlog; accepted FG-06-V declared stage and actual delivered inputs |
+| 08 | Bootstrap runtime | Backlog; accepted FG-07-V declared stage and actual delivered inputs |
+| 09 | Bootstrap runtime | Backlog; accepted FG-08-V declared stage and actual delivered inputs |
+| 10 | Bootstrap runtime | Backlog; accepted FG-09-V declared stage and actual delivered inputs |
+| 11 | Bootstrap runtime | Backlog; accepted FG-10-V declared stage and actual delivered inputs |
+| 12 | Bootstrap runtime | Backlog; accepted FG-11-V declared stage and actual delivered inputs |
+| 13 | Bootstrap runtime | Backlog; accepted FG-12-V declared stage and actual delivered inputs |
+| 14 | Bootstrap runtime | Backlog; accepted FG-13-V declared stage and actual delivered inputs |
+| 15 | Bootstrap runtime | Backlog; accepted FG-14-V declared stage and actual delivered inputs |
+| 16 | Bootstrap runtime | Backlog; accepted FG-15-V declared stage and actual delivered inputs |
+| 17 | Conditional scoped runtime | Backlog; accepted FG-16-V declared stage and actual delivered inputs |
+| 18 | Ordinary-route acceptance | Backlog; accepted FG-17-V declared stage and actual delivered inputs |
 
-The first four pieces deliver source, records, designs, and inert adapters. Their verifiers can accept that expressly limited source-delivery stage through permitted readback; they cannot declare runtime behavior verified. Piece 05 must prove the applicable runtime requirements from Pieces 02–04 before later runtime-dependent work can proceed. This avoids a circular bootstrap dependency without disguising untested code as operational enforcement.
+FG-02–04 source acceptance defers runtime proof to FG-05, not ordinary activation. FG-05 requires authentic current approval, finite accounting and real independent safe admission. FG-15 owns actual isolated allocator restore. FG-17 is separately gated conditional reclaim. FG-18 alone owns ordinary caller acceptance and authorized singular cutover.
 
-Where an applicable approved route already permits safe validation, perform the authorized checks rather than unnecessarily postponing them. Inert-only permission never permits imports, syntax checks, tests, builds, store initialization, service wiring, or signals.
+## Invocation, task handoff and recovery protocol
 
-Ordinary-task cutover is reserved for Piece 18. Runtime reclaim is a separate, conditional capability in Piece 17. Neither source delivery nor successful bootstrap execution activates ordinary tasks.
+No hook is installed/registered/deployed/verified/enabled. Automatic progression unavailable/unverified; invoke “Prepare the next pair for this series” to reconcile, not bypass gates. The present restart instruction covers fresh FG-02 only; preparing FG-03+ requires a later actual scoped instruction. No background listener/polling, task execution, approval or auto-merge follows.
 
-| Piece | Implementation task | Following verification-and-repair task | Deliverable stage |
-|---|---|---|---|
-| 01 | Bind project, canonical contract, and installation scope | Verify discovery and obligation coverage; repair omissions | Planning/discovery |
-| 02 | Stage bootstrap authority, budget, and dispatch adapters | Verify exact scope, real authority mappings, and inert boundaries | Source/proposal |
-| 03 | Stage transactional coordinator, allocator, and lifecycle foundation | Verify schemas, transactions, and non-reuse implementation | Source |
-| 04 | Stage independent supervision and bounded capture | Verify supervision wiring and dispatch-denial paths | Source |
-| 05 | Establish safely admitted bootstrap runtime proof | Verify real bootstrap acceptance; repair and re-prove | Bootstrap runtime |
-| 06 | Install tier registry, scaffold, guards, and planning discovery | Verify coverage and pre-activation planning behavior | Bootstrap runtime |
-| 07 | Install approval binding, activation, and authorization changes | Verify decision sources and atomic lifecycle behavior | Bootstrap runtime |
-| 08 | Install input/configuration preflight, snapshots, and result parsing | Verify real input integrity and complete raw results | Bootstrap runtime |
-| 09 | Install checked execution, transitive guards, and resource coordination | Verify one-tier dispatch, single-flight, and child lifetimes | Bootstrap runtime |
-| 10 | Install execution telemetry and automatic read-only lookup | Verify persistent file trail, coverage, and investigations | Bootstrap runtime |
-| 11 | Install bounded diagnostic and comparison capabilities | Verify three-retry rules, accounting, and scope separation | Bootstrap runtime |
-| 12 | Install failure classification, baseline matching, and ownership | Verify provenance, acceptance exceptions, and repair obligations | Bootstrap runtime |
-| 13 | Install final-writer coordination and local validated completion | Verify installed final-writer race and completion checks | Bootstrap runtime |
-| 14 | Install owner-directed administrative closure and readers | Verify independent closure semantics and retained failures | Bootstrap runtime |
-| 15 | Install allocator backup/restore and retained-error recovery | Verify actual isolated restoration and exact recovery handling | Bootstrap runtime |
-| 16 | Install evidence health, retention, export, and visibility | Verify all eight evidence/recovery capabilities | Bootstrap runtime |
-| 17 | Implement separately gated runtime reclaim where applicable | Verify protected reclaim; repair or retain an explicit block | Conditional scoped runtime |
-| 18 | Complete caller acceptance and authorized ordinary-route cutover | Independently verify the whole installation; repair remaining gaps | Ordinary-route acceptance |
+On invocation, read the full canonical Paired package, Failure Gate and applicable Router closure, original specification, checkpoint, actual full native tasks and accepted reports; compare the manifest before affected work. Native metadata is not local authority. Maintain one unfinished pair for this series; do not modify unrelated tasks or hide history.
 
-## Shared task contract — include in every actual task
+Primary creation binding: compact JSON ["pto-primary-v1", verifiedProjectIdentity, specificationSha256, pieceKey, canonicalPrimaryScope, draftPlanSha256, generation]. Verifier duplicate key: compact JSON ["router-handoff-key-v1", verifiedProjectIdentity, exactTargetSkillId, actualPrimaryNamespaceAndRef, finalizedNativePrimaryPlanSha256, canonicalVerificationScope]. Order semantic fields; no ambiguous delimiter concatenation. Source availability/digest is separate evidence, not a key replacement. Unknown native refs/digests remain PENDING and MUST be resolved before creation.
 
-These instructions are part of **all 36 task payloads**. Do not create tasks containing only the short titles below. When materializing tasks, combine this shared contract with the relevant piece's specific payload.
+Search exact and applicable legacy keys, then read complete matching records, including terminal/archived and partial creations. Title lookup only discovers candidates. Reuse only eligible matching plans/dependency/readiness; do not duplicate running work. No verified atomic idempotency/global coordinator exists in the inspected interface. Single-invocation serialization and bracketing reads are cooperative, not clone-wide exclusion. Multiple matches or unknown writes suspend creation.
+
+Finish and durably commit/finalize the primary plan through a supported route; use an actual existing-record barrier if already committed. A delay, repeated identical reads, Draft/Active/Ready label or dependency alone is NOT finalization. Bounded reconciliation may inspect at most the exact candidates/known refs during one invocation; if finalization evidence is unavailable, retain tracked payload and ask the task integration owner for that exact evidence/route. No indefinite polling or artificial rewrites.
+
+Immediately before attachment re-read the full primary and compare its authoritative finalized representation. Create/reuse the verifier with the actual primary dependency only through the permitted route. Read its ENTIRE persisted executable payload, coverage matrix, report destination, key and dependency; re-read primary immediately after linkage. Record race limits if atomic version preconditions unavailable. Repeat both full readbacks before verification and report acceptance. Full plans, not a title/hash claim, determine fidelity.
+
+Classify writes definitely uncommitted/confirmed committed/unknown. Reconcile unknown outcome through trusted request identity or a uniquely verified authoritative binding BEFORE retry. Crash after primary leaves PAIR_INCOMPLETE: recover that ref and finish same pair. Crash after verifier before checkpoint: recover both full records and dependency. Unknown/multiple/inaccessible matches stay RECONCILIATION_REQUIRED; do not guess IDs, reopen #97 or advance.
+
+Dependency release semantics are not verified delivery guarantees. Require actual canonical/package/primary outputs and handoff accessible in the verifier's workspace with current content binding. Ready isolated work may not yet be delivered. Missing delivery => AWAITING_DELIVERY with primary/delivery custodian as owner, exact missing paths and readback-on-resume; never auto-merge.
+
+Companion discovery is canonical-only. skill-install-confirmation is referenced by Router but absent here; no copied definition is substituted. Paired acceptance requires distinct SKILL.md-only confirmation with correction limited to that file; resources and replacement plan need separate independent verification. Resolve the missing companion/host route and surface a narrow visible batching decision BEFORE any third-task creation. The two-current-card default cannot erase a third obligation. This prerequisite installation review is not an extra Failure Gate piece.
+
+## Full task payload contract and acceptance mapping
+
+Each following -I/-V section is a full payload template: project/stage/role, original piece obligations, expanded shared safeguards, fixed expected-outcome mapping, evidence, report destination and blocked/resume route. When native tasks are materialized, fill actual bindings/readiness/methods through authorized finalized full-plan readback without dropping any text or coverage. Fresh FG-02 tracked payloads are the same content. For FG-01 historical full native plans remain unchanged; this backlog retains their original obligations for traceability, not a new task.
+
+The existing full clause allocation in failure-gate-fg-01-obligation-ledger.md remains part of every piece's acceptance matrix: every assigned core, budget, lifecycle, reclaim, evidence/recovery, Router and cross-piece case must map to actual method/evidence/status/owner/next action. Original specification piece paragraphs below are retained as obligation text; project bindings and explicit stage/outcome handling supersede generic unbound context only, never technical requirements.
+
+Allowed result is NOT automatic task acceptance. For every criterion record declared expected/allowed result, actual raw result, evidence and satisfied/not-satisfied. Correct rejection/negative/nonzero is satisfied only against its fixed criterion. Never repair it to force zero, waive owned repairs or redefine expected result after failure. Missing implementation does not become accepted because its assessment dossier is complete. Runtime successors cannot use source-only readback as proof. Owner-directed administrative closure retains unmet series obligations separately.
+
+## Shared authorization carried into each full payload
+
+Current ACTIVE/INACTIVE classification UNKNOWN, last actual queried metadata STAGED. Documentation authoring is explicitly authorized in the present task and is not a validation run; no registered docs tier/PASS is invented. Earlier limited coordinator observations outrank stale descriptions for returned scope/time only. No new store or budget read is authorized. Historical consumption reports conflict with absent queried lineage and grant no allowance.
+
+## Piece 01 — Project binding, contract extraction, and installation scope
+
+# FG-01-I — Project binding, contract extraction, and installation scope
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 01, stage Planning/discovery; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
+
+### FG-01-I — Discover and bind the actual host
+
+**Input/dependency:** Intended project must be explicitly resolved before substantive project reads or any target writes. No preceding implementation.
+
+**Implement:**
+- Inspect canonical instructions and Failure Gate package/reference closure. Pin immutable snapshots/digests; traverse reference cycles once.
+- Inventory languages/runtimes, real validation commands and callers, existing governance and coverage, task/plan formats, transactional persistence, actual approval sources, completion writer, locks, supervisor/provider capabilities, and recovery.
+- Build a clause-by-clause requirement ledger from the core skill and all applicable implementation/acceptance references. Assign every obligation and acceptance case to one of the 18 pieces, including relevant acceptance cases in multiple pieces where integration spans them.
+- Publish the capability manifest and initial tracked evidence index, using real safe locations/access procedures and explicit present/missing/unavailable states.
+- Bind report destinations, roles, stage gates, and the scope allowed for subsequent source staging and runtime work. Map optional history/catalog absence without inventing authority.
+
+**Acceptance:** Verified host identity; immutable canonical baseline; complete obligation allocation; actual host capability/approval inventory; preserved existing coverage; explicit source-stage versus runtime permissions. An unresolved capability is recorded, not falsely marked ready.
+
+**Evidence:** Discovery report, source manifest, requirement ledger, capability manifest, evidence index, prior-policy/caller inventory, and installation proposal.
+
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Factual discovery and complete clause allocation, not runtime enforcement.
+
+**Allowed negative/non-zero/finding:** A supported unavailable-capability finding satisfies its discovery criterion only when original source, scope/time, integration role, next action and dependent gate are retained. Historical unknown bytes are not reconstructed.
+
+**Required evidence:** Project/source/ledger/inventory/handoff and independent FG-01 report. Existing planning/discovery acceptance is retained; no new cards.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Discovery custodian: provide exact missing canonical input or correct the documentary allocation, then independent readback. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
 
 ### Binding, owner, inputs, and outputs
 
 - Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
 - Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
-- Choose actual tracked plan/report paths from the host's established layout in Piece 01. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
 - Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
 - Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
 
@@ -89,22 +148,38 @@ A source-only task may be accepted only for its declared inert/source deliverabl
 
 At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
 
-## Piece 01 — Project binding, contract extraction, and installation scope
 
-### FG-01-I — Discover and bind the actual host
+## Task-specific delivery
 
-**Input/dependency:** Intended project must be explicitly resolved before substantive project reads or any target writes. No preceding implementation.
+Deliver tracked implementation/handoff and clause matrix in docs/validation; planned handoff: docs/validation/failure-gate-fg-01-handoff.md. Publish actual files, unperformed checks, source and tested snapshots separately. This is a planned destination, not an installed route or delivered report. Preserve every exclusion above.
 
-**Implement:**
-- Inspect canonical instructions and Failure Gate package/reference closure. Pin immutable snapshots/digests; traverse reference cycles once.
-- Inventory languages/runtimes, real validation commands and callers, existing governance and coverage, task/plan formats, transactional persistence, actual approval sources, completion writer, locks, supervisor/provider capabilities, and recovery.
-- Build a clause-by-clause requirement ledger from the core skill and all applicable implementation/acceptance references. Assign every obligation and acceptance case to one of the 18 pieces, including relevant acceptance cases in multiple pieces where integration spans them.
-- Publish the capability manifest and initial tracked evidence index, using real safe locations/access procedures and explicit present/missing/unavailable states.
-- Bind report destinations, roles, stage gates, and the scope allowed for subsequent source staging and runtime work. Map optional history/catalog absence without inventing authority.
+## Pre-existing failures to ignore
 
-**Acceptance:** Verified host identity; immutable canonical baseline; complete obligation allocation; actual host capability/approval inventory; preserved existing coverage; explicit source-stage versus runtime permissions. An unresolved capability is recorded, not falsely marked ready.
+None authorized. Exact applicable ignores require real recorded authority; missing grants/capabilities are not test failures or reusable ignores.
 
-**Evidence:** Discovery report, source manifest, requirement ledger, capability manifest, evidence index, prior-policy/caller inventory, and installation proposal.
+## Validation
+
+Readback-only for expressly permitted inert/document scope; execution NOT AUTHORIZED by this draft. Imports, syntax checks, tests, builds, hooks, store init/mutation and live wiring remain forbidden absent a separate current exact grant.
+
+## Regression Guard
+
+Narrow source/proposal protection: independent clause/source readback and authored invariant/denial cases, with runtime proof explicitly owned by FG-05; no runtime result is fabricated.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
+# FG-01-V — Independent Project binding, contract extraction, and installation scope verification
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 01, stage Planning/discovery; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
 
 ### FG-01-V — Verify discovery and repair missing records
 
@@ -114,7 +189,100 @@ Independently inspect the target and canonical closure. Check every inventory cl
 
 **Definition-install exception:** This series implements the contract; it does not implicitly authorize rewriting or copying `SKILL.md`. If the target lacks the canonical package, use only an authorized original specification/package and expected `.agents` destination. Add a separately authorized definition-install task, immediately followed by a **SKILL.md-only confirmation-and-correction task** whose criteria match that install task. Verify referenced resources separately in this piece. Do not substitute mirrors or claim a missing source was verified. If this prerequisite cannot be supplied, block source-dependent work.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Factual discovery and complete clause allocation, not runtime enforcement.
+
+**Allowed negative/non-zero/finding:** A supported unavailable-capability finding satisfies its discovery criterion only when original source, scope/time, integration role, next action and dependent gate are retained. Historical unknown bytes are not reconstructed.
+
+**Required evidence:** Project/source/ledger/inventory/handoff and independent FG-01 report. Existing planning/discovery acceptance is retained; no new cards.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Discovery custodian: provide exact missing canonical input or correct the documentary allocation, then independent readback. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Independent verification and fixed requirement matrix
+
+Before editing, audit every applicable original -I implement bullet, acceptance/evidence clause, -V exit clause and allocated canonical ledger case for this piece. For each keep source clause, fixed expected/allowed outcome above, actual delivered path/interface, method and safety gate, original evidence/raw outcome, status, responsible role and exact next action. Original implementation payload is a required full input, not just its title.
+
+Phase A pins obligations, pre-install baseline and provisional method locations; Phase B establishes delivery, independently resolves actual wiring/configuration/methods against those obligations using only permitted source/record readback. Log expected implementation changes, incorrect method assumptions, material obligation changes, defects and unresolved differences separately. Keep original/resolved matrices. Method-only resolution preserves key but must be authorized/logged and full executable payload read back; material primary/scope change requires renewal. Missing method/authority remains blocked.
+
+Publish the gap list before edits. Original baseline grants audit-first then scoped repair as a task design; actual repair execution needs its explicit applicable piece scope and current permission. Repair only missing/wrong assigned implementation, not correct rejection or unavailable external authority. Renew affected checks under real authority and retained accounting; never recursive verifier tasks. A fresh independent authorized reviewer/host route must read repaired evidence; if unavailable, affected acceptance stays blocked, not self-certified.
+
+Report destination: docs/validation/failure-gate-fg-01-verifier-report.md (planned until delivered). Report full binding/key/dependency/readiness, all three baselines, every matrix row, pre-edit gaps, repairs/authority/rebinding, actual raw checks and consumption or NOT_RUN, independent review, stage decision, remaining owners/resume action. Requirements: verified/failed/blocked/justified not applicable; fixture PASSED/FAILED/BLOCKED/NOT_RUN separately from host readiness and native lifecycle.
+
+Advance only after independent acceptance of this declared stage and actual successor delivery readiness, with scoped drafting permission. No later card/approval/activation/status rewrite follows a task label.
+
+## Pre-existing failures to ignore
+
+None authorized. Preserve raw findings/failures and exact missing authority; no lucky retry or absent catalog provides waiver.
+
+## Validation
+
+Readback-only / execution not authorized for source-stage verification. No imports, syntax checks, tests, builds, stores, CLI, hooks, services or signals. Required authored cases are inspected, not reported executed.
+
+## Regression Guard
+
+Self-satisfying: this verifier delivers the independent requirement/outcome guard; material repairs must carry the primary boundary proving check through the installed path and independently revalidate after repair.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
 ## Piece 02 — Bootstrap authority and finite-budget contract
+
+# FG-02-I — Bootstrap authority and finite-budget contract
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 02, stage Source/proposal; generation g02, historical #96/#97 preserved. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
 
 ### FG-02-I — Stage real bootstrap admission and budget bindings
 
@@ -131,13 +299,191 @@ Independently inspect the target and canonical closure. Check every inventory cl
 
 **Evidence:** Scoped bootstrap proposal/actual decision when available, adapter source, schemas, effective-limit contract, deny cases, and permission boundary.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Complete implementable admission/budget design AND inert unregistered adapter/schema and authored denial/regression cases. No runtime dispatch.
+
+**Allowed negative/non-zero/finding:** Documented absence of authentic applicable approval/current grant can satisfy the route-assessment subcriterion and block Piece 05. It cannot substitute for the required inert implementation, schema or denial cases; absent source-stage permission blocks those writes and leaves FG-02 unaccepted.
+
+**Required evidence:** Adapter source, schema, strict finite-limit and aggregate/narrowing/revocation contract, deny cases, real source mappings, scoped proposal and independent source readback. Cases NOT_RUN until separately authorized.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Source-stage approval/budget owners: provide an exact finalized operation-specific authoring decision and applicable finite envelope through a permitted route. Supervisor owner separately supplies any future launch boundary. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Task-specific delivery
+
+Deliver tracked implementation/handoff and clause matrix in docs/validation; planned handoff: docs/validation/failure-gate-fg-02-g02-handoff.md. Publish actual files, unperformed checks, source and tested snapshots separately. This is a planned destination, not an installed route or delivered report. Preserve every exclusion above.
+
+## Pre-existing failures to ignore
+
+None authorized. Exact applicable ignores require real recorded authority; missing grants/capabilities are not test failures or reusable ignores.
+
+## Validation
+
+Readback-only for expressly permitted inert/document scope; execution NOT AUTHORIZED by this draft. Imports, syntax checks, tests, builds, hooks, store init/mutation and live wiring remain forbidden absent a separate current exact grant.
+
+## Regression Guard
+
+Narrow source/proposal protection: independent clause/source readback and authored invariant/denial cases, with runtime proof explicitly owned by FG-05; no runtime result is fabricated.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
+# FG-02-V — Independent Bootstrap authority and finite-budget contract verification
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 02, stage Source/proposal; generation g02, historical #96/#97 preserved. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
+
 ### FG-02-V — Verify authority mappings and repair unsafe admission
 
 Trace bindings back to actual approval/policy sources. Reject caller flags, guessed events, unverified plan labels, command approval mistaken for plan approval, or implicit larger budgets. Repair missing adapter checks and documents. Inspect source denial paths without executing unapproved work.
 
 **Exit:** Source/proposal stage verified. Missing authentic approval or independent budget authority remains an execution blocker for Piece 05.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Complete implementable admission/budget design AND inert unregistered adapter/schema and authored denial/regression cases. No runtime dispatch.
+
+**Allowed negative/non-zero/finding:** Documented absence of authentic applicable approval/current grant can satisfy the route-assessment subcriterion and block Piece 05. It cannot substitute for the required inert implementation, schema or denial cases; absent source-stage permission blocks those writes and leaves FG-02 unaccepted.
+
+**Required evidence:** Adapter source, schema, strict finite-limit and aggregate/narrowing/revocation contract, deny cases, real source mappings, scoped proposal and independent source readback. Cases NOT_RUN until separately authorized.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Source-stage approval/budget owners: provide an exact finalized operation-specific authoring decision and applicable finite envelope through a permitted route. Supervisor owner separately supplies any future launch boundary. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Independent verification and fixed requirement matrix
+
+Before editing, audit every applicable original -I implement bullet, acceptance/evidence clause, -V exit clause and allocated canonical ledger case for this piece. For each keep source clause, fixed expected/allowed outcome above, actual delivered path/interface, method and safety gate, original evidence/raw outcome, status, responsible role and exact next action. Original implementation payload is a required full input, not just its title.
+
+Phase A pins obligations, pre-install baseline and provisional method locations; Phase B establishes delivery, independently resolves actual wiring/configuration/methods against those obligations using only permitted source/record readback. Log expected implementation changes, incorrect method assumptions, material obligation changes, defects and unresolved differences separately. Keep original/resolved matrices. Method-only resolution preserves key but must be authorized/logged and full executable payload read back; material primary/scope change requires renewal. Missing method/authority remains blocked.
+
+Publish the gap list before edits. Original baseline grants audit-first then scoped repair as a task design; actual repair execution needs its explicit applicable piece scope and current permission. Repair only missing/wrong assigned implementation, not correct rejection or unavailable external authority. Renew affected checks under real authority and retained accounting; never recursive verifier tasks. A fresh independent authorized reviewer/host route must read repaired evidence; if unavailable, affected acceptance stays blocked, not self-certified.
+
+Report destination: docs/validation/failure-gate-fg-02-g02-verifier-report.md (planned until delivered). Report full binding/key/dependency/readiness, all three baselines, every matrix row, pre-edit gaps, repairs/authority/rebinding, actual raw checks and consumption or NOT_RUN, independent review, stage decision, remaining owners/resume action. Requirements: verified/failed/blocked/justified not applicable; fixture PASSED/FAILED/BLOCKED/NOT_RUN separately from host readiness and native lifecycle.
+
+Advance only after independent acceptance of this declared stage and actual successor delivery readiness, with scoped drafting permission. No later card/approval/activation/status rewrite follows a task label.
+
+## Pre-existing failures to ignore
+
+None authorized. Preserve raw findings/failures and exact missing authority; no lucky retry or absent catalog provides waiver.
+
+## Validation
+
+Readback-only / execution not authorized for source-stage verification. No imports, syntax checks, tests, builds, stores, CLI, hooks, services or signals. Required authored cases are inspected, not reported executed.
+
+## Regression Guard
+
+Self-satisfying: this verifier delivers the independent requirement/outcome guard; material repairs must carry the primary boundary proving check through the installed path and independently revalidate after repair.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
 ## Piece 03 — Transactional identity and coordinator foundation
+
+# FG-03-I — Transactional identity and coordinator foundation
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 03, stage Source; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
 
 ### FG-03-I — Stage allocator, authoritative records, and durable coordination
 
@@ -155,13 +501,191 @@ Trace bindings back to actual approval/policy sources. Reject caller flags, gues
 
 **Evidence:** Source/migrations, schema/invariant matrix, actual storage mapping, planned isolated acceptance cases.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Complete inert transactional allocator/coordinator source, schemas/migrations and authored invariants without initializing a store.
+
+**Allowed negative/non-zero/finding:** Unsupported real storage capability is a valid assessment finding but not an implemented transactional foundation. Rejection of stale/duplicate/unknown/audit-failed mutation is required source behavior.
+
+**Required evidence:** Actual source/migrations, storage mapping, transaction/invariant matrix and independent readback. Runtime allocation proof carried to FG-05; actual restore to FG-15.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Storage/integration owner: supply actual concurrency/persistence semantics and authorized inert implementation scope; approve an isolated runtime subject only at FG-05. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Task-specific delivery
+
+Deliver tracked implementation/handoff and clause matrix in docs/validation; planned handoff: docs/validation/failure-gate-fg-03-handoff.md. Publish actual files, unperformed checks, source and tested snapshots separately. This is a planned destination, not an installed route or delivered report. Preserve every exclusion above.
+
+## Pre-existing failures to ignore
+
+None authorized. Exact applicable ignores require real recorded authority; missing grants/capabilities are not test failures or reusable ignores.
+
+## Validation
+
+Readback-only for expressly permitted inert/document scope; execution NOT AUTHORIZED by this draft. Imports, syntax checks, tests, builds, hooks, store init/mutation and live wiring remain forbidden absent a separate current exact grant.
+
+## Regression Guard
+
+Narrow source/proposal protection: independent clause/source readback and authored invariant/denial cases, with runtime proof explicitly owned by FG-05; no runtime result is fabricated.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
+# FG-03-V — Independent Transactional identity and coordinator foundation verification
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 03, stage Source; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
+
 ### FG-03-V — Verify coordinator source and repair gaps
 
 Read the actual implementation rather than only schema descriptions. Check transaction boundaries, constraints, histories, denial defaults, tombstones, permanent consumption, and absence of competing permission lists. Repair incomplete source and migrations. Perform executable checks only if already safely authorized.
 
 **Exit:** Source-delivery stage accepted; required runtime allocator/coordinator proof is assigned to FG-05-V, with actual restore proof retained for FG-15-V.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Complete inert transactional allocator/coordinator source, schemas/migrations and authored invariants without initializing a store.
+
+**Allowed negative/non-zero/finding:** Unsupported real storage capability is a valid assessment finding but not an implemented transactional foundation. Rejection of stale/duplicate/unknown/audit-failed mutation is required source behavior.
+
+**Required evidence:** Actual source/migrations, storage mapping, transaction/invariant matrix and independent readback. Runtime allocation proof carried to FG-05; actual restore to FG-15.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Storage/integration owner: supply actual concurrency/persistence semantics and authorized inert implementation scope; approve an isolated runtime subject only at FG-05. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Independent verification and fixed requirement matrix
+
+Before editing, audit every applicable original -I implement bullet, acceptance/evidence clause, -V exit clause and allocated canonical ledger case for this piece. For each keep source clause, fixed expected/allowed outcome above, actual delivered path/interface, method and safety gate, original evidence/raw outcome, status, responsible role and exact next action. Original implementation payload is a required full input, not just its title.
+
+Phase A pins obligations, pre-install baseline and provisional method locations; Phase B establishes delivery, independently resolves actual wiring/configuration/methods against those obligations using only permitted source/record readback. Log expected implementation changes, incorrect method assumptions, material obligation changes, defects and unresolved differences separately. Keep original/resolved matrices. Method-only resolution preserves key but must be authorized/logged and full executable payload read back; material primary/scope change requires renewal. Missing method/authority remains blocked.
+
+Publish the gap list before edits. Original baseline grants audit-first then scoped repair as a task design; actual repair execution needs its explicit applicable piece scope and current permission. Repair only missing/wrong assigned implementation, not correct rejection or unavailable external authority. Renew affected checks under real authority and retained accounting; never recursive verifier tasks. A fresh independent authorized reviewer/host route must read repaired evidence; if unavailable, affected acceptance stays blocked, not self-certified.
+
+Report destination: docs/validation/failure-gate-fg-03-verifier-report.md (planned until delivered). Report full binding/key/dependency/readiness, all three baselines, every matrix row, pre-edit gaps, repairs/authority/rebinding, actual raw checks and consumption or NOT_RUN, independent review, stage decision, remaining owners/resume action. Requirements: verified/failed/blocked/justified not applicable; fixture PASSED/FAILED/BLOCKED/NOT_RUN separately from host readiness and native lifecycle.
+
+Advance only after independent acceptance of this declared stage and actual successor delivery readiness, with scoped drafting permission. No later card/approval/activation/status rewrite follows a task label.
+
+## Pre-existing failures to ignore
+
+None authorized. Preserve raw findings/failures and exact missing authority; no lucky retry or absent catalog provides waiver.
+
+## Validation
+
+Readback-only / execution not authorized for source-stage verification. No imports, syntax checks, tests, builds, stores, CLI, hooks, services or signals. Required authored cases are inspected, not reported executed.
+
+## Regression Guard
+
+Self-satisfying: this verifier delivers the independent requirement/outcome guard; material repairs must carry the primary boundary proving check through the installed path and independently revalidate after repair.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
 ## Piece 04 — Independent supervision and bounded capture
+
+# FG-04-I — Independent supervision and bounded capture
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 04, stage Source; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
 
 ### FG-04-I — Stage workload gate and whole-tree supervision
 
@@ -180,13 +704,191 @@ Read the actual implementation rather than only schema descriptions. Check trans
 
 **Evidence:** Source/adapters, verified provider semantics, registration/termination protocol, budget/capture deny matrix, remaining blockers.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Complete inert workload gate/supervisor and bounded-capture source with real provider semantics mapped.
+
+**Allowed negative/non-zero/finding:** Registration denial and unknown ownership/loss/capture blocking are correct behavior. Missing real independent containment blocks first proof; a mock or same-event-loop timer never satisfies required integration.
+
+**Required evidence:** Provider-source mapping, source/adapters, register-before-dispatch protocol, lifecycle/capture deny matrix and independent inert review. Runtime proof carried to FG-05.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Independent supervisor provider: supply supported containment/registration/termination and evidence semantics, then a separately admitted first-proof proposal. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Task-specific delivery
+
+Deliver tracked implementation/handoff and clause matrix in docs/validation; planned handoff: docs/validation/failure-gate-fg-04-handoff.md. Publish actual files, unperformed checks, source and tested snapshots separately. This is a planned destination, not an installed route or delivered report. Preserve every exclusion above.
+
+## Pre-existing failures to ignore
+
+None authorized. Exact applicable ignores require real recorded authority; missing grants/capabilities are not test failures or reusable ignores.
+
+## Validation
+
+Readback-only for expressly permitted inert/document scope; execution NOT AUTHORIZED by this draft. Imports, syntax checks, tests, builds, hooks, store init/mutation and live wiring remain forbidden absent a separate current exact grant.
+
+## Regression Guard
+
+Narrow source/proposal protection: independent clause/source readback and authored invariant/denial cases, with runtime proof explicitly owned by FG-05; no runtime result is fabricated.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
+# FG-04-V — Independent Independent supervision and bounded capture verification
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 04, stage Source; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
+
 ### FG-04-V — Verify supervision source and repair wiring gaps
 
 Trace the complete execution graph and gate ordering. Check unsupported escape/remote termination claims, synchronous-blocking vulnerabilities, registration-before-dispatch, finite hook/test settings, and late-zero handling. Correct missing code/wiring within staging scope.
 
 **Exit:** Inert supervision implementation verified by readback. Operational readiness is explicitly unproved until Piece 05.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Complete inert workload gate/supervisor and bounded-capture source with real provider semantics mapped.
+
+**Allowed negative/non-zero/finding:** Registration denial and unknown ownership/loss/capture blocking are correct behavior. Missing real independent containment blocks first proof; a mock or same-event-loop timer never satisfies required integration.
+
+**Required evidence:** Provider-source mapping, source/adapters, register-before-dispatch protocol, lifecycle/capture deny matrix and independent inert review. Runtime proof carried to FG-05.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Independent supervisor provider: supply supported containment/registration/termination and evidence semantics, then a separately admitted first-proof proposal. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Independent verification and fixed requirement matrix
+
+Before editing, audit every applicable original -I implement bullet, acceptance/evidence clause, -V exit clause and allocated canonical ledger case for this piece. For each keep source clause, fixed expected/allowed outcome above, actual delivered path/interface, method and safety gate, original evidence/raw outcome, status, responsible role and exact next action. Original implementation payload is a required full input, not just its title.
+
+Phase A pins obligations, pre-install baseline and provisional method locations; Phase B establishes delivery, independently resolves actual wiring/configuration/methods against those obligations using only permitted source/record readback. Log expected implementation changes, incorrect method assumptions, material obligation changes, defects and unresolved differences separately. Keep original/resolved matrices. Method-only resolution preserves key but must be authorized/logged and full executable payload read back; material primary/scope change requires renewal. Missing method/authority remains blocked.
+
+Publish the gap list before edits. Original baseline grants audit-first then scoped repair as a task design; actual repair execution needs its explicit applicable piece scope and current permission. Repair only missing/wrong assigned implementation, not correct rejection or unavailable external authority. Renew affected checks under real authority and retained accounting; never recursive verifier tasks. A fresh independent authorized reviewer/host route must read repaired evidence; if unavailable, affected acceptance stays blocked, not self-certified.
+
+Report destination: docs/validation/failure-gate-fg-04-verifier-report.md (planned until delivered). Report full binding/key/dependency/readiness, all three baselines, every matrix row, pre-edit gaps, repairs/authority/rebinding, actual raw checks and consumption or NOT_RUN, independent review, stage decision, remaining owners/resume action. Requirements: verified/failed/blocked/justified not applicable; fixture PASSED/FAILED/BLOCKED/NOT_RUN separately from host readiness and native lifecycle.
+
+Advance only after independent acceptance of this declared stage and actual successor delivery readiness, with scoped drafting permission. No later card/approval/activation/status rewrite follows a task label.
+
+## Pre-existing failures to ignore
+
+None authorized. Preserve raw findings/failures and exact missing authority; no lucky retry or absent catalog provides waiver.
+
+## Validation
+
+Readback-only / execution not authorized for source-stage verification. No imports, syntax checks, tests, builds, stores, CLI, hooks, services or signals. Required authored cases are inspected, not reported executed.
+
+## Regression Guard
+
+Self-satisfying: this verifier delivers the independent requirement/outcome guard; material repairs must carry the primary boundary proving check through the installed path and independently revalidate after repair.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
 ## Piece 05 — Safely admitted bootstrap runtime proof
+
+# FG-05-I — Safely admitted bootstrap runtime proof
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 05, stage Bootstrap runtime; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
 
 ### FG-05-I — Establish bootstrap execution without enabling ordinary work
 
@@ -205,13 +907,191 @@ Trace the complete execution graph and gate ordering. Check unsupported escape/r
 
 **Evidence:** Actual operation/decision references, effective limits, real host reports, raw exits, termination/registration evidence, records, snapshot binding, retained incidents.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Real safely admitted bootstrap proof for FG-02–04; no ordinary activation.
+
+**Allowed negative/non-zero/finding:** Controlled injected failures/nonzero outcomes satisfy cases only if their expected denial/termination/capture/accounting is proved and raw outcomes retained. Missing grant/supervisor/proof blocks readiness.
+
+**Required evidence:** Real decisions/limits/consumption, actual coordinator/supervisor reports, raw exits, registration/termination/acknowledgement, two consecutive authorized real caller runs for each enabled claim.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Bootstrap authority and supervisor owners: approve a pinned isolated first proof with real finite parent/attempt bounds and containment; no circular requirement that proposed proof already passed. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Task-specific delivery
+
+Deliver tracked implementation/handoff and clause matrix in docs/validation; planned handoff: docs/validation/failure-gate-fg-05-handoff.md. Publish actual files, unperformed checks, source and tested snapshots separately. This is a planned destination, not an installed route or delivered report. Preserve every exclusion above.
+
+## Pre-existing failures to ignore
+
+None authorized. Exact applicable ignores require real recorded authority; missing grants/capabilities are not test failures or reusable ignores.
+
+## Validation
+
+Runtime proof requires actual separately approved selected tier or named bounded capability, complete exact commands/targets/transitive graph, safe isolated environment, independent whole-tree admission, finite original parent/phase/attempt/accounting and capture/cleanup limits, current consumption, raw records and acknowledgements. All such fields are PENDING actual authority; no launch from this planning document.
+
+## Regression Guard
+
+At final task planning classify the actual material boundary against canonical Regression Guard. Bind a concrete proving check and actual test location through the affected installed path, preserving callers, coverage, raw failures, serialization, resource/writer safety and privacy. Pending implementation method is resolved before approved execution, never a waiver.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
+# FG-05-V — Independent Safely admitted bootstrap runtime proof verification
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 05, stage Bootstrap runtime; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
+
 ### FG-05-V — Verify bootstrap proof and build missing runtime pieces
 
 Independently inspect real storage, route wiring, raw reports, and supervisor evidence from Pieces 02–04. Reproduce only approved bounded cases on the installed route. Repair missing implementation, invalidate affected reports, and re-prove within current authority/budgets.
 
 **Exit:** Bootstrap runtime readiness accepted with no ordinary activation. If proof is unavailable, leave the affected requirement blocked and prepare the exact integration/approval proposal.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Real safely admitted bootstrap proof for FG-02–04; no ordinary activation.
+
+**Allowed negative/non-zero/finding:** Controlled injected failures/nonzero outcomes satisfy cases only if their expected denial/termination/capture/accounting is proved and raw outcomes retained. Missing grant/supervisor/proof blocks readiness.
+
+**Required evidence:** Real decisions/limits/consumption, actual coordinator/supervisor reports, raw exits, registration/termination/acknowledgement, two consecutive authorized real caller runs for each enabled claim.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Bootstrap authority and supervisor owners: approve a pinned isolated first proof with real finite parent/attempt bounds and containment; no circular requirement that proposed proof already passed. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Independent verification and fixed requirement matrix
+
+Before editing, audit every applicable original -I implement bullet, acceptance/evidence clause, -V exit clause and allocated canonical ledger case for this piece. For each keep source clause, fixed expected/allowed outcome above, actual delivered path/interface, method and safety gate, original evidence/raw outcome, status, responsible role and exact next action. Original implementation payload is a required full input, not just its title.
+
+Phase A pins obligations, pre-install baseline and provisional method locations; Phase B establishes delivery, independently resolves actual wiring/configuration/methods against those obligations using only permitted source/record readback. Log expected implementation changes, incorrect method assumptions, material obligation changes, defects and unresolved differences separately. Keep original/resolved matrices. Method-only resolution preserves key but must be authorized/logged and full executable payload read back; material primary/scope change requires renewal. Missing method/authority remains blocked.
+
+Publish the gap list before edits. Original baseline grants audit-first then scoped repair as a task design; actual repair execution needs its explicit applicable piece scope and current permission. Repair only missing/wrong assigned implementation, not correct rejection or unavailable external authority. Renew affected checks under real authority and retained accounting; never recursive verifier tasks. A fresh independent authorized reviewer/host route must read repaired evidence; if unavailable, affected acceptance stays blocked, not self-certified.
+
+Report destination: docs/validation/failure-gate-fg-05-verifier-report.md (planned until delivered). Report full binding/key/dependency/readiness, all three baselines, every matrix row, pre-edit gaps, repairs/authority/rebinding, actual raw checks and consumption or NOT_RUN, independent review, stage decision, remaining owners/resume action. Requirements: verified/failed/blocked/justified not applicable; fixture PASSED/FAILED/BLOCKED/NOT_RUN separately from host readiness and native lifecycle.
+
+Advance only after independent acceptance of this declared stage and actual successor delivery readiness, with scoped drafting permission. No later card/approval/activation/status rewrite follows a task label.
+
+## Pre-existing failures to ignore
+
+None authorized. Preserve raw findings/failures and exact missing authority; no lucky retry or absent catalog provides waiver.
+
+## Validation
+
+Only applicable current approved selected-tier/bounded capability checks, independently supervised and finitely accounted, may execute. Resolve exact command graph, decision, environment, limits/remaining consumption, capture and termination before any launch. Missing gate means BLOCKED / NOT_RUN, never a direct fallback or tier sweep.
+
+## Regression Guard
+
+Self-satisfying: this verifier delivers the independent requirement/outcome guard; material repairs must carry the primary boundary proving check through the installed path and independently revalidate after repair.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
 ## Piece 06 — Tier registry and pre-activation planning
+
+# FG-06-I — Tier registry and pre-activation planning
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 06, stage Bootstrap runtime; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
 
 ### FG-06-I — Implement registry, scaffold, guards, and baseline discovery
 
@@ -229,13 +1109,191 @@ Independently inspect real storage, route wiring, raw reports, and supervisor ev
 
 **Evidence:** Registry/version, plans, scaffold/guard reports, bounded discovery records and snapshots, definition/coverage mapping.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Actual registry/scaffold/guard/baseline planning works before activation with all existing coverage preserved.
+
+**Allowed negative/non-zero/finding:** Absent/multiple/unknown/uncovered tiers must reject without dispatch or PASS. Manual-only checks may be honestly mapped with real approved reviewer/evidence; unsupported required checks remain blocked.
+
+**Required evidence:** Registry and graph/version, actual planning/guard reports, isolated denial evidence, bounded baseline discovery and preservation mapping.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Registry/planning integration owner: provide exact missing check mapping or bounded planning capability under current bootstrap authority. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Task-specific delivery
+
+Deliver tracked implementation/handoff and clause matrix in docs/validation; planned handoff: docs/validation/failure-gate-fg-06-handoff.md. Publish actual files, unperformed checks, source and tested snapshots separately. This is a planned destination, not an installed route or delivered report. Preserve every exclusion above.
+
+## Pre-existing failures to ignore
+
+None authorized. Exact applicable ignores require real recorded authority; missing grants/capabilities are not test failures or reusable ignores.
+
+## Validation
+
+Runtime proof requires actual separately approved selected tier or named bounded capability, complete exact commands/targets/transitive graph, safe isolated environment, independent whole-tree admission, finite original parent/phase/attempt/accounting and capture/cleanup limits, current consumption, raw records and acknowledgements. All such fields are PENDING actual authority; no launch from this planning document.
+
+## Regression Guard
+
+At final task planning classify the actual material boundary against canonical Regression Guard. Bind a concrete proving check and actual test location through the affected installed path, preserving callers, coverage, raw failures, serialization, resource/writer safety and privacy. Pending implementation method is resolved before approved execution, never a waiver.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
+# FG-06-V — Independent Tier registry and pre-activation planning verification
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 06, stage Bootstrap runtime; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
+
 ### FG-06-V — Verify planning and repair registry/guard omissions
 
 Check each registered definition against actual command graphs, config inputs, discovery, and reports. Use isolated instrumented denial cases for unassigned tiers. Verify pre-activation guards do not depend on active-task authorization and cannot create a pass.
 
 **Exit:** Real planning behavior and source coverage accepted. Unsupported required checks stay blocked; no all-tier live sweep.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Actual registry/scaffold/guard/baseline planning works before activation with all existing coverage preserved.
+
+**Allowed negative/non-zero/finding:** Absent/multiple/unknown/uncovered tiers must reject without dispatch or PASS. Manual-only checks may be honestly mapped with real approved reviewer/evidence; unsupported required checks remain blocked.
+
+**Required evidence:** Registry and graph/version, actual planning/guard reports, isolated denial evidence, bounded baseline discovery and preservation mapping.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Registry/planning integration owner: provide exact missing check mapping or bounded planning capability under current bootstrap authority. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Independent verification and fixed requirement matrix
+
+Before editing, audit every applicable original -I implement bullet, acceptance/evidence clause, -V exit clause and allocated canonical ledger case for this piece. For each keep source clause, fixed expected/allowed outcome above, actual delivered path/interface, method and safety gate, original evidence/raw outcome, status, responsible role and exact next action. Original implementation payload is a required full input, not just its title.
+
+Phase A pins obligations, pre-install baseline and provisional method locations; Phase B establishes delivery, independently resolves actual wiring/configuration/methods against those obligations using only permitted source/record readback. Log expected implementation changes, incorrect method assumptions, material obligation changes, defects and unresolved differences separately. Keep original/resolved matrices. Method-only resolution preserves key but must be authorized/logged and full executable payload read back; material primary/scope change requires renewal. Missing method/authority remains blocked.
+
+Publish the gap list before edits. Original baseline grants audit-first then scoped repair as a task design; actual repair execution needs its explicit applicable piece scope and current permission. Repair only missing/wrong assigned implementation, not correct rejection or unavailable external authority. Renew affected checks under real authority and retained accounting; never recursive verifier tasks. A fresh independent authorized reviewer/host route must read repaired evidence; if unavailable, affected acceptance stays blocked, not self-certified.
+
+Report destination: docs/validation/failure-gate-fg-06-verifier-report.md (planned until delivered). Report full binding/key/dependency/readiness, all three baselines, every matrix row, pre-edit gaps, repairs/authority/rebinding, actual raw checks and consumption or NOT_RUN, independent review, stage decision, remaining owners/resume action. Requirements: verified/failed/blocked/justified not applicable; fixture PASSED/FAILED/BLOCKED/NOT_RUN separately from host readiness and native lifecycle.
+
+Advance only after independent acceptance of this declared stage and actual successor delivery readiness, with scoped drafting permission. No later card/approval/activation/status rewrite follows a task label.
+
+## Pre-existing failures to ignore
+
+None authorized. Preserve raw findings/failures and exact missing authority; no lucky retry or absent catalog provides waiver.
+
+## Validation
+
+Only applicable current approved selected-tier/bounded capability checks, independently supervised and finitely accounted, may execute. Resolve exact command graph, decision, environment, limits/remaining consumption, capture and termination before any launch. Missing gate means BLOCKED / NOT_RUN, never a direct fallback or tier sweep.
+
+## Regression Guard
+
+Self-satisfying: this verifier delivers the independent requirement/outcome guard; material repairs must carry the primary boundary proving check through the installed path and independently revalidate after repair.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
 ## Piece 07 — Approval, activation, and authorized changes
+
+# FG-07-I — Approval, activation, and authorized changes
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 07, stage Bootstrap runtime; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
 
 ### FG-07-I — Implement exact-bound activation and atomic amendment
 
@@ -253,13 +1311,191 @@ Check each registered definition against actual command graphs, config inputs, d
 
 **Evidence:** Real decision-source records, pinned contents, policy versions, transaction histories, denial/race reports.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Actual genuine exact-bound decision ingestion, activation and atomic amendments on bootstrap subjects.
+
+**Allowed negative/non-zero/finding:** Forged flags/status/command/merge pseudo-approvals and stale/drifted bindings must reject. An authentic Replit event need not carry actor/roster. Unavailable trusted adapter remains a blocker.
+
+**Required evidence:** Actual source-issued decisions/pinned contents, approved deterministic policy if present, transaction/audit histories, positive and denial/race evidence.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Approval integration owner: expose authentic applicable decision source; obtain narrow policy approval if absent, never self-approve or invent a source. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Task-specific delivery
+
+Deliver tracked implementation/handoff and clause matrix in docs/validation; planned handoff: docs/validation/failure-gate-fg-07-handoff.md. Publish actual files, unperformed checks, source and tested snapshots separately. This is a planned destination, not an installed route or delivered report. Preserve every exclusion above.
+
+## Pre-existing failures to ignore
+
+None authorized. Exact applicable ignores require real recorded authority; missing grants/capabilities are not test failures or reusable ignores.
+
+## Validation
+
+Runtime proof requires actual separately approved selected tier or named bounded capability, complete exact commands/targets/transitive graph, safe isolated environment, independent whole-tree admission, finite original parent/phase/attempt/accounting and capture/cleanup limits, current consumption, raw records and acknowledgements. All such fields are PENDING actual authority; no launch from this planning document.
+
+## Regression Guard
+
+At final task planning classify the actual material boundary against canonical Regression Guard. Bind a concrete proving check and actual test location through the affected installed path, preserving callers, coverage, raw failures, serialization, resource/writer safety and privacy. Pending implementation method is resolved before approved execution, never a waiver.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
+# FG-07-V — Independent Approval, activation, and authorized changes verification
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 07, stage Bootstrap runtime; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
+
 ### FG-07-V — Verify authority and repair lifecycle gaps
 
 Test genuine available decision ingestion and negative fixtures for forged flags, wrong IDs, drifted plans/tiers/policies, status/command/merge pseudo-approvals, absent actors on valid Replit events, duplicate amendments, and interrupted projections. Inspect actual atomic records.
 
 **Exit:** Exact decision/lifecycle behavior accepted. Unavailable trusted approval adapters remain blocked, not replaced with placeholders.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Actual genuine exact-bound decision ingestion, activation and atomic amendments on bootstrap subjects.
+
+**Allowed negative/non-zero/finding:** Forged flags/status/command/merge pseudo-approvals and stale/drifted bindings must reject. An authentic Replit event need not carry actor/roster. Unavailable trusted adapter remains a blocker.
+
+**Required evidence:** Actual source-issued decisions/pinned contents, approved deterministic policy if present, transaction/audit histories, positive and denial/race evidence.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Approval integration owner: expose authentic applicable decision source; obtain narrow policy approval if absent, never self-approve or invent a source. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Independent verification and fixed requirement matrix
+
+Before editing, audit every applicable original -I implement bullet, acceptance/evidence clause, -V exit clause and allocated canonical ledger case for this piece. For each keep source clause, fixed expected/allowed outcome above, actual delivered path/interface, method and safety gate, original evidence/raw outcome, status, responsible role and exact next action. Original implementation payload is a required full input, not just its title.
+
+Phase A pins obligations, pre-install baseline and provisional method locations; Phase B establishes delivery, independently resolves actual wiring/configuration/methods against those obligations using only permitted source/record readback. Log expected implementation changes, incorrect method assumptions, material obligation changes, defects and unresolved differences separately. Keep original/resolved matrices. Method-only resolution preserves key but must be authorized/logged and full executable payload read back; material primary/scope change requires renewal. Missing method/authority remains blocked.
+
+Publish the gap list before edits. Original baseline grants audit-first then scoped repair as a task design; actual repair execution needs its explicit applicable piece scope and current permission. Repair only missing/wrong assigned implementation, not correct rejection or unavailable external authority. Renew affected checks under real authority and retained accounting; never recursive verifier tasks. A fresh independent authorized reviewer/host route must read repaired evidence; if unavailable, affected acceptance stays blocked, not self-certified.
+
+Report destination: docs/validation/failure-gate-fg-07-verifier-report.md (planned until delivered). Report full binding/key/dependency/readiness, all three baselines, every matrix row, pre-edit gaps, repairs/authority/rebinding, actual raw checks and consumption or NOT_RUN, independent review, stage decision, remaining owners/resume action. Requirements: verified/failed/blocked/justified not applicable; fixture PASSED/FAILED/BLOCKED/NOT_RUN separately from host readiness and native lifecycle.
+
+Advance only after independent acceptance of this declared stage and actual successor delivery readiness, with scoped drafting permission. No later card/approval/activation/status rewrite follows a task label.
+
+## Pre-existing failures to ignore
+
+None authorized. Preserve raw findings/failures and exact missing authority; no lucky retry or absent catalog provides waiver.
+
+## Validation
+
+Only applicable current approved selected-tier/bounded capability checks, independently supervised and finitely accounted, may execute. Resolve exact command graph, decision, environment, limits/remaining consumption, capture and termination before any launch. Missing gate means BLOCKED / NOT_RUN, never a direct fallback or tier sweep.
+
+## Regression Guard
+
+Self-satisfying: this verifier delivers the independent requirement/outcome guard; material repairs must carry the primary boundary proving check through the installed path and independently revalidate after repair.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
 ## Piece 08 — Configuration, snapshots, and raw result integrity
+
+# FG-08-I — Configuration, snapshots, and raw result integrity
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 08, stage Bootstrap runtime; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
 
 ### FG-08-I — Implement preflight, actual input manifests, and parsers
 
@@ -276,13 +1512,191 @@ Test genuine available decision ingestion and negative fixtures for forged flags
 
 **Evidence:** Input declarations/source identities, isolated manifest records, actual report fixtures and host reports, raw outcomes, safe port lifecycle evidence where applicable.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Every required input preflight/snapshot/parser adapter is implemented and valid input reaches intended command with complete actual reports.
+
+**Allowed negative/non-zero/finding:** Missing/invalid config denies before affected launch; unexpected zero-test/incomplete/cancelled results reject acceptance and retain raw exits. Correct rejection is not a build failure or repair target.
+
+**Required evidence:** Verified non-secret input identities, actual manifests/config/environment, real/report fixture outputs, port reservation lifecycle where applicable, writer/isolation proof.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Configuration/parser/writer owners: provide verified input source, current immutable isolation or writer coverage and exact permitted adapter proof. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Task-specific delivery
+
+Deliver tracked implementation/handoff and clause matrix in docs/validation; planned handoff: docs/validation/failure-gate-fg-08-handoff.md. Publish actual files, unperformed checks, source and tested snapshots separately. This is a planned destination, not an installed route or delivered report. Preserve every exclusion above.
+
+## Pre-existing failures to ignore
+
+None authorized. Exact applicable ignores require real recorded authority; missing grants/capabilities are not test failures or reusable ignores.
+
+## Validation
+
+Runtime proof requires actual separately approved selected tier or named bounded capability, complete exact commands/targets/transitive graph, safe isolated environment, independent whole-tree admission, finite original parent/phase/attempt/accounting and capture/cleanup limits, current consumption, raw records and acknowledgements. All such fields are PENDING actual authority; no launch from this planning document.
+
+## Regression Guard
+
+At final task planning classify the actual material boundary against canonical Regression Guard. Bind a concrete proving check and actual test location through the affected installed path, preserving callers, coverage, raw failures, serialization, resource/writer safety and privacy. Pending implementation method is resolved before approved execution, never a waiver.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
+# FG-08-V — Independent Configuration, snapshots, and raw result integrity verification
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 08, stage Bootstrap runtime; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
+
 ### FG-08-V — Verify input/result boundaries and repair missing adapters
 
 Exercise approved config/snapshot/report cases through installed interfaces. Check secret redaction, malformed inputs, stable targets, conflicting config, dependency/generated changes, report omissions, and mutation during execution. Repair missing preflight or parsers and rebind affected evidence.
 
 **Exit:** Every required mapped input/result adapter is verified or explicitly blocked. No false build-run claim when preflight stopped it.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Every required input preflight/snapshot/parser adapter is implemented and valid input reaches intended command with complete actual reports.
+
+**Allowed negative/non-zero/finding:** Missing/invalid config denies before affected launch; unexpected zero-test/incomplete/cancelled results reject acceptance and retain raw exits. Correct rejection is not a build failure or repair target.
+
+**Required evidence:** Verified non-secret input identities, actual manifests/config/environment, real/report fixture outputs, port reservation lifecycle where applicable, writer/isolation proof.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Configuration/parser/writer owners: provide verified input source, current immutable isolation or writer coverage and exact permitted adapter proof. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Independent verification and fixed requirement matrix
+
+Before editing, audit every applicable original -I implement bullet, acceptance/evidence clause, -V exit clause and allocated canonical ledger case for this piece. For each keep source clause, fixed expected/allowed outcome above, actual delivered path/interface, method and safety gate, original evidence/raw outcome, status, responsible role and exact next action. Original implementation payload is a required full input, not just its title.
+
+Phase A pins obligations, pre-install baseline and provisional method locations; Phase B establishes delivery, independently resolves actual wiring/configuration/methods against those obligations using only permitted source/record readback. Log expected implementation changes, incorrect method assumptions, material obligation changes, defects and unresolved differences separately. Keep original/resolved matrices. Method-only resolution preserves key but must be authorized/logged and full executable payload read back; material primary/scope change requires renewal. Missing method/authority remains blocked.
+
+Publish the gap list before edits. Original baseline grants audit-first then scoped repair as a task design; actual repair execution needs its explicit applicable piece scope and current permission. Repair only missing/wrong assigned implementation, not correct rejection or unavailable external authority. Renew affected checks under real authority and retained accounting; never recursive verifier tasks. A fresh independent authorized reviewer/host route must read repaired evidence; if unavailable, affected acceptance stays blocked, not self-certified.
+
+Report destination: docs/validation/failure-gate-fg-08-verifier-report.md (planned until delivered). Report full binding/key/dependency/readiness, all three baselines, every matrix row, pre-edit gaps, repairs/authority/rebinding, actual raw checks and consumption or NOT_RUN, independent review, stage decision, remaining owners/resume action. Requirements: verified/failed/blocked/justified not applicable; fixture PASSED/FAILED/BLOCKED/NOT_RUN separately from host readiness and native lifecycle.
+
+Advance only after independent acceptance of this declared stage and actual successor delivery readiness, with scoped drafting permission. No later card/approval/activation/status rewrite follows a task label.
+
+## Pre-existing failures to ignore
+
+None authorized. Preserve raw findings/failures and exact missing authority; no lucky retry or absent catalog provides waiver.
+
+## Validation
+
+Only applicable current approved selected-tier/bounded capability checks, independently supervised and finitely accounted, may execute. Resolve exact command graph, decision, environment, limits/remaining consumption, capture and termination before any launch. Missing gate means BLOCKED / NOT_RUN, never a direct fallback or tier sweep.
+
+## Regression Guard
+
+Self-satisfying: this verifier delivers the independent requirement/outcome guard; material repairs must carry the primary boundary proving check through the installed path and independently revalidate after repair.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
 ## Piece 09 — Checked execution, transitive scope, and concurrency
+
+# FG-09-I — Checked execution, transitive scope, and concurrency
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 09, stage Bootstrap runtime; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
 
 ### FG-09-I — Implement the checked runner and dispatch guards
 
@@ -301,13 +1715,191 @@ Exercise approved config/snapshot/report cases through installed interfaces. Che
 
 **Evidence:** Real checked bootstrap-subject run, dispatch/lease/intent records, actual command graph, concurrent/race fixtures, raw child/step reports.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Exactly one authorized tier dispatches through installed checked runner with whole-tree bounded results and concurrency safety.
+
+**Allowed negative/non-zero/finding:** Invalid/mismatched/stale/expanded checked requests launch nothing and never fall back. Duplicate returns active identity or approved bounded reject/queue. These satisfy denial cases, not the required positive real run.
+
+**Required evidence:** Real checked bootstrap run, exact command graph, leases/intents/accounting, queue/revocation/resource/cancellation fixtures and raw child reports.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Runner/resource integration owner: repair exact installed boundary under current authority; missing containment/locks/grants blocks dispatch, no discretionary independent launch. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Task-specific delivery
+
+Deliver tracked implementation/handoff and clause matrix in docs/validation; planned handoff: docs/validation/failure-gate-fg-09-handoff.md. Publish actual files, unperformed checks, source and tested snapshots separately. This is a planned destination, not an installed route or delivered report. Preserve every exclusion above.
+
+## Pre-existing failures to ignore
+
+None authorized. Exact applicable ignores require real recorded authority; missing grants/capabilities are not test failures or reusable ignores.
+
+## Validation
+
+Runtime proof requires actual separately approved selected tier or named bounded capability, complete exact commands/targets/transitive graph, safe isolated environment, independent whole-tree admission, finite original parent/phase/attempt/accounting and capture/cleanup limits, current consumption, raw records and acknowledgements. All such fields are PENDING actual authority; no launch from this planning document.
+
+## Regression Guard
+
+At final task planning classify the actual material boundary against canonical Regression Guard. Bind a concrete proving check and actual test location through the affected installed path, preserving callers, coverage, raw failures, serialization, resource/writer safety and privacy. Pending implementation method is resolved before approved execution, never a waiver.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
+# FG-09-V — Independent Checked execution, transitive scope, and concurrency verification
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 09, stage Bootstrap runtime; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
+
 ### FG-09-V — Verify dispatch and repair runner/coordination gaps
 
 Prove intended single-tier execution, non-environment plan input, conflicting/stale/wrong-plan rejection without fallback, concurrent duplicate handling, queued revocation, shared-resource exclusion, transitive expansion denial, and child-safe cancellation. Use instrumented fixtures rather than launching unauthorized tiers to prove denial.
 
 **Exit:** Checked runner accepted for its bootstrap integration scope; ordinary route is still not cut over.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Exactly one authorized tier dispatches through installed checked runner with whole-tree bounded results and concurrency safety.
+
+**Allowed negative/non-zero/finding:** Invalid/mismatched/stale/expanded checked requests launch nothing and never fall back. Duplicate returns active identity or approved bounded reject/queue. These satisfy denial cases, not the required positive real run.
+
+**Required evidence:** Real checked bootstrap run, exact command graph, leases/intents/accounting, queue/revocation/resource/cancellation fixtures and raw child reports.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Runner/resource integration owner: repair exact installed boundary under current authority; missing containment/locks/grants blocks dispatch, no discretionary independent launch. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Independent verification and fixed requirement matrix
+
+Before editing, audit every applicable original -I implement bullet, acceptance/evidence clause, -V exit clause and allocated canonical ledger case for this piece. For each keep source clause, fixed expected/allowed outcome above, actual delivered path/interface, method and safety gate, original evidence/raw outcome, status, responsible role and exact next action. Original implementation payload is a required full input, not just its title.
+
+Phase A pins obligations, pre-install baseline and provisional method locations; Phase B establishes delivery, independently resolves actual wiring/configuration/methods against those obligations using only permitted source/record readback. Log expected implementation changes, incorrect method assumptions, material obligation changes, defects and unresolved differences separately. Keep original/resolved matrices. Method-only resolution preserves key but must be authorized/logged and full executable payload read back; material primary/scope change requires renewal. Missing method/authority remains blocked.
+
+Publish the gap list before edits. Original baseline grants audit-first then scoped repair as a task design; actual repair execution needs its explicit applicable piece scope and current permission. Repair only missing/wrong assigned implementation, not correct rejection or unavailable external authority. Renew affected checks under real authority and retained accounting; never recursive verifier tasks. A fresh independent authorized reviewer/host route must read repaired evidence; if unavailable, affected acceptance stays blocked, not self-certified.
+
+Report destination: docs/validation/failure-gate-fg-09-verifier-report.md (planned until delivered). Report full binding/key/dependency/readiness, all three baselines, every matrix row, pre-edit gaps, repairs/authority/rebinding, actual raw checks and consumption or NOT_RUN, independent review, stage decision, remaining owners/resume action. Requirements: verified/failed/blocked/justified not applicable; fixture PASSED/FAILED/BLOCKED/NOT_RUN separately from host readiness and native lifecycle.
+
+Advance only after independent acceptance of this declared stage and actual successor delivery readiness, with scoped drafting permission. No later card/approval/activation/status rewrite follows a task label.
+
+## Pre-existing failures to ignore
+
+None authorized. Preserve raw findings/failures and exact missing authority; no lucky retry or absent catalog provides waiver.
+
+## Validation
+
+Only applicable current approved selected-tier/bounded capability checks, independently supervised and finitely accounted, may execute. Resolve exact command graph, decision, environment, limits/remaining consumption, capture and termination before any launch. Missing gate means BLOCKED / NOT_RUN, never a direct fallback or tier sweep.
+
+## Regression Guard
+
+Self-satisfying: this verifier delivers the independent requirement/outcome guard; material repairs must carry the primary boundary proving check through the installed path and independently revalidate after repair.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
 ## Piece 10 — Durable execution telemetry and automatic lookup
+
+# FG-10-I — Durable execution telemetry and automatic lookup
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 10, stage Bootstrap runtime; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
 
 ### FG-10-I — Implement monitoring, file trail, and bounded queries
 
@@ -325,13 +1917,191 @@ Prove intended single-tier execution, non-environment plan input, conflicting/st
 
 **Evidence:** Actual files/segments and restart/durability observations, query reports, concurrent/corrupt-tail cases, source references and coverage gaps.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Truthful durable monitor/file trail and bounded automatic read-only investigation lookup.
+
+**Allowed negative/non-zero/finding:** Missing/corrupt/uncertain telemetry is reported honestly; pre-launch journal failure denies managed dispatch, post-spawn uncertainty retains exclusion. No events cannot prove no execution.
+
+**Required evidence:** Actual segments/events/original launches, durability/restart and corrupt-tail cases, query outputs, permission/redaction/coverage evidence.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Telemetry/evidence owner: supply supported durable storage/read access or repair missing wiring through scoped authority; never fabricate finishes. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Task-specific delivery
+
+Deliver tracked implementation/handoff and clause matrix in docs/validation; planned handoff: docs/validation/failure-gate-fg-10-handoff.md. Publish actual files, unperformed checks, source and tested snapshots separately. This is a planned destination, not an installed route or delivered report. Preserve every exclusion above.
+
+## Pre-existing failures to ignore
+
+None authorized. Exact applicable ignores require real recorded authority; missing grants/capabilities are not test failures or reusable ignores.
+
+## Validation
+
+Runtime proof requires actual separately approved selected tier or named bounded capability, complete exact commands/targets/transitive graph, safe isolated environment, independent whole-tree admission, finite original parent/phase/attempt/accounting and capture/cleanup limits, current consumption, raw records and acknowledgements. All such fields are PENDING actual authority; no launch from this planning document.
+
+## Regression Guard
+
+At final task planning classify the actual material boundary against canonical Regression Guard. Bind a concrete proving check and actual test location through the affected installed path, preserving callers, coverage, raw failures, serialization, resource/writer safety and privacy. Pending implementation method is resolved before approved execution, never a waiver.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
+# FG-10-V — Independent Durable execution telemetry and automatic lookup verification
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 10, stage Bootstrap runtime; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
+
 ### FG-10-V — Verify telemetry and repair missing monitor/query wiring
 
 Inspect real events against actual launches, crash windows, failed recording, rotation, duplicate event views, missing/corrupt logs, and incomplete finish evidence. Verify automatic lookup and distinction among unauthorized different-tier execution, duplicate top-level runs, independent overlap, and approved intra-run parallelism.
 
 **Exit:** Required managed telemetry/durability/query capabilities are evidenced. Missing durable storage or coverage is not called healthy or tamper-proof.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Truthful durable monitor/file trail and bounded automatic read-only investigation lookup.
+
+**Allowed negative/non-zero/finding:** Missing/corrupt/uncertain telemetry is reported honestly; pre-launch journal failure denies managed dispatch, post-spawn uncertainty retains exclusion. No events cannot prove no execution.
+
+**Required evidence:** Actual segments/events/original launches, durability/restart and corrupt-tail cases, query outputs, permission/redaction/coverage evidence.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Telemetry/evidence owner: supply supported durable storage/read access or repair missing wiring through scoped authority; never fabricate finishes. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Independent verification and fixed requirement matrix
+
+Before editing, audit every applicable original -I implement bullet, acceptance/evidence clause, -V exit clause and allocated canonical ledger case for this piece. For each keep source clause, fixed expected/allowed outcome above, actual delivered path/interface, method and safety gate, original evidence/raw outcome, status, responsible role and exact next action. Original implementation payload is a required full input, not just its title.
+
+Phase A pins obligations, pre-install baseline and provisional method locations; Phase B establishes delivery, independently resolves actual wiring/configuration/methods against those obligations using only permitted source/record readback. Log expected implementation changes, incorrect method assumptions, material obligation changes, defects and unresolved differences separately. Keep original/resolved matrices. Method-only resolution preserves key but must be authorized/logged and full executable payload read back; material primary/scope change requires renewal. Missing method/authority remains blocked.
+
+Publish the gap list before edits. Original baseline grants audit-first then scoped repair as a task design; actual repair execution needs its explicit applicable piece scope and current permission. Repair only missing/wrong assigned implementation, not correct rejection or unavailable external authority. Renew affected checks under real authority and retained accounting; never recursive verifier tasks. A fresh independent authorized reviewer/host route must read repaired evidence; if unavailable, affected acceptance stays blocked, not self-certified.
+
+Report destination: docs/validation/failure-gate-fg-10-verifier-report.md (planned until delivered). Report full binding/key/dependency/readiness, all three baselines, every matrix row, pre-edit gaps, repairs/authority/rebinding, actual raw checks and consumption or NOT_RUN, independent review, stage decision, remaining owners/resume action. Requirements: verified/failed/blocked/justified not applicable; fixture PASSED/FAILED/BLOCKED/NOT_RUN separately from host readiness and native lifecycle.
+
+Advance only after independent acceptance of this declared stage and actual successor delivery readiness, with scoped drafting permission. No later card/approval/activation/status rewrite follows a task label.
+
+## Pre-existing failures to ignore
+
+None authorized. Preserve raw findings/failures and exact missing authority; no lucky retry or absent catalog provides waiver.
+
+## Validation
+
+Only applicable current approved selected-tier/bounded capability checks, independently supervised and finitely accounted, may execute. Resolve exact command graph, decision, environment, limits/remaining consumption, capture and termination before any launch. Missing gate means BLOCKED / NOT_RUN, never a direct fallback or tier sweep.
+
+## Regression Guard
+
+Self-satisfying: this verifier delivers the independent requirement/outcome guard; material repairs must carry the primary boundary proving check through the installed path and independently revalidate after repair.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
 ## Piece 11 — Bounded diagnostics and provenance comparisons
+
+# FG-11-I — Bounded diagnostics and provenance comparisons
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 11, stage Bootstrap runtime; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
 
 ### FG-11-I — Implement subordinate auxiliary capabilities
 
@@ -349,13 +2119,191 @@ Inspect real events against actual launches, crash windows, failed recording, ro
 
 **Evidence:** Capability definitions/real decisions, atomic ledger histories, retry reports, verified earlier snapshot/environment, consumption/exhaustion records.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Actual subordinate bounded diagnostic/comparison dispatch and permanent cumulative accounting.
+
+**Allowed negative/non-zero/finding:** Exhausted/invalid selectors or insufficient capacity for exactly three required isolation retries reject/block classification. This does not satisfy the positive accounting/dispatch obligations or grant broader tier.
+
+**Required evidence:** Real capability decisions, three distinct permitted retries where required, atomic consumption ledger, comparison snapshot/environment proof and exhaustion evidence.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Diagnostic/budget owner: provide exact permitted selectors and finite shared attempt allowance or retain blocked classification without shortening/replenishing. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Task-specific delivery
+
+Deliver tracked implementation/handoff and clause matrix in docs/validation; planned handoff: docs/validation/failure-gate-fg-11-handoff.md. Publish actual files, unperformed checks, source and tested snapshots separately. This is a planned destination, not an installed route or delivered report. Preserve every exclusion above.
+
+## Pre-existing failures to ignore
+
+None authorized. Exact applicable ignores require real recorded authority; missing grants/capabilities are not test failures or reusable ignores.
+
+## Validation
+
+Runtime proof requires actual separately approved selected tier or named bounded capability, complete exact commands/targets/transitive graph, safe isolated environment, independent whole-tree admission, finite original parent/phase/attempt/accounting and capture/cleanup limits, current consumption, raw records and acknowledgements. All such fields are PENDING actual authority; no launch from this planning document.
+
+## Regression Guard
+
+At final task planning classify the actual material boundary against canonical Regression Guard. Bind a concrete proving check and actual test location through the affected installed path, preserving callers, coverage, raw failures, serialization, resource/writer safety and privacy. Pending implementation method is resolved before approved execution, never a waiver.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
+# FG-11-V — Independent Bounded diagnostics and provenance comparisons verification
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 11, stage Bootstrap runtime; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
+
 ### FG-11-V — Verify auxiliary limits and repair scope/accounting gaps
 
 Check three distinct permitted attempts, no retry-until-lucky behavior, concurrency races, exhausted/narrowed budgets, denied selectors/whole-tier substitutions, and source-isolated comparisons without working-tree or production mutation. Correct defects and re-prove with retained consumption.
 
 **Exit:** Diagnostic/comparison behavior accepted; unknown or unsupported isolation remains blocked, not broader-tier permission.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Actual subordinate bounded diagnostic/comparison dispatch and permanent cumulative accounting.
+
+**Allowed negative/non-zero/finding:** Exhausted/invalid selectors or insufficient capacity for exactly three required isolation retries reject/block classification. This does not satisfy the positive accounting/dispatch obligations or grant broader tier.
+
+**Required evidence:** Real capability decisions, three distinct permitted retries where required, atomic consumption ledger, comparison snapshot/environment proof and exhaustion evidence.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Diagnostic/budget owner: provide exact permitted selectors and finite shared attempt allowance or retain blocked classification without shortening/replenishing. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Independent verification and fixed requirement matrix
+
+Before editing, audit every applicable original -I implement bullet, acceptance/evidence clause, -V exit clause and allocated canonical ledger case for this piece. For each keep source clause, fixed expected/allowed outcome above, actual delivered path/interface, method and safety gate, original evidence/raw outcome, status, responsible role and exact next action. Original implementation payload is a required full input, not just its title.
+
+Phase A pins obligations, pre-install baseline and provisional method locations; Phase B establishes delivery, independently resolves actual wiring/configuration/methods against those obligations using only permitted source/record readback. Log expected implementation changes, incorrect method assumptions, material obligation changes, defects and unresolved differences separately. Keep original/resolved matrices. Method-only resolution preserves key but must be authorized/logged and full executable payload read back; material primary/scope change requires renewal. Missing method/authority remains blocked.
+
+Publish the gap list before edits. Original baseline grants audit-first then scoped repair as a task design; actual repair execution needs its explicit applicable piece scope and current permission. Repair only missing/wrong assigned implementation, not correct rejection or unavailable external authority. Renew affected checks under real authority and retained accounting; never recursive verifier tasks. A fresh independent authorized reviewer/host route must read repaired evidence; if unavailable, affected acceptance stays blocked, not self-certified.
+
+Report destination: docs/validation/failure-gate-fg-11-verifier-report.md (planned until delivered). Report full binding/key/dependency/readiness, all three baselines, every matrix row, pre-edit gaps, repairs/authority/rebinding, actual raw checks and consumption or NOT_RUN, independent review, stage decision, remaining owners/resume action. Requirements: verified/failed/blocked/justified not applicable; fixture PASSED/FAILED/BLOCKED/NOT_RUN separately from host readiness and native lifecycle.
+
+Advance only after independent acceptance of this declared stage and actual successor delivery readiness, with scoped drafting permission. No later card/approval/activation/status rewrite follows a task label.
+
+## Pre-existing failures to ignore
+
+None authorized. Preserve raw findings/failures and exact missing authority; no lucky retry or absent catalog provides waiver.
+
+## Validation
+
+Only applicable current approved selected-tier/bounded capability checks, independently supervised and finitely accounted, may execute. Resolve exact command graph, decision, environment, limits/remaining consumption, capture and termination before any launch. Missing gate means BLOCKED / NOT_RUN, never a direct fallback or tier sweep.
+
+## Regression Guard
+
+Self-satisfying: this verifier delivers the independent requirement/outcome guard; material repairs must carry the primary boundary proving check through the installed path and independently revalidate after repair.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
 ## Piece 12 — Classification, baseline policy, and repair ownership
+
+# FG-12-I — Classification, baseline policy, and repair ownership
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 12, stage Bootstrap runtime; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
 
 ### FG-12-I — Implement failure assessment separately from authorization
 
@@ -373,13 +2321,191 @@ Check three distinct permitted attempts, no retry-until-lucky behavior, concurre
 
 **Evidence:** Classification lineage, original corroboration identities, catalog/version/decision records when genuinely present, raw reports, owned-repair proofs.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Separate evidence-backed repair ownership, provenance, ignore matching and acceptance decisions without tier change.
+
+**Allowed negative/non-zero/finding:** Expired/revoked/ambiguous/unproven/copied-origin acceptance denies. Raw nonzero may be ACCEPTABLE_WITH_IGNORED_FAILURES only under exact authorized applicable exception; provenance alone is not waiver.
+
+**Required evidence:** Direct earlier same-failure proof, independent corroboration, actual catalog/decision lineage if applicable, raw reports and owned-repair proofs.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Classification/catalog owner: provide exact authentic matching exception or scoped owned repair; unknown provenance remains unresolved potential regression. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Task-specific delivery
+
+Deliver tracked implementation/handoff and clause matrix in docs/validation; planned handoff: docs/validation/failure-gate-fg-12-handoff.md. Publish actual files, unperformed checks, source and tested snapshots separately. This is a planned destination, not an installed route or delivered report. Preserve every exclusion above.
+
+## Pre-existing failures to ignore
+
+None authorized. Exact applicable ignores require real recorded authority; missing grants/capabilities are not test failures or reusable ignores.
+
+## Validation
+
+Runtime proof requires actual separately approved selected tier or named bounded capability, complete exact commands/targets/transitive graph, safe isolated environment, independent whole-tree admission, finite original parent/phase/attempt/accounting and capture/cleanup limits, current consumption, raw records and acknowledgements. All such fields are PENDING actual authority; no launch from this planning document.
+
+## Regression Guard
+
+At final task planning classify the actual material boundary against canonical Regression Guard. Bind a concrete proving check and actual test location through the affected installed path, preserving callers, coverage, raw failures, serialization, resource/writer safety and privacy. Pending implementation method is resolved before approved execution, never a waiver.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
+# FG-12-V — Independent Classification, baseline policy, and repair ownership verification
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 12, stage Bootstrap runtime; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
+
 ### FG-12-V — Verify classification and repair incorrect acceptance
 
 Test exact/mismatched/expired/revoked/ambiguous matches, copied-source corroboration, contaminated earlier snapshots, intermittency without provenance, owned repairs surviving expiry, and positive/negative task-local decision bindings. Verify missing catalog/governance creates no authority.
 
 **Exit:** Applicable failure decisions are evidence-backed; unresolved provenance or acceptance blocks validated completion without auto-fixing unrelated code.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Separate evidence-backed repair ownership, provenance, ignore matching and acceptance decisions without tier change.
+
+**Allowed negative/non-zero/finding:** Expired/revoked/ambiguous/unproven/copied-origin acceptance denies. Raw nonzero may be ACCEPTABLE_WITH_IGNORED_FAILURES only under exact authorized applicable exception; provenance alone is not waiver.
+
+**Required evidence:** Direct earlier same-failure proof, independent corroboration, actual catalog/decision lineage if applicable, raw reports and owned-repair proofs.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Classification/catalog owner: provide exact authentic matching exception or scoped owned repair; unknown provenance remains unresolved potential regression. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Independent verification and fixed requirement matrix
+
+Before editing, audit every applicable original -I implement bullet, acceptance/evidence clause, -V exit clause and allocated canonical ledger case for this piece. For each keep source clause, fixed expected/allowed outcome above, actual delivered path/interface, method and safety gate, original evidence/raw outcome, status, responsible role and exact next action. Original implementation payload is a required full input, not just its title.
+
+Phase A pins obligations, pre-install baseline and provisional method locations; Phase B establishes delivery, independently resolves actual wiring/configuration/methods against those obligations using only permitted source/record readback. Log expected implementation changes, incorrect method assumptions, material obligation changes, defects and unresolved differences separately. Keep original/resolved matrices. Method-only resolution preserves key but must be authorized/logged and full executable payload read back; material primary/scope change requires renewal. Missing method/authority remains blocked.
+
+Publish the gap list before edits. Original baseline grants audit-first then scoped repair as a task design; actual repair execution needs its explicit applicable piece scope and current permission. Repair only missing/wrong assigned implementation, not correct rejection or unavailable external authority. Renew affected checks under real authority and retained accounting; never recursive verifier tasks. A fresh independent authorized reviewer/host route must read repaired evidence; if unavailable, affected acceptance stays blocked, not self-certified.
+
+Report destination: docs/validation/failure-gate-fg-12-verifier-report.md (planned until delivered). Report full binding/key/dependency/readiness, all three baselines, every matrix row, pre-edit gaps, repairs/authority/rebinding, actual raw checks and consumption or NOT_RUN, independent review, stage decision, remaining owners/resume action. Requirements: verified/failed/blocked/justified not applicable; fixture PASSED/FAILED/BLOCKED/NOT_RUN separately from host readiness and native lifecycle.
+
+Advance only after independent acceptance of this declared stage and actual successor delivery readiness, with scoped drafting permission. No later card/approval/activation/status rewrite follows a task label.
+
+## Pre-existing failures to ignore
+
+None authorized. Preserve raw findings/failures and exact missing authority; no lucky retry or absent catalog provides waiver.
+
+## Validation
+
+Only applicable current approved selected-tier/bounded capability checks, independently supervised and finitely accounted, may execute. Resolve exact command graph, decision, environment, limits/remaining consumption, capture and termination before any launch. Missing gate means BLOCKED / NOT_RUN, never a direct fallback or tier sweep.
+
+## Regression Guard
+
+Self-satisfying: this verifier delivers the independent requirement/outcome guard; material repairs must carry the primary boundary proving check through the installed path and independently revalidate after repair.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
 ## Piece 13 — Final-writer coordination and local validated completion
+
+# FG-13-I — Final-writer coordination and local validated completion
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 13, stage Bootstrap runtime; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
 
 ### FG-13-I — Implement snapshot-current local acceptance
 
@@ -397,13 +2523,191 @@ Test exact/mismatched/expired/revoked/ambiguous matches, copied-source corrobora
 
 **Evidence:** Actual checker/terminal records, writer coverage and isolation proof, selected-tier post-edit report, live installed final-writer race in a safe authorized environment.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Real snapshot-current local completion with effective final-writer coordination and complete checked evidence.
+
+**Allowed negative/non-zero/finding:** Wrong/ad-hoc/incomplete/stale/unknown-snapshot/external-missing evidence must reject terminal validated completion. Safe cancellation is distinct from PASS; primitive locks alone are insufficient.
+
+**Required evidence:** Actual checker/terminal audit, complete actual writer coverage or immutable accepted-state boundary, selected-tier post-edit run and safe installed live final-writer race.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Participating writer/completion owners: establish real isolation/coverage and authorized live race; absent proof blocks capability and cutover. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Task-specific delivery
+
+Deliver tracked implementation/handoff and clause matrix in docs/validation; planned handoff: docs/validation/failure-gate-fg-13-handoff.md. Publish actual files, unperformed checks, source and tested snapshots separately. This is a planned destination, not an installed route or delivered report. Preserve every exclusion above.
+
+## Pre-existing failures to ignore
+
+None authorized. Exact applicable ignores require real recorded authority; missing grants/capabilities are not test failures or reusable ignores.
+
+## Validation
+
+Runtime proof requires actual separately approved selected tier or named bounded capability, complete exact commands/targets/transitive graph, safe isolated environment, independent whole-tree admission, finite original parent/phase/attempt/accounting and capture/cleanup limits, current consumption, raw records and acknowledgements. All such fields are PENDING actual authority; no launch from this planning document.
+
+## Regression Guard
+
+At final task planning classify the actual material boundary against canonical Regression Guard. Bind a concrete proving check and actual test location through the affected installed path, preserving callers, coverage, raw failures, serialization, resource/writer safety and privacy. Pending implementation method is resolved before approved execution, never a waiver.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
+# FG-13-V — Independent Final-writer coordination and local validated completion verification
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 13, stage Bootstrap runtime; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
+
 ### FG-13-V — Verify the live final-writer boundary and repair gaps
 
 Inspect the actual host writers and checker, not just lock primitives. Run the authorized installed-path race and negative evidence cases; repair missing coordination/readers/terminal logic, then invalidate and renew affected validation.
 
 **Exit:** Snapshot-current local completion proved. Missing safe live race or effective writer coverage blocks this capability and ordinary-route cutover.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Real snapshot-current local completion with effective final-writer coordination and complete checked evidence.
+
+**Allowed negative/non-zero/finding:** Wrong/ad-hoc/incomplete/stale/unknown-snapshot/external-missing evidence must reject terminal validated completion. Safe cancellation is distinct from PASS; primitive locks alone are insufficient.
+
+**Required evidence:** Actual checker/terminal audit, complete actual writer coverage or immutable accepted-state boundary, selected-tier post-edit run and safe installed live final-writer race.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Participating writer/completion owners: establish real isolation/coverage and authorized live race; absent proof blocks capability and cutover. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Independent verification and fixed requirement matrix
+
+Before editing, audit every applicable original -I implement bullet, acceptance/evidence clause, -V exit clause and allocated canonical ledger case for this piece. For each keep source clause, fixed expected/allowed outcome above, actual delivered path/interface, method and safety gate, original evidence/raw outcome, status, responsible role and exact next action. Original implementation payload is a required full input, not just its title.
+
+Phase A pins obligations, pre-install baseline and provisional method locations; Phase B establishes delivery, independently resolves actual wiring/configuration/methods against those obligations using only permitted source/record readback. Log expected implementation changes, incorrect method assumptions, material obligation changes, defects and unresolved differences separately. Keep original/resolved matrices. Method-only resolution preserves key but must be authorized/logged and full executable payload read back; material primary/scope change requires renewal. Missing method/authority remains blocked.
+
+Publish the gap list before edits. Original baseline grants audit-first then scoped repair as a task design; actual repair execution needs its explicit applicable piece scope and current permission. Repair only missing/wrong assigned implementation, not correct rejection or unavailable external authority. Renew affected checks under real authority and retained accounting; never recursive verifier tasks. A fresh independent authorized reviewer/host route must read repaired evidence; if unavailable, affected acceptance stays blocked, not self-certified.
+
+Report destination: docs/validation/failure-gate-fg-13-verifier-report.md (planned until delivered). Report full binding/key/dependency/readiness, all three baselines, every matrix row, pre-edit gaps, repairs/authority/rebinding, actual raw checks and consumption or NOT_RUN, independent review, stage decision, remaining owners/resume action. Requirements: verified/failed/blocked/justified not applicable; fixture PASSED/FAILED/BLOCKED/NOT_RUN separately from host readiness and native lifecycle.
+
+Advance only after independent acceptance of this declared stage and actual successor delivery readiness, with scoped drafting permission. No later card/approval/activation/status rewrite follows a task label.
+
+## Pre-existing failures to ignore
+
+None authorized. Preserve raw findings/failures and exact missing authority; no lucky retry or absent catalog provides waiver.
+
+## Validation
+
+Only applicable current approved selected-tier/bounded capability checks, independently supervised and finitely accounted, may execute. Resolve exact command graph, decision, environment, limits/remaining consumption, capture and termination before any launch. Missing gate means BLOCKED / NOT_RUN, never a direct fallback or tier sweep.
+
+## Regression Guard
+
+Self-satisfying: this verifier delivers the independent requirement/outcome guard; material repairs must carry the primary boundary proving check through the installed path and independently revalidate after repair.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
 ## Piece 14 — Owner-directed administrative closure
+
+# FG-14-I — Owner-directed administrative closure
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 14, stage Bootstrap runtime; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
 
 ### FG-14-I — Implement closure mode and honest dependent readers
 
@@ -421,13 +2725,191 @@ Inspect the actual host writers and checker, not just lock primitives. Run the a
 
 **Evidence:** Implemented route/readers, recorded local decisions in authorized tests, raw retained assessments, idempotent terminal/audit reports.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Safe honest owner_direction route and dependent readers, not validated completion.
+
+**Allowed negative/non-zero/finding:** Closure with failed/BLOCKED/NOT_RUN checks is expected under real exact owner direction and retains unresolved repairs. No real task is closed absent that direction; native interface absence is reported separately.
+
+**Required evidence:** Authorized isolated route/reader cases, real local decision bindings in tests, retained raw assessments, audit/idempotency/child handling evidence.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Closure/readers owner: repair mode/lineage within approval; missing native interface cannot be invented or imposed as local prerequisite. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Task-specific delivery
+
+Deliver tracked implementation/handoff and clause matrix in docs/validation; planned handoff: docs/validation/failure-gate-fg-14-handoff.md. Publish actual files, unperformed checks, source and tested snapshots separately. This is a planned destination, not an installed route or delivered report. Preserve every exclusion above.
+
+## Pre-existing failures to ignore
+
+None authorized. Exact applicable ignores require real recorded authority; missing grants/capabilities are not test failures or reusable ignores.
+
+## Validation
+
+Runtime proof requires actual separately approved selected tier or named bounded capability, complete exact commands/targets/transitive graph, safe isolated environment, independent whole-tree admission, finite original parent/phase/attempt/accounting and capture/cleanup limits, current consumption, raw records and acknowledgements. All such fields are PENDING actual authority; no launch from this planning document.
+
+## Regression Guard
+
+At final task planning classify the actual material boundary against canonical Regression Guard. Bind a concrete proving check and actual test location through the affected installed path, preserving callers, coverage, raw failures, serialization, resource/writer safety and privacy. Pending implementation method is resolved before approved execution, never a waiver.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
+# FG-14-V — Independent Owner-directed administrative closure verification
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 14, stage Bootstrap runtime; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
+
 ### FG-14-V — Verify closure boundaries and repair dishonest readers
 
 Use isolated approved fixtures to verify closure with missing/failed validation, missing ordinary runner, repeated direction, audit/race failure, active child handling, legacy modes, and unresolved repairs. Do not close a real user's task without their exact direction.
 
 **Exit:** Local closure/readers behave correctly. Missing native platform interface is reported separately; it is not fabricated or demanded as a local prerequisite.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Safe honest owner_direction route and dependent readers, not validated completion.
+
+**Allowed negative/non-zero/finding:** Closure with failed/BLOCKED/NOT_RUN checks is expected under real exact owner direction and retains unresolved repairs. No real task is closed absent that direction; native interface absence is reported separately.
+
+**Required evidence:** Authorized isolated route/reader cases, real local decision bindings in tests, retained raw assessments, audit/idempotency/child handling evidence.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Closure/readers owner: repair mode/lineage within approval; missing native interface cannot be invented or imposed as local prerequisite. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Independent verification and fixed requirement matrix
+
+Before editing, audit every applicable original -I implement bullet, acceptance/evidence clause, -V exit clause and allocated canonical ledger case for this piece. For each keep source clause, fixed expected/allowed outcome above, actual delivered path/interface, method and safety gate, original evidence/raw outcome, status, responsible role and exact next action. Original implementation payload is a required full input, not just its title.
+
+Phase A pins obligations, pre-install baseline and provisional method locations; Phase B establishes delivery, independently resolves actual wiring/configuration/methods against those obligations using only permitted source/record readback. Log expected implementation changes, incorrect method assumptions, material obligation changes, defects and unresolved differences separately. Keep original/resolved matrices. Method-only resolution preserves key but must be authorized/logged and full executable payload read back; material primary/scope change requires renewal. Missing method/authority remains blocked.
+
+Publish the gap list before edits. Original baseline grants audit-first then scoped repair as a task design; actual repair execution needs its explicit applicable piece scope and current permission. Repair only missing/wrong assigned implementation, not correct rejection or unavailable external authority. Renew affected checks under real authority and retained accounting; never recursive verifier tasks. A fresh independent authorized reviewer/host route must read repaired evidence; if unavailable, affected acceptance stays blocked, not self-certified.
+
+Report destination: docs/validation/failure-gate-fg-14-verifier-report.md (planned until delivered). Report full binding/key/dependency/readiness, all three baselines, every matrix row, pre-edit gaps, repairs/authority/rebinding, actual raw checks and consumption or NOT_RUN, independent review, stage decision, remaining owners/resume action. Requirements: verified/failed/blocked/justified not applicable; fixture PASSED/FAILED/BLOCKED/NOT_RUN separately from host readiness and native lifecycle.
+
+Advance only after independent acceptance of this declared stage and actual successor delivery readiness, with scoped drafting permission. No later card/approval/activation/status rewrite follows a task label.
+
+## Pre-existing failures to ignore
+
+None authorized. Preserve raw findings/failures and exact missing authority; no lucky retry or absent catalog provides waiver.
+
+## Validation
+
+Only applicable current approved selected-tier/bounded capability checks, independently supervised and finitely accounted, may execute. Resolve exact command graph, decision, environment, limits/remaining consumption, capture and termination before any launch. Missing gate means BLOCKED / NOT_RUN, never a direct fallback or tier sweep.
+
+## Regression Guard
+
+Self-satisfying: this verifier delivers the independent requirement/outcome guard; material repairs must carry the primary boundary proving check through the installed path and independently revalidate after repair.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
 ## Piece 15 — Backup/restore and retained-error recovery
+
+# FG-15-I — Backup/restore and retained-error recovery
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 15, stage Bootstrap runtime; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
 
 ### FG-15-I — Implement and exercise safe recovery routes
 
@@ -445,13 +2927,191 @@ Use isolated approved fixtures to verify closure with missing/failed validation,
 
 **Evidence:** Actual backup/checkpoint and isolated restore reports, later-ID reconciliation, writer fencing, unchanged original incidents/consumption, recovery decision and acknowledgement.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Actual safe isolated backup/restoration/non-reuse and exact separately approved retained-error recovery.
+
+**Allowed negative/non-zero/finding:** Missing later-commit reconciliation, stale grants, unknown commit or incompatible recovery fields must fence/block. A correct fence is not restore readiness; live exclusions are never cleared for PASS.
+
+**Required evidence:** Actual real-format backup/isolated restore reports, committed ID/tombstones reconciliation, writer fencing, original incidents/consumption and authentic recovery acknowledgement.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Storage/recovery owners: approve exact disposable drill and incident-specific recovery with trusted durable lineage; no production restore or recurring job. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Task-specific delivery
+
+Deliver tracked implementation/handoff and clause matrix in docs/validation; planned handoff: docs/validation/failure-gate-fg-15-handoff.md. Publish actual files, unperformed checks, source and tested snapshots separately. This is a planned destination, not an installed route or delivered report. Preserve every exclusion above.
+
+## Pre-existing failures to ignore
+
+None authorized. Exact applicable ignores require real recorded authority; missing grants/capabilities are not test failures or reusable ignores.
+
+## Validation
+
+Runtime proof requires actual separately approved selected tier or named bounded capability, complete exact commands/targets/transitive graph, safe isolated environment, independent whole-tree admission, finite original parent/phase/attempt/accounting and capture/cleanup limits, current consumption, raw records and acknowledgements. All such fields are PENDING actual authority; no launch from this planning document.
+
+## Regression Guard
+
+At final task planning classify the actual material boundary against canonical Regression Guard. Bind a concrete proving check and actual test location through the affected installed path, preserving callers, coverage, raw failures, serialization, resource/writer safety and privacy. Pending implementation method is resolved before approved execution, never a waiver.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
+# FG-15-V — Independent Backup/restore and retained-error recovery verification
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 15, stage Bootstrap runtime; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
+
 ### FG-15-V — Verify actual restoration and repair recovery defects
 
 Independently inspect the real checkpoint and exercise the authorized isolated host restore, not only mocks. Check non-reuse, namespaces, tombstones, transaction consistency, stale permissions/expiry, old-writer fencing, true/unfinalized/missing-field exclusions, and unknown-commit acknowledgement.
 
 **Exit:** Claimed recovery readiness has real proof; missing safe approval, durable ledger, or acknowledgement remains blocked. Do not clear live exclusions to make verification pass.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Actual safe isolated backup/restoration/non-reuse and exact separately approved retained-error recovery.
+
+**Allowed negative/non-zero/finding:** Missing later-commit reconciliation, stale grants, unknown commit or incompatible recovery fields must fence/block. A correct fence is not restore readiness; live exclusions are never cleared for PASS.
+
+**Required evidence:** Actual real-format backup/isolated restore reports, committed ID/tombstones reconciliation, writer fencing, original incidents/consumption and authentic recovery acknowledgement.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Storage/recovery owners: approve exact disposable drill and incident-specific recovery with trusted durable lineage; no production restore or recurring job. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Independent verification and fixed requirement matrix
+
+Before editing, audit every applicable original -I implement bullet, acceptance/evidence clause, -V exit clause and allocated canonical ledger case for this piece. For each keep source clause, fixed expected/allowed outcome above, actual delivered path/interface, method and safety gate, original evidence/raw outcome, status, responsible role and exact next action. Original implementation payload is a required full input, not just its title.
+
+Phase A pins obligations, pre-install baseline and provisional method locations; Phase B establishes delivery, independently resolves actual wiring/configuration/methods against those obligations using only permitted source/record readback. Log expected implementation changes, incorrect method assumptions, material obligation changes, defects and unresolved differences separately. Keep original/resolved matrices. Method-only resolution preserves key but must be authorized/logged and full executable payload read back; material primary/scope change requires renewal. Missing method/authority remains blocked.
+
+Publish the gap list before edits. Original baseline grants audit-first then scoped repair as a task design; actual repair execution needs its explicit applicable piece scope and current permission. Repair only missing/wrong assigned implementation, not correct rejection or unavailable external authority. Renew affected checks under real authority and retained accounting; never recursive verifier tasks. A fresh independent authorized reviewer/host route must read repaired evidence; if unavailable, affected acceptance stays blocked, not self-certified.
+
+Report destination: docs/validation/failure-gate-fg-15-verifier-report.md (planned until delivered). Report full binding/key/dependency/readiness, all three baselines, every matrix row, pre-edit gaps, repairs/authority/rebinding, actual raw checks and consumption or NOT_RUN, independent review, stage decision, remaining owners/resume action. Requirements: verified/failed/blocked/justified not applicable; fixture PASSED/FAILED/BLOCKED/NOT_RUN separately from host readiness and native lifecycle.
+
+Advance only after independent acceptance of this declared stage and actual successor delivery readiness, with scoped drafting permission. No later card/approval/activation/status rewrite follows a task label.
+
+## Pre-existing failures to ignore
+
+None authorized. Preserve raw findings/failures and exact missing authority; no lucky retry or absent catalog provides waiver.
+
+## Validation
+
+Only applicable current approved selected-tier/bounded capability checks, independently supervised and finitely accounted, may execute. Resolve exact command graph, decision, environment, limits/remaining consumption, capture and termination before any launch. Missing gate means BLOCKED / NOT_RUN, never a direct fallback or tier sweep.
+
+## Regression Guard
+
+Self-satisfying: this verifier delivers the independent requirement/outcome guard; material repairs must carry the primary boundary proving check through the installed path and independently revalidate after repair.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
 ## Piece 16 — Evidence health, retention, export, and visibility
+
+# FG-16-I — Evidence health, retention, export, and visibility
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 16, stage Bootstrap runtime; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
 
 ### FG-16-I — Complete the evidence-management surface
 
@@ -470,13 +3130,191 @@ Independently inspect the real checkpoint and exercise the authorized isolated h
 
 **Evidence:** Index/health/export outputs, protected dependency graph, policy records, redaction/non-authority cases, references to actual Piece 15 proof.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** All eight required evidence/recovery capabilities actually mapped and implemented.
+
+**Allowed negative/non-zero/finding:** Honest never_collected/unavailable/expired/pruned/corrupt/unknown states and non-authorizing export/import satisfy absence/redaction cases. Missing required capability is not satisfied by that finding; optional history stays optional.
+
+**Required evidence:** Index, real health/export views, dependency-aware retention/tombstones, redaction/non-authority cases and actual FG-15 restore evidence.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Evidence/retention owner: provide permitted original evidence or repair exact missing capability; prune only disposable approved fixtures. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Task-specific delivery
+
+Deliver tracked implementation/handoff and clause matrix in docs/validation; planned handoff: docs/validation/failure-gate-fg-16-handoff.md. Publish actual files, unperformed checks, source and tested snapshots separately. This is a planned destination, not an installed route or delivered report. Preserve every exclusion above.
+
+## Pre-existing failures to ignore
+
+None authorized. Exact applicable ignores require real recorded authority; missing grants/capabilities are not test failures or reusable ignores.
+
+## Validation
+
+Runtime proof requires actual separately approved selected tier or named bounded capability, complete exact commands/targets/transitive graph, safe isolated environment, independent whole-tree admission, finite original parent/phase/attempt/accounting and capture/cleanup limits, current consumption, raw records and acknowledgements. All such fields are PENDING actual authority; no launch from this planning document.
+
+## Regression Guard
+
+At final task planning classify the actual material boundary against canonical Regression Guard. Bind a concrete proving check and actual test location through the affected installed path, preserving callers, coverage, raw failures, serialization, resource/writer safety and privacy. Pending implementation method is resolved before approved execution, never a waiver.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
+# FG-16-V — Independent Evidence health, retention, export, and visibility verification
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 16, stage Bootstrap runtime; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
+
 ### FG-16-V — Verify all eight capabilities and repair omissions
 
 Follow indexed references to authoritative evidence; inspect actual health behavior, safe export/import view, missing/corrupt/stale artifacts, redaction, dependencies, permanent tombstones, and closure-mode reporting. Test pruning only on disposable authorized fixtures, not production history.
 
 **Exit:** Evidence surface verified. Optional missing history remains optional; a missing required capability is explicitly blocked rather than satisfied by documentation.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** All eight required evidence/recovery capabilities actually mapped and implemented.
+
+**Allowed negative/non-zero/finding:** Honest never_collected/unavailable/expired/pruned/corrupt/unknown states and non-authorizing export/import satisfy absence/redaction cases. Missing required capability is not satisfied by that finding; optional history stays optional.
+
+**Required evidence:** Index, real health/export views, dependency-aware retention/tombstones, redaction/non-authority cases and actual FG-15 restore evidence.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Evidence/retention owner: provide permitted original evidence or repair exact missing capability; prune only disposable approved fixtures. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Independent verification and fixed requirement matrix
+
+Before editing, audit every applicable original -I implement bullet, acceptance/evidence clause, -V exit clause and allocated canonical ledger case for this piece. For each keep source clause, fixed expected/allowed outcome above, actual delivered path/interface, method and safety gate, original evidence/raw outcome, status, responsible role and exact next action. Original implementation payload is a required full input, not just its title.
+
+Phase A pins obligations, pre-install baseline and provisional method locations; Phase B establishes delivery, independently resolves actual wiring/configuration/methods against those obligations using only permitted source/record readback. Log expected implementation changes, incorrect method assumptions, material obligation changes, defects and unresolved differences separately. Keep original/resolved matrices. Method-only resolution preserves key but must be authorized/logged and full executable payload read back; material primary/scope change requires renewal. Missing method/authority remains blocked.
+
+Publish the gap list before edits. Original baseline grants audit-first then scoped repair as a task design; actual repair execution needs its explicit applicable piece scope and current permission. Repair only missing/wrong assigned implementation, not correct rejection or unavailable external authority. Renew affected checks under real authority and retained accounting; never recursive verifier tasks. A fresh independent authorized reviewer/host route must read repaired evidence; if unavailable, affected acceptance stays blocked, not self-certified.
+
+Report destination: docs/validation/failure-gate-fg-16-verifier-report.md (planned until delivered). Report full binding/key/dependency/readiness, all three baselines, every matrix row, pre-edit gaps, repairs/authority/rebinding, actual raw checks and consumption or NOT_RUN, independent review, stage decision, remaining owners/resume action. Requirements: verified/failed/blocked/justified not applicable; fixture PASSED/FAILED/BLOCKED/NOT_RUN separately from host readiness and native lifecycle.
+
+Advance only after independent acceptance of this declared stage and actual successor delivery readiness, with scoped drafting permission. No later card/approval/activation/status rewrite follows a task label.
+
+## Pre-existing failures to ignore
+
+None authorized. Preserve raw findings/failures and exact missing authority; no lucky retry or absent catalog provides waiver.
+
+## Validation
+
+Only applicable current approved selected-tier/bounded capability checks, independently supervised and finitely accounted, may execute. Resolve exact command graph, decision, environment, limits/remaining consumption, capture and termination before any launch. Missing gate means BLOCKED / NOT_RUN, never a direct fallback or tier sweep.
+
+## Regression Guard
+
+Self-satisfying: this verifier delivers the independent requirement/outcome guard; material repairs must carry the primary boundary proving check through the installed path and independently revalidate after repair.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
 ## Piece 17 — Separately gated runtime reclaim, if applicable
+
+# FG-17-I — Separately gated runtime reclaim, if applicable
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 17, stage Conditional scoped runtime; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
 
 ### FG-17-I — Implement protected checked reclaim without implicit disruption
 
@@ -495,6 +3333,91 @@ Follow indexed references to authoritative evidence; inspect actual health behav
 
 **Evidence:** Applicability/consumer graph, verified protected sources, actual decisions/claims/intents/outcomes when authorized, interface comparison, retained incidents.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Applicable protected reclaim integration complete; real enabled claim needs authentic providers and scoped live proof.
+
+**Allowed negative/non-zero/finding:** BLOCKED live enablement may be the explicit conditional exit with exact integration/authority owner/proposal, not verified reclaim. N/A requires affirmative no reclaim-dependent in-scope caller/control evidence; provider absence is not N/A. Required missing source still remains unmet.
+
+**Required evidence:** Applicability/consumer graph, canonical Port Authority comparison, protected sources, actual decisions/claims/intents/outcomes when authorized, retained incidents and two consecutive authorized real callers for enabled claim.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Trusted host/reclaim authority owners: supply protected attestation/approval/evidence routes and exact safe proof or retain blocked conditional capability; unrelated work only where gates allow. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Task-specific delivery
+
+Deliver tracked implementation/handoff and clause matrix in docs/validation; planned handoff: docs/validation/failure-gate-fg-17-handoff.md. Publish actual files, unperformed checks, source and tested snapshots separately. This is a planned destination, not an installed route or delivered report. Preserve every exclusion above.
+
+## Pre-existing failures to ignore
+
+None authorized. Exact applicable ignores require real recorded authority; missing grants/capabilities are not test failures or reusable ignores.
+
+## Validation
+
+Runtime proof requires actual separately approved selected tier or named bounded capability, complete exact commands/targets/transitive graph, safe isolated environment, independent whole-tree admission, finite original parent/phase/attempt/accounting and capture/cleanup limits, current consumption, raw records and acknowledgements. All such fields are PENDING actual authority; no launch from this planning document.
+
+## Regression Guard
+
+At final task planning classify the actual material boundary against canonical Regression Guard. Bind a concrete proving check and actual test location through the affected installed path, preserving callers, coverage, raw failures, serialization, resource/writer safety and privacy. Pending implementation method is resolved before approved execution, never a waiver.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
+# FG-17-V — Independent Separately gated runtime reclaim, if applicable verification
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 17, stage Conditional scoped runtime; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
+
 ### FG-17-V — Verify reclaim or record a justified non-applicable boundary
 
 Independently verify current canonical contracts and actual protected provider/wiring. Run the complete applicable reclaim matrix only under safe explicit authorization. Check invalid envelopes, stale/revoked grants, exact scope conflicts, replay/unknown commits, partial signals, late storage, surviving listeners, and no cleanup-to-PASS conversion.
@@ -503,7 +3426,100 @@ Repair missing implementation in this task; external trust/approval cannot be fa
 
 **Exit:** Applicable live reclaim is verified and separately enabled, or remains **blocked** with exact integration/authority owner and next proposal. It is **not applicable** only with affirmative project evidence that no reclaim-dependent control/caller is in the intended installation scope. Failure to obtain providers is not non-applicability. Unrelated non-reclaim work may continue if its task-wide gates and dependencies permit it.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Applicable protected reclaim integration complete; real enabled claim needs authentic providers and scoped live proof.
+
+**Allowed negative/non-zero/finding:** BLOCKED live enablement may be the explicit conditional exit with exact integration/authority owner/proposal, not verified reclaim. N/A requires affirmative no reclaim-dependent in-scope caller/control evidence; provider absence is not N/A. Required missing source still remains unmet.
+
+**Required evidence:** Applicability/consumer graph, canonical Port Authority comparison, protected sources, actual decisions/claims/intents/outcomes when authorized, retained incidents and two consecutive authorized real callers for enabled claim.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Trusted host/reclaim authority owners: supply protected attestation/approval/evidence routes and exact safe proof or retain blocked conditional capability; unrelated work only where gates allow. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Independent verification and fixed requirement matrix
+
+Before editing, audit every applicable original -I implement bullet, acceptance/evidence clause, -V exit clause and allocated canonical ledger case for this piece. For each keep source clause, fixed expected/allowed outcome above, actual delivered path/interface, method and safety gate, original evidence/raw outcome, status, responsible role and exact next action. Original implementation payload is a required full input, not just its title.
+
+Phase A pins obligations, pre-install baseline and provisional method locations; Phase B establishes delivery, independently resolves actual wiring/configuration/methods against those obligations using only permitted source/record readback. Log expected implementation changes, incorrect method assumptions, material obligation changes, defects and unresolved differences separately. Keep original/resolved matrices. Method-only resolution preserves key but must be authorized/logged and full executable payload read back; material primary/scope change requires renewal. Missing method/authority remains blocked.
+
+Publish the gap list before edits. Original baseline grants audit-first then scoped repair as a task design; actual repair execution needs its explicit applicable piece scope and current permission. Repair only missing/wrong assigned implementation, not correct rejection or unavailable external authority. Renew affected checks under real authority and retained accounting; never recursive verifier tasks. A fresh independent authorized reviewer/host route must read repaired evidence; if unavailable, affected acceptance stays blocked, not self-certified.
+
+Report destination: docs/validation/failure-gate-fg-17-verifier-report.md (planned until delivered). Report full binding/key/dependency/readiness, all three baselines, every matrix row, pre-edit gaps, repairs/authority/rebinding, actual raw checks and consumption or NOT_RUN, independent review, stage decision, remaining owners/resume action. Requirements: verified/failed/blocked/justified not applicable; fixture PASSED/FAILED/BLOCKED/NOT_RUN separately from host readiness and native lifecycle.
+
+Advance only after independent acceptance of this declared stage and actual successor delivery readiness, with scoped drafting permission. No later card/approval/activation/status rewrite follows a task label.
+
+## Pre-existing failures to ignore
+
+None authorized. Preserve raw findings/failures and exact missing authority; no lucky retry or absent catalog provides waiver.
+
+## Validation
+
+Only applicable current approved selected-tier/bounded capability checks, independently supervised and finitely accounted, may execute. Resolve exact command graph, decision, environment, limits/remaining consumption, capture and termination before any launch. Missing gate means BLOCKED / NOT_RUN, never a direct fallback or tier sweep.
+
+## Regression Guard
+
+Self-satisfying: this verifier delivers the independent requirement/outcome guard; material repairs must carry the primary boundary proving check through the installed path and independently revalidate after repair.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
 ## Piece 18 — Real caller acceptance, authorized cutover, and full verification
+
+# FG-18-I — Real caller acceptance, authorized cutover, and full verification
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 18, stage Ordinary-route acceptance; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
 
 ### FG-18-I — Integrate the actual ordinary-task route and cut over once
 
@@ -522,6 +3538,91 @@ Repair missing implementation in this task; external trust/approval cannot be fa
 
 **Evidence:** Real local ID/approved plan and decision, caller reports, two-run acceptance references, selected-tier raw outcomes, final-writer proof, cutover/reconciliation records, updated manifest/index.
 
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Every applicable ordinary prerequisite and real caller proof current; singular separately authorized cutover; full independent installed contract acceptance.
+
+**Allowed negative/non-zero/finding:** Invalid checked requests deny; independent raw failures remain raw. Partial/blocked/failed report is honest but never verified installation. FG-17 block may be carried only if no ordinary caller depends on it with affirmative evidence.
+
+**Required evidence:** Entire clause ledger current, authentic actual local plans/decisions, all caller two-run proofs, complete selected-tier reports, actual restore/final-writer race/cutover records and independent post-repair full audit.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Cutover/host integration owner: resolve exact missing prerequisite with original ledger ownership and separate authority; no automatic merge/deploy or hidden second ordinary authority. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Task-specific delivery
+
+Deliver tracked implementation/handoff and clause matrix in docs/validation; planned handoff: docs/validation/failure-gate-fg-18-handoff.md. Publish actual files, unperformed checks, source and tested snapshots separately. This is a planned destination, not an installed route or delivered report. Preserve every exclusion above.
+
+## Pre-existing failures to ignore
+
+None authorized. Exact applicable ignores require real recorded authority; missing grants/capabilities are not test failures or reusable ignores.
+
+## Validation
+
+Runtime proof requires actual separately approved selected tier or named bounded capability, complete exact commands/targets/transitive graph, safe isolated environment, independent whole-tree admission, finite original parent/phase/attempt/accounting and capture/cleanup limits, current consumption, raw records and acknowledgements. All such fields are PENDING actual authority; no launch from this planning document.
+
+## Regression Guard
+
+At final task planning classify the actual material boundary against canonical Regression Guard. Bind a concrete proving check and actual test location through the affected installed path, preserving callers, coverage, raw failures, serialization, resource/writer safety and privacy. Pending implementation method is resolved before approved execution, never a waiver.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
+
+# FG-18-V — Independent Real caller acceptance, authorized cutover, and full verification verification
+
+## Project, binding, delivery and role
+
+Project: repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace; current Skills Workbench Project task-board namespace (no immutable UUID exposed). Exact target: failure-gate-v4. Piece 18, stage Ordinary-route acceptance; generation/ref determined only from actual native readback. Native primary/verifier refs, finalized native payload digests and actual dependency: PENDING HOST READBACK unless historical. They are not Failure Gate local IDs; no local identity is allocated by planning.
+
+Primary owner: implementation agent; verifier owner: separate fresh verification context, with independent host review after any authored repair. Actual provider/approval/recovery/writer identities are not invented. Bind original attachment, canonical closure and allocated ledger cases via paired-task-orchestration-manifest.json. Before substantive work require full authoritative plans, actual stage permission and current delivered inputs. Do not accept dependency/status/installer claim as delivery. Recheck all sources and actual delivered snapshot/environment at acceptance.
+
 ### FG-18-V — Independently verify the complete installed contract and repair gaps now
 
 Perform fresh full canonical-to-host verification of every applicable ledger item, not a collection of installer summaries. Revalidate all earlier evidence against current affected inputs, wiring, approved definitions, environment, and this verifier's complete payload.
@@ -537,6 +3638,91 @@ Recheck that:
 - All failed/blocked/not-run checks, unresolved repairs, unsafe legacy risks, missing providers, and retained exclusions remain visible.
 
 **Exit:** Report **verified installation** only if all applicable required checks have accepted evidence. Otherwise report **partial/blocked/failed**, with per-control STAGED/NON_RECLAIM_VERIFIED/LIVE_RECLAIM_ENABLED states and exact responsible next actions. A task marked Done or an owner-directed closure is not a full-installation pass.
+
+## Expected outcomes, evidence and task-level acceptance
+
+**Required positive deliverable:** Every applicable ordinary prerequisite and real caller proof current; singular separately authorized cutover; full independent installed contract acceptance.
+
+**Allowed negative/non-zero/finding:** Invalid checked requests deny; independent raw failures remain raw. Partial/blocked/failed report is honest but never verified installation. FG-17 block may be carried only if no ordinary caller depends on it with affirmative evidence.
+
+**Required evidence:** Entire clause ledger current, authentic actual local plans/decisions, all caller two-run proofs, complete selected-tier reports, actual restore/final-writer race/cutover records and independent post-repair full audit.
+
+**Acceptance mapping:** All applicable original implementation/exit criteria and assigned clause-ledger cases must have current evidence for this declared stage; expected denials count only for their own cases. Missing required implementation, independent acceptance or runtime proof leaves its obligation failed/blocked, not complete. FG-17's explicitly permitted conditional blocked exit is recorded as such and cannot satisfy a dependent live caller.
+
+**Concrete blocked/resume route:** Cutover/host integration owner: resolve exact missing prerequisite with original ledger ownership and separate authority; no automatic merge/deploy or hidden second ordinary authority. Retain original failures, budgets/consumption and exclusions; provide a pinned next proposal with actual operation/plan/closure/route, permitted commands or NONE, finite values or UNKNOWN, safe admission, acceptance and exclusions. Continue only feasible independently permitted work.
+
+### Binding, owner, inputs, and outputs
+
+- Owner: implementation agent for `-I`; a fresh verification context for `-V`. Record actual host role mappings. Do not invent a person, service, or platform adapter.
+- Bind the verified project identity, repository root, current canonical source/reference manifest, approved scope, actual primary task reference, finalized plan revision/digest, delivered implementation snapshot, and relevant configuration/environment.
+- Use this project's established tracked docs/validation and docs/validation/task-plans layout. The paths in this document are not installed interfaces. All durable deliverables and persistent telemetry must be outside `.local/`.
+- Retain clause-to-evidence records, applicable source paths/sections, implementation paths, actual tests/records, raw outcomes, and an explicitly named responsible role and next action for every gap.
+- Keep canonical skill availability/parity, project-local enforcement, and platform task lifecycle as separate evidence tracks. Instruction installation is not enforcement implementation.
+
+### Authorization and validation
+
+- Verify governing policy as ACTIVE, INACTIVE, or UNKNOWN. ACTIVE uses the existing checked route; INACTIVE uses independently verified existing host policy and equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back.
+- Initial installation uses a separately approved bootstrap operation and the actual existing safe route. Replacement of an active gate uses its prior verified checked route for the selected bootstrap tier only, with ordinary tasks blocked until the approved cutover.
+- Resolve actual finite queue, step, startup, test, hook, teardown, cancellation, termination/verification, capture, parent/session, attempt, and applicable resource limits from a real independently approved source. Do not invent approved numbers or use remembered defaults.
+- Require independent supervision of the complete permitted process/job tree, bounded input reads and streaming capture, durable original accounting, reserved cleanup time, and truthful lifecycle outcomes. Tool timeout, a same-event-loop timer, or an agent-written flag does not establish those guarantees.
+- Pin the permitted transitive graph: argv, working directories, wrappers, hooks, discovery/configuration branches, workers, schedulers, and remote targets. Unknown expansion blocks dispatch.
+- Run only the selected approved tier or an explicitly authorized bounded non-tier capability. No all-tier sweep, reconstructed second tier, arbitrary command passthrough, gratuitous retry, or reset of budgets.
+- A verifier's permission to repair implementation gaps does not grant approval of governing policy changes, budget increases, recovery, disruption, activation, cutover, remote CI, merge, or deployment.
+
+### Required sections when writing each host plan
+
+**Pre-existing failures to ignore:** None assumed. Populate only from observed, applicable evidence and authorized exact ignores. Distinguish an ignored baseline from an owned repair. Unrelated failures are not repair scope.
+
+**Regression Guard:** For each material behavior/contract change, state the existing behavior or risk, the proving check, and post-change verification through the affected installed boundary. Preserve independent callers, coverage, reports, serialization, resource/writer safety, privacy, and raw failures. Pure source/planning tasks should explain the narrower protection needed; do not fabricate runtime results.
+
+**Validation:** State the actual applicable route, registered tier or separately approved capability, reason for coverage, exact commands/targets and transitive scope, real approval/decision bindings, effective limits and remaining consumption, safe environment, and evidence destinations. If execution is not authorized, say **readback-only / execution not authorized**; do not quietly run a check.
+
+### Every verification task is audit-first, then scoped repair
+
+1. Re-read its full task payload, primary plan, actual delivered files, canonical closure, and prerequisites. A primary's success statement is not evidence.
+2. Compare every applicable requirement assigned to the piece against actual code, wiring, records, and the piece's declared delivery stage.
+3. Publish the gap list **before** editing. Distinguish missing implementation, incorrect implementation, missing execution proof, and unavailable external authority.
+4. Build or correct missing/wrong parts **in this verification task**, within the explicitly approved piece scope. No separate routine repair task is needed. Preserve unrelated files and the canonical obligation baseline.
+5. Rebind the repaired snapshot and affected plan/authorization where required. Renew affected checks through the real approved route; old evidence cannot prove repaired inputs.
+6. Perform a final independent readback after the repair. The actor that wrote a repair cannot make its own statement the only acceptance evidence. Use a fresh verifier context or actually available independent host review for the affected checks; do not recursively create verifier tasks.
+7. Report requirement statuses as `verified`, `failed`, `blocked`, or justified `not applicable`. Report fixtures separately as PASSED/FAILED/BLOCKED/NOT_RUN, and runtime/control readiness separately.
+
+A source-only task may be accepted only for its declared inert/source deliverable, with runtime obligations explicitly carried to Piece 05. A runtime task cannot pass with missing required execution evidence. Missing authority is not an installation omission an agent may fix by self-approval.
+
+At a genuine blocker, continue independent permitted work and prepare the exact next scoped proposal: current bindings/source closure, actual route and capability owner, commands/transitive scope, finite limits/consumption, safe admission, acceptance, and exclusions. Do not stop at a routine checkpoint when approved implementation or checks remain feasible.
+
+
+## Independent verification and fixed requirement matrix
+
+Before editing, audit every applicable original -I implement bullet, acceptance/evidence clause, -V exit clause and allocated canonical ledger case for this piece. For each keep source clause, fixed expected/allowed outcome above, actual delivered path/interface, method and safety gate, original evidence/raw outcome, status, responsible role and exact next action. Original implementation payload is a required full input, not just its title.
+
+Phase A pins obligations, pre-install baseline and provisional method locations; Phase B establishes delivery, independently resolves actual wiring/configuration/methods against those obligations using only permitted source/record readback. Log expected implementation changes, incorrect method assumptions, material obligation changes, defects and unresolved differences separately. Keep original/resolved matrices. Method-only resolution preserves key but must be authorized/logged and full executable payload read back; material primary/scope change requires renewal. Missing method/authority remains blocked.
+
+Publish the gap list before edits. Original baseline grants audit-first then scoped repair as a task design; actual repair execution needs its explicit applicable piece scope and current permission. Repair only missing/wrong assigned implementation, not correct rejection or unavailable external authority. Renew affected checks under real authority and retained accounting; never recursive verifier tasks. A fresh independent authorized reviewer/host route must read repaired evidence; if unavailable, affected acceptance stays blocked, not self-certified.
+
+Report destination: docs/validation/failure-gate-fg-18-verifier-report.md (planned until delivered). Report full binding/key/dependency/readiness, all three baselines, every matrix row, pre-edit gaps, repairs/authority/rebinding, actual raw checks and consumption or NOT_RUN, independent review, stage decision, remaining owners/resume action. Requirements: verified/failed/blocked/justified not applicable; fixture PASSED/FAILED/BLOCKED/NOT_RUN separately from host readiness and native lifecycle.
+
+Advance only after independent acceptance of this declared stage and actual successor delivery readiness, with scoped drafting permission. No later card/approval/activation/status rewrite follows a task label.
+
+## Pre-existing failures to ignore
+
+None authorized. Preserve raw findings/failures and exact missing authority; no lucky retry or absent catalog provides waiver.
+
+## Validation
+
+Only applicable current approved selected-tier/bounded capability checks, independently supervised and finitely accounted, may execute. Resolve exact command graph, decision, environment, limits/remaining consumption, capture and termination before any launch. Missing gate means BLOCKED / NOT_RUN, never a direct fallback or tier sweep.
+
+## Regression Guard
+
+Self-satisfying: this verifier delivers the independent requirement/outcome guard; material repairs must carry the primary boundary proving check through the installed path and independently revalidate after repair.
+
+## Relevant files
+
+- docs/validation/failure-gate-fg-01-obligation-ledger.md
+- .agents/skills/failure-gate-v4/SKILL.md
+- .agents/skills/paired-task-orchestration/SKILL.md
+- .agents/skills/skill-application-router/SKILL.md
+
 
 ## Report template for every verifier
 
@@ -555,41 +3741,7 @@ Use the actual project-selected tracked report destination. Include:
 | Remaining work | Failed/blocked/not applicable reasons; retained incidents/exclusion; exact next scoped proposal |
 | Claim boundaries | Source availability/parity; project-local capability; fixture status; real host readiness; platform status separately |
 
-## Materialization rules if these become real project tasks
 
-Writing this series does not create those tasks or authorize installation. If subsequently asked to create them:
+## Provenance and completion
 
-1. Bind the confirmed target and actual host task interface; finalize each complete implementation payload before attaching its verifier.
-2. Expand the shared contract and piece payload into each persisted task. Include real dependency/readiness semantics, exact report path, clause ledger, approved staging/execution boundaries, and explicit verifier repair scope.
-3. Read back the entire primary and verifier plans and compare them with their expected finalized payloads. Titles, tags, dependency IDs, or hashes asserted by a writer are insufficient.
-4. Use a stable duplicate binding keyed by project, exact skill identity, primary namespace/ID, finalized primary-plan digest, and canonical verification scope. Reconcile existing/legacy verifiers and uncertain writes before creating replacements.
-5. Recheck primary/verifier revisions at linkage, before substantive execution, and at acceptance. Changed payloads/sources invalidate affected evidence; use the actual authorized replan/renewal route.
-6. Verify delivery/readiness in the verifier environment. Dependency release or Done status alone may not deliver the required snapshot. Preserve blocked obligations and their concrete resume routes.
-7. Do not auto-approve, activate, change dependencies/status, or recursively create follow-up verifiers. A pending verifier is pending; a cancelled, failed, stale, or blocked one is not satisfied verification.
-
-## Canonical planning baseline
-
-These were the observed normative entry-point digests while writing this series. They are **planning provenance**, not target-project installation evidence. Piece 01 must verify the intended project's full transitive canonical closure, including applicable adapters/resources/tests, and reconcile any material revision change rather than silently reuse this baseline.
-
-| Canonical path relative to `.agents/skills/failure-gate-v4/` | SHA-256 |
-|---|---|
-| `SKILL.md` | `c62037ac28404b815808fdc2428c2d17b52465d4c1f023fa50c0d5622898b4bb` |
-| `reference/implementation.md` | `4b1b756c0d1726b240451a6a82e563a722be2dc9c879f4bb7d54f347d26f2a16` |
-| `reference/acceptance.md` | `5d89de3cac03813485cc1781fa67c47c59e659c46fae59ef1d39dd2b1db21bfe` |
-| `reference/authorized-continuation.md` | `3dc5590aca87c679b4dbfdcc0fe29c5fdc73192a816b3f82bfd326b28933d8b3` |
-| `reference/evidence-and-recovery.md` | `d2c79cd89a5ab8eb6a229df78c07ed0a05d89889446317b724c457bb60667d9a` |
-| `reference/execution-monitoring.md` | `b67b9ccc044bcedee8e8b056ccf91a74cee479535b91aaa3455642e09200377b` |
-| `reference/owner-directed-closure.md` | `9dff9d6e28e10b70224755d63a0f1aeb44be9f789c47a5700bab86dc46d3b4e4` |
-| `reference/runtime-reclaim.md` | `bceea11fe66e7d4ef0433ee8306f87f3ec5cdc1520215fdf59393afcbbedb51f` |
-| `reference/staging-and-lifecycle.md` | `a9ab52d787e44c7aa4e199c8662882521d8ccf0ef8a6de0706c7853b5fa69800` |
-| `reference/validation-budgets.md` | `62c19d7ef9cbedf9505ba45b3d45460fa909126db30a83fbeb43fa2ae7a09866` |
-
-Routing/verification requirements also come from the following canonical Router files. Pin their full applicable closure in Piece 01. The historical planning digests formerly listed here were removed from the current tracked record at the user's direction on 2026-10-06 because no authoritative original snapshot or provenance is available. Start a new comparison only after a source custodian identifies an immutable original snapshot and its provenance; do not infer historical contents or a cause.
-
-| Canonical path relative to `.agents/skills/skill-application-router/` | Historical planning digest |
-|---|---|
-| `SKILL.md` | Removed; original bytes and provenance unavailable |
-| `references/installation-verification-plan.md` | Removed; original bytes and provenance unavailable |
-| `references/handoff-binding-and-recovery.md` | Removed; original bytes and provenance unavailable |
-
-The paired definition-confirmation criteria, when applicable, come from Failure Gate's canonical `reference/acceptance.md`. Material regression protection comes from its acceptance contract and existing host requirements. No absent companion skill is silently replaced with a copied definition.
+Original entry-point planning provenance remains in the immutable attached specification, not proof of current canonical historical bytes. Current canonical closure is digest-bound in paired-task-orchestration-manifest.json. Every original technical bullet, shared authorization/repair obligation, stage and report field remains assigned; independent verification must compare each against the original, not trust this statement. No FG-02+ implementation/runtime result is claimed by plan delivery.

@@ -1,0 +1,20 @@
+{
+  "source": "actual proposeFollowUpTasks returned record; readiness finding only, not attached verifier",
+  "records": [
+    {
+      "artifactKinds": [],
+      "createdAt": "2026-10-07T04:38:40.008Z",
+      "dependsOn": [
+        "#102"
+      ],
+      "description": "# Resolve the prerequisites for independent orchestration review\n\n## What & Why\nDocumentary readiness finding only, not another installer or the independent package/plan verifier. The canonical Paired package and full 18-piece replacement are delivered by #102, but the referenced canonical skill-install-confirmation companion and native finalized-primary/attachment evidence are missing/unverified. Do not execute verification or claim this proposal attaches the verifier.\n\n## Done looks like\nRead the complete docs/validation/paired-task-orchestration-verification-plan.md, installer handoff, manifest and native readback, plus canonical Router/Paired contracts. Resolve the confirmation companion through canonical .agents only or report its exact unavailable obligation. Obtain the narrow user batching decision for a distinct SKILL.md-only confirmation alongside resource/plan verification, without creating hidden tasks. Identify the actual permitted host finalized-primary/readback/attachment route, dependency delivery semantics and cooperative concurrency limits using bounded allowed documentary evidence. Do not infer finalization from assignment/hash/status or invent APIs.\n\nDeliver docs/validation/paired-task-orchestration-readiness.md with genuine source/binding/evidence, satisfied versus blocked prerequisites, actual owner/action and exact continuation. If missing evidence remains, report BLOCKED. Only after actual finalized-primary, companion/batching and permitted creation route are established may an authorized continuation attach the complete independent payload with real #102 dependency, full primary/verifier bracketing readback and normalized key. This task itself grants no native verifier creation, verification acceptance or FG-02 preparation.\n\n## Out of scope\nNo package edits, substitute/mirror skill, native attachment/status change, recursive verifier, runtime grants/store access, imports/tests/builds/hooks/services/signals/CI/recovery/cutover/deploy. Existing full FG-02 g02 drafts remain pending actual independent acceptance and fresh native full-plan binding; no later-piece cards.\n\n## Validation\nReadback-only / execution not authorized. UNKNOWN governance is not INACTIVE permission. Missing authority is a finding, never reusable allowance.\n\n## Regression Guard\nSelf-satisfying fixed prerequisite source/readback finding; no runtime change.\n\n## Relevant files\n- docs/validation/paired-task-orchestration-verification-plan.md\n- docs/validation/paired-task-orchestration-install-handoff.md\n- docs/validation/paired-task-orchestration-manifest.json\n- docs/validation/paired-task-orchestration-native-readback.json\n- docs/validation/failure-gate-v4-series-checkpoint.md",
+      "displayState": "PROPOSED",
+      "followUpCategory": "incomplete_scope",
+      "proposedFromRef": "#102",
+      "state": "PROPOSED",
+      "taskRef": "#103",
+      "title": "Resolve the prerequisites for independent orchestration review",
+      "updatedAt": "2026-10-07T04:38:40.008Z"
+    }
+  ]
+}

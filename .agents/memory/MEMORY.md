@@ -6,3 +6,4 @@
 - [Orval workspace barrels](orval-workspace-barrels.md) — staging its generation target alone is insufficient; Orval also writes the `output.workspace` barrel.
 - [Tracked task plan intake](tracked-task-plan-intake.md) — task API path/size constraints and inherited dependencies need care when creating prerequisites from durable plans.
 - [Failure Gate evidence precedence](failure-gate-evidence-precedence.md) — actual source-query observations outrank documentary summaries, within scope/time; they create no authority.
+- [Notebook callable persistence](notebook-callable-persistence.md) — retained data can remain usable when a saved helper function fails across execution calls.
