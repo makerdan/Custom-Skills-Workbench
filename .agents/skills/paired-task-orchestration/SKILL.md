@@ -63,6 +63,23 @@ rules, finite budgets, independent supervision, retained accounting, evidence,
 writer/lifecycle safety, and owner-closure boundaries. No companion skill or
 specific framework, task API, database, timeout value, or OS is assumed.
 
+## Failure Gate v4: deliverable locations and limited planner exception
+
+Use this exception only for paired task planning/handoff of a Failure Gate v4 series. Keep all authoritative deliverables—including scripts, documentation, reports, skills, configuration, code, exports, and complete task plans—outside .local/ in tracked paths that survive task-agent merge and enter repository history.
+
+Exception: when the actual host planner or task interface demonstrably requires a .local/ path for task creation, submission, or handoff, the Agent may create or use the minimum necessary temporary staging copy there, subject to ALL of these conditions:
+
+1. Establish the requirement from the actual interface, host instructions, or observed rejection. Habit, convenience, or an unsupported assumption is not sufficient.
+2. Before staging an Agent-authored payload, preserve its complete authoritative contents in an appropriate tracked path outside .local/. The staging copy must never be the only copy of a deliverable.
+3. Treat .local/ contents as disposable transport or runtime artifacts—not as canonical sources, durable evidence, accepted reports, or proof of delivery.
+4. Read back and compare the complete staged payload with the authoritative copy. After task submission, independently read back the complete persisted task plan and actual dependencies. A staging file, successful submission message, or task title alone does not establish successful handoff.
+5. Record the required staging path, its purpose, the authoritative tracked path, and the observed submission/readback outcome in evidence outside .local/. Missing or truncated contents remain unresolved, not successfully delivered.
+6. This exception does not permit using .local/ skill definitions or mirrors as canonical instructions. Canonical skill sources remain under .agents/. It grants no additional task execution, validation, approval, lifecycle, merge, deployment, or runtime authority.
+
+If the required staging workflow cannot preserve the authoritative deliverable outside .local/ or cannot establish complete persisted-task readback, stop the affected handoff and report the specific blocker. Do not silently broaden this exception or claim successful delivery.
+
+A temporary staging path is not a Failure Gate plan/ID binding, approval source, grant, tier assignment, authorization registry, durable run log, or completion evidence. Failure Gate's genuine authority, selected-tier, finite-budget, independent-supervision, writer/lifecycle, source/bootstrap/runtime, recovery/reclaim and delivery gates remain unchanged. This exception cannot override a higher-priority prohibition or unavailable host permission. Authoring it does not establish that this host requires or supports .local/ staging.
+
 ## Recognize the requested mode
 
 | Mode | Authorized outcome |
