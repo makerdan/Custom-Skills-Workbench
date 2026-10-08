@@ -15,16 +15,26 @@ ROOT = Path(__file__).resolve().parents[2]
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("operation", choices=("install", "allocate", "guard", "review-plan", "activate",
-        "run", "complete", "write", "owner-close", "health", "events", "export", "reclaim", "cutover"))
+        "run", "complete", "write", "owner-close", "health", "events", "export", "inspect",
+        "reclaim", "cutover"))
     parser.add_argument("--task")
     parser.add_argument("--plan")
     parser.add_argument("--tier")
     parser.add_argument("--run")
     parser.add_argument("--edits")
     parser.add_argument("--output")
+    parser.add_argument("--report-file")
     arguments = parser.parse_args()
     gate = None
     try:
+        if arguments.operation == "inspect":
+            if any((arguments.plan, arguments.tier, arguments.run,
+                    arguments.edits, arguments.output)):
+                raise Blocked("inspect accepts only --task and optional --report-file")
+            from handoff import inspect_handoff
+            result = inspect_handoff(ROOT, arguments.task, arguments.report_file)
+            print(encoded(result))
+            return 0 if result.get("overall") == "VERIFIED" else 1
         if arguments.operation == "reclaim":
             raise Blocked("live reclaim has no protected attestation/disruption-approval provider; no signals")
         if arguments.operation == "cutover":

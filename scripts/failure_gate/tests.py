@@ -10,6 +10,7 @@ import sys
 import tempfile
 import threading
 import time
+import uuid
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -17,6 +18,7 @@ from common import Blocked, atomic_json, digest, encoded, incarnation, inside, r
 from gate import Gate, configuration, execution_definition, guard_plan, parsed_result, snapshot, tooling
 from store import Store
 from supervisor import LIMITS, run, validate_limits
+from handoff import inspect_handoff
 from unittest.mock import patch
 import bootstrap
 from run_codegen import STAGED_OUTPUTS, cleanup_stages, promote_staged_outputs
@@ -1591,6 +1593,259 @@ class GateTests(unittest.TestCase):
         log.write_text(valid)
         for malformed in ("true", 1, {}, None):
             self.assertFalse(parsed_result("node-native", {"pass": malformed}, log)["complete"])
+
+
+class HandoffInspectorTests(unittest.TestCase):
+    """Synthetic coordinator evidence only; never inspect the workspace store."""
+
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory()
+        self.root = Path(self.temporary.name)
+        (self.root / "docs/validation").mkdir(parents=True)
+        shutil.copyfile(
+            ROOT / "docs/validation/failure-gate-policy.json",
+            self.root / "docs/validation/failure-gate-policy.json",
+        )
+        self.policy = read_json(self.root / "docs/validation/failure-gate-policy.json")
+        self.state = self.root / ".failure-gate"
+        self.store = Store(self.state, initialize=True)
+        self.task = self.store.allocate()
+        self.plan = {
+            "schema": 1,
+            "task_id": self.task,
+            "namespace": self.store.meta("namespace"),
+            "version": 1,
+            "tier": "static",
+            "changes": ["fixture.txt"],
+            "requirements": ["bounded local handoff fixture"],
+            "regression_guard": "Synthetic records must never imply host authorization.",
+            "pre_existing_failures": [],
+            "parameters": {},
+        }
+        atomic_json(self.root / "docs/validation/fixture-plan.json", self.plan)
+        (self.root / "fixture.txt").write_text("snapshot source")
+        self.run_id = None
+        self.log = None
+        self._activate_and_complete()
+
+    def tearDown(self):
+        self.store.close()
+        self.temporary.cleanup()
+
+    def _activate_and_complete(self):
+        plan_digest = digest(self.plan)
+        policy_digest = digest(self.policy)
+        tier_digest = digest(self.policy["tiers"]["static"])
+        review_payload = {
+            "plan": self.plan,
+            "plan_digest": plan_digest,
+            "policy_digest": policy_digest,
+            "tier_digest": tier_digest,
+            "source": "actual interactive local review; identity not authenticated",
+            "parameters": {},
+            "relative": "docs/validation/fixture-plan.json",
+        }
+        with self.store.transaction():
+            review_id = self.store.decision("plan_review", self.task, review_payload)
+            self.store.event("plan_reviewed", self.task, payload={"decision": review_id})
+            activation_payload = {
+                "review": review_id,
+                "plan": self.plan,
+                "policy_digest": policy_digest,
+            }
+            activation_id = self.store.decision(
+                "policy_activation", self.task, activation_payload)
+            self.store.set_meta("governance", "ACTIVE")
+            self.store.db.execute(
+                "UPDATE tasks SET status='active',plan=?,plan_digest=?,tier='static',"
+                "tier_digest=?,policy_digest=?,auth=1,decision=? WHERE public_id=?",
+                (encoded(self.plan), plan_digest, tier_digest, policy_digest,
+                 activation_id, self.task),
+            )
+            self.store.event("activated", self.task, payload={"decision": activation_id})
+
+        self.run_id = str(uuid.uuid4())
+        self.log = self.state / "runs" / self.run_id / "typecheck" / "raw.log"
+        self.log.parent.mkdir(parents=True)
+        self.log.write_text("fixture-only secret-like raw output must not be exported\n")
+        snapshot_files = {
+            "fixture.txt": hashlib.sha256((self.root / "fixture.txt").read_bytes()).hexdigest()
+        }
+        tested_snapshot = {
+            "schema": 1,
+            "files": snapshot_files,
+            "digest": digest(snapshot_files),
+        }
+        outcome = {
+            "pass": True,
+            "registered": True,
+            "healthy_release": True,
+            "raw_exit": 0,
+            "reason": "finished",
+        }
+        step = {
+            "name": "typecheck",
+            "status": "PASSED",
+            "outcome": outcome,
+            "report": parsed_result("exit", outcome, self.log),
+            "raw_log": f"runs/{self.run_id}/typecheck/raw.log",
+            "log_digest": hashlib.sha256(self.log.read_bytes()).hexdigest(),
+        }
+        run_payload = {
+            "assessment": "PASSED",
+            "snapshot": tested_snapshot,
+            "final_snapshot": tested_snapshot,
+            "snapshot_integrity": "coordinated participants only; out-of-band edits unobservable",
+            "tier_digest": digest(self.policy["tiers"]["static"]),
+            "policy_digest": digest(self.policy),
+            "tooling_digest": "fixture-only",
+            "authorization": 1,
+            "steps": [step],
+        }
+        with self.store.transaction():
+            self.store.db.execute(
+                "INSERT INTO runs(id,task_id,purpose,auth,tier,status,recovery_required,payload) "
+                "VALUES(?,?,?,1,'static','finished',0,?)",
+                (self.run_id, self.task, "required_tier_validation", encoded(run_payload)),
+            )
+            self.store.event("run_reserved", self.task, self.run_id, {})
+            for kind in ("launch_intent", "watchdog_registered", "confirmed_start", "step_outcome"):
+                self.store.event(kind, self.task, self.run_id, {"step": "typecheck"})
+            self.store.event("run_finished", self.task, self.run_id, {"assessment": "PASSED"})
+            self.store.db.execute(
+                "UPDATE tasks SET status='completed',tier=NULL,mode='validated',"
+                "assessment='PASSED' WHERE public_id=?", (self.task,))
+            self.store.event("completed", self.task, self.run_id, {"mode": "validated"})
+
+    def _inspect(self, report_file=None):
+        return inspect_handoff(
+            self.root, self.task, report_file=report_file, state=self.state, fixture=True)
+
+    def _state_fingerprint(self):
+        result = {}
+        for path in sorted(self.state.rglob("*")):
+            if path.is_file():
+                result[str(path.relative_to(self.state))] = hashlib.sha256(path.read_bytes()).hexdigest()
+        return result
+
+    def test_aligned_chain_is_labeled_fixture_and_does_not_mutate_state(self):
+        before = self._state_fingerprint()
+        report = self._inspect()
+        after = self._state_fingerprint()
+        self.assertEqual(report["overall"], "VERIFIED")
+        self.assertEqual(report["evidence_context"], "ISOLATED_FIXTURE_ONLY")
+        self.assertEqual(report["host_authority"], "NOT_ESTABLISHED")
+        self.assertEqual(report["host_acceptance"], "NOT_ESTABLISHED")
+        self.assertTrue(report["non_authorizing"])
+        self.assertTrue(all(row["status"] == "VERIFIED" for row in report["rows"]
+                            if row["required"]))
+        self.assertEqual(before, after)
+        self.assertNotIn("fixture-only secret-like raw output", encoded(report))
+
+    def test_inspection_requires_an_existing_exact_local_task_id(self):
+        with self.assertRaises(Blocked):
+            inspect_handoff(self.root, "FG-99999999", state=self.state, fixture=True)
+        with self.assertRaises(Blocked):
+            inspect_handoff(self.root, "not-a-local-id", state=self.state, fixture=True)
+
+    def test_missing_authorization_is_not_replaced_by_task_status(self):
+        with self.store.transaction():
+            self.store.db.execute(
+                "DELETE FROM decisions WHERE task_id=? AND kind='policy_activation'", (self.task,))
+            self.store.db.execute(
+                "UPDATE tasks SET status='draft',plan=NULL,plan_digest=NULL,tier=NULL,"
+                "tier_digest=NULL,policy_digest=NULL,auth=0,decision=NULL WHERE public_id=?",
+                (self.task,))
+        report = self._inspect()
+        rows = {row["handoff"]: row for row in report["rows"]}
+        self.assertEqual(rows["decision_runner"]["status"], "MISSING")
+        self.assertNotEqual(report["overall"], "VERIFIED")
+
+    def test_task_digest_mismatch_fails_closed(self):
+        with self.store.transaction():
+            self.store.db.execute(
+                "UPDATE tasks SET tier_digest='not-the-approved-digest' WHERE public_id=?",
+                (self.task,))
+        report = self._inspect()
+        rows = {row["handoff"]: row for row in report["rows"]}
+        self.assertEqual(rows["decision_runner"]["status"], "MISMATCH")
+        self.assertEqual(report["overall"], "MISMATCH")
+
+    def test_stale_tested_snapshot_is_mismatch(self):
+        (self.root / "fixture.txt").write_text("changed after the fixture run")
+        report = self._inspect()
+        rows = {row["handoff"]: row for row in report["rows"]}
+        self.assertEqual(rows["runner_evidence"]["status"], "MISMATCH")
+        self.assertEqual(rows["runner_evidence"]["reader"]["result"], "tested_snapshot_is_stale")
+
+    def test_duplicate_active_run_records_are_detected(self):
+        duplicate_id = str(uuid.uuid4())
+        with self.store.transaction():
+            self.store.db.execute("DROP INDEX single_flight")
+            self.store.db.execute(
+                "UPDATE runs SET recovery_required=1 WHERE id=?", (self.run_id,))
+            self.store.db.execute(
+                "INSERT INTO runs(id,task_id,purpose,auth,tier,status,recovery_required,payload) "
+                "VALUES(?,?,?,1,'static','running',1,'{}')",
+                (duplicate_id, self.task, "required_tier_validation"),
+            )
+        report = self._inspect()
+        rows = {row["handoff"]: row for row in report["rows"]}
+        self.assertEqual(rows["decision_runner"]["reader"]["result"],
+                         "duplicate_active_run_records")
+        self.assertEqual(rows["decision_runner"]["status"], "MISMATCH")
+
+    def test_missing_raw_evidence_and_telemetry_are_unavailable(self):
+        self.log.unlink()
+        report = self._inspect()
+        rows = {row["handoff"]: row for row in report["rows"]}
+        self.assertEqual(rows["runner_evidence"]["status"], "UNAVAILABLE")
+
+        confirmation = next(
+            event for event in (self.state / "events").glob("*.json")
+            if json.loads(event.read_text()).get("kind") == "confirmed_start")
+        confirmation.unlink()
+        report = self._inspect()
+        rows = {row["handoff"]: row for row in report["rows"]}
+        self.assertEqual(rows["execution_monitor"]["status"], "UNAVAILABLE")
+
+    def test_malformed_run_record_is_mismatch(self):
+        with self.store.transaction():
+            self.store.db.execute("UPDATE runs SET payload='{' WHERE id=?", (self.run_id,))
+        report = self._inspect()
+        rows = {row["handoff"]: row for row in report["rows"]}
+        self.assertEqual(rows["runner_evidence"]["status"], "MISMATCH")
+
+    def test_over_limit_task_plan_is_unavailable(self):
+        with self.store.transaction():
+            self.store.db.execute(
+                "UPDATE tasks SET plan=? WHERE public_id=?",
+                ("x" * (1024 * 1024 + 10), self.task))
+        report = self._inspect()
+        self.assertEqual(report["overall"], "UNAVAILABLE")
+
+    def test_reclaim_is_unsupported_and_not_misreported_as_verified(self):
+        report = self._inspect()
+        rows = {row["handoff"]: row for row in report["rows"]}
+        self.assertEqual(rows["runtime_reclaim"]["status"], "UNSUPPORTED")
+        self.assertFalse(rows["runtime_reclaim"]["required"])
+        self.assertEqual(report["overall"], "VERIFIED")
+
+    def test_report_file_is_explicit_new_and_outside_local_state(self):
+        destination = "docs/validation/handoff-fixture.json"
+        before = self._state_fingerprint()
+        report = self._inspect(report_file=destination)
+        self.assertTrue((self.root / destination).is_file())
+        self.assertEqual(json.loads((self.root / destination).read_text()), report)
+        self.assertEqual(self._state_fingerprint(), before)
+        with self.assertRaises(Blocked):
+            self._inspect(report_file=destination)
+        with self.assertRaises(Blocked):
+            self._inspect(report_file=".local/handoff.json")
+        with self.assertRaises(Blocked):
+            self._inspect(report_file=".failure-gate/handoff.json")
+        with self.assertRaises(Blocked):
+            self._inspect(report_file="../handoff.json")
 
 
 class SupervisorTests(unittest.TestCase):

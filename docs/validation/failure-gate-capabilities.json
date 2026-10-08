@@ -275,6 +275,57 @@
     "port_authority": "Separate capability; no lock, lease, host-attestation, or reclaim claim made",
     "runtime_operations": "NONE"
   },
+  "handoff_inspector": {
+    "interface": "python3 -B scripts/failure_gate/cli.py inspect --task <real-local-ID> [--report-file <new-project-relative-path>]",
+    "status": "IMPLEMENTED_LOCAL_READER; SYNTHETIC_FIXTURES_ADDED_NOT_RUN; LIVE_HOST_ACCEPTANCE_NOT_ESTABLISHED",
+    "records": [
+      "One task selected by exact local public_id",
+      "Task-scoped plan-review and activation decisions, runner rows, lifecycle rows and repair rows",
+      "Matching event JSON projections, the exact recorded plan source, current policy, tested snapshot inputs and bounded raw-log evidence"
+    ],
+    "handoffs": [
+      "plan/decision",
+      "decision/runner",
+      "runner/evidence",
+      "evidence/completion",
+      "execution/monitor",
+      "evidence-health/lineage/export",
+      "runtime reclaim when configured"
+    ],
+    "statuses": [
+      "VERIFIED",
+      "MISMATCH",
+      "MISSING",
+      "UNAVAILABLE",
+      "UNSUPPORTED",
+      "NOT_APPLICABLE"
+    ],
+    "bounds": {
+      "task_bytes": 1048576,
+      "decision_records": 100,
+      "decision_bytes_each": 1048576,
+      "decision_payload_bytes_total": 8388608,
+      "run_records": 50,
+      "run_bytes_each": 4194304,
+      "run_payload_bytes_total": 33554432,
+      "event_records": 200,
+      "event_bytes_each": 65536,
+      "event_payload_bytes_total": 2097152,
+      "event_projection_bytes_total": 2097152,
+      "repair_records": 100,
+      "repair_bytes_each": 262144,
+      "repair_payload_bytes_total": 8388608,
+      "raw_log_bytes_total": 33554432,
+      "snapshot_bytes_total": 67108864,
+      "snapshot_file_bytes": 16777216,
+      "sqlite_vm_steps": 5000000,
+      "report_bytes": 262144
+    },
+    "default_output": "Bounded structured JSON to stdout; the inspector does not initialize Gate or write coordinator, task, approval, evidence, completion, allocator, lock or monitor state.",
+    "optional_report_file": "Explicit --report-file only; project-relative, parent directory must already exist, new destination only, no overwrite, outside .local and .failure-gate, mode 0600. This is a report write and conveys no authority.",
+    "reclaim": "UNSUPPORTED and optional unless a future inspected provider is configured; this operation does not query or perform cleanup.",
+    "authority_limit": "Workspace-local record comparison only. Manifest and index are descriptive locators, not host authority. No live coordinator read or inspector validation was performed for this implementation; fixture evidence is not live evidence, approval, platform task binding or host acceptance."
+  },
   "not_a_live_registry": true,
   "readiness": "Use original coordinator/artifacts, not these descriptive statuses, for current authority and evidence"
 }

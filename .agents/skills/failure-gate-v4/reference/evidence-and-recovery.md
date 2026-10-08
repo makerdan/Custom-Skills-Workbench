@@ -153,6 +153,12 @@ kill processes, schedule recurring jobs, or force a restore.
 An explicitly requested sanitized report may be written; other repairs require
 their applicable authorization and checked transition.
 
+The project-local `scripts/failure_gate/cli.py inspect --task <real-local-ID>`
+route is a bounded comparison of that task's existing local handoff records. Its
+stdout is read-only; an optional new report file is non-authorizing. It does not
+inspect platform task identity, establish host acceptance, or replace broader
+approved evidence-health queries. Synthetic fixture results are not live evidence.
+
 ## 6. Retain supporting evidence, not just conclusions
 
 Define retention/access/deletion policies per category and preserve referential

@@ -222,6 +222,13 @@ launch/finish boundaries rather than treating an arbitrary page as a whole run.
 Follow artifact availability/retention rules, privacy, and actual access scope.
 An inaccessible external source is a coverage gap, not authority to bypass access.
 
+The project-local `scripts/failure_gate/cli.py inspect --task <real-local-ID>`
+report can compare one task's bounded event segments with its local runner and
+completion records. It is not a cross-task overlap query, does not check
+independent callers or platform task identity, and does not establish host
+acceptance. Use it only as a locator/comparison of cooperative local records;
+fixture output is never live monitoring evidence.
+
 Report which runs actually launched, their overlap and origin, the authority and
 guard decisions, declared explanations versus supported causes, coverage gaps,
 and the smallest supported remediation. Cite the registered file and event/run

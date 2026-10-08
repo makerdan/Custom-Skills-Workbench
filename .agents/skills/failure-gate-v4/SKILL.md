@@ -497,3 +497,7 @@ claims, permanently preserve ID tombstones, and invalidate dependent claims
 when supporting evidence is pruned. Exports are not authorization or proof that
 another environment passed. Visibly list unresolved work after owner closure;
 do not count it as validation success or auto-create repair tasks.
+The workspace-local `scripts/failure_gate/cli.py inspect --task <real-local-ID>`
+route compares only bounded records for that local task. Read its scope, output
+limits, and acceptance boundaries in `docs/validation/failure-gate-evidence-index.md`;
+do not treat its fixture output or local records as host authority.

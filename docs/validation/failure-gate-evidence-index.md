@@ -49,6 +49,43 @@ was exposed or verified in this workspace.
 
 ## Inspection
 
+### Read-only task handoff report
+
+Use `python3 -B scripts/failure_gate/cli.py inspect --task <real-local-ID>` for
+one task-scoped report. Structured JSON goes to stdout by default. An explicit
+`--report-file docs/validation/<new-file>.json` is a separate report write: the
+project-relative parent must already exist, the destination must be new, and
+`.local/` and `.failure-gate/` paths are rejected. The file is not an approval
+or evidence record.
+
+The reader opens the existing coordinator SQLite database in read-only/query-only
+mode and selects only the exact local task plus its bounded decision, run, event,
+and repair records. It checks the recorded plan source (including an exact
+`.local/tasks/` plan path), current policy, matching event-file projections,
+tested snapshot inputs, and raw logs without returning log contents. Database
+sidecars or unavailable sources fail closed. Reports map plan/decision,
+decision/runner, runner/evidence, evidence/completion, execution/monitor,
+evidence-health/lineage/export, and runtime reclaim to explicit handoff statuses.
+The optional reclaim row is `UNSUPPORTED` and non-required because no inspected
+provider is configured.
+
+Limits are 100 decisions at 1 MiB each with 8 MiB total decision payloads, 50
+runs at 4 MiB each with 32 MiB total run payloads, 200 events at 64 KiB each
+with 2 MiB total database payloads/projections, 100 repairs at 256 KiB each
+with 8 MiB total repair payloads, 32 MiB total raw logs, 64 MiB total snapshot
+inputs with 16 MiB per file, 5 million SQLite virtual-machine steps, and a
+256 KiB report. A required row must be
+`VERIFIED` for `overall` to be `VERIFIED`. The report redacts raw output and
+free-text payloads and labels its context `WORKSPACE_LOCAL_RECORDS_ONLY`;
+fixture calls label `ISOLATED_FIXTURE_ONLY`.
+
+The isolated synthetic cases were added but **NOT RUN**: no separately
+authorized finite validation route was established. No live `.failure-gate`
+store was opened for this implementation. This route does not query platform
+task authority, prove independent supervision, activate governance, repair
+state, or establish host acceptance. The capability manifest and this index
+describe locations and bounds only; they are not current authority.
+
 ### Installation-only coordination bootstrap
 
 See `failure-gate-bootstrap-handoff.md` and the fixed
