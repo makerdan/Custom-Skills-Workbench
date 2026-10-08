@@ -10,6 +10,7 @@ _Replace the heading above with the project's name, and this line with one sente
 - `pnpm run typecheck` — full typecheck across all packages
 - `pnpm run build` — typecheck + build all packages
 - `pnpm run test` — run regression-guard checks and package tests
+- `bash scripts/failure_gate/run_pnpm.sh <pnpm arguments...>` — run pnpm mutations from the project root or a workspace subdirectory under the cooperative Gate writer lock; raw pnpm commands are not coordinated
 - `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
 - `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
 - Required env: `DATABASE_URL` — Postgres connection string

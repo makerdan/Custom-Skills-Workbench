@@ -627,6 +627,10 @@ class PostMergeTests(unittest.TestCase):
         writer_directory.mkdir(parents=True)
         for name in ("run_writer.py", "common.py"):
             shutil.copyfile(ROOT / "scripts/failure_gate" / name, writer_directory / name)
+        shutil.copyfile(
+            ROOT / "scripts/failure_gate/run_pnpm.sh",
+            writer_directory / "run_pnpm.sh",
+        )
         post_merge = self.root / "scripts/post-merge.sh"
         post_merge.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(ROOT / "scripts/post-merge.sh", post_merge)
@@ -676,6 +680,24 @@ class PostMergeTests(unittest.TestCase):
             check=False,
         )
 
+    def invoke_guarded_pnpm(self, *args, fail_install=False):
+        environment = {
+            "PATH": str(self.fake_bin) + os.pathsep + os.environ.get("PATH", ""),
+            "TEST_ROOT": str(self.root),
+            "CALL_LOG": str(self.call_log),
+        }
+        if fail_install:
+            environment["FAIL_INSTALL"] = "1"
+        return subprocess.run(
+            ["bash", "scripts/failure_gate/run_pnpm.sh", *args],
+            cwd=self.root,
+            env=environment,
+            capture_output=True,
+            text=True,
+            timeout=10,
+            check=False,
+        )
+
     def recorded_calls(self):
         return [json.loads(line) for line in self.call_log.read_text().splitlines()]
 
@@ -696,8 +718,90 @@ class PostMergeTests(unittest.TestCase):
         self.assertEqual([call["args"] for call in calls], [["install", "--frozen-lockfile"]])
         self.assertEqual([call["locked"] for call in calls], [True])
 
+    def test_guarded_interactive_package_operations_preserve_args_and_exit(self):
+        install = self.invoke_guarded_pnpm("install", "--frozen-lockfile")
+        self.assertEqual(install.returncode, 0, install.stderr)
+        add = self.invoke_guarded_pnpm("add", "-D", "fixture-package")
+        self.assertEqual(add.returncode, 0, add.stderr)
+        calls = self.recorded_calls()
+        self.assertEqual([call["args"] for call in calls], [
+            ["install", "--frozen-lockfile"],
+            ["add", "-D", "fixture-package"],
+        ])
+        self.assertEqual([call["locked"] for call in calls], [True, True])
+
+        failed_install = self.invoke_guarded_pnpm(
+            "install", "--frozen-lockfile", fail_install=True,
+        )
+        self.assertEqual(failed_install.returncode, 17)
+        self.assertEqual(
+            self.recorded_calls()[-1]["args"],
+            ["install", "--frozen-lockfile"],
+        )
+        self.assertTrue(self.recorded_calls()[-1]["locked"])
+
+    def test_guarded_interactive_package_operation_requires_workspace_directory(self):
+        result = subprocess.run(
+            ["bash", str(self.root / "scripts/failure_gate/run_pnpm.sh"), "install"],
+            cwd=self.root.parent,
+            env={
+                "PATH": str(self.fake_bin) + os.pathsep + os.environ.get("PATH", ""),
+                "TEST_ROOT": str(self.root),
+                "CALL_LOG": str(self.call_log),
+            },
+            capture_output=True,
+            text=True,
+            timeout=10,
+            check=False,
+        )
+        self.assertEqual(result.returncode, 2)
+        self.assertIn("project root", result.stderr)
+        self.assertFalse(self.call_log.exists())
+
+    def test_guarded_interactive_package_operation_waits_for_gate_writer_lock(self):
+        with writer_lock(self.root / ".failure-gate"):
+            process = subprocess.Popen(
+                ["bash", "scripts/failure_gate/run_pnpm.sh", "install"],
+                cwd=self.root,
+                env={
+                    "PATH": str(self.fake_bin) + os.pathsep + os.environ.get("PATH", ""),
+                    "TEST_ROOT": str(self.root),
+                    "CALL_LOG": str(self.call_log),
+                },
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+            )
+            time.sleep(0.15)
+            self.assertIsNone(process.poll())
+            self.assertFalse(self.call_log.exists())
+
+        stdout, stderr = process.communicate(timeout=5)
+        self.assertEqual(process.returncode, 0, stderr or stdout)
+        self.assertEqual(
+            [call["args"] for call in self.recorded_calls()],
+            [["install"]],
+        )
+        self.assertTrue(self.recorded_calls()[0]["locked"])
+
 
 class GateTests(unittest.TestCase):
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory()
+        self.root = Path(self.temporary.name)
+        (self.root / "docs/validation").mkdir(parents=True)
+        for name in ("failure-gate-policy.json", "failure-gate-installation-approval.json"):
+            shutil.copyfile(ROOT / "docs/validation" / name, self.root / "docs/validation" / name)
+        (self.root / "pnpm-workspace.yaml").write_text(
+            "onlyBuiltDependencies:\n  - esbuild\n")
+        (self.root / "node_modules/.pnpm").mkdir(parents=True)
+        (self.root / "node_modules/.pnpm/lock.yaml").write_text("fixture only\n")
+        (self.root / "node_modules/.modules.yaml").write_text("fixture only\n")
+        esbuild = self.root / "node_modules/.pnpm/esbuild@fixture/node_modules/esbuild"
+        (esbuild / "bin").mkdir(parents=True)
+        (esbuild / "lib").mkdir()
+        self.esbuild_package = esbuild
+        (esbuild / "package.json").write_text(json.dumps({
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory()
         self.root = Path(self.temporary.name)
@@ -783,6 +887,380 @@ class GateTests(unittest.TestCase):
             "source": "actual interactive local review; identity not authenticated",
             "parameters": {},
             "relative": relative,
+        }
+        payload.update(overrides)
+        return payload
+
+    def fixture_record_review(self, task_id, plan=None, relative="plan.json",
+                              kind="plan_review", **overrides):
+        """Synthetic coordinator rows only; never evidence of a host approval event."""
+        payload = self.fixture_review_payload(plan, relative, **overrides)
+        with self.gate.store.transaction():
+            return self.gate.store.decision(kind, task_id, payload)
+
+    def record_passing_static_run(self, validation_snapshot, run_id="fixture"):
+        log = self.gate.state / "runs" / run_id / "typecheck" / "raw.log"
+        log.parent.mkdir(parents=True)
+        log.write_text("isolated fixture compiler result\n")
+        outcome = {"pass": True, "registered": True, "healthy_release": True,
+                   "raw_exit": 0, "reason": "finished"}
+        payload = {"assessment": "PASSED", "snapshot": validation_snapshot,
+                   "tier_digest": digest(self.gate.policy["tiers"]["static"]),
+                   "policy_digest": digest(self.gate.policy), "tooling_digest": tooling(self.root),
+                   "steps": [{"name": "typecheck", "status": "PASSED", "outcome": outcome,
+                              "report": parsed_result("exit", outcome, log),
+                              "raw_log": f"runs/{run_id}/typecheck/raw.log",
+                              "log_digest": hashlib.sha256(read_bytes(log)).hexdigest()}]}
+        with self.gate.store.transaction():
+            self.gate.store.db.execute(
+                "INSERT INTO runs VALUES(?,?,'required_tier_validation',1,'static','finished',0,?)",
+                (run_id, self.task, encoded(payload)))
+            for name in ("run_reserved", "launch_intent", "watchdog_registered",
+                         "confirmed_start", "step_outcome", "run_finished"):
+                self.gate.store.event(name, self.task, run_id, {"simulation_only": True})
+
+    def test_stale_review_and_another_tasks_decision_cannot_authorize_activation(self):
+        with self.gate.store.transaction():
+            self.gate.store.set_meta("governance", "ACTIVE")
+        self.fixture_record_review(self.task)
+
+        self.plan["version"] = 2
+        atomic_json(self.root / "plan.json", self.plan)
+        with self.assertRaises(Blocked):
+            self.gate.activate(self.task, "plan.json")
+
+        other_task = self.gate.store.allocate()
+        other_plan = dict(self.plan, task_id=other_task)
+        atomic_json(self.root / "other-plan.json", other_plan)
+        # The row is deliberately attached to the first task to simulate a replay.
+        self.fixture_record_review(self.task, other_plan, "other-plan.json")
+        with self.assertRaises(Blocked):
+            self.gate.activate(other_task, "other-plan.json")
+
+    def test_mismatched_tier_policy_or_unregistered_decision_kind_cannot_authorize(self):
+        with self.gate.store.transaction():
+            self.gate.store.set_meta("governance", "ACTIVE")
+
+        # No review decision or approval contents is not an authorization.
+        with self.assertRaises(Blocked):
+            self.gate.activate(self.task, "plan.json")
+
+        self.fixture_record_review(self.task, kind="unregistered_approval_event")
+        with self.assertRaises(Blocked):
+            self.gate.activate(self.task, "plan.json")
+
+        self.fixture_record_review(self.task, tier_digest="not-the-registered-tier-digest")
+        with self.assertRaises(Blocked):
+            self.gate.activate(self.task, "plan.json")
+
+        self.fixture_record_review(self.task, policy_digest="stale-policy-digest")
+        with self.assertRaises(Blocked):
+            self.gate.activate(self.task, "plan.json")
+
+        self.plan["tier"] = "standard"
+        atomic_json(self.root / "plan.json", self.plan)
+        with self.assertRaises(Blocked):
+            self.gate.activate(self.task, "plan.json")
+
+    def test_task_status_and_lifecycle_events_alone_cannot_authorize_activation(self):
+        with self.gate.store.transaction():
+            self.gate.store.set_meta("governance", "ACTIVE")
+
+        for status, event_kind in (("draft", "plan_drafted"), ("active", "task_activated")):
+            with self.subTest(status=status, event_kind=event_kind):
+                with self.gate.store.transaction():
+                    self.gate.store.db.execute(
+                        "UPDATE tasks SET status=? WHERE public_id=?", (status, self.task))
+                    self.gate.store.event(event_kind, self.task, payload={"simulation_only": True})
+                    self.gate.store.event("command_approved", self.task,
+                                          payload={"simulation_only": True})
+                    self.gate.store.event("merge_applied", self.task,
+                                          payload={"simulation_only": True})
+                with self.assertRaises(Blocked):
+                    self.gate.activate(self.task, "plan.json")
+
+    def test_no_cutover_no_self_review_no_tier_fallback(self):
+        with self.assertRaises(Blocked):
+            self.gate.activate(self.task, "plan.json")
+        with self.assertRaises(Blocked):
+            self.gate.approve_plan(self.task, "plan.json")
+        self.fixture_activate()
+        with self.assertRaises(Blocked):
+            self.gate.check_authorization(self.task, "plan.json", "standard")
+        self.assertEqual(self.gate.check_authorization(self.task, "plan.json")["tier"], "static")
+
+    def test_activation_exact_bindings_idempotency_and_derived_tiers(self):
+        result = self.fixture_activate()
+        self.assertEqual(result["authorization"], 1)
+        self.assertTrue(self.gate.activate(self.task, "plan.json")["already_active"])
+        event = self.gate.store.db.execute("SELECT payload FROM events WHERE kind='activated'").fetchone()[0]
+        self.assertEqual(json.loads(event)["payload"]["tiers"], {"static": "ALLOWED", "standard": "NOT ALLOWED"})
+        second = self.gate.store.allocate()
+        with self.assertRaises(Blocked):
+            self.gate.check_authorization(second, "plan.json")
+        self.plan["version"] = 2
+        atomic_json(self.root / "plan.json", self.plan)
+        with self.assertRaises(Blocked):
+            self.gate.check_authorization(self.task, "plan.json")
+
+    def test_policy_tooling_drift_and_static_coverage_fail_closed(self):
+        self.plan["changes"] = ["app.ts"]
+        atomic_json(self.root / "plan.json", self.plan)
+        with self.assertRaises(Blocked):
+            guard_plan(self.root, self.gate.store, self.task, "plan.json", self.gate.policy)
+        self.gate.policy["limits"]["step_seconds"] = 100
+        with self.assertRaises(Blocked):
+            self.gate.bindings()
+
+    def test_compiler_caches_never_change_execution_authority_but_real_configs_do(self):
+        directory = self.root / "artifacts" / "fixture"
+        directory.mkdir(parents=True)
+        cache = directory / "tsconfig.tsbuildinfo"
+        config = directory / "tsconfig.json"
+        config.write_text('{"compilerOptions":{}}')
+        cache.write_text("old compiler cache")
+        before = execution_definition(self.root)
+        cache.write_text("new compiler cache")
+        self.assertEqual(execution_definition(self.root), before)
+        config.write_text('{"compilerOptions":{"strict":true}}')
+        self.assertNotEqual(execution_definition(self.root), before)
+
+    def test_completed_step_persists_when_next_dispatch_is_blocked(self):
+        from unittest.mock import patch
+        count = 0
+
+        def bindings():
+            nonlocal count
+            count += 1
+            if count == 2:
+                raise Blocked("injected next-step definition drift")
+
+        def fake_supervision(argv, cwd, directory, record, effective, lock):
+            directory.mkdir(parents=True)
+            (directory / "raw.log").write_text("isolated simulated compile result")
+            return {"pass": True, "registered": True, "healthy_release": True,
+                    "raw_exit": 0, "reason": "finished", "bytes": 0}
+
+        with patch.object(self.gate, "bindings", bindings), patch("gate.supervised_run", fake_supervision):
+            with self.assertRaises(Blocked):
+                self.gate.execute(self.task, "standard", "bootstrap", 0, 90)
+        payload = json.loads(self.gate.store.db.execute("SELECT payload FROM runs").fetchone()[0])
+        self.assertEqual(payload["steps"][0]["status"], "PASSED")
+        self.assertEqual(payload["steps"][1]["status"], "NOT_REACHED")
+        self.assertEqual(self.gate.store.db.execute("SELECT recovery_required FROM runs").fetchone()[0], 1)
+
+    def test_unknown_shapes_and_baseline_labels_are_not_authority(self):
+        for value in (None, [], 1, "plan", {"schema": 1}):
+            atomic_json(self.root / "plan.json", value)
+            with self.assertRaises(Blocked):
+                guard_plan(self.root, self.gate.store, self.task, "plan.json", self.gate.policy)
+        self.plan["pre_existing_failures"] = ["caller says pre-existing"]
+        atomic_json(self.root / "plan.json", self.plan)
+        with self.assertRaises(Blocked):
+            guard_plan(self.root, self.gate.store, self.task, "plan.json", self.gate.policy)
+
+    def test_completion_denies_bootstrap_stale_and_missing_writer_proof(self):
+        self.fixture_activate()
+        before = snapshot(self.root)
+        payload = {"assessment": "PASSED", "snapshot": before}
+        with self.gate.store.transaction():
+            self.gate.store.db.execute("INSERT INTO runs VALUES('fixture',?,'bootstrap',1,'static','finished',0,?)",
+                                      (self.task, encoded(payload)))
+            self.gate.store.event("fixture_result", self.task)
+        with self.assertRaises(Blocked):
+            self.gate.complete(self.task, "plan.json", "fixture")
+        with self.gate.store.transaction():
+            self.gate.store.db.execute("UPDATE runs SET purpose='required_tier_validation' WHERE id='fixture'")
+        with self.assertRaises(Blocked):
+            self.gate.complete(self.task, "plan.json", "fixture")
+        with self.gate.store.transaction():
+            self.gate.store.set_meta("writer_coverage", "verified")
+        (self.root / "a.md").write_text("changed after validation")
+        with self.assertRaises(Blocked):
+            self.gate.complete(self.task, "plan.json", "fixture")
+        self.assertEqual(self.gate.store.task(self.task)["status"], "active")
+
+    def test_completion_rejects_esbuild_artifact_mutated_after_validation(self):
+        self.fixture_activate()
+        validation_snapshot = snapshot(self.root)
+        self.assertIn(str(self.esbuild_binary.relative_to(self.root)), validation_snapshot["files"])
+        self.assertIn(
+            str(self.esbuild_platform_binary.relative_to(self.root)), validation_snapshot["files"])
+        self.record_passing_static_run(validation_snapshot)
+        self.esbuild_binary.write_bytes(b"mutated after validation\n")
+        with self.assertRaisesRegex(Blocked, "stale"):
+            self.gate.complete(self.task, "plan.json", "fixture")
+        self.assertEqual(self.gate.store.task(self.task)["status"], "active")
+        self.assertIsNone(self.gate.store.meta("writer_coverage"))
+
+    def test_completion_rejects_newly_covered_esbuild_output_mutated_after_validation(self):
+        self.fixture_activate()
+        generated = self.esbuild_package / "lib/new-install-generated-output.js"
+        generated.write_text("output created by a future install hook\n")
+        validation_snapshot = snapshot(self.root)
+        relative = str(generated.relative_to(self.root))
+        self.assertIn(relative, validation_snapshot["files"])
+        self.record_passing_static_run(validation_snapshot)
+
+        generated.write_text("output changed after validation\n")
+        with self.assertRaisesRegex(Blocked, "stale"):
+            self.gate.complete(self.task, "plan.json", "fixture")
+        self.assertEqual(self.gate.store.task(self.task)["status"], "active")
+        self.assertIsNone(self.gate.store.meta("writer_coverage"))
+
+    def test_snapshot_blocks_a_new_allowed_dependency_install_hook(self):
+        (self.root / "pnpm-workspace.yaml").write_text(
+            "onlyBuiltDependencies:\n  - esbuild\n  - future-builder\n")
+        package = (
+            self.root / "node_modules/.pnpm/future-builder@1.0.0"
+            "/node_modules/future-builder")
+        package.mkdir(parents=True)
+        (package / "package.json").write_text(json.dumps({
+            "name": "future-builder", "version": "1.0.0",
+            "scripts": {"postinstall": "node generate.js"}}))
+        with self.assertRaisesRegex(Blocked, "untracked allowed dependency install hook"):
+            snapshot(self.root)
+
+    def test_snapshot_blocks_an_unreviewed_esbuild_installer_change(self):
+        (self.esbuild_package / "install.js").write_text("changed installer behavior\n")
+        with self.assertRaisesRegex(Blocked, "unreviewed esbuild installer implementation"):
+            snapshot(self.root)
+
+    def test_coordinated_terminal_commit_and_repairs_preserved(self):
+        self.fixture_activate()
+        payload = {"assessment": "PASSED", "snapshot": snapshot(self.root)}
+        with self.gate.store.transaction():
+            self.gate.store.db.execute("INSERT INTO runs VALUES('fixture',?,'required_tier_validation',1,'static','finished',0,?)",
+                                      (self.task, encoded(payload)))
+            self.gate.store.set_meta("writer_coverage", "verified")
+            self.gate.store.db.execute("INSERT INTO repairs VALUES(?,'signature','{}')", (self.task,))
+        with self.assertRaises(Blocked):
+            self.gate.complete(self.task, "plan.json", "fixture")
+        self.assertEqual(self.gate.store.db.execute("SELECT count(*) FROM repairs").fetchone()[0], 1)
+
+    def test_atomic_validated_completion_with_complete_fixture_evidence(self):
+        self.fixture_activate()
+        log = self.gate.state / "runs" / "fixture" / "typecheck" / "raw.log"
+        log.parent.mkdir(parents=True)
+        log.write_text("isolated fixture compiler result\n")
+        outcome = {"pass": True, "registered": True, "healthy_release": True,
+                   "raw_exit": 0, "reason": "finished"}
+        payload = {"assessment": "PASSED", "snapshot": snapshot(self.root),
+                   "tier_digest": digest(self.gate.policy["tiers"]["static"]),
+                   "policy_digest": digest(self.gate.policy), "tooling_digest": tooling(self.root),
+                   "steps": [{"name": "typecheck", "status": "PASSED", "outcome": outcome,
+                              "report": parsed_result("exit", outcome, log),
+                              "raw_log": "runs/fixture/typecheck/raw.log",
+                              "log_digest": hashlib.sha256(read_bytes(log)).hexdigest()}]}
+        with self.gate.store.transaction():
+            self.gate.store.db.execute("INSERT INTO runs VALUES('fixture',?,'required_tier_validation',1,'static','finished',0,?)",
+                                      (self.task, encoded(payload)))
+            self.gate.store.set_meta("writer_coverage", "verified")
+            for name in ("run_reserved", "launch_intent", "watchdog_registered", "confirmed_start",
+                         "step_outcome", "run_finished"):
+                self.gate.store.event(name, self.task, "fixture", {"simulation_only": True})
+        result = self.gate.complete(self.task, "plan.json", "fixture")
+        self.assertEqual(result["mode"], "validated")
+        self.assertIsNone(self.gate.store.task(self.task)["tier"])
+        with self.assertRaises(Blocked):
+            self.gate.check_authorization(self.task, "plan.json")
+
+    def test_health_and_export_are_readonly_non_authorizing(self):
+        before = self.gate.store.task(self.task)
+        health = self.gate.health()
+        result = self.gate.export(self.task, "docs/validation/fixture-export.json")
+        self.assertEqual(health["catalog"]["availability"], "never_collected")
+        self.assertTrue(result["non_authorizing"])
+        self.assertEqual(self.gate.store.task(self.task), before)
+
+    def test_parser_rejects_zero_tests_cancellation_swallowed_failure_and_missing_reports(self):
+        log = self.root / "raw.log"
+        outcome = {"pass": True}
+        for data in ("", "# tests 0\n", "# tests 1\n# tests 2\n# tests 3\n# cancelled 1\n",
+                     "# tests 1\n# tests 2\n# tests 3\n# fail 1\n"):
+            log.write_text(data)
+            self.assertFalse(parsed_result("tap", outcome, log)["complete"])
+        log.write_text("# tests 1\n# tests 2\n# tests 3\n")
+        self.assertTrue(parsed_result("tap", outcome, log)["complete"])
+
+    def test_native_report_adapter_accepts_complete_known_package_formats(self):
+        log = self.root / "native.log"
+        for marker in ("#", "ℹ"):
+            lines = []
+            for prefix in ("", "artifacts/api-server test: ", "artifacts/skills-workbench test: "):
+                for key, value in (("tests", 3), ("suites", 0), ("pass", 3), ("fail", 0),
+                                   ("cancelled", 0), ("skipped", 0), ("todo", 0)):
+                    lines.append(f"{prefix}{marker} {key} {value}")
+                lines.append(f"{prefix}{marker} duration_ms 1.5")
+            log.write_text("\n".join(lines))
+            self.assertTrue(parsed_result("node-native", {"pass": True}, log)["complete"])
+            self.assertFalse(parsed_result("node-native", {"pass": False}, log)["complete"])
+
+    def test_native_report_adapter_rejects_partial_unsafe_and_unrecognized_summaries(self):
+        log = self.root / "native.log"
+        valid = "\n".join(
+            f"{prefix}ℹ {key} {value}"
+            for prefix in ("", "artifacts/api-server test: ", "artifacts/skills-workbench test: ")
+            for key, value in (("tests", 3), ("suites", 0), ("pass", 3), ("fail", 0),
+                               ("cancelled", 0), ("skipped", 0), ("todo", 0), ("duration_ms", 1)))
+        invalid = ["", valid.replace("ℹ tests 3", "ℹ tests 0"),
+                   valid.replace("ℹ pass 3", "ℹ pass 2"),
+                   valid.replace("artifacts/api-server", "artifacts/unknown"),
+                   valid.replace("ℹ duration_ms 1", ""), valid.replace("ℹ todo 0", ""),
+                   valid.replace("ℹ suites 0", "ℹ tests 3"),
+                   valid.replace("ℹ pass 3", "# pass 3")]
+        invalid += [valid.replace(f"ℹ {key} 0", f"ℹ {key} 1")
+                    for key in ("fail", "cancelled", "skipped", "todo")]
+        for text in invalid:
+            log.write_text(text)
+            self.assertFalse(parsed_result("node-native", {"pass": True}, log)["complete"])
+        log.write_text(valid)
+        for malformed in ("true", 1, {}, None):
+            self.assertFalse(parsed_result("node-native", {"pass": malformed}, log)["complete"])
+
+    def test_guarded_interactive_install_rejects_stale_completion_evidence(self):
+        writer_directory = self.root / "scripts/failure_gate"
+        writer_directory.mkdir(parents=True, exist_ok=True)
+        for name in ("run_writer.py", "common.py", "run_pnpm.sh"):
+            shutil.copyfile(ROOT / "scripts/failure_gate" / name,
+                            writer_directory / name)
+        self.fixture_activate()
+        validation_snapshot = snapshot(self.root)
+        payload = {"assessment": "PASSED", "snapshot": validation_snapshot}
+        with self.gate.store.transaction():
+            self.gate.store.db.execute(
+                "INSERT INTO runs VALUES('fixture',?,'required_tier_validation',1,'static','finished',0,?)",
+                (self.task, encoded(payload)),
+            )
+
+        fake_bin = self.root / "fake-bin"
+        fake_bin.mkdir()
+        fake_pnpm = fake_bin / "pnpm"
+        fake_pnpm.write_text(
+            "#!/usr/bin/env python3\n"
+            "import os\n"
+            "from pathlib import Path\n"
+            "Path(os.environ['TEST_ROOT'], 'node_modules/.modules.yaml').write_text('changed by fixture install\\\\n')\n"
+        )
+        fake_pnpm.chmod(0o700)
+        result = subprocess.run(
+            ["bash", "scripts/failure_gate/run_pnpm.sh", "install"],
+            cwd=self.root,
+            env={
+                "PATH": str(fake_bin) + os.pathsep + os.environ.get("PATH", ""),
+                "TEST_ROOT": str(self.root),
+            },
+            capture_output=True,
+            text=True,
+            timeout=10,
+            check=False,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+
+        with self.assertRaisesRegex(Blocked, "stale"):
+            self.gate.complete(self.task, "plan.json", "fixture")
+        self.assertEqual(self.gate.store.task(self.task)["status"], "active")
+        self.assertIsNone(self.gate.store.meta("writer_coverage"))
         }
         payload.update(overrides)
         return payload

@@ -400,3 +400,29 @@ install side effect across the gap between those sections, and the full host
 writer/handoff set remains unproven. `writer_coverage` therefore remains unset;
 final-writer acceptance remains **BLOCKED**. The independent writer-coverage
 claims in the earlier integration map remain in force.
+
+## Task 118 — standalone package-manager writer routes
+
+**Observation:** 2026-10-07. This is a source inventory and isolated-fixture
+addition. No package installation, deployment, interactive shell command,
+Gate runtime, or coordinator-store query was performed.
+
+| Entry point | Observed behavior and route | Coverage boundary |
+| --- | --- | --- |
+| Configured post-merge install | `.replit` invokes `scripts/post-merge.sh`; that script already runs `pnpm install --frozen-lockfile` and the subsequent database push in one `run_writer.py` lock interval. Existing isolated fixtures assert both commands execute with the Gate lock held and that a failed install prevents the database push. | Source and fixture coverage only; no real post-merge invocation or package install was performed. |
+| Interactive/project-invoked pnpm operations | Added `scripts/failure_gate/run_pnpm.sh`. Use `bash scripts/failure_gate/run_pnpm.sh install [pnpm options...]`, or pass another pnpm operation such as `add`, `remove`, or `update`; it forwards the argument vector and current working directory unchanged through `run_writer.py`, which holds `.failure-gate/writers.lock` for the child process. Isolated tests cover argument/exit preservation, lock contention, and stale `.modules.yaml` evidence rejected by `Gate.complete`. | This is an opt-in supported project route. Raw `pnpm install`, `pnpm add`, and similar commands remain directly callable from an interactive shell and are not intercepted by project source. Do not count them as coordinated callers. The authored fixture cases are not live host acceptance. |
+| Root install lifecycle | The root `preinstall` still removes `package-lock.json` and `yarn.lock` before checking the pnpm user-agent. A guarded invocation performs this hook inside its shared-lock interval; raw commands do not. An interactive `npm install` or `yarn install` may therefore run this destructive hook before it rejects the unsupported user-agent. | This is an additional uncoordinated lockfile writer for raw package-manager commands. Changing this lifecycle guard alone cannot cover the entire package-manager operation, and making it reject raw host installs could alter Replit-managed installs. No lifecycle behavior was changed here. |
+| Deployment dependency installation | The checked-in `.replit` defines `deployment.postBuild` as `pnpm store prune`; it does not define the deployment dependency-install command. Replit's dependency/build orchestration is therefore not represented as a project-owned install entry point in the inspected config. | No evidence that deployment installation calls the project wrapper, and no deployment was triggered. Routing this host-managed phase requires verified deployment configuration and preservation of the existing build contract; it remains unverified. |
+| Deployment post-build package pruning | `.replit` invokes `pnpm store prune` after the build. This is package-store cleanup, not an install entry point. | Separate package-pruning scope remains tracked elsewhere; it was not changed as part of this install-route task. |
+
+The new wrapper protects only callers that explicitly use it. It does not
+intercept raw interactive package-manager commands or an unexposed
+Replit-managed deployment install. `gate.snapshot` detects selected installed
+metadata and esbuild output changes, but this is not a complete dependency-tree
+snapshot or coordination substitute. The isolated stale-evidence case exercises
+the existing completion check after the guarded route changes `.modules.yaml`;
+it does not establish complete install-writer coverage or immutable handoff.
+Keep `writer_coverage` unset and final-writer acceptance **BLOCKED** until the
+raw shell and deployment participants, plus every other relevant writer, are
+independently verified through effective coordination or an accepted immutable
+handoff.
