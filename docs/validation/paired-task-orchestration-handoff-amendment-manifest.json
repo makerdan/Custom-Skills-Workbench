@@ -1,5 +1,26 @@
 {
   "schema": "paired-task-orchestration-handoff-amendment-manifest-v1",
+  "subsequentConfirmationCompanionDelivery": {
+    "evidencePath": "docs/validation/skill-install-confirmation-source-delivery.md",
+    "sourceOwner": "workspace owner; direct declaration of source ownership",
+    "ownerDeclaredRevisionDate": "2026-08-27",
+    "archivePath": "attached_assets/0_skill-install-confirmation_(08.27.2026)_1791430044182.zip",
+    "archiveSha256": "fc8d202d2e3a857666c40103bb7cba11246db05b13e733176ec17397456b13f6",
+    "canonicalPath": ".agents/skills/skill-install-confirmation/SKILL.md",
+    "utf8Bytes": 4080,
+    "sha256": "d6ffd1d23ccba902f43098970739432689f54e88e134e321194fedd2160b972a",
+    "requiredReferences": [],
+    "requiredReferenceBasis": "No references declared in the complete supplied entry point",
+    "authorization": "Direct owner answer install_exact_and_recheck_once",
+    "recheck": "ONE_INVOCATION_COMPLETE_BYTE_PARITY_VERIFIED",
+    "independentApplicabilityAcceptance": "PENDING",
+    "seriesApplicability": "BLOCKED_EXISTING_PRIMARY_ROUTE_UNRESOLVED",
+    "sourceCompletenessGap": "File ends at empty Confirm task title pattern heading",
+    "historicalBindingsRewritten": false,
+    "definitionAndResourceCorrectionScopesMerged": false,
+    "nativeTaskMutation": "NOT_ATTEMPTED",
+    "runtimeAuthority": "NONE_GRANTED"
+  },
   "lifecycle": {
     "profileRevision": "fgv4-owner-snapshot-handoff-2026-10-07-v1",
     "policyProposal": "PROPOSED_SERIES_SPECIFIC",

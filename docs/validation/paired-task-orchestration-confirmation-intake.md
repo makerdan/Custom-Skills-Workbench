@@ -1,5 +1,17 @@
 # Canonical confirmation contract intake
 
+## Subsequent source delivery
+
+The original intake findings below remain historical. The source/workspace
+owner has since supplied the authentic companion, declared its revision date
+as `2026-08-27`, and separately authorized exact installation and one canonical
+recheck. Current paths, byte digests, observed gaps, and permission are recorded
+in [the source delivery record](skill-install-confirmation-source-delivery.md).
+Canonical absence is resolved for that supplied one-file package only.
+Independent applicability acceptance remains pending; the existing-primary
+ordering route and empty title-pattern heading remain unresolved. No batching
+decision, review scope, or source obligation was waived.
+
 ## Disposition
 
 **Intake finding: BLOCKED.** The intake criterion is satisfied by recording the exact missing owner input and next action. The required canonical confirmation companion is not supplied, and no authoritative applicability resolution is present. This report does not satisfy the companion requirement or authorize planning, creating, or executing confirmation.

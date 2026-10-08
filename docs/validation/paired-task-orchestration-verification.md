@@ -2,6 +2,16 @@
 
 **Disposition: PARTIAL / BLOCKED — review evidence is published; package and native handoff acceptance are not granted.**
 
+**Subsequent companion delivery:** The source owner supplied the confirmation
+package with declared revision `2026-08-27` and separately authorized exact-byte
+canonical installation and one recheck. The canonical file is now present;
+see [the delivery and recheck evidence](skill-install-confirmation-source-delivery.md).
+Historical absence findings below describe the original review snapshot.
+Companion applicability remains blocked on independent review and the delivered
+source's unresolved existing-primary route and empty title-pattern heading.
+This note does not change any historical matrix result, native binding, or
+definition/resource correction scope, or grant package/handoff acceptance.
+
 - **Review date:** 2026-10-07
 - **Review task:** actual Project task `#119`, “Confirm the orchestration resources and full plan separately”
 - **Report scope:** the three canonical Paired Task Orchestration references, the full 18-piece / 36-payload Failure Gate plan, shared protections, checkpoint/history, FG-02 g02 drafts, and the applicable delivery and task-record evidence.
