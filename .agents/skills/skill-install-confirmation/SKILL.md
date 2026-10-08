@@ -77,6 +77,22 @@ If the skill file is so incomplete that patching it would require rewriting more
 
 ## Task-Creation Rules (Planner)
 
-The Planner must call `bulkCreateProjectTasks` with **both tasks in one call**. The install task must have an `alias`. The confirm task's `dependsOn` must reference that alias — this is a hard requirement, not optional.
+For a **new** install primary, the Planner must call `bulkCreateProjectTasks` with **both tasks in one call**. The install task must have an `alias`. The confirm task's `dependsOn` must reference that alias — this is a hard requirement, not optional.
+
+### Existing-primary retrospective route
+
+The same-call rule remains mandatory for new primaries. It cannot be recreated as history after the install task already exists. A separate dependent confirmation may be planned for an existing primary only when the workspace owner or authorized user explicitly resolves that retrospective confirmation is required and authorizes its separate task planning.
+
+For that route, the Planner must:
+
+1. Read the complete authoritative primary record through a verified host interface. Confirm the Project, real task reference, Install operation, target skill, scope, complete finalized plan and digest, original source binding, and actual lifecycle. A title, task status, merge, or installation alone is not sufficient.
+2. Preserve the original source and task record. Do not edit, recreate, replace, or relabel the primary, and do not claim the two tasks were created in one call.
+3. Copy every original primary “Done looks like” item into the confirmation plan verbatim, then append both fixed confirmation items above. Keep the confirmation scope limited to the target `SKILL.md`. If any original item cannot be assessed within that file-only scope, or the original plan is unavailable or ambiguous, stop and report **BLOCKED**. Do not omit or rewrite an item, widen the correction boundary, or infer a waiver; request a separately authorized resolution.
+4. Keep this confirmation distinct from required resource/plan verification. If another task would exceed the current drafting window or required task count, surface the conflict and obtain a separate explicit batching decision before any write; do not merge the scopes or drop either obligation.
+5. Search for an existing confirmation using the Router's canonical stable binding (Project identity, target skill, primary task namespace/reference, finalized plan digest, and confirmation scope) and applicable legacy identities. Reuse it only after its complete plan, real dependency, lifecycle, and evidence are read back and match. Otherwise, create exactly one separate confirmation task through the verified host interface, with a real dependency on the existing primary. Do not invent another key, or duplicate an uncertain or already committed write.
+6. Read back the complete persisted confirmation plan and actual dependency. Verify verbatim acceptance-item parity, the two fixed additions, file-only correction scope, and the required “Must NOT do” section. If the host cannot prove the persisted plan or dependency, report **BLOCKED**, with the responsible owner and next action.
+7. Keep task creation, task approval, execution, and acceptance separate. Before confirmation runs, require the actual installed canonical file and original specification to be available to the confirmer. A dependency or completed primary status alone does not prove delivery or acceptance.
+
+This route defines a prospective reconciliation procedure; it does not make every historical install subject to retrospective confirmation or grant native task access, task creation, approval, or execution by itself.
 
 ### Confirm task title pattern
