@@ -19,46 +19,146 @@ APPROVAL = "docs/validation/failure-gate-installation-approval.json"
 SKIP = {"node_modules", ".git", ".local", ".cache", ".failure-gate", "__pycache__",
         "dist", "coverage", ".workspace-projections"}
 DEPENDENCY_ARTIFACT_MAXIMUM = 16 * 1024 * 1024
+ESBUILD_VERSION = "0.28.2"
+ESBUILD_INSTALL_SCRIPT = "node install.js"
+ESBUILD_INSTALLER_SHA256 = (
+    "612294e278914443bdcf81cb17f54afec34dbdd2ebd999a6ee187912320cc315")
+ESBUILD_PLATFORM_PACKAGE = "@esbuild/linux-x64"
+
+
+def _built_dependency_allowlist(root):
+    """Read the workspace's deliberately narrow pnpm build-script allowlist."""
+    root = Path(root)
+    workspace = root / "pnpm-workspace.yaml"
+    try:
+        text = read_bytes(workspace).decode("utf-8")
+    except (UnicodeDecodeError, OSError) as error:
+        raise Blocked("pnpm install-script allowlist unavailable") from error
+
+    found = False
+    in_allowlist = False
+    allowed = []
+    for line in text.splitlines():
+        if not in_allowlist:
+            if line.startswith("onlyBuiltDependencies:"):
+                if line.strip() != "onlyBuiltDependencies:" or found:
+                    raise Blocked("unsupported pnpm install-script allowlist")
+                found = True
+                in_allowlist = True
+            continue
+        if not line.strip() or line.lstrip().startswith("#"):
+            continue
+        if not line[0].isspace():
+            break
+        match = re.fullmatch(r"\s*-\s*(['\"]?)([^'\"\s#]+)\1\s*(?:#.*)?", line)
+        if not match:
+            raise Blocked("unsupported pnpm install-script allowlist")
+        name = match.group(2)
+        if not re.fullmatch(r"(?:@[a-z0-9][a-z0-9._-]*/)?[a-z0-9][a-z0-9._-]*", name):
+            raise Blocked("invalid pnpm install-script allowlist")
+        allowed.append(name)
+    if not found or len(set(allowed)) != len(allowed):
+        raise Blocked("invalid pnpm install-script allowlist")
+    return set(allowed)
+
+
+def _installed_package_paths(virtual_store, name):
+    encoded_name = name.replace("/", "+")
+    return sorted(path for path in virtual_store.glob(
+        f"{encoded_name}@*/node_modules/{name}") if path.is_dir())
+
+
+def _package_tree_files(root, package, expected_name):
+    """Bind every regular file in a known package tree; reject links and special files."""
+    root = Path(root)
+    package = Path(package)
+    relative_root = str(package.relative_to(root))
+    manifest_path = f"{relative_root}/package.json"
+    manifest = read_json(inside(root, manifest_path))
+    if not isinstance(manifest, dict) or manifest.get("name") != expected_name:
+        raise Blocked("installed dependency package identity unavailable")
+    files = set()
+    for current, dirs, names in os.walk(package, followlinks=False):
+        current_path = Path(current)
+        for name in dirs:
+            path = current_path / name
+            if path.is_symlink():
+                raise Blocked("installed dependency output contains symlink")
+        for name in names:
+            path = current_path / name
+            if path.is_symlink() or not path.is_file():
+                raise Blocked("installed dependency output is not a regular file")
+            files.add(str(path.relative_to(root)))
+    return manifest, files
 
 
 def install_generated_dependency_files(root):
-    """Return bounded esbuild install outputs which can affect checked commands."""
+    """Return installed hook definitions and all outputs of the approved esbuild hook."""
     root = Path(root)
     virtual_store = root / "node_modules/.pnpm"
-    packages = sorted(virtual_store.glob("esbuild@*/node_modules/esbuild"))
-    if not packages:
-        raise Blocked("installed esbuild outputs unavailable")
+    if not virtual_store.is_dir():
+        raise Blocked("installed dependency outputs unavailable")
 
+    allowed = _built_dependency_allowlist(root)
     files = set()
-    for package in packages:
-        relative = str(package.relative_to(root))
-        manifest = read_json(inside(root, f"{relative}/package.json"))
-        if not isinstance(manifest, dict) or manifest.get("name") != "esbuild":
-            raise Blocked("installed esbuild package identity unavailable")
+    hook_names = {"preinstall", "install", "postinstall", "prepare"}
+    for name in sorted(allowed):
+        for package in _installed_package_paths(virtual_store, name):
+            relative_manifest = str((package / "package.json").relative_to(root))
+            manifest = read_json(inside(root, relative_manifest))
+            if not isinstance(manifest, dict) or manifest.get("name") != name:
+                raise Blocked("installed dependency package identity unavailable")
+            files.add(relative_manifest)
+            scripts = manifest.get("scripts", {})
+            if not isinstance(scripts, dict):
+                raise Blocked("installed dependency scripts unavailable")
+            hooks = {key: scripts[key] for key in hook_names if key in scripts}
+            if not hooks:
+                continue
+            if (name != "esbuild" or manifest.get("version") != ESBUILD_VERSION or
+                    hooks != {"postinstall": ESBUILD_INSTALL_SCRIPT}):
+                raise Blocked("untracked allowed dependency install hook")
+
+            installer = package / "install.js"
+            installer_relative = str(installer.relative_to(root))
+            if hashlib.sha256(read_bytes(inside(root, installer_relative))).hexdigest() != \
+                    ESBUILD_INSTALLER_SHA256:
+                raise Blocked("unreviewed esbuild installer implementation")
+            if any((package / name).exists() or (package / name).is_symlink()
+                   for name in ("npm-install", "bin-esbuild")):
+                raise Blocked("incomplete esbuild install output")
+
+    esbuild_packages = _installed_package_paths(virtual_store, "esbuild")
+    if not esbuild_packages:
+        raise Blocked("installed esbuild outputs unavailable")
+    for package in esbuild_packages:
+        manifest, package_files = _package_tree_files(root, package, "esbuild")
+        if manifest.get("version") != ESBUILD_VERSION:
+            raise Blocked("unreviewed esbuild package version")
+        if manifest.get("scripts", {}).get("postinstall") != ESBUILD_INSTALL_SCRIPT:
+            raise Blocked("unreviewed esbuild install hook")
+        installer_relative = str((package / "install.js").relative_to(root))
+        if hashlib.sha256(read_bytes(inside(root, installer_relative))).hexdigest() != \
+                ESBUILD_INSTALLER_SHA256:
+            raise Blocked("unreviewed esbuild installer implementation")
         if any((package / name).exists() or (package / name).is_symlink()
                for name in ("npm-install", "bin-esbuild")):
             raise Blocked("incomplete esbuild install output")
+        files.update(package_files)
 
-        for name in ("bin/esbuild", "lib/main.js"):
-            path = f"{relative}/{name}"
-            inside(root, path)
-            files.add(path)
-        for path in package.glob("downloaded-*"):
-            relative_path = str(path.relative_to(root))
-            inside(root, relative_path)
-            files.add(relative_path)
-
-    for package in sorted(virtual_store.glob("@esbuild+*/node_modules/@esbuild/*")):
-        if not package.is_dir():
-            continue
-        binaries = [package / "bin/esbuild", package / "esbuild.exe"]
-        present = [path for path in binaries if path.exists()]
-        if not present:
+    platform_packages = _installed_package_paths(virtual_store, ESBUILD_PLATFORM_PACKAGE)
+    if not platform_packages:
+        raise Blocked("installed esbuild platform binary unavailable")
+    for package in platform_packages:
+        manifest, package_files = _package_tree_files(root, package, ESBUILD_PLATFORM_PACKAGE)
+        if manifest.get("version") != ESBUILD_VERSION:
+            raise Blocked("unreviewed esbuild platform package version")
+        if not any((package / name).is_file() for name in ("bin/esbuild", "esbuild.exe")):
             raise Blocked("installed esbuild platform binary unavailable")
-        for path in present:
-            relative = str(path.relative_to(root))
-            inside(root, relative)
-            files.add(relative)
+        files.update(package_files)
+
+    for relative in sorted(files):
+        inside(root, relative)
     return [root / relative for relative in sorted(files)]
 
 
@@ -109,7 +209,9 @@ def snapshot(root):
             raise Blocked("installed dependency identity unavailable")
         result[relative] = hashlib.sha256(read_bytes(path)).hexdigest()
     return {"schema": 1, "files": result, "digest": digest(result),
-            "dependency_identity": "pnpm installed metadata and esbuild runtime outputs; no hostile-mutation attestation",
+            "dependency_identity": (
+                "pnpm metadata, allowed lifecycle manifests and complete approved esbuild "
+                "package trees; no hostile-mutation attestation"),
             "exclusions": sorted(SKIP), "external_state": "Tests use local mock DB/storage/model fixtures"}
 
 

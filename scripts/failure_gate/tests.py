@@ -704,22 +704,32 @@ class GateTests(unittest.TestCase):
         (self.root / "docs/validation").mkdir(parents=True)
         for name in ("failure-gate-policy.json", "failure-gate-installation-approval.json"):
             shutil.copyfile(ROOT / "docs/validation" / name, self.root / "docs/validation" / name)
+        (self.root / "pnpm-workspace.yaml").write_text(
+            "onlyBuiltDependencies:\n  - esbuild\n")
         (self.root / "node_modules/.pnpm").mkdir(parents=True)
         (self.root / "node_modules/.pnpm/lock.yaml").write_text("fixture only\n")
         (self.root / "node_modules/.modules.yaml").write_text("fixture only\n")
         esbuild = self.root / "node_modules/.pnpm/esbuild@fixture/node_modules/esbuild"
         (esbuild / "bin").mkdir(parents=True)
         (esbuild / "lib").mkdir()
-        (esbuild / "package.json").write_text(json.dumps({"name": "esbuild", "version": "fixture"}))
+        self.esbuild_package = esbuild
+        (esbuild / "package.json").write_text(json.dumps({
+            "name": "esbuild", "version": "0.28.2",
+            "scripts": {"postinstall": "node install.js"}}))
+        shutil.copyfile(
+            ROOT / "node_modules/.pnpm/esbuild@0.28.2/node_modules/esbuild/install.js",
+            esbuild / "install.js")
         self.esbuild_binary = esbuild / "bin/esbuild"
         self.esbuild_binary.write_bytes(b"fixture generated esbuild binary\n")
         (esbuild / "lib/main.js").write_text("fixture esbuild entrypoint\n")
-        self.esbuild_platform_binary = (
-            self.root / "node_modules/.pnpm/@esbuild+linux-x64@fixture"
-            "/node_modules/@esbuild/linux-x64/bin/esbuild"
-        )
+        platform_package = (
+            self.root / "node_modules/.pnpm/@esbuild+linux-x64@0.28.2"
+            "/node_modules/@esbuild/linux-x64")
+        self.esbuild_platform_binary = platform_package / "bin/esbuild"
         self.esbuild_platform_binary.parent.mkdir(parents=True)
-        self.esbuild_platform_binary.write_bytes(b"fixture platform esbuild binary\n")
+        (platform_package / "package.json").write_text(json.dumps({
+            "name": "@esbuild/linux-x64", "version": "0.28.2"}))
+        self.esbuild_platform_binary.write_bytes(b"fixture platform binary\n")
         (self.root / "a.md").write_text("initial")
         self.gate = Gate(self.root, True)
         self.task = self.gate.store.allocate()
@@ -747,7 +757,8 @@ class GateTests(unittest.TestCase):
         removed = snapshot(self.root)
 
         self.assertNotEqual(initial["digest"], present["digest"])
-        self.assertNotEqual(initial["digest"], removed["digest"])
+        self.assertNotEqual(present["digest"], removed["digest"])
+        self.assertEqual(initial["digest"], removed["digest"])
         self.assertIn("package-lock.json", initial["files"])
         self.assertIn("yarn.lock", initial["files"])
 
@@ -782,6 +793,27 @@ class GateTests(unittest.TestCase):
         payload = self.fixture_review_payload(plan, relative, **overrides)
         with self.gate.store.transaction():
             return self.gate.store.decision(kind, task_id, payload)
+
+    def record_passing_static_run(self, validation_snapshot, run_id="fixture"):
+        log = self.gate.state / "runs" / run_id / "typecheck" / "raw.log"
+        log.parent.mkdir(parents=True)
+        log.write_text("isolated fixture compiler result\n")
+        outcome = {"pass": True, "registered": True, "healthy_release": True,
+                   "raw_exit": 0, "reason": "finished"}
+        payload = {"assessment": "PASSED", "snapshot": validation_snapshot,
+                   "tier_digest": digest(self.gate.policy["tiers"]["static"]),
+                   "policy_digest": digest(self.gate.policy), "tooling_digest": tooling(self.root),
+                   "steps": [{"name": "typecheck", "status": "PASSED", "outcome": outcome,
+                              "report": parsed_result("exit", outcome, log),
+                              "raw_log": f"runs/{run_id}/typecheck/raw.log",
+                              "log_digest": hashlib.sha256(read_bytes(log)).hexdigest()}]}
+        with self.gate.store.transaction():
+            self.gate.store.db.execute(
+                "INSERT INTO runs VALUES(?,?,'required_tier_validation',1,'static','finished',0,?)",
+                (run_id, self.task, encoded(payload)))
+            for name in ("run_reserved", "launch_intent", "watchdog_registered",
+                         "confirmed_start", "step_outcome", "run_finished"):
+                self.gate.store.event(name, self.task, run_id, {"simulation_only": True})
 
     def test_stale_review_and_another_tasks_decision_cannot_authorize_activation(self):
         with self.gate.store.transaction():
@@ -950,31 +982,45 @@ class GateTests(unittest.TestCase):
         self.assertIn(str(self.esbuild_binary.relative_to(self.root)), validation_snapshot["files"])
         self.assertIn(
             str(self.esbuild_platform_binary.relative_to(self.root)), validation_snapshot["files"])
-        log = self.gate.state / "runs" / "fixture" / "typecheck" / "raw.log"
-        log.parent.mkdir(parents=True)
-        log.write_text("isolated fixture compiler result\n")
-        outcome = {"pass": True, "registered": True, "healthy_release": True,
-                   "raw_exit": 0, "reason": "finished"}
-        payload = {"assessment": "PASSED", "snapshot": validation_snapshot,
-                   "tier_digest": digest(self.gate.policy["tiers"]["static"]),
-                   "policy_digest": digest(self.gate.policy), "tooling_digest": tooling(self.root),
-                   "steps": [{"name": "typecheck", "status": "PASSED", "outcome": outcome,
-                              "report": parsed_result("exit", outcome, log),
-                              "raw_log": "runs/fixture/typecheck/raw.log",
-                              "log_digest": hashlib.sha256(read_bytes(log)).hexdigest()}]}
-        with self.gate.store.transaction():
-            self.gate.store.db.execute(
-                "INSERT INTO runs VALUES('fixture',?,'required_tier_validation',1,'static','finished',0,?)",
-                (self.task, encoded(payload)))
-            for name in ("run_reserved", "launch_intent", "watchdog_registered", "confirmed_start",
-                         "step_outcome", "run_finished"):
-                self.gate.store.event(name, self.task, "fixture", {"simulation_only": True})
-
+        self.record_passing_static_run(validation_snapshot)
         self.esbuild_binary.write_bytes(b"mutated after validation\n")
         with self.assertRaisesRegex(Blocked, "stale"):
             self.gate.complete(self.task, "plan.json", "fixture")
         self.assertEqual(self.gate.store.task(self.task)["status"], "active")
         self.assertIsNone(self.gate.store.meta("writer_coverage"))
+
+    def test_completion_rejects_newly_covered_esbuild_output_mutated_after_validation(self):
+        self.fixture_activate()
+        generated = self.esbuild_package / "lib/new-install-generated-output.js"
+        generated.write_text("output created by a future install hook\n")
+        validation_snapshot = snapshot(self.root)
+        relative = str(generated.relative_to(self.root))
+        self.assertIn(relative, validation_snapshot["files"])
+        self.record_passing_static_run(validation_snapshot)
+
+        generated.write_text("output changed after validation\n")
+        with self.assertRaisesRegex(Blocked, "stale"):
+            self.gate.complete(self.task, "plan.json", "fixture")
+        self.assertEqual(self.gate.store.task(self.task)["status"], "active")
+        self.assertIsNone(self.gate.store.meta("writer_coverage"))
+
+    def test_snapshot_blocks_a_new_allowed_dependency_install_hook(self):
+        (self.root / "pnpm-workspace.yaml").write_text(
+            "onlyBuiltDependencies:\n  - esbuild\n  - future-builder\n")
+        package = (
+            self.root / "node_modules/.pnpm/future-builder@1.0.0"
+            "/node_modules/future-builder")
+        package.mkdir(parents=True)
+        (package / "package.json").write_text(json.dumps({
+            "name": "future-builder", "version": "1.0.0",
+            "scripts": {"postinstall": "node generate.js"}}))
+        with self.assertRaisesRegex(Blocked, "untracked allowed dependency install hook"):
+            snapshot(self.root)
+
+    def test_snapshot_blocks_an_unreviewed_esbuild_installer_change(self):
+        (self.esbuild_package / "install.js").write_text("changed installer behavior\n")
+        with self.assertRaisesRegex(Blocked, "unreviewed esbuild installer implementation"):
+            snapshot(self.root)
 
     def test_coordinated_terminal_commit_and_repairs_preserved(self):
         self.fixture_activate()
