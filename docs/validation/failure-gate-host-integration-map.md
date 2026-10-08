@@ -401,6 +401,40 @@ writer/handoff set remains unproven. `writer_coverage` therefore remains unset;
 final-writer acceptance remains **BLOCKED**. The independent writer-coverage
 claims in the earlier integration map remain in force.
 
+
+## Task 115 — Replit editor/Agent and checkout/merge handoff boundary
+
+**Observation:** 2026-10-07. This is a source and official-documentation
+readback. No host event, coordinator store, real post-merge hook, install,
+database push, test, or workflow was invoked.
+
+| Handoff | Evidence available in this workspace | Gate boundary / disposition |
+| --- | --- | --- |
+| Replit Agent edits and task changes | Replit's [Task system](https://docs.replit.com/core-concepts/agent/task-system) and [Checkpoints and rollbacks](https://docs.replit.com/features/version-control/checkpoints-and-rollbacks) documentation describes isolated Agent tasks, checkpoints, and conflict resolution when applying changes from multiple tasks. Documentation search found no configurable pre-write hook for project code to acquire a local lock before those changes. | These are host-managed writers; the repository exposes no adapter or immutable accepted snapshot for their handoff. Participation and effective synchronization with `.failure-gate/writers.lock` remain **UNKNOWN / BLOCKED**, not absent. |
+| Persisted task-plan handoff | Read-only `getProjectTask` queries of actual refs `#119`, `#120`, and `#121` returned their full descriptions and direct dependency lists. `#120` is 11,221 UTF-8 bytes, depends on `#116`, and its exact planned insertion is present in commit `6b7112b64eb371f6901a5b6e7d2893ad0476dfa8` on `main-repl/main`. That commit is not an ancestor of this task checkout's `main`; no checkout or synchronization was performed. `#121` is a 2,953-byte proposed record that depends on `#120`. The tracked report `main-repl/main:docs/validation/paired-task-orchestration-verification.md` records that `#119` is 1,796 bytes, depends only on `#116`, and does not contain the reviewed 34,043-byte plan; the report expects direct dependencies `#102`, `#106`, and `#109`. | This verifies task-record payload/dependency readback and a branch-specific source difference. It does not prove the task write path was race-safe, that files reached `#121`'s isolated workspace, or that editor/Agent file writes or checkout/merge operations acquire the Gate lock. The `#119` discrepancy remains unchanged and unresolved; no task records were modified. |
+| Git checkout/merge and task-merge application | Replit's [Version control](https://docs.replit.com/learn/projects-and-artifacts/version-control) documentation describes Git version control. Documentation search found no project-level pre-checkout/pre-merge lock callback or handoff API that coordinates with the local Gate lock. | No verified Gate integration or immutable accepted-state binding is available in the inspected project surface. The actual workspace checkout/merge operations and their effects on accepted inputs remain **UNKNOWN / BLOCKED**. |
+| Configured Replit post-merge hook | `.replit` routes `[postMerge]` to `scripts/post-merge.sh`. The script runs the frozen install and database push through `scripts/failure_gate/run_writer.py`; `PostMergeTests` contains isolated fixtures that assert both fake `pnpm` calls observe the shared lock and that install failure prevents the schema push. | The configured local script participates in the cooperative lock at source level. The fixture is not a Replit post-merge event, and this review did not invoke the hook because it installs dependencies and applies database schema changes. Real host-event participation remains unverified. |
+| Gate run and terminal acceptance | `Gate.execute` records before/after manifests and explicitly labels integrity as covering “coordinated participants only; out-of-band edits unobservable.” `Gate.complete` rechecks the mutable workspace under the Gate lock and rejects unless `writer_coverage` is `"verified"`. No immutable accepted input tree or snapshot store is implemented. | Hash checks detect sampled visible changes; they do not exclude or detect an out-of-band edit that is reverted between observations. A stored `"verified"` string is not evidence that the host participant set was proven. Completion must remain blocked without actual participant evidence or a snapshot bound to the accepted task state. |
+
+The official-documentation search is evidence only for the documented platform
+surface. It does not prove that no private, unpublished, or account-specific
+host capability exists. The read-only task-record interface was available and
+used for plan/dependency readback, but it does not expose editor/file-write or
+checkout/merge coordination. The current `.replit` file configures the Agent
+stack and post-merge script, but exposes no editor-write or checkout/merge lock
+callback. No authorized host source or independently reviewable real
+file-writer handoff was available in this task to close that gap.
+
+Accordingly, this task completes the source/platform inventory and confirms
+the configured post-merge wrapper's fixture coverage, but **does not complete
+host writer integration or independent real-handoff verification**.
+`writer_coverage` remains unset, validated local completion remains
+**BLOCKED**, and no Gate activation or completion claim follows from this
+readback. Closing the remaining requirement needs an authorized, verifiable
+host handoff route for editor/Agent and checkout/merge writers, or an actually
+immutable accepted snapshot whose contents and task binding cannot diverge
+during final acceptance. The post-merge event also needs safe independent
+verification before it can count as a proven real handoff.
 ## Task 118 — standalone package-manager writer routes
 
 **Observation:** 2026-10-07. This is a source inventory and isolated-fixture
