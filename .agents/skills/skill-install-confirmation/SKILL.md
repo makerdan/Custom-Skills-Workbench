@@ -44,13 +44,17 @@ The "Done looks like" items are the shared contract Task B uses as its verificat
 
 The confirm task is **scoped to the skill file only**: `.agents/skills/<name>/SKILL.md`.
 
+This is always the correction boundary. Read-only acceptance-evidence inspection
+may extend beyond that file only under the exact owner-authorized existing-primary
+exception below; it does not extend repair authority or absorb resource/plan review.
+
 The confirm agent:
 1. Reads `.agents/skills/<name>/SKILL.md`.
 2. Diffs it against the original spec in the install task's plan to find gaps, incorrect sections, or missing content.
 3. Lists every gap before patching (does not silently fix and move on).
 4. Patches the file directly.
 
-The confirm agent does **not** touch the broader codebase, adjacent skills, or any artifact code.
+The confirm agent does **not** change the broader codebase, adjacent skills, or any artifact code. Outside the exact exception below, assessment remains file-only as well.
 
 ### "Done looks like" for Task B
 
@@ -91,13 +95,66 @@ For that route, the Planner must:
 
 1. Read the complete authoritative primary record through a verified host interface. Confirm the Project, real task reference, Install operation, target skill, scope, complete finalized plan and digest, original source binding, and actual lifecycle. A title, task status, merge, or installation alone is not sufficient.
 2. Preserve the original source and task record. Do not edit, recreate, replace, or relabel the primary, and do not claim the two tasks were created in one call.
-3. Copy every original primary “Done looks like” item into the confirmation plan verbatim, then append both fixed confirmation items above. Keep the confirmation scope limited to the target `SKILL.md`. If any original item cannot be assessed within that file-only scope, or the original plan is unavailable or ambiguous, stop and report **BLOCKED**. Do not omit or rewrite an item, widen the correction boundary, or infer a waiver; request a separately authorized resolution.
+3. Copy every original primary “Done looks like” item into the confirmation plan verbatim, then append both fixed confirmation items above. Keep corrections limited to the target `SKILL.md`. Except under the exact owner-authorized exception below, if any original item cannot be assessed within the file-only scope, stop and report **BLOCKED**. An unavailable or ambiguous original plan blocks either route. Do not omit or rewrite an item, widen the correction boundary, or infer a waiver; request a separately authorized resolution.
 4. Keep this confirmation distinct from required resource/plan verification. If another task would exceed the current drafting window or required task count, surface the conflict and obtain a separate explicit batching decision before any write; do not merge the scopes or drop either obligation.
 5. Search for an existing confirmation using the Router's canonical stable binding (Project identity, target skill, primary task namespace/reference, finalized plan digest, and confirmation scope) and applicable legacy identities. Reuse it only after its complete plan, real dependency, lifecycle, and evidence are read back and match. Otherwise, create exactly one separate confirmation task through the verified host interface, with a real dependency on the existing primary. Do not invent another key, or duplicate an uncertain or already committed write.
 6. Read back the complete persisted confirmation plan and actual dependency. Verify verbatim acceptance-item parity, the two fixed additions, file-only correction scope, and the required “Must NOT do” section. If the host cannot prove the persisted plan or dependency, report **BLOCKED**, with the responsible owner and next action.
 7. Keep task creation, task approval, execution, and acceptance separate. Before confirmation runs, require the actual installed canonical file and original specification to be available to the confirmer. A dependency or completed primary status alone does not prove delivery or acceptance.
 
 This route defines a prospective reconciliation procedure; it does not make every historical install subject to retrospective confirmation or grant native task access, task creation, approval, or execution by itself.
+
+### Owner-authorized read-only evidence exception — one bound existing primary
+
+The owner separately authorized this narrow amendment for the following binding,
+not a general relaxation of file-only confirmation:
+
+- Project: origin `https://github.com/makerdan/Custom-Skills-Workbench`, root
+  `/home/runner/workspace`, current Skills Workbench Project task-board namespace.
+  No immutable namespace UUID is inferred.
+- Series: `Custom-Skills-Workbench/failure-gate-v4/18-piece`.
+- Target: `.agents/skills/paired-task-orchestration/SKILL.md`.
+- Existing installation primary: actual Project task `#102`, “Update Orchestration
+  and Replan Series”; complete original description is 11,539 UTF-8 bytes,
+  SHA-256 `6b2a457b2d3cbe1ffc06e3edb6ce0efa3cc1e579637297ead8b1660ed853cd06`.
+- Authorization and full-record comparison:
+  `docs/validation/skill-install-confirmation-applicability-review.md` and
+  `docs/validation/skill-install-confirmation-scope-readback.json`.
+  These records document evidence and scope; they are not task approval or
+  runtime authorization registries.
+
+For this binding only, a subsequently separately authorized confirmer may inspect
+the original primary's broader deliverables and applicable independently accepted
+evidence read-only to assess every original acceptance item. The confirmation
+plan must still contain all six original items verbatim, both fixed additions,
+and the complete required “Must NOT do” section. Neither summaries nor installed
+output may replace the original criteria.
+
+Corrections remain exclusively within the target `SKILL.md`. Referenced resources,
+the 18-piece plan and payloads, checkpoint/history, installer handoff, original
+source, task records and other deliverables must not be changed by the confirmer.
+Resource/plan verification remains a distinct independent obligation with its own
+task, evidence, report, correction permissions and acceptance. The confirmer
+checks that applicable independently accepted evidence supports each broader
+criterion; it must not perform or certify the separate resource/plan review in
+that reviewer's place. Unaccepted, missing, stale, mismatched or incomplete evidence
+leaves the affected criteria and overall confirmation acceptance **BLOCKED**.
+Report existence, a dependency, or a merged task label cannot supply acceptance.
+
+Preserve the original primary and source, existing review lineage, Router stable
+binding and legacy duplicate reconciliation, complete persisted-plan and actual
+dependency readback, delivered-input readiness and separate batching decisions.
+Do not relabel an older definition-only review as satisfying the expanded
+assessment contract or invent same-call history. A mismatched Project, series,
+target, primary or plan digest cannot use this exception; stop **BLOCKED** and
+request a new separately authorized resolution rather than carrying permission
+forward or inventing a duplicate key.
+
+The owner's amendment authorization covers this canonical rule and its
+reconciliation report only. It does not authorize confirmation task planning or
+writes, approval, execution, independent acceptance, runtime activity or series
+advancement. Each still requires its separately applicable authority. Independent
+acceptance of this amendment and the bound confirmation remain pending; the
+amendment itself grants neither.
 
 ### Confirm task title pattern
 

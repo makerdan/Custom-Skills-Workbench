@@ -1,6 +1,6 @@
 # Existing-primary confirmation applicability review
 
-**Disposition: BLOCKED — the owner authorized a narrow canonical amendment and the route is recorded below, but the bound primary's acceptance items do not fit the companion's file-only scope. Independent acceptance and native confirmation remain unperformed.**
+**Current disposition: Scope conflict resolved by a separately owner-authorized, exact-primary read-only evidence exception. Confirmation acceptance remains BLOCKED; no confirmation task write, execution or acceptance is authorized or performed. See the final owner-resolution section. Earlier sections retain their historical evidence and findings.**
 
 ## Owner decision and scope
 
@@ -90,3 +90,220 @@ This task changed only `.agents/skills/skill-install-confirmation/SKILL.md` and 
 | Tests, builds, runtime, polling, series advancement, policy activation, and tier launch | **NOT RUN / NOT AUTHORIZED** | No action in this task |
 
 No native task, series, policy, runtime, or approval state is changed by the source amendment or this report.
+
+---
+
+## Live scope reconciliation — assigned mismatch investigation
+
+**Disposition: BLOCKED / AWAITING_OWNER_RESOLUTION.** This investigation has
+read the complete authoritative primary and candidate confirmation descriptions.
+The scope conflict is confirmed, not resolved by the earlier definition review.
+No canonical amendment, task write, reuse, approval, confirmation execution,
+acceptance, or series advancement has occurred in this investigation.
+
+### Authoritative record binding
+
+The verified host read interface returned complete records for #102, #116,
+#107, #121, and the distinct resource/plan reviewer #126. Full returned
+descriptions, direct dependencies, lifecycle, timestamps, search results, and
+literal acceptance comparisons are preserved in
+`docs/validation/skill-install-confirmation-scope-readback.json`.
+Digests cover exact UTF-8 description strings without normalization, not local
+task wrappers, snippets, titles, or reconstructed plans.
+
+Project binding: observed Git origin
+`https://github.com/makerdan/Custom-Skills-Workbench`, root
+`/home/runner/workspace`, current Skills Workbench Project task-board namespace;
+intake HEAD `d357840b02b14bfa5eae042cc3ee9e448d4e625a`. No immutable namespace
+UUID, provider finalization receipt, atomic exclusion, historical creation
+receipt, or task approval is inferred from this readback.
+
+| Actual record | Lifecycle / direct dependencies | Description bytes / SHA-256 |
+|---|---|---|
+| #102 — original installation primary | MERGED / none; updated `2026-10-07T04:41:02.658Z` | 11,539 / `6b2a457b2d3cbe1ffc06e3edb6ce0efa3cc1e579637297ead8b1660ed853cd06` |
+| #116 — candidate definition-only replacement | MERGED / #109, #106, #102; updated `2026-10-07T21:17:11.012Z` | 17,777 / `90e48811e5c2922ca10e2db47ece06e965f9a15e0bf21fe6a394386ab99f3ee6` |
+| #107 — historical definition predecessor | CANCELLED / #106; updated `2026-10-07T21:03:02.441Z` | 12,385 / `60f7ec6e83d96399d1826bbcd4672cae01efb5ce6c242dd1879e5273fd0f0c5c` |
+| #121 — separate changed-definition review | MERGED / #120; updated `2026-10-08T03:26:04.299Z` | 2,953 / `70411ae6f9787814418fb8abbae09890671e00e7756a63e0bc3bb2a360f0572d` |
+| #126 — distinct resource/plan replacement | MERGED / #109, #106, #102; updated `2026-10-08T02:54:57.970Z` | 43,199 / `1c1b214466332e3d9a08535ee11c7041affa5f4215e4214ffcc297206fdcb4f4` |
+
+The primary description matches the previously retained full-plan digest.
+The six original items quoted above match its returned acceptance list
+verbatim. The original archive/specification bindings remain in that complete
+record; this comparison does not re-certify archive/package parity.
+
+Bounded searches for the target, confirmation title, companion, and legacy
+owner-snapshot identity returned the known definition and resource candidates.
+These searches establish candidate discovery, not global uniqueness. The
+owner-snapshot keys retain their original scopes; no alternate duplicate key
+is minted and no candidate is reused under a different scope.
+
+### Verbatim acceptance versus the file-only boundary
+
+All six original items remain unchanged in the report above and in the raw
+comparison evidence. Every item contains a requirement outside the target
+`.agents/skills/paired-task-orchestration/SKILL.md`:
+
+| Original item | Required evidence outside the file | File-only assessment result |
+|---|---|---|
+| 1 | Original archive, all three reference contents, canonical package provenance, planning-time absence evidence | BLOCKED; SKILL.md parity alone cannot establish package parity or historical provenance. |
+| 2 | Entire active 18-piece series, all implementation/verifier payloads, original baseline and replacement history | BLOCKED; an instruction to preserve a plan is not evidence that the plan was rewritten correctly. |
+| 3 | Actual checkpoint and delivered FG-01/FG-02 evidence/history | BLOCKED; definition text cannot establish checkpoint reconciliation. |
+| 4 | Each materialized piece's outcome, evidence and acceptance mapping, including retained adapter obligations | BLOCKED; a generic outcome rule is not verification of every payload. |
+| 5 | Published independent package/plan payload, exact continuation and actual native creation evidence | BLOCKED; a SKILL.md instruction cannot prove delivery or distinguish actual task creation. |
+| 6 | All user deliverable locations and the complete tracked installer handoff | BLOCKED; checking the skill's own location cannot establish every deliverable or handoff. |
+
+The entire #116 description contains **zero of the six original items
+verbatim**, and neither fixed confirmation addition. Its own five top-level
+checks and preserved definition checklist are not equivalent to the companion's
+required acceptance contract. It also lacks the companion's required
+`Must NOT do` section. Its actual primary dependency is present, but that does
+not remedy missing acceptance criteria. The full #107 and #121 descriptions
+likewise contain none of the six original items or the two fixed additions.
+#107 is historical closure; #121 binds the separate #120 amendment, not this
+primary. Neither supplies an eligible retrospective Task B.
+
+#116's definition report covers the earlier definition digest
+`cbc4e9209b00c7b9bf9eee4966cc5e1e31252942b1001b027b923ab5c00d9415`.
+Current canonical Paired bytes are
+`1060bbef83e521a9f591d62e52caf2d3e97cb5d23f904b6a939051ea02708456`.
+The separate #121 review does not acquire #102 acceptance-item parity merely
+because it is now merged. These observations preserve each review's source
+boundary; they neither reverse historical findings nor accept current work.
+
+### Proposed resolution — not authorized or applied
+
+Request a narrow owner-authorized amendment to the canonical confirmation
+contract for this exact existing primary and series:
+
+1. Distinguish read-only acceptance-evidence inspection from correction scope.
+   Permit inspection of the bound primary's broader deliverables only to assess
+   every original criterion; keep all corrections limited to the target SKILL.md.
+2. Require all six original items verbatim plus both fixed additions in any
+   subsequently authorized confirmation plan. No omission, paraphrase, waiver,
+   automatic not-applicable classification, or pass by reference is permitted.
+3. Preserve independent resource/plan verification as a distinct obligation,
+   with its own task, evidence, report, correction authority and acceptance.
+   The confirmer must not repair or certify that review's scope. Broader
+   criteria stay BLOCKED until applicable independently accepted evidence is
+   available, bound, and checked; report presence or merged status is insufficient.
+4. Preserve original source and primary record, existing review lineage,
+   duplicate reconciliation, full persisted-plan/dependency readback, delivery
+   gates, separate batching, and the prohibition on invented same-call history.
+5. Authorize only the narrow canonical amendment and this reconciliation report
+   if the owner chooses this route. Task planning/writes, approval, execution,
+   independent acceptance, runtime activity and series advancement each remain
+   separately gated.
+
+This proposal is an explicit scope clarification, not a claim that the existing
+contract already permits broader assessment. It is limited to
+`Custom-Skills-Workbench/failure-gate-v4/18-piece`, target
+`paired-task-orchestration`, primary #102 and its exact digest above. Generic
+new-install same-call rules remain unchanged.
+
+The distinct resource/plan obligation is actual #126 and its report remains
+`docs/validation/paired-task-orchestration-verification.md`, whose retained
+assessment is PARTIAL / BLOCKED. This investigation does not accept or alter
+that report. Its task binding, historical attachment evidence and other
+recorded unresolved obligations remain independently owned.
+
+**Owner / next action:** the workspace owner must separately authorize this
+narrow contract amendment or provide another explicit resolution that preserves
+all criteria and distinct resource/plan verification. Until then the amendment
+is NOT_APPLIED and confirmation acceptance remains BLOCKED. This assigned
+mismatch-resolution task is not complete.
+
+### Verification and non-actions
+
+Verification to this boundary was source/task-record readback and literal
+comparison only. Current confirmation source is SHA-256
+`85da1afc4f2461c5e40c44e2028cdb72713dc42fe241eabeb2b82234a934a32d`;
+the earlier amendment digest above is historical. Existing reports, the native
+snapshot, original primary and canonical skill files are preserved.
+No tests, builds, imports, workflow restarts, runtime/store operations,
+validation launches, task mutations, or independent acceptance were performed.
+
+## Owner resolution applied — exact-primary evidence exception
+
+The workspace owner answered the approval form “Authorize the scoped
+confirmation-rule amendment for Task #102?” with
+**“Authorize scoped amendment (recommended)”** (`authorize_scoped_amendment`),
+with no additional comments. The form explicitly authorized the canonical
+confirmation-rule amendment and this report only, with broader read-only
+evidence inspection, SKILL.md-only corrections, every original criterion
+unchanged, and distinct resource/plan verification. It explicitly excluded
+task writes, execution and acceptance. This is the separate authorization
+requested at the preceding boundary, not inferred permission from task status.
+
+The canonical `.agents/skills/skill-install-confirmation/SKILL.md` now:
+
+- Distinguishes the unaltered SKILL.md-only correction boundary from read-only
+  acceptance-evidence inspection.
+- Permits broader read-only evidence inspection only for the exact Project,
+  series, target, #102 reference, original 11,539-byte plan and SHA-256
+  `6b2a457b2d3cbe1ffc06e3edb6ce0efa3cc1e579637297ead8b1660ed853cd06`.
+- Retains all six original acceptance items verbatim as the required future
+  plan contract, both fixed additions and every “Must NOT do” restriction.
+- Requires applicable independently accepted evidence for broader criteria;
+  missing, stale, unaccepted, mismatched or incomplete evidence blocks overall
+  confirmation acceptance. The confirmer may not substitute for the independent
+  resource/plan reviewer.
+- Preserves the original primary/source, existing review lineage, stable Router
+  binding and legacy lookup, full persisted-plan/dependency readback, delivery
+  gates, separate batching, and honest history. A changed binding requires
+  separately authorized resolution; permission does not carry forward.
+- Leaves new-install same-call creation unchanged and does not generalize the
+  exception to other historical primaries.
+
+No original criterion was omitted, rewritten, waived or classified as
+not applicable. The six verbatim originals remain above and in the complete
+authoritative readback. The prior incompatibility findings remain true for the
+original file-only assessment rule and the old candidate plans; this amendment
+changes the permitted future evidence method, not those historical facts.
+
+### Completion and remaining boundaries
+
+The assigned mismatch-resolution work is complete: full primary and candidate
+plans were read and byte-bound through the verified host interface, every
+original criterion was compared, the remaining conflict was brought to the
+owner, and the separately authorized resolution was applied without weakening
+criteria or combining obligations.
+
+**Confirmation acceptance remains BLOCKED.** This report does not independently
+accept the amendment, promote #116/#107/#121 into a compliant retrospective
+confirmation, or accept #126's distinct resource/plan report. The latter retains
+its own evidence, unresolved findings, correction scope and acceptance owner.
+
+The next authorized operation, if the owner later approves it, is independent
+assessment of the amended rule and reconciliation of the required confirmation
+planning route. Before any confirmation plan write or reuse, bind fresh complete
+records, reconcile existing candidates and the stable scope identity, obtain any
+required batching decision, preserve all six verbatim items plus both additions
+and restrictions, and verify the complete persisted payload and actual dependency.
+Substantive execution and acceptance remain separately gated on delivery and
+applicable independent evidence. No primary recreation or blind duplicate is
+permitted.
+
+No confirmation task, approval, dependency, lifecycle, original source, historical
+report, resource, checkpoint or series state was changed by this resolution.
+No confirmation execution, tests, builds, runtime or validation launch occurred.
+Completion of this assigned contract-resolution work is not acceptance of the
+underlying installation, confirmation, resource/plan review or Failure Gate stage.
+
+### Final source readback
+
+The delivered canonical confirmation rule is 14,615 UTF-8 bytes, SHA-256
+`6d2a1a38a19092fe74982ab8610accdf4804d3c3a95d7a4e71e987c3b4eb02a6`.
+The complete host-record evidence file is 114,028 UTF-8 bytes, SHA-256
+`14d8e4cf6f8e1b1289192790f457f210ed23303b79441ef13b00e9e265470f03`.
+These identify observed snapshots, not protected writer exclusion or provider
+finalization.
+
+Readback confirms all six original items remain verbatim in this report; the
+canonical rule retains both fixed additions, all five “Must NOT do” restrictions
+and new-install same-call creation. The exact-primary digest, named exception,
+owner decision and continued acceptance block are present. This is document
+readback, not a test-suite run or independent acceptance.
+
+The follow-up guidance was read. Independent contract review and resource-binding
+reconciliation are already listed obligations; no duplicate follow-up, native
+task write or additional execution was authorized or submitted here.
