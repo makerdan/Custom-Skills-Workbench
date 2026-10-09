@@ -1,0 +1,34 @@
+These are the steps to finish the current handoff and prepare FG-02 g02:
+
+1. Independently review the current confirmation rule
+Review the combined current canonical file, including the title rule, retrospective route, and #102-specific read-only evidence exception. Check it against the owner’s approvals and Router/Paired contracts.
+
+Finish condition: a fresh independent disposition for the current bytes. Archived Task #135 does not provide this acceptance.
+
+2. Resolve the remaining native-handoff evidence
+Reconcile the actual full primary and reviewer records, their plan bindings, dependencies, and the applicable finalization or explicitly authorized snapshot route. Keep #102’s route separate from the #120 amendment/#121 review; do not reuse permission across those bindings.
+
+Finish condition: an evidenced, permitted route for the required confirmation—not merely matching task statuses.
+
+3. Prepare one compliant retrospective confirmation draft
+Search existing candidates before creating anything. The #134 readback found that the older confirmation plans do not satisfy the required contract.
+
+The draft must include:
+
+All six original #102 acceptance items verbatim.
+Both fixed confirmation additions and every required restriction.
+A real dependency on #102.
+SKILL.md-only corrections, with broader evidence inspection limited to the approved exception.
+Finish condition: complete persisted-plan and dependency readback. Delivery may remain pending at drafting; substantive review must wait.
+
+4. Close only the outstanding resource/plan gaps
+Use Task #126’s valid comparisons rather than repeating the whole 18-piece review. Through authorized work, reconcile affected current-source bindings, replit.md, the stale active checkpoint, and any historical linkage evidence still required for acceptance. Preserve all original reports and findings.
+
+Task #122 should first be reassessed against what #126 already resolved.
+
+Finish condition: independent acceptance of the affected resource/plan criteria, with any unresolved limits explicit.
+
+5. Complete confirmation and overall handoff acceptance
+Once inputs are actually delivered, the confirmer checks the current definition and the independently accepted evidence supporting the broader criteria. It must not substitute for the resource/plan reviewer. Any correction requires renewed affected evidence and independent post-repair acceptance.
+
+Finish condition: current accepted results for both distinct scopes—not just Merged task labels.
