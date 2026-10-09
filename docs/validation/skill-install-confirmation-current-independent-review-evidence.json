@@ -1,0 +1,340 @@
+{
+  "schemaVersion": 1,
+  "review": {
+    "taskRef": "#136",
+    "title": "Independently Review Current Confirmation Rule",
+    "reviewDate": "2026-10-09",
+    "project": {
+      "origin": "https://github.com/makerdan/Custom-Skills-Workbench",
+      "root": "/home/runner/workspace",
+      "taskNamespace": "Current Skills Workbench Project task-board; immutable UUID not supplied",
+      "series": "Custom-Skills-Workbench/failure-gate-v4/18-piece",
+      "gitHeadAtReview": "3449b78d40ff999ca96ead7f3aa6fef5c1f99a46"
+    },
+    "operation": "Independent source/document review with bounded exact-reference native record readback",
+    "writeBoundary": [
+      "docs/validation/task-plans/task-136-independently-review-current-confirmation-rule.md",
+      "docs/validation/skill-install-confirmation-current-independent-review.md",
+      "docs/validation/skill-install-confirmation-current-independent-review-evidence.json"
+    ],
+    "reviewerIndependence": "This review was performed under assigned task #136 with a separate report and fresh evidence, distinct from the source-authoring work records. The native task interface does not expose contributor identities, so person-level identity separation cannot be independently proven. No earlier report was promoted as acceptance."
+  },
+  "planBinding": {
+    "persistedTaskPlanPath": ".local/tasks/task-136.md",
+    "trackedPlanPath": "docs/validation/task-plans/task-136-independently-review-current-confirmation-rule.md",
+    "bytes": 6289,
+    "sha256": "d14beea5a5d5a3952154032c7377b33f23dc427b07c3a940b0b0e6d10f776025",
+    "readback": "BYTE_IDENTICAL",
+    "method": "Complete-file comparison before substantive assessment; final checksum matched both copies."
+  },
+  "baselines": {
+    "obligation": {
+      "currentCanonicalSourcePath": ".agents/skills/skill-install-confirmation/SKILL.md",
+      "expectedBytes": 14615,
+      "expectedSha256": "6d2a1a38a19092fe74982ab8610accdf4804d3c3a95d7a4e71e987c3b4eb02a6",
+      "primaryAcceptanceSource": {
+        "taskRef": "#102",
+        "descriptionBytes": 11539,
+        "descriptionSha256": "6b2a457b2d3cbe1ffc06e3edb6ce0efa3cc1e579637297ead8b1660ed853cd06"
+      },
+      "ownerDecisionTasks": ["#132", "#133", "#134"]
+    },
+    "preEditProject": {
+      "initialGitStatus": "Only the user-supplied five-step attachment was untracked before the tracked plan was published; no pre-existing tracked source changes were reported.",
+      "gitHead": "3449b78d40ff999ca96ead7f3aa6fef5c1f99a46",
+      "bindingLimit": "HEAD was captured after the tracked plan publication; no commit or source-code changes occurred during this review. The initial filesystem tree was not captured as an immutable archive.",
+      "reviewerChangesToCanonicalSkillOrPriorEvidence": false
+    },
+    "delivered": {
+      "implementationSnapshot": "NOT_APPLICABLE_TO_THIS_SOURCE-ONLY_RULE_REVIEW",
+      "reviewOutputs": [
+        {
+          "path": "docs/validation/task-plans/task-136-independently-review-current-confirmation-rule.md",
+          "sha256": "d14beea5a5d5a3952154032c7377b33f23dc427b07c3a940b0b0e6d10f776025",
+          "status": "Published and byte-compared with the persisted task plan."
+        },
+        {
+          "path": "docs/validation/skill-install-confirmation-current-independent-review.md",
+          "bytes": 27448,
+          "sha256": "0fa6cf0c21943b99abde717a5d47b07e8bc1e3c3cdd162bcf5be6add2110f7bf",
+          "status": "New independent report, bound to its delivered bytes."
+        },
+        {
+          "path": "docs/validation/skill-install-confirmation-current-independent-review-evidence.json",
+          "status": "New evidence manifest; digest recorded after publication."
+        }
+      ],
+      "runtimeOrApplicationCode": "Not inspected, changed, or tested."
+    }
+  },
+  "inputs": [
+    {
+      "path": ".agents/skills/skill-install-confirmation/SKILL.md",
+      "role": "Current canonical rule under review",
+      "bytes": 14615,
+      "sha256": "6d2a1a38a19092fe74982ab8610accdf4804d3c3a95d7a4e71e987c3b4eb02a6",
+      "outcome": "Matches the exact digest and size specified in the assigned plan."
+    },
+    {
+      "path": "attached_assets/0_skill-install-confirmation_(08.27.2026)_1791430044182.zip",
+      "role": "Owner-supplied original source archive",
+      "bytes": 2162,
+      "sha256": "fc8d202d2e3a857666c40103bb7cba11246db05b13e733176ec17397456b13f6",
+      "member": {
+        "path": "skill-install-confirmation/SKILL.md",
+        "bytes": 4080,
+        "sha256": "d6ffd1d23ccba902f43098970739432689f54e88e134e321194fedd2160b972a"
+      },
+      "provenanceLimit": "The source-delivery record attributes this to the workspace owner; the digest is calculated from received bytes, not owner-signed."
+    },
+    {
+      "path": "attached_assets/skill-install-confirmation_(10.08.2026)_1791515286288.zip",
+      "role": "Owner-supplied replacement source archive",
+      "bytes": 3272,
+      "sha256": "c86cb59959dddc36ca8276dad24b96ab79a17125aee9b5e928ace505d7eb09bb",
+      "member": {
+        "path": "skill-install-confirmation/SKILL.md",
+        "bytes": 7746,
+        "sha256": "0f0b4bbdfd242a7960fd0ea13f6b6892fda8fa886be44619f958c825b3c2393f"
+      },
+      "provenanceLimit": "The source-delivery record documents separate owner authorization to install these exact bytes. The filename date is not an independently declared release identifier."
+    },
+    {
+      "path": "docs/validation/skill-install-confirmation-source-delivery.md",
+      "role": "Original and replacement source provenance, exact-byte delivery and source-completeness history",
+      "bytes": 11260,
+      "sha256": "d4fbf17511eac04cbc4cc242df2f1b8b47ec45f82c182bbbde7f2fdbd285819b"
+    },
+    {
+      "path": "docs/validation/skill-install-confirmation-applicability-review.md",
+      "role": "Owner-authorized existing-primary amendment and scope history",
+      "bytes": 27345,
+      "sha256": "a680d9ac884cc58b049bc085ad6d1c2e132a34e4ef3f2eb6c6cb7654b183ee0c"
+    },
+    {
+      "path": "docs/validation/skill-install-confirmation-scope-readback.json",
+      "role": "Retained exact native-record snapshot and bounded prior candidate-search evidence",
+      "bytes": 114028,
+      "sha256": "14d8e4cf6f8e1b1289192790f457f210ed23303b79441ef13b00e9e265470f03",
+      "observationTime": "2026-10-09T03:15:33.046Z",
+      "snapshotLimits": [
+        "Documentary snapshot, not a live task-board query for this review.",
+        "Its Project task namespace has no immutable UUID.",
+        "Its recorded candidate searches do not prove global uniqueness."
+      ]
+    },
+    {
+      "path": "attached_assets/Pasted-These-are-the-steps-to-finish-the-current-handoff-and-p_1791522438711.txt",
+      "role": "User-provided five-step handoff context",
+      "bytes": 2518,
+      "sha256": "0089f77254160bd0e96366ddef0c9681aeffbb24e2a27080d2665c475d38dcc7"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/SKILL.md",
+      "role": "Canonical Router contract",
+      "sha256": "49e3db86b0f5b8c7efba871d7404c40336cb3caf544427a429065b1088f6586f"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/references/installation-verification-plan.md",
+      "role": "Bundled independent-verification planning module",
+      "sha256": "99bc98079967ed47f8f524c187b9823fc99dddca55d4b61a9220dcbb5b3f8cb9"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/references/handoff-binding-and-recovery.md",
+      "role": "Router identity, finalized-primary, payload, lifecycle and recovery protocol",
+      "sha256": "7e95d74645e0c1184b2ae24488ffd5936237fb6fc1d9596734a3e57bb1fe0ff5"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/references/delivery-reconciliation.md",
+      "role": "Router fixed-obligation and delivery reconciliation policy",
+      "sha256": "fd908bd54a3d2db4d25cc6a3f2e6fbdfece0e9276a28e02db48d5dcfdfa3f3ca"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/references/router-task-handoff-acceptance.md",
+      "role": "Router host-handoff acceptance cases; read as semantic requirements, not evidence of installed APIs",
+      "sha256": "811bc5201d5067a4dc09d74c73880c4798f3407d7955182a923c95b3b897c849"
+    },
+    {
+      "path": ".agents/skills/paired-task-orchestration/SKILL.md",
+      "role": "Canonical Paired orchestration contract",
+      "sha256": "1060bbef83e521a9f591d62e52caf2d3e97cb5d23f904b6a939051ea02708456"
+    },
+    {
+      "path": ".agents/skills/paired-task-orchestration/references/acceptance-and-confirmation.md",
+      "role": "Applicable definition-confirmation and host-acceptance contract",
+      "sha256": "c83bb5977a42866b67bb7c029ca16512df23c4fd7da2aae04884ce3b4f39db3c"
+    },
+    {
+      "path": ".agents/skills/paired-task-orchestration/references/series-state-and-handoff.md",
+      "role": "Applicable series identity, task binding, delivery and acceptance semantics",
+      "sha256": "e0fb9d7e2e2e80c7c7f2b36c2356aceda09f10f56118255392cda97899fb5b3c"
+    },
+    {
+      "path": ".agents/skills/paired-task-orchestration/references/host-hook-contract.md",
+      "role": "Read for completeness; hook installation/enablement is not applicable to this source-only review",
+      "sha256": "7b9fe6dfaf0290450e4f1ffdeefcf1b58158fc8546628e643ea1351d3da2f43e"
+    }
+  ],
+  "historicalCanonicalSourceSnapshots": [
+    {
+      "bytes": 4080,
+      "sha256": "d6ffd1d23ccba902f43098970739432689f54e88e134e321194fedd2160b972a",
+      "meaning": "Original delivered source/member before the title rule and later amendments."
+    },
+    {
+      "bytes": 7746,
+      "sha256": "0f0b4bbdfd242a7960fd0ea13f6b6892fda8fa886be44619f958c825b3c2393f",
+      "meaning": "Owner-approved replacement member installed with exact byte parity; source-delivery snapshot."
+    },
+    {
+      "bytes": 7212,
+      "sha256": "2de0967a02c124c5521f5b6a8fc79b3c2cfecbcf5fd6df6c5bc68b141fe2518a",
+      "meaning": "Earlier canonical amendment snapshot recorded in applicability review; not current."
+    },
+    {
+      "bytes": null,
+      "sha256": "85da1afc4f2461c5e40c44e2028cdb72713dc42fe241eabeb2b82234a934a32d",
+      "meaning": "Intermediate current-source digest recorded in the historical applicability report; byte count not stated there."
+    },
+    {
+      "bytes": 14615,
+      "sha256": "6d2a1a38a19092fe74982ab8610accdf4804d3c3a95d7a4e71e987c3b4eb02a6",
+      "meaning": "Current owner-authorized combined definition at assigned planning and review readback."
+    }
+  ],
+  "nativeRecordReadbacks": {
+    "method": "Read-only full task-record retrieval by exact task reference; description digests are SHA-256 of exact returned UTF-8 descriptions without normalization.",
+    "observationDate": "2026-10-09",
+    "observationTime": "Not returned by the native record interface; no exact time is asserted.",
+    "ownerDecisionRecords": [
+      {
+        "taskRef": "#132",
+        "title": "Restore the missing confirmation task title rule",
+        "state": "MERGED",
+        "dependsOn": ["#123"],
+        "updatedAt": "2026-10-09T03:14:19.591Z",
+        "descriptionBytes": 1291,
+        "descriptionSha256": "f3b57448e781f2a69e4424c478776b46af04b3b1dcd4bf808317eb934f521bdf",
+        "use": "Binds the source-title gap and the separately authorized exact-replacement workflow; task state alone is not source approval or acceptance."
+      },
+      {
+        "taskRef": "#133",
+        "title": "Resolve how to confirm a skill that is already installed",
+        "state": "MERGED",
+        "dependsOn": ["#123"],
+        "updatedAt": "2026-10-08T04:05:53.428Z",
+        "descriptionBytes": 2079,
+        "descriptionSha256": "71fa322f3885064ce4a330cba946b48ddffe457b363a3ab0460dc2020f40b389",
+        "use": "Binds the existing-primary applicability question and the requirement to preserve separate reports; no acceptance is inferred."
+      },
+      {
+        "taskRef": "#134",
+        "title": "Resolve the mismatch between the original install criteria and the skill-only confirmation",
+        "state": "MERGED",
+        "dependsOn": ["#133"],
+        "updatedAt": "2026-10-09T05:03:44.659Z",
+        "descriptionBytes": 1538,
+        "descriptionSha256": "9d38adc666318bdc12628ca5e47ac107e568f9f844f08d8cc5a02fefaf34132c",
+        "use": "Binds the criteria-conflict resolution scope; its task status is not the owner's separate amendment authorization or this review's acceptance."
+      }
+    ],
+    "primaryAndCandidateRecords": [
+      {
+        "taskRef": "#102",
+        "title": "Update Orchestration and Replan Series",
+        "state": "MERGED",
+        "dependsOn": [],
+        "updatedAt": "2026-10-07T04:41:02.658Z",
+        "descriptionBytes": 11539,
+        "descriptionSha256": "6b2a457b2d3cbe1ffc06e3edb6ce0efa3cc1e579637297ead8b1660ed853cd06",
+        "use": "Exact #102 binding and verbatim original acceptance criteria; current record matches the retained snapshot."
+      },
+      {
+        "taskRef": "#107",
+        "title": "Confirm the SKILL.md-only orchestration review",
+        "state": "CANCELLED",
+        "dependsOn": ["#106"],
+        "updatedAt": "2026-10-07T21:03:02.441Z",
+        "descriptionBytes": 12385,
+        "descriptionSha256": "60f7ec6e83d96399d1826bbcd4672cae01efb5ce6c242dd1879e5273fd0f0c5c",
+        "use": "Historical predecessor; not reopened or treated as acceptance."
+      },
+      {
+        "taskRef": "#116",
+        "title": "Confirm the SKILL.md-only orchestration review — replacement for #107",
+        "state": "MERGED",
+        "dependsOn": ["#109", "#106", "#102"],
+        "updatedAt": "2026-10-07T21:17:11.012Z",
+        "descriptionBytes": 17777,
+        "descriptionSha256": "90e48811e5c2922ca10e2db47ece06e965f9a15e0bf21fe6a394386ab99f3ee6",
+        "use": "Historical candidate; the bound applicability comparison records no verbatim #102 item, fixed addition, or required Must NOT do section in its description."
+      },
+      {
+        "taskRef": "#120",
+        "title": "Amend canonical Paired Task Orchestration with the Failure Gate v4 planner-staging exception",
+        "state": "MERGED",
+        "dependsOn": ["#116"],
+        "updatedAt": "2026-10-07T21:23:13.337Z",
+        "descriptionBytes": 11221,
+        "descriptionSha256": "06c6ac3d94578cd027f3972fd55790974df4be0a0cae2c944504078cd6065495",
+        "use": "Separate primary binding; not the #102 confirmation primary."
+      },
+      {
+        "taskRef": "#121",
+        "title": "Independently confirm the amended orchestration rule",
+        "state": "MERGED",
+        "dependsOn": ["#120"],
+        "updatedAt": "2026-10-08T03:26:04.299Z",
+        "descriptionBytes": 2953,
+        "descriptionSha256": "70411ae6f9787814418fb8abbae09890671e00e7756a63e0bc3bb2a360f0572d",
+        "use": "Separate #120 review lineage; not a #102 confirmation result and not assessed for acceptance here."
+      },
+      {
+        "taskRef": "#126",
+        "title": "Verify orchestration resources and the full plan — replacement for #108",
+        "state": "MERGED",
+        "dependsOn": ["#109", "#106", "#102"],
+        "updatedAt": "2026-10-08T02:54:57.970Z",
+        "descriptionBytes": 43199,
+        "descriptionSha256": "1c1b214466332e3d9a08535ee11c7041affa5f4215e4214ffcc297206fdcb4f4",
+        "use": "Separate resource/plan scope; no resource or full-plan acceptance is performed by this review."
+      }
+    ],
+    "limits": [
+      "The read interface returns task records and lifecycle metadata but no provider finalization receipt, atomic linkage guarantee, or immutable task-namespace UUID.",
+      "Exact-reference reconciliation covered only the known primary, candidate, amendment, and resource records listed here; it is not a global duplicate-uniqueness claim.",
+      "Task status, dependency, description, and digest do not establish input delivery to another workspace, approval, execution, or acceptance."
+    ]
+  },
+  "currentRuleSourceVerdict": {
+    "completeSourceSnapshot": "VERIFIED",
+    "ambiguityFreeAcceptance": "NOT_ACCEPTED",
+    "confirmedSourceDefects": [
+      "The execution sequence refers to the escalation threshold as 'below' although the Escalation rule appears earlier in the definition.",
+      "The generic Task A/Task B requirements and same-call creation language do not clearly scope themselves to new installs, and conflict with the separately defined existing-primary route."
+    ],
+    "noSourceRepairPerformed": true
+  },
+  "separateClaims": {
+    "sourceOnlyRuleReview": "This task's independent disposition only; not an acceptance of the rule while the listed wording conflicts remain.",
+    "task102Confirmation": "Not accepted or completed by this review.",
+    "task120Confirmation": "Not accepted or completed by this review; #121 has a separate #120 binding.",
+    "task126ResourceAcceptance": "Not assessed or granted by this review.",
+    "actualConfirmationTaskCreationOrReuse": "Not performed or authorized by this review.",
+    "runtimeReadiness": "Not inspected or tested.",
+    "seriesAdvancement": "Not performed or authorized."
+  },
+  "validation": {
+    "performed": [
+      "Source/document readback",
+      "Git status and repository identity readback",
+      "Archive inventory and byte-size/SHA-256 comparison",
+      "Exact task-plan copy comparison",
+      "Bounded exact-reference native task-record readback"
+    ],
+    "notRunByDesign": [
+      "Tests, builds, imports, hooks, package commands, runtime/store/coordinator work, CI, services, signals, task writes, task approval, confirmation execution, resource acceptance, and series advancement"
+    ],
+    "authorization": "No validation PASS, local Gate ID/tier/grant, native finalization, global exclusion, or operational readiness is implied."
+  }
+}
