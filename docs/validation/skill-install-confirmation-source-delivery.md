@@ -2,12 +2,17 @@
 
 ## Disposition
 
-**DELIVERED — exact owner-supplied source installed and one separately authorized
-canonical recheck performed. Applicability acceptance remains BLOCKED pending
-independent review.**
+**DELIVERED — exact owner-approved replacement installed with complete byte
+parity; the missing confirmation title rule is restored. Applicability acceptance
+in this record remains BLOCKED pending independent review.**
 
 This record supplements, rather than replaces, the historical confirmation
 intake and resource/plan report. Neither report is promoted to accepted.
+
+The sections below through the original Validation section describe the original
+August source delivery. They are retained as historical evidence, not current
+claims that the title heading is still empty. The replacement delivery and its
+separate source-completeness assessment are recorded afterward.
 
 ## Owner and exact inputs
 
@@ -97,3 +102,81 @@ installation, then exact-byte installation and the separately authorized
 one-time canonical readback/comparison described above. No application code
 changed and no runtime checks were needed or authorized. Delivery is complete;
 source-completeness and series-applicability acceptance are not claimed.
+
+## Owner-approved replacement
+
+The same source/workspace owner supplied
+`attached_assets/skill-install-confirmation_(10.08.2026)_1791515286288.zip`
+in response to the missing-title inquiry, with the message “see attached file.”
+Supplying that ZIP was treated as source input, not permission to install it.
+After the complete member and its differences were inspected and summarized,
+the owner separately answered **“Install the exact uploaded revision”** to
+“Do you authorize installing the exact replacement skill from your October 8
+ZIP?” No additional comments or broader authorization were supplied.
+
+The October 8 label comes from the owner's filename and the authorization
+question; it is not an independently owner-declared revision date or a release
+identifier. Archive timestamps are not used to establish provenance.
+
+| Input / destination | Size | Calculated SHA-256 |
+|---|---:|---|
+| Replacement ZIP named above | 3,272 bytes | `c86cb59959dddc36ca8276dad24b96ab79a17125aee9b5e928ace505d7eb09bb` |
+| Sole regular member, `skill-install-confirmation/SKILL.md` | 7,746 bytes | `0f0b4bbdfd242a7960fd0ea13f6b6892fda8fa886be44619f958c825b3c2393f` |
+| Installed `.agents/skills/skill-install-confirmation/SKILL.md` | 7,746 bytes | `0f0b4bbdfd242a7960fd0ea13f6b6892fda8fa886be44619f958c825b3c2393f` |
+
+These are calculated received-byte digests, not an owner-signed manifest.
+The archive contains one regular Markdown file and no supporting references.
+It was inventoried and read without extracting over the checkout. No runtime
+mirror supplied any source text or contract requirement.
+
+## Replacement source-completeness assessment
+
+Source content was assessed separately from byte-delivery parity before changing
+the narrowly scoped missing-title disposition:
+
+- The original owned gap was listed before installation: the final title-pattern
+  heading had no content. The owner-supplied replacement fills it with
+  `Confirm & Harden: <skill-name>`, selecting the front-matter human-readable
+  `name` when present and otherwise the skill directory basename. No title rule
+  was inferred or authored by the installer.
+- Full-source readback found no remaining empty heading. The new sections
+  describe required task content, same-call alias/dependency creation checks,
+  capability failures, and confirm-agent execution. The escalation clause now
+  defines its line-count threshold and keeps task creation outside the confirm
+  agent's file-only authority. These are owner-supplied changes, not installer
+  additions.
+- Definition-only correction scope, self-exemption, verbatim primary acceptance
+  checks, both fixed confirmation checks, and gap-before-patch requirements
+  remain intact. Nothing in this delivery combines or waives the separate
+  resource/plan review.
+- One source wording defect was disclosed before approval and preserved exactly:
+  execution step 3 calls the escalation threshold “below,” while its section is
+  above. This observation prevents an unqualified ambiguity-free source claim;
+  approval of exact delivery is not a waiver or a silent correction.
+- The replacement does not itself specify an existing-primary reconciliation
+  route. This delivery does not reassess separately recorded decisions about
+  that route, amend historical acceptance criteria, or accept the series.
+
+The missing-title gap is resolved by the owner's actual text. This is not a
+blanket source-completeness or independent applicability acceptance claim.
+Independent completion review may assess this source evidence; independent
+resource/plan and series-applicability review remain separate.
+
+## Replacement validation and preservation
+
+After the separately authorized installation, the complete canonical file was
+read back and its entire byte sequence compared to the pinned replacement member:
+**COMPLETE_BYTE_PARITY_VERIFIED**, 7,746 bytes, with the identical SHA-256 recorded
+above. No source text was altered to address the disclosed wording defect.
+
+The original uploaded August snapshot remains at its original path above.
+Its 2,162-byte archive digest and its 4,080-byte member digest were both compared
+with the original recorded digests and remain unchanged. The replacement ZIP
+also remains untouched with its received-byte digest.
+
+Only the canonical companion and this delivery record were edited. Neither
+application code, adjacent skills, runtime mirrors, task plans, task-board
+records, nor the series state was modified by the installation. No tests,
+builds, runtime operations, tier launch, or automatic polling were performed.
+Validation was limited to authorized source inspection and exact-byte/digest
+comparison. Broader acceptance claims are unchanged.
