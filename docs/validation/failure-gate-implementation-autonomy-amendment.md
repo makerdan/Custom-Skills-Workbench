@@ -7,6 +7,14 @@
 **Disposition:** SOURCE/DOCUMENT DELIVERY — **PENDING INDEPENDENT REVIEW**  
 **Guard / runtime execution:** **NOT_RUN / NOT AUTHORIZED**
 
+## Later owner-authorized documentary reconciliation
+
+The original #149 delivery is immutably preserved at Git `205ba08e6975323de4fb2b387179a61821ce22f0`; its original plan digest, pre-edit baseline, native annex and binding manifest remain unchanged. The current actual #152 revision 2 authorizes the later rule: “The skill should control exceptions and changes to the acceptance rules—not narrate or separately approve every routine programming step.” This is one explicit requirement change, not retrospective rewriting of the primary or authority for execution.
+
+After genuine delivery and full task/dependency readback, the reviewer listed gaps and reconciled the shared rule, both drafts, current autonomy locators and guard source. The rule now has one routine-autonomy default plus focused exception/acceptance/execution boundaries. The original work-family map is optional illustration, not a required acceptance checklist; it was removed from the active shared contract. Unspecified equivalent choices need no per-method record; canonical requirement-level verification discovery, actual fixed-method corrections and genuine protected-change records remain. Governing version review/binding is required before use and acceptance. All technical piece/payload bodies, required records and inert gates remain unchanged.
+
+The original delivery observations and mappings below describe #149's pinned snapshot where so identified. They are not current repaired-leaf bindings or independent acceptance. The authoritative current repair bindings, criterion/scenario comparison, evidence impact and fresh independent post-repair disposition are in `docs/validation/failure-gate-implementation-autonomy-verification.md`. The original manifest remains historical primary-delivery evidence; no copied skill ZIP was installed or confirmed.
+
 ## User-authorized scope and fixed baselines
 
 The assigned complete #149 plan applies the owner's “ok please make all these changes” to bounded implementation delegation. It permits amending the single active series plan, both FG-02 g02 drafts and necessary current locators, plus this handoff and an inert static guard. It does not approve FG-02 authoring/execution, relax source-only gates, install a skill, approve a policy, or authorize live operations.
@@ -28,9 +36,9 @@ The following gaps were identified and communicated before the amendment:
 | Gap | Pre-edit language / limitation | Delivered treatment |
 |---|---|---|
 | G1 | Routine methods were implicit in individual piece “Implement” bullets; no single method-versus-required-behavior default | One shared implementation-autonomy contract explicitly delegates routine choices without per-choice approval, narration or diary |
-| G2 | Delegated work families were not expressed as a complete bounded map | All requested families are explicitly delegated with preserved safety/observable-behavior boundaries |
+| G2 | Delegated work families were not expressed as a complete bounded map | Original #149 delivered the map at its pinned snapshot. Later #152 makes illustrations optional; the shared default covers routine methods and the original payloads retain all fixed boundaries |
 | G3 | App-input changes, governing versions and deterministic policy reuse were dispersed | Concise separate paragraphs distinguish stale evidence from unchanged tier authority, protected version review, and matching-policy decision reuse |
-| G4 | Equivalent-method discovery/correction safeguards were dispersed; protected-plan changes could be mistaken for ordinary coding choices | Bounded canonical Router resolution, actual protected-change records and full readback; no routine coding ledger |
+| G4 | Equivalent-method discovery/correction safeguards were dispersed; protected-plan changes could be mistaken for ordinary coding choices | Canonical requirement-level discovery/correction and real exception records remain; no per-method change-record duty, routine coding ledger or step narration |
 | G5 | Draft/checkpoint/aggregate locator bindings described older document snapshots | Full g02 contract expansion and additive current locators; old snapshots retained, affected claims made stale |
 | G6 | No guard source or current amendment-specific independent handoff | Inert standard-library guard plus fixed semantic scenarios and the actual existing dependent #152 binding |
 
@@ -43,18 +51,18 @@ This is the author's delivery mapping, **not independent acceptance**. “Retain
 | ID | Fixed #149 requirement / pre-edit source | Delivered location and evidence impact |
 |---|---|---|
 | A1 | One active plan; all 18 ordered pieces / 36 full templates; original technical outcomes and evidence | Active series shared contract and materialization paragraph. The complete text from `## Piece 01` through all piece payloads, report template, provenance and historical overlay is unchanged, separately SHA-256-bound |
-| A2 | Shared rule: permitted read/write/repair, execution authority, required behavior versus methods, fixed safety/acceptance and escalation | Contract Default, Scope, Execution, Evidence and versions, Equivalent-method resolution, Deterministic-policy reuse, Escalate, Materialization paragraphs |
-| A3 | FG-02 adapter/schema organization and rejection case authorship | Map FG-02 row; inert/unregistered exact authority and finite limits unchanged; authored cases remain NOT_RUN |
-| A4 | FG-03 schema/transaction/index/ID/idempotency design | Map FG-03 row; transactional namespace, committed-only IDs, non-reuse/tombstones, CAS/audit preserved; no live initialization |
-| A5 | FG-04/09 decomposition, event plumbing, bounded capture and parsing | Map FG-04/09 row; genuine independent containment, exact graph, register-before-dispatch, accounting and raw results retained |
-| A6 | FG-08 loader reuse, redaction, deterministic snapshots | Map FG-08 row; existing verified loader, actual input scope, no secret contents, integrity/targets and raw reports retained |
-| A7 | FG-10/16 bounded queries, formatting and pagination | Map FG-10/16 row; fixed field/access scope, privacy, lineage/absence, retention and evidence/tombstones retained |
-| A8 | FG-11/12 fixture/classification/signature implementation | Map FG-11/12 row; exact three authorized isolation retries, provenance/ignore/owned-repair boundaries retained; no added diagnostics/waiver |
-| A9 | FG-13/14 state-machine/readers/transactions/messages | Map FG-13/14 row; final-writer safety and owner_direction distinction retained; public semantics unchanged |
-| A10 | FG-15 approved-format checkpoints and isolated test authorship | Map FG-15 row; actual format, non-reuse/reconciliation/fencing and separate recovery approval preserved; authoring is not restore |
-| A11 | Every verifier's already-scoped repairs/equivalent methods | Every -V row and Scope/Resolution paragraphs; all original audit-first, gap-before-edit, independent post-repair safeguards retained in all 36 original payloads |
-| A12 | Ordinary app edits versus governing versions; evidence covers new inputs | Evidence and versions paragraph; unchanged in-scope tier authority persists, affected evidence becomes stale; runner/checker/wrapper/tier/policy review and binding remain |
-| A13 | Canonical equivalent resolution retaining old/new method, impact and payload bindings | Resolution paragraph. Unspecified coding choices are not protected-plan changes; actual deferred/corrected verification methods retain canonical records; changed protected bindings renew through permitted route |
+| A2 | Shared rule: permitted read/write/repair, execution authority, required behavior versus methods, fixed safety/acceptance and escalation | Current contract Default, Exceptions, Evidence and acceptance, Execution, Policy reuse and Full delivery; no routine map/ledger |
+| A3 | FG-02 adapter/schema organization and rejection case authorship | Routine default and unchanged FG-02 payload; inert/unregistered exact authority and finite limits unchanged; authored cases remain NOT_RUN |
+| A4 | FG-03 schema/transaction/index/ID/idempotency design | Routine default and unchanged FG-03 payload; transactional namespace, committed-only IDs, non-reuse/tombstones, CAS/audit preserved; no live initialization |
+| A5 | FG-04/09 decomposition, event plumbing, bounded capture and parsing | Routine default and unchanged FG-04/09 payloads; genuine independent containment, exact graph, register-before-dispatch, accounting and raw results retained |
+| A6 | FG-08 loader reuse, redaction, deterministic snapshots | Routine default and unchanged FG-08 payload; existing verified loader, actual input scope, no secret contents, integrity/targets and raw reports retained |
+| A7 | FG-10/16 bounded queries, formatting and pagination | Routine default and unchanged FG-10/16 payloads; fixed field/access scope, privacy, lineage/absence, retention and evidence/tombstones retained |
+| A8 | FG-11/12 fixture/classification/signature implementation | Routine default and unchanged FG-11/12 payloads; exact three authorized isolation retries, provenance/ignore/owned-repair boundaries retained; no added diagnostics/waiver |
+| A9 | FG-13/14 state-machine/readers/transactions/messages | Routine default and unchanged FG-13/14 payloads; final-writer safety and owner_direction distinction retained; public semantics unchanged |
+| A10 | FG-15 approved-format checkpoints and isolated test authorship | Routine default and unchanged FG-15 payload; actual format, non-reuse/reconciliation/fencing and separate recovery approval preserved; authoring is not restore |
+| A11 | Every verifier's already-scoped repairs/equivalent methods | Evidence and acceptance; all original audit-first, gap-before-edit, independent post-repair safeguards retained in all 36 original payloads |
+| A12 | Ordinary app edits versus governing versions; evidence covers new inputs | Evidence and acceptance / Exceptions; unchanged in-scope tier authority persists, affected evidence becomes stale; governing review/binding before use and acceptance |
+| A13 | Canonical equivalent resolution retaining old/new method, impact and payload bindings | Exceptions. Unspecified choices have no per-method duty; canonical requirement-level discovery and actual fixed-method corrections retain their applicable records; real protected changes renew bindings/evidence |
 | A14 | Current genuinely verified approved exactly matching deterministic policy, fresh bound decision, no repeated policy approval | Policy paragraph; applicable integration/stage/cutover gates retained. No new policy approved or active/available policy asserted |
 | A15 | Draft/locator amendment, history preservation, source-only exclusions, no competing acceptance | Both g02 drafts contain the complete identical shared contract before their original bodies. Additive checkpoint/status locators do not rewrite historical reports, source snapshots, policy or approval records |
 | A16 | Inert static guard plus independent semantic scenarios | Guard source at `docs/validation/tests/failure-gate-implementation-autonomy.test.mjs`; scenarios below; source inspected only; execution NOT_RUN |
@@ -64,7 +72,7 @@ The original per-piece acceptance, positive/negative/nonzero mappings, evidence,
 
 ## Delegated decisions and escalation
 
-Routine unspecified modules, helpers, internal schema/index choices, parsers, formatting, fixtures and same-scope defect fixes need no renewed owner design decision. The map is explicit delegation, not an architecture prescription or per-choice checklist. Requirement/evidence records remain required; a diary of ordinary coding steps does not.
+Routine unspecified modules, helpers, internal schema/index choices, parsers, formatting, fixtures and same-scope defect fixes need no renewed owner design decision. Work-family examples are optional illustrations, not an architecture prescription or an acceptance/per-choice checklist. Required authority/evidence records remain; no routine method diary, ledger, classification or step-by-step narration is required.
 
 Escalation is limited to actual changed fixed behavior/public semantics/acceptance, coverage/scope, tier/parameters/limits, governing versions/policy, explicitly constrained methods, protected executable-plan/dependency bindings, live operations outside authority, unavailable genuine capabilities/authority, uncertain equivalence, or missing delivery/independent acceptance. The canonical Router's deferred-method resolution, method-only correction and material-renewal routes remain distinct. Actual previously fixed method corrections retain old/new instructions, reason, authority, evidence impact and executable bindings; unspecified coding choices do not silently become protected amendments. If the route is absent, report the exact proposed reconciliation and responsible integration/authority owner rather than fabricate a task-write route.
 
@@ -97,7 +105,7 @@ Readback observations and exact bindings are in the manifest. All 18 ordered pie
 
 **NOT_RUN / NOT AUTHORIZED:** the new static guard; every existing/new test/fixture; imports and syntax checks; builds/package operations; project scripts/CLI; stores/coordinator queries or initialization/mutation; runtime adapters/wiring; workflow/service/CI operations; process dispatch/signals/recovery/reclaim; activation/cutover/deployment. No registered tier, local ID, approval/grant, finite values, supervisor, validation PASS or host-ready result was invented. No screenshot is relevant to this document-only change; no app surface was modified.
 
-The guard uses existing Node standard-library tooling only and reads fixed bounded document paths. It is authored without hooks or package changes. Its assertions cannot establish semantic completeness, authentic authority, independent acceptance or runtime enforcement, even if later executed under actual permission.
+The guard uses existing Node standard-library tooling only and reads fixed bounded document paths. It is authored without hooks or package changes. Its repaired source asserts routine default autonomy, optional illustrations/no per-method records, real exception/acceptance boundaries, retained payloads and inert gates. It was not imported or run. Its assertions cannot establish semantic completeness, authentic authority, independent acceptance or runtime enforcement, even if later executed under actual permission.
 
 ## Changed-input bindings and evidence impact
 

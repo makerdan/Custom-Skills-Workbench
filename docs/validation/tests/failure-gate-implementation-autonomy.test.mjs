@@ -1,4 +1,4 @@
-// INERT SOURCE DELIVERY. NOT_RUN under the authoring task.
+// INERT SOURCE DELIVERY AND DOCUMENTARY REPAIR. NOT_RUN.
 // A later execution needs an actually permitted route and applicable bounds.
 // These static assertions prove neither independent semantic acceptance nor
 // host authority, supervision, activation, runtime behavior or policy approval.
@@ -68,9 +68,12 @@ test("default autonomy delegates methods, not acceptance or authority", () => {
     "Required observable behavior, original acceptance/outcomes and evidence are fixed",
     "not additional acceptance criteria",
     "This delegates methods, not authority",
-    "not prescribed architecture, a programming-step checklist",
+    "Work-family examples are optional illustrations",
+    "not prescribed architecture, an acceptance checklist or a programming-step checklist",
+    "creates no per-method change-record duty",
     "already-authorized assigned defects after listing gaps",
     "fresh independent post-repair acceptance",
+    "not review of each coding step",
     "Source-only work is not permission for imports, syntax checks, tests, builds, CLI/store operations or live wiring",
     "does not launch it",
     "requires a separately scoped decision",
@@ -83,25 +86,28 @@ test("changed evidence, governing versions and actual exceptions remain bounded"
     "Relevant prior evidence becomes stale",
     "authorized validation must cover the new relevant inputs",
     "Changed governing runner/checker/wrapper/tier/policy versions",
-    "applicable review and binding before results are accepted",
+    "applicable review and binding before use and acceptance",
     "Selecting among unspecified equivalent methods is not itself a protected-plan amendment",
-    "deferred-method resolution",
-    "authorized method-only correction route",
-    "old/new instructions where changed",
-    "authority, evidence impact",
-    "payload bindings",
-    "not a diary of ordinary coding choices",
-    "Never silently amend a protected native plan",
+    "Record the real changed rule or exception",
+    "renew affected bindings/evidence through its permitted route",
+    "Canonical Router requirement-level verification discovery and actual fixed-method corrections still apply",
+    "not a ledger of routine implementation choices",
+    "never silently amend a protected native plan",
     "changed required behavior, public semantics, acceptance, coverage, scope, tier/parameters/limits",
-    "unavailable authentic authority/capability",
-    "Do not synthesize an approval",
-    "block only affected execution/acceptance",
+    "Missing authentic authority/capability",
+    "never fabricate a route, approval, local ID, budget, supervisor or result",
+    "blocks only the affected action/claim",
+    "Required approval/run/incident/provenance/acceptance records",
+    "original failures/ignores/owned repairs",
+    "approved persistence/public contracts, retention/privacy",
+    "Live initialization/migration/restore/reclaim needs its separate actual scope and authority",
   ]);
 });
 
 test("deterministic reuse requires an existing genuine policy and a fresh decision", () => {
   containsAll(contract, [
     "genuinely verified, current, already-approved deterministic policy",
+    "After actual integration and authorized cutover",
     "exactly matching tasks",
     "a fresh exact-bound decision for each task",
     "Do not request repeated human policy approval",
@@ -149,6 +155,7 @@ test("source locators retain pending independent acceptance and NOT_RUN", () => 
     containsAll(readDocument(path), [
       "failure-gate-implementation-autonomy-amendment.md",
       "failure-gate-implementation-autonomy-bindings.json",
+      "failure-gate-implementation-autonomy-verification.md",
       "NOT_RUN",
     ]);
   }
