@@ -1,0 +1,347 @@
+--- a/.agents/skills/paired-task-orchestration/SKILL.md
++++ b/.agents/skills/paired-task-orchestration/SKILL.md
+@@ -33,6 +33,40 @@
+ canonical skill-application-router. It manages batching and progression; the
+ router governs Install/Apply handoff and verification bindings.
+ 
++## Outcomes, routine work, and material exceptions
++
++Normal programming within approved boundaries is the default. Choose routine
++implementation details without separate approvals, per-choice decision records,
++step-by-step narration, exhaustive method checklists, or routine method-change
++ledgers. Selecting among unspecified equivalent methods is not itself a
++protected-plan amendment.
++
++The primary delivers the required outcome. Its plan states scope, required
++outcomes, fixed acceptance criteria and evidence, execution permissions, resource
++limits, and material escalation triggers. Prescribe an internal coding method
++only when that method is genuinely necessary to an explicit contract requirement;
++do not turn an illustrative example into a required architecture or extra gate.
++
++The verifier independently assesses the delivered outcome against the approved
++criteria, not the author's individual coding decisions. Retain complete required
++coverage and independently establish the relevant evidence; do not reconstruct a
++programming diary or derive easier acceptance criteria from the delivered output.
++
++Use the applicable exception or amendment route for:
++
++- Exceptions, waivers, changed acceptance criteria, or reduced required coverage.
++- Material changes to approved scope, authority, execution permissions, or limits.
++- Material changes to safety, privacy, compatibility, data integrity, ownership,
++  recovery, or completion boundaries.
++- Changes to expressly fixed requirements or protected executable plans.
++
++Routine method selection does not waive a fixed method, authorize an unavailable
++capability, or silently rewrite a protected plan. Actual protected-payload changes
++still require their governing amendment route, bindings, and full readback.
++Retain required approval, execution, incident, provenance, repair, and acceptance
++evidence, including invalidation of evidence affected by changed inputs. Record
++material exceptions and actual protected-plan amendments, not every coding choice.
++
+ ## Read before acting
+ 
+ Read the complete applicable references:
+@@ -85,6 +119,7 @@
+ | Mode | Authorized outcome |
+ |---|---|
+ | Plan | Write/reconcile backlog and task payloads; no native task creation |
++| Revise definition/resources | Author only the requested definition/resource changes; no implied task creation, feature implementation, checks, publication, or enforcement |
+ | Install definition/package | Install/update the canonical definition and required resources; include any target-required definition confirmation |
+ | Initialize | Bind the series and prepare the first proposed pair |
+ | Prepare next pair / Resume | Reconcile the current pair; advance only if accepted |
+@@ -93,7 +128,9 @@
+ | Enable automatic progression | Enable only a verified, approved wake-up route |
+ | Pause / Finish | Stop further progression; preserve history and unresolved work |
+ 
+-Definition/package installation and series initialization are distinct. A request
++Definition revision, package installation, and series initialization are distinct.
++An authoring-only revision follows the user's stated scope; it does not create
++confirmation/review tasks or run checks unless separately authorized. A request
+ to install or update this skill does not authorize binding a series, preparing
+ implementation/verifier pairs, or installing/enabling the optional hook. If both
+ are expressly requested, report each outcome separately.
+@@ -180,8 +217,12 @@
+ 
+ - Fresh inspection of actual delivered files, wiring, records, canonical closure,
+   and tested inputs, independent of the installer's success statement.
+-- Clause-by-clause acceptance for the piece's declared stage. Inert source
+-  verification is not runtime readiness; carry deferred proof explicitly.
++- Complete acceptance coverage for every applicable obligation at the piece's
++  declared stage, with requirement-level evidence rather than a coding-method
++  checklist. Inert source verification is not runtime readiness; carry deferred
++  proof explicitly. Unspecified equivalent verification methods may be selected
++  within approval and execution boundaries; fixed methods and actual protected
++  payload changes retain their applicable amendment requirements.
+ - A gap list before edits, followed by building/correcting missing or wrong
+   implementation in the same verifier task within explicitly authorized scope.
+   A result matching an expected negative/non-zero outcome is not a repair gap;
+@@ -279,6 +320,9 @@
+ creation/reuse/readback outcome, verified declared stage, dependency/delivery
+ readiness, remaining blockers, and the real next action.
+ 
++Summarize substantive outcomes and material exceptions. Required evidence and
++actual amendments remain reportable; routine programming does not need a diary.
++
+ Separately state hook status and whether another invocation is necessary. Do not
+ claim a workspace skill was published or another project installed it merely
+ because files were written in this conversation.
+--- a/.agents/skills/paired-task-orchestration/references/acceptance-and-confirmation.md
++++ b/.agents/skills/paired-task-orchestration/references/acceptance-and-confirmation.md
+@@ -3,6 +3,27 @@
+ These are checks to perform, not assertions that a host installation or tests
+ already passed. Use actual source/plan/environment bindings and applicable safe
+ authorization. Do not run platform writes just to verify this skill's text.
++
++## Outcome-based control
++
++Normal programming within approved boundaries is the default. A primary delivers
++the required outcome; its independent verifier assesses that outcome against
++approved acceptance criteria and evidence. Do not require separate approval,
++per-choice decision records, step-by-step narration, exhaustive method checklists,
++or routine method-change ledgers for routine coding.
++
++Selecting among unspecified equivalent methods is not itself a protected-plan
++amendment. Exceptions, waivers, changed criteria/coverage, material changes to
++scope/authority/execution/limits or safety/privacy/compatibility/data integrity/
++ownership/recovery/completion, and changes to fixed requirements or protected
++plans retain their applicable approval and amendment routes. Actual protected
++payload changes retain full readback and affected-evidence renewal requirements.
++Required approval, execution, incident, provenance, and acceptance evidence
++remains mandatory; omitting a programming diary does not waive that evidence.
++
++The tables below state required acceptance outcomes, not mandatory internal coding
++methods or extra work-family gates. Optional examples do not add obligations.
++Assess every applicable requirement; do not invent an assertion for every example.
+ 
+ ## Definition-only confirmation
+ 
+@@ -27,6 +48,9 @@
+   recovery, and uncertain-write reconciliation precede retries.
+ - Verifiers audit first, list gaps, repair only explicitly approved scope, rebind
+   changed evidence, renew validation, and obtain independent post-repair acceptance.
++- Routine programming is delegated within approved boundaries; the verifier
++  independently checks outcomes rather than each coding choice. Material
++  exceptions and actual protected-plan amendments remain controlled.
+ - Source-only/bootstrap/runtime stages are distinguished without circular initial
+   proof, hidden checks, or false operational readiness.
+ - User task approval remains separate; future drafting permission is conditional
+@@ -67,6 +91,9 @@
+ | Later backlog | Remaining pieces are durably recorded, not created as extra draft cards |
+ | Approval boundary | Neither task runs merely because created; verifier does not execute before delivered inputs |
+ | Shared instructions | Every materialized plan includes all applicable specification/shared safeguards |
++| Routine programming | Equivalent unspecified methods need no new task, approval, choice ledger, or diary; the approved outcome and its evidence still pass independent review |
++| Material exception | Changed criteria/coverage, scope, authority, execution, limits, or protected safety/ownership/recovery/completion boundaries follow the applicable authorized route |
++| Protected plan | Routine choices do not themselves amend a plan; actual fixed-requirement or protected-payload changes retain amendment, binding/readback, and evidence-renewal controls |
+ | Source stage | Only its declared source scope accepts; deferred runtime proof gates the runtime successor |
+ | Missing implementation | Verifier lists gaps, repairs within authority, invalidates old evidence, and gets independent final acceptance |
+ | Missing external authority | Blocked requirement and concrete next proposal; no synthetic grant or fake provider |
+@@ -97,4 +124,8 @@
+ post-repair snapshot, blocked/unperformed cases, responsible next actions, and
+ manual/automatic capability state.
+ 
++Keep the report concise and requirement-linked. Retain actual amendments and
++material exceptions, not a routine-method diary; preserve approval, execution,
++incident, and provenance evidence needed to establish a valid outcome.
++
+ No recursive verification task creation or self-certified host proof.
+--- a/.agents/skills/paired-task-orchestration/references/series-state-and-handoff.md
++++ b/.agents/skills/paired-task-orchestration/references/series-state-and-handoff.md
+@@ -18,13 +18,27 @@
+ or specification as changes needing reconciliation and applicable renewed scope.
+ Do not silently rebase current tasks on a new attachment or self-modified backlog.
+ 
++These controls protect requirements and governing plans, not routine programming.
++Normal programming within approved boundaries is the default. Selecting among
++unspecified equivalent methods is not itself a protected-plan amendment; it needs
++no separate approval, per-choice record, or routine method-change ledger.
++Changes to fixed requirements, acceptance/coverage, scope, authority, execution
++permissions, limits, or material safety/privacy/compatibility/data-integrity/
++ownership/recovery/completion boundaries use the applicable escalation route.
++Actual protected-payload changes still require authorized amendment and readback.
++Preserve required approval, execution, incident, provenance, and acceptance
++evidence; changed relevant inputs still invalidate affected prior evidence.
++
+ Optional source preparation with missing future installed definitions uses the
+ authorized specification/package exception only. Source-dependent checks stay
+ pending until the actual canonical destination/resource closure is available.
+ 
+ ## 2. Durable records
+ 
+-Reuse host equivalents. Example semantic fields, not a mandated schema:
++Reuse host equivalents. The following layout is optional guidance, not a mandated
++schema, architecture, work-family checklist, or additional acceptance gate.
++Required identity, authority, delivery, and acceptance bindings remain mandatory;
++equivalent records may establish them without these literal field names:
+ 
+ ```text
+ series:
+@@ -172,6 +186,11 @@
+ a genuine blocker for a later task; carry that blocker forward without falsely
+ blocking completion of the finding task.
+ 
++This is a requirement-level acceptance record, not a ledger of implementation
++choices. Shared evidence may cover multiple criteria when their mappings remain
++clear and complete. The verifier assesses the approved outcomes independently;
++it does not approve or reconstruct every coding decision.
++
+ Do not require future runtime proof for an expressly inert source stage, and do
+ not let that source-stage acceptance satisfy a runtime prerequisite. Deferred
+ obligations must have an explicit later owner/task/gate.
+--- a/.agents/skills/paired-task-orchestration/references/host-hook-contract.md
++++ b/.agents/skills/paired-task-orchestration/references/host-hook-contract.md
+@@ -3,6 +3,19 @@
+ Read before discovery/proposal, implementation, verification, enablement, or use
+ of automatic progression. This contract supplies no webhook, scheduler, platform
+ token, event API, daemon, or approval.
++
++Within an approved hook implementation scope, normal programming is the default.
++Choose unspecified equivalent implementation methods without separate approvals,
++per-choice records, narration of each step, or a routine method-change ledger.
++The acceptance matrix specifies required observable outcomes, not a mandatory
++internal architecture or checklist of coding choices.
++
++Escalate material changes to scope, authority, execution permissions, resource
++limits, safety/privacy/compatibility/data integrity/ownership/recovery/completion,
++acceptance criteria or required coverage, and expressly fixed requirements or
++protected plans. Retain the applicable amendment route and required approval,
++execution, incident, provenance, and acceptance evidence. Routine autonomy does
++not authorize the hook, polling, task execution, or automatic enablement.
+ 
+ ## 1. What can actually be installed first
+ 
+@@ -76,7 +89,10 @@
+ Recheck pause/revocation, current payload revisions, delivered evidence, and
+ expected current piece immediately before creation.
+ 
+-Use one real shared controller reservation/CAS for a progression attempt.
++Use real shared coordination that serializes and binds a progression attempt.
++An ownership-aware reservation/CAS is one example, not a required internal
++architecture; an equivalent verified mechanism must provide the applicable
++exclusion, version, and conflict guarantees.
+ Duplicate/delayed/out-of-order events, simultaneous completion events and manual
+ invocations must converge on the same current pair. Exactly-once native creation
+ can be claimed only where host write idempotency and authoritative reconciliation
+@@ -143,3 +159,7 @@
+ versions, real proof, enabled state, remaining blockers, responsible integration
+ role, and manual fallback. Do not promise background advancement without those
+ facts. Hook installation and series installation remain separate claims.
++
++Report the substantive result and material exceptions, not a programming diary.
++This does not remove the real registration, trigger, execution, incident,
++provenance, consumption, pause, or acceptance evidence required above.
+--- a/scripts/test/paired-planner-staging-source.test.mjs
++++ b/scripts/test/paired-planner-staging-source.test.mjs
+@@ -6,6 +6,18 @@
+   new URL("../../.agents/skills/paired-task-orchestration/SKILL.md", import.meta.url),
+   "utf8",
+ );
++
++// Contract text is compared across harmless wrapping, not internal coding methods.
++const normalize = (text) => text.replace(/\s+/g, " ").trim();
++const canonicalNormalized = normalize(canonical);
++const reference = (name) =>
++  readFileSync(
++    new URL(
++      `../../.agents/skills/paired-task-orchestration/references/${name}`,
++      import.meta.url,
++    ),
++    "utf8",
++  );
+ 
+ const heading =
+   "## Failure Gate v4: deliverable locations and limited planner exception";
+@@ -78,32 +90,87 @@
+   const sectionStart = canonical.indexOf(heading);
+   assert.notEqual(sectionStart, -1, "the canonical exception section must exist");
+   const priorAuthority = canonical.slice(0, sectionStart);
++  const priorAuthorityNormalized = normalize(priorAuthority);
+ 
+   assert.ok(
+-    priorAuthority.includes(
++    priorAuthorityNormalized.includes(
+       "Never use alternate/copied skill definitions or .local mirrors as canonical inputs.",
+     ),
+   );
+   assert.ok(
+-    priorAuthority.includes("Do not impose Failure Gate on unrelated work."),
++    priorAuthorityNormalized.includes("Do not impose Failure Gate on unrelated work."),
+   );
+   assert.ok(
+-    canonical.includes(
++    canonicalNormalized.includes(
+       "Task creation, task execution, and advancement are separate decisions.",
+     ),
+   );
+-  assert.ok(canonical.includes("Approval remains with the user."));
++  assert.ok(canonicalNormalized.includes("Approval remains with the user."));
+   assert.ok(
+-    canonical.includes(
++    canonicalNormalized.includes(
+       "No automatic retry, activation, cancellation, status/dependency rewrite, scope waiver, budget renewal, new repair task, merge, or deployment follows from this state machine.",
+     ),
+   );
+   assert.ok(
+-    canonical.includes(
++    canonicalNormalized.includes(
+       "Read the complete committed primary back and verify finalized scope/revision.",
+     ),
+   );
+   assert.ok(
+-    canonical.includes("Read the entire persisted verifier back, recheck primary bindings around"),
++    canonicalNormalized.includes("Read the entire persisted verifier back, recheck primary bindings around"),
+   );
+ });
++
++test("routine work is delegated while material exceptions and protected plans remain controlled", () => {
++  const start = canonical.indexOf("## Outcomes, routine work, and material exceptions");
++  const end = canonical.indexOf("\n## Read before acting", start);
++  assert.ok(start >= 0 && end > start);
++  const policy = normalize(canonical.slice(start, end));
++
++  assert.ok(policy.includes("Normal programming within approved boundaries is the default."));
++  assert.ok(policy.includes("without separate approvals, per-choice decision records, step-by-step narration, exhaustive method checklists, or routine method-change ledgers."));
++  assert.ok(policy.includes("Selecting among unspecified equivalent methods is not itself a protected-plan amendment."));
++  assert.ok(policy.includes("Exceptions, waivers, changed acceptance criteria, or reduced required coverage."));
++  assert.ok(policy.includes("Material changes to approved scope, authority, execution permissions, or limits."));
++  assert.ok(policy.includes("Material changes to safety, privacy, compatibility, data integrity, ownership, recovery, or completion boundaries."));
++  assert.ok(policy.includes("Changes to expressly fixed requirements or protected executable plans."));
++  assert.ok(policy.includes("Actual protected-payload changes still require their governing amendment route, bindings, and full readback."));
++  assert.ok(policy.includes("Retain required approval, execution, incident, provenance, repair, and acceptance evidence"));
++});
++
++test("the verifier checks approved outcomes rather than reconstructing coding decisions", () => {
++  assert.ok(canonicalNormalized.includes("The primary delivers the required outcome."));
++  assert.ok(canonicalNormalized.includes("The verifier independently assesses the delivered outcome against the approved criteria, not the author's individual coding decisions."));
++  assert.ok(canonicalNormalized.includes("Independent post-repair readback/review"));
++  assert.ok(canonicalNormalized.includes("A repair author's claim alone is not independent evidence."));
++  assert.ok(canonicalNormalized.includes("Require actual delivered inputs"));
++});
++
++test("supporting references preserve routine autonomy and required acceptance evidence", () => {
++  for (const name of [
++    "acceptance-and-confirmation.md",
++    "series-state-and-handoff.md",
++    "host-hook-contract.md",
++  ]) {
++    const text = normalize(reference(name));
++    assert.match(text, /(?:[Nn]ormal programming|routine coding)/, name);
++    assert.match(text, /acceptance/, name);
++    assert.match(text, /protected.*(?:plan|payload)/, name);
++    assert.match(text, /approval.*execution.*incident.*provenance.*acceptance/, name);
++  }
++});
++
++test("illustrative layouts and coordination choices do not become new acceptance gates", () => {
++  const series = normalize(reference("series-state-and-handoff.md"));
++  const hook = normalize(reference("host-hook-contract.md"));
++  assert.ok(series.includes("optional guidance, not a mandated schema, architecture, work-family checklist, or additional acceptance gate."));
++  assert.ok(series.includes("Required identity, authority, delivery, and acceptance bindings remain mandatory"));
++  assert.ok(hook.includes("An ownership-aware reservation/CAS is one example, not a required internal architecture"));
++  assert.ok(hook.includes("equivalent verified mechanism must provide the applicable exclusion, version, and conflict guarantees."));
++});
++
++test("authoring-only revision implies neither checks nor task creation", () => {
++  assert.ok(canonicalNormalized.includes("Revise definition/resources"));
++  assert.ok(canonicalNormalized.includes("no implied task creation, feature implementation, checks, publication, or enforcement"));
++  assert.ok(canonicalNormalized.includes("it does not create confirmation/review tasks or run checks unless separately authorized."));
++});
