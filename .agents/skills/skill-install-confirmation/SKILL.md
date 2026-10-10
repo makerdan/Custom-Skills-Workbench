@@ -18,7 +18,7 @@ This skill **must NOT be invoked** for general feature work, bug fixes, or any t
 
 > **Self-exemption:** This skill is exempt from applying to itself. Proposing a "Confirm & Harden: Skill Install Confirmation skill" task would produce infinite recursion. When this skill is the one being installed, skip the confirm task.
 
-The two-task shape this skill produces:
+For a new install, this skill produces the following two-task shape. For an explicitly authorized existing-primary confirmation, retain the original Task A and use the separate dependent Task B route defined under “Existing-primary retrospective route”; do not recreate Task A or claim same-call history.
 
 - **Task A** — Write the skill (the normal install task).
 - **Task B** — Confirm Task A produced a correct, complete, hardened skill file; fix anything it did not.
@@ -85,7 +85,7 @@ For a **new** install primary, the Planner must call `bulkCreateProjectTasks` wi
 
 Before creating the pair, the Planner must ensure Task A contains the complete, authoritative skill specification and the exact destination path `.agents/skills/<name>/SKILL.md`. Do not replace the specification with a summary or make the confirm task depend on context that is absent from Task A.
 
-Task A's `alias` must be unique within the bulk-create call. Task B must refer to that exact alias in `dependsOn`; do not substitute a guessed task ID or a title. Both tasks must be included in the same call so the dependency can be resolved by the task system.
+For a new install, Task A's `alias` must be unique within the bulk-create call. Task B must refer to that exact alias in `dependsOn`; do not substitute a guessed task ID or a title. Both tasks must be included in the same call so the dependency can be resolved by the task system.
 
 ### Existing-primary retrospective route
 
@@ -163,6 +163,8 @@ Use `Confirm & Harden: <skill-name>` for Task B. Use the skill's human-readable 
 
 ### Required task content
 
+The Task A requirements below apply to new install primaries only; do not rewrite an existing primary to satisfy them retrospectively. Task B's shared content requirements apply to both routes. New installs use the same-call alias dependency; explicitly authorized existing-primary confirmations use the actual primary reference and all safeguards under “Existing-primary retrospective route”.
+
 Task A must:
 
 - State that its primary deliverable is `.agents/skills/<name>/SKILL.md`.
@@ -172,7 +174,7 @@ Task A must:
 
 Task B must:
 
-- Name the exact skill file path and depend on Task A's alias.
+- Name the exact skill file path and depend on Task A's alias for a new install, or on the actual existing primary reference for the explicitly authorized retrospective route.
 - Direct the confirm agent to compare the delivered file with the complete specification in Task A, list all identified gaps before editing, and patch only after that list is recorded.
 - Include a `Done looks like` section containing every Task A check copied verbatim, followed by the two fixed additions defined above.
 - Include a `Must NOT do` section containing every restriction listed above.
@@ -180,18 +182,19 @@ Task B must:
 Do not paraphrase Task A's checks in Task B, even to make them shorter. Do not add checks to Task B that broaden its file-only scope.
 
 
-### Creation and dependency failure handling
+### Creation and dependency failure handling — new installs
 
 Create Task A and Task B together with one `bulkCreateProjectTasks` call. After the call, verify from its result that both tasks were created and that Task B depends on Task A. Do not report the pair as complete if the result does not establish both facts.
 
 If `bulkCreateProjectTasks` is unavailable or cannot express the required alias and dependency, do not create the tasks separately or silently drop the dependency. Report the blocker and preserve the two-task contract for a Planner with the required capability.
 
+For an explicitly authorized existing-primary confirmation, use the separate creation and actual-primary dependency procedure under “Existing-primary retrospective route” instead. If its required host interface, full persisted-plan readback, or actual dependency cannot be verified, report **BLOCKED**; never recreate the primary or claim same-call history as a fallback.
 
 ### Confirm-agent execution sequence
 
 1. Read the delivered skill file and the complete specification and checks recorded in Task A.
 2. Compare the file against every specification requirement and Task A check. List each gap, incorrect section, and missing requirement in the task conversation before changing the file; keep this list out of project files to preserve the file-only scope.
-3. If the escalation threshold below is not met, patch only `.agents/skills/<name>/SKILL.md`.
+3. If the threshold in “Escalation rule” is not met, patch only `.agents/skills/<name>/SKILL.md`.
 4. Recheck every Task A item and both fixed Task B items. Report the gaps found, the edits made, and any unmet check or blocker.
 
 If Task A does not contain the complete specification or its checks, stop and report the missing input instead of guessing what the skill should say.
