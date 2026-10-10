@@ -1,0 +1,246 @@
+{
+  "schema": "paired-confirmation-readiness-observations-v1",
+  "disposition": "BLOCKED",
+  "scope": "Assigned #150 source/document and supported read-only task-interface assessment only; not confirmation, resource certification, amendment acceptance or aggregate handoff acceptance.",
+  "report": {
+    "path": "docs/validation/paired-confirmation-handoff-readiness-renewal.md",
+    "bytes": 23533,
+    "sha256": "513758932b9fe3f3d176c4a99d4d924ad4d38be6c8c99e9f5e3f0327ffebd161"
+  },
+  "project": {
+    "repository": "https://github.com/makerdan/Custom-Skills-Workbench",
+    "workspace": "/home/runner/workspace",
+    "intakeHead": "e425a6e2fd572e6681551c5de964e14afbdf2694",
+    "initialWorkingTree": "clean",
+    "taskBoard": "Actual supported current Skills Workbench Project task interface",
+    "immutableNamespaceUuid": null,
+    "series": "Custom-Skills-Workbench/failure-gate-v4/18-piece",
+    "target": ".agents/skills/paired-task-orchestration/SKILL.md"
+  },
+  "observationBoundaries": {
+    "initialNativeReconciliationStartedAt": "2026-10-10T19:47:00.297Z",
+    "finalChangedInputRecheckStartedAt": "2026-10-10T20:07:45.772Z",
+    "finalNativeRefs": ["#102", "#142", "#151"],
+    "initialReconciliations": 1,
+    "finalChangedInputRechecks": 1,
+    "hashMeaning": "Exact file bytes or exact UTF-8 returned description, no normalization. Observed content identity only; not authenticity, immutable provider finalization or writer exclusion.",
+    "sourceBoundary": "Current local checkout when read during this assessment; existence and delivery claims apply only to this assessment workspace.",
+    "nativeBoundary": "Direct supported getProjectTask responses, not titles or search snippets. No conversation, finalization or settings fields were returned.",
+    "retention": "Native bindings below are documentary observations, not copied provider receipts. Full #142 response is preserved. Full #102 text is accessible in the bound retained native snapshot and was independently compared with both fresh reads. Other descriptions are bound by exact size/digest rather than duplicating historical resource narratives."
+  },
+  "sourceManifestColumns": ["path", "bytes", "sha256"],
+  "sourceManifest": [
+    ["replit.md", 4397, "b1aa215ec3fee6152e93762b2511bd5dcc8a844a082f038da831394ebc7c405d"],
+    [".agents/skills/skill-install-confirmation/SKILL.md", 15816, "a613efe2bea3476b8770b665dd9f0b0b440a320f5aae627a79a815ea6cf6b82a"],
+    [".agents/skills/paired-task-orchestration/SKILL.md", 18258, "1060bbef83e521a9f591d62e52caf2d3e97cb5d23f904b6a939051ea02708456"],
+    [".agents/skills/paired-task-orchestration/references/acceptance-and-confirmation.md", 7200, "c83bb5977a42866b67bb7c029ca16512df23c4fd7da2aae04884ce3b4f39db3c"],
+    [".agents/skills/paired-task-orchestration/references/series-state-and-handoff.md", 10535, "e0fb9d7e2e2e80c7c7f2b36c2356aceda09f10f56118255392cda97899fb5b3c"],
+    [".agents/skills/paired-task-orchestration/references/host-hook-contract.md", 8642, "7b9fe6dfaf0290450e4f1ffdeefcf1b58158fc8546628e643ea1351d3da2f43e"],
+    [".agents/skills/skill-application-router/SKILL.md", 23381, "49e3db86b0f5b8c7efba871d7404c40336cb3caf544427a429065b1088f6586f"],
+    [".agents/skills/skill-application-router/references/installation-verification-plan.md", 23323, "99bc98079967ed47f8f524c187b9823fc99dddca55d4b61a9220dcbb5b3f8cb9"],
+    [".agents/skills/skill-application-router/references/handoff-binding-and-recovery.md", 13829, "7e95d74645e0c1184b2ae24488ffd5936237fb6fc1d9596734a3e57bb1fe0ff5"],
+    [".agents/skills/skill-application-router/references/delivery-reconciliation.md", 11454, "fd908bd54a3d2db4d25cc6a3f2e6fbdfece0e9276a28e02db48d5dcfdfa3f3ca"],
+    [".agents/skills/skill-application-router/references/router-task-handoff-acceptance.md", 16089, "811bc5201d5067a4dc09d74c73880c4798f3407d7955182a923c95b3b897c849"],
+    [".agents/skills/failure-gate-v4/SKILL.md", 33817, "e348abd53d69bb37f74bea3a54bf46b89d2d782fb7fa570d5dad875fcfa5ccf2"],
+    [".agents/skills/failure-gate-v4/reference/authorized-continuation.md", 7988, "3dc5590aca87c679b4dbfdcc0fe29c5fdc73192a816b3f82bfd326b28933d8b3"],
+    [".agents/skills/failure-gate-v4/reference/staging-and-lifecycle.md", 12335, "a9ab52d787e44c7aa4e199c8662882521d8ccf0ef8a6de0706c7853b5fa69800"],
+    [".agents/skills/failure-gate-v4/reference/evidence-and-recovery.md", 14678, "91a06ce5ed37eb161c45c440f26cdf42256ddf2265e64f17c47e7ccc03c49075"],
+    ["docs/validation/skill-install-confirmation-rule-conflict-resolution-review.md", 8659, "52ed92444076f95851541df906e2463376089bb8873543492b7984ee5fd83084"],
+    ["docs/validation/skill-install-confirmation-current-independent-review.md", 27448, "0fa6cf0c21943b99abde717a5d47b07e8bc1e3c3cdd162bcf5be6add2110f7bf"],
+    ["docs/validation/skill-install-confirmation-applicability-review.md", 27693, "dadeaf8dd69708614a1e467264367c59e94dd5dfb14998ea6fcdc90dc7034be0"],
+    ["docs/validation/retired-review-cleanup-bindings.json", 14465, "ca9322d301329b119e9726ad3cc36ad43b328400ab7b0b67c65536717f48302a"],
+    ["docs/validation/task-plans/paired-retrospective-confirmation.md", 26814, "fd5cd6e5de98e39b0fd61e8db1e69bf77df116258e08ce061a0a5d2691c3bc1a"],
+    ["docs/validation/paired-retrospective-confirmation-preparation.md", 17432, "07b43760bd4f2a4c0054dfbe420db458a20f59bed05941f7a8c375a96966e89c"],
+    ["docs/validation/paired-task-orchestration-native-readback.json", 81981, "0443cf3d759f455b1e6df56a26cc37f334a1bbd18e6231add38481e06ab3587a"],
+    ["docs/validation/paired-current-resource-acceptance.md", 15486, "f30c377a12bf4981890cf6d85045a4a26ebf1b74cbc32237032abd041a189bde"],
+    ["docs/validation/paired-current-handoff-status.md", 8323, "076c93a1f46869db04a349a589a451bc90b3fa5173491947ff417ffd2d330e46"],
+    ["docs/validation/failure-gate-v4-series-handoff-policy.md", 13129, "5ba6bbc5cf3a9106ed6d4ed2cbacca80fc20b95a3d2fa43ceec5bbe91c3d4228"],
+    ["docs/validation/paired-planner-staging-independent-confirmation.md", 17585, "8cd0024b14c26a813296f6e38aab52aadf258f94e3694f561c9c8d481766d310"],
+    ["docs/validation/paired-task-orchestration-definition-confirmation.md", 16576, "c78f42534f713c9e3b1ef7fcb9fa92ade3055ad0723cd893b67e5bdb1ed2a236"],
+    ["docs/validation/paired-native-handoff-current-review.md", 27286, "9d1e16955e818d864d80ac1d6fa3ba6cf1b3652852cac3be3baadac5c27613d3"],
+    ["attached_assets/paired-task-orchestration_1791347147544.zip", 18622, "5e99a095a57a7646ac5203b43642312ffa0bd2cef19106c8b77897fdb2a520b7"],
+    ["attached_assets/failure-gate-v4-piecemeal-task-series_1791259976201.txt", 59658, "7bd8aadd6007ed7c01f118d6cbb83d70ea52d79cecfc6eaafc2234ee869eb026"],
+    ["docs/validation/paired-task-orchestration-manifest.json", 14755, "490cda28a2285690c18971ac3f697a7bd6fcbe83b44346204fef8751616086f1"],
+    ["docs/validation/paired-task-orchestration-verification-plan.md", 34383, "946e0987e2b7c1a9c7140a624432a92e6b3f1e4ca7f207482899615aaf97adaa"],
+    ["docs/validation/failure-gate-v4-series-checkpoint.md", 15963, "673fa1483f862dc5370823c70a6c68a915b364e68e9a7c0de82a861624fb205f"],
+    ["docs/validation/failure-gate-v4-task-series.md", 464209, "e675b914aff0909113d9994fba71d4a548b7c2f4a976e0b40dfd45c7491b828f"]
+  ],
+  "nativeReadRoute": {
+    "callback": "getProjectTask",
+    "arguments": {"taskRef": "actual #ref"},
+    "commonReturnedFields": ["artifactKinds", "createdAt", "dependsOn", "description", "displayState", "state", "taskRef", "title", "updatedAt"],
+    "additionalFieldsOnSomeRecords": ["followUpCategory", "proposedFromRef"],
+    "notExposedByTheseResponses": ["conversation findings", "provider finalization receipt", "immutable finalized-plan revision", "current project auto-approval settings", "authenticated recipient-context delivery receipt"],
+    "maximumObservedDescriptionBytes": 43327,
+    "writeLimitOrFuturePersistenceGuaranteed": false
+  },
+  "nativeBindingColumns": ["ref", "state", "actualDependsOn", "descriptionUtf8Bytes", "descriptionSha256", "updatedAt"],
+  "initialNativeBindings": [
+    ["#102", "MERGED", [], 11539, "6b2a457b2d3cbe1ffc06e3edb6ce0efa3cc1e579637297ead8b1660ed853cd06", "2026-10-07T04:41:02.658Z"],
+    ["#142", "MERGED", ["#138"], 1782, "5710139e8be0e4036ca55e0921d813fabdb041de7d1836fcbc796994bfca78e4", "2026-10-10T18:27:34.574Z"],
+    ["#141", "CANCELLED", ["#138"], 1368, "de7689f5d9b0719660352fbb934e4938c04b2e19849cff195793be977704a870", "2026-10-10T18:45:32.528Z"],
+    ["#143", "CANCELLED", ["#140"], 1318, "f4b872598a810ef5b277992a01fd32753f324091407548f1f96c1cc53d70b8da", "2026-10-10T18:11:31.433Z"],
+    ["#150", "IN_PROGRESS", [], 7352, "d822b547c0c1ca0e720d537424496ece4ee203f4162a239ccca3e91c29ef9001", "2026-10-10T19:46:43.633Z"],
+    ["#151", "PROPOSED", [], 8682, "bd84c47d0c006a8eb955b0a9c85f0a67cbe378f973833152eb054ad926a4435b", "2026-10-10T19:44:49.008Z"],
+    ["#120", "MERGED", ["#116"], 11221, "06c6ac3d94578cd027f3972fd55790974df4be0a0cae2c944504078cd6065495", "2026-10-07T21:23:13.337Z"],
+    ["#121", "MERGED", ["#120"], 2953, "70411ae6f9787814418fb8abbae09890671e00e7756a63e0bc3bb2a360f0572d", "2026-10-08T03:26:04.299Z"],
+    ["#132", "MERGED", ["#123"], 1291, "f3b57448e781f2a69e4424c478776b46af04b3b1dcd4bf808317eb934f521bdf", "2026-10-09T03:14:19.591Z"],
+    ["#133", "MERGED", ["#123"], 2079, "71fa322f3885064ce4a330cba946b48ddffe457b363a3ab0460dc2020f40b389", "2026-10-08T04:05:53.428Z"],
+    ["#134", "MERGED", ["#133"], 1538, "9d38adc666318bdc12628ca5e47ac107e568f9f844f08d8cc5a02fefaf34132c", "2026-10-09T05:03:44.659Z"],
+    ["#137", "MERGED", ["#134", "#126", "#121"], 6438, "e576fc6eb60586ad27ddc564ad76157c30f9316954cc9c961d0a5af82232ab55", "2026-10-10T18:40:31.602Z"],
+    ["#138", "MERGED", ["#137", "#136"], 10306, "c4aef27f68b318a81ecf6fc14c272cbb05cc1aa719325ba4063cf355aa6a481c", "2026-10-09T22:34:13.093Z"],
+    ["#140", "MERGED", ["#126", "#137", "#139", "#136"], 8086, "d6aeb249d91b21fe67efa9bc98f3dcf419779b75d88b4cffcf5ba18575406ddb", "2026-10-10T18:40:32.286Z"],
+    ["#107", "CANCELLED", ["#106"], 12385, "60f7ec6e83d96399d1826bbcd4672cae01efb5ce6c242dd1879e5273fd0f0c5c", "2026-10-07T21:03:02.441Z"],
+    ["#116", "MERGED", ["#109", "#106", "#102"], 17777, "90e48811e5c2922ca10e2db47ece06e965f9a15e0bf21fe6a394386ab99f3ee6", "2026-10-07T21:17:11.012Z"],
+    ["#135", "CANCELLED", ["#133"], 1506, "b44a7863022b168c1f209287e5b310d335a393a9cea6a44594ff174f60be6765", "2026-10-09T03:14:31.879Z"],
+    ["#126", "MERGED", ["#109", "#106", "#102"], 43327, "4271cff18fe4f4e4b23ce124312b911e90e80e4d7492deca33893b2b32d6f3ec", "2026-10-10T18:40:31.244Z"],
+    ["#108", "CANCELLED", ["#106"], 34043, "af09da23dbd98184315f232d223f5eb5a120e444f6a37b9870b75df18cd3702d", "2026-10-07T21:05:37.744Z"],
+    ["#109", "MERGED", ["#106", "#102"], 18478, "23ceb738787478e575b839089f086050aea78fefd4e5a9284d4df0d7c7d4b44e", "2026-10-07T20:24:59.664Z"]
+  ],
+  "fullCurrent142Response": {
+    "task": {
+      "artifactKinds": [],
+      "createdAt": "2026-10-09T20:44:40.001Z",
+      "dependsOn": ["#138"],
+      "description": "# Complete the #102 confirmation after its evidence and approval gates are met\n\n## What & Why\nThe retrospective confirmation payload is prepared, but no Task B exists and the current-rule, primary-finalization, draft-only, resource-acceptance, and reviewer-delivery gates are still unresolved. After a compliant Task B is separately created and approved, conduct the actual independent confirmation without treating the draft or earlier status labels as acceptance.\n\n## Done looks like\n- Re-read the complete current #102 primary and actual approved Task B, verify the real #102 dependency, and confirm the exact-scope finalization or owner-authorized equivalent and current source-rule acceptance.\n- Confirm the separately published #140 resource/plan result is independently accepted and delivered, and verify the canonical package and original specification are present in the reviewer's own workspace before substantive review.\n- Apply the complete requirement/evidence matrix in docs/validation/task-plans/paired-retrospective-confirmation.md; list gaps before any permitted target-file correction and preserve the .agents/skills/paired-task-orchestration/SKILL.md-only boundary.\n- Keep findings and completion evidence in the task conversation, verify the separate acceptance publisher's evidence-delivery route, and report actual lifecycle and honest PASS/FAIL/BLOCKED results without automatic approval or advancement.\n\n## Relevant files\n- docs/validation/task-plans/paired-retrospective-confirmation.md\n- docs/validation/paired-retrospective-confirmation-preparation.md\n- docs/validation/paired-native-handoff-current-review.md\n- docs/validation/skill-installation-current-independent-review.md\n- docs/validation/paired-current-resource-acceptance.md (future delivery path)",
+      "displayState": "MERGED",
+      "followUpCategory": "next_steps",
+      "proposedFromRef": "#138",
+      "state": "MERGED",
+      "taskRef": "#142",
+      "title": "Complete the #102 confirmation after its evidence and approval gates are met",
+      "updatedAt": "2026-10-10T18:27:34.574Z"
+    }
+  },
+  "finalChangedInputObservations": {
+    "#102": {"entireResponseEqualsInitial": true},
+    "#142": {"entireResponseEqualsInitial": true},
+    "#151": {
+      "state": "IN_PROGRESS",
+      "updatedAt": "2026-10-10T19:47:14.430Z",
+      "descriptionEqualsInitial": true,
+      "dependsOn": [],
+      "descriptionUtf8Bytes": 8682,
+      "descriptionSha256": "bd84c47d0c006a8eb955b0a9c85f0a67cbe378f973833152eb054ad926a4435b",
+      "claimBoundary": "Active resource assessment, not independently accepted result."
+    }
+  },
+  "boundedSearches": [
+    {"query": "\"router-handoff-key-v1\" \"paired-task-orchestration\"", "limit": 30, "returnedRefs": ["#107", "#126", "#108", "#116"]},
+    {"query": "\"6b2a457b2d3cbe1ffc06e3edb6ce0efa3cc1e579637297ead8b1660ed853cd06\"", "limit": 30, "returnedRefs": ["#126", "#108", "#116", "#107", "#137", "#109", "#150"]},
+    {"query": "\"Confirm & Harden: paired-task-orchestration\"", "limit": 30, "returnedRefs": ["#138"]},
+    {"query": "\"SKILL.md-only orchestration review\"", "limit": 30, "returnedRefs": ["#116", "#107", "#109", "#120"]},
+    {"query": "\"paired-retrospective-confirmation\"", "limit": 30, "returnedRefs": []}
+  ],
+  "searchLimits": {
+    "responseFields": ["results"],
+    "limitReached": false,
+    "completeGlobalEnumerationProved": false,
+    "globalUniquenessProved": false,
+    "noWriterProved": false,
+    "eligibleCompliantTaskBFound": false,
+    "noTaskBAnywhereClaimed": false
+  },
+  "directComparisons": {
+    "primary102": {
+      "expectedBytes": 11539,
+      "expectedSha256": "6b2a457b2d3cbe1ffc06e3edb6ce0efa3cc1e579637297ead8b1660ed853cd06",
+      "actualMatchesExpected": true,
+      "freshDescriptionEqualsRetainedFullDescription": true,
+      "retainedTextLocator": "docs/validation/paired-task-orchestration-native-readback.json:tasks[taskRef=#102].description",
+      "difference": "None observed",
+      "finalizationProved": false
+    },
+    "currentConfirmationRule": {
+      "reviewLocator": "docs/validation/skill-install-confirmation-rule-conflict-resolution-review.md",
+      "reviewVerdict": "ACCEPTED — narrow source-rule revision only",
+      "currentBytesEqualReviewedBinding": true,
+      "reviewedBytes": 15816,
+      "reviewedSha256": "a613efe2bea3476b8770b665dd9f0b0b440a320f5aae627a79a815ea6cf6b82a",
+      "D-01": "RESOLVED for matching current bytes",
+      "D-02": "RESOLVED for matching current bytes",
+      "accepts102ResourcesOrAmendment": false
+    },
+    "prospectivePayload": {
+      "criteriaLocator": "Complete actual #102 description, exact six bullets between Done looks like and Out of scope; verbatim text reproduced in bound readiness report.",
+      "allSixOriginalItemsVerbatim": [true, true, true, true, true, true],
+      "fixedAdditionsVerbatim": [true, true],
+      "allFiveResolvedTargetRestrictionsVerbatim": [true, true, true, true, true],
+      "hasRequiredMustNotSection": true,
+      "broaderReadOnlyException": "Exact #102 binding only, not #120/#121",
+      "correctionBoundary": ".agents/skills/paired-task-orchestration/SKILL.md only",
+      "findingsDestination": "Task conversation only",
+      "taskActuallyPersistedAsTaskB": false,
+      "olderRuleBindingRenewalRequiredBeforeFutureWrite": true
+    },
+    "candidateParityColumns": ["ref", "sixOriginalItemsPresentCount", "twoFixedAdditionsPresentCount", "hasRequiredMustNotSection", "role"],
+    "candidateParity": [
+      ["#107", 0, 0, false, "Historical definition-only predecessor"],
+      ["#116", 0, 0, false, "Historical definition-only replacement with real #102 dependency"],
+      ["#121", 0, 0, false, "Separate #120 amendment confirmation"],
+      ["#135", 0, 0, false, "Historical route-review suggestion"],
+      ["#138", 6, 2, false, "Preparation only; not final Task B"],
+      ["#142", 0, 0, false, "Conditional execution follow-up; not compliant Task B"]
+    ]
+  },
+  "officialDocumentationLookup": {
+    "route": "searchReplitDocs",
+    "query": "For Agent project tasks, what supported read interfaces expose a complete task plan and actual dependencies, task conversation history or exports, a committed/finalized plan receipt, current project auto-approval settings, and a per-task control guaranteeing draft-only creation? Distinguish documented UI controls from callable APIs; do not infer account settings.",
+    "relevantPages": [
+      {"title": "Task board", "url": "https://docs.replit.com/features/agent/task-board"},
+      {"title": "Task lifecycle", "url": "https://docs.replit.com/features/agent/task-lifecycle"},
+      {"title": "Plan Mode", "url": "https://docs.replit.com/features/agent/plan-mode"}
+    ],
+    "response": "The Replit documentation describes task planning and execution through the Project Editor's Task Board and individual Agent threads. A full task plan (including description, steps, and dependencies) is exposed for review via the 'View plan' action on a draft task card, and individual task history is accessible through the task's specific thread or the task board's detailed view. There is no documented single API or read interface for all these components combined, though the task board visually represents these states. Regarding the creation of tasks, the documentation notes that the 'Plan mode' toggle in the chat input ensures Agent only creates plans (drafts) rather than applying changes; no per-task API-callable control exists for 'draft-only creation.' Current project settings for background tasks, such as auto-approval, are managed via the settings dropdown on individual task cards (for 'Auto-approve plan') and in the main Agent settings (for background build options).",
+    "interpretationBoundary": "Documentation discovery only, not live settings or a universal provider-capability assertion. Only the inspected available interfaces are assessed; unsupported APIs were not probed.",
+    "currentSettingsRead": false,
+    "actual142ConversationRead": false,
+    "recipientContextReadback": false
+  },
+  "missingEvidenceAndActions": [
+    {"id": "P4", "owner": "Task-provider/workspace owner", "action": "Supply authentic finalized #102 full-plan evidence or explicit equivalent authorization bound to exact primary digest and retrospective scope; old generic snapshot policy is insufficient."},
+    {"id": "P7", "owner": "Task-board owner/provider", "action": "Supply current Auto-approve and separate automatic apply/start state plus actual supported enforce-draft control if present; do not create a probe task."},
+    {"id": "P8", "owner": "Later separately authorized creator", "action": "Read back entire real final Task B payload and actual #102 dependency around linkage after prerequisites; future persistence is unperformed."},
+    {"id": "P9", "owner": "Workspace owner", "action": "Authorize exact future write/reuse and needed batching separately, then execution only through its own approval."},
+    {"id": "P10", "owner": "Delivery custodian and future confirmer", "action": "Verify original package/specification, current canonical closure, full plans and accepted evidence in the actual recipient workspace; current local presence proves no cross-workspace delivery."},
+    {"id": "P11", "owner": "Independent resource reviewer and future confirmer", "action": "Obtain authentic applicable independently accepted resource result; #151 remains separately responsible for its scoped assessment, not guaranteed acceptance."},
+    {"id": "P12", "owner": "Owner with task-thread access", "action": "Supply complete authentic #142 conversation findings/source bindings if they exist, or identify no findings/access limitation; merged state is not confirmation."},
+    {"id": "P13", "owner": "Workspace owner and separately authorized acceptance publisher", "action": "Identify publisher/context, arrange supported authentic complete conversation findings access/export, and obtain recipient-context full readback without widening confirmer reporting permission."},
+    {"id": "P14", "owner": "Authorized independent post-repair reviewer", "action": "If permitted target repair occurs, rebind changed evidence and independently accept it; no repair occurred in this assessment."},
+    {"id": "P15", "owner": "Separate amendment acceptance owner", "action": "Resolve applicable formal #120/#121 acceptance using its own barrier/applicability/evidence, not #102 exception."},
+    {"id": "P16", "owner": "Separately authorized aggregate publisher", "action": "Require real formal #102 findings, applicable amendment evidence and independent resources before aggregate acceptance or any separately authorized FG-02 continuation."}
+  ],
+  "resourceBoundary": {
+    "excludedSubcriteriaOnly": ["B2-R1", "B5-R1"],
+    "all22ParentRowsStillRequired": ["D1", "D2", "D3", "D4", "S1", "S2", "S3", "S4", "S5", "S6", "H1", "H2", "H3", "B1", "B2", "B3", "B4", "B5", "C1", "C2", "C3", "C4"],
+    "retiredNarrativesReproduced": false,
+    "ownerEditedHistoricalSnapshotsAreUnchangedProviderEvidence": false,
+    "resourceAcceptanceCertifiedHere": false,
+    "currentHistoricalResourceReportVerdict": "PARTIAL / BLOCKED",
+    "postCleanupAssessmentRef": "#151",
+    "postCleanupAssessmentExpectedPaths": [
+      "docs/validation/paired-resource-acceptance-post-cleanup.md",
+      "docs/validation/paired-resource-acceptance-post-cleanup-evidence.json"
+    ],
+    "expectedPathsDeliveredAtLocalPresenceObservation": false
+  },
+  "accounting": {
+    "validationLaunches": 0,
+    "tests": "NOT_RUN",
+    "projectImports": "NOT_RUN",
+    "syntaxChecks": "NOT_RUN",
+    "builds": "NOT_RUN",
+    "guards": "NOT_RUN",
+    "runtimeStoreProof": "NOT_RUN",
+    "taskWritesDuringAssessment": 0,
+    "settingChanges": 0,
+    "proposalsSubmitted": 0,
+    "canonicalEdits": 0,
+    "historicalReportEdits": 0,
+    "localGateIdTierGrantOrBudgetInvented": false,
+    "gatePassClaimed": false,
+    "automaticProgressionClaimed": false,
+    "memoryUpdate": "None: no new durable lesson independent of current sources/assigned finding was learned; write scope remains the report and annex.",
+    "completionMeaning": "Complete authorized blocked-readiness assessment only, not downstream acceptance. Mandatory platform reporting-task completion is separate from assessment-time task mutations."
+  }
+}
