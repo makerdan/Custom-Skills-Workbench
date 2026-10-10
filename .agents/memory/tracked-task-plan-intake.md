@@ -9,6 +9,12 @@ The file-based bulk task creator requires plans under `.local/tasks/`, even thou
 
 **How to apply:** Keep full plans in tracked project documentation. When explicitly authorized to create tasks and the inline follow-up route is applicable, it accepts descriptions only up to 4,000 characters. Create concise scoped descriptions referencing the tracked full plans, then use the task update route's inline description to persist the full plans. A task update returns summary metadata, not necessarily its description; verify content through task readback.
 
+The host's Plan-mode write restriction can reject tracked plan-file writes through both patch and write callbacks, even when planning instructions allow plan authoring.
+
+**Why:** Observed rejections were mode restrictions, not invalid Markdown or missing directories; the same tracked-file patch succeeded after an explicit switch to Build.
+
+**How to apply:** If this occurs, report the restriction and ask for a temporary Build switch to save only the authorized tracked plans, then return to Plan for task submission. Do not bypass the mode restriction with shell writes or repeatedly retry another write callback.
+
 Inline follow-ups initially depend on their origin task. If the user requested prerequisites for that task, remove the inherited dependency before acceptance; otherwise the task graph blocks prerequisite work behind the work it must enable.
 
 **Why:** Origin association is not the same as a correct execution dependency.
