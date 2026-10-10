@@ -1,5 +1,7 @@
 # Paired Retrospective Confirmation Preparation
 
+**Owner-edited binding revision — 2026-10-10.** Original task-state observations retain their original scope/time. Affected referenced descriptions and reports are revised, not unchanged original evidence; their current bindings are in `retired-review-cleanup-bindings.json`. This grants no Task B finalization equivalent, draft-only approval or independent acceptance.
+
 **Disposition: BLOCKED for native Task B creation or reuse; prospective payload
 prepared and bound.** This is a documentary and read-only native-record
 reconciliation. It does not accept the current rule, establish provider

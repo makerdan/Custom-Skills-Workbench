@@ -1,3 +1,5 @@
+Owner-edited excerpt — 2026-10-10. Scoped series subcriteria B2-R1 and B5-R1 are excluded; no acceptance or runtime authority is granted.
+
 These are the steps to finish the current handoff and prepare FG-02 g02:
 
 1. Independently review the current confirmation rule
@@ -22,7 +24,7 @@ SKILL.md-only corrections, with broader evidence inspection limited to the appro
 Finish condition: complete persisted-plan and dependency readback. Delivery may remain pending at drafting; substantive review must wait.
 
 4. Close only the outstanding resource/plan gaps
-Use Task #126’s valid comparisons rather than repeating the whole 18-piece review. Through authorized work, reconcile affected current-source bindings, replit.md, the stale active checkpoint, and any historical linkage evidence still required for acceptance. Preserve all original reports and findings.
+Use Task #126’s valid comparisons rather than repeating the whole 18-piece review. Through authorized work, reconcile affected current-source bindings, replit.md, and the stale active checkpoint. Preserve applicable reports and findings.
 
 Task #122 should first be reassessed against what #126 already resolved.
 

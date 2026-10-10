@@ -1,5 +1,7 @@
 # Task #137: Reconcile Confirmation Handoff Evidence
 
+<!-- owner-edited revision: scoped subcriterion removal; not an original provider response -->
+
 # Reconcile Confirmation Handoff Evidence
 
 <!-- regression-guard: not-applicable -->
@@ -11,11 +13,11 @@ Establish the actual permitted native-record and finalization route needed for p
 - Publish docs/validation/paired-native-handoff-current-review.md and a sanitized complete readback annex for actual #102/#120/#121/#116/#126 and relevant historical candidates. Record full description bytes/digests, real dependencies, scope, lifecycle, exact/legacy search results and actual evidence provenance.
 - For each prospective confirmation consumer, identify which authentic provider-finalization evidence or already authorized exact-scope equivalent applies, and precisely which permission/evidence remains missing. Verify #102 against its original 11,539-byte digest 6b2a457b2d3cbe1ffc06e3edb6ce0efa3cc1e579637297ead8b1660ed853cd06. Do not claim an owner-pinned snapshot is immutable provider finalization or silently extend it.
 - Assess the supported whole-plan create/readback, real dependency and draft-only route, output/delivery readiness and unknown-write recovery from documented interfaces and actual existing evidence without making trial writes. The route report must state whether a future draft can safely remain unapproved under actual task automation settings.
-- Preserve #126's corrected current complete binding while distinguishing unavailable historical creation-bracketing evidence. Reassess existing Draft #122 against those facts; leave historical #119 native amendments within #122's existing scope, with no duplicate or automatic closure.
-- When a required route or historical receipt is unavailable, publish the exact owner/provider input or narrowly scoped authorization needed. This diagnostic may finish with an evidenced blocked finding; it does not grant confirmation eligibility or overall acceptance.
+- Preserve #126's corrected observed complete binding. Reassess existing Draft #122 against those facts; leave historical #119 native amendments within #122's existing scope, with no duplicate or automatic closure.
+- When a required route is unavailable, publish the exact owner/provider input or narrowly scoped authorization needed. This diagnostic may finish with an evidenced blocked finding; it does not grant confirmation eligibility or overall acceptance.
 
 ## Out of scope
-Any native create/update/approval/activation/cancellation; modifying or generalizing the cooperative profile or canonical definitions; reading live Gate stores/services; manufacturing historical receipts; redoing #122's native correction; FG-02 work.
+Any native create/update/approval/activation/cancellation; modifying or generalizing the cooperative profile or canonical definitions; reading live Gate stores/services; fabricating evidence; redoing #122's native correction; FG-02 work.
 
 ## Scope and authority
 Project: https://github.com/makerdan/Custom-Skills-Workbench, /home/runner/workspace, current Skills Workbench task namespace; do not invent a UUID. Series: Custom-Skills-Workbench/failure-gate-v4/18-piece. Request: create tasks for the five steps in attached_assets/Pasted-These-are-the-steps-to-finish-the-current-handoff-and-p_1791522438711.txt. Batch locator: paired-handoff-finish-2026-10-09-v1. These are handoff prerequisites, not FG-02 implementation/verifier tasks. Approval, execution, native lifecycle and independent acceptance remain separate.

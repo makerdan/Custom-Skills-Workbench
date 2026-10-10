@@ -1,5 +1,7 @@
 # Task #139: Renew Current Resource Handoff Evidence
 
+<!-- owner-edited revision: scoped subcriterion removal; not an original provider response -->
+
 # Renew Resource Handoff Evidence
 
 <!-- regression-guard: required -->
@@ -11,7 +13,7 @@ Repair the outdated active documentary publication and bind the current combined
 - Publish docs/validation/paired-current-handoff-renewal.md and docs/validation/paired-current-handoff-manifest.json with a complete original/changed input ledger, current path/byte/digest bindings, authoritative record evidence, affected criteria, permission lineage and precise unresolved owners. Keep original archives, manifests/keys and dated #116/#119/#121/#126 reports unchanged.
 - Renew the active checkpoint through an explicitly labeled current section/locator, preserving its entire old text as dated history or an immutable bound Git snapshot; retain FG-01 discovery-only acceptance, actual archived predecessors and replacements, unfinished FG-02 g02, no current native pair, every authority/accounting/supervision/governance blocker and no automatic advancement. A report or Merged label is never recorded as a pass.
 - Rebind current companion and Paired definition changes and changed replit.md under a new current manifest; retain old bindings as historical, with the authorized reason and evidence impact for each change. Do not edit replit.md policy text, alter original manifests to hide drift, or silently broaden the cooperative profile.
-- Separate #126's already correct current payload/key/dependencies from any still-required historical linkage evidence; incorporate the native evidence review and reassessment of #122 without changing or duplicating that task. Missing receipts remain unavailable, not reconstructed from present records.
+- Retain #126's already correct observed payload/key/dependencies; incorporate the native evidence review and reassessment of #122 without changing or duplicating that task.
 - Keep the complete 18-piece/36-payload plan, both FG-02 draft bodies and unchanged resource reference contents intact. A genuinely found defect outside this documentary repair scope requires a specific additional decision, not silent rewriting.
 - Add the inert source regression guard named below and read it back. The documentary author must not accept its own repairs: independent resource revalidation owns affected acceptance, and current manifests/report/checkpoint remain explicitly pending that assessment.
 
@@ -26,7 +28,7 @@ Use only canonical custom skill sources under .agents, including the complete ap
 Bind obligation, pre-edit and delivered snapshots separately. Use one bounded intake and final evidence readback plus targeted duplicate reconciliation; no periodic polling, trial tasks or blind retries. Missing inputs in an executor workspace require exact paths, responsible owner and one permitted invocation-driven recheck before substantive review. Report snapshot limits, not global exclusion or provider finalization.
 
 ## Steps
-1. **List documentary gaps before edits** — Bind the current and historical sources and classify exactly which reported acceptance items are affected, keeping unchanged independent comparisons and unresolved historical receipts separate.
+1. **List documentary gaps before edits** — Bind the current and historical sources and classify exactly which applicable acceptance items are affected, keeping unchanged independent comparisons separate.
 2. **Renew the current publication** — Publish a traceable current binding manifest and checkpoint update while retaining dated originals, actual replacement lineage, all blockers and the unchanged series/payload obligations.
 3. **Add a source-only recurrence guard** — Cover honest current/historical labeling, retained stage and authority limits, binding drift and refusal of acceptance by task status or missing evidence; do not exercise live APIs or run it.
 4. **Publish the repair handoff** — Read back the coherent changed document set, record old/new bindings and the guard's NOT_RUN status, and hand off only the affected criteria for independent review.

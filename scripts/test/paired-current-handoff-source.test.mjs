@@ -14,6 +14,27 @@ const manifest = JSON.parse(read(manifestPath));
 function auditRenewal(candidateManifest, documents) {
   const errors = [];
   const bindings = candidateManifest.currentBindings ?? [];
+  const requiredCurrent = [
+    "replit.md",
+    ".agents/skills/paired-task-orchestration/SKILL.md",
+    ".agents/skills/skill-install-confirmation/SKILL.md",
+    "docs/validation/failure-gate-v4-task-series.md",
+    "docs/validation/failure-gate-v4-series-handoff-policy.md",
+    "docs/validation/paired-task-orchestration-verification-plan.md",
+    "docs/validation/paired-task-orchestration-verification.md",
+    "docs/validation/paired-native-handoff-current-readback-annex.json",
+    "docs/validation/failure-gate-v4-series-checkpoint.md",
+    "docs/validation/paired-current-handoff-renewal.md",
+    "docs/validation/task-plans/task-139-renew-current-resource-handoff-evidence.md",
+    "docs/validation/task-plans/remove-retired-review-requirements.md",
+    "docs/validation/retired-review-cleanup-native-readback.json",
+    "scripts/test/paired-current-handoff-source.test.mjs",
+  ];
+  for (const path of requiredCurrent) {
+    if (!bindings.some((binding) => binding.path === path)) {
+      errors.push(`required-binding:${path}`);
+    }
+  }
   for (const binding of bindings) {
     const content = documents[binding.path];
     if (typeof content !== "string") {
@@ -38,9 +59,70 @@ function auditRenewal(candidateManifest, documents) {
     const binding = (candidateManifest.historicalBindings ?? []).find(
       (item) => item.path.endsWith(path),
     );
-    if (!binding || binding.classification !== "historical_immutable") {
+    const expected = path === "paired-task-orchestration-verification.md"
+      ? "owner_edited_revision"
+      : "historical_immutable";
+    if (!binding || binding.classification !== expected) {
       errors.push(`historical:${path}`);
     }
+  }
+
+  const revision = candidateManifest.ownerDirectedRevision ?? {};
+  if (
+    revision.mode !== "SCOPED_REQUIREMENT_REMOVAL" ||
+    revision.originalUnchangedClaimsInvalidated !== true ||
+    revision.independentAcceptanceGranted !== false ||
+    revision.guardStatus !== "NOT_RUN"
+  ) {
+    errors.push("revision:boundary");
+  }
+  for (const id of ["B2-R1", "B5-R1"]) {
+    const item = (candidateManifest.retiredSubcriteria ?? []).find(
+      (criterion) => criterion.id === id,
+    );
+    if (!item || item.status !== "EXCLUDED" || item.contributesBlocker !== false) {
+      errors.push(`retired:${id}`);
+    }
+    if ((candidateManifest.requiredCriteria ?? []).includes(id) ||
+        (candidateManifest.blockingCriteria ?? []).includes(id)) {
+      errors.push(`retired-required:${id}`);
+    }
+  }
+  if (candidateManifest.criterionDisposition?.affected?.B2 !==
+      "CURRENT_COMPARISONS_RETAINED_NO_NEW_ACCEPTANCE" ||
+      candidateManifest.criterionDisposition?.affected?.B5 !==
+      "PARTIAL_BLOCKED_REBIND_CHANGED_SOURCES") {
+    errors.push("criteria:remaining-boundaries");
+  }
+  for (const [path, content] of Object.entries(documents)) {
+    if (/B[25]-R1\s+(?:REQUIRED|BLOCKED|PASS|ACCEPTED)\b/i.test(content)) {
+      errors.push(`retired-report:${path}`);
+    }
+  }
+  const annexPath = "docs/validation/paired-native-handoff-current-readback-annex.json";
+  try {
+    const annex = JSON.parse(documents[annexPath]);
+    if (annex.ownerDirectedRevision?.snapshotRepresentation !== "OWNER_EDITED_EXCERPTS" ||
+        annex.ownerDirectedRevision?.originalUnchangedClaimsInvalidated !== true) {
+      errors.push("snapshots:representation");
+    }
+    const visit = (value) => {
+      if (!value || typeof value !== "object") return;
+      if (value.descriptionRepresentation === "OWNER_EDITED_EXCERPT") {
+        if (typeof value.description !== "string" ||
+            value.descriptionUtf8Bytes !== Buffer.byteLength(value.description, "utf8") ||
+            value.descriptionSha256 !== digest(value.description)) {
+          errors.push("snapshots:binding");
+        }
+      } else if (typeof value.description === "string" &&
+                 value.description.startsWith("<!-- owner-edited revision:")) {
+        errors.push("snapshots:unlabeled-edit");
+      }
+      for (const child of Object.values(value)) visit(child);
+    };
+    visit(annex);
+  } catch {
+    errors.push("snapshots:missing-or-invalid");
   }
 
   const scope = candidateManifest.scopeLimits ?? {};
@@ -90,7 +172,7 @@ function auditRenewal(candidateManifest, documents) {
     typeof report !== "string" ||
     !report.includes("PENDING INDEPENDENT RESOURCE REVALIDATION") ||
     !report.includes("The current report, manifest, checkpoint, and guard remain **PENDING independent assessment**") ||
-    !report.includes("No task was created or mutated") ||
+    !report.includes("No task lifecycle or dependency was changed by this cleanup") ||
     /\*\*(?:Disposition|Acceptance|Result):\s*(?:ACCEPTED|PASS)\b/i.test(report)
   ) {
     errors.push("report:pending-or-authority-boundary");
@@ -181,4 +263,49 @@ test("native task status or report presence cannot fabricate acceptance", () => 
       "report:pending-or-authority-boundary",
     ),
   );
+});
+
+test("owner-edited revisions exclude only the selected subcriteria, not aggregate gates", () => {
+  const documents = sourceDocuments(manifest.currentBindings);
+  assert.deepEqual(auditRenewal(manifest, documents), []);
+  assert.equal(manifest.criterionDisposition.affected.B2, "CURRENT_COMPARISONS_RETAINED_NO_NEW_ACCEPTANCE");
+  assert.equal(manifest.criterionDisposition.affected.B5, "PARTIAL_BLOCKED_REBIND_CHANGED_SOURCES");
+  for (const id of ["B2-R1", "B5-R1"]) {
+    const required = structuredClone(manifest);
+    required.requiredCriteria = [id];
+    assert.ok(auditRenewal(required, documents).includes(`retired-required:${id}`));
+    const blocked = structuredClone(manifest);
+    blocked.retiredSubcriteria.find((item) => item.id === id).contributesBlocker = true;
+    assert.ok(auditRenewal(blocked, documents).includes(`retired:${id}`));
+    const path = "docs/validation/paired-current-handoff-renewal.md";
+    const report = { ...documents, [path]: `${documents[path]}\n${id} REQUIRED\n` };
+    assert.ok(auditRenewal(manifest, report).includes(`retired-report:${path}`));
+  }
+  const discarded = structuredClone(manifest);
+  discarded.criterionDisposition.affected.B5 = "PASS";
+  assert.ok(auditRenewal(discarded, documents).includes("criteria:remaining-boundaries"));
+  const fabricated = structuredClone(manifest);
+  fabricated.ownerDirectedRevision.independentAcceptanceGranted = true;
+  assert.ok(auditRenewal(fabricated, documents).includes("revision:boundary"));
+});
+
+test("edited native snapshots must be labeled and byte-bound, and required bindings cannot disappear", () => {
+  const path = "docs/validation/paired-native-handoff-current-readback-annex.json";
+  const documents = sourceDocuments(manifest.currentBindings);
+  const revised = JSON.parse(documents[path]);
+  revised.ownerDirectedRevision.snapshotRepresentation = "ORIGINAL_PROVIDER_RESPONSE";
+  assert.ok(auditRenewal(manifest, { ...documents, [path]: JSON.stringify(revised) })
+    .includes("snapshots:representation"));
+  const tampered = JSON.parse(documents[path]);
+  tampered.taskRecords.push({
+    description: "<!-- owner-edited revision: fixture -->",
+    descriptionRepresentation: "OWNER_EDITED_EXCERPT",
+    descriptionUtf8Bytes: 1,
+    descriptionSha256: "0".repeat(64),
+  });
+  assert.ok(auditRenewal(manifest, { ...documents, [path]: JSON.stringify(tampered) })
+    .includes("snapshots:binding"));
+  const missing = structuredClone(manifest);
+  missing.currentBindings = missing.currentBindings.filter((binding) => binding.path !== path);
+  assert.ok(auditRenewal(missing, documents).includes(`required-binding:${path}`));
 });

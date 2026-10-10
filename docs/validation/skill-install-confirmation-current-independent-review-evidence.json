@@ -37,7 +37,11 @@
         "descriptionBytes": 11539,
         "descriptionSha256": "6b2a457b2d3cbe1ffc06e3edb6ce0efa3cc1e579637297ead8b1660ed853cd06"
       },
-      "ownerDecisionTasks": ["#132", "#133", "#134"]
+      "ownerDecisionTasks": [
+        "#132",
+        "#133",
+        "#134"
+      ]
     },
     "preEditProject": {
       "initialGitStatus": "Only the user-supplied five-step attachment was untracked before the tracked plan was published; no pre-existing tracked source changes were reported.",
@@ -108,8 +112,12 @@
     {
       "path": "docs/validation/skill-install-confirmation-applicability-review.md",
       "role": "Owner-authorized existing-primary amendment and scope history",
-      "bytes": 27345,
-      "sha256": "a680d9ac884cc58b049bc085ad6d1c2e132a34e4ef3f2eb6c6cb7654b183ee0c"
+      "bindingRepresentation": "OWNER_EDITED_REVISION",
+      "currentBinding": {
+        "ledgerPath": "docs/validation/retired-review-cleanup-bindings.json",
+        "path": "docs/validation/skill-install-confirmation-applicability-review.md"
+      },
+      "priorUnchangedClaim": "INVALIDATED_FOR_REVISED_BYTES"
     },
     {
       "path": "docs/validation/skill-install-confirmation-scope-readback.json",
@@ -126,8 +134,12 @@
     {
       "path": "attached_assets/Pasted-These-are-the-steps-to-finish-the-current-handoff-and-p_1791522438711.txt",
       "role": "User-provided five-step handoff context",
-      "bytes": 2518,
-      "sha256": "0089f77254160bd0e96366ddef0c9681aeffbb24e2a27080d2665c475d38dcc7"
+      "bindingRepresentation": "OWNER_EDITED_REVISION",
+      "currentBinding": {
+        "ledgerPath": "docs/validation/retired-review-cleanup-bindings.json",
+        "path": "attached_assets/Pasted-These-are-the-steps-to-finish-the-current-handoff-and-p_1791522438711.txt"
+      },
+      "priorUnchangedClaim": "INVALIDATED_FOR_REVISED_BYTES"
     },
     {
       "path": ".agents/skills/skill-application-router/SKILL.md",
@@ -211,7 +223,9 @@
         "taskRef": "#132",
         "title": "Restore the missing confirmation task title rule",
         "state": "MERGED",
-        "dependsOn": ["#123"],
+        "dependsOn": [
+          "#123"
+        ],
         "updatedAt": "2026-10-09T03:14:19.591Z",
         "descriptionBytes": 1291,
         "descriptionSha256": "f3b57448e781f2a69e4424c478776b46af04b3b1dcd4bf808317eb934f521bdf",
@@ -221,7 +235,9 @@
         "taskRef": "#133",
         "title": "Resolve how to confirm a skill that is already installed",
         "state": "MERGED",
-        "dependsOn": ["#123"],
+        "dependsOn": [
+          "#123"
+        ],
         "updatedAt": "2026-10-08T04:05:53.428Z",
         "descriptionBytes": 2079,
         "descriptionSha256": "71fa322f3885064ce4a330cba946b48ddffe457b363a3ab0460dc2020f40b389",
@@ -231,7 +247,9 @@
         "taskRef": "#134",
         "title": "Resolve the mismatch between the original install criteria and the skill-only confirmation",
         "state": "MERGED",
-        "dependsOn": ["#133"],
+        "dependsOn": [
+          "#133"
+        ],
         "updatedAt": "2026-10-09T05:03:44.659Z",
         "descriptionBytes": 1538,
         "descriptionSha256": "9d38adc666318bdc12628ca5e47ac107e568f9f844f08d8cc5a02fefaf34132c",
@@ -253,7 +271,9 @@
         "taskRef": "#107",
         "title": "Confirm the SKILL.md-only orchestration review",
         "state": "CANCELLED",
-        "dependsOn": ["#106"],
+        "dependsOn": [
+          "#106"
+        ],
         "updatedAt": "2026-10-07T21:03:02.441Z",
         "descriptionBytes": 12385,
         "descriptionSha256": "60f7ec6e83d96399d1826bbcd4672cae01efb5ce6c242dd1879e5273fd0f0c5c",
@@ -263,7 +283,11 @@
         "taskRef": "#116",
         "title": "Confirm the SKILL.md-only orchestration review — replacement for #107",
         "state": "MERGED",
-        "dependsOn": ["#109", "#106", "#102"],
+        "dependsOn": [
+          "#109",
+          "#106",
+          "#102"
+        ],
         "updatedAt": "2026-10-07T21:17:11.012Z",
         "descriptionBytes": 17777,
         "descriptionSha256": "90e48811e5c2922ca10e2db47ece06e965f9a15e0bf21fe6a394386ab99f3ee6",
@@ -273,7 +297,9 @@
         "taskRef": "#120",
         "title": "Amend canonical Paired Task Orchestration with the Failure Gate v4 planner-staging exception",
         "state": "MERGED",
-        "dependsOn": ["#116"],
+        "dependsOn": [
+          "#116"
+        ],
         "updatedAt": "2026-10-07T21:23:13.337Z",
         "descriptionBytes": 11221,
         "descriptionSha256": "06c6ac3d94578cd027f3972fd55790974df4be0a0cae2c944504078cd6065495",
@@ -283,7 +309,9 @@
         "taskRef": "#121",
         "title": "Independently confirm the amended orchestration rule",
         "state": "MERGED",
-        "dependsOn": ["#120"],
+        "dependsOn": [
+          "#120"
+        ],
         "updatedAt": "2026-10-08T03:26:04.299Z",
         "descriptionBytes": 2953,
         "descriptionSha256": "70411ae6f9787814418fb8abbae09890671e00e7756a63e0bc3bb2a360f0572d",
@@ -293,7 +321,11 @@
         "taskRef": "#126",
         "title": "Verify orchestration resources and the full plan — replacement for #108",
         "state": "MERGED",
-        "dependsOn": ["#109", "#106", "#102"],
+        "dependsOn": [
+          "#109",
+          "#106",
+          "#102"
+        ],
         "updatedAt": "2026-10-08T02:54:57.970Z",
         "descriptionBytes": 43199,
         "descriptionSha256": "1c1b214466332e3d9a08535ee11c7041affa5f4215e4214ffcc297206fdcb4f4",
@@ -336,5 +368,19 @@
       "Tests, builds, imports, hooks, package commands, runtime/store/coordinator work, CI, services, signals, task writes, task approval, confirmation execution, resource acceptance, and series advancement"
     ],
     "authorization": "No validation PASS, local Gate ID/tier/grant, native finalization, global exclusion, or operational readiness is implied."
+  },
+  "ownerDirectedRevision": {
+    "mode": "SCOPED_REQUIREMENT_REMOVAL",
+    "date": "2026-10-10",
+    "excludedSubcriteria": [
+      "B2-R1",
+      "B5-R1"
+    ],
+    "snapshotRepresentation": "REFERENCED_BINDING_REVISION_ONLY",
+    "originalUnchangedClaimsInvalidated": true,
+    "independentAcceptanceGranted": false,
+    "guardStatus": "NOT_RUN",
+    "currentBindingsPath": "docs/validation/retired-review-cleanup-bindings.json",
+    "observationLimits": "Original observation dates and lifecycle metadata remain historical. Edited descriptions are excerpts, not unchanged provider responses. Removal is not a validation result or acceptance."
   }
 }

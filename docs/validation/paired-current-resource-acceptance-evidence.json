@@ -22,25 +22,33 @@
     "sourceBytes": 8152,
     "sourceSha256": "f7f44569dd7c0143b9927eca8a7ba7c28c498b817396ebdcb62fcd5ba53059ea",
     "trackedPath": "docs/validation/task-plans/task-140-independently-accept-renewed-handoff-evidence.md",
-    "trackedBytes": 8151,
-    "trackedSha256": "495dfe5835925f96f465c1aa1aa165788342f04576c5e7cb62567034978cb784",
+    "trackedBytes": 8147,
+    "trackedSha256": "987fdbb55de078689902b13515b9f9c256189aa8c2f2341e5353049d907811cd",
     "nativeTaskRef": "#140",
-    "nativeDescriptionBytes": 8091,
-    "nativeDescriptionSha256": "c04eeb2173cc165478d20ea3ad6ff457b8d1e30f8ec0ad0bdffdc12637508a4f",
-    "comparison": "The complete local and tracked bodies equal the complete native task description after removing the tracked heading wrapper and normalizing terminal newline(s). No body content differs."
+    "nativeDescriptionBytes": 8086,
+    "nativeDescriptionSha256": "d6aeb249d91b21fe67efa9bc98f3dcf419779b75d88b4cffcf5ba18575406ddb",
+    "comparison": "Owner-edited plan and description revisions; earlier original-body equivalence is not asserted for revised bytes. Complete native updates are separately read back in retired-review-cleanup-native-readback.json.",
+    "sourceRepresentation": "Original ephemeral source binding is historical only; complete authoritative tracked plan and revised native readback are the deliverables."
   },
   "preReviewInputInventory": {
     "renewalManifest": {
       "path": "docs/validation/paired-current-handoff-manifest.json",
-      "bytes": 27449,
-      "sha256": "bb9e7db551d808f3bdd27667ad0256af870617542780277bdf3b884eba073d92"
+      "bindingRepresentation": "OWNER_EDITED_REVISION",
+      "currentBinding": {
+        "ledgerPath": "docs/validation/retired-review-cleanup-bindings.json",
+        "path": "docs/validation/paired-current-handoff-manifest.json"
+      },
+      "priorUnchangedClaim": "INVALIDATED_FOR_REVISED_BYTES",
+      "bytes": 33249,
+      "sha256": "944b3451a5cc283da753ceb0ae957fabba1415b058b294581c096c27d52e078c"
     },
     "manifestCurrentBindings": {
-      "count": 38,
-      "verifiedAgainstCurrentWorkspaceBytes": 38,
+      "count": 42,
+      "verifiedAgainstCurrentWorkspaceBytes": 42,
       "mismatches": 0,
       "missing": 0,
-      "method": "Read-only UTF-8 byte-count and SHA-256 comparison for every path in the manifest currentBindings array."
+      "method": "Owner-directed bounded UTF-8 byte/digest inspection only, without importing project code or executing guards; no independent acceptance.",
+      "observationDate": "2026-10-10"
     },
     "supplementalInputs": [
       {
@@ -71,9 +79,11 @@
     "selectedCurrentBindings": [
       {
         "path": "attached_assets/Pasted-These-are-the-steps-to-finish-the-current-handoff-and-p_1791522438711.txt",
-        "bytes": 2518,
-        "sha256": "0089f77254160bd0e96366ddef0c9681aeffbb24e2a27080d2665c475d38dcc7",
-        "result": "MATCHES_RENEWAL_MANIFEST"
+        "result": "REVISED_BYTES_BOUND; prior unchanged-file identity invalidated",
+        "bindingRepresentation": "OWNER_EDITED_REVISION",
+        "priorUnchangedClaim": "INVALIDATED_FOR_REVISED_BYTES",
+        "bytes": 2594,
+        "sha256": "2c1ed2a5c470d0621b061c06ae4f2450042e55fe078ead9a1d149852650a3937"
       },
       {
         "path": "attached_assets/failure-gate-v4-piecemeal-task-series_1791259976201.txt",
@@ -89,21 +99,27 @@
       },
       {
         "path": "docs/validation/paired-task-orchestration-verification.md",
-        "bytes": 51392,
-        "sha256": "f140c29a51f6e4c8a8189c9148e7e6a464c21eb6c193dc1621802aae174613fe",
-        "result": "MATCHES_RENEWAL_MANIFEST; ORIGINAL #119/#126 REPORT BYTES PRESERVED"
+        "result": "REVISED_BYTES_BOUND; prior unchanged-file identity invalidated",
+        "bindingRepresentation": "OWNER_EDITED_REVISION",
+        "priorUnchangedClaim": "INVALIDATED_FOR_REVISED_BYTES",
+        "bytes": 50910,
+        "sha256": "a336fcdf5c8d488d54d8b08e5bc6cd4e3070cf2d28f998ae82ffecde4e14c5c9"
       },
       {
         "path": "docs/validation/paired-task-orchestration-review-2026-10-08-evidence.json",
-        "bytes": 566878,
-        "sha256": "067f14ce8131e026e1f71bed3ca3f3d38ddff4850b5a622f3f8917ec51459979",
-        "result": "MATCHES_RENEWAL_MANIFEST; ORIGINAL #126 EVIDENCE PRESERVED"
+        "result": "REVISED_BYTES_BOUND; prior unchanged-file identity invalidated",
+        "bindingRepresentation": "OWNER_EDITED_REVISION",
+        "priorUnchangedClaim": "INVALIDATED_FOR_REVISED_BYTES",
+        "bytes": 572146,
+        "sha256": "8099e83c6a042155f1ecbad009df8adb15d9aaf962ba7cf296494c40b6c7bd8c"
       },
       {
         "path": "docs/validation/paired-task-orchestration-verification-plan.md",
-        "bytes": 34043,
-        "sha256": "af09da23dbd98184315f232d223f5eb5a120e444f6a37b9870b75df18cd3702d",
-        "result": "MATCHES_RENEWAL_MANIFEST; FIXED ORIGINAL MATRIX RETAINED"
+        "result": "REVISED_BYTES_BOUND; prior unchanged-file identity invalidated",
+        "bindingRepresentation": "OWNER_EDITED_REVISION",
+        "priorUnchangedClaim": "INVALIDATED_FOR_REVISED_BYTES",
+        "bytes": 34383,
+        "sha256": "946e0987e2b7c1a9c7140a624432a92e6b3f1e4ca7f207482899615aaf97adaa"
       },
       {
         "path": ".agents/skills/paired-task-orchestration/SKILL.md",
@@ -113,8 +129,8 @@
       },
       {
         "path": ".agents/skills/skill-install-confirmation/SKILL.md",
-        "bytes": 14615,
-        "sha256": "6d2a1a38a19092fe74982ab8610accdf4804d3c3a95d7a4e71e987c3b4eb02a6",
+        "bytes": 15816,
+        "sha256": "a613efe2bea3476b8770b665dd9f0b0b440a320f5aae627a79a815ea6cf6b82a",
         "result": "MATCHES_RENEWAL_MANIFEST; CURRENT RULE SOURCE REVIEWED"
       },
       {
@@ -137,52 +153,63 @@
       },
       {
         "path": "replit.md",
-        "bytes": 3930,
-        "sha256": "f2f57f45993342b506af279c91acdc7c6fd0a3fc26f039389c41dd360da15b63",
-        "result": "MATCHES_RENEWAL_MANIFEST; CHANGED FROM THE OLDER BINDING"
+        "result": "REVISED_BYTES_BOUND; prior unchanged-file identity invalidated",
+        "bindingRepresentation": "OWNER_EDITED_REVISION",
+        "priorUnchangedClaim": "INVALIDATED_FOR_REVISED_BYTES",
+        "bytes": 4397,
+        "sha256": "b1aa215ec3fee6152e93762b2511bd5dcc8a844a082f038da831394ebc7c405d"
       },
       {
         "path": "docs/validation/failure-gate-v4-series-checkpoint.md",
-        "bytes": 15477,
-        "sha256": "173079c164ac1d285223e98acaec9c48afcb8e4f11c9ce7d220a5050a17c8ff9",
-        "result": "MATCHES_RENEWAL_MANIFEST; APPENDED CURRENT LOCATOR"
+        "result": "REVISED_BYTES_BOUND; prior unchanged-file identity invalidated",
+        "bindingRepresentation": "OWNER_EDITED_REVISION",
+        "priorUnchangedClaim": "INVALIDATED_FOR_REVISED_BYTES",
+        "bytes": 15963,
+        "sha256": "673fa1483f862dc5370823c70a6c68a915b364e68e9a7c0de82a861624fb205f"
       },
       {
         "path": "scripts/test/paired-current-handoff-source.test.mjs",
-        "bytes": 6741,
-        "sha256": "c73c1db21b4bb304796a20b4a7ec0327bb8bf9f25f33d493f6ad58d43d7dcd88",
-        "result": "MATCHES_RENEWAL_MANIFEST; INERT SOURCE GUARD; NOT_RUN"
+        "result": "REVISED_BYTES_BOUND; prior unchanged-file identity invalidated",
+        "bindingRepresentation": "OWNER_EDITED_REVISION",
+        "priorUnchangedClaim": "INVALIDATED_FOR_REVISED_BYTES",
+        "bytes": 13012,
+        "sha256": "d3f31e1e5de1bd96499d4f9f12660238555d11ebc43d22f9a45242a3a2a86cd8"
       }
     ],
     "checkpointPreservation": {
       "preEditGitHead": "b4785f207f61555352a90844d751e69840b39fb7",
-      "preEditPrefixBytes": 12174,
-      "preEditPrefixSha256": "3a4a6f3126ad7cdfe026fa08ad709d877c712fa9df39e5dc8d23bf9a4edf2f44",
-      "currentCheckpointPrefixSha256": "3a4a6f3126ad7cdfe026fa08ad709d877c712fa9df39e5dc8d23bf9a4edf2f44",
-      "byteIdentical": true
+      "originalPrefixClaim": "INVALIDATED_FOR_OWNER_EDITED_CURRENT_CHECKPOINT",
+      "currentBindingPath": "docs/validation/retired-review-cleanup-bindings.json"
     },
     "replitChangeAssessment": {
       "olderSha256": "8ec46d0009de9d29bb0bcbb8db9c0c408fc49f6c4a16bfe1bb5d0fa219c2618d",
       "currentSha256": "f2f57f45993342b506af279c91acdc7c6fd0a3fc26f039389c41dd360da15b63",
       "observedChange": "One added run_pnpm.sh cooperative writer-lock instruction.",
-      "gitChangeEvidence": "Commit 087799a changes only replit.md and adds that one line.",
-      "separateOwnerApprovalReceipt": "NOT_FOUND_IN_ASSESSED_INPUTS; commit authorship/message is not treated as owner approval."
+      "gitChangeEvidence": "Commit 087799a changes only replit.md and adds that one line."
     }
   },
   "reusedHistoricalEvidence": {
     "report": {
       "path": "docs/validation/paired-task-orchestration-verification.md",
-      "sha256": "f140c29a51f6e4c8a8189c9148e7e6a464c21eb6c193dc1621802aae174613fe",
-      "bytes": 51392,
-      "use": "Retained the original fixed D1-D4, S1-S6, H1-H3, B1-B5, C1-C4 expectations and unchanged comparative evidence."
+      "use": "Retained the original fixed D1-D4, S1-S6, H1-H3, B1-B5, C1-C4 expectations and unchanged comparative evidence.",
+      "bindingRepresentation": "OWNER_EDITED_REVISION",
+      "currentBinding": {
+        "ledgerPath": "docs/validation/retired-review-cleanup-bindings.json",
+        "path": "docs/validation/paired-task-orchestration-verification.md"
+      },
+      "priorUnchangedClaim": "INVALIDATED_FOR_REVISED_BYTES"
     },
     "evidenceAnnex": {
       "path": "docs/validation/paired-task-orchestration-review-2026-10-08-evidence.json",
-      "sha256": "067f14ce8131e026e1f71bed3ca3f3d38ddff4850b5a622f3f8917ec51459979",
-      "bytes": 566878,
-      "use": "Reused only historical comparisons whose source, archive, plan, reference, and evidence bindings match the current verified inventory."
+      "use": "Reused only historical comparisons whose source, archive, plan, reference, and evidence bindings match the current verified inventory.",
+      "bindingRepresentation": "OWNER_EDITED_REVISION",
+      "currentBinding": {
+        "ledgerPath": "docs/validation/retired-review-cleanup-bindings.json",
+        "path": "docs/validation/paired-task-orchestration-review-2026-10-08-evidence.json"
+      },
+      "priorUnchangedClaim": "INVALIDATED_FOR_REVISED_BYTES"
     },
-    "nonRepeatedComparisons": "The full 18-piece/36-payload comparison was not repeated. Changed current definition, confirmation companion/rule applicability, replit.md, active checkpoint, guard source, and native-linkage evidence were independently re-assessed."
+    "nonRepeatedComparisons": "Unaffected original source/archive/plan/reference comparisons retain their original observation scope/time. No new independent source assessment is claimed."
   },
   "currentIndependentReviewArtifacts": [
     {
@@ -202,9 +229,14 @@
     },
     {
       "path": "docs/validation/paired-native-handoff-current-review.md",
-      "sha256": "cf8d475f8aa68afacb8b035385c282396b891304e0e7d9dfc2a198203767420f",
       "outcome": "BLOCKED",
-      "scope": "Read-only route review; earlier missing-#136-report statement is superseded by the current tracked #136 report inventory."
+      "scope": "Read-only route review; earlier missing-#136-report statement is superseded by the current tracked #136 report inventory.",
+      "bindingRepresentation": "OWNER_EDITED_REVISION",
+      "currentBinding": {
+        "ledgerPath": "docs/validation/retired-review-cleanup-bindings.json",
+        "path": "docs/validation/paired-native-handoff-current-review.md"
+      },
+      "priorUnchangedClaim": "INVALIDATED_FOR_REVISED_BYTES"
     }
   ],
   "missingProspectiveConfirmationDelivery": {
@@ -214,9 +246,13 @@
       "docs/validation/task-plans/paired-retrospective-confirmation.md",
       "docs/validation/paired-retrospective-confirmation-preparation.md"
     ],
-    "pathsPresentInThisReviewerWorkspace": false,
-    "responsibleNextParty": "The publisher responsible for #138's tracked outputs; contributor identity is not returned by the native task interface.",
-    "permittedRecheck": "After an explicitly authorized #142 invocation and delivery to the exact paths above, the #142 reviewer performs one local presence and digest recheck before substantive review. No polling or blind retry."
+    "pathsPresentInThisReviewerWorkspace": true,
+    "responsibleNextParty": "Future reviewer and delivery custodian for separately authorized reviewer-local verification.",
+    "permittedRecheck": "After an explicitly authorized #142 invocation and delivery to the exact paths above, the #142 reviewer performs one local presence and digest recheck before substantive review. No polling or blind retry.",
+    "currentDeliveryObservation": {
+      "date": "2026-10-10",
+      "scope": "Cleanup workspace only; future reviewer-local delivery is not inferred."
+    }
   },
   "nativeRecordReadback": {
     "date": "2026-10-09",
@@ -466,7 +502,9 @@
         }
       ],
       "limit": "Exact targeted candidate reconciliation only; not global uniqueness or exclusion."
-    }
+    },
+    "revisedReadbackPath": "docs/validation/retired-review-cleanup-native-readback.json",
+    "originalBindingsRepresentation": "Dated original observations only; changed current descriptions are independently rebound in the complete revised readback."
   },
   "criterionOutcomeCodes": {
     "D1": "PARTIAL_BLOCKED",
@@ -483,19 +521,40 @@
     "H2": "VERIFIED_DOCUMENTARY_DISTINCTION_ONLY",
     "H3": "VERIFIED_SCOPE_AND_TIME_DISTINCTION",
     "B1": "VERIFIED_NAMED_COOPERATIVE_SNAPSHOT_ONLY",
-    "B2": "PARTIAL_BLOCKED_HISTORICAL_CREATION_RECEIPTS",
+    "B2": "CURRENT_COMPARISONS_RETAINED_NO_NEW_ACCEPTANCE",
     "B3": "VERIFIED_BOUNDED_RECONCILIATION_NOT_GLOBAL",
     "B4": "VERIFIED_REVIEWER_LOCAL_INPUT_BINDINGS",
-    "B5": "PARTIAL_BLOCKED_REPLIT_APPROVAL_PROVENANCE",
+    "B5": "PARTIAL_BLOCKED_CURRENT_FORMAL_CONFIRMATION",
     "C1": "VERIFIED_TRACKED_DOCUMENTARY_PUBLICATION",
     "C2": "VERIFIED_READ_ONLY_BOUNDARY_GUARD_NOT_RUN",
     "C3": "VERIFIED_FAIL_CLOSED_CONTINUATION_BLOCKED",
     "C4": "VERIFIED_REPORTING_COMPLETENESS_AGGREGATE_BLOCKED"
   },
-  "actionsNotPerformed": [
+  "ownerDirectedRevision": {
+    "mode": "SCOPED_REQUIREMENT_REMOVAL",
+    "date": "2026-10-10",
+    "excludedSubcriteria": [
+      "B2-R1",
+      "B5-R1"
+    ],
+    "snapshotRepresentation": "OWNER_EDITED_EXCERPTS",
+    "originalUnchangedClaimsInvalidated": true,
+    "independentAcceptanceGranted": false,
+    "guardStatus": "NOT_RUN",
+    "currentBindingsPath": "docs/validation/retired-review-cleanup-bindings.json",
+    "observationLimits": "Original observation dates and lifecycle metadata remain historical. Edited descriptions are excerpts, not unchanged provider responses. Removal is not a validation result or acceptance."
+  },
+  "originalAssessmentActionsNotPerformed": [
     "No original report, historical evidence, canonical skill, resource, replit.md, checkpoint, or guard source was edited.",
     "No task was created, approved, started, cancelled, or executed.",
     "No guard, import, syntax check, test, build, hook, package command, runtime, store, coordinator, service, CI, deployment, process signal, or Gate validation was run.",
     "No #135 reactivation, FG-02 drafting/execution/advancement, or overall #102 acceptance occurred."
+  ],
+  "cleanupActionsNotPerformed": [
+    "Validation launches",
+    "Task lifecycle/dependency mutations",
+    "New tasks or pairs",
+    "Git history rewriting",
+    "Runtime/store operations"
   ]
 }

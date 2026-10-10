@@ -1,5 +1,7 @@
 # Failure Gate v4 named-series handoff repair report
 
+**Referenced-binding revision — 2026-10-10.** Values recorded here for owner-edited resource artifacts are historical observations only. Current revised bindings are in `retired-review-cleanup-bindings.json`; earlier unchanged-byte/body-equivalence claims do not bind revised artifacts. This notice changes no task authority or acceptance.
+
 ## Result and authorization boundary
 
 **Authoring result:** The series-specific cooperative-snapshot profile, complete replacement plans for the existing `#107` and `#108` reviews, a clause-level amendment overlay, preservation bindings, and an inert regression-source file have been prepared in tracked files.

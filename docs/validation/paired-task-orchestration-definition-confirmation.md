@@ -1,5 +1,7 @@
 # Paired Task Orchestration definition-only confirmation
 
+**Referenced-binding revision — 2026-10-10.** Values recorded here for owner-edited resource artifacts are historical observations only. Current revised bindings are in `retired-review-cleanup-bindings.json`; earlier unchanged-byte/body-equivalence claims do not bind revised artifacts. This notice supplies no renewed independent acceptance.
+
 ## Result and scope
 
 **Result:** The definition-only source acceptance criteria are verified. No gaps

@@ -1,5 +1,7 @@
 # Independently confirm the Paired package and replacement Failure Gate series
 
+**Owner-edited revision — 2026-10-10.** Apply the named-series exclusions `B2-R1` and `B5-R1` in `replit.md`, as identified in `task-plans/remove-retired-review-requirements.md`; all other obligations, including current/future full-payload readbacks, remain required. This is not an unchanged original payload or evidence of acceptance.
+
 <!-- regression-guard: not-applicable -->
 
 ## What & Why

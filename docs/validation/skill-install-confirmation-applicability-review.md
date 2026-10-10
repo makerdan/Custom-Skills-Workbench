@@ -1,5 +1,7 @@
 # Existing-primary confirmation applicability review
 
+**Referenced-binding revision — 2026-10-10.** Values recorded here for owner-edited resource artifacts are historical observations only. Current revised bindings are in `retired-review-cleanup-bindings.json`; earlier unchanged-byte/body-equivalence claims do not bind revised artifacts. This notice changes no canonical criterion or acceptance.
+
 **Current disposition: Scope conflict resolved by a separately owner-authorized, exact-primary read-only evidence exception. Confirmation acceptance remains BLOCKED; no confirmation task write, execution or acceptance is authorized or performed. See the final owner-resolution section. Earlier sections retain their historical evidence and findings.**
 
 ## Owner decision and scope

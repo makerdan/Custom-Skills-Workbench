@@ -12,8 +12,12 @@
   "snapshotBindings": {
     "obligation": {
       "path": "attached_assets/Pasted-These-are-the-steps-to-finish-the-current-handoff-and-p_1791522438711.txt",
-      "utf8Bytes": 2518,
-      "sha256": "0089f77254160bd0e96366ddef0c9681aeffbb24e2a27080d2665c475d38dcc7"
+      "bindingRepresentation": "OWNER_EDITED_REVISION",
+      "currentBinding": {
+        "ledgerPath": "docs/validation/retired-review-cleanup-bindings.json",
+        "path": "attached_assets/Pasted-These-are-the-steps-to-finish-the-current-handoff-and-p_1791522438711.txt"
+      },
+      "priorUnchangedClaim": "INVALIDATED_FOR_REVISED_BYTES"
     },
     "preEdit": {
       "gitHead": "b4785f207f61555352a90844d751e69840b39fb7",
@@ -21,13 +25,13 @@
         "path": "docs/validation/failure-gate-v4-series-checkpoint.md",
         "utf8Bytes": 12174,
         "sha256": "3a4a6f3126ad7cdfe026fa08ad709d877c712fa9df39e5dc8d23bf9a4edf2f44",
-        "preservation": "Entire pre-edit byte sequence remains the delivered checkpoint prefix."
+        "preservation": "Original Git object remains history; delivered prefix identity is INVALIDATED for the owner-edited checkpoint."
       },
       "trackedPlan": {
         "path": "docs/validation/task-plans/task-139-renew-current-resource-handoff-evidence.md",
         "utf8Bytes": 8049,
         "sha256": "d2a1f9d4def59fe1f10809a75ea1121a8b02bbd4cf51e4541fa15d89ec643b8e",
-        "matchesPersistedPlanByteForByte": true
+        "matchesPersistedPlanByteForByte": false
       }
     },
     "delivered": {
@@ -39,9 +43,11 @@
   "currentBindings": [
     {
       "path": "attached_assets/Pasted-These-are-the-steps-to-finish-the-current-handoff-and-p_1791522438711.txt",
-      "utf8Bytes": 2518,
-      "sha256": "0089f77254160bd0e96366ddef0c9681aeffbb24e2a27080d2665c475d38dcc7",
-      "role": "current obligation input"
+      "role": "current obligation input",
+      "bindingRepresentation": "OWNER_EDITED_REVISION",
+      "priorUnchangedClaim": "INVALIDATED_FOR_REVISED_BYTES",
+      "sha256": "2c1ed2a5c470d0621b061c06ae4f2450042e55fe078ead9a1d149852650a3937",
+      "utf8Bytes": 2594
     },
     {
       "path": "attached_assets/failure-gate-v4-piecemeal-task-series_1791259976201.txt",
@@ -57,9 +63,11 @@
     },
     {
       "path": "docs/validation/failure-gate-v4-series-checkpoint.md",
-      "utf8Bytes": 15477,
-      "sha256": "173079c164ac1d285223e98acaec9c48afcb8e4f11c9ce7d220a5050a17c8ff9",
-      "role": "delivered checkpoint with append-only current locator"
+      "role": "delivered checkpoint with append-only current locator",
+      "bindingRepresentation": "OWNER_EDITED_REVISION",
+      "priorUnchangedClaim": "INVALIDATED_FOR_REVISED_BYTES",
+      "sha256": "673fa1483f862dc5370823c70a6c68a915b364e68e9a7c0de82a861624fb205f",
+      "utf8Bytes": 15963
     },
     {
       "path": "docs/validation/failure-gate-v4-series-handoff-policy.md",
@@ -75,27 +83,33 @@
     },
     {
       "path": "docs/validation/paired-task-orchestration-handoff-amendment-manifest.json",
-      "utf8Bytes": 20613,
-      "sha256": "dfc05f062e9eeeb3a2dc3429e42416769b14e00f1b313e1e115fa670d4c95dd5",
+      "utf8Bytes": 27509,
+      "sha256": "6b6e8a006d30a1944594e9665c007db844f766f280cae82d605c03395be52b5b",
       "role": "unchanged earlier amendment manifest and cooperative keys"
     },
     {
       "path": "docs/validation/paired-task-orchestration-verification.md",
-      "utf8Bytes": 51392,
-      "sha256": "f140c29a51f6e4c8a8189c9148e7e6a464c21eb6c193dc1621802aae174613fe",
-      "role": "unchanged dated #119 / #126 resource report"
+      "role": "unchanged dated #119 / #126 resource report",
+      "bindingRepresentation": "OWNER_EDITED_REVISION",
+      "priorUnchangedClaim": "INVALIDATED_FOR_REVISED_BYTES",
+      "sha256": "a336fcdf5c8d488d54d8b08e5bc6cd4e3070cf2d28f998ae82ffecde4e14c5c9",
+      "utf8Bytes": 50910
     },
     {
       "path": "docs/validation/paired-task-orchestration-verification-plan.md",
-      "utf8Bytes": 34043,
-      "sha256": "af09da23dbd98184315f232d223f5eb5a120e444f6a37b9870b75df18cd3702d",
-      "role": "unchanged complete resource review payload"
+      "role": "unchanged complete resource review payload",
+      "bindingRepresentation": "OWNER_EDITED_REVISION",
+      "priorUnchangedClaim": "INVALIDATED_FOR_REVISED_BYTES",
+      "sha256": "946e0987e2b7c1a9c7140a624432a92e6b3f1e4ca7f207482899615aaf97adaa",
+      "utf8Bytes": 34383
     },
     {
       "path": "docs/validation/paired-task-orchestration-definition-confirmation.md",
-      "utf8Bytes": 16230,
-      "sha256": "9128bdb9aaaab1a7b659b095710874386fc61e68436b96d630060c351a94bc03",
-      "role": "unchanged historical #116 definition report"
+      "role": "unchanged historical #116 definition report",
+      "bindingRepresentation": "OWNER_EDITED_REVISION",
+      "priorUnchangedClaim": "INVALIDATED_FOR_REVISED_BYTES",
+      "sha256": "c78f42534f713c9e3b1ef7fcb9fa92ade3055ad0723cd893b67e5bdb1ed2a236",
+      "utf8Bytes": 16576
     },
     {
       "path": "docs/validation/paired-planner-staging-amendment.md",
@@ -117,9 +131,11 @@
     },
     {
       "path": "docs/validation/paired-task-orchestration-handoff-repair.md",
-      "utf8Bytes": 13435,
-      "sha256": "3fdfd9e12dc8eb8038d325297c153c90c94dc457c253940eb384d2693de01d3a",
-      "role": "historical authorization and overlay rationale"
+      "role": "historical authorization and overlay rationale",
+      "bindingRepresentation": "OWNER_EDITED_REVISION",
+      "priorUnchangedClaim": "INVALIDATED_FOR_REVISED_BYTES",
+      "sha256": "38b4b910deda9bffd1d9e941cfbd7b23de693eccc30a249630ba57d1bcbdc799",
+      "utf8Bytes": 13778
     },
     {
       "path": "docs/validation/skill-install-confirmation-source-delivery.md",
@@ -129,15 +145,19 @@
     },
     {
       "path": "docs/validation/skill-install-confirmation-applicability-review.md",
-      "utf8Bytes": 27345,
-      "sha256": "a680d9ac884cc58b049bc085ad6d1c2e132a34e4ef3f2eb6c6cb7654b183ee0c",
-      "role": "exact-primary owner decision and blocked applicability evidence"
+      "role": "exact-primary owner decision and blocked applicability evidence",
+      "bindingRepresentation": "OWNER_EDITED_REVISION",
+      "priorUnchangedClaim": "INVALIDATED_FOR_REVISED_BYTES",
+      "sha256": "dadeaf8dd69708614a1e467264367c59e94dd5dfb14998ea6fcdc90dc7034be0",
+      "utf8Bytes": 27693
     },
     {
       "path": "docs/validation/paired-task-orchestration-review-2026-10-08-evidence.json",
-      "utf8Bytes": 566878,
-      "sha256": "067f14ce8131e026e1f71bed3ca3f3d38ddff4850b5a622f3f8917ec51459979",
-      "role": "unchanged #126 source and resource evidence"
+      "role": "unchanged #126 source and resource evidence",
+      "bindingRepresentation": "OWNER_EDITED_REVISION",
+      "priorUnchangedClaim": "INVALIDATED_FOR_REVISED_BYTES",
+      "sha256": "8099e83c6a042155f1ecbad009df8adb15d9aaf962ba7cf296494c40b6c7bd8c",
+      "utf8Bytes": 572146
     },
     {
       "path": "docs/validation/paired-task-orchestration-native-readback.json",
@@ -153,15 +173,19 @@
     },
     {
       "path": "docs/validation/paired-native-handoff-current-review.md",
-      "utf8Bytes": 27018,
-      "sha256": "cf8d475f8aa68afacb8b035385c282396b891304e0e7d9dfc2a198203767420f",
-      "role": "bounded current native-route review"
+      "role": "bounded current native-route review",
+      "bindingRepresentation": "OWNER_EDITED_REVISION",
+      "priorUnchangedClaim": "INVALIDATED_FOR_REVISED_BYTES",
+      "sha256": "9d1e16955e818d864d80ac1d6fa3ba6cf1b3652852cac3be3baadac5c27613d3",
+      "utf8Bytes": 27286
     },
     {
       "path": "docs/validation/paired-native-handoff-current-readback-annex.json",
-      "utf8Bytes": 477791,
-      "sha256": "a4909eb091aac73845702c599506bc8d7a6a4eb9448871e891f8bd09e66f64b8",
-      "role": "complete relevant native records and final readback at 2026-10-09T12:04:08.102Z"
+      "role": "complete relevant native records and final readback at 2026-10-09T12:04:08.102Z",
+      "bindingRepresentation": "OWNER_EDITED_REVISION",
+      "priorUnchangedClaim": "INVALIDATED_FOR_REVISED_BYTES",
+      "sha256": "ae13b5280c9a80b7390f137d39179a3542e8d74973be084d7a07698edd1d2b70",
+      "utf8Bytes": 481883
     },
     {
       "path": "docs/validation/task-plans/fg-02-g02-i.md",
@@ -207,8 +231,8 @@
     },
     {
       "path": ".agents/skills/skill-install-confirmation/SKILL.md",
-      "utf8Bytes": 14615,
-      "sha256": "6d2a1a38a19092fe74982ab8610accdf4804d3c3a95d7a4e71e987c3b4eb02a6",
+      "utf8Bytes": 15816,
+      "sha256": "a613efe2bea3476b8770b665dd9f0b0b440a320f5aae627a79a815ea6cf6b82a",
       "role": "current owner-authorized confirmation rule"
     },
     {
@@ -243,27 +267,60 @@
     },
     {
       "path": "replit.md",
-      "utf8Bytes": 3930,
-      "sha256": "f2f57f45993342b506af279c91acdc7c6fd0a3fc26f039389c41dd360da15b63",
-      "role": "current collaborator guidance; unchanged by this task"
+      "role": "current collaborator guidance; unchanged by this task",
+      "bindingRepresentation": "OWNER_EDITED_REVISION",
+      "priorUnchangedClaim": "INVALIDATED_FOR_REVISED_BYTES",
+      "sha256": "b1aa215ec3fee6152e93762b2511bd5dcc8a844a082f038da831394ebc7c405d",
+      "utf8Bytes": 4397
     },
     {
       "path": "docs/validation/task-plans/task-139-renew-current-resource-handoff-evidence.md",
-      "utf8Bytes": 8049,
-      "sha256": "d2a1f9d4def59fe1f10809a75ea1121a8b02bbd4cf51e4541fa15d89ec643b8e",
-      "role": "tracked authoritative task plan copy"
+      "role": "tracked authoritative task plan copy",
+      "bindingRepresentation": "OWNER_EDITED_REVISION",
+      "priorUnchangedClaim": "INVALIDATED_FOR_REVISED_BYTES",
+      "sha256": "d535edc7950d2a4d3962d68acb03fe016cd7da2d9e144aa9d44f98f9c2820747",
+      "utf8Bytes": 7982
     },
     {
       "path": "docs/validation/paired-current-handoff-renewal.md",
-      "utf8Bytes": 15971,
-      "sha256": "fa1deb76c3b6e759d2b63c1583fe8c10a52a7030f8a91e3987030f539a96e44f",
-      "role": "current documentary renewal; pending independent acceptance"
+      "role": "current documentary renewal; pending independent acceptance",
+      "bindingRepresentation": "OWNER_EDITED_REVISION",
+      "priorUnchangedClaim": "INVALIDATED_FOR_REVISED_BYTES",
+      "sha256": "da4ca1251f4cf8efce4bfddbd4212f62dd46cb99e95594ae013d42060f7eae42",
+      "utf8Bytes": 15064
     },
     {
       "path": "scripts/test/paired-current-handoff-source.test.mjs",
-      "utf8Bytes": 6741,
-      "sha256": "c73c1db21b4bb304796a20b4a7ec0327bb8bf9f25f33d493f6ad58d43d7dcd88",
-      "role": "inert source guard; not run"
+      "role": "inert source guard; not run",
+      "bindingRepresentation": "OWNER_EDITED_REVISION",
+      "priorUnchangedClaim": "INVALIDATED_FOR_REVISED_BYTES",
+      "sha256": "d3f31e1e5de1bd96499d4f9f12660238555d11ebc43d22f9a45242a3a2a86cd8",
+      "utf8Bytes": 13012
+    },
+    {
+      "path": "docs/validation/task-plans/remove-retired-review-requirements.md",
+      "role": "Owner-directed revision input or preserved delivered prospective source; not acceptance.",
+      "sha256": "075c0d6671e7b18e399f73fe39b297e78b0f7bd49e9adf3452460d3e85929c01",
+      "utf8Bytes": 10074
+    },
+    {
+      "path": "docs/validation/retired-review-cleanup-native-readback.json",
+      "role": "Owner-directed revision input or preserved delivered prospective source; not acceptance.",
+      "sha256": "a1fedb93cbc2de8ba6b9b0229fc504501dfdebea442eef1cb6f5ef4c4db64649",
+      "utf8Bytes": 72003
+    },
+    {
+      "path": "docs/validation/task-plans/paired-retrospective-confirmation.md",
+      "role": "Owner-directed revision input or preserved delivered prospective source; not acceptance.",
+      "sha256": "fd5cd6e5de98e39b0fd61e8db1e69bf77df116258e08ce061a0a5d2691c3bc1a",
+      "utf8Bytes": 26814
+    },
+    {
+      "path": "docs/validation/paired-retrospective-confirmation-preparation.md",
+      "role": "Owner-directed revision input or preserved delivered prospective source; not acceptance.",
+      "sha256": "07b43760bd4f2a4c0054dfbe420db458a20f59bed05941f7a8c375a96966e89c",
+      "utf8Bytes": 17432,
+      "bindingRepresentation": "OWNER_EDITED_REVISION"
     }
   ],
   "historicalBindings": [
@@ -326,7 +383,7 @@
       "source": "pre-edit Git snapshot b4785f207f61555352a90844d751e69840b39fb7",
       "utf8Bytes": 12174,
       "sha256": "3a4a6f3126ad7cdfe026fa08ad709d877c712fa9df39e5dc8d23bf9a4edf2f44",
-      "preservedAsDeliveredPrefix": true
+      "preservedAsDeliveredPrefix": false
     },
     {
       "path": "docs/validation/paired-task-orchestration-manifest.json",
@@ -342,12 +399,14 @@
     },
     {
       "path": "docs/validation/paired-task-orchestration-verification.md",
-      "classification": "historical_immutable",
-      "utf8Bytes": 51392,
-      "sha256": "f140c29a51f6e4c8a8189c9148e7e6a464c21eb6c193dc1621802aae174613fe",
-      "retainedReportPrefix": {
-        "bytes": 20208,
-        "sha256": "ef4cff3b68d8b17e4d4f6d960429d8d604b49e3bc8b1121266d48e5b3636f72f"
+      "classification": "owner_edited_revision",
+      "utf8Bytes": 50910,
+      "sha256": "a336fcdf5c8d488d54d8b08e5bc6cd4e3070cf2d28f998ae82ffecde4e14c5c9",
+      "originalHistoricalBinding": {
+        "utf8Bytes": 51392,
+        "sha256": "f140c29a51f6e4c8a8189c9148e7e6a464c21eb6c193dc1621802aae174613fe",
+        "representation": "PRIOR_OBSERVATION_NOT_CURRENT_BYTES",
+        "gitLocator": "54cb53606d2c2cf79a5e5be2aac9064d6261ea5a:docs/validation/paired-task-orchestration-verification.md"
       }
     },
     {
@@ -362,7 +421,9 @@
       "classification": "historical_immutable",
       "utf8Bytes": 16230,
       "sha256": "9128bdb9aaaab1a7b659b095710874386fc61e68436b96d630060c351a94bc03",
-      "scope": "#116 older Paired definition"
+      "scope": "#116 older Paired definition",
+      "gitLocator": "54cb53606d2c2cf79a5e5be2aac9064d6261ea5a:docs/validation/paired-task-orchestration-definition-confirmation.md",
+      "representation": "IMMUTABLE_GIT_OBJECT_NOT_CURRENT_DELIVERED_FILE"
     }
   ],
   "changedSourceLedger": [
@@ -405,11 +466,15 @@
         "sha256": "8ec46d5583f215fbc46b7be3cb02d2b1d45276b343b48c539ecc616473e3e3bd"
       },
       "current": {
-        "utf8Bytes": 3930,
-        "sha256": "f2f57f45993342b506af279c91acdc7c6fd0a3fc26f039389c41dd360da15b63"
+        "bindingRepresentation": "OWNER_EDITED_REVISION",
+        "currentBinding": {
+          "ledgerPath": "docs/validation/retired-review-cleanup-bindings.json",
+          "path": "replit.md"
+        },
+        "priorUnchangedClaim": "INVALIDATED_FOR_REVISED_BYTES"
       },
       "recordedReason": "Commit 087799a adds the cooperative scripts/failure_gate/run_pnpm.sh writer-lock instruction and documents uncovered install writers.",
-      "evidenceImpact": "Rebind only; no policy text was edited. No separate owner-approval receipt for this instruction was found in the bounded evidence."
+      "evidenceImpact": "Current source/baseline binding reconciled. Writer-lock instruction retained; series-specific scoped exclusions create no policy grant or acceptance."
     }
   ],
   "nativeEvidence": {
@@ -426,113 +491,175 @@
       },
       "#107": {
         "state": "CANCELLED",
-        "dependsOn": ["#106"],
+        "dependsOn": [
+          "#106"
+        ],
         "descriptionUtf8Bytes": 12385,
         "descriptionSha256": "60f7ec6e83d96399d1826bbcd4672cae01efb5ce6c242dd1879e5273fd0f0c5c"
       },
       "#108": {
         "state": "CANCELLED",
-        "dependsOn": ["#106"],
+        "dependsOn": [
+          "#106"
+        ],
         "descriptionUtf8Bytes": 34043,
         "descriptionSha256": "af09da23dbd98184315f232d223f5eb5a120e444f6a37b9870b75df18cd3702d"
       },
       "#116": {
         "state": "MERGED",
-        "dependsOn": ["#109", "#106", "#102"],
+        "dependsOn": [
+          "#109",
+          "#106",
+          "#102"
+        ],
         "descriptionUtf8Bytes": 17777,
         "descriptionSha256": "90e48811e5c2922ca10e2db47ece06e965f9a15e0bf21fe6a394386ab99f3ee6"
       },
       "#119": {
         "state": "MERGED",
-        "dependsOn": ["#116"],
+        "dependsOn": [
+          "#116"
+        ],
         "descriptionUtf8Bytes": 1796,
         "descriptionSha256": "686afe0b454f0d99a00acecc7bbdfaba11595d9a178d6b3c438b8e0fc8d1f97e"
       },
       "#121": {
         "state": "MERGED",
-        "dependsOn": ["#120"],
+        "dependsOn": [
+          "#120"
+        ],
         "descriptionUtf8Bytes": 2953,
         "descriptionSha256": "70411ae6f9787814418fb8abbae09890671e00e7756a63e0bc3bb2a360f0572d",
         "independentReportDisposition": "BLOCKED"
       },
       "#122": {
         "state": "PROPOSED",
-        "dependsOn": ["#119"],
+        "dependsOn": [
+          "#119"
+        ],
         "descriptionUtf8Bytes": 1564,
         "descriptionSha256": "00d89d052cdf1a72131b5fba65563cbb2208ba95a8bcf422e3c1e87e056bd20c",
         "scope": "Existing #119 historical native correction; do not duplicate or close."
       },
       "#126": {
         "state": "MERGED",
-        "dependsOn": ["#109", "#106", "#102"],
+        "dependsOn": [
+          "#109",
+          "#106",
+          "#102"
+        ],
         "descriptionUtf8Bytes": 43199,
         "descriptionSha256": "1c1b214466332e3d9a08535ee11c7041affa5f4215e4214ffcc297206fdcb4f4",
         "reportDisposition": "PARTIAL / BLOCKED",
         "currentPayloadKeyAndDependencies": "CORRECT",
-        "historicalCreationReceipts": "UNAVAILABLE"
+        "bindingRepresentation": "PRIOR_NATIVE_DESCRIPTION_OBSERVATION; superseded for current delivery by complete revised readback",
+        "currentNativeBindingPath": "docs/validation/retired-review-cleanup-native-readback.json"
       },
       "#132": {
         "state": "MERGED",
-        "dependsOn": ["#123"],
+        "dependsOn": [
+          "#123"
+        ],
         "descriptionUtf8Bytes": 1291,
         "descriptionSha256": "f3b57448e781f2a69e4424c478776b46af04b3b1dcd4bf808317eb934f521bdf"
       },
       "#133": {
         "state": "MERGED",
-        "dependsOn": ["#123"],
+        "dependsOn": [
+          "#123"
+        ],
         "descriptionUtf8Bytes": 2079,
         "descriptionSha256": "71fa322f3885064ce4a330cba946b48ddffe457b363a3ab0460dc2020f40b389"
       },
       "#134": {
         "state": "MERGED",
-        "dependsOn": ["#133"],
+        "dependsOn": [
+          "#133"
+        ],
         "descriptionUtf8Bytes": 1538,
         "descriptionSha256": "9d38adc666318bdc12628ca5e47ac107e568f9f844f08d8cc5a02fefaf34132c"
       },
       "#136": {
         "state": "IMPLEMENTED",
-        "dependsOn": ["#134", "#132"],
+        "dependsOn": [
+          "#134",
+          "#132"
+        ],
         "descriptionUtf8Bytes": 6227,
         "descriptionSha256": "655fd608c400d7fb52521aece4e3514dda04332f789422046d7ea138f73f5c76",
         "artifactStatus": "Required report and bound manifest not present in #137 inspected checkout."
       },
       "#137": {
         "state": "IN_PROGRESS",
-        "dependsOn": ["#134", "#126", "#121"],
+        "dependsOn": [
+          "#134",
+          "#126",
+          "#121"
+        ],
         "descriptionUtf8Bytes": 6450,
-        "descriptionSha256": "2301b8f9542bf0a49964e6a34d1e45989c6a5fdfe78f55165db54d730824eb38"
+        "descriptionSha256": "2301b8f9542bf0a49964e6a34d1e45989c6a5fdfe78f55165db54d730824eb38",
+        "bindingRepresentation": "PRIOR_NATIVE_DESCRIPTION_OBSERVATION; superseded for current delivery by complete revised readback",
+        "currentNativeBindingPath": "docs/validation/retired-review-cleanup-native-readback.json"
       },
       "#138": {
         "state": "PENDING",
-        "dependsOn": ["#137", "#136"],
+        "dependsOn": [
+          "#137",
+          "#136"
+        ],
         "descriptionUtf8Bytes": 10306,
         "descriptionSha256": "c4aef27f68b318a81ecf6fc14c272cbb05cc1aa719325ba4063cf355aa6a481c"
       },
       "#139": {
         "stateAtSnapshot": "PENDING",
-        "dependsOn": ["#134", "#126", "#137"],
+        "dependsOn": [
+          "#134",
+          "#126",
+          "#137"
+        ],
         "descriptionUtf8Bytes": 7994,
-        "descriptionSha256": "5917f933878d46465f498096577832853294344087478340d4a5e5845d34c8d5"
+        "descriptionSha256": "5917f933878d46465f498096577832853294344087478340d4a5e5845d34c8d5",
+        "bindingRepresentation": "PRIOR_NATIVE_DESCRIPTION_OBSERVATION; superseded for current delivery by complete revised readback",
+        "currentNativeBindingPath": "docs/validation/retired-review-cleanup-native-readback.json"
       },
       "#140": {
         "stateAtSnapshot": "PENDING",
-        "dependsOn": ["#126", "#137", "#139", "#136"],
+        "dependsOn": [
+          "#126",
+          "#137",
+          "#139",
+          "#136"
+        ],
         "descriptionUtf8Bytes": 8091,
-        "descriptionSha256": "c04eeb2173cc165478d20ea3ad6ff457b8d1e30f8ec0ad0bdffdc12637508a4f"
+        "descriptionSha256": "c04eeb2173cc165478d20ea3ad6ff457b8d1e30f8ec0ad0bdffdc12637508a4f",
+        "bindingRepresentation": "PRIOR_NATIVE_DESCRIPTION_OBSERVATION; superseded for current delivery by complete revised readback",
+        "currentNativeBindingPath": "docs/validation/retired-review-cleanup-native-readback.json"
       }
-    }
+    },
+    "revisedNativeReadbackPath": "docs/validation/retired-review-cleanup-native-readback.json"
   },
   "permissionLineage": [
     {
-      "refs": ["#120", "#121"],
+      "refs": [
+        "#120",
+        "#121"
+      ],
       "boundary": "The exact current Paired planner-staging insertion was authorized and independently source-compared; the independent report remains BLOCKED for dependent confirmation acceptance."
     },
     {
-      "refs": ["#132", "#133", "#134"],
+      "refs": [
+        "#132",
+        "#133",
+        "#134"
+      ],
       "boundary": "Reuse the title-rule source repair, narrow existing-primary route, and exact-#102 evidence/scope resolution without asking again. All original criteria remain unchanged; these decisions are not task-write, execution, Gate, or acceptance authority."
     },
     {
-      "refs": ["#126", "#139", "#140"],
+      "refs": [
+        "#126",
+        "#139",
+        "#140"
+      ],
       "boundary": "The #126 current binding is retained; #139 is this documentary repair; #140 owns independent post-repair resource acceptance."
     }
   ],
@@ -542,7 +669,7 @@
       "D2": "BLOCKED_FORMAL_DEFINITION_CONFIRMATION",
       "D3": "PARTIAL_BLOCKED_CURRENT_COMPANION_APPLICABILITY",
       "D4": "PARTIAL_BLOCKED_KEEP_SEPARATE_OBLIGATIONS",
-      "B2": "PARTIAL_BLOCKED_HISTORICAL_CREATION_RECEIPTS_UNAVAILABLE",
+      "B2": "CURRENT_COMPARISONS_RETAINED_NO_NEW_ACCEPTANCE",
       "B5": "PARTIAL_BLOCKED_REBIND_CHANGED_SOURCES",
       "C1": "DOCUMENTARY_RENEWAL_COMPLETE_ACCEPTANCE_PENDING",
       "C4": "PENDING_INDEPENDENT_RESOURCE_REVALIDATION"
@@ -570,25 +697,15 @@
     "localGateGrant": "NONE",
     "providerFinalization": "NOT_ESTABLISHED",
     "writerExclusion": "NOT_CLAIMED",
-    "replitPolicyEdited": false,
-    "nativeTaskWrites": false,
+    "replitPolicyEdited": true,
+    "nativeTaskWrites": true,
     "sourceArchiveOrSeriesPayloadEdits": false
   },
   "unavailableEvidenceAndOwners": [
     {
-      "evidence": "Immediate pre/post-creation #102 full reads and original draft-only #126 creation receipt.",
-      "owner": "Task integration/provider owner",
-      "disposition": "UNAVAILABLE_NOT_RECONSTRUCTED"
-    },
-    {
       "evidence": "docs/validation/skill-install-confirmation-current-independent-review.md and its bound manifest, absent from the #137 inspected checkout.",
       "owner": "Confirmation reviewer and source/workspace delivery custodian",
       "disposition": "NOT_ACCEPTED_FROM_TASK_STATUS"
-    },
-    {
-      "evidence": "Separate authorization record for the changed replit.md instruction beyond commit 087799a's stated cooperative writer-lock reason.",
-      "owner": "Workspace/document owner",
-      "disposition": "NOT_FOUND_IN_BOUNDED_INPUTS"
     },
     {
       "evidence": "Current source-stage decision, finite accounting, independent supervision, authoritative governance state, and historical allowance reconciliation.",
@@ -621,5 +738,32 @@
       "Digest drift, missing evidence, current/historical mislabeling, and acceptance based only on native task status are rejected."
     ],
     "sideEffects": "None; source/document reads and deterministic fixtures only."
-  }
+  },
+  "ownerDirectedRevision": {
+    "mode": "SCOPED_REQUIREMENT_REMOVAL",
+    "date": "2026-10-10",
+    "excludedSubcriteria": [
+      "B2-R1",
+      "B5-R1"
+    ],
+    "snapshotRepresentation": "OWNER_EDITED_EXCERPTS",
+    "originalUnchangedClaimsInvalidated": true,
+    "independentAcceptanceGranted": false,
+    "guardStatus": "NOT_RUN",
+    "currentBindingsPath": "docs/validation/retired-review-cleanup-bindings.json",
+    "observationLimits": "Original observation dates and lifecycle metadata remain historical. Edited descriptions are excerpts, not unchanged provider responses. Removal is not a validation result or acceptance.",
+    "nativeChanges": "Only supported description/title edits; no lifecycle or dependency mutations, task creation or pair creation."
+  },
+  "retiredSubcriteria": [
+    {
+      "id": "B2-R1",
+      "status": "EXCLUDED",
+      "contributesBlocker": false
+    },
+    {
+      "id": "B5-R1",
+      "status": "EXCLUDED",
+      "contributesBlocker": false
+    }
+  ]
 }

@@ -1,5 +1,7 @@
 # Task #140: Independently Accept Renewed Handoff Evidence
 
+<!-- owner-edited revision: scoped subcriterion removal; not an original provider response -->
+
 # Accept Renewed Handoff Evidence
 
 <!-- regression-guard: not-applicable -->
@@ -10,7 +12,7 @@ Provide genuinely independent post-repair resource/plan acceptance and distingui
 ## Done looks like
 - A reviewer distinct from the documentary repair and rule authors inventories actual delivered inputs in its own workspace before review and publishes docs/validation/paired-current-resource-acceptance.md plus a bound evidence annex. Resource acceptance may complete independently of formal definition confirmation; do not require the future confirmation to pass before supplying its resource evidence.
 - Retain all original #126 matrix rows D1-D4, S1-S6, H1-H3, B1-B5, C1-C4 with fixed expected results and current criterion-level outcomes. Reuse unchanged comparisons only after proving matching input/provenance bindings; independently reassess changed current-source/reference bindings, companion/rule applicability, replit.md, active checkpoint, guard-source assertions and native-linkage evidence. Do not repeat the entire 18-piece comparison solely for confidence.
-- Independently inspect the repaired publication and the inert guard source, original gap list, authority/correction boundary, complete actual records and post-repair input bindings. Source review does not execute the guard or prove host behavior, final-writer exclusion or Gate validation. Historical creation receipts that remain required and unavailable keep the affected criteria blocked.
+- Independently inspect the repaired publication and the inert guard source, applicable gap list, authority/correction boundary, complete actual records and post-repair input bindings. Source review does not execute the guard or prove host behavior, final-writer exclusion or Gate validation.
 - Publish a clearly scoped resource/plan acceptance or honest failed/blocked outcome, with exact allowed negative findings, raw evidence and responsible next actions. Preserve old report bytes and dated assessments; never label #126's former aggregate result or cancelled #135 as accepted.
 - Separately publish docs/validation/paired-current-handoff-status.md mapping all six original #102 criteria and the #120/#121 amendment obligation to their actual independent evidence. Before any overall accepted disposition, require the actual properly bound retrospective confirmation report from a separately approved confirmer, current formal amendment confirmation evidence where applicable, and independent resource/plan acceptance. Inspect authentic report delivery; a title/card/merge or a draft plan is insufficient.
 - If the confirmation is only drafted or not delivered yet, finish and deliver the resource-scope assessment with overall handoff explicitly pending/blocked and the actual next approval/recheck action. This task must not stay unmerged merely to await confirmation, because its resource report is needed by that confirmer. A later specifically authorized invocation may renew only the aggregate status after authentic current confirmation evidence arrives.

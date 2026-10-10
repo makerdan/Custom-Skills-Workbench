@@ -1,3 +1,5 @@
+Owner-edited excerpt — 2026-10-10. Scoped series subcriteria B2-R1 and B5-R1 are excluded; current/future linkage and draft-safety controls remain intact. This is not a verbatim original attachment.
+
 [REGRESSION-GUARD] Classification: not-applicable. Guard: self-satisfying.
 
 Creation-time dependency amendment: replacement resource-and-plan review
@@ -13,7 +15,7 @@ Set the new task's real dependency list to exactly ["#102", "#106", "#109"] when
 #109 — Repair the Failure Gate series handoff and prepare existing review amendments: the repair-delivery prerequisite.
 These must be actual task links, not just prose in the description. Do not depend on cancelled #107 or #108. Do not add a dependency on the definition-only replacement: preserve the approved separate review scopes and existing prerequisite set. Its independent definition-confirmation evidence remains required for applicable acceptance and continuation, not silently waived by this dependency list.
 
-Read #102 in full immediately before and after creation and confirm its owner-pinned description is unchanged: 11,539 UTF-8 bytes; SHA-256 6b2a457b2d3cbe1ffc06e3edb6ce0efa3cc1e579637297ead8b1660ed853cd06. Use only the already authorized series-specific cooperative snapshot route; do not claim provider finalization or atomic exclusion.
+Before substantive review and report acceptance, read the full current #102 and #126 descriptions and compare the owner-pinned primary binding: 11,539 UTF-8 bytes; SHA-256 6b2a457b2d3cbe1ffc06e3edb6ce0efa3cc1e579637297ead8b1660ed853cd06. Use only the already authorized series-specific cooperative snapshot route; do not claim provider finalization or atomic exclusion.
 
 Reconcile matching exact and applicable legacy review bindings before creation. The archived #108 is the authorized predecessor, not evidence that the review passed and not a new active duplicate. The separately scoped replacement for #107 is not a duplicate of this resource/plan review. If an eligible #108 replacement already exists with this full scope and correct dependencies, read it back and reuse it; if lineage or write outcome is ambiguous, stop for bounded authoritative reconciliation rather than blindly creating another task.
 

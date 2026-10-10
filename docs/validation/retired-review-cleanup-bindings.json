@@ -1,0 +1,339 @@
+{
+  "schema": "owner-directed-resource-revision-bindings-v1",
+  "date": "2026-10-10",
+  "mode": "SCOPED_REQUIREMENT_REMOVAL",
+  "authoritativePlanPath": "docs/validation/task-plans/remove-retired-review-requirements.md",
+  "excludedSubcriteria": [
+    "B2-R1",
+    "B5-R1"
+  ],
+  "guardStatus": "NOT_RUN",
+  "independentAcceptanceGranted": false,
+  "automaticAdvancement": false,
+  "localGateGrant": "NONE",
+  "method": "Bounded source/document byte-count and SHA-256 inspection; no project imports, tests, builds, Gate/store operations, hooks, runtime, CI or deployment.",
+  "originalBindingPolicy": "Prior values for revised paths are historical observations only. Claims of unchanged editable bytes, retained prefixes and original-provider snapshot identity are invalidated for edited artifacts. Immutable Git objects retain their history; nothing is rewritten.",
+  "dependencyPolicy": "Revised data consumers use this external path locator without embedding its digest. The manifest binds leaf inputs; the assessment evidence binds the manifest. This ledger binds all consumers and does not bind itself. No self-referential digest cycle.",
+  "nativeReadbackPath": "docs/validation/retired-review-cleanup-native-readback.json",
+  "nativeEditCoverage": [
+    "#126",
+    "#137",
+    "#139",
+    "#140",
+    "#144",
+    "#145"
+  ],
+  "inaccessibleSurfaces": [
+    "Past platform conversations",
+    "Immutable Git history",
+    "Platform-owned internal task/plan revisions not exposed by the supported edit interface"
+  ],
+  "records": [
+    {
+      "path": ".agents/skills/paired-task-orchestration/SKILL.md",
+      "sha256": "1060bbef83e521a9f591d62e52caf2d3e97cb5d23f904b6a939051ea02708456",
+      "utf8Bytes": 18258,
+      "representation": "UNCHANGED_INPUT_RETAINED"
+    },
+    {
+      "path": ".agents/skills/paired-task-orchestration/references/acceptance-and-confirmation.md",
+      "sha256": "c83bb5977a42866b67bb7c029ca16512df23c4fd7da2aae04884ce3b4f39db3c",
+      "utf8Bytes": 7200,
+      "representation": "UNCHANGED_INPUT_RETAINED"
+    },
+    {
+      "path": ".agents/skills/paired-task-orchestration/references/host-hook-contract.md",
+      "sha256": "7b9fe6dfaf0290450e4f1ffdeefcf1b58158fc8546628e643ea1351d3da2f43e",
+      "utf8Bytes": 8642,
+      "representation": "UNCHANGED_INPUT_RETAINED"
+    },
+    {
+      "path": ".agents/skills/paired-task-orchestration/references/series-state-and-handoff.md",
+      "sha256": "e0fb9d7e2e2e80c7c7f2b36c2356aceda09f10f56118255392cda97899fb5b3c",
+      "utf8Bytes": 10535,
+      "representation": "UNCHANGED_INPUT_RETAINED"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/SKILL.md",
+      "sha256": "49e3db86b0f5b8c7efba871d7404c40336cb3caf544427a429065b1088f6586f",
+      "utf8Bytes": 23381,
+      "representation": "UNCHANGED_INPUT_RETAINED"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/references/delivery-reconciliation.md",
+      "sha256": "fd908bd54a3d2db4d25cc6a3f2e6fbdfece0e9276a28e02db48d5dcfdfa3f3ca",
+      "utf8Bytes": 11454,
+      "representation": "UNCHANGED_INPUT_RETAINED"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/references/handoff-binding-and-recovery.md",
+      "sha256": "7e95d74645e0c1184b2ae24488ffd5936237fb6fc1d9596734a3e57bb1fe0ff5",
+      "utf8Bytes": 13829,
+      "representation": "UNCHANGED_INPUT_RETAINED"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/references/installation-verification-plan.md",
+      "sha256": "99bc98079967ed47f8f524c187b9823fc99dddca55d4b61a9220dcbb5b3f8cb9",
+      "utf8Bytes": 23323,
+      "representation": "UNCHANGED_INPUT_RETAINED"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/references/router-task-handoff-acceptance.md",
+      "sha256": "811bc5201d5067a4dc09d74c73880c4798f3407d7955182a923c95b3b897c849",
+      "utf8Bytes": 16089,
+      "representation": "UNCHANGED_INPUT_RETAINED"
+    },
+    {
+      "path": ".agents/skills/skill-install-confirmation/SKILL.md",
+      "sha256": "a613efe2bea3476b8770b665dd9f0b0b440a320f5aae627a79a815ea6cf6b82a",
+      "utf8Bytes": 15816,
+      "representation": "UNCHANGED_INPUT_RETAINED"
+    },
+    {
+      "path": "attached_assets/Pasted--REGRESSION-GUARD-Classification-not-applicable-Guard-s_1791407249689.txt",
+      "sha256": "827f83be1c45008872bb1f2c52b940e977b7217b38f755cad8bd985c2091d152",
+      "utf8Bytes": 39951,
+      "representation": "OWNER_EDITED_REVISION"
+    },
+    {
+      "path": "attached_assets/Pasted-These-are-the-steps-to-finish-the-current-handoff-and-p_1791522438711.txt",
+      "sha256": "2c1ed2a5c470d0621b061c06ae4f2450042e55fe078ead9a1d149852650a3937",
+      "utf8Bytes": 2594,
+      "representation": "OWNER_EDITED_REVISION"
+    },
+    {
+      "path": "attached_assets/failure-gate-v4-piecemeal-task-series_1791259976201.txt",
+      "sha256": "7bd8aadd6007ed7c01f118d6cbb83d70ea52d79cecfc6eaafc2234ee869eb026",
+      "utf8Bytes": 59658,
+      "representation": "UNCHANGED_INPUT_RETAINED"
+    },
+    {
+      "path": "docs/validation/failure-gate-v4-series-checkpoint.md",
+      "sha256": "673fa1483f862dc5370823c70a6c68a915b364e68e9a7c0de82a861624fb205f",
+      "utf8Bytes": 15963,
+      "representation": "OWNER_EDITED_REVISION"
+    },
+    {
+      "path": "docs/validation/failure-gate-v4-series-handoff-policy.md",
+      "sha256": "5ba6bbc5cf3a9106ed6d4ed2cbacca80fc20b95a3d2fa43ceec5bbe91c3d4228",
+      "utf8Bytes": 13129,
+      "representation": "UNCHANGED_INPUT_RETAINED"
+    },
+    {
+      "path": "docs/validation/failure-gate-v4-task-series.md",
+      "sha256": "e675b914aff0909113d9994fba71d4a548b7c2f4a976e0b40dfd45c7491b828f",
+      "utf8Bytes": 464209,
+      "representation": "UNCHANGED_INPUT_RETAINED"
+    },
+    {
+      "path": "docs/validation/paired-current-handoff-manifest.json",
+      "sha256": "944b3451a5cc283da753ceb0ae957fabba1415b058b294581c096c27d52e078c",
+      "utf8Bytes": 33249,
+      "representation": "OWNER_EDITED_REVISION"
+    },
+    {
+      "path": "docs/validation/paired-current-handoff-renewal.md",
+      "sha256": "da4ca1251f4cf8efce4bfddbd4212f62dd46cb99e95594ae013d42060f7eae42",
+      "utf8Bytes": 15064,
+      "representation": "OWNER_EDITED_REVISION"
+    },
+    {
+      "path": "docs/validation/paired-current-handoff-status.md",
+      "sha256": "076c93a1f46869db04a349a589a451bc90b3fa5173491947ff417ffd2d330e46",
+      "utf8Bytes": 8323,
+      "representation": "OWNER_EDITED_REVISION"
+    },
+    {
+      "path": "docs/validation/paired-current-resource-acceptance-evidence.json",
+      "sha256": "064d492de84c3b1cd2ec9af8ba133bab96045d15bd10a935cf1bef05675a3b06",
+      "utf8Bytes": 24349,
+      "representation": "OWNER_EDITED_REVISION"
+    },
+    {
+      "path": "docs/validation/paired-current-resource-acceptance.md",
+      "sha256": "f30c377a12bf4981890cf6d85045a4a26ebf1b74cbc32237032abd041a189bde",
+      "utf8Bytes": 15486,
+      "representation": "OWNER_EDITED_REVISION"
+    },
+    {
+      "path": "docs/validation/paired-native-handoff-current-readback-annex.json",
+      "sha256": "ae13b5280c9a80b7390f137d39179a3542e8d74973be084d7a07698edd1d2b70",
+      "utf8Bytes": 481883,
+      "representation": "OWNER_EDITED_REVISION"
+    },
+    {
+      "path": "docs/validation/paired-native-handoff-current-review.md",
+      "sha256": "9d1e16955e818d864d80ac1d6fa3ba6cf1b3652852cac3be3baadac5c27613d3",
+      "utf8Bytes": 27286,
+      "representation": "OWNER_EDITED_REVISION"
+    },
+    {
+      "path": "docs/validation/paired-planner-staging-amendment.md",
+      "sha256": "f6e7db50606b86033db70e95860fbf6035f9d9bccfa12bf38071196eb4da3160",
+      "utf8Bytes": 12584,
+      "representation": "UNCHANGED_INPUT_RETAINED"
+    },
+    {
+      "path": "docs/validation/paired-planner-staging-independent-confirmation.md",
+      "sha256": "8cd0024b14c26a813296f6e38aab52aadf258f94e3694f561c9c8d481766d310",
+      "utf8Bytes": 17585,
+      "representation": "UNCHANGED_INPUT_RETAINED"
+    },
+    {
+      "path": "docs/validation/paired-planner-staging-independent-readback.json",
+      "sha256": "6972e3e3cfce3afaa61242576902f4e9bbd85603c8a6d883375658bc453f3fe6",
+      "utf8Bytes": 33498,
+      "representation": "UNCHANGED_INPUT_RETAINED"
+    },
+    {
+      "path": "docs/validation/paired-retrospective-confirmation-preparation.md",
+      "sha256": "07b43760bd4f2a4c0054dfbe420db458a20f59bed05941f7a8c375a96966e89c",
+      "utf8Bytes": 17432,
+      "representation": "OWNER_EDITED_REVISION"
+    },
+    {
+      "path": "docs/validation/paired-task-orchestration-definition-confirmation.md",
+      "sha256": "c78f42534f713c9e3b1ef7fcb9fa92ade3055ad0723cd893b67e5bdb1ed2a236",
+      "utf8Bytes": 16576,
+      "representation": "OWNER_EDITED_REVISION"
+    },
+    {
+      "path": "docs/validation/paired-task-orchestration-handoff-amendment-manifest.json",
+      "sha256": "6b6e8a006d30a1944594e9665c007db844f766f280cae82d605c03395be52b5b",
+      "utf8Bytes": 27509,
+      "representation": "OWNER_EDITED_REVISION"
+    },
+    {
+      "path": "docs/validation/paired-task-orchestration-handoff-repair.md",
+      "sha256": "38b4b910deda9bffd1d9e941cfbd7b23de693eccc30a249630ba57d1bcbdc799",
+      "utf8Bytes": 13778,
+      "representation": "OWNER_EDITED_REVISION"
+    },
+    {
+      "path": "docs/validation/paired-task-orchestration-manifest.json",
+      "sha256": "490cda28a2285690c18971ac3f697a7bd6fcbe83b44346204fef8751616086f1",
+      "utf8Bytes": 14755,
+      "representation": "UNCHANGED_INPUT_RETAINED"
+    },
+    {
+      "path": "docs/validation/paired-task-orchestration-native-readback.json",
+      "sha256": "0443cf3d759f455b1e6df56a26cc37f334a1bbd18e6231add38481e06ab3587a",
+      "utf8Bytes": 81981,
+      "representation": "UNCHANGED_INPUT_RETAINED"
+    },
+    {
+      "path": "docs/validation/paired-task-orchestration-review-2026-10-08-evidence.json",
+      "sha256": "8099e83c6a042155f1ecbad009df8adb15d9aaf962ba7cf296494c40b6c7bd8c",
+      "utf8Bytes": 572146,
+      "representation": "OWNER_EDITED_REVISION"
+    },
+    {
+      "path": "docs/validation/paired-task-orchestration-review-amendments.md",
+      "sha256": "58ade6e109a36acdef5f30ace1d3853a8ba52b4af3eec28233e6c4a0dbd656b1",
+      "utf8Bytes": 11927,
+      "representation": "OWNER_EDITED_REVISION"
+    },
+    {
+      "path": "docs/validation/paired-task-orchestration-verification-plan.md",
+      "sha256": "946e0987e2b7c1a9c7140a624432a92e6b3f1e4ca7f207482899615aaf97adaa",
+      "utf8Bytes": 34383,
+      "representation": "OWNER_EDITED_REVISION"
+    },
+    {
+      "path": "docs/validation/paired-task-orchestration-verification.md",
+      "sha256": "a336fcdf5c8d488d54d8b08e5bc6cd4e3070cf2d28f998ae82ffecde4e14c5c9",
+      "utf8Bytes": 50910,
+      "representation": "OWNER_EDITED_REVISION"
+    },
+    {
+      "path": "docs/validation/retired-review-cleanup-native-readback.json",
+      "sha256": "a1fedb93cbc2de8ba6b9b0229fc504501dfdebea442eef1cb6f5ef4c4db64649",
+      "utf8Bytes": 72003,
+      "representation": "OWNER_EDITED_REVISION"
+    },
+    {
+      "path": "docs/validation/skill-install-confirmation-applicability-review.md",
+      "sha256": "dadeaf8dd69708614a1e467264367c59e94dd5dfb14998ea6fcdc90dc7034be0",
+      "utf8Bytes": 27693,
+      "representation": "OWNER_EDITED_REVISION"
+    },
+    {
+      "path": "docs/validation/skill-install-confirmation-current-independent-review-evidence.json",
+      "sha256": "e2a7d1b523c9a88d36f274c980676822dcd8f79a2c3d194ca310a8b9271f867b",
+      "utf8Bytes": 19088,
+      "representation": "OWNER_EDITED_REVISION"
+    },
+    {
+      "path": "docs/validation/skill-install-confirmation-scope-readback.json",
+      "sha256": "14d8e4cf6f8e1b1289192790f457f210ed23303b79441ef13b00e9e265470f03",
+      "utf8Bytes": 114028,
+      "representation": "UNCHANGED_INPUT_RETAINED"
+    },
+    {
+      "path": "docs/validation/skill-install-confirmation-source-delivery.md",
+      "sha256": "d4fbf17511eac04cbc4cc242df2f1b8b47ec45f82c182bbbde7f2fdbd285819b",
+      "utf8Bytes": 11260,
+      "representation": "UNCHANGED_INPUT_RETAINED"
+    },
+    {
+      "path": "docs/validation/task-plans/fg-02-g02-i.md",
+      "sha256": "9b12181fdc7b2452b8a363399113b691bd44bd92459706482a0a610d38f3c285",
+      "utf8Bytes": 13427,
+      "representation": "UNCHANGED_INPUT_RETAINED"
+    },
+    {
+      "path": "docs/validation/task-plans/fg-02-g02-v.md",
+      "sha256": "deef19878c27227913bbee179fc59e5a4678467756c8f049f7047f0e05f3b804",
+      "utf8Bytes": 14850,
+      "representation": "UNCHANGED_INPUT_RETAINED"
+    },
+    {
+      "path": "docs/validation/task-plans/paired-retrospective-confirmation.md",
+      "sha256": "fd5cd6e5de98e39b0fd61e8db1e69bf77df116258e08ce061a0a5d2691c3bc1a",
+      "utf8Bytes": 26814,
+      "representation": "UNCHANGED_INPUT_RETAINED"
+    },
+    {
+      "path": "docs/validation/task-plans/remove-retired-review-requirements.md",
+      "sha256": "075c0d6671e7b18e399f73fe39b297e78b0f7bd49e9adf3452460d3e85929c01",
+      "utf8Bytes": 10074,
+      "representation": "OWNER_EDITED_REVISION"
+    },
+    {
+      "path": "docs/validation/task-plans/task-137-reconcile-confirmation-handoff-evidence.md",
+      "sha256": "7db1994e584edcf9dc767c5e4d639032293aa2c11a311a749f479f1a387e50f3",
+      "utf8Bytes": 6493,
+      "representation": "OWNER_EDITED_REVISION"
+    },
+    {
+      "path": "docs/validation/task-plans/task-139-renew-current-resource-handoff-evidence.md",
+      "sha256": "d535edc7950d2a4d3962d68acb03fe016cd7da2d9e144aa9d44f98f9c2820747",
+      "utf8Bytes": 7982,
+      "representation": "OWNER_EDITED_REVISION"
+    },
+    {
+      "path": "docs/validation/task-plans/task-140-independently-accept-renewed-handoff-evidence.md",
+      "sha256": "987fdbb55de078689902b13515b9f9c256189aa8c2f2341e5353049d907811cd",
+      "utf8Bytes": 8147,
+      "representation": "OWNER_EDITED_REVISION"
+    },
+    {
+      "path": "replit.md",
+      "sha256": "b1aa215ec3fee6152e93762b2511bd5dcc8a844a082f038da831394ebc7c405d",
+      "utf8Bytes": 4397,
+      "representation": "OWNER_EDITED_REVISION"
+    },
+    {
+      "path": "scripts/test/paired-current-handoff-source.test.mjs",
+      "sha256": "d3f31e1e5de1bd96499d4f9f12660238555d11ebc43d22f9a45242a3a2a86cd8",
+      "utf8Bytes": 13012,
+      "representation": "OWNER_EDITED_REVISION"
+    },
+    {
+      "path": "scripts/test/paired-task-handoff-policy.test.mjs",
+      "sha256": "2951eaefd3d096e230ef07151e117c127df240187b3b8f3e3777b0857318e8e9",
+      "utf8Bytes": 6620,
+      "representation": "UNCHANGED_INPUT_RETAINED"
+    }
+  ]
+}

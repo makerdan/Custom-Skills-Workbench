@@ -1,5 +1,7 @@
 # Failure Gate v4 Series Checkpoint
 
+**Owner-edited revision — 2026-10-10.** The series exclusions `B2-R1` and `B5-R1` apply only to the resource assessment. Edited historical prose is not an unchanged prefix or original provider response; affected prefix/unchanged-byte claims are invalidated. Original dated lifecycle observations are not live queries. Revised bindings are in `retired-review-cleanup-bindings.json`. All remaining source, confirmation, current/future linkage, delivery and runtime gates remain intact; no acceptance or advancement follows.
+
 ## Project, sources and current authorized mode
 
 - Repository: `https://github.com/makerdan/Custom-Skills-Workbench`.
@@ -84,9 +86,9 @@ Only after both independent reviews accept may the existing continuation prepare
 
 ## Current resource-handoff locator — 2026-10-09
 
-**Current documentary binding:** `docs/validation/paired-current-handoff-renewal.md` and `docs/validation/paired-current-handoff-manifest.json`. This section is the active locator for the renewed resource handoff. The entire preceding checkpoint text is preserved verbatim as historical content; its pre-edit 12,174-byte snapshot at Git `b4785f207f61555352a90844d751e69840b39fb7` is SHA-256 `3a4a6f3126ad7cdfe026fa08ad709d877c712fa9df39e5dc8d23bf9a4edf2f44`.
+**Current documentary binding:** `docs/validation/paired-current-handoff-renewal.md` and `docs/validation/paired-current-handoff-manifest.json`, rebound in `docs/validation/retired-review-cleanup-bindings.json`. This is the active locator for the revised resource handoff. The original pre-edit 12,174-byte checkpoint snapshot remains at Git `b4785f207f61555352a90844d751e69840b39fb7`, SHA-256 `3a4a6f3126ad7cdfe026fa08ad709d877c712fa9df39e5dc8d23bf9a4edf2f44`; the revised editable text is not its verbatim prefix.
 
-**Disposition: PENDING independent resource revalidation.** This author does not accept the renewal. The #126 resource report remains PARTIAL / BLOCKED. Its present #126 payload, key, and direct dependencies #102/#106/#109 are correctly bound; immediate pre/post-creation #102 records and the original draft-only receipt remain unavailable. #122 remains the sole existing route for #119's historical correction; it is not duplicated, changed, or automatically closed.
+**Disposition: PENDING independent resource revalidation.** This author does not accept the renewal. The #126 resource report remains PARTIAL / BLOCKED. Its observed #126 payload, key, and direct dependencies #102/#106/#109 are correctly bound. #122 remains the sole existing route for #119's historical correction; it is not duplicated, changed, or automatically closed.
 
 Current source changes are rebound, not edited: the Paired definition is 18,258 bytes / `1060bbef83e521a9f591d62e52caf2d3e97cb5d23f904b6a939051ea02708456` after the authorized #120 insertion; the confirmation companion is 14,615 bytes / `6d2a1a38a19092fe74982ab8610accdf4804d3c3a95d7a4e71e987c3b4eb02a6` after the narrow owner-resolved #132/#133/#134 source work; and `replit.md` is 3,930 bytes / `f2f57f45993342b506af279c91acdc7c6fd0a3fc26f039389c41dd360da15b63`, with its prior binding retained in the new manifest. No replit policy text or cooperative-profile scope is changed by this renewal.
 

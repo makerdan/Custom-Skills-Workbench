@@ -1,5 +1,7 @@
 # Proposed amendments for the existing #107 and #108 reviews
 
+**Referenced-binding revision — 2026-10-10.** Values recorded here for owner-edited resource artifacts are historical observations only. Current revised bindings are in `retired-review-cleanup-bindings.json`; earlier unchanged-byte/body-equivalence claims do not bind revised artifacts. Existing future linkage and draft-safety controls remain intact.
+
 **Disposition:** complete tracked replacement payloads and amendment instructions only. Neither active native record was modified, paused, resumed, attached, approved, or started by this authoring work.
 
 ## One-invocation owner request
