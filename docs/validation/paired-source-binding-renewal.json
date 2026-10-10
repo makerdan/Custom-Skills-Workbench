@@ -14,28 +14,28 @@
   "records": [
     {
       "path": "docs/validation/paired-current-handoff-manifest-source-renewal.json",
-      "bytes": 27434,
-      "sha256": "82e8302bd10b11d0c883ee663529651aea5114cf989e08c92b18e77c8134df7c"
+      "bytes": 27744,
+      "sha256": "bad993afbcc4ad665dfe75aa4f5acdea35d26ad973be350eb47bcdca82c44b71"
     },
     {
       "path": "docs/validation/paired-confirmation-handoff-readiness-renewal-evidence-source-renewal.json",
-      "bytes": 24023,
-      "sha256": "eda1f8a7b3503660a208977beb569b23d6a2af734d2d4f292ecde0f3a19c3603"
+      "bytes": 24333,
+      "sha256": "cf173cf794c331458e6437c91f07e7b65c9e76999ad8de821ca2c7511fdb026a"
     },
     {
       "path": "docs/validation/paired-resource-acceptance-post-cleanup-evidence-source-renewal.json",
-      "bytes": 66119,
-      "sha256": "1c8be81314426148251a22f93166f8a292c49fada7f6843b9b549fb0226b047f"
+      "bytes": 66429,
+      "sha256": "3ea1273868fcb015941ccfa4bcb7c67235f7c11e1b1198c3f9bdfc06f9f71c32"
     },
     {
       "path": "docs/validation/failure-gate-implementation-autonomy-bindings-source-renewal.json",
-      "bytes": 25085,
-      "sha256": "c727bd5565f81dea696e2443d73d76776a454e7b9af4e150923316e5c6e5a65c"
+      "bytes": 25395,
+      "sha256": "d18adc263cba85c345075696d44b31b2d6d05f9cdb34f6c961c193c2da8cc175"
     },
     {
       "path": "docs/validation/paired-source-binding-renewal.md",
-      "bytes": 9094,
-      "sha256": "cb1edf0195a8619b76294d29487ffcced97d604cace596d6184ed8365458e734"
+      "bytes": 9973,
+      "sha256": "e085ce339416c2c0a87cbef88c4548cf83a0350ba1d23da4b403b4ee31b15665"
     }
   ],
   "preservedOriginalEvidence": [
@@ -127,8 +127,9 @@
     },
     {
       "path": "scripts/test/paired-planner-staging-source.test.mjs",
-      "bytes": 9289,
-      "sha256": "ed024c5829cbcdcfd3529fb15c73b96bcd7e983f403c6843c96b438783ed118b",
+      "bytes": 9291,
+      "sha256": "69bebf8a9a13c14c9ddd7e7d0430c20119dd45af244ed5e10b472239096f495a",
+      "observedAt": "2026-10-10T23:50:48Z",
       "observed": "PRESENT"
     }
   ],
@@ -787,8 +788,9 @@
     },
     {
       "path": "scripts/test/paired-planner-staging-source.test.mjs",
-      "bytes": 9289,
-      "sha256": "ed024c5829cbcdcfd3529fb15c73b96bcd7e983f403c6843c96b438783ed118b",
+      "bytes": 9291,
+      "sha256": "69bebf8a9a13c14c9ddd7e7d0430c20119dd45af244ed5e10b472239096f495a",
+      "observedAt": "2026-10-10T23:50:48Z",
       "observed": "PRESENT"
     },
     {
@@ -851,5 +853,32 @@
   "resourceAcceptanceGranted": false,
   "formalConfirmationAcceptanceGranted": false,
   "fg02CreationGateSatisfied": false,
+  "bindingUpdates": [
+    {
+      "observedAt": "2026-10-10T23:50:48Z",
+      "authority": "Owner requested the binding update after the authorized assertion-only fix; no project checks or new independent review.",
+      "scope": "Refresh only the test-source binding and the affected renewal output bindings. Other input observations retain their original snapshot dates and scope.",
+      "previousIndex": {
+        "path": "docs/validation/paired-source-binding-renewal.json",
+        "bytes": 34367,
+        "sha256": "f833cbb9ae74f242cb6af56c961dbab2d9845404563b56ed3ce2e7dcfef2d8c1",
+        "gitLocator": "f65cff5c05e5cff0ac887009cf71b27e6bbf7576:docs/validation/paired-source-binding-renewal.json",
+        "meaning": "Immutable prior index preserves all previous input and output bindings."
+      },
+      "previousTestBinding": {
+        "path": "scripts/test/paired-planner-staging-source.test.mjs",
+        "bytes": 9289,
+        "sha256": "ed024c5829cbcdcfd3529fb15c73b96bcd7e983f403c6843c96b438783ed118b",
+        "gitLocator": "b289b09240b177ba7a0740e98abc77bf9c47b0f7:scripts/test/paired-planner-staging-source.test.mjs"
+      },
+      "currentTestBinding": {
+        "path": "scripts/test/paired-planner-staging-source.test.mjs",
+        "bytes": 9291,
+        "sha256": "69bebf8a9a13c14c9ddd7e7d0430c20119dd45af244ed5e10b472239096f495a"
+      },
+      "execution": "NOT_RUN",
+      "newIndependentAcceptance": false
+    }
+  ],
   "selfBinding": "EXCLUDED; this index is bound by external readback, not its own contents."
 }

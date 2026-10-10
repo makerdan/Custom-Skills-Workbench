@@ -1712,8 +1712,14 @@
     },
     {
       "path": "scripts/test/paired-planner-staging-source.test.mjs",
-      "bytes": 9289,
-      "sha256": "ed024c5829cbcdcfd3529fb15c73b96bcd7e983f403c6843c96b438783ed118b",
+      "bytes": 9291,
+      "sha256": "69bebf8a9a13c14c9ddd7e7d0430c20119dd45af244ed5e10b472239096f495a",
+      "observedAt": "2026-10-10T23:50:48Z",
+      "priorRenewalBinding": {
+        "bytes": 9289,
+        "sha256": "ed024c5829cbcdcfd3529fb15c73b96bcd7e983f403c6843c96b438783ed118b",
+        "gitLocator": "b289b09240b177ba7a0740e98abc77bf9c47b0f7:scripts/test/paired-planner-staging-source.test.mjs"
+      },
       "observed": "PRESENT",
       "priorObservations": [],
       "byteRelationToBaseline": "NEWLY_BOUND_IN_THIS_RENEWAL",

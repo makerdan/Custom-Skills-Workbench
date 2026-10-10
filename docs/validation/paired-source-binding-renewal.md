@@ -27,9 +27,15 @@ Machine-readable index and external output bindings: `docs/validation/paired-sou
 | `.agents/skills/paired-task-orchestration/references/acceptance-and-confirmation.md` | 9475 | `b8e3163cb08cce3385013822860ef57d20767294aa0a2883123ee5aaa0a8cb32` |
 | `.agents/skills/paired-task-orchestration/references/series-state-and-handoff.md` | 11859 | `a2c63fb57e0bcd5ebdec3718683f9c0016d9a5841edde457130d34a3edda33de` |
 | `.agents/skills/paired-task-orchestration/references/host-hook-contract.md` | 9914 | `e3101501e6385be500033ba77f272bee1c2370a9cd292bd33337aba922a2a914` |
-| `scripts/test/paired-planner-staging-source.test.mjs` | 9289 | `ed024c5829cbcdcfd3529fb15c73b96bcd7e983f403c6843c96b438783ed118b` |
+| `scripts/test/paired-planner-staging-source.test.mjs` | 9291 | `69bebf8a9a13c14c9ddd7e7d0430c20119dd45af244ed5e10b472239096f495a` |
 
 The four canonical package files changed from the prior source set. The existing document-contract test source is newly included explicitly in each renewal and remains **NOT_RUN**. Prior package/archive-reference parity conclusions cannot be carried forward unchanged: the intentionally revised canonical files differ from their older bindings, and any applicable requirement assessment must reconcile the authorized revision with its original obligations.
+
+## Single-source binding update
+
+At 2026-10-10T23:50:48Z, the owner requested rebinding after the separately authorized assertion-only correction: the expected `.local` text now includes its Markdown backticks. Only the test-source byte observation above was refreshed; all other input observations retain their original snapshot dates and scope. The four renewal annexes retain the previous test binding as history, and their hashes and this report's hash are refreshed in the index.
+
+The previous complete renewal records remain available at Git commit `f65cff5c05e5cff0ac887009cf71b27e6bbf7576`. The index records that immutable previous-index binding, which preserves its prior output bindings. No test or project check was run. The earlier independent source-only review is not extended to these changed test or renewal bytes, and no new independent acceptance is claimed.
 
 ## Merged autonomy-review delivery
 
