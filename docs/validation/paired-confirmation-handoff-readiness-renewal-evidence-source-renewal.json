@@ -1,0 +1,621 @@
+{
+  "schema": "paired-source-binding-renewal-v1",
+  "observedAt": "2026-10-10T20:36:10.725Z",
+  "sourceBindingStatus": "RENEWED_BYTE_OBSERVATIONS_ONLY",
+  "assessmentDisposition": "NOT_REASSESSED_REQUIRES_APPLICABLE_FRESH_REVIEW",
+  "authority": "User requested the source-binding renewals; no checks, task creation/start, skill publication, enforcement activation or new independent acceptance authorized or performed.",
+  "project": {
+    "repository": "https://github.com/makerdan/Custom-Skills-Workbench",
+    "workspace": "/home/runner/workspace",
+    "taskNamespace": "Skills Workbench Project task namespace",
+    "immutableNamespaceUuid": "UNAVAILABLE_NOT_INFERRED",
+    "series": "Custom-Skills-Workbench/failure-gate-v4/18-piece"
+  },
+  "snapshot": {
+    "gitHead": "b289b09240b177ba7a0740e98abc77bf9c47b0f7",
+    "basis": "One bounded local file-byte inventory. Cooperative snapshot only; no clean-final-writer, atomic host, provider finalization or recipient-workspace delivery claim."
+  },
+  "renewalReport": "docs/validation/paired-source-binding-renewal.md",
+  "renewalIndex": "docs/validation/paired-source-binding-renewal.json",
+  "preservedBaseline": {
+    "path": "docs/validation/paired-confirmation-handoff-readiness-renewal-evidence.json",
+    "bytes": 23355,
+    "sha256": "9bc1a97fab8f8b9a9c84026fba3c2ce10cfc1998d1fb6460d9ec7d2d0982648e",
+    "observed": "PRESENT",
+    "gitLocator": "b289b09240b177ba7a0740e98abc77bf9c47b0f7:docs/validation/paired-confirmation-handoff-readiness-renewal-evidence.json",
+    "originalDisposition": "BLOCKED",
+    "preservation": "Original file and all original evidence sections remain unchanged; native fields and historic comparisons are not refreshed by this byte observation."
+  },
+  "preservedReport": {
+    "path": "docs/validation/paired-confirmation-handoff-readiness-renewal.md",
+    "bytes": 23533,
+    "sha256": "513758932b9fe3f3d176c4a99d4d924ad4d38be6c8c99e9f5e3f0327ffebd161",
+    "observed": "PRESENT"
+  },
+  "bindingPrecedence": "Use these input byte observations for this recorded snapshot instead of affected earlier current/delivered byte observations. They do not supersede original obligations, approval, baseline history, result semantics or independent verdicts. SAME_BYTES does not renew substantive conclusions.",
+  "currentInputs": [
+    {
+      "path": ".agents/skills/failure-gate-v4/SKILL.md",
+      "bytes": 33817,
+      "sha256": "e348abd53d69bb37f74bea3a54bf46b89d2d782fb7fa570d5dad875fcfa5ccf2",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 33817,
+          "sha256": "e348abd53d69bb37f74bea3a54bf46b89d2d782fb7fa570d5dad875fcfa5ccf2"
+        }
+      ],
+      "byteRelationToBaseline": "SAME_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/authorized-continuation.md",
+      "bytes": 7988,
+      "sha256": "3dc5590aca87c679b4dbfdcc0fe29c5fdc73192a816b3f82bfd326b28933d8b3",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 7988,
+          "sha256": "3dc5590aca87c679b4dbfdcc0fe29c5fdc73192a816b3f82bfd326b28933d8b3"
+        }
+      ],
+      "byteRelationToBaseline": "SAME_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/evidence-and-recovery.md",
+      "bytes": 14678,
+      "sha256": "91a06ce5ed37eb161c45c440f26cdf42256ddf2265e64f17c47e7ccc03c49075",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 14678,
+          "sha256": "91a06ce5ed37eb161c45c440f26cdf42256ddf2265e64f17c47e7ccc03c49075"
+        }
+      ],
+      "byteRelationToBaseline": "SAME_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/staging-and-lifecycle.md",
+      "bytes": 12335,
+      "sha256": "a9ab52d787e44c7aa4e199c8662882521d8ccf0ef8a6de0706c7853b5fa69800",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 12335,
+          "sha256": "a9ab52d787e44c7aa4e199c8662882521d8ccf0ef8a6de0706c7853b5fa69800"
+        }
+      ],
+      "byteRelationToBaseline": "SAME_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": ".agents/skills/paired-task-orchestration/SKILL.md",
+      "bytes": 21071,
+      "sha256": "d862212f772abdf551698c6aeb9c4733c2572e0766b3606d33ea2fa24ba5b669",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 18258,
+          "sha256": "1060bbef83e521a9f591d62e52caf2d3e97cb5d23f904b6a939051ea02708456"
+        }
+      ],
+      "byteRelationToBaseline": "CHANGED_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": ".agents/skills/paired-task-orchestration/references/acceptance-and-confirmation.md",
+      "bytes": 9475,
+      "sha256": "b8e3163cb08cce3385013822860ef57d20767294aa0a2883123ee5aaa0a8cb32",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 7200,
+          "sha256": "c83bb5977a42866b67bb7c029ca16512df23c4fd7da2aae04884ce3b4f39db3c"
+        }
+      ],
+      "byteRelationToBaseline": "CHANGED_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": ".agents/skills/paired-task-orchestration/references/host-hook-contract.md",
+      "bytes": 9914,
+      "sha256": "e3101501e6385be500033ba77f272bee1c2370a9cd292bd33337aba922a2a914",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 8642,
+          "sha256": "7b9fe6dfaf0290450e4f1ffdeefcf1b58158fc8546628e643ea1351d3da2f43e"
+        }
+      ],
+      "byteRelationToBaseline": "CHANGED_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": ".agents/skills/paired-task-orchestration/references/series-state-and-handoff.md",
+      "bytes": 11859,
+      "sha256": "a2c63fb57e0bcd5ebdec3718683f9c0016d9a5841edde457130d34a3edda33de",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 10535,
+          "sha256": "e0fb9d7e2e2e80c7c7f2b36c2356aceda09f10f56118255392cda97899fb5b3c"
+        }
+      ],
+      "byteRelationToBaseline": "CHANGED_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/SKILL.md",
+      "bytes": 23381,
+      "sha256": "49e3db86b0f5b8c7efba871d7404c40336cb3caf544427a429065b1088f6586f",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 23381,
+          "sha256": "49e3db86b0f5b8c7efba871d7404c40336cb3caf544427a429065b1088f6586f"
+        }
+      ],
+      "byteRelationToBaseline": "SAME_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/references/delivery-reconciliation.md",
+      "bytes": 11454,
+      "sha256": "fd908bd54a3d2db4d25cc6a3f2e6fbdfece0e9276a28e02db48d5dcfdfa3f3ca",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 11454,
+          "sha256": "fd908bd54a3d2db4d25cc6a3f2e6fbdfece0e9276a28e02db48d5dcfdfa3f3ca"
+        }
+      ],
+      "byteRelationToBaseline": "SAME_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/references/handoff-binding-and-recovery.md",
+      "bytes": 13829,
+      "sha256": "7e95d74645e0c1184b2ae24488ffd5936237fb6fc1d9596734a3e57bb1fe0ff5",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 13829,
+          "sha256": "7e95d74645e0c1184b2ae24488ffd5936237fb6fc1d9596734a3e57bb1fe0ff5"
+        }
+      ],
+      "byteRelationToBaseline": "SAME_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/references/installation-verification-plan.md",
+      "bytes": 23323,
+      "sha256": "99bc98079967ed47f8f524c187b9823fc99dddca55d4b61a9220dcbb5b3f8cb9",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 23323,
+          "sha256": "99bc98079967ed47f8f524c187b9823fc99dddca55d4b61a9220dcbb5b3f8cb9"
+        }
+      ],
+      "byteRelationToBaseline": "SAME_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/references/router-task-handoff-acceptance.md",
+      "bytes": 16089,
+      "sha256": "811bc5201d5067a4dc09d74c73880c4798f3407d7955182a923c95b3b897c849",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 16089,
+          "sha256": "811bc5201d5067a4dc09d74c73880c4798f3407d7955182a923c95b3b897c849"
+        }
+      ],
+      "byteRelationToBaseline": "SAME_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": ".agents/skills/skill-install-confirmation/SKILL.md",
+      "bytes": 15816,
+      "sha256": "a613efe2bea3476b8770b665dd9f0b0b440a320f5aae627a79a815ea6cf6b82a",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 15816,
+          "sha256": "a613efe2bea3476b8770b665dd9f0b0b440a320f5aae627a79a815ea6cf6b82a"
+        }
+      ],
+      "byteRelationToBaseline": "SAME_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": "attached_assets/failure-gate-v4-piecemeal-task-series_1791259976201.txt",
+      "bytes": 59658,
+      "sha256": "7bd8aadd6007ed7c01f118d6cbb83d70ea52d79cecfc6eaafc2234ee869eb026",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 59658,
+          "sha256": "7bd8aadd6007ed7c01f118d6cbb83d70ea52d79cecfc6eaafc2234ee869eb026"
+        }
+      ],
+      "byteRelationToBaseline": "SAME_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": "attached_assets/paired-task-orchestration_1791347147544.zip",
+      "bytes": 18622,
+      "sha256": "5e99a095a57a7646ac5203b43642312ffa0bd2cef19106c8b77897fdb2a520b7",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 18622,
+          "sha256": "5e99a095a57a7646ac5203b43642312ffa0bd2cef19106c8b77897fdb2a520b7"
+        }
+      ],
+      "byteRelationToBaseline": "SAME_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": "docs/validation/failure-gate-implementation-autonomy-amendment.md",
+      "bytes": 23801,
+      "sha256": "3f2e879f8af4212264bdfc7b717cc05184a0b911413e7f5bec0562393015f894",
+      "observed": "PRESENT",
+      "priorObservations": [],
+      "byteRelationToBaseline": "NEWLY_BOUND_IN_THIS_RENEWAL",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": "docs/validation/failure-gate-implementation-autonomy-verification.md",
+      "bytes": 49651,
+      "sha256": "d2953aee4147cfdc461d2b0479793473250e9068e9dfe6754565de5a44ab9ddc",
+      "observed": "PRESENT",
+      "priorObservations": [],
+      "byteRelationToBaseline": "NEWLY_BOUND_IN_THIS_RENEWAL",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": "docs/validation/failure-gate-v4-series-checkpoint.md",
+      "bytes": 19346,
+      "sha256": "d0501c2eab6f61d5743117a75cc883cdcf6eb5eafa22f1892aff43e2d8b1d364",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 15963,
+          "sha256": "673fa1483f862dc5370823c70a6c68a915b364e68e9a7c0de82a861624fb205f"
+        }
+      ],
+      "byteRelationToBaseline": "CHANGED_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": "docs/validation/failure-gate-v4-series-handoff-policy.md",
+      "bytes": 13129,
+      "sha256": "5ba6bbc5cf3a9106ed6d4ed2cbacca80fc20b95a3d2fa43ceec5bbe91c3d4228",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 13129,
+          "sha256": "5ba6bbc5cf3a9106ed6d4ed2cbacca80fc20b95a3d2fa43ceec5bbe91c3d4228"
+        }
+      ],
+      "byteRelationToBaseline": "SAME_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": "docs/validation/failure-gate-v4-task-series.md",
+      "bytes": 469552,
+      "sha256": "a6d73ca85e2447f005f8cfa452f2c5427aec8799894d8115538520c84f7e70ad",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 464209,
+          "sha256": "e675b914aff0909113d9994fba71d4a548b7c2f4a976e0b40dfd45c7491b828f"
+        }
+      ],
+      "byteRelationToBaseline": "CHANGED_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": "docs/validation/paired-confirmation-handoff-readiness-renewal.md",
+      "bytes": 23533,
+      "sha256": "513758932b9fe3f3d176c4a99d4d924ad4d38be6c8c99e9f5e3f0327ffebd161",
+      "observed": "PRESENT",
+      "priorObservations": [],
+      "byteRelationToBaseline": "NEWLY_BOUND_IN_THIS_RENEWAL",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": "docs/validation/paired-current-handoff-status.md",
+      "bytes": 10494,
+      "sha256": "6752f88d000bb6398d78a51cfa3d362a892579cb7decd1f7630bbb90959c9d0a",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 8323,
+          "sha256": "076c93a1f46869db04a349a589a451bc90b3fa5173491947ff417ffd2d330e46"
+        }
+      ],
+      "byteRelationToBaseline": "CHANGED_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": "docs/validation/paired-current-resource-acceptance.md",
+      "bytes": 15486,
+      "sha256": "f30c377a12bf4981890cf6d85045a4a26ebf1b74cbc32237032abd041a189bde",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 15486,
+          "sha256": "f30c377a12bf4981890cf6d85045a4a26ebf1b74cbc32237032abd041a189bde"
+        }
+      ],
+      "byteRelationToBaseline": "SAME_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": "docs/validation/paired-native-handoff-current-review.md",
+      "bytes": 27286,
+      "sha256": "9d1e16955e818d864d80ac1d6fa3ba6cf1b3652852cac3be3baadac5c27613d3",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 27286,
+          "sha256": "9d1e16955e818d864d80ac1d6fa3ba6cf1b3652852cac3be3baadac5c27613d3"
+        }
+      ],
+      "byteRelationToBaseline": "SAME_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": "docs/validation/paired-planner-staging-independent-confirmation.md",
+      "bytes": 17585,
+      "sha256": "8cd0024b14c26a813296f6e38aab52aadf258f94e3694f561c9c8d481766d310",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 17585,
+          "sha256": "8cd0024b14c26a813296f6e38aab52aadf258f94e3694f561c9c8d481766d310"
+        }
+      ],
+      "byteRelationToBaseline": "SAME_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": "docs/validation/paired-retrospective-confirmation-preparation.md",
+      "bytes": 17432,
+      "sha256": "07b43760bd4f2a4c0054dfbe420db458a20f59bed05941f7a8c375a96966e89c",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 17432,
+          "sha256": "07b43760bd4f2a4c0054dfbe420db458a20f59bed05941f7a8c375a96966e89c"
+        }
+      ],
+      "byteRelationToBaseline": "SAME_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": "docs/validation/paired-task-orchestration-definition-confirmation.md",
+      "bytes": 16576,
+      "sha256": "c78f42534f713c9e3b1ef7fcb9fa92ade3055ad0723cd893b67e5bdb1ed2a236",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 16576,
+          "sha256": "c78f42534f713c9e3b1ef7fcb9fa92ade3055ad0723cd893b67e5bdb1ed2a236"
+        }
+      ],
+      "byteRelationToBaseline": "SAME_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": "docs/validation/paired-task-orchestration-manifest.json",
+      "bytes": 14755,
+      "sha256": "490cda28a2285690c18971ac3f697a7bd6fcbe83b44346204fef8751616086f1",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 14755,
+          "sha256": "490cda28a2285690c18971ac3f697a7bd6fcbe83b44346204fef8751616086f1"
+        }
+      ],
+      "byteRelationToBaseline": "SAME_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": "docs/validation/paired-task-orchestration-native-readback.json",
+      "bytes": 81981,
+      "sha256": "0443cf3d759f455b1e6df56a26cc37f334a1bbd18e6231add38481e06ab3587a",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 81981,
+          "sha256": "0443cf3d759f455b1e6df56a26cc37f334a1bbd18e6231add38481e06ab3587a"
+        }
+      ],
+      "byteRelationToBaseline": "SAME_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": "docs/validation/paired-task-orchestration-verification-plan.md",
+      "bytes": 34383,
+      "sha256": "946e0987e2b7c1a9c7140a624432a92e6b3f1e4ca7f207482899615aaf97adaa",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 34383,
+          "sha256": "946e0987e2b7c1a9c7140a624432a92e6b3f1e4ca7f207482899615aaf97adaa"
+        }
+      ],
+      "byteRelationToBaseline": "SAME_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": "docs/validation/retired-review-cleanup-bindings.json",
+      "bytes": 14465,
+      "sha256": "ca9322d301329b119e9726ad3cc36ad43b328400ab7b0b67c65536717f48302a",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 14465,
+          "sha256": "ca9322d301329b119e9726ad3cc36ad43b328400ab7b0b67c65536717f48302a"
+        }
+      ],
+      "byteRelationToBaseline": "SAME_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": "docs/validation/skill-install-confirmation-applicability-review.md",
+      "bytes": 27693,
+      "sha256": "dadeaf8dd69708614a1e467264367c59e94dd5dfb14998ea6fcdc90dc7034be0",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 27693,
+          "sha256": "dadeaf8dd69708614a1e467264367c59e94dd5dfb14998ea6fcdc90dc7034be0"
+        }
+      ],
+      "byteRelationToBaseline": "SAME_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": "docs/validation/skill-install-confirmation-current-independent-review.md",
+      "bytes": 27448,
+      "sha256": "0fa6cf0c21943b99abde717a5d47b07e8bc1e3c3cdd162bcf5be6add2110f7bf",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 27448,
+          "sha256": "0fa6cf0c21943b99abde717a5d47b07e8bc1e3c3cdd162bcf5be6add2110f7bf"
+        }
+      ],
+      "byteRelationToBaseline": "SAME_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": "docs/validation/skill-install-confirmation-rule-conflict-resolution-review.md",
+      "bytes": 8659,
+      "sha256": "52ed92444076f95851541df906e2463376089bb8873543492b7984ee5fd83084",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 8659,
+          "sha256": "52ed92444076f95851541df906e2463376089bb8873543492b7984ee5fd83084"
+        }
+      ],
+      "byteRelationToBaseline": "SAME_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": "docs/validation/task-plans/fg-02-g02-i.md",
+      "bytes": 18249,
+      "sha256": "b944ad5399820200d7f8b4b9efb9980ea5ac8ef372b41cbff839471faf1076b1",
+      "observed": "PRESENT",
+      "priorObservations": [],
+      "byteRelationToBaseline": "NEWLY_BOUND_IN_THIS_RENEWAL",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": "docs/validation/task-plans/fg-02-g02-v.md",
+      "bytes": 19672,
+      "sha256": "7199ec947adbefda4a9219e78460527ac95966133a38cddf9ef4f502576d0f4d",
+      "observed": "PRESENT",
+      "priorObservations": [],
+      "byteRelationToBaseline": "NEWLY_BOUND_IN_THIS_RENEWAL",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": "docs/validation/task-plans/paired-retrospective-confirmation.md",
+      "bytes": 26814,
+      "sha256": "fd5cd6e5de98e39b0fd61e8db1e69bf77df116258e08ce061a0a5d2691c3bc1a",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 26814,
+          "sha256": "fd5cd6e5de98e39b0fd61e8db1e69bf77df116258e08ce061a0a5d2691c3bc1a"
+        }
+      ],
+      "byteRelationToBaseline": "SAME_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": "docs/validation/tests/failure-gate-implementation-autonomy.test.mjs",
+      "bytes": 7537,
+      "sha256": "47577f767b186b31c0afc2589441456991c388f608aecde9a4309cf8a85447b0",
+      "observed": "PRESENT",
+      "priorObservations": [],
+      "byteRelationToBaseline": "NEWLY_BOUND_IN_THIS_RENEWAL",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE",
+      "execution": "NOT_RUN"
+    },
+    {
+      "path": "replit.md",
+      "bytes": 4397,
+      "sha256": "b1aa215ec3fee6152e93762b2511bd5dcc8a844a082f038da831394ebc7c405d",
+      "observed": "PRESENT",
+      "priorObservations": [
+        {
+          "bytes": 4397,
+          "sha256": "b1aa215ec3fee6152e93762b2511bd5dcc8a844a082f038da831394ebc7c405d"
+        }
+      ],
+      "byteRelationToBaseline": "SAME_BYTES",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE"
+    },
+    {
+      "path": "scripts/test/paired-planner-staging-source.test.mjs",
+      "bytes": 9289,
+      "sha256": "ed024c5829cbcdcfd3529fb15c73b96bcd7e983f403c6843c96b438783ed118b",
+      "observed": "PRESENT",
+      "priorObservations": [],
+      "byteRelationToBaseline": "NEWLY_BOUND_IN_THIS_RENEWAL",
+      "evidenceApplicability": "BYTE_IDENTITY_ONLY_NOT_REQUIREMENT_ACCEPTANCE",
+      "execution": "NOT_RUN"
+    }
+  ],
+  "excludedResourceSubcriteria": [
+    "B2-R1",
+    "B5-R1"
+  ],
+  "parentResourceCriteriaRetained": [
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "S1",
+    "S2",
+    "S3",
+    "S4",
+    "S5",
+    "S6",
+    "H1",
+    "H2",
+    "H3",
+    "B1",
+    "B2",
+    "B3",
+    "B4",
+    "B5",
+    "C1",
+    "C2",
+    "C3",
+    "C4"
+  ],
+  "requiredReview": "Reconcile readiness against revised current sources and delivered documents; original native observations are historical, and finalization/draft safety/delivery findings are not rechecked or cleared here.",
+  "limitations": {
+    "semanticRequirementReview": "NOT_PERFORMED",
+    "nativeRecordReads": "NOT_PERFORMED_THIS_RENEWAL",
+    "recipientLocalDelivery": "NOT_ESTABLISHED",
+    "newIndependentAcceptance": false,
+    "resourceAcceptanceGranted": false,
+    "confirmationAcceptanceGranted": false,
+    "fg02CreationGateSatisfied": false,
+    "testsGuardsImportsSyntaxBuildsRuntime": "NOT_RUN",
+    "tasksCreatedOrStarted": false,
+    "skillsPublished": false,
+    "enforcementActivated": false
+  }
+}
