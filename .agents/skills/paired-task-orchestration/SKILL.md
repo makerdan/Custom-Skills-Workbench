@@ -33,6 +33,40 @@ Use this skill alongside, not instead of, canonical target contracts and the
 canonical skill-application-router. It manages batching and progression; the
 router governs Install/Apply handoff and verification bindings.
 
+## Outcomes, routine work, and material exceptions
+
+Normal programming within approved boundaries is the default. Choose routine
+implementation details without separate approvals, per-choice decision records,
+step-by-step narration, exhaustive method checklists, or routine method-change
+ledgers. Selecting among unspecified equivalent methods is not itself a
+protected-plan amendment.
+
+The primary delivers the required outcome. Its plan states scope, required
+outcomes, fixed acceptance criteria and evidence, execution permissions, resource
+limits, and material escalation triggers. Prescribe an internal coding method
+only when that method is genuinely necessary to an explicit contract requirement;
+do not turn an illustrative example into a required architecture or extra gate.
+
+The verifier independently assesses the delivered outcome against the approved
+criteria, not the author's individual coding decisions. Retain complete required
+coverage and independently establish the relevant evidence; do not reconstruct a
+programming diary or derive easier acceptance criteria from the delivered output.
+
+Use the applicable exception or amendment route for:
+
+- Exceptions, waivers, changed acceptance criteria, or reduced required coverage.
+- Material changes to approved scope, authority, execution permissions, or limits.
+- Material changes to safety, privacy, compatibility, data integrity, ownership,
+  recovery, or completion boundaries.
+- Changes to expressly fixed requirements or protected executable plans.
+
+Routine method selection does not waive a fixed method, authorize an unavailable
+capability, or silently rewrite a protected plan. Actual protected-payload changes
+still require their governing amendment route, bindings, and full readback.
+Retain required approval, execution, incident, provenance, repair, and acceptance
+evidence, including invalidation of evidence affected by changed inputs. Record
+material exceptions and actual protected-plan amendments, not every coding choice.
+
 ## Read before acting
 
 Read the complete applicable references:
@@ -85,6 +119,7 @@ A temporary staging path is not a Failure Gate plan/ID binding, approval source,
 | Mode | Authorized outcome |
 |---|---|
 | Plan | Write/reconcile backlog and task payloads; no native task creation |
+| Revise definition/resources | Author only the requested definition/resource changes; no implied task creation, feature implementation, checks, publication, or enforcement |
 | Install definition/package | Install/update the canonical definition and required resources; include any target-required definition confirmation |
 | Initialize | Bind the series and prepare the first proposed pair |
 | Prepare next pair / Resume | Reconcile the current pair; advance only if accepted |
@@ -93,7 +128,9 @@ A temporary staging path is not a Failure Gate plan/ID binding, approval source,
 | Enable automatic progression | Enable only a verified, approved wake-up route |
 | Pause / Finish | Stop further progression; preserve history and unresolved work |
 
-Definition/package installation and series initialization are distinct. A request
+Definition revision, package installation, and series initialization are distinct.
+An authoring-only revision follows the user's stated scope; it does not create
+confirmation/review tasks or run checks unless separately authorized. A request
 to install or update this skill does not authorize binding a series, preparing
 implementation/verifier pairs, or installing/enabling the optional hook. If both
 are expressly requested, report each outcome separately.
@@ -180,8 +217,12 @@ The full plan must require:
 
 - Fresh inspection of actual delivered files, wiring, records, canonical closure,
   and tested inputs, independent of the installer's success statement.
-- Clause-by-clause acceptance for the piece's declared stage. Inert source
-  verification is not runtime readiness; carry deferred proof explicitly.
+- Complete acceptance coverage for every applicable obligation at the piece's
+  declared stage, with requirement-level evidence rather than a coding-method
+  checklist. Inert source verification is not runtime readiness; carry deferred
+  proof explicitly. Unspecified equivalent verification methods may be selected
+  within approval and execution boundaries; fixed methods and actual protected
+  payload changes retain their applicable amendment requirements.
 - A gap list before edits, followed by building/correcting missing or wrong
   implementation in the same verifier task within explicitly authorized scope.
   A result matching an expected negative/non-zero outcome is not a repair gap;
@@ -278,6 +319,9 @@ a series or hook was initialized or enabled.
 State project/series, requested mode, actual current piece and task references,
 creation/reuse/readback outcome, verified declared stage, dependency/delivery
 readiness, remaining blockers, and the real next action.
+
+Summarize substantive outcomes and material exceptions. Required evidence and
+actual amendments remain reportable; routine programming does not need a diary.
 
 Separately state hook status and whether another invocation is necessary. Do not
 claim a workspace skill was published or another project installed it merely

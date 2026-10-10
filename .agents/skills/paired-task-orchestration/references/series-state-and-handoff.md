@@ -18,13 +18,27 @@ Treat changes to pieces, contracts, validation/repair obligations, approval mode
 or specification as changes needing reconciliation and applicable renewed scope.
 Do not silently rebase current tasks on a new attachment or self-modified backlog.
 
+These controls protect requirements and governing plans, not routine programming.
+Normal programming within approved boundaries is the default. Selecting among
+unspecified equivalent methods is not itself a protected-plan amendment; it needs
+no separate approval, per-choice record, or routine method-change ledger.
+Changes to fixed requirements, acceptance/coverage, scope, authority, execution
+permissions, limits, or material safety/privacy/compatibility/data-integrity/
+ownership/recovery/completion boundaries use the applicable escalation route.
+Actual protected-payload changes still require authorized amendment and readback.
+Preserve required approval, execution, incident, provenance, and acceptance
+evidence; changed relevant inputs still invalidate affected prior evidence.
+
 Optional source preparation with missing future installed definitions uses the
 authorized specification/package exception only. Source-dependent checks stay
 pending until the actual canonical destination/resource closure is available.
 
 ## 2. Durable records
 
-Reuse host equivalents. Example semantic fields, not a mandated schema:
+Reuse host equivalents. The following layout is optional guidance, not a mandated
+schema, architecture, work-family checklist, or additional acceptance gate.
+Required identity, authority, delivery, and acceptance bindings remain mandatory;
+equivalent records may establish them without these literal field names:
 
 ```text
 series:
@@ -171,6 +185,11 @@ redefine expectations after an unexpected failure or repair valid rejection
 behavior merely to produce zero/PASS. A completed finding task can still expose
 a genuine blocker for a later task; carry that blocker forward without falsely
 blocking completion of the finding task.
+
+This is a requirement-level acceptance record, not a ledger of implementation
+choices. Shared evidence may cover multiple criteria when their mappings remain
+clear and complete. The verifier assesses the approved outcomes independently;
+it does not approve or reconstruct every coding decision.
 
 Do not require future runtime proof for an expressly inert source stage, and do
 not let that source-stage acceptance satisfy a runtime prerequisite. Deferred

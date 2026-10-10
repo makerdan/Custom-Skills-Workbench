@@ -4,6 +4,27 @@ These are checks to perform, not assertions that a host installation or tests
 already passed. Use actual source/plan/environment bindings and applicable safe
 authorization. Do not run platform writes just to verify this skill's text.
 
+## Outcome-based control
+
+Normal programming within approved boundaries is the default. A primary delivers
+the required outcome; its independent verifier assesses that outcome against
+approved acceptance criteria and evidence. Do not require separate approval,
+per-choice decision records, step-by-step narration, exhaustive method checklists,
+or routine method-change ledgers for routine coding.
+
+Selecting among unspecified equivalent methods is not itself a protected-plan
+amendment. Exceptions, waivers, changed criteria/coverage, material changes to
+scope/authority/execution/limits or safety/privacy/compatibility/data integrity/
+ownership/recovery/completion, and changes to fixed requirements or protected
+plans retain their applicable approval and amendment routes. Actual protected
+payload changes retain full readback and affected-evidence renewal requirements.
+Required approval, execution, incident, provenance, and acceptance evidence
+remains mandatory; omitting a programming diary does not waive that evidence.
+
+The tables below state required acceptance outcomes, not mandatory internal coding
+methods or extra work-family gates. Optional examples do not add obligations.
+Assess every applicable requirement; do not invent an assertion for every example.
+
 ## Definition-only confirmation
 
 When installing this skill through project tasks, create the required dependent
@@ -27,6 +48,9 @@ Compare the installed package against the authorized original specification:
   recovery, and uncertain-write reconciliation precede retries.
 - Verifiers audit first, list gaps, repair only explicitly approved scope, rebind
   changed evidence, renew validation, and obtain independent post-repair acceptance.
+- Routine programming is delegated within approved boundaries; the verifier
+  independently checks outcomes rather than each coding choice. Material
+  exceptions and actual protected-plan amendments remain controlled.
 - Source-only/bootstrap/runtime stages are distinguished without circular initial
   proof, hidden checks, or false operational readiness.
 - User task approval remains separate; future drafting permission is conditional
@@ -67,6 +91,9 @@ Instrumented fixtures can test logic but cannot prove real UI/task integration.
 | Later backlog | Remaining pieces are durably recorded, not created as extra draft cards |
 | Approval boundary | Neither task runs merely because created; verifier does not execute before delivered inputs |
 | Shared instructions | Every materialized plan includes all applicable specification/shared safeguards |
+| Routine programming | Equivalent unspecified methods need no new task, approval, choice ledger, or diary; the approved outcome and its evidence still pass independent review |
+| Material exception | Changed criteria/coverage, scope, authority, execution, limits, or protected safety/ownership/recovery/completion boundaries follow the applicable authorized route |
+| Protected plan | Routine choices do not themselves amend a plan; actual fixed-requirement or protected-payload changes retain amendment, binding/readback, and evidence-renewal controls |
 | Source stage | Only its declared source scope accepts; deferred runtime proof gates the runtime successor |
 | Missing implementation | Verifier lists gaps, repairs within authority, invalidates old evidence, and gets independent final acceptance |
 | Missing external authority | Blocked requirement and concrete next proposal; no synthetic grant or fake provider |
@@ -96,5 +123,9 @@ project/task binding when applicable, exact scope/stage, actual checks performed
 raw outcomes/evidence, gaps before repair, amendments, independently accepted
 post-repair snapshot, blocked/unperformed cases, responsible next actions, and
 manual/automatic capability state.
+
+Keep the report concise and requirement-linked. Retain actual amendments and
+material exceptions, not a routine-method diary; preserve approval, execution,
+incident, and provenance evidence needed to establish a valid outcome.
 
 No recursive verification task creation or self-certified host proof.
