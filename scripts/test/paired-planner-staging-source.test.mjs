@@ -94,7 +94,7 @@ test("canonical-source, pairing, approval, and execution boundaries remain intac
 
   assert.ok(
     priorAuthorityNormalized.includes(
-      "Never use alternate/copied skill definitions or .local mirrors as canonical inputs.",
+      "Never use alternate/copied skill definitions or `.local` mirrors as canonical inputs.",
     ),
   );
   assert.ok(
