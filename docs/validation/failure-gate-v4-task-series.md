@@ -1,6 +1,6 @@
 # Failure Gate v4 — project-bound invocation-driven paired series
 
-<!-- regression-guard: not-applicable -->
+<!-- regression-guard: required; documentary autonomy amendment; guard authored only, NOT_RUN -->
 
 ## Binding and authorized mode
 
@@ -61,7 +61,7 @@ Companion discovery is canonical-only. skill-install-confirmation is referenced 
 
 ## Full task payload contract and acceptance mapping
 
-Each following -I/-V section is a full payload template: project/stage/role, original piece obligations, expanded shared safeguards, fixed expected-outcome mapping, evidence, report destination and blocked/resume route. When native tasks are materialized, fill actual bindings/readiness/methods through authorized finalized full-plan readback without dropping any text or coverage. Fresh FG-02 tracked payloads are the same content. For FG-01 historical full native plans remain unchanged; this backlog retains their original obligations for traceability, not a new task.
+Each following -I/-V section retains its complete original payload: project/stage/role, original piece obligations, expanded shared safeguards, fixed expected-outcome mapping, evidence, report destination and blocked/resume route. Its current full template additionally includes the complete shared implementation-autonomy contract below. When native tasks are materialized, insert that contract verbatim after the task title, then fill actual bindings/readiness/methods through authorized finalized full-plan readback without dropping text or coverage. A link, section name, digest, short checklist or inaccessible shared reference is not a delivered instruction. Both tracked FG-02 drafts already contain this expansion. Provider payload limits are not permission to abridge: if complete persistence/readback is unavailable, block that handoff with the integration owner and exact missing route. For FG-01 historical full native plans remain unchanged; this backlog retains their original obligations for traceability, not a new task.
 
 The existing full clause allocation in failure-gate-fg-01-obligation-ledger.md remains part of every piece's acceptance matrix: every assigned core, budget, lifecycle, reclaim, evidence/recovery, Router and cross-piece case must map to actual method/evidence/status/owner/next action. Original specification piece paragraphs below are retained as obligation text; project bindings and explicit stage/outcome handling supersede generic unbound context only, never technical requirements.
 
@@ -70,6 +70,41 @@ Allowed result is NOT automatic task acceptance. For every criterion record decl
 ## Shared authorization carried into each full payload
 
 Current ACTIVE/INACTIVE classification UNKNOWN, last actual queried metadata STAGED. Documentation authoring is explicitly authorized in the present task and is not a validation run; no registered docs tier/PASS is invented. Earlier limited coordinator observations outrank stale descriptions for returned scope/time only. No new store or budget read is authorized. Historical consumption reports conflict with absent queried lineage and grant no allowance.
+
+## Shared implementation-autonomy contract
+<!-- implementation-autonomy: begin -->
+
+**Default:** Within an actually approved task's read/write/repair scope, normal Replit programming selects routine implementation methods without renewed owner design decisions, per-choice approval, narration or a routine decision diary. Required observable behavior, original acceptance/outcomes and evidence are fixed; unspecified helper/module structure and equivalent internal methods are agent choices, not additional acceptance criteria. This delegates methods, not authority.
+
+**Scope:** Read the relevant canonical `.agents` closure, original obligations, actual complete task plans and delivered inputs. Write only the paths and implementation boundary authorized by that task; each verifier may repair its already-authorized assigned defects after listing gaps, retaining unrelated files/history and obtaining fresh independent post-repair acceptance. This documentary amendment itself authorizes only the active plan, both g02 drafts, checkpoint/locators, amendment handoff and inert static guard. It grants no FG-02 implementation permission or later-piece execution.
+
+The delegation map makes these choices explicit; the examples are not prescribed architecture, a programming-step checklist or a substitute for the original technical contract:
+
+| Piece / role | Agent-selected authoring or method choices | Fixed boundary |
+|---|---|---|
+| FG-02 | Adapter/schema organization and authored rejection cases | Exact real authority mappings and finite-limit/aggregate/narrowing/revocation semantics; inert and unregistered |
+| FG-03 | Internal schema, transaction, index, ID and idempotency design | Verified namespace, committed-only allocation, permanent non-reuse/tombstones, CAS and audit atomicity; no live initialization |
+| FG-04 / FG-09 | Supervision-adapter decomposition, event plumbing, bounded capture and parsing | Real independent whole-tree containment, registration before dispatch, exact transitive graph, finite accounting and raw results |
+| FG-08 | Reuse of the existing verified config loader, redaction and deterministic snapshot comparison | Actual applicable inputs, no secret contents, stable targets, complete raw reports and current snapshot integrity |
+| FG-10 / FG-16 | Bounded queries, report formatting and pagination | Approved data/field/access bounds, truthful availability/lineage, privacy, retention and permanent evidence/tombstones |
+| FG-11 / FG-12 | Fixture authoring, classification and signature implementation | Exact authorized three-retry/provenance/ignore/owned-repair rules; no additional diagnostic allowance or waiver |
+| FG-13 / FG-14 | State-machine, readers, transaction structure and messages | Effective final-writer safety and exact completion modes; owner_direction is not validated completion |
+| FG-15 | Approved-format checkpoint helpers and isolated test authoring | Real-format non-reuse/reconciliation/fencing and separately authorized recovery; no live restore |
+| Every -V | Already-authorized scoped defect repairs and equivalent verification methods | Audit-first gap list, fixed obligations, current evidence, permitted methods and independent post-repair acceptance; no self-certification |
+
+**Execution is separate:** Source-only work is not permission for imports, syntax checks, tests, builds, CLI/store operations or live wiring. Authoring a rejection case, fixture or isolated test does not launch it. Later execution still requires the actual stage gate, authentic route/decision, exact selected tier or bounded capability, independently approved finite limits/remaining accounting, conflict safety, whole-tree independent supervision and capture/cleanup bounds. FG-02–04 runtime proof remains at FG-05; recovery/reclaim and ordinary cutover keep their separate gates. No policy, approval record, secret acquisition, live store initialization/migration/restore, dispatch, signals, expanded diagnostics, evidence deletion, service/hook, CI, automatic advancement/merge or deployment is authorized here. Relaxing any current source-only exclusion requires a separately scoped decision.
+
+**Evidence and versions:** Ordinary app edits within unchanged approved scope do not require renewed tier authorization. Relevant prior evidence becomes stale; authorized validation must cover the new relevant inputs, retaining original failures and cumulative consumption. Changed governing runner/checker/wrapper/tier/policy versions still require their applicable review and binding before results are accepted; an internal coding choice cannot waive that requirement.
+
+**Equivalent-method resolution:** Selecting among unspecified equivalent methods is not itself a protected-plan amendment. For genuinely pending verifier methods, use the Router's bounded deferred-method resolution; for a previously fixed method needing correction, use its authorized method-only correction route. Retain the original/resolved requirement-level methods, old/new instructions where changed, reason, authority, evidence impact, matrix revision/digest and payload bindings. This is a record of actual verification-method resolution or protected change, not a diary of ordinary coding choices. Keep unchanged semantic scope/primary binding and its duplicate key. Re-read the complete actual executable payload before execution and at acceptance. Changed primary-plan digest, scope, acceptance or other protected binding requires the applicable renewed authorization/binding and retained history. Never silently amend a protected native plan. If the permitted host resolution/amendment route is unavailable or equivalence uncertain, publish the precise proposed reconciliation and block only affected execution/acceptance, naming the integration/authority owner and resume input.
+
+**Deterministic-policy reuse:** After the applicable integration/stage and authorized cutover gates, reuse only a genuinely verified, current, already-approved deterministic policy for exactly matching tasks, with a fresh exact-bound decision for each task. Do not request repeated human policy approval for matching instances. Unmatched/uncertain inputs, changed policy terms or stale bindings still require the applicable decision. This amendment neither approves a new deterministic policy nor asserts that one is active or available.
+
+**Escalate exceptions, not coding steps:** Seek the applicable decision for changed required behavior, public semantics, acceptance, coverage, scope, tier/parameters/limits, governing versions/policy, explicitly constrained methods or protected plan/dependency bindings; live operations outside the existing grant; unavailable authentic authority/capability; uncertain equivalence; or missing delivery/independent acceptance. Do not synthesize an approval, local ID, finite grant, supervisor, provider finalization or passing result. Continue independent permitted work while the affected claim remains blocked.
+
+**Materialization and handoff:** This entire contract plus the complete relevant original -I/-V payload must be in each actual native plan and read back in full under the canonical handoff rules. Keep all 18 ordered pieces and all 36 templates; references alone cannot replace delivered instructions. Source delivery is not host acceptance, task lifecycle is not authority, and report/guard creation is not activation. Current amendment report/bindings: `docs/validation/failure-gate-implementation-autonomy-amendment.md` and `docs/validation/failure-gate-implementation-autonomy-bindings.json`. Independent amendment acceptance remains pending; no FG-02 card or series advancement follows.
+
+<!-- implementation-autonomy: end -->
 
 ## Piece 01 — Project binding, contract extraction, and installation scope
 

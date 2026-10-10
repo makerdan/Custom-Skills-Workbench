@@ -45,3 +45,11 @@ All of the following remain mandatory:
 The current status is therefore **PENDING / BLOCKED**. The old #126 report retains its original dated PARTIAL / BLOCKED result; cancelled #135 remains cancelled and is never called accepted. No provider finalization, global uniqueness, no-writer condition, final-writer exclusion, host behavior, or Gate validation PASS is claimed.
 
 A later specifically authorized invocation may renew only this aggregate status after authentic current confirmation and amendment evidence arrives and independent resource/plan acceptance is actually granted. Nothing here authorizes task creation, approval, execution, FG-02 work, or automatic advancement.
+
+## Subsequent implementation-autonomy locator — 2026-10-10
+
+The dated assessment above is retained, not promoted to new acceptance. The documentary amendment of the active series plan and both FG-02 drafts is tracked in `docs/validation/failure-gate-implementation-autonomy-amendment.md` with current byte bindings in `docs/validation/failure-gate-implementation-autonomy-bindings.json`. Old changed-input digests and “unchanged inputs” observations apply only to their historical snapshots; they do not accept the new source. The checkpoint has an additive current autonomy locator. Original acceptance criteria, history and runtime gates are unchanged.
+
+The fresh narrow conflict-resolution source review is present at `docs/validation/skill-install-confirmation-rule-conflict-resolution-review.md`; its ACCEPTED disposition is confined to that source-rule repair. It is not overall #102/#120 confirmation, resource acceptance, FG-02 acceptance or acceptance of this amendment. The queued #152 independent amendment review remains separate from the current #150 confirmation handoff and #151 resource reassessment. This author makes no decision for those tasks and does not modify their records or reports.
+
+Amendment disposition: **PENDING INDEPENDENT REVIEW**. Reviewer-local delivery and full actual task readback are required. The inert guard is **NOT_RUN**; source delivery is not host acceptance, task lifecycle is not authority, and report/guard creation is not activation. No new deterministic policy, runtime grant, FG-02 pair or automatic progression is established.

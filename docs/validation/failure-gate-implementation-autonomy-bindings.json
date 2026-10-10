@@ -1,0 +1,514 @@
+{
+  "schema": "implementation-autonomy-document-bindings-v1",
+  "date": "2026-10-10",
+  "project": {
+    "ownerPath": "/@makerdantheman/Custom-Skills-Workbench",
+    "repository": "https://github.com/makerdan/Custom-Skills-Workbench",
+    "root": "/home/runner/workspace",
+    "namespace": "Skills Workbench project tasks",
+    "immutableProjectUUID": "NOT_EXPOSED"
+  },
+  "series": "Custom-Skills-Workbench/failure-gate-v4/18-piece",
+  "scope": "fgv4-implementation-autonomy-plan-amendment-v1",
+  "guardExecution": "NOT_RUN",
+  "runtimeExecution": "NOT_AUTHORIZED",
+  "independentAcceptance": "PENDING",
+  "reviewerWorkspaceDelivery": "AWAITING_REVIEWER_LOCAL_CHECK",
+  "bindingMethod": "Complete supported task/source reads and bounded UTF-8 byte-count/SHA-256 documentary comparison only. No guard or project command executed.",
+  "preEdit": {
+    "gitCommit": "e425a6e2fd572e6681551c5de964e14afbdf2694",
+    "snapshotAccess": "Immutable Git commit:path for each original input; preserve original objects, do not reconstruct unavailable bytes.",
+    "files": [
+      {
+        "path": "docs/validation/failure-gate-v4-task-series.md",
+        "sha256": "e675b914aff0909113d9994fba71d4a548b7c2f4a976e0b40dfd45c7491b828f",
+        "utf8Bytes": 464209
+      },
+      {
+        "path": "docs/validation/task-plans/fg-02-g02-i.md",
+        "sha256": "9b12181fdc7b2452b8a363399113b691bd44bd92459706482a0a610d38f3c285",
+        "utf8Bytes": 13427
+      },
+      {
+        "path": "docs/validation/task-plans/fg-02-g02-v.md",
+        "sha256": "deef19878c27227913bbee179fc59e5a4678467756c8f049f7047f0e05f3b804",
+        "utf8Bytes": 14850
+      },
+      {
+        "path": "docs/validation/failure-gate-v4-series-checkpoint.md",
+        "sha256": "673fa1483f862dc5370823c70a6c68a915b364e68e9a7c0de82a861624fb205f",
+        "utf8Bytes": 15963
+      },
+      {
+        "path": "docs/validation/paired-current-handoff-status.md",
+        "sha256": "076c93a1f46869db04a349a589a451bc90b3fa5173491947ff417ffd2d330e46",
+        "utf8Bytes": 8323
+      }
+    ],
+    "originalPieceAndHistorySha256": "767b2c5e8b5430e6a4403cf8a2a271e6b7326c35777b4e957e1209de0043cb32",
+    "originalPayloads": [
+      {
+        "label": "FG-01-I",
+        "sha256": "698f7cb8238990b338a8a6935af927f374cb459d08ffa8c710dc6ba3fac0ac9f",
+        "utf8Bytes": 11641
+      },
+      {
+        "label": "FG-01-V",
+        "sha256": "32eab93c08a45e00a7301126abad12dc08894ce9f5faa4382b201dfa61f9fdd0",
+        "utf8Bytes": 13153
+      },
+      {
+        "label": "FG-02-I",
+        "sha256": "4a3c85e29ac89a551158cba73fbbc4498a0187b22c4cb7d755d2b41b7127f70e",
+        "utf8Bytes": 11616
+      },
+      {
+        "label": "FG-02-V",
+        "sha256": "f6713b1f638fba0058caa95c18e9700dc79e145926774f7746e1cc2707af0ed8",
+        "utf8Bytes": 12802
+      },
+      {
+        "label": "FG-03-I",
+        "sha256": "cd2c8cae8339628fcb4981356e33715adf6620ca3ace04d85716e05916511c2f",
+        "utf8Bytes": 11491
+      },
+      {
+        "label": "FG-03-V",
+        "sha256": "b916289f2203f6423d2a4e9245931bf53ea6f7ade6586064cde9324b19a59902",
+        "utf8Bytes": 12622
+      },
+      {
+        "label": "FG-04-I",
+        "sha256": "03ec1ba9c29292cd8d9709d0f69ba5b83ddc1390dd516b53b6e3cadf8b3d50ce",
+        "utf8Bytes": 11567
+      },
+      {
+        "label": "FG-04-V",
+        "sha256": "625cb80e38a28a21138aa5f729712bd924bcdc28e6a2d32abf131929cbed9a62",
+        "utf8Bytes": 12521
+      },
+      {
+        "label": "FG-05-I",
+        "sha256": "e30969b7eabf7f74a4bdd440564acf08730681ad92bbe943152a3d59e13a59a8",
+        "utf8Bytes": 12332
+      },
+      {
+        "label": "FG-05-V",
+        "sha256": "b8e0cd646c64befc3687b545370800d94ff88fee1990f6f2486c4e00d738a65c",
+        "utf8Bytes": 12755
+      },
+      {
+        "label": "FG-06-I",
+        "sha256": "02c4435bb43427fa0ecf3083685f295e6d2049a0987699343df0f9806fbd0c85",
+        "utf8Bytes": 11752
+      },
+      {
+        "label": "FG-06-V",
+        "sha256": "a8f693597587f63ed89e2944941905049bcee1321d945bed745bbcea6ddead39",
+        "utf8Bytes": 12588
+      },
+      {
+        "label": "FG-07-I",
+        "sha256": "4cdf6806f1c1b21b1b2ff138a874a6d6e25b7978266c826a59f71a31b8495dd1",
+        "utf8Bytes": 11776
+      },
+      {
+        "label": "FG-07-V",
+        "sha256": "193bd5584a9c9fdcdfece83111875969a3c608b80d1f09e85c80af4b8b0e3dfd",
+        "utf8Bytes": 12626
+      },
+      {
+        "label": "FG-08-I",
+        "sha256": "c6d0aa700955d03b5f52955126990dd7f32379c2538ae5d06b3764dde379edda",
+        "utf8Bytes": 11928
+      },
+      {
+        "label": "FG-08-V",
+        "sha256": "6a1c9978e64c67244baa0ee7048bc9b3e94b3968119c524608210b0b955e1e37",
+        "utf8Bytes": 12729
+      },
+      {
+        "label": "FG-09-I",
+        "sha256": "6eed8d94e8ded14fddf6c83ef028c5d895027554689ee698abc7e33fb4c57ab1",
+        "utf8Bytes": 12182
+      },
+      {
+        "label": "FG-09-V",
+        "sha256": "41797efad7cf342d28cd3efe5ea1b513075ca9894b2e3f5f9636ac3fe9af4a00",
+        "utf8Bytes": 12742
+      },
+      {
+        "label": "FG-10-I",
+        "sha256": "bea3b91226c327282773591d94fa88f1efe4e658fcbcf003aa68cf9313f52b82",
+        "utf8Bytes": 11846
+      },
+      {
+        "label": "FG-10-V",
+        "sha256": "08fb2b5aba2a053d010a75f439e2b9b718095afc419f27befff2160ca4ea2bc1",
+        "utf8Bytes": 12676
+      },
+      {
+        "label": "FG-11-I",
+        "sha256": "c2b1cf9f259b8398c1c29e91aa42976995c59648be559e27c215721e7f470323",
+        "utf8Bytes": 11816
+      },
+      {
+        "label": "FG-11-V",
+        "sha256": "b5d6ff2bc3a19cb5be5d8e9f86ff27d03010b49a696e78d7198a502b4bbb185f",
+        "utf8Bytes": 12681
+      },
+      {
+        "label": "FG-12-I",
+        "sha256": "8271eaf058a323871ff05ace7eb15921ae47311a73e4315f2b971b6534d060fd",
+        "utf8Bytes": 12002
+      },
+      {
+        "label": "FG-12-V",
+        "sha256": "28a6b5a87ad77df71df0a4586c9b95bb50a8e497e2713cf7188a88830686847d",
+        "utf8Bytes": 12695
+      },
+      {
+        "label": "FG-13-I",
+        "sha256": "17e916f44e4ef7804e0f95505c7d0598ced75c428e74aaa5dabe01d59fbe5d2e",
+        "utf8Bytes": 11909
+      },
+      {
+        "label": "FG-13-V",
+        "sha256": "a9ff1f718d1607d7447e9ceccd648818a6326fa730adb22b7fd123dbe1dfdffb",
+        "utf8Bytes": 12641
+      },
+      {
+        "label": "FG-14-I",
+        "sha256": "cd06cddbd4aff4d56c867bb3ffdc01310d23fbed74515f0c834de03d43d76100",
+        "utf8Bytes": 11844
+      },
+      {
+        "label": "FG-14-V",
+        "sha256": "9ed9e6bd88601fc586872991bd7d1b223d3c0569c7b22848607889841e2ac55f",
+        "utf8Bytes": 12626
+      },
+      {
+        "label": "FG-15-I",
+        "sha256": "59b020b32beb5b70cc341594945822e34c2f8036ff61d06f54a2d1e57238ffbe",
+        "utf8Bytes": 12082
+      },
+      {
+        "label": "FG-15-V",
+        "sha256": "e8b7c7170110bd1926adcff29ce0dba419d922d6d8faf1ecf10c0a51b8517cda",
+        "utf8Bytes": 12737
+      },
+      {
+        "label": "FG-16-I",
+        "sha256": "e03dd1bebfe67ecaa92cb169c6bca87b14e9ed796615ec18dd9ab3cb9def7324",
+        "utf8Bytes": 12059
+      },
+      {
+        "label": "FG-16-V",
+        "sha256": "34200506e10e3eed95db34a0f9e82c5e1fc5bfbca43545c5fd2367441dcde76a",
+        "utf8Bytes": 12676
+      },
+      {
+        "label": "FG-17-I",
+        "sha256": "abb455f2e981460f0b400ac7f69c5baccda6568b20b6ba300d5da52659b3962c",
+        "utf8Bytes": 12486
+      },
+      {
+        "label": "FG-17-V",
+        "sha256": "2773635226afe02fa6453fbed7a488ee7c0cd5f6d8006d693447617455d14f0a",
+        "utf8Bytes": 13502
+      },
+      {
+        "label": "FG-18-I",
+        "sha256": "7b5eded77e79b1972c558194a59c8cebb58a8c332888394f6b7b6af56eec642f",
+        "utf8Bytes": 12821
+      },
+      {
+        "label": "FG-18-V",
+        "sha256": "d372a17446adb74b2d46a93df80e9c37fd885ec963eb78986edef703ae2a0933",
+        "utf8Bytes": 14551
+      }
+    ]
+  },
+  "canonicalAndObligationInputs": [
+    {
+      "path": "replit.md",
+      "sha256": "b1aa215ec3fee6152e93762b2511bd5dcc8a844a082f038da831394ebc7c405d",
+      "utf8Bytes": 4397
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/SKILL.md",
+      "sha256": "e348abd53d69bb37f74bea3a54bf46b89d2d782fb7fa570d5dad875fcfa5ccf2",
+      "utf8Bytes": 33817
+    },
+    {
+      "path": ".agents/skills/paired-task-orchestration/SKILL.md",
+      "sha256": "1060bbef83e521a9f591d62e52caf2d3e97cb5d23f904b6a939051ea02708456",
+      "utf8Bytes": 18258
+    },
+    {
+      "path": ".agents/skills/skill-application-router/SKILL.md",
+      "sha256": "49e3db86b0f5b8c7efba871d7404c40336cb3caf544427a429065b1088f6586f",
+      "utf8Bytes": 23381
+    },
+    {
+      "path": ".agents/skills/regression-guard/SKILL.md",
+      "sha256": "99b8edc59eeac835656b1098402d18b53525163fd763e18f832c6ebda2f91285",
+      "utf8Bytes": 20467
+    },
+    {
+      "path": ".agents/skills/skill-install-confirmation/SKILL.md",
+      "sha256": "a613efe2bea3476b8770b665dd9f0b0b440a320f5aae627a79a815ea6cf6b82a",
+      "utf8Bytes": 15816
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/implementation.md",
+      "sha256": "4b1b756c0d1726b240451a6a82e563a722be2dc9c879f4bb7d54f347d26f2a16",
+      "utf8Bytes": 57307
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/acceptance.md",
+      "sha256": "5d89de3cac03813485cc1781fa67c47c59e659c46fae59ef1d39dd2b1db21bfe",
+      "utf8Bytes": 49228
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/staging-and-lifecycle.md",
+      "sha256": "a9ab52d787e44c7aa4e199c8662882521d8ccf0ef8a6de0706c7853b5fa69800",
+      "utf8Bytes": 12335
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/validation-budgets.md",
+      "sha256": "62c19d7ef9cbedf9505ba45b3d45460fa909126db30a83fbeb43fa2ae7a09866",
+      "utf8Bytes": 21279
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/execution-monitoring.md",
+      "sha256": "9759842ae03a7f5cb5206a0e3f583c99a6cb7dcd4ff5e44570c6188c47d2f563",
+      "utf8Bytes": 17740
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/evidence-and-recovery.md",
+      "sha256": "91a06ce5ed37eb161c45c440f26cdf42256ddf2265e64f17c47e7ccc03c49075",
+      "utf8Bytes": 14678
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/runtime-reclaim.md",
+      "sha256": "bceea11fe66e7d4ef0433ee8306f87f3ec5cdc1520215fdf59393afcbbedb51f",
+      "utf8Bytes": 23857
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/authorized-continuation.md",
+      "sha256": "3dc5590aca87c679b4dbfdcc0fe29c5fdc73192a816b3f82bfd326b28933d8b3",
+      "utf8Bytes": 7988
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/owner-directed-closure.md",
+      "sha256": "9dff9d6e28e10b70224755d63a0f1aeb44be9f789c47a5700bab86dc46d3b4e4",
+      "utf8Bytes": 9031
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/adapters/posix-writer-lock/README.md",
+      "sha256": "3d635b1ae2307beb79e2369a616ac7b2a9d28bedec6daf80655fd1d4aa9a39d2",
+      "utf8Bytes": 7987
+    },
+    {
+      "path": ".agents/skills/paired-task-orchestration/references/acceptance-and-confirmation.md",
+      "sha256": "c83bb5977a42866b67bb7c029ca16512df23c4fd7da2aae04884ce3b4f39db3c",
+      "utf8Bytes": 7200
+    },
+    {
+      "path": ".agents/skills/paired-task-orchestration/references/host-hook-contract.md",
+      "sha256": "7b9fe6dfaf0290450e4f1ffdeefcf1b58158fc8546628e643ea1351d3da2f43e",
+      "utf8Bytes": 8642
+    },
+    {
+      "path": ".agents/skills/paired-task-orchestration/references/series-state-and-handoff.md",
+      "sha256": "e0fb9d7e2e2e80c7c7f2b36c2356aceda09f10f56118255392cda97899fb5b3c",
+      "utf8Bytes": 10535
+    },
+    {
+      "path": ".agents/skills/skill-application-router/references/delivery-reconciliation.md",
+      "sha256": "fd908bd54a3d2db4d25cc6a3f2e6fbdfece0e9276a28e02db48d5dcfdfa3f3ca",
+      "utf8Bytes": 11454
+    },
+    {
+      "path": ".agents/skills/skill-application-router/references/handoff-binding-and-recovery.md",
+      "sha256": "7e95d74645e0c1184b2ae24488ffd5936237fb6fc1d9596734a3e57bb1fe0ff5",
+      "utf8Bytes": 13829
+    },
+    {
+      "path": ".agents/skills/skill-application-router/references/installation-verification-plan.md",
+      "sha256": "99bc98079967ed47f8f524c187b9823fc99dddca55d4b61a9220dcbb5b3f8cb9",
+      "utf8Bytes": 23323
+    },
+    {
+      "path": ".agents/skills/skill-application-router/references/router-task-handoff-acceptance.md",
+      "sha256": "811bc5201d5067a4dc09d74c73880c4798f3407d7955182a923c95b3b897c849",
+      "utf8Bytes": 16089
+    },
+    {
+      "path": "docs/validation/failure-gate-fg-01-obligation-ledger.md",
+      "sha256": "9f4801eaba872423abb9cd565e3de59c30950d514f1589a8643c037847e0ce77",
+      "utf8Bytes": 46650
+    },
+    {
+      "path": "attached_assets/failure-gate-v4-piecemeal-task-series_1791259976201.txt",
+      "sha256": "7bd8aadd6007ed7c01f118d6cbb83d70ea52d79cecfc6eaafc2234ee869eb026",
+      "utf8Bytes": 59658
+    }
+  ],
+  "retainedEvidenceInputs": [
+    {
+      "path": "docs/validation/failure-gate-v4-series-handoff-policy.md",
+      "sha256": "5ba6bbc5cf3a9106ed6d4ed2cbacca80fc20b95a3d2fa43ceec5bbe91c3d4228",
+      "utf8Bytes": 13129
+    },
+    {
+      "path": "docs/validation/paired-current-handoff-manifest.json",
+      "sha256": "944b3451a5cc283da753ceb0ae957fabba1415b058b294581c096c27d52e078c",
+      "utf8Bytes": 33249
+    },
+    {
+      "path": "docs/validation/paired-current-handoff-renewal.md",
+      "sha256": "da4ca1251f4cf8efce4bfddbd4212f62dd46cb99e95594ae013d42060f7eae42",
+      "utf8Bytes": 15064
+    },
+    {
+      "path": "docs/validation/retired-review-cleanup-bindings.json",
+      "sha256": "ca9322d301329b119e9726ad3cc36ad43b328400ab7b0b67c65536717f48302a",
+      "utf8Bytes": 14465
+    },
+    {
+      "path": "docs/validation/paired-current-resource-acceptance-evidence.json",
+      "sha256": "064d492de84c3b1cd2ec9af8ba133bab96045d15bd10a935cf1bef05675a3b06",
+      "utf8Bytes": 24349
+    },
+    {
+      "path": "docs/validation/paired-current-resource-acceptance.md",
+      "sha256": "f30c377a12bf4981890cf6d85045a4a26ebf1b74cbc32237032abd041a189bde",
+      "utf8Bytes": 15486
+    },
+    {
+      "path": "docs/validation/skill-install-confirmation-rule-conflict-resolution-review.md",
+      "sha256": "52ed92444076f95851541df906e2463376089bb8873543492b7984ee5fd83084",
+      "utf8Bytes": 8659
+    }
+  ],
+  "nativePlans": [
+    {
+      "dependsOn": [],
+      "sha256": "62cdb6c6fa030784a7ce4ca78c8efe39020167483ff1a4afe789c001b93c75e2",
+      "state": "IN_PROGRESS",
+      "taskRef": "#149",
+      "updatedAt": "2026-10-10T19:45:03.311Z",
+      "utf8Bytes": 10362
+    },
+    {
+      "dependsOn": [
+        "#149"
+      ],
+      "sha256": "59899fc05ddd1bd81d9cfaef2f157a9bf41be1c99bd76bce0224fe99adc7e544",
+      "state": "PENDING",
+      "taskRef": "#152",
+      "updatedAt": "2026-10-10T19:56:19.165Z",
+      "utf8Bytes": 12115
+    },
+    {
+      "dependsOn": [],
+      "sha256": "d822b547c0c1ca0e720d537424496ece4ee203f4162a239ccca3e91c29ef9001",
+      "state": "IMPLEMENTED",
+      "taskRef": "#150",
+      "updatedAt": "2026-10-10T20:11:27.711Z",
+      "utf8Bytes": 7352
+    },
+    {
+      "dependsOn": [],
+      "sha256": "bd84c47d0c006a8eb955b0a9c85f0a67cbe378f973833152eb054ad926a4435b",
+      "state": "IN_PROGRESS",
+      "taskRef": "#151",
+      "updatedAt": "2026-10-10T19:47:14.430Z",
+      "utf8Bytes": 8682
+    }
+  ],
+  "primaryBinding": {
+    "taskRef": "#149",
+    "fullPlanSha256": "62cdb6c6fa030784a7ce4ca78c8efe39020167483ff1a4afe789c001b93c75e2"
+  },
+  "reviewerBinding": {
+    "taskRef": "#152",
+    "actualDependency": "#149",
+    "scopeKey": "fgv4-implementation-autonomy-plan-amendment-v1/verify",
+    "fullPlanSha256": "59899fc05ddd1bd81d9cfaef2f157a9bf41be1c99bd76bce0224fe99adc7e544",
+    "updatedAt": "2026-10-10T19:56:19.165Z",
+    "expectedReport": "docs/validation/failure-gate-implementation-autonomy-verification.md",
+    "providerFinalization": "NOT_ESTABLISHED",
+    "atomicAttachment": "NOT_ESTABLISHED",
+    "globalWriterExclusion": "NOT_ESTABLISHED",
+    "readiness": "Full observed descriptions/dependency agree at bounded readback; actual reviewer-local inventory required before substantive review."
+  },
+  "delivered": {
+    "files": [
+      {
+        "path": "docs/validation/failure-gate-v4-task-series.md",
+        "sha256": "30c846865e9975c94c3011d1067c8f2a791502b696751c4657f9b4c7ce705edf",
+        "utf8Bytes": 472434
+      },
+      {
+        "path": "docs/validation/task-plans/fg-02-g02-i.md",
+        "sha256": "6da816bd8c5959fe64935bd5494117456ff098b4324e83d39e3ef751beb09271",
+        "utf8Bytes": 21131
+      },
+      {
+        "path": "docs/validation/task-plans/fg-02-g02-v.md",
+        "sha256": "43d51710caf5d6cff7029e13e488a633f63e3c452ee63ea0b2a71c89ed786269",
+        "utf8Bytes": 22554
+      },
+      {
+        "path": "docs/validation/failure-gate-v4-series-checkpoint.md",
+        "sha256": "0b62c6e546a2e0c17569fb48391ea8ad6d776d5ec5ff4bb0d57a49f19c8cef08",
+        "utf8Bytes": 18506
+      },
+      {
+        "path": "docs/validation/paired-current-handoff-status.md",
+        "sha256": "e1e8fc440e28d5ff0f2a5f7097a744d386d6673090b2720389e073af4be7a7ae",
+        "utf8Bytes": 9909
+      },
+      {
+        "path": "docs/validation/tests/failure-gate-implementation-autonomy.test.mjs",
+        "sha256": "62b9d0ef4bece546a1a483cf08647c8137d591543353c423e13e3630b5206d18",
+        "utf8Bytes": 6884
+      },
+      {
+        "path": "docs/validation/failure-gate-implementation-autonomy-native-readback.json",
+        "sha256": "796ec88d54402a648d6707079e05ba4e68d140f161fac18b3eaafdd9cc035a26",
+        "utf8Bytes": 116250
+      }
+    ],
+    "report": "docs/validation/failure-gate-implementation-autonomy-amendment.md",
+    "outerBinding": "Manifest and consuming report deliberately have no self/reciprocal digest. Final containing source commit binds both."
+  },
+  "documentaryReadback": {
+    "orderedPieces": 18,
+    "orderedPayloads": 36,
+    "originalPieceAndHistoryTextUnchanged": true,
+    "originalDraftBodiesUnchangedAfterContractExpansion": true,
+    "identicalFullContractInBothDrafts": true,
+    "originalSharedSafeguardsRetainedInAllPayloads": true,
+    "completePrimaryPlanUnchanged": true,
+    "recordedReviewerDependsOnActualPrimary": true,
+    "method": "Document text comparison only; these observations are not independent semantic acceptance or an executed guard."
+  },
+  "excludedResourceSubcriteria": [
+    "B2-R1",
+    "B5-R1"
+  ],
+  "evidenceImpact": "Changed plan/drafts/checkpoint/status invalidate affected earlier byte-identity/unchanged-input documentary evidence. Historical reports and original records retain original scope/time; no renewed acceptance inferred. All current source-only and later-piece execution gates remain.",
+  "notEstablished": [
+    "new deterministic policy approval or active/available policy",
+    "source-stage implementation permission",
+    "tier/local ID/grant/finite allowance",
+    "host supervision or runtime readiness",
+    "reviewer-local arrival",
+    "aggregate resource or confirmation acceptance",
+    "series advancement"
+  ]
+}
