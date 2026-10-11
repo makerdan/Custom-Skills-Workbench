@@ -31,6 +31,13 @@ always fail closed without independent fallback. Read the complete
 activation or retained-error recovery; record per-control states and separate
 fixture PASSED/FAILED/BLOCKED/NOT_RUN from actual host evidence.
 
+## Implementation discretion
+
+Apply the normative [implementation autonomy contract](implementation-autonomy.md)
+when planning, implementing, repairing or reviewing this workflow. Routine programming
+is the default: govern exceptions and material boundary changes, not every coding
+step or equivalent method. Required approval/evidence/runtime boundaries remain fixed.
+
 ## Host adaptation
 
 Apply [authorized-continuation.md](authorized-continuation.md) across discovery,

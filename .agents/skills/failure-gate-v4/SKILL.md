@@ -94,6 +94,15 @@ isolated host exercise; never restore production or fabricate backups.
 Optional history/catalog absence blocks only claims depending on it, not
 unrelated work or explicit owner-directed closure.
 
+## Routine implementation autonomy
+
+Within approved boundaries, normal Replit programming chooses implementation methods
+without separate approvals, step-by-step narration or routine method-change ledgers.
+Govern exceptions and material changes to acceptance, scope, policy or safety—not
+every coding step. Apply [implementation-autonomy.md](reference/implementation-autonomy.md)
+for that boundary; its examples are optional. Required validation evidence, explicit
+execution restrictions and independent acceptance remain unchanged.
+
 ## 2. Core invariants
 These task/tier controls apply when Failure Gate is verified ACTIVE or to its
 separately approved installation, not imaginary APIs on a verified INACTIVE host.
@@ -151,31 +160,9 @@ Run scaffold/plan guards through their separate planning capability. These
 bounded capabilities exist before activation and cannot satisfy task completion.
 If a required route is missing, report blocked setup and prepare its scoped next proposal.
 
-Use the host scaffold once verified. The following Markdown illustrates required
-semantic fields; other project-local task formats may map equivalent fields
-without adopting these exact headings:
-
-```markdown
-## Task identity
-**Task ID:** `TASK-001042`
-
-## Pre-existing failures to ignore
-None known at plan time. Treat new failures as potential regressions.
-**Flaky-test rule:** A passing retry proves intermittency, not provenance.
-
-## Task-local environment observations
-None observed.
-
-## Validation
-**Command:** `<registered-tier>`
-**Why:** Covers the changed behavior and its relevant integration boundary.
-**Do not escalate:** Run only the authorized tier; request approval for changes.
-```
-
-Replace examples with real registered values. Record an exact matching baseline
-as either `**Ignored baseline:** <ID>` or `**Owned baseline repair:** <ID>`,
-never both. Include suite, test, applicable variant/environment, and signature.
-Keep task-local observations separate from reusable catalog authority.
+Before planning, read [task-plan-template.md](reference/task-plan-template.md)
+for required semantic fields, baseline declarations and the illustrative scaffold.
+Use the verified host equivalent; preserve these obligations in every actual plan.
 
 Preserve other host-required sections and regression protections. No companion
 skill with a particular name is required.

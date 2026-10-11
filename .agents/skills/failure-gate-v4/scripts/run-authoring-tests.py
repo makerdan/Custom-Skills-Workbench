@@ -29,6 +29,7 @@ def main():
             "import test_staging_lifecycle as l;"
             "import test_activation_policy_guidance as p;"
             "import test_authorized_continuation as c;"
+            "import test_implementation_autonomy_guidance as d;"
             "s=unittest.TestSuite();"
             "s.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(b.BudgetPolicyTests));"
             "s.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(b.BudgetDocumentTests));"
@@ -38,6 +39,7 @@ def main():
             "s.addTests(unittest.defaultTestLoader.loadTestsFromModule(l));"
             "s.addTests(unittest.defaultTestLoader.loadTestsFromModule(p));"
             "s.addTests(unittest.defaultTestLoader.loadTestsFromModule(c));"
+            "s.addTests(unittest.defaultTestLoader.loadTestsFromModule(d));"
             "o=unittest.TextTestRunner(verbosity=2).run(s);sys.exit(not o.wasSuccessful())"
         )
         command = [sys.executable, "-B", "-c", code, str(ROOT / "tests")]

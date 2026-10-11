@@ -280,7 +280,17 @@ test("skill: interfaces, independent budgets, conflict map, Failure Gate boundar
   assert(skill.includes("even a SINGLE non-conflicting suite"));
   assert(skill.includes("caller-to-resource conflict map"));
   assert(skill.includes("A composite lock does not conflict with its constituent names."));
-  assert(skill.includes("necessary safety/lifecycle changes are allowed only"));
+  const guide = skill.replace(/\s+/g, " ");
+  assert(guide.includes("Phases group required outcomes, not a sequential programming checklist."));
+  assert(guide.includes("Selecting unspecified equivalent methods is not a protected-plan amendment."));
+  assert(guide.includes("Material boundary changes need applicable approval and regression evidence"));
+  assert(guide.includes("Retain required approval, execution, incident, provenance and acceptance evidence"));
+  assert(guide.includes("this regular skill adds no paired tasks or approval layer for routine choices."));
+  const contract = readFileSync(join(root, "reference/runtime-contract.md"), "utf8").replace(/\s+/g, " ");
+  assert(contract.includes("Changes to expressly fixed requirements or protected executable plans follow their applicable amendment route."));
+  assert(contract.includes("an author's repair is not independent acceptance."));
+  assert(contract.includes("they create no mandatory architecture, work-family checklist or extra gate."));
+  assert(contract.includes("The bundled runtime's protocol, admission, identity, startup-gating, supervision, budget, recovery and evidence contracts below are normative"));
   assert(skill.includes("The adversarial acceptance matrix is mandatory"));
   assert(skill.includes("perform exactly three authorized isolation retries"));
   assert(skill.includes("A passing retry proves intermittency, not pre-existing provenance."));
@@ -368,15 +378,12 @@ test("policy: health acceptance rejects HTML-200 and validates actual API/browse
     assert(guide.includes(text), text);
   }
   for (const text of [
-    "including a Studio probe when present",
-    "rather than just a direct backend curl or a fixture-only helper",
     "exact required fields/types/values indicating healthy service",
-    "Do not invent universal",
     "JSON alone proves health",
     "Reject HTML with HTTP 200",
     "missing or incorrect content type",
     "malformed JSON, unexpected redirects, unhealthy values and wrong-shape/wrong-service",
-    "separately approved compatible endpoint/probe change",
+    "approved compatible endpoint/probe change",
     "Require automated positive and negative regressions against the actual probe.",
     "HTML with HTTP 200 through the same frontend routing",
     "network failure/timeout", "verify abort/cancellation",

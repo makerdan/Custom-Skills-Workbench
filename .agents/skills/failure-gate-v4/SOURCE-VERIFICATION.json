@@ -1,0 +1,147 @@
+{
+  "coreLineCount": 490,
+  "executableAuthoringTests": "NOT_RUN",
+  "fileReadback": "PASS",
+  "formalIndependentDefinitionConfirmation": "NOT_PERFORMED",
+  "frontmatter": "PASS",
+  "hostAcceptance": "NOT_RUN",
+  "projectInstallation": "NOT_PERFORMED",
+  "relativeMarkdownLinks": "PASS",
+  "revision": "exception-focused-implementation-autonomy-v2",
+  "scaffoldMovedVerbatim": "PASS",
+  "scope": "Source/package inspection only; not executable regression tests or host acceptance",
+  "sourceFileCount": 28,
+  "sourceHashes": [
+    {
+      "path": "README.md",
+      "sha256": "840121477f13cb44746f1853e9e62b6b5bf151982c1ffd5a81b5abde52e81608"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "01cb480f8a68437d4006b52bb5a8d93c50e645993cc7a830e3ba7343f9e41d7e"
+    },
+    {
+      "path": "reference/acceptance.md",
+      "sha256": "a1a225cc650d711b9b359151cd608016a5aa334d1daac80a359a7611b532b91b"
+    },
+    {
+      "path": "reference/adapters/posix-writer-lock/README.md",
+      "sha256": "3d635b1ae2307beb79e2369a616ac7b2a9d28bedec6daf80655fd1d4aa9a39d2"
+    },
+    {
+      "path": "reference/adapters/posix-writer-lock/tests/test_writer_lock.py",
+      "sha256": "777035d2a9ceae4c976734125869686b9d713f0dec008dba18692e119a8eedb8"
+    },
+    {
+      "path": "reference/adapters/posix-writer-lock/writer_lock.py",
+      "sha256": "791a20ee9909127f2d03b577a6573cc382317cf8a58a898f146a89db5befe503"
+    },
+    {
+      "path": "reference/authorized-continuation.md",
+      "sha256": "a937781de51c00071ce94fdd92c804476c0841c05ecdb5657d588fe2398a0e4b"
+    },
+    {
+      "path": "reference/evidence-and-recovery.md",
+      "sha256": "91a06ce5ed37eb161c45c440f26cdf42256ddf2265e64f17c47e7ccc03c49075"
+    },
+    {
+      "path": "reference/execution-monitoring.md",
+      "sha256": "9759842ae03a7f5cb5206a0e3f583c99a6cb7dcd4ff5e44570c6188c47d2f563"
+    },
+    {
+      "path": "reference/implementation.md",
+      "sha256": "b9d139c767d2dd474f4abae311cde111e29087fec8090007d5d8cb6f5a06b43d"
+    },
+    {
+      "path": "reference/owner-directed-closure.md",
+      "sha256": "9dff9d6e28e10b70224755d63a0f1aeb44be9f789c47a5700bab86dc46d3b4e4"
+    },
+    {
+      "path": "reference/runtime-reclaim.md",
+      "sha256": "bceea11fe66e7d4ef0433ee8306f87f3ec5cdc1520215fdf59393afcbbedb51f"
+    },
+    {
+      "path": "reference/staging-and-lifecycle.md",
+      "sha256": "a9ab52d787e44c7aa4e199c8662882521d8ccf0ef8a6de0706c7853b5fa69800"
+    },
+    {
+      "path": "reference/validation-budgets.md",
+      "sha256": "62c19d7ef9cbedf9505ba45b3d45460fa909126db30a83fbeb43fa2ae7a09866"
+    },
+    {
+      "path": "scripts/run-authoring-tests.py",
+      "sha256": "41a46efbba39b87ca72d1ba69af617aed223430de508479be3a709ebd50040d7"
+    },
+    {
+      "path": "tests/authoring_supervision.py",
+      "sha256": "c759dee01e36b2ea0acee65d80b7e2a0d2b0977725f52d09dc6ccf2d672a7698"
+    },
+    {
+      "path": "tests/test_activation_policy_guidance.py",
+      "sha256": "de8f609fe222255d68c471c86d3735d983fabc4ca54583f9aadd7858f72a6e44"
+    },
+    {
+      "path": "tests/test_audit_regressions.py",
+      "sha256": "f27ec34c92cbac232df86d31dc909784e8c2ed27bacc91a733df050a9fec0df9"
+    },
+    {
+      "path": "tests/test_authorized_continuation.py",
+      "sha256": "b527434f87f37a36f1fcbea9f0946ac8f5c1d6a1ddab3b3b0712d6b21dfb24d0"
+    },
+    {
+      "path": "tests/test_runtime_reclaim_contract.py",
+      "sha256": "4c4d5d589b662642e8eef20347af34514a0cb6fb657b0eb81e61fcd7626b2bbd"
+    },
+    {
+      "path": "tests/test_staging_lifecycle.py",
+      "sha256": "ac1e3a013980d051e99ee182b5ae2200497af19d415d76c64961365742020381"
+    },
+    {
+      "path": "tests/test_validation_budgets.py",
+      "sha256": "75823a4f3b274a58b7312b77409c722df5a89136be71f98fc026b36f068c26e2"
+    },
+    {
+      "path": "reference/implementation-autonomy.md",
+      "sha256": "bec680505840b5dfa9a80cae1fd8c5e22985cb041a981fc5f70b66bdabf162e3"
+    },
+    {
+      "path": "reference/task-plan-template.md",
+      "sha256": "655df610db8ae2763bbab46449473168a8df1fe8dad41ee00308230036226842"
+    },
+    {
+      "path": "tests/test_implementation_autonomy_guidance.py",
+      "sha256": "b3bd85cb778552cc26c0dfa3e6ab175b641adb036b251d41bcec7363c6d26d7f"
+    },
+    {
+      "path": "RELEASE-NOTES.md",
+      "sha256": "19c56e2f391989673e0aac05ac137d8a48141f7898464f3e3e88158c206fabbb"
+    },
+    {
+      "path": "SOURCE-MANIFEST.json",
+      "sha256": "3859660438d2bda784b8ff6fdb13ebac36fc26a98d659e450af62895f855f1d1"
+    },
+    {
+      "path": "reference/implementation-autonomy-examples.md",
+      "sha256": "0988107994ac055910a5707f878bd4ddabe5761d75501209bef4ec5c28755865"
+    }
+  ],
+  "unchangedOriginalFiles": [
+    "reference/adapters/posix-writer-lock/README.md",
+    "reference/adapters/posix-writer-lock/tests/test_writer_lock.py",
+    "reference/adapters/posix-writer-lock/writer_lock.py",
+    "reference/evidence-and-recovery.md",
+    "reference/execution-monitoring.md",
+    "reference/owner-directed-closure.md",
+    "reference/runtime-reclaim.md",
+    "reference/staging-and-lifecycle.md",
+    "reference/validation-budgets.md",
+    "tests/authoring_supervision.py",
+    "tests/test_activation_policy_guidance.py",
+    "tests/test_audit_regressions.py",
+    "tests/test_authorized_continuation.py",
+    "tests/test_runtime_reclaim_contract.py",
+    "tests/test_staging_lifecycle.py",
+    "tests/test_validation_budgets.py"
+  ],
+  "workspacePublication": "NOT_PERFORMED"
+}

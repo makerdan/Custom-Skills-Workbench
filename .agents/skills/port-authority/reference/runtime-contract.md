@@ -99,29 +99,68 @@ is tested only when that capability is authorized and genuinely enabled; a
 blocked reclaim feature is neither a prerequisite for unrelated staging nor an
 excuse to accept a dependent caller. State the exact verified/blocked controls.
 
+### Implementation latitude and change control
+
+Normal programming within approved boundaries is the default. Select unspecified
+equivalent methods without separate approvals, per-choice decision records,
+step-by-step narration or routine method-change ledgers. Selecting unspecified
+equivalent methods is not a protected-plan amendment.
+
+Escalation applies to exceptions/waivers, acceptance criteria or required coverage,
+material scope/authority/execution-permission/resource-limit changes, and material
+safety/privacy/compatibility/data-integrity/ownership/recovery/completion changes.
+Changes to expressly fixed requirements or protected executable plans follow
+their applicable amendment route. Inspect affected current plans before proposing
+amendments; never silently rewrite running instructions, historical approval
+evidence or accepted results. Existing approval covers actions already within its
+exact scope; do not demand another approval for each routine coding choice.
+
+Required approval, execution, incident, provenance and acceptance evidence remains
+mandatory where applicable. Report substantive outcomes, deviations and blockers,
+not the history of equivalent coding choices. If the host already requires
+independent verification, preserve its authorized ordering, dependencies,
+delivery-readiness, repair scope and post-repair acceptance. Assess approved
+outcomes, not every coding decision; an author's repair is not independent
+acceptance. Port Authority introduces no new paired orchestration, task registry,
+validation-tier system or approval layer merely to implement routine choices.
+
+The bundled runtime's protocol, admission, identity, startup-gating, supervision,
+budget, recovery and evidence contracts below are normative, not optional methods.
+Equivalent host implementations are permitted only where the existing contract
+allows them, with the same applicable acceptance evidence. No choice can waive a
+fixed interface or safeguard. Optional examples illustrate unspecified details;
+they create no mandatory architecture, work-family checklist or extra gate.
+An unresolved conflict with a fixed requirement is a blocker, not permission to
+weaken it.
+
 ### Project-specific implementation and acceptance
 
 When the user authorizes project implementation/acceptance rather than only
-staging, use this sequence within the actual approved scope. Updating this skill
+staging, meet these outcomes within the actual approved scope. Audit precedes
+affected changes; staging, authorization and acceptance precede activation.
+Other routine work need not follow a prescribed sequence. Updating this skill
 does not authorize changing a project. Source/archive parity proves integrity,
 not trusted authorization integration, installed lock wiring or API health.
 Do not finish a project implementation task at file placement when approved
 integration and acceptance remain actionable.
 
-1. Audit the current project: canonical authorization/Failure Gate sources and
+1. Establish relevant current evidence for the affected controls: canonical
+   authorization/Failure Gate sources and
    policy status; actual host runtime configuration and trust boundaries;
    existing cleanup/locks; package aliases, pre/post hooks, tier/diagnostic
    runners, workflows, nested callers; shared ports, generated outputs and DB
-   state; backend health contract, browser routing and existing test harness.
+   state; backend health contract, browser routing and existing test harness
+   where affected. Unrelated subsystems are not additional acceptance gates.
    Treat reported findings as leads and verify current behavior read-only.
    Do not assume a Studio frontend, framework, provider, route or package manager.
 2. Plan the permitted implementation with a Regression Guard, explicit validation
    and per-control acceptance criteria. Distinguish inert staging, non-reclaim
    controls and live reclaim. Preserve approved task/plan/run bindings, coverage,
    production guards, budgets and retained leases. Do not reinterpret a stricter
-   task or draft plan as approval. Obtain exact disruption authorization before
+   task or draft plan as approval. Require exact disruption authorization before
    signaling active services, changing live callers or performing a disruptive
-   cutover. Do not change production without its separate explicit authorization.
+   cutover; use existing approval if it already covers that exact action.
+   Do not change production without its separate explicit authorization.
 3. Implement actual independently trusted provider integration where in scope.
    Adapt the code-owned host boundary to the verified platform attestation and
    checked reclaim/claim/recheck/outcome routes, reusing genuine existing
@@ -180,7 +219,9 @@ malformed JSON, unexpected redirects, unhealthy values and wrong-shape/wrong-ser
 responses. Use the actual proxy/base URL/path and applicable request method/
 authentication. Never log credentials or sensitive diagnostic bodies. A non-JSON
 legacy probe cannot satisfy this JSON API acceptance: use an existing verified
-JSON endpoint or perform a separately approved compatible endpoint/probe change.
+JSON endpoint or perform an approved compatible endpoint/probe change. Routine
+choices within that approved change need no additional approval; changes to fixed
+response contracts or acceptance boundaries use their applicable amendment route.
 Record a blocker if that contract change is outside the approved scope.
 Static-only projects need no invented backend; record that applicability rather
 than pretending a frontend document is API health.
@@ -671,3 +712,34 @@ independent watchdog's own inability to discover/stop work remains uncertain
 and requires retained host exclusion/recovery. Hosts must test their real outer
 boundary, including watchdog failure and remote work. Do not claim that GNU
 timeout alone owns all sessions, or copy caller-controlled limits as host approval.
+
+## Optional implementation guidance
+
+These examples are optional aids, not mandatory architectures, audit families,
+coding-method records or extra acceptance gates. The associated ownership,
+startup-order, conflict, lifecycle and acceptance requirements remain normative.
+Template wire formats, fixed budgets/interfaces and the mandatory matrix above
+are not made optional by this section.
+
+- **Read-only discovery:** `ps -eo pid,ppid,comm,args`, `ss -tlnp`, or appropriate
+  `/proc` socket/ancestry sources can establish the affected inventory. Nix Node
+  may appear as `MainThread`; names and incomplete listings do not prove ownership.
+- **Ports:** a single service may use `PORT`; several services need an authoritative
+  mapping. Inspect Vite/backend and preview configuration when those are involved,
+  not as universal work items.
+- **Playwright:** its `webServer` runs before `globalSetup`; a relevant `webServer`
+  command can place approved cleanup before server creation. Config-load cleanup
+  needs safe guards and proven startup order. Another arrangement is acceptable
+  only if it preserves the same startup/ownership constraints. `addInitScript`
+  arguments are one way to supply values lost by closure serialization.
+- **Resource names:** `codegen`, `validation-cpu`, `e2e-port` and `test-db` can label
+  actual conflicts. Names confer no hierarchy or exclusion by themselves.
+  Independent lint/static checks need no lock absent a demonstrated conflict.
+- **Nesting/priorities:** unwrapped inner commands such as `test:e2e:run` may avoid
+  redundant wrappers. A fast/standard/heavy priority mapping of 1/2/3 is illustrative,
+  not a new authorized policy or fairness guarantee.
+- **Timers/keepalive:** isolated file/suite fake-timer setup is a possible means
+  to preserve clock restoration and TTL/cache behavior. Earlier reports described
+  idle disconnects near thirty seconds and server pings near twenty seconds;
+  choose supported settings from current evidence. `ws.ping()` is a protocol-ping
+  example, not a required library or universal interval.

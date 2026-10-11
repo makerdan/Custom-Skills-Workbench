@@ -6,6 +6,12 @@ ACTIVE/INACTIVE/UNKNOWN policy, current approved task/plan and transitive scope,
 finite budgets, evidence and lifecycle requirements. This reference adds an
 Agent obligation to continue and prepare; it adds no authority or host interface.
 
+Apply [implementation autonomy](implementation-autonomy.md) to routine choices:
+finish approved implementation using actual host equivalents without repeated owner
+design decisions or routine per-method records. Material boundary changes and actual
+protected-plan amendments use their permitted route; required evidence and explicit
+execution exclusions remain authoritative.
+
 ## 1. Finish the work already authorized
 
 Agent must continue all remaining feasible implementation, review and verification

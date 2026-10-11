@@ -6,14 +6,31 @@ description: Runtime hygiene for Replit apps, from ordinary projects to multi-se
 # Port Authority — Unified Runtime Hygiene
 
 Apply this skill in **prevention** mode during project setup, or **repair**
-mode for an existing runtime problem. Both start with Phase 0: audit before
-changing anything.
+mode for an existing runtime problem. Establish relevant Phase 0 evidence
+before affected changes; unrelated work needs no audit expansion.
 
-Phases are sequential. ALWAYS means relevant requirements, not unrelated rewrites.
-Record CONDITIONAL gates and skip unmet phases; never add machinery speculatively.
+Phases group required outcomes, not a sequential programming checklist.
+Audit before affected changes; preserve staging/activation and safety dependencies.
+ALWAYS means relevant requirements; skip unmet CONDITIONAL gates, not safeguards.
 
 Ordinary projects use base phases; workflow pressure or conflicting validation
 may activate heavy controls. Never require a separate `port-authority-heavy`.
+
+## Routine work and material changes
+
+Within approved scope, choose routine implementation details without separate
+approvals, per-choice records, step-by-step narration or method-change ledgers.
+Selecting unspecified equivalent methods is not a protected-plan amendment.
+Escalate exceptions, waivers, acceptance/coverage changes, material changes to
+scope, authority, execution permissions or resource limits, and material safety,
+privacy, compatibility, data-integrity, ownership, recovery or completion changes.
+Changes to fixed requirements or protected executable plans use their applicable
+amendment route; never silently rewrite running plans or historical evidence.
+Retain required approval, execution, incident, provenance and acceptance evidence,
+not a programming diary. Existing independent verification remains independent;
+this regular skill adds no paired tasks or approval layer for routine choices.
+Template interfaces and normative safeguards remain fixed unless duly amended.
+Read the contract's implementation-latitude rules and optional examples as needed.
 
 ## Installation contract (ALWAYS)
 
@@ -39,8 +56,9 @@ templates, not promises that the target project already has those paths.
 3. Stage needed templates from `.agents/skills/port-authority/scripts/` only,
    with BOTH shared helpers beside either consumer and executable bits intact.
    Never overwrite active scripts or wire callers during staging. Prefer
-   documented adaptation points; necessary safety/lifecycle changes are allowed only
-   with applicable approval, interface documentation and regression evidence.
+   documented adaptation points and preserve safety/lifecycle outcomes and interfaces.
+   Material boundary changes need applicable approval and regression evidence;
+   equivalent internal choices within approved scope need no additional approval.
    Never use a `.local/custom_skills/` mirror or another copied definition.
 4. Run invalid-input and no-op smoke checks in isolation. Never use a live
    application port or the workspace's actual validation lock directory.
@@ -129,18 +147,16 @@ system here. This is a capability requirement, not permission to install a skill
 
 ## Phase 0 (ALWAYS) — Audit first
 
-Before changing anything, inventory:
+Before affected changes, establish the relevant current evidence:
 
-1. Processes: `ps -eo pid,ppid,comm,args`. Do not rely solely on a truncated
-   listing; examine relevant process ancestry. Nix Node may appear as
-   `MainThread`, not `node`.
-2. Listening ports: `ss -tlnp`, or `/proc/net/tcp` and `/proc/net/tcp6`.
-3. Configured workflows, commands, ownership, and actual platform limit
-   evidence if workflow pressure is reported.
-4. Validation commands, duration, and shared ports, generated files, CPU
-   pressure, or database state.
-5. Browser/e2e harness, code generation, connection pools, WebSockets/HMR,
-   health routes, and available registration/validation capabilities.
+- Process/port ownership and ancestry before cleanup; names or truncated listings
+  cannot establish ownership.
+- Workflow inventory and actual limit evidence when workflow pressure applies.
+- Validation callers, scope, duration and shared resources before budget/lock wiring.
+- Relevant startup, health, generated-file and connection lifecycles when affected.
+
+Use suitable read-only sources; optional examples are in the runtime contract.
+Do not turn unrelated subsystems into mandatory audit work or acceptance gates.
 
 Write down the evidence and applicable gates. Audit decisions without
 ownership evidence can kill the wrong process or fix an unrelated port.
@@ -168,16 +184,12 @@ Base/Heavy guidance is included; no companion acceptance run is required.
 - Never start services or long-lived jobs with `nohup`, `setsid`, or ad-hoc
   background shells (`cmd &`). They can vanish or survive as port-holding
   orphans. Use named managed workflows for persistent services.
-- Jobs lasting roughly two minutes or more belong in managed workflows or
-  registered validation commands when available, not unmanaged shells.
-  Distinguish finite validation from persistent servers/watchers.
+- Persistent servers/watchers need managed lifecycles; finite validation needs
+  authorized bounded execution. Do not substitute unmanaged shells for either.
 - Select validation by task risk using the installation contract. Keep
   the canonical contract; do not create a workflow per test suite by habit.
-- Read service ports from the project's authoritative environment/config
-  mapping. A single service can use `PORT`; multiple services need distinct
-  configured ports, not every service binding the same inherited `PORT`.
-  Find hard-coded or conflicting Vite/backend ports and inspect preview
-  routing before changing them.
+- Service ports must match authoritative configuration and preview routing.
+  Multiple services must not unintentionally share the same inherited port.
 
 ### Conditional heavy controls — Workflow budgeting and consolidation
 
@@ -258,11 +270,10 @@ not permission to claim cleanup worked.
 
 Gate: a browser/e2e harness exists.
 
-- Playwright starts `webServer` processes before `globalSetup`. Put sweeps
-  in each relevant `webServer` command, not `globalSetup`, where cleanup
-  can kill freshly started servers. Config-load cleanup is acceptable only
-  with explicit guards and verified startup order.
-- Pass `addInitScript` values explicitly, not through lost serialized closures.
+- Authorized startup cleanup must precede new server creation and cannot target
+  freshly started or unrelated services. Verify the harness's actual startup order.
+- Browser initialization must receive its required values in the browser context;
+  do not rely on closures lost during serialization. See optional harness guidance.
 
 ## Phase 4 (CONDITIONAL) — Crash-safe validation serialization
 
@@ -283,17 +294,9 @@ Conflicting commands must acquire the same lock identity on a supported local
 filesystem. Publish a caller-to-resource conflict map covering every entry
 point; block wiring when any conflict is uncovered.
 
-The template supports **one resource per invocation**, not a list:
-
-| Audited conflict | Example resource |
-|---|---|
-| commands regenerating the same outputs | `codegen` |
-| measured unit/e2e CPU contention | `validation-cpu` |
-| browser suites sharing service ports | `e2e-port` |
-| suites sharing database state | `test-db` |
-| independent lint/static checks | none, unless evidence shows a conflict |
-
-These are examples, not installed paths. Either ALL conflicting callers use one
+The template supports **one resource per invocation**, not a list.
+Choose identities from the actual conflict graph; example names are optional.
+Either ALL conflicting callers use one
 composite/global lock, or ALL acquire their overlapping resource sets in one
 verified order. A composite lock does not conflict with its constituent names.
 One invocation acquires one resource. Names must be lowercase; reentry keys
@@ -303,7 +306,7 @@ part of lock identity; different files do not coordinate despite equal names.
 Priority is 1 (highest) through 9 (lowest), default 5. Disposable waiter manifests
 live beside the lock or override; higher priority acts after a two-second grace.
 Priority is advisory, not a fairness or execution-time guarantee.
-Recommended tier priorities: fast 1, standard/standard-plus 2, heavy 3.
+Select priorities within approved limits; optional tier mappings are not policy.
 Do not wrap independent checks unnecessarily.
 
 ### Reentrancy and crash safety
@@ -313,9 +316,8 @@ Do not wrap independent checks unnecessarily.
   rejected. Nested wrappers acquire a parent-token-specific sibling slot;
   siblings serialize while deeper sequential nesting avoids self-deadlock.
   Parent/child simultaneous resource mutation and daemonization are prohibited.
-- Prefer unwrapped inner commands, such as `test:e2e:run`, in a locked
-  serial runner. Correct same-resource reentrancy is supported; inconsistent
-  resource identity, environment propagation, or lock ordering can deadlock.
+- Nested callers must preserve resource identity, environment propagation and
+  lock order. Correct same-resource reentrancy is supported; avoid self-deadlock.
 - Neither stale heartbeat nor max-hold age permits another caller to reclaim
   a live or uncertain workload. The owner enforces its execution budget,
   stops verified owned work, and confirms quiescence before release.
@@ -343,15 +345,15 @@ Gate: the project regenerates clients, schemas, types, or other files.
 
 - Never run regenerators of the same outputs concurrently. Include all
   entry points in Phase 4's shared resource coverage when needed.
-- For generated-file parse/missing-export failures, rerun the failing step
-  alone before attributing the symptom to a source bug. Preserve evidence
-  of a generation race rather than silently rerunning until green.
+- Diagnose generation races or incomplete outputs before attributing generated-file
+  failures to source code. Preserve evidence; additional runs need their applicable
+  execution permission. Do not silently rerun until green.
 
 ## Phase 6 (ALWAYS, per-item gates) — Test hygiene
 
-- If fake timers exist, use isolated file/suite lifecycle setup and explicit
-  restoration. Avoid global per-test clock resets that break cross-file
-  TTL/cache assumptions; preserve frameworks' isolation semantics.
+- Prevent fake-timer leakage and restore clocks under the framework's isolation
+  contract; preserve cross-file TTL/cache semantics. Lifecycle placement is an
+  implementation choice unless fixed by that contract.
 - Pre-existing failing tests require explicit tracking and the project's
   authorized evidence policy. Do not skip, quarantine, filter, rename, delete,
   or alter discovery merely to obtain a green run or shorten validation.
@@ -415,10 +417,8 @@ create their own permission to waive tests.
 Gate: WebSockets/live updates/HMR exist; add keepalive changes only when
 idle disconnects are observed or confirmed by the environment contract.
 
-The prior guide reported preview idle disconnects around thirty seconds.
-Treat that value and proxy behavior as environment-dependent, not universal.
-Where supported and indicated, use server protocol-level ping frames (for
-example `ws.ping()`) at a suitable interval, historically about twenty seconds.
+Use supported server protocol-level keepalive where indicated by the failure.
+Historical timings and framework examples are optional, not universal defaults.
 An application JSON heartbeat is not a protocol ping; browsers do not expose
 a native ping API. Clean up timers and connections; verify actual reconnection
 and idle behavior before claiming the symptom is fixed.
@@ -431,8 +431,9 @@ and idle behavior before claiming the symptom is fixed.
   with HTTP 200. Browser callers must test their actual routed request path.
   Follow the contract's API health acceptance and positive/negative regressions.
   Static-only apps do not need an invented backend endpoint.
-- After dependency/config changes, restart affected managed workflows
-  rather than assuming hot reload applied everything.
+- Ensure affected managed services actually use changed dependencies/configuration.
+  If a restart is needed, use its applicable disruption authorization; do not
+  assume hot reload applied everything or restart unaffected services.
 
 ## Phase 9 (ALWAYS) — Regression hardening and acceptance
 

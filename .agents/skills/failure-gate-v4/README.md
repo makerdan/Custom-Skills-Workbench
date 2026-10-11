@@ -7,6 +7,9 @@ framework-, operating-system-, storage-, and provider-neutral.
 ## Package contents
 
 - `SKILL.md`: core operating instructions; read this first.
+- `reference/implementation-autonomy.md`: routine programming by default; govern actual exceptions, acceptance and material boundary changes.
+- `reference/implementation-autonomy-examples.md`: optional illustrations, not a checklist or required architecture.
+- `reference/task-plan-template.md`: required semantic plan fields and illustrative scaffold.
 - `reference/implementation.md`: registry, approvals, execution, storage, and lifecycle contract.
 - `reference/acceptance.md`: host implementation test matrix and paired skill confirmation.
 - `reference/execution-monitoring.md`: monitor, durable file trail, single-flight/
@@ -22,6 +25,7 @@ framework-, operating-system-, storage-, and provider-neutral.
   without turning planning into execution or new authority.
 - `tests/test_staging_lifecycle.py`: executable policy simulations only, not host
   attestation, approval, protected recovery or activation.
+- `tests/test_implementation_autonomy_guidance.py`: document-contract regressions for delegated methods and retained boundaries; not runtime enforcement.
 - `tests/test_activation_policy_guidance.py`: proactive setup document-contract
   regressions only, not executable host policy or approval evidence.
 - `tests/test_authorized_continuation.py`: lifecycle continuation document-contract
@@ -47,6 +51,15 @@ The package contains instructions, specifications, and one optional executable
 writer-lock adapter—not an installed gate registry, checked runner, approval-event
 source, or completion checker. No existing project's enforcement has been
 changed by authoring it.
+
+## Bounded implementation-autonomy revision
+
+This second revision makes routine programming the default. No separate approval,
+step-by-step narration or routine method-change ledger is required. The skill governs
+actual exceptions and material changes to acceptance or approved boundaries. Existing
+version-review, execution, staging, supervision, evidence and acceptance stay intact.
+See the autonomy reference and RELEASE-NOTES.md for changes and verification scope.
+No host installation, ordinary-route activation or workspace publication is implied.
 
 ## Adopt safely
 
@@ -242,6 +255,12 @@ artifacts or services created by installing the definition.
 
 ## Authoring verification
 
+Historical test claims below apply only to their original bound snapshots. They
+are not results for this implementation-autonomy revision. New and existing
+authoring suites were NOT_RUN while preparing this downloadable bundle; archive
+and source-preservation checks are separate from executable tests or host proof.
+
+
 The bundled budget suite separates standard-library policy/document tests from
 conditional Linux/installed-Node fixture probes. Each Node probe has an independent
 Python outer watchdog (900 ms), 200 ms TERM grace, 1000 ms KILL verification and
@@ -263,7 +282,7 @@ authoring launcher uses process-local subreaper adoption and re-observed exact
 incarnations, including new sessions, not adversarial pidfd or remote containment.
 No registry, complete host/remote supervision, real caller or activation is proved.
 
-This package received a document-level review for the project-local scope,
+Earlier package revisions received a document-level review for the project-local scope,
 frontmatter structure, version consistency, Markdown fences, reference links,
 example JSON, and core length. Failed runs do not automatically terminate tasks,
 expired ignores cannot erase owned repairs, and local acceptance coordinates
