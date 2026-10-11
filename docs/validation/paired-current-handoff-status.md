@@ -1,5 +1,19 @@
 # Current #102 handoff status — 2026-10-09
 
+## Current preparation locator — 2026-10-11
+
+Use `docs/validation/paired-prerequisites-refresh.md` and its manifest/evidence
+annex for current preparation and byte observations. The dated assessment below
+is preserved for its own snapshot, not current acceptance. D-01/D-02 are resolved
+for the unchanged narrowly accepted rule bytes; the prospective files are present
+here. All four Paired package files now differ from the original installation ZIP
+after authorized revisions; historical parity is not current-source proof.
+Resource review #157 and definition review #156 remain independent obligations,
+not accepted results. Formal #102 and #120 barriers, draft safety, #142 findings
+and publisher-local delivery remain unresolved. FG-02 readiness is **BLOCKED**.
+This locator supersedes older current-pointer claims only, not original criteria,
+keys, verdicts, protected native plans or the two resource exclusions.
+
 **Owner-edited revision — 2026-10-10.** The series exclusions `B2-R1` and `B5-R1` do not grant acceptance. Revised artifact bindings supersede affected old byte/prefix claims and are recorded in `retired-review-cleanup-bindings.json`. The prospective confirmation files are present in this cleanup workspace; future reviewer-local delivery remains a separate requirement.
 
 **Aggregate disposition: PENDING / BLOCKED — NOT ACCEPTED**

@@ -26,3 +26,9 @@ When comparing a local persisted task plan with its native task description, bin
 **Why:** A byte-for-byte comparison of `.local/tasks/` against its tracked copy verifies only that copy, not the current platform record. Treating it as native parity can overstate what was actually read back.
 
 **How to apply:** For assigned work, compare the tracked plan to its stated local source and separately capture the full native description by actual task ref. Record both hashes and any exact, verified wrapper normalization.
+
+Historical native rich-text descriptions can flatten a Markdown criterion table into concatenated cell text while another preserved record retains the table delimiters.
+
+**Why:** Treating the missing pipes as missing criteria would incorrectly discard intact original obligations.
+
+**How to apply:** Preserve exact byte bindings for both records. Compare each original cell's content through an explicitly recorded formatting-only normalization, and retain the immutable source and original methods; normalization is not byte parity, acceptance or amendment authority.

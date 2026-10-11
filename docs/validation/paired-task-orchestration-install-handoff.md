@@ -1,5 +1,13 @@
 # Paired Task Orchestration — installer handoff
 
+**Current preparation locator — 2026-10-11:** This installer handoff retains its
+original installation snapshot below. Use `docs/validation/paired-prerequisites-refresh.md`
+and `docs/validation/paired-prerequisites-refresh-manifest.json` for the current
+delivered-input generation, source drift and named blockers. Original archive
+parity is installation history, not proof that the revised canonical package is
+unchanged. No new independent acceptance, delivery to another reviewer or FG-02
+readiness follows from this documentary pointer.
+
 ## Disposition and primary binding
 
 Assigned primary: current Project task namespace **#102**, Update Orchestration and Replan Series. Project/root/origin and native full-plan readback are in `paired-task-orchestration-native-readback.json`; the authoritative returned description SHA-256 is `6b2a457b2d3cbe1ffc06e3edb6ce0efa3cc1e579637297ead8b1660ed853cd06`.

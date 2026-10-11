@@ -3,7 +3,9 @@
 **Status:** Complete prospective Task B payload only. This is not a native task
 record, has no Task B reference, and is not approved, started, executed, or
 accepted. Do not submit it until every creation gate below has current, direct
-evidence. The preparation report records which gates remain blocked.
+   evidence. The current preparation generation is
+   `docs/validation/paired-prerequisites-refresh.md`; earlier preparation reports
+   retain their dated observations, not current readiness.
 
 ## What & Why
 
@@ -26,15 +28,14 @@ or series advancement.
 Before any native write, the authorized planner must establish all of the
 following from current authoritative evidence:
 
-1. The complete current confirmation rule has an explicit **ACCEPTED** result
-   from an independent reviewer. If the current source still has the D-01
-   escalation cross-reference ambiguity or D-02 new-install/existing-primary
-   scope ambiguity recorded in
-   `docs/validation/skill-install-confirmation-current-independent-review.md`,
-   stop.
-   The source owner must resolve the conflicts under separate authority and a
-   fresh independent review must bind the exact resulting source. Do not
-   reinterpret or silently repair the rule in this task.
+1. Bind the complete current confirmation rule to the independent **ACCEPTED —
+   narrow source-rule revision only** result in
+   `docs/validation/skill-install-confirmation-rule-conflict-resolution-review.md`.
+   D-01 and D-02 are resolved for the matching 15,816-byte source with SHA-256
+   `a613efe2bea3476b8770b665dd9f0b0b440a320f5aae627a79a815ea6cf6b82a`.
+   The older rejection remains history, not an unresolved current defect.
+   If the rule changes, stop and require applicable renewed independent evidence;
+   neither this draft nor byte equality grants broader confirmation acceptance.
 2. The verified task interface supplies the complete `#102` record and either
    an authentic provider finalization receipt for its committed plan or an
    explicitly owner-authorized equivalent bound to the exact `#102` content,
@@ -103,13 +104,14 @@ close, reopen, cancel, or duplicate a task as a workaround.
   inherit that earlier snapshot as current delivery.
 - **Current target source snapshot:** `.agents/skills/paired-task-orchestration/SKILL.md`,
   observed SHA-256
-  `1060bbef83e521a9f591d62e52caf2d3e97cb5d23f904b6a939051ea02708456`.
+   `d862212f772abdf551698c6aeb9c4733c2572e0766b3606d33ea2fa24ba5b669`,
+   21,071 bytes at this documentary renewal.
   This is an input snapshot, not evidence that all acceptance criteria pass.
 - **Current confirmation-rule snapshot:** `.agents/skills/skill-install-confirmation/SKILL.md`,
   observed SHA-256
-  `6d2a1a38a19092fe74982ab8610accdf4804d3c3a95d7a4e71e987c3b4eb02a6`.
-  Its independent review is currently **NOT ACCEPTED**; do not use that
-  disposition as the future accepted-rule gate.
+   `a613efe2bea3476b8770b665dd9f0b0b440a320f5aae627a79a815ea6cf6b82a`,
+   15,816 bytes. The conflict-resolution review accepts only the narrow rule
+   repair; it does not accept #102, #120, resources, this draft or FG-02.
 - **Owner decisions:** retain the prior owner decisions documented by `#132`,
   `#133`, and `#134` and their current canonical source bindings. Do not ask
   again for unchanged permission. Those decisions do not supply current-rule
@@ -119,6 +121,25 @@ close, reopen, cancel, or duplicate a task as a workaround.
   owner-authorized read-only exception for this existing `#102` binding below.
   No broader repair permission, waiver, or change to the six original criteria
   is approved.
+
+### Separate baselines and current publication
+
+The original four-file ZIP remains the immutable installation/parity baseline.
+It is not unchanged-current-source proof after the authorized staging and
+routine-method/outcome revisions. Retain exact archive comparisons and original
+installed Git bytes separately from comparisons against current delivered files;
+report each actual difference and its authorized lineage. Do not alter R1 or the
+six literal criteria to excuse a difference or inherit old package acceptance.
+Applicable independent current-byte definition/resource evidence must reconcile
+those revisions; missing applicable acceptance remains blocked.
+
+Use `docs/validation/paired-prerequisites-refresh-manifest.json` for this local
+delivered-input generation and `docs/validation/paired-prerequisites-refresh-evidence.json`
+for its native observations and original resource matrix. The prior renewal index
+and all earlier annexes remain historical generations. Their fields named
+current/delivered describe their own snapshots only. Actual delivery to the
+confirmer and the authorized findings publisher must still be verified locally.
+The separate #120 amendment barrier/applicability cannot use the #102 exception.
 
 ### Router duplicate-binding key
 
@@ -320,6 +341,10 @@ and report the conflict instead of expanding scope.
 - `docs/validation/skill-install-confirmation-scope-readback.json`
 - `docs/validation/skill-install-confirmation-current-independent-review.md`
 - `docs/validation/skill-install-confirmation-current-independent-review-evidence.json`
+- `docs/validation/skill-install-confirmation-rule-conflict-resolution-review.md`
+- `docs/validation/paired-prerequisites-refresh.md`
+- `docs/validation/paired-prerequisites-refresh-manifest.json`
+- `docs/validation/paired-prerequisites-refresh-evidence.json`
 - `docs/validation/paired-native-handoff-current-review.md`
 - `docs/validation/paired-native-handoff-current-readback-annex.json`
 - `docs/validation/paired-task-orchestration-definition-confirmation.md`

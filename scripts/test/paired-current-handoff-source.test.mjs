@@ -8,8 +8,81 @@ const read = (path) => readFileSync(repoFile(path), "utf8");
 const digest = (content) =>
   createHash("sha256").update(content, "utf8").digest("hex");
 
-const manifestPath = "docs/validation/paired-current-handoff-manifest.json";
+// Current documentary generation; the previous manifest remains immutable history.
+// These source assertions are inert until separately authorized execution.
+const manifestPath = "docs/validation/paired-prerequisites-refresh-manifest.json";
 const manifest = JSON.parse(read(manifestPath));
+
+function auditPreparation(candidate) {
+  const errors = [];
+  const preparation = candidate.preparation;
+  const rows = ["D1", "D2", "D3", "D4", "S1", "S2", "S3", "S4", "S5", "S6",
+    "H1", "H2", "H3", "B1", "B2", "B3", "B4", "B5", "C1", "C2", "C3", "C4"];
+  if (JSON.stringify(candidate.requiredCriteria) !== JSON.stringify(rows)) {
+    errors.push("preparation:parent-rows");
+  }
+  if (JSON.stringify(candidate.retiredSubcriteria.map((item) => item.id).sort()) !==
+      JSON.stringify(["B2-R1", "B5-R1"])) {
+    errors.push("preparation:exclusions");
+  }
+  if (preparation?.disposition !== "DOCUMENTARY_PREPARATION_COMPLETE_READINESS_BLOCKED" ||
+      preparation?.independentAcceptanceGranted !== false ||
+      preparation?.recipientDelivery !== "UNVERIFIED" ||
+      preparation?.validationLaunches !== 0) {
+    errors.push("preparation:authority");
+  }
+  const payload = read("docs/validation/task-plans/paired-retrospective-confirmation.md");
+  for (const criterion of preparation?.originalPrimaryCriteria ?? []) {
+    if (!payload.includes(`- ${criterion}`)) errors.push("preparation:original-criterion");
+  }
+  if (preparation?.originalPrimaryCriteria?.length !== 6) {
+    errors.push("preparation:six-originals");
+  }
+  for (const clause of [
+    "No section is vague, self-referential, or deferred to future work.",
+    "A future Planner reading the skill file cold could follow it without ambiguity.",
+    "Make any changes outside `.agents/skills/paired-task-orchestration/SKILL.md`",
+    "Refactor or modify adjacent skills",
+    "Add speculative content beyond what the original spec called for",
+    "Expand scope to include feature-code changes inspired by the skill's topic",
+    "Silently fix gaps without first listing them",
+    "Exact `#102`-only read-only exception",
+    "Report only in the task conversation.",
+    "The separate #120 amendment barrier/applicability cannot use the #102 exception.",
+  ]) {
+    if (!payload.includes(clause)) errors.push(`preparation:clause:${clause}`);
+  }
+  for (const entry of candidate.changedSourceLedger) {
+    const content = read(entry.path);
+    if (entry.current.utf8Bytes !== Buffer.byteLength(content, "utf8") ||
+        entry.current.sha256 !== digest(content)) {
+      errors.push(`preparation:ledger:${entry.path}`);
+    }
+  }
+  if (preparation?.acceptedRuleSha256 !==
+      digest(read(".agents/skills/skill-install-confirmation/SKILL.md")) ||
+      !payload.includes(preparation.acceptedRuleSha256) ||
+      !payload.includes(digest(read(".agents/skills/paired-task-orchestration/SKILL.md")))) {
+    errors.push("preparation:current-source");
+  }
+  return errors;
+}
+
+test("current preparation retains source bindings, all criteria and separate authority", () => {
+  assert.deepEqual(auditPreparation(manifest), []);
+  const missing = structuredClone(manifest);
+  missing.requiredCriteria = missing.requiredCriteria.filter((id) => id !== "B5");
+  assert.ok(auditPreparation(missing).includes("preparation:parent-rows"));
+  const waiver = structuredClone(manifest);
+  waiver.retiredSubcriteria.push({ id: "B2", status: "EXCLUDED" });
+  assert.ok(auditPreparation(waiver).includes("preparation:exclusions"));
+  const accepted = structuredClone(manifest);
+  accepted.preparation.independentAcceptanceGranted = true;
+  assert.ok(auditPreparation(accepted).includes("preparation:authority"));
+  const stale = structuredClone(manifest);
+  stale.changedSourceLedger[0].current.sha256 = "0".repeat(64);
+  assert.ok(auditPreparation(stale).some((error) => error.startsWith("preparation:ledger:")));
+});
 
 function auditRenewal(candidateManifest, documents) {
   const errors = [];
@@ -144,7 +217,7 @@ function auditRenewal(candidateManifest, documents) {
   const acceptance = candidateManifest.acceptance ?? {};
   if (
     acceptance.status !== "PENDING_INDEPENDENT_RESOURCE_REVALIDATION" ||
-    acceptance.acceptingTaskRef !== "#140" ||
+    acceptance.acceptingTaskRef !== "#157" ||
     acceptance.authorMayAcceptOwnRepair !== false ||
     acceptance.taskStatusIsAcceptance !== false
   ) {

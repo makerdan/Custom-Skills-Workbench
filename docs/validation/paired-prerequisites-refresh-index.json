@@ -1,0 +1,132 @@
+{
+  "schema": "paired-prerequisites-refresh-index-v1",
+  "taskRef": "#155",
+  "project": {
+    "repository": "https://github.com/makerdan/Custom-Skills-Workbench",
+    "series": "Custom-Skills-Workbench/failure-gate-v4/18-piece",
+    "checkout": "/home/runner/workspace",
+    "head": "2d09e5a0912439d329ec66fedb2daa401db92c6a",
+    "nativeNamespace": "Actual assigned Skills Workbench Project task-board; immutable namespace UUID unavailable"
+  },
+  "disposition": "DOCUMENTARY_PREPARATION_COMPLETE_READINESS_BLOCKED",
+  "outputs": [
+    {
+      "path": "docs/validation/paired-prerequisites-refresh.md",
+      "bytes": 27399,
+      "sha256": "9b367396b090c29c8cbbe5840e482ff773b83fd9e19cd69ea384af45988f0cf0"
+    },
+    {
+      "path": "docs/validation/paired-prerequisites-refresh-evidence.json",
+      "bytes": 478754,
+      "sha256": "742c1bc4fb2871bf3e2021336077ba7b991360abfff7c26eda94e32c596e897e"
+    },
+    {
+      "path": "docs/validation/paired-prerequisites-refresh-manifest.json",
+      "bytes": 324579,
+      "sha256": "b8ead21e19868c3837e8fe30e12c394475ee94438b0053bf44c401b12f8482aa"
+    },
+    {
+      "path": "docs/validation/task-plans/paired-retrospective-confirmation.md",
+      "bytes": 28551,
+      "sha256": "02d219fe73a930c3a4ca70d34ef883d830207a3c320f6533b9c1c6ad2b461e4f"
+    },
+    {
+      "path": "docs/validation/failure-gate-v4-series-checkpoint.md",
+      "bytes": 19563,
+      "sha256": "66046782de9c16d8688bdcead32562cc4481089decc7582419bd7aeeb9f38a4c"
+    },
+    {
+      "path": "docs/validation/paired-current-handoff-status.md",
+      "bytes": 11417,
+      "sha256": "e18635312b11f958bb2da2e2adda78339f7d34e8a1f16a9631625e43d2a313f2"
+    },
+    {
+      "path": "docs/validation/paired-task-orchestration-install-handoff.md",
+      "bytes": 12458,
+      "sha256": "5274cf28815a51297ad351e78e7bc84b589df49d6db042c8c1289ca495d100f2"
+    },
+    {
+      "path": "scripts/test/paired-current-handoff-source.test.mjs",
+      "bytes": 16748,
+      "sha256": "902cd0f2f1d1b68fc843191d0d21887dfd59792c9bb9e59f16ef3030b63e8d82"
+    }
+  ],
+  "documentaryReadback": {
+    "actualInventoryBindingsCompared": 118,
+    "bindingMismatches": [],
+    "sixOriginalCriteriaRetainedVerbatim": true,
+    "originalDoneRestrictionsExceptionMatrixAndProcedureSectionsByteIdentical": true,
+    "all22OriginalResourceRowsRetained": true,
+    "onlyTwoExclusions": [
+      "B2-R1",
+      "B5-R1"
+    ],
+    "original126FormattingOnlyComparisonAll22": true,
+    "trackedPlansExactNativeDescriptions": [
+      "#155",
+      "#156",
+      "#157"
+    ],
+    "currentGuardReadsNewGeneration": true,
+    "guardModuleNotImported": true,
+    "originalReportsRenewalGenerationsAndArchiveUnchanged": true,
+    "canonicalSkillsAndOriginalTechnicalPayloadsUnchanged": true,
+    "recipientDelivery": "UNVERIFIED",
+    "sourceComparisonNotProjectValidation": true
+  },
+  "missingHostInputs": [
+    {
+      "id": "P102",
+      "requirement": "Exact #102 retrospective finalized-plan barrier",
+      "owner": "Owner / supported native-task integration custodian",
+      "input": "Authentic committed/finalized receipt bound to the complete #102 description (11539 UTF-8 bytes; SHA-256 6b2a457b2d3cbe1ffc06e3edb6ce0efa3cc1e579637297ead8b1660ed853cd06), or an expressly authorized equivalent for this exact retrospective scope.",
+      "status": "BLOCKED"
+    },
+    {
+      "id": "P120",
+      "requirement": "Separate #120 amendment barrier and present companion applicability",
+      "owner": "Amendment owner / definition reviewer #156 / task integration custodian",
+      "input": "Authentic #120 finalized-plan evidence for 11221 bytes / 06c6ac3d94578cd027f3972fd55790974df4be0a0cae2c944504078cd6065495 and a permitted existing #121 obligation reconciliation or expressly scoped current-byte acceptance route. Resolve applicability against the present canonical companion; the #102-only exception is not transferable.",
+      "status": "BLOCKED"
+    },
+    {
+      "id": "SETTINGS",
+      "requirement": "Contemporary draft-only safety before native creation",
+      "owner": "Owner / settings evidence custodian",
+      "input": "Contemporary evidence that automatic plan approval and automatic apply/start are OFF, or a genuine supported per-task enforced-draft-only route with its exact scope. No settings changes authorized.",
+      "status": "BLOCKED"
+    },
+    {
+      "id": "F142",
+      "requirement": "Complete #142 findings",
+      "owner": "Owner / #142 conversation evidence custodian",
+      "input": "Complete findings and completion evidence from the #142 task conversation, or an explicit owner statement that no findings exist. The observed description/lifecycle is neither the findings nor a no-findings statement.",
+      "status": "BLOCKED"
+    },
+    {
+      "id": "PUBLISH",
+      "requirement": "Authorized findings publication and receiving-local readback route",
+      "owner": "Authorized acceptance publisher / delivery custodian",
+      "input": "Identify the genuinely authorized publisher and supported route receiving the task-conversation-only findings; supply delivery/readback evidence at the receiving side without expanding the confirmer reporting boundary.",
+      "status": "BLOCKED"
+    },
+    {
+      "id": "DELIVERY",
+      "requirement": "Independent recipient-local delivery and acceptance",
+      "owner": "Definition/resource reviewers #156/#157 and delivery custodian",
+      "input": "On their separately authorized invocation, each recipient must reconcile its own manifest paths and immutable Git objects, full native plans, exact source bytes, independence and scope; publish actual independently bound findings. This preparation cannot attest their delivery or acceptance.",
+      "status": "AWAITING_DELIVERY"
+    }
+  ],
+  "validation": {
+    "launches": 0,
+    "tests": "NOT_RUN",
+    "guards": "NOT_RUN",
+    "syntaxBuildPackage": "NOT_RUN",
+    "runtime": "NOT_RUN",
+    "governance": "NOT_ESTABLISHED",
+    "PASS": false
+  },
+  "selfBinding": "EXCLUDED; no report or manifest consumes this index digest; final containing revision provides outer binding",
+  "nextStages": "Existing #156/#157; no duplicate follow-up. Preparation completion is not formal acceptance or FG-02 readiness."
+}
