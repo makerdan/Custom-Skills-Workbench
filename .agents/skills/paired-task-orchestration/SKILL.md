@@ -97,22 +97,40 @@ rules, finite budgets, independent supervision, retained accounting, evidence,
 writer/lifecycle safety, and owner-closure boundaries. No companion skill or
 specific framework, task API, database, timeout value, or OS is assumed.
 
-## Failure Gate v4: deliverable locations and limited planner exception
+## Deliverable locations and temporary plan drafts
 
-Use this exception only for paired task planning/handoff of a Failure Gate v4 series. Keep all authoritative deliverables—including scripts, documentation, reports, skills, configuration, code, exports, and complete task plans—outside .local/ in tracked paths that survive task-agent merge and enter repository history.
+Keep canonical skills, supporting resources, scripts, documentation, reports,
+configuration, code, exports, and required repository evidence outside .local/ in
+tracked paths. Complete authoritative task plans must have a verified durable
+repository or task-record route; when the governing contract requires a tracked
+repository copy, retain that requirement.
 
-Exception: when the actual host planner or task interface demonstrably requires a .local/ path for task creation, submission, or handoff, the Agent may create or use the minimum necessary temporary staging copy there, subject to ALL of these conditions:
+For paired-task planning/handoff, temporary plan drafts may start in .local/ when
+it is the session's only writable location or the actual host requires that path.
+The draft may temporarily be the only copy; no durable copy is required before
+drafting. This narrow exception applies only to temporary plan payloads, not to
+other deliverables or canonical skill sources, and requires all six conditions:
 
-1. Establish the requirement from the actual interface, host instructions, or observed rejection. Habit, convenience, or an unsupported assumption is not sufficient.
-2. Before staging an Agent-authored payload, preserve its complete authoritative contents in an appropriate tracked path outside .local/. The staging copy must never be the only copy of a deliverable.
-3. Treat .local/ contents as disposable transport or runtime artifacts—not as canonical sources, durable evidence, accepted reports, or proof of delivery.
-4. Read back and compare the complete staged payload with the authoritative copy. After task submission, independently read back the complete persisted task plan and actual dependencies. A staging file, successful submission message, or task title alone does not establish successful handoff.
-5. Record the required staging path, its purpose, the authoritative tracked path, and the observed submission/readback outcome in evidence outside .local/. Missing or truncated contents remain unresolved, not successfully delivered.
-6. This exception does not permit using .local/ skill definitions or mirrors as canonical instructions. Canonical skill sources remain under .agents/. It grants no additional task execution, validation, approval, lifecycle, merge, deployment, or runtime authority.
+1. Establish the local-only write restriction or required path from actual permissions, host instructions, or an observed interface rejection. Use only permitted file and task interfaces; do not bypass access controls.
+2. Treat the temporary plan as an undelivered draft. Before execution or acceptance relies on it, persist its complete authoritative contents through an approved durable task-record or tracked repository route outside .local/. A required tracked repository copy must still be delivered before its governing gate.
+3. Treat .local/ contents as disposable drafting or transport artifacts—not as canonical sources, durable evidence, accepted reports, or proof of delivery. Temporary plan drafting does not exempt any other deliverable from its tracked-location requirements.
+4. Read back the complete authoritative persisted plan and compare it with the intended full payload. For task-bound handoff, also independently verify actual dependencies and the required plan/version bindings. A local file, submission response, title, or digest in metadata alone does not establish successful handoff.
+5. Preserve the staging-to-authoritative-plan mapping and actual persistence/readback outcome through the durable route. While that route is unavailable, identify the exact draft location and pending transfer action without claiming durable delivery. Missing or truncated contents remain unresolved.
+6. This exception does not permit using .local/ skill definitions or mirrors as canonical instructions. Canonical skill sources remain under .agents/. It grants no additional task creation, execution, validation, approval, lifecycle, merge, deployment, or runtime authority.
 
-If the required staging workflow cannot preserve the authoritative deliverable outside .local/ or cannot establish complete persisted-task readback, stop the affected handoff and report the specific blocker. Do not silently broaden this exception or claim successful delivery.
+If durable persistence or complete readback is unavailable, retain the draft and
+report the smallest specific transfer action. Draft preparation may be complete,
+but authoritative handoff, dependent execution, and acceptance remain blocked.
+Do not create a replacement task, approve work, or weaken a tracked-copy obligation
+to manufacture delivery. Preserve full-plan, dependency, readiness, and
+uncertain-write safeguards at their existing handoff gates.
 
-A temporary staging path is not a Failure Gate plan/ID binding, approval source, grant, tier assignment, authorization registry, durable run log, or completion evidence. Failure Gate's genuine authority, selected-tier, finite-budget, independent-supervision, writer/lifecycle, source/bootstrap/runtime, recovery/reclaim and delivery gates remain unchanged. This exception cannot override a higher-priority prohibition or unavailable host permission. Authoring it does not establish that this host requires or supports .local/ staging.
+A temporary path is not an authorization registry or completion evidence. Where
+Failure Gate governs the series, its genuine plan/ID binding, approval, selected
+tier, finite budgets, independent supervision, retained accounting, writer/
+lifecycle, source/bootstrap/runtime, recovery/reclaim, and delivery gates remain
+unchanged. This exception cannot override a higher-priority prohibition or
+unavailable host permission. Skill authorship proves no host capability.
 
 ## Recognize the requested mode
 

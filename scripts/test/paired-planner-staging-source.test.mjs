@@ -20,7 +20,7 @@ const reference = (name) =>
   );
 
 const heading =
-  "## Failure Gate v4: deliverable locations and limited planner exception";
+  "## Deliverable locations and temporary plan drafts";
 
 function exceptionSection() {
   const start = canonical.indexOf(heading);
@@ -31,30 +31,24 @@ function exceptionSection() {
   return canonical.slice(start, end);
 }
 
-test("planner staging is limited to Failure Gate v4 paired planning and handoff", () => {
-  const section = exceptionSection();
+test("local-only staging is limited to temporary paired-task plan payloads", () => {
+  const section = normalize(exceptionSection());
 
-  assert.ok(
-    section.includes(
-      "Use this exception only for paired task planning/handoff of a Failure Gate v4 series.",
-    ),
-  );
-  assert.ok(
-    section.includes(
-      "Keep all authoritative deliverables—including scripts, documentation, reports, skills, configuration, code, exports, and complete task plans—outside .local/ in tracked paths that survive task-agent merge and enter repository history.",
-    ),
-  );
+  assert.ok(section.includes("For paired-task planning/handoff, temporary plan drafts may start in .local/ when it is the session's only writable location or the actual host requires that path."));
+  assert.ok(section.includes("The draft may temporarily be the only copy; no durable copy is required before drafting."));
+  assert.ok(section.includes("This narrow exception applies only to temporary plan payloads, not to other deliverables or canonical skill sources"));
+  assert.ok(section.includes("when the governing contract requires a tracked repository copy, retain that requirement."));
 });
 
 test("all six staging prerequisites require proof and complete durable readback", () => {
   const section = exceptionSection();
   const conditions = [
-    "1. Establish the requirement from the actual interface, host instructions, or observed rejection. Habit, convenience, or an unsupported assumption is not sufficient.",
-    "2. Before staging an Agent-authored payload, preserve its complete authoritative contents in an appropriate tracked path outside .local/. The staging copy must never be the only copy of a deliverable.",
-    "3. Treat .local/ contents as disposable transport or runtime artifacts—not as canonical sources, durable evidence, accepted reports, or proof of delivery.",
-    "4. Read back and compare the complete staged payload with the authoritative copy. After task submission, independently read back the complete persisted task plan and actual dependencies. A staging file, successful submission message, or task title alone does not establish successful handoff.",
-    "5. Record the required staging path, its purpose, the authoritative tracked path, and the observed submission/readback outcome in evidence outside .local/. Missing or truncated contents remain unresolved, not successfully delivered.",
-    "6. This exception does not permit using .local/ skill definitions or mirrors as canonical instructions. Canonical skill sources remain under .agents/. It grants no additional task execution, validation, approval, lifecycle, merge, deployment, or runtime authority.",
+    "1. Establish the local-only write restriction or required path from actual permissions, host instructions, or an observed interface rejection. Use only permitted file and task interfaces; do not bypass access controls.",
+    "2. Treat the temporary plan as an undelivered draft. Before execution or acceptance relies on it, persist its complete authoritative contents through an approved durable task-record or tracked repository route outside .local/. A required tracked repository copy must still be delivered before its governing gate.",
+    "3. Treat .local/ contents as disposable drafting or transport artifacts—not as canonical sources, durable evidence, accepted reports, or proof of delivery. Temporary plan drafting does not exempt any other deliverable from its tracked-location requirements.",
+    "4. Read back the complete authoritative persisted plan and compare it with the intended full payload. For task-bound handoff, also independently verify actual dependencies and the required plan/version bindings. A local file, submission response, title, or digest in metadata alone does not establish successful handoff.",
+    "5. Preserve the staging-to-authoritative-plan mapping and actual persistence/readback outcome through the durable route. While that route is unavailable, identify the exact draft location and pending transfer action without claiming durable delivery. Missing or truncated contents remain unresolved.",
+    "6. This exception does not permit using .local/ skill definitions or mirrors as canonical instructions. Canonical skill sources remain under .agents/. It grants no additional task creation, execution, validation, approval, lifecycle, merge, deployment, or runtime authority.",
   ];
 
   assert.deepEqual(
@@ -67,23 +61,13 @@ test("all six staging prerequisites require proof and complete durable readback"
 });
 
 test("missing durable-copy or persisted-plan proof blocks the affected handoff", () => {
-  const section = exceptionSection();
+  const section = normalize(exceptionSection());
 
-  assert.ok(
-    section.includes(
-      "If the required staging workflow cannot preserve the authoritative deliverable outside .local/ or cannot establish complete persisted-task readback, stop the affected handoff and report the specific blocker.",
-    ),
-  );
-  assert.ok(
-    section.includes(
-      "Do not silently broaden this exception or claim successful delivery.",
-    ),
-  );
-  assert.ok(
-    section.includes(
-      "Authoring it does not establish that this host requires or supports .local/ staging.",
-    ),
-  );
+  assert.ok(section.includes("If durable persistence or complete readback is unavailable, retain the draft"));
+  assert.ok(section.includes("Draft preparation may be complete, but authoritative handoff, dependent execution, and acceptance remain blocked."));
+  assert.ok(section.includes("Do not create a replacement task, approve work, or weaken a tracked-copy obligation to manufacture delivery."));
+  assert.ok(section.includes("This exception cannot override a higher-priority prohibition or unavailable host permission."));
+  assert.ok(section.includes("Skill authorship proves no host capability."));
 });
 
 test("canonical-source, pairing, approval, and execution boundaries remain intact", () => {

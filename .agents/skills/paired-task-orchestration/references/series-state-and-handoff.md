@@ -74,6 +74,15 @@ The backlog/checkpoint is an orchestration locator, not an authoritative task,
 approval, allocator, validation, or run registry. Native/project-local records and
 original evidence remain authoritative.
 
+Temporary plan payloads may originate in `.local/` under the entry point's narrow
+local-only/required-path exception. They may be the only copy while drafting, but
+are not durable series state or authority. Before execution or acceptance relies
+on a plan, require complete authoritative persistence and readback through the
+approved durable task-record or tracked repository route. A contract-required
+tracked copy, backlog, checkpoint, manifest, report, and other repository
+deliverables retain their tracked-location and delivery gates. Missing transfer
+blocks the affected handoff or dependent claim, not honest draft preparation.
+
 A tracked file checkpoint can support serialized invocation-driven planning,
 with documented writer/atomic publication and interrupted-write handling. It
 does not coordinate independent clones, isolated task branches, or callbacks.

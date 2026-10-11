@@ -17,6 +17,12 @@ protected plans. Retain the applicable amendment route and required approval,
 execution, incident, provenance, and acceptance evidence. Routine autonomy does
 not authorize the hook, polling, task execution, or automatic enablement.
 
+The entry point's temporary-plan exception may support drafting in a local-only
+session. It supplies neither a durable controller record nor a deployed hook,
+and cannot satisfy execution, acceptance, delivery, or enablement gates until the
+complete authoritative plan has been durably persisted and read back. Hook code,
+configuration, reports, and runtime evidence are not temporary plan drafts.
+
 ## 1. What can actually be installed first
 
 A skill can instruct Agent to install a supported host integration before starting

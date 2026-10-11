@@ -64,8 +64,12 @@ Compare the installed package against the authorized original specification:
 - Every materialized primary/verifier plan preserves expected outcomes and their
   evidence requirements. Matching negative/non-zero results satisfy their
   criteria; they are not repair gaps or reasons to substitute zero/PASS.
-- Tracked backlog/checkpoints are outside `.local/`, are not authorization
-  registries, and do not claim clone-wide exclusion without shared host coordination.
+- Tracked backlog/checkpoints and required repository deliverables are outside
+  `.local/`, are not authorization registries, and do not claim clone-wide exclusion
+  without shared host coordination. Temporary plan drafts may initially be the
+  only copy under the narrow local-only/required-path exception; execution and
+  acceptance still require full durable authoritative persistence/readback,
+  actual dependencies/bindings, and any contract-required tracked plan copy.
 - Hook installation is optional, separately authorized, and begins with visible
   invocation-driven implementation/verification rather than a circular dependency.
 - Automatic progression needs verified trigger AND actual wake-up/task-access/
@@ -92,6 +96,8 @@ Instrumented fixtures can test logic but cannot prove real UI/task integration.
 | Approval boundary | Neither task runs merely because created; verifier does not execute before delivered inputs |
 | Shared instructions | Every materialized plan includes all applicable specification/shared safeguards |
 | Routine programming | Equivalent unspecified methods need no new task, approval, choice ledger, or diary; the approved outcome and its evidence still pass independent review |
+| Local-only draft | Temporary plan preparation may finish without a prior durable copy; authoritative handoff, execution and acceptance wait for complete durable persistence/readback and all required tracked-copy gates |
+| Other deliverables | Temporary plan staging does not permit `.local/` canonical skills, code, reports, checkpoints, or durable evidence |
 | Material exception | Changed criteria/coverage, scope, authority, execution, limits, or protected safety/ownership/recovery/completion boundaries follow the applicable authorized route |
 | Protected plan | Routine choices do not themselves amend a plan; actual fixed-requirement or protected-payload changes retain amendment, binding/readback, and evidence-renewal controls |
 | Source stage | Only its declared source scope accepts; deferred runtime proof gates the runtime successor |
