@@ -1,111 +1,40 @@
-# Failure Gate v4 Series Checkpoint
+# Failure Gate fresh-series checkpoint
 
-**Owner-edited revision — 2026-10-10.** The series exclusions `B2-R1` and `B5-R1` apply only to the resource assessment. Edited historical prose is not an unchanged prefix or original provider response; affected prefix/unchanged-byte claims are invalidated. Original dated lifecycle observations are not live queries. Revised bindings are in `retired-review-cleanup-bindings.json`. All remaining source, confirmation, current/future linkage, delivery and runtime gates remain intact; no acceptance or advancement follows.
+## Binding
+- Generation: Custom-Skills-Workbench/failure-gate-v4/reimplementation-18-piece.
+- Project: Skills Workbench; repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace. Actual native namespace must be reconfirmed; no immutable platform UUID supplied.
+- Prepared: 2026-10-11T04:05:01.808Z; pre-write repository snapshot a9bb36163439f69f190e8271b013c780254e2d43.
+- Single active backlog: docs/validation/failure-gate-v4-task-series.md.
+- Full source/payload publication manifest: docs/validation/failure-gate-reimplementation-manifest.json.
+- Fresh requirements: docs/validation/failure-gate-reimplementation-obligation-ledger.md; original specification: docs/validation/failure-gate-reimplementation-specification.md.
+- Historical prospective-plan replacement: docs/validation/failure-gate-reimplementation-supersession.md.
 
-## Project, sources and current authorized mode
+## Current window and actual records
+- State: BACKLOG_READY — repository drafts, no native pair.
+- Current earliest fresh piece: FG-R01, planning/discovery/source delivery. No old accepted stage is inherited.
+- First primary payload: docs/validation/task-plans/failure-gate-reimplementation/fg-r01-i.md.
+- First verifier payload: docs/validation/task-plans/failure-gate-reimplementation/fg-r01-v.md.
+- Native primary/verifier references and dependency: UNASSIGNED / NOT_CREATED.
+- Native primary finalized revision/digest and verifier duplicate key: UNASSIGNED; cannot be satisfied by tracked hashes alone.
+- Local Gate allocator task ID, actual decision/tier/grant and current runtime proof: NONE established by planning.
+- Later 17 pairs: complete repository backlog payloads only; no later native cards or implicit drafting permission.
+- Initial current-pair creation: pending a return to Plan mode and supported complete persistence, primary finalization/readback and attachment route.
 
-- Repository: `https://github.com/makerdan/Custom-Skills-Workbench`.
-- Root: `/home/runner/workspace`; current Skills Workbench Project task-board context. No immutable platform Project UUID is exposed by the inspected task interface; none is invented. Reconfirm this composite binding before any task-bound operation.
-- Observation revision: `e8038f36ba88615ea7cd4c8c288cf39f396baf6c`, 2026-10-07. This is the pre-authoring repository revision, not a final delivered commit.
-- Series identity: `Custom-Skills-Workbench/failure-gate-v4/18-piece`; single active plan: `docs/validation/failure-gate-v4-task-series.md`.
-- Original specification: `attached_assets/failure-gate-v4-piecemeal-task-series_1791259976201.txt`, SHA-256 `7bd8aadd6007ed7c01f118d6cbb83d70ea52d79cecfc6eaafc2234ee869eb026`.
-- Pre-replacement active plan: immutable Git locator `e8038f36ba88615ea7cd4c8c288cf39f396baf6c:docs/validation/failure-gate-v4-task-series.md`, SHA-256 `16d612374ae20b6dff178cb52c37839c2d1e48c0390410fc2fb64b22e109bf1c`. History is preserved, not another active plan.
-- Orchestration revision: `paired-package-2026-10-07`, exact package/content closure bound in `paired-task-orchestration-manifest.json`.
-- Authorized package: `attached_assets/paired-task-orchestration_1791347147544.zip`, SHA-256 `5e99a095a57a7646ac5203b43642312ffa0bd2cef19106c8b77897fdb2a520b7`. Canonical destination was absent before installation; exactly SKILL.md and its three supplied references were newly placed.
-- Current operation: definition/package installation and replacement planning. Runtime visibility, independent package/plan acceptance, local enforcement and automatic progression are separate unverified claims.
+## Authorization
+Owner authorized fresh replanning, then a temporary Build step to save only backlog/full payloads/checkpoint outside .local/. That does not authorize implementation, checks, package/workflow changes, stores/CLI, native task operations, policy adoption, recovery, signals, reclaim, ordinary activation/cutover, hooks, automatic progression, merge or publication. Current true governance and any fresh execution accounting/provider remain UNESTABLISHED; old STAGED descriptions and consumed/conflicting histories remain historical.
 
-## Current unfinished piece and native records
+## Exact next action
+Switch to Plan mode. Re-read current canonical closure, this complete publication and actual full current/legacy native records. Only prepare FG-R01-I, establish its genuine committed-finalization/full-readback barrier, then attach FG-R01-V to the actual primary with complete outcome matrix and verified delivery-readiness gates. If a permitted full native persistence/finalization interface is missing, preserve the prepared files and request that exact task-integration capability; do not weaken safety, create a duplicate, borrow old profile authority or substitute a short plan.
 
-**Earliest unfinished piece: FG-02. Fresh generation: g02.**
+Creation keys use versioned unambiguous project/specification/piece/scope/generation inputs; verifier key binds actual primary namespace/ref and finalized authoritative primary digest plus canonical verification scope. Record only actual returned IDs/full snapshots and bracket linkage with full readbacks. No clone-wide atomic exclusion/delivery is claimed. Recover partial/unknown writes before retrying.
 
-**Current native FG-02 pair: NONE CREATED.** Preparation state: tracked payloads available; native preparation gated on independent package/plan acceptance and actual host prerequisites. No native refs or normalized finalized-native-plan key are guessed.
+## Acceptance and later advancement
+Pieces 01–04 accept only their declared planning/source outcomes; authentic safe Piece 05 runtime proof gates runtime successors. Each verifier audits first, repairs approved omissions and obtains independent post-repair acceptance against fixed criteria. Expected negative/nonzero outcomes are judged against evidence, not a lifecycle label. Missing required implementation/proof remains unmet. Actual restored identity proof is at 15, protected reclaim at 17 and complete singular ordinary cutover at 18.
 
-Full draft payloads:
+After current independent acceptance and actual delivered inputs, another explicit user invocation may prepare the next pair. No task has been approved, run or accepted by saving this checkpoint. Prior completed records and byte-preserved old drafts remain history, not current work.
 
-- `docs/validation/task-plans/fg-02-g02-i.md`
-- `docs/validation/task-plans/fg-02-g02-v.md`
+## Publication and interruption
+Manifest outputs must match complete files before task handoff relies on them. Missing manifest or mismatched/partial output means INCOMPLETE_PUBLICATION/RECONCILIATION_REQUIRED. Publication is serialized cooperative authoring, not atomic across clones. Source/native-plan drift invalidates affected bindings and requires actual scoped reconciliation. Never reopen old tasks, delete exclusion or reset budgets to repair publication.
 
-The full active backlog retains the other 17 pieces in order; FG-01 is historical accepted planning/discovery, FG-03–18 are backlog only. The present restart instruction permits only fresh FG-02 draft preparation after independent acceptance, not later cards or implementation.
-
-| Historical record | Native lifecycle | Delivered acceptance / remaining obligation |
-|---|---|---|
-| #68 FG-01-I; #69 FG-01-V, dependency #68; #82 documentary reconciliation | MERGED | Existing independent report accepts planning/discovery only. No enforcement, current grant, runtime readiness or reconstructed historical Router bytes. |
-| #66/#67 | Archived historical drafts | Do not reopen or count as current pair. |
-| #96 FG-02-I | MERGED, owner-directed documentary/proposal closure | Assessments/proposal accepted administratively. Required adapter/schema/regression cases NOT delivered. FG-02 series stage remains unfinished. |
-| #97 FG-02-V | Archived | Not a viable current verifier; no independent adapter acceptance. |
-| #99/#100/#101 | MERGED; no dependencies | Approval, budget/accounting and supervisor dossiers delivered findings only. No applicable new decision, current grant, independent registration or reusable allowance. |
-| #2 | Unrelated Bulk Skill ZIP Import | No series identity or authority binding. |
-
-Actual full records for #68/#69/#82/#96/#97/#99–#102 are retained in `paired-task-orchestration-native-readback.json`. Native lifecycle is not local validated completion. The original Piece 01 supplement and historical source manifest remain unchanged and discoverable through the original source/evidence index.
-
-## Retained blockers, current evidence and owners
-
-1. **Source-stage decision:** actual applicable decision and exact finalized operation/plan/closure, parameters, authoring targets and transitive effects remain unverified. Source-stage approval owner must identify a supported operation-specific route and permit its bounded evidence read. Existing ordinary local plan review and fixed health-only receipt cannot be borrowed.
-2. **Current finite grant/accounting:** effective finite phase/parent/attempt limits, original clock/consumption lineage, remaining capacity and current revocation remain unverified. Budget/accounting owner must provide a supported authentic matching route/export and read authorization. Code ceilings and task statuses grant no budget.
-3. **Future validation supervision:** independent whole-entry containment/registration, termination or quarantine, bounded reads/capture/acknowledgement and any remote-job coverage remain unverified. Host supervision provider must supply authentic operation-bound semantics/evidence and a separately authorized first-proof proposal.
-4. **Governance:** authoritative ACTIVE/INACTIVE classification UNKNOWN. Earlier actual limited coordinator query returned STAGED and no applicable FG-02 identity/decision/current grant lineage. No coordinator is queried now. Those observations outrank stale summaries within their returned scope/time only, not current permission.
-5. **Historical allowance conflict:** old health-bootstrap reports describe consumed attempts, while that lineage was absent from the later queried records. Neither supports reuse, replenishment or an available balance. Preserve the discrepancy and original incidents.
-6. **Document availability is resolved here:** current FG-02 stage handoff, admission proposal and factual recheck exist. Intake dossiers' missing-file statements describe their earlier checkout, not current absence. Their external authority gaps remain.
-7. **Confirmation and task attachment:** referenced canonical `skill-install-confirmation` is absent. Actual primary-finalization evidence, atomic/idempotent native creation and dependency delivery guarantees are unavailable/unverified. Installation verifier attachment is BLOCKED, not created or accepted. Router requires resolving the companion and finalization/delivery route; do not replace the companion with a mirror.
-
-No catalog-authorized ignore exists. Missing authority/capability is not a failed test or ignorable baseline. Fixture/runtime checks are NOT_RUN in this package/planning task.
-
-## Independent handoff and exact continuation
-
-Installer handoff: `paired-task-orchestration-install-handoff.md`.
-Complete fixed-obligation independent payload: `paired-task-orchestration-verification-plan.md`.
-Independent report destination: `paired-task-orchestration-verification.md` (**not delivered**).
-
-Package/plan verifier actual ref: **PENDING — no native attachment attempted**. Required distinct SKILL.md-only confirmation: **PENDING canonical companion and narrow batching decision**. Resources/series verification is separate; no recursive verifier or hidden confirmation task.
-
-Actual readiness-finding proposal: **#103**, dependent on **#102**, returned by the permitted follow-up proposal route. It is only a documentary prerequisite finding, not the independent verifier, definition confirmation, a series implementation task or permission to attach them. Its complete returned record is preserved in `paired-task-orchestration-readiness-proposal.json`.
-
-Smallest next decision: supply the canonical confirmation companion (or an authoritative applicability resolution), confirm a visible separate definition-only confirmation beside package/plan verification, and identify the host's supported finalized-plan/attachment evidence route. The tracked payloads are ready for readback; this decision does not approve their execution or FG-02 staging.
-
-After genuine independent definition/package/replacement-plan acceptance, the independent verifier may prepare **only** FG-02 g02: reconcile existing/partial tasks, finalize/read back the full primary, attach its independent verifier with the actual primary dependency, bracket linkage with full primary/verifier readbacks, verify actual delivered inputs, then replace the PENDING fields here with actual refs, keys, plan digests and evidence. If any route/readiness is missing, retain the payload and precise owner/action; no later cards.
-
-## Interruption, concurrency and drift
-
-Checkpoint version identity is the series/orchestration revision plus manifest digests, not a task authorization registry. Resume reads full checkpoint/manifest/actual native records and accepted reports before writes. Unknown native outcomes are reconciled through trusted request identity or uniquely verified binding; never blind retry. Recover a committed partial primary/verifier rather than creating another generation. Multiple matches or inaccessible evidence => RECONCILIATION_REQUIRED.
-
-No clone-wide lock/CAS or atomic multi-file publication is claimed. During interrupted local authoring, a missing manifest or content mismatch means INCOMPLETE_PUBLICATION; dependent preparation/verification stops. Use Git history/manifest to identify actual old/new bytes, finish only authorized document publication, then read back the coherent set. Do not silently roll back authority or alter unrelated files. A concurrent source/native-plan change requires bounded reconciliation and affected evidence renewal.
-
-Manual invocation only; hooks/schedulers/polling are not installed or authorized. Reports separate package availability, definition/resource delivery, actual project enforcement, native lifecycle, fixtures and hook state. No automatic merge/deploy, grants, store operations or ordinary/reclaim cutover follows this checkpoint.
-
-## Named-series handoff amendment overlay — draft only
-
-Profile: `failure-gate-v4-series-handoff-policy.md`, revision `fgv4-owner-snapshot-handoff-2026-10-07-v1`. Owner selected `cooperative_snapshot` for this series' native planning/review handoff only. This is a proposed/documented overlay; no native task was amended and no review was attached, started, or accepted.
-
-Current #102 content binding is 11,539 UTF-8 bytes, SHA-256 `6b2a457b2d3cbe1ffc06e3edb6ce0efa3cc1e579637297ead8b1660ed853cd06`, actual record `MERGED`, updated `2026-10-07T04:41:02.658Z`. This snapshot is not provider finalization, an immutable revision, an approval, or proof of no writer. Use the separate `owner-snapshot-handoff-v1` keys in the amendment manifest; preserve the original manifest and native-readback files unchanged.
-
-Existing #107 and #108 are both `IN_PROGRESS`, still depend on #106, and have abbreviated current plans. Actual work/report status in their isolated workspaces is UNKNOWN. Do not change either record. A later explicitly owner-authorized invocation must establish a supported safe pause/amendment route, re-read both complete actual records, use the complete tracked replacement payloads, add actual #102 and #109 delivery dependencies while retaining #106, and fully read back both records. If pause/readiness or the write/readback route cannot be verified, leave records unchanged and return the exact operation boundary.
-
-Definition confirmation remains SKILL.md-only with its own report. Resource/plan verification remains separate with all three references, all 18 pieces/36 full task payloads, history/checkpoint, FG-02 drafts, and its own report. The absent named companion remains absent and is not substituted or declared universally inapplicable. Each reviewer must independently bind actual delivered files in its own workspace; missing files yield `AWAITING_DELIVERY`, exact paths/owner, and one authorized invocation-driven recheck.
-
-Only after both independent reviews accept may the existing continuation prepare the fresh FG-02 g02 draft pair. If it uses this cooperative profile for that planning handoff, it must derive a new full-content key from the actual FG-02-I primary and exact FG-02-V scope; the #102 review snapshot is not reusable. No native pair exists now. All source/bootstrap/runtime, tier, approval, accounting, supervision, final-writer, recovery/reclaim, and cutover gates remain unchanged.
-
-## Current resource-handoff locator — 2026-10-09
-
-**Historical documentary binding (2026-10-09 snapshot):** `docs/validation/paired-current-handoff-renewal.md` and `docs/validation/paired-current-handoff-manifest.json`, rebound in `docs/validation/retired-review-cleanup-bindings.json`. The active binding generation is now `docs/validation/paired-prerequisites-refresh-manifest.json`, with preparation at `docs/validation/paired-prerequisites-refresh.md`. The original pre-edit 12,174-byte checkpoint snapshot remains at Git `b4785f207f61555352a90844d751e69840b39fb7`, SHA-256 `3a4a6f3126ad7cdfe026fa08ad709d877c712fa9df39e5dc8d23bf9a4edf2f44`; the revised editable text is not its verbatim prefix.
-
-**Disposition: PENDING independent resource revalidation.** This author does not accept the renewal. The #126 resource report remains PARTIAL / BLOCKED. Its observed #126 payload, key, and direct dependencies #102/#106/#109 are correctly bound. #122 remains the sole existing route for #119's historical correction; it is not duplicated, changed, or automatically closed.
-
-Historical source observations for that renewal, not current-source proof: the Paired definition was 18,258 bytes / `1060bbef83e521a9f591d62e52caf2d3e97cb5d23f904b6a939051ea02708456` after the authorized #120 insertion; the confirmation companion was 14,615 bytes / `6d2a1a38a19092fe74982ab8610accdf4804d3c3a95d7a4e71e987c3b4eb02a6` after the narrow owner-resolved #132/#133/#134 source work; and `replit.md` was 3,930 bytes / `f2f57f45993342b506af279c91acdc7c6fd0a3fc26f039389c41dd360da15b63`. Current bytes and historical lineage are separate in `paired-prerequisites-refresh-manifest.json`. No replit policy text or cooperative-profile scope is changed by this pointer repair.
-
-Bound native-record evidence is the complete readback annex `docs/validation/paired-native-handoff-current-readback-annex.json`, whose final relevant-record observation is `2026-10-09T12:04:08.102Z`. At that snapshot #107/#108 are CANCELLED archived predecessors; #116/#126 are MERGED replacements; #119 is historical; #122 is PROPOSED; #121's independent definition source report remains BLOCKED despite its lifecycle; and #136 is IMPLEMENTED by status only, with its required report/manifest absent from the inspected checkout. These are time-bounded observations, not current live reads or acceptance evidence.
-
-**Retained stage and authority limits:** FG-01 is planning/discovery-only accepted. FG-02 g02 remains the earliest unfinished piece, both draft bodies remain intact, and the current native FG-02 pair is **NONE CREATED**. No source-stage decision, current finite grant/accounting, independent supervision, authoritative current governance classification, or reusable historical allowance is established. The prior allowance conflict remains unresolved. Confirmation, current definition evidence, resource acceptance, native linkage/finalization, and executor-local delivery gates remain separate. Invocation remains manual only; there is no automatic advancement.
-
-`scripts/test/paired-current-handoff-source.test.mjs` is a source-only guard and is **NOT_RUN**. No local Gate ID, tier, grant, approval, validation PASS, runtime/store/coordinator action, task write, hook, CI, service, signal, or deployment is implied. The report, manifest, checkpoint locator, and guard remain PENDING independent review by the separately assigned resource reviewer; task status, a report, or a Merged label is never a pass.
-
-## Implementation-autonomy amendment locator — 2026-10-10
-
-The single active plan remains `docs/validation/failure-gate-v4-task-series.md`. Its shared implementation-autonomy contract is now one default plus focused exceptions: routine programming within actually approved boundaries needs no per-choice approval, narration or routine-method ledger. Work-family illustrations are optional; required outcomes/evidence and real acceptance-rule, authority or protected-plan changes remain governed. Both tracked FG-02 g02 drafts carry the identical full contract; every later native payload must include it in full alongside its original complete piece payload. No competing plan, FG-02 card, policy activation or series advancement was created by this amendment.
-
-**Source delivery / independent acceptance:** The amendment and readback handoff are `docs/validation/failure-gate-implementation-autonomy-amendment.md`; pre-edit, canonical, native-plan and delivered bindings are `docs/validation/failure-gate-implementation-autonomy-bindings.json`. Primary #149's exact observed plan is retained separately from the existing dependent #152 plan. Amendment acceptance is **PENDING independent review by #152**; reviewer-local delivery must be checked in that actual workspace. This is not #102/#120 confirmation, resource acceptance, a validation PASS, or authority for the next piece.
-
-**Revised reviewer binding:** The complete owner-authorized #152 revision 2 and its actual dependency on #149 were independently read back after genuine delivery. The original manifest and native annex remain the immutable primary-delivery baseline, not current repaired-leaf bindings. `docs/validation/failure-gate-implementation-autonomy-verification.md` records the single old-to-new requirement change, pre-repair gaps, current repaired-input bindings and fresh independent post-repair assessment/disposition. Pending language in this source locator does not override a later exact-bound disposition in that report or accept another obligation.
-
-The immutable pre-amendment document snapshot is Git `e425a6e2fd572e6681551c5de964e14afbdf2694` at the respective paths. Earlier manifests and reports retain their original scoped observations; their old changed-file digests cannot prove the amended plan, drafts, checkpoint or locator. Use the new bindings for those inputs and independently renew affected documentary evidence. History, original obligation ledger, technical acceptance and all source/bootstrap/runtime gates are retained. The narrow source-rule resolution review is separately delivered; it does not grant aggregate confirmation/resource acceptance.
-
-**Execution exclusions unchanged:** This task neither performs nor authorizes imports, syntax checks, tests/builds, CLI/store operations or live wiring. The authored autonomy guard is `docs/validation/tests/failure-gate-implementation-autonomy.test.mjs`, **NOT_RUN**. Any later relaxation needs a separately scoped decision. Ordinary in-scope edits do not renew unchanged tier authority, but affected evidence is stale and must cover new inputs under the applicable authorized route. Missing authority, safe launch capability, authentic policy, independent acceptance or delivery cannot be manufactured from this report, guard, task lifecycle or matching snapshot. Later-piece execution remains deferred to its existing gates.
+## Checks and hook status
+Document contents/source hashes read back only. Project tests, guards, imports, builds, CLI/live coordinator and runtime checks: NOT_RUN. No implementation or independent acceptance result. Automatic progression unavailable/unverified; no hook/polling configured or enabled by this work. Invocation-driven continuation remains the intended workflow.

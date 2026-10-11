@@ -1,0 +1,114 @@
+[REGRESSION-GUARD] Classification: compatibility-contract. Guard: covered — scripts/test/failure-gate-reimplementation-source.test.mjs.
+
+# FG-R01-I — Implement Project binding, contract extraction, and installation scope
+
+<!-- regression-guard: required -->
+
+## What & Why
+Deliver the implementation of fresh Piece 01: Project binding, contract extraction, and installation scope. Required stage: **Planning/discovery**. This complete repository payload replaces future-use planning for this piece; it does not modify an old native task, record an approval or declare acceptance.
+
+## Done looks like
+| Acceptance item | Expected/allowed outcome | Required evidence | Unmet requirement handling |
+|---|---|---|---|
+| Piece-specific implementation and exit | Current host and canonical baseline, complete requirement allocation, coherent installer handoff | Source manifest, actual caller inventory, clause ledger, capability/evidence index and installer handoff | Missing/wrong implementation is repaired within scope, never accepted as a finding alone. |
+| Negative/denial cases | Unknown current governance or absent external provider is a valid factual discovery finding, not runtime proof | Original inputs, actual raw result/reason and the fixed case mapping | Unexpected denial/failure needs scoped diagnosis; do not rewrite expectations. |
+| Assigned current canonical cases | Every applicable case linked to this piece in the fresh ledger; no reduced coverage | Exact source sections/cases and source/installed boundary proof appropriate to this stage | Carry only explicitly deferred proof to its named later gate; required stage proof cannot be substituted. |
+| Regression and evidence freshness | Complete allocation; no old approval/acceptance inheritance; no premature runtime or later native cards | Named authored guard and actual safe execution when this stage permits it; repaired-input binding | Stale evidence or absent required actual proof blocks the dependent acceptance. |
+| Delivery and independent acceptance | Complete accessible inputs and fresh independent assessment after any repair | Full primary/verifier records, actual handoff, snapshot/source bindings and independent disposition | Preserve AWAITING_DELIVERY or missing independence with owner and next action. |
+
+Produce a fresh complete clause-by-clause ledger, host capability/caller inventory and installation proposal from actual current inputs. Inspect existing staged tooling without deleting/reinitializing its store or assuming it passes. These are new delivery/acceptance bindings, not another definition-confirmation prerequisite loop. Author the named inert source guard; no running it.
+
+## Piece-specific required outcomes
+The following retains the complete functional piece obligations from the owner-supplied specification, rebased only to fresh planning labels. Current canonical contracts and the shared outcome/autonomy boundaries below control; these are outcomes and evidence, not a routine method diary.
+
+**Input/dependency:** Intended project must be explicitly resolved before substantive project reads or any target writes. No preceding implementation.
+
+**Implement:**
+- Inspect canonical instructions and Failure Gate package/reference closure. Pin immutable snapshots/digests; traverse reference cycles once.
+- Inventory languages/runtimes, real validation commands and callers, existing governance and coverage, task/plan formats, transactional persistence, actual approval sources, completion writer, locks, supervisor/provider capabilities, and recovery.
+- Build a clause-by-clause requirement ledger from the core skill and all applicable implementation/acceptance references. Assign every obligation and acceptance case to one of the 18 pieces, including relevant acceptance cases in multiple pieces where integration spans them.
+- Publish the capability manifest and initial tracked evidence index, using real safe locations/access procedures and explicit present/missing/unavailable states.
+- Bind report destinations, roles, stage gates, and the scope allowed for subsequent source staging and runtime work. Map optional history/catalog absence without inventing authority.
+
+**Acceptance:** Verified host identity; immutable canonical baseline; complete obligation allocation; actual host capability/approval inventory; preserved existing coverage; explicit source-stage versus runtime permissions. An unresolved capability is recorded, not falsely marked ready.
+
+**Evidence:** Discovery report, source manifest, requirement ledger, capability manifest, evidence index, prior-policy/caller inventory, and installation proposal.
+
+
+## Dependency, stage and report destinations
+No prior implementation; fresh baseline and actual current canonical source, not historical acceptance Native dependency/ref fields remain UNASSIGNED until genuine task creation/readback; do not use labels as IDs. No future runtime proof is demanded as a prerequisite to this expressly inert/source stage.
+
+Fixed report: docs/validation/failure-gate-reimplementation/piece-01/installer-handoff.md. Primary delivered evidence lives under docs/validation/failure-gate-reimplementation/piece-01/ with an explicit installer handoff. The manifest/index is a locator, not a second authority. Report destinations may not silently move or be replaced by inaccessible summary files. Actual new files remain within approved piece scope.
+
+## Out of scope
+Canonical definition/package edits or reinstallation; unrelated Notes/product work; implicit source-only checks; unapproved policy/budget/authority changes, broader tiers, arbitrary diagnostics or recovery, production/remote triggers, signals/reclaim except separately authorized Piece 17, ordinary cutover except separately authorized Piece 18, native task status/approval rewrites, automatic future drafting/hook/polling, merge or deployment. Original completed records, local IDs/tombstones, incidents and consumed accounting remain intact. A genuinely necessary future definition install needs separate authorization and its applicable definition-only confirmation; this contract-implementation series does not impose another confirmation of already installed unchanged definitions.
+
+## Project, source and authority binding
+Project: Skills Workbench; repository https://github.com/makerdan/Custom-Skills-Workbench; root /home/runner/workspace. Reconfirm repository and actual task-board namespace before substantive work. No immutable platform Project UUID is exposed in the inspected context; none is invented. Series: Custom-Skills-Workbench/failure-gate-v4/reimplementation-18-piece. Planning baseline: Git a9bb36163439f69f190e8271b013c780254e2d43 plus the complete byte bindings in docs/validation/failure-gate-reimplementation-manifest.json. The original functional specification is preserved at docs/validation/failure-gate-reimplementation-specification.md; current canonical .agents contracts control, including current autonomy and outcome rules. No alternate/cached/mirrored definitions are canonical.
+
+Native reference/namespace, primary finalized plan revision/digest, verifier key and actual execution/local ID are UNASSIGNED: bind only real returned authoritative records when the plan is materialized. A series label is not a local allocator ID. No operation borrows historical acceptance, approvals, grants, budget balances, snapshots or retired resource-review exceptions. Immutable old records remain history. Canonical availability, project enforcement and native lifecycle are three separate tracks.
+
+## Routine programming and material exceptions
+Within the approved task/repair boundary, choose unspecified equivalent coding methods without per-choice approval, a coding diary, exhaustive method checklists or routine-method-change ledgers. Deliver and independently verify required outcomes, coverage and evidence. Fixed methods genuinely required by a contract remain fixed; optional examples add no gates. Seek the applicable amendment/approval only for changed acceptance/coverage, scope/authority/execution/limits, governing tooling, protected payloads or material safety/privacy/compatibility/persistence/ownership/recovery/completion boundaries. Ordinary in-scope edits stale relevant evidence, not unchanged tier authority. Changed runner/checker/wrapper/registry/policy versions need real review and fresh binding before use.
+
+## Shared safety and execution contract
+- Establish ACTIVE/INACTIVE/UNKNOWN from actual authoritative evidence: ACTIVE uses its checked route; verified INACTIVE uses its actual host policy with equivalent bounds; UNKNOWN blocks dependent execution. Invalid explicit checked requests never fall back. Last recorded documentation says STAGED; it is not a current live observation.
+- Initial installation uses authentic separately approved bootstrap authority. If an active route exists, preserve its prior verified checked bootstrap carrier until separately authorized singular cutover. Ordinary-task enablement is reserved for Piece 18; diagnostics, comparison, planning, recovery, reclaim and owner closure have distinct scopes.
+- Pin exact operation, task/namespace, durable plan/version/digest, one registered tier/definition or named bounded non-tier capability, parameters, policy/authorization version, source/actual tested inputs and decision evidence. No flags, task assignment/status, command approval, local receipt or merge supplies approval. Replit-event routes verify the actual exact plan action without imposing actor identity/roster. Other actual human routes pin their applicable authority.
+- Discover/reuse a genuine already-approved deterministic policy; otherwise proactively propose a scoped/versioned one with real decision sources, fixed eligibility/tier selection/parameters, complete bounds, supervision/conflicts and change/revocation before use. Exactly matching approved instances get fresh bound decisions without repeated human policy approval. Policy proposal/approval is not bootstrap or ordinary cutover approval.
+- Resolve finite queue, input/admission/startup, step, test/hook/setup/teardown, session/parent, attempt/cumulative, capture/output/storage, cancellation/termination/verification and acknowledgement limits from actual independently approved current sources. Validate finite host-safe values, aggregates, narrowing, cleanup reserve, original clock/consumption and revocation. Code ceilings and tool timeouts are not grants or independent supervision. No guessed numeric defaults or refilled clocks.
+- Independent outer supervision covers the complete permitted process/job tree and synchronous stalls, private gate registration before dispatch, bounded input reads/streaming capture and typed trustworthy stop/capture/storage acknowledgements. Unknown containment, remote descendants or lifecycle prevents affected dispatch/release; no dangerous uncontained hang experiment.
+- Pin argv, roots, config/discovery branches, wrappers/hooks/workers/schedulers and remote targets before launches. Unknown transitive expansion blocks; delegates inherit bindings, owned lifetimes and cumulative accounting. Run only the selected tier or separately authorized bounded capability; no all-tier sweep, reconstructed second tier, arbitrary passthrough, gratuitous retry or reset.
+- Required top-level single-flight/resource coordination retains exclusion until exact owned children are known stopped or safely quarantined and finalization is healthy. Mandatory recoveryRequired starts true; missing/true/unfinalized legacy records do not silently release. Age, local quiescence or an absent sidecar is not death/acknowledgement.
+- Preserve genuinely independent callers, actual command strings, complete coverage, native reports/raw exits, timeouts, resource locks, serialization and workflows without caller task metadata. Their results are not checked required-tier evidence. Remote/production/destructive work needs its own real scope; do not trigger it to inspect.
+- Validate actual required configuration before the affected command, without secret contents/digests or invented defaults. Preserve assigned ports; dynamic listeners require verified range/reservation-through-bind. Build-only ports/base paths use real stable configuration. Capture actual tracked/untracked/generated/dependency/runtime/fixture/external inputs under verified isolation/writer protection; drift or unknown integrity rejects evidence.
+- Preserve owned repairs, exact authorized ignores, raw failures, missing/skipped/crashed/zero-discovery results, original lineage and permanent task tombstones. Retry passing is intermittency, not provenance. Exactly three authorized isolation retries when supported; insufficient budget/safety stays blocked. No absent catalog authority, auto-promotion, copied independent corroboration, unrelated repairs or waiver by test deletion/filter/rename.
+- Publish one tracked evidence index with actual authoritative stores/access limits and blind spots. Health, sanitized export and overlap lookup are non-authorizing. Classify evidence present/never_collected/unavailable/expired/pruned/corrupt/unknown; dependency-aware retention invalidates lost claims rather than rewriting history. Restore/recovery/reclaim require their exact separate approved scopes and retained acknowledgement. No live binary-store merge or automatic history pruning.
+- Local validated completion checks all applicable complete selected-tier evidence and owned repairs under actual final-writer/authorization protection. Owner_direction retains failures and is not a validation pass. Project code/CLI never invokes or depends on platform-managed completion; task board status cannot provide local authority. No automatic merge/deployment follows.
+- Every required source/evidence/report/configuration/code/plan deliverable stays outside .local/. This workspace's prohibition remains stricter than the optional temporary-draft exception.
+
+## Native handoff, delivery and advancement
+Only one unfinished pair may be drafted. Reconcile actual existing/legacy full records and uncertain writes before creation, using versioned unambiguous project/specification/piece/scope/generation primary bindings and the Router verifier key [project identity, exact skill identity, actual primary namespace/ID, finalized primary-plan digest, canonical verification scope]. Titles and metadata alone are insufficient. No verified clone-wide atomic creation/exclusion is claimed.
+
+Genuine committed primary finalization and full readback precede verifier attachment. Re-read the full primary around linkage; persist/read back the whole verifier, actual dependency, fixed outcomes/matrix, report path and keys. If a supported primary-finalization or persistence route is absent, retain this full draft and the exact integration-owner action; do not fabricate a receipt or approve the task to create the barrier. Serialize local preparation and disclose remaining races. Unknown writes require trusted request/binding lookup, never blind retry.
+
+Before execution and acceptance, independently verify current full plans, canonical baseline and actual accessible primary outputs in the verifier workspace. Ready/Done/Merged/dependency release is not delivery or acceptance. Missing inputs retain AWAITING_DELIVERY with exact paths/custodian/resume readback; no auto-merge or indefinite polling. Source-stage acceptance carries future runtime obligations to their real gate. Advancement requires actual declared-stage evidence and independent acceptance, not lifecycle labels or owner-directed closure. Only Piece 01 pair is authorized for initial proposed drafting; later pairs require a later user invocation/authorization and accepted prior stage. No hook/polling/automatic wake-up, status/dependency rewrite, retry/renewal, recovery, reclaim or deployment is granted.
+
+## Required report and installer handoff
+The implementation agent owns delivery; a separate fresh verifier owns acceptance. Publish the clause/source-to-outcome matrix, actual implementation/configuration/environment and full plan bindings, accessible delivered paths, expected/actual/raw results, genuine decision and effective consumed/remaining limits when applicable, original incidents, before-repair gaps, material amendments, affected evidence invalidation and independent post-repair disposition. Each unmet requirement has a responsible integration role, exact input/action and invocation-driven resume test. Share evidence across requirements when valid; no coding diary.
+
+Keep requirement statuses verified/failed/blocked/justified not applicable, fixture outcomes PASSED/FAILED/BLOCKED/NOT_RUN and per-control STAGED/NON_RECLAIM_VERIFIED/LIVE_RECLAIM_ENABLED distinct. Correct negative/nonzero results satisfy only their predeclared criteria. Missing implementation or required runtime/independent proof is not satisfied merely because the assessment is complete.
+
+## Task identity
+**Native task:** actual assigned host reference, presently UNASSIGNED. **Local Failure Gate ID/namespace:** none allocated by planning; obtain it only under the real authorized route when applicable. **Plan source:** docs/validation/task-plans/failure-gate-reimplementation/fg-r01-i.md. **Role:** implementation agent; owner approval of this plan remains separate from task creation.
+
+## Pre-existing failures to ignore
+None authorized or assumed. No baseline catalog or historical exclusion grants a new ignore. Record an exact observed applicable authorized ignore or owned repair, never both; keep task-local environment observations separate. A passing retry proves intermittency, not earlier provenance. Preserve original raw failures and unresolved ownership.
+
+## Task-local environment observations
+The repository has staged Python/SQLite Gate source and pnpm validation callers. Existing descriptive records say STAGED; current authoritative governance, decision/grant/accounting and complete outer-supervisor/writer acceptance are UNESTABLISHED for this fresh operation. No new store read or project validation occurred during replanning.
+
+## Validation
+**Route:** readback-only / execution not authorized at this declared stage. No tier is invented or assigned; no Gate store/CLI, allocator, imports, syntax checks, guards, tests, builds, listeners, signals or live wiring are permitted. Approving this source task authorizes only its explicit inert authoring/readback outcomes, not future execution. Author the concrete required regression/acceptance cases now; mark them NOT_RUN. This is source-stage acceptance, not deferral of test authorship or a runtime pass. Piece 05 owns authentic authorized proof of 02–04; later live restore/reclaim/cutover retains its own gate. If a genuinely applicable existing route already separately permits equivalent safe checks, seek an explicit authorized revision before relaxing this payload's inert-only restriction.
+**Tier/capability, current decision and effective remaining grant:** none for execution. No numeric limits or approval source are fabricated.
+
+## Regression Guard
+**Covers:** Complete allocation; no old approval/acceptance inheritance; no premature runtime or later native cards.
+**Test location:** scripts/test/failure-gate-reimplementation-source.test.mjs
+**What it checks:** Author concrete piece-specific assertions for the positive and negative boundaries in this plan: Complete allocation; no old approval/acceptance inheritance; no premature runtime or later native cards. The guard fails when the material unsafe behavior returns; it does not merely inspect a writer's PASS label. Deliver the test source in this task, mark execution NOT_RUN and accept only the declared source stage; actual runtime proof remains assigned to Piece 05.
+
+## Blocked/resume route
+Discovery custodian: supply the exact missing canonical/host mapping; bind it and obtain independent source readback. Continue every independently permitted part of this approved task. At the genuine boundary prepare a concrete proposal containing exact source/plan/operation bindings, actual source/decision custodian, missing capability/input, commands/transitive targets or NONE, effective limits/remaining allowance or UNESTABLISHED, safe admission, required evidence/acceptance and exclusions. A proposal authorizes nothing. 
+
+## Relevant files
+- docs/validation
+- scripts/test/failure-gate-reimplementation-source.test.mjs
+- .agents/skills/failure-gate-v4/SKILL.md and the complete applicable reference closure
+- .agents/skills/paired-task-orchestration/SKILL.md and references/series-state-and-handoff.md
+- .agents/skills/skill-application-router/SKILL.md and its complete handoff/verification references
+- docs/validation/failure-gate-reimplementation-manifest.json
+- docs/validation/failure-gate-reimplementation-obligation-ledger.md
+- docs/validation/failure-gate-reimplementation-specification.md
+- docs/validation/failure-gate-v4-task-series.md
+- docs/validation/failure-gate-v4-series-checkpoint.md
+- scripts/test/failure-gate-reimplementation-source.test.mjs

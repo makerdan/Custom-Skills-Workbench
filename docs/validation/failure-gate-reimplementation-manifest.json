@@ -1,0 +1,1009 @@
+{
+  "schema": 1,
+  "generation": "Custom-Skills-Workbench/failure-gate-v4/reimplementation-18-piece",
+  "preparedAt": "2026-10-11T04:05:01.808Z",
+  "operation": "OWNER_AUTHORIZED_DOCUMENT_REPLANNING_ONLY",
+  "publication": "COMPLETE_ONLY_WHEN_ALL_OUTPUT_BYTES_MATCH",
+  "project": {
+    "repository": "https://github.com/makerdan/Custom-Skills-Workbench",
+    "root": "/home/runner/workspace",
+    "prewriteCommit": "a9bb36163439f69f190e8271b013c780254e2d43",
+    "nativeProjectUUID": null
+  },
+  "sourceBindings": [
+    {
+      "path": ".agents/skills/failure-gate-v4/README.md",
+      "sha256": "840121477f13cb44746f1853e9e62b6b5bf151982c1ffd5a81b5abde52e81608",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/failure-gate-v4/README.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/acceptance.md",
+      "sha256": "a1a225cc650d711b9b359151cd608016a5aa334d1daac80a359a7611b532b91b",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/failure-gate-v4/reference/acceptance.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/adapters/posix-writer-lock/README.md",
+      "sha256": "3d635b1ae2307beb79e2369a616ac7b2a9d28bedec6daf80655fd1d4aa9a39d2",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/failure-gate-v4/reference/adapters/posix-writer-lock/README.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/adapters/posix-writer-lock/tests/test_writer_lock.py",
+      "sha256": "777035d2a9ceae4c976734125869686b9d713f0dec008dba18692e119a8eedb8",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/failure-gate-v4/reference/adapters/posix-writer-lock/tests/test_writer_lock.py",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/adapters/posix-writer-lock/writer_lock.py",
+      "sha256": "791a20ee9909127f2d03b577a6573cc382317cf8a58a898f146a89db5befe503",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/failure-gate-v4/reference/adapters/posix-writer-lock/writer_lock.py",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/authorized-continuation.md",
+      "sha256": "a937781de51c00071ce94fdd92c804476c0841c05ecdb5657d588fe2398a0e4b",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/failure-gate-v4/reference/authorized-continuation.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/evidence-and-recovery.md",
+      "sha256": "91a06ce5ed37eb161c45c440f26cdf42256ddf2265e64f17c47e7ccc03c49075",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/failure-gate-v4/reference/evidence-and-recovery.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/execution-monitoring.md",
+      "sha256": "9759842ae03a7f5cb5206a0e3f583c99a6cb7dcd4ff5e44570c6188c47d2f563",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/failure-gate-v4/reference/execution-monitoring.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/implementation-autonomy-examples.md",
+      "sha256": "0988107994ac055910a5707f878bd4ddabe5761d75501209bef4ec5c28755865",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/failure-gate-v4/reference/implementation-autonomy-examples.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/implementation-autonomy.md",
+      "sha256": "bec680505840b5dfa9a80cae1fd8c5e22985cb041a981fc5f70b66bdabf162e3",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/failure-gate-v4/reference/implementation-autonomy.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/implementation.md",
+      "sha256": "b9d139c767d2dd474f4abae311cde111e29087fec8090007d5d8cb6f5a06b43d",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/failure-gate-v4/reference/implementation.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/owner-directed-closure.md",
+      "sha256": "9dff9d6e28e10b70224755d63a0f1aeb44be9f789c47a5700bab86dc46d3b4e4",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/failure-gate-v4/reference/owner-directed-closure.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/runtime-reclaim.md",
+      "sha256": "bceea11fe66e7d4ef0433ee8306f87f3ec5cdc1520215fdf59393afcbbedb51f",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/failure-gate-v4/reference/runtime-reclaim.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/staging-and-lifecycle.md",
+      "sha256": "a9ab52d787e44c7aa4e199c8662882521d8ccf0ef8a6de0706c7853b5fa69800",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/failure-gate-v4/reference/staging-and-lifecycle.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/task-plan-template.md",
+      "sha256": "655df610db8ae2763bbab46449473168a8df1fe8dad41ee00308230036226842",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/failure-gate-v4/reference/task-plan-template.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/reference/validation-budgets.md",
+      "sha256": "62c19d7ef9cbedf9505ba45b3d45460fa909126db30a83fbeb43fa2ae7a09866",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/failure-gate-v4/reference/validation-budgets.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/RELEASE-NOTES.md",
+      "sha256": "19c56e2f391989673e0aac05ac137d8a48141f7898464f3e3e88158c206fabbb",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/failure-gate-v4/RELEASE-NOTES.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/scripts/run-authoring-tests.py",
+      "sha256": "41a46efbba39b87ca72d1ba69af617aed223430de508479be3a709ebd50040d7",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/failure-gate-v4/scripts/run-authoring-tests.py",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/SKILL.md",
+      "sha256": "01cb480f8a68437d4006b52bb5a8d93c50e645993cc7a830e3ba7343f9e41d7e",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/failure-gate-v4/SKILL.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/SOURCE-MANIFEST.json",
+      "sha256": "3859660438d2bda784b8ff6fdb13ebac36fc26a98d659e450af62895f855f1d1",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/failure-gate-v4/SOURCE-MANIFEST.json",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/SOURCE-VERIFICATION.json",
+      "sha256": "3f9c80c6fcd006055890a522deaedccf957af7794041a53f86273c2b4678fc66",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/failure-gate-v4/SOURCE-VERIFICATION.json",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/tests/authoring_supervision.py",
+      "sha256": "c759dee01e36b2ea0acee65d80b7e2a0d2b0977725f52d09dc6ccf2d672a7698",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/failure-gate-v4/tests/authoring_supervision.py",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/tests/test_activation_policy_guidance.py",
+      "sha256": "de8f609fe222255d68c471c86d3735d983fabc4ca54583f9aadd7858f72a6e44",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/failure-gate-v4/tests/test_activation_policy_guidance.py",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/tests/test_audit_regressions.py",
+      "sha256": "f27ec34c92cbac232df86d31dc909784e8c2ed27bacc91a733df050a9fec0df9",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/failure-gate-v4/tests/test_audit_regressions.py",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/tests/test_authorized_continuation.py",
+      "sha256": "b527434f87f37a36f1fcbea9f0946ac8f5c1d6a1ddab3b3b0712d6b21dfb24d0",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/failure-gate-v4/tests/test_authorized_continuation.py",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/tests/test_implementation_autonomy_guidance.py",
+      "sha256": "b3bd85cb778552cc26c0dfa3e6ab175b641adb036b251d41bcec7363c6d26d7f",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/failure-gate-v4/tests/test_implementation_autonomy_guidance.py",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/tests/test_runtime_reclaim_contract.py",
+      "sha256": "4c4d5d589b662642e8eef20347af34514a0cb6fb657b0eb81e61fcd7626b2bbd",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/failure-gate-v4/tests/test_runtime_reclaim_contract.py",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/tests/test_staging_lifecycle.py",
+      "sha256": "ac1e3a013980d051e99ee182b5ae2200497af19d415d76c64961365742020381",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/failure-gate-v4/tests/test_staging_lifecycle.py",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/failure-gate-v4/tests/test_validation_budgets.py",
+      "sha256": "75823a4f3b274a58b7312b77409c722df5a89136be71f98fc026b36f068c26e2",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/failure-gate-v4/tests/test_validation_budgets.py",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/paired-task-orchestration/references/acceptance-and-confirmation.md",
+      "sha256": "863c9dcc9596b1986c6d2389eb0ffb1a0c001f5d75442667b8e61d8c7cfb2c9b",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/paired-task-orchestration/references/acceptance-and-confirmation.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/paired-task-orchestration/references/host-hook-contract.md",
+      "sha256": "f8ff73d3318c677aa11797da2d66f540844e8a14d355ffb0548af69a6f342c85",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/paired-task-orchestration/references/host-hook-contract.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/paired-task-orchestration/references/series-state-and-handoff.md",
+      "sha256": "63e30f6dfd7ca3d410384f618b58848de6e02d69ad53132f8e7bbfadf7fabdf0",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/paired-task-orchestration/references/series-state-and-handoff.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/paired-task-orchestration/SKILL.md",
+      "sha256": "87ae488d875b3efa227114d298e79b4b23a43367a5efff224cfee5b49cb68127",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/paired-task-orchestration/SKILL.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/regression-guard/SKILL.md",
+      "sha256": "99b8edc59eeac835656b1098402d18b53525163fd763e18f832c6ebda2f91285",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/regression-guard/SKILL.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/CHANGELOG.md",
+      "sha256": "5fdc24c93ff3db13866f6d80e37df10f780be4fa292b5476e4818cf1e6885b51",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/skill-application-router/CHANGELOG.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/README.md",
+      "sha256": "873ea815bfbd1d0f88834e0e2c6a5b66b69d39bc21681f21d4bfa51bb1da6a12",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/skill-application-router/README.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/references/custom-skill-command-manifest.json",
+      "sha256": "4b143695c17095a9321e024b540ebb0459088cb6851507e83a9322ae72d3644c",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/skill-application-router/references/custom-skill-command-manifest.json",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/references/custom-skill-commands.md",
+      "sha256": "b65b8d5ff288b289fc7ab0ca2d11cc9bd45ae7a0cc6d22045d73016208260bd2",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/skill-application-router/references/custom-skill-commands.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/references/delivery-reconciliation.md",
+      "sha256": "fd908bd54a3d2db4d25cc6a3f2e6fbdfece0e9276a28e02db48d5dcfdfa3f3ca",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/skill-application-router/references/delivery-reconciliation.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/references/handoff-binding-and-recovery.md",
+      "sha256": "7e95d74645e0c1184b2ae24488ffd5936237fb6fc1d9596734a3e57bb1fe0ff5",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/skill-application-router/references/handoff-binding-and-recovery.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/references/installation-verification-plan.md",
+      "sha256": "99bc98079967ed47f8f524c187b9823fc99dddca55d4b61a9220dcbb5b3f8cb9",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/skill-application-router/references/installation-verification-plan.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/references/router-task-handoff-acceptance.md",
+      "sha256": "811bc5201d5067a4dc09d74c73880c4798f3407d7955182a923c95b3b897c849",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/skill-application-router/references/router-task-handoff-acceptance.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": ".agents/skills/skill-application-router/SKILL.md",
+      "sha256": "49e3db86b0f5b8c7efba871d7404c40336cb3caf544427a429065b1088f6586f",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:.agents/skills/skill-application-router/SKILL.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": "attached_assets/failure-gate-v4-piecemeal-task-series_1791259976201.txt",
+      "sha256": "7bd8aadd6007ed7c01f118d6cbb83d70ea52d79cecfc6eaafc2234ee869eb026",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:attached_assets/failure-gate-v4-piecemeal-task-series_1791259976201.txt",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": "docs/validation/failure-gate-v4-task-series.md",
+      "sha256": "a6d73ca85e2447f005f8cfa452f2c5427aec8799894d8115538520c84f7e70ad",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:docs/validation/failure-gate-v4-task-series.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": "docs/validation/failure-gate-v4-series-checkpoint.md",
+      "sha256": "66046782de9c16d8688bdcead32562cc4481089decc7582419bd7aeeb9f38a4c",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:docs/validation/failure-gate-v4-series-checkpoint.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": "docs/validation/task-plans/fg-02-g02-i.md",
+      "sha256": "b944ad5399820200d7f8b4b9efb9980ea5ac8ef372b41cbff839471faf1076b1",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:docs/validation/task-plans/fg-02-g02-i.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": "docs/validation/task-plans/fg-02-g02-v.md",
+      "sha256": "7199ec947adbefda4a9219e78460527ac95966133a38cddf9ef4f502576d0f4d",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:docs/validation/task-plans/fg-02-g02-v.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    },
+    {
+      "path": "replit.md",
+      "sha256": "b1aa215ec3fee6152e93762b2511bd5dcc8a844a082f038da831394ebc7c405d",
+      "immutableLocator": "a9bb36163439f69f190e8271b013c780254e2d43:replit.md",
+      "claim": "BYTE_IDENTITY_ONLY_NOT_AUTHORITY_OR_RUNTIME_PROOF"
+    }
+  ],
+  "outputs": [
+    {
+      "bytes": 21084,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r01-i.md",
+      "sha256": "810f4ad93f10bf4d0e9055752cf1808fd74cfc39af174223acf0b6ce4e82da60"
+    },
+    {
+      "bytes": 24720,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r01-v.md",
+      "sha256": "d2560eaa3702bf6e0c3254f2bfc3bd0b26b3f3e6091da390a97be3bac454d96d"
+    },
+    {
+      "bytes": 20635,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r02-i.md",
+      "sha256": "83c397ded1f0ad8cb8882896f434bfe839c181ba761fbdc90eb8d6adc7073c10"
+    },
+    {
+      "bytes": 23620,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r02-v.md",
+      "sha256": "4db8ae8a608c7866fde0bffea3c19dc8df3811eac1ca9d499fe2344bc02cfb68"
+    },
+    {
+      "bytes": 20455,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r03-i.md",
+      "sha256": "856012514ec41aed86144654493c9a28853886e2322ceb99a3dbb0f73e060bc4"
+    },
+    {
+      "bytes": 23480,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r03-v.md",
+      "sha256": "bc7dd6514acf72ec9b419226383fe7c7ae25960ae7721e0233aef4f00b5c4313"
+    },
+    {
+      "bytes": 20607,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r04-i.md",
+      "sha256": "dc3729953c0577a2c85e6396d5827316215d24bd9f1430646f90449bb44360a5"
+    },
+    {
+      "bytes": 23552,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r04-v.md",
+      "sha256": "985a8f2627455a71335e99f3ba3e760b37cf29e211244e7fd9ec55da53e24c10"
+    },
+    {
+      "bytes": 21987,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r05-i.md",
+      "sha256": "35c8da9c37318de9d88a15521eb98596f0dd8362d80d59a89aeb8518d1c24a70"
+    },
+    {
+      "bytes": 25001,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r05-v.md",
+      "sha256": "4cb7a50c4e68b79b0c93c0d86f28d69ba009d7994ab37df75d6343aee8aa335d"
+    },
+    {
+      "bytes": 21315,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r06-i.md",
+      "sha256": "49efb478ea8f8d384c16f12ca8a34799bc2ab25a8e705e67b864b3362421bac5"
+    },
+    {
+      "bytes": 24250,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r06-v.md",
+      "sha256": "304c138b0ece2359ce244d1b715fd89b7ac7c53223fedb4a26e3dd61be4fa3c4"
+    },
+    {
+      "bytes": 21376,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r07-i.md",
+      "sha256": "297fff172dede3be36250982072951d28ae27efa8946d0785e753e8dee8e1982"
+    },
+    {
+      "bytes": 24342,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r07-v.md",
+      "sha256": "d7338892ff2dd368ac0b5dde045a9118e3739836a4948f07c8d9c5bfd967c8a2"
+    },
+    {
+      "bytes": 21484,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r08-i.md",
+      "sha256": "7350948be0433a2610ee64701dfddec9504fad32e21916700eb1d18a6dd109df"
+    },
+    {
+      "bytes": 24468,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r08-v.md",
+      "sha256": "9fecc9a9371bbdbf0215c8297822707f7e6e04c25971f4922abf97b4184dc1c5"
+    },
+    {
+      "bytes": 21658,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r09-i.md",
+      "sha256": "fcfdb0c8ec25c9c346644774d825a7ece47e9a618196c0d815d69770a0314f78"
+    },
+    {
+      "bytes": 24653,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r09-v.md",
+      "sha256": "d590b86bec3a61a24adc9888e9631ed34cf83f28f06d526ed78b0f8786361135"
+    },
+    {
+      "bytes": 21443,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r10-i.md",
+      "sha256": "d205e4df9985c2cdea119aa600b3804f710f85f9bcf0675bd954508c6e73e098"
+    },
+    {
+      "bytes": 24477,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r10-v.md",
+      "sha256": "4d953625fa48e787a9c7c185264cb5adfed6c1c271be2b5d4f90b7ed445262e8"
+    },
+    {
+      "bytes": 21366,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r11-i.md",
+      "sha256": "68a70ee4d4993ace0bfd31d54332ca8085f2ff3c880f40769dab1e68b1cbefe9"
+    },
+    {
+      "bytes": 24335,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r11-v.md",
+      "sha256": "1fe72244d7539437238ecdd5075044350c4710322ca5d8d619ced7a742bb9736"
+    },
+    {
+      "bytes": 21593,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r12-i.md",
+      "sha256": "bd0e55203c7d3ab93bef2798f742d84dddf93380578c6edcddf2b70c483a9bf4"
+    },
+    {
+      "bytes": 24589,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r12-v.md",
+      "sha256": "b6bef2c70135c94b695e587257aa1f54ca5b72c1ea3cded7e80967e6583fcd57"
+    },
+    {
+      "bytes": 21546,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r13-i.md",
+      "sha256": "1190daa376d262c11ccafc03109f6199019fbc088a6d20dbf539c1732a6a31c5"
+    },
+    {
+      "bytes": 24483,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r13-v.md",
+      "sha256": "463d9a777a54fdcd4be7336ef870703d186051fff98926bb8560d77b569b0827"
+    },
+    {
+      "bytes": 21429,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r14-i.md",
+      "sha256": "bc90a8ab85bc540578b96a6fa1f92ec788f9d54bcf09e10dbf7ec9924f3774b5"
+    },
+    {
+      "bytes": 24409,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r14-v.md",
+      "sha256": "fa225dd9202aed19a7e366a3d2cb3d960bbb1152089ab2920621a225260ef1e3"
+    },
+    {
+      "bytes": 21696,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r15-i.md",
+      "sha256": "91d2cf76420cebafbe45cec716d06562ec8f58c85f2c9f0d62f95d2d4a2360d5"
+    },
+    {
+      "bytes": 24724,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r15-v.md",
+      "sha256": "97bebefd31c253f038210173f2005d2b11568c61a6e04a6f4fa345070a21a108"
+    },
+    {
+      "bytes": 21685,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r16-i.md",
+      "sha256": "781de0cf83ed07bf60d3033fedc690c50fa5c650859982f0ea768dadc0b1bf7d"
+    },
+    {
+      "bytes": 24696,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r16-v.md",
+      "sha256": "163cd19eda739977b14b51bf73f0d11acda18f89d3c2a9a9b4f9a465e3f827d6"
+    },
+    {
+      "bytes": 22034,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r17-i.md",
+      "sha256": "77a5b5a3a1e5c1bdb7ccada42d88ab4bc1b8dee2c41e787701713a3e356faf4c"
+    },
+    {
+      "bytes": 25623,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r17-v.md",
+      "sha256": "26e0da9eb45e62e4ec1617cb94ce4e9fadff4f056d4ba5ed566b9ecf6e07f42f"
+    },
+    {
+      "bytes": 22505,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r18-i.md",
+      "sha256": "d53a9807d75f1e2b84055b64df2e043984379192155e85544b87db43b2239b3a"
+    },
+    {
+      "bytes": 27180,
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r18-v.md",
+      "sha256": "55bbd627c26149effb58da6c7736a15577b7c97889e06e22c72c13d1dbe3ba89"
+    },
+    {
+      "bytes": 59658,
+      "path": "docs/validation/failure-gate-reimplementation-specification.md",
+      "sha256": "7bd8aadd6007ed7c01f118d6cbb83d70ea52d79cecfc6eaafc2234ee869eb026"
+    },
+    {
+      "bytes": 133230,
+      "path": "docs/validation/failure-gate-reimplementation-obligation-ledger.md",
+      "sha256": "2e03001be690144d50ce2d33ae0964df1ca14bbd95c605b80782a9a1a4c40bf9"
+    },
+    {
+      "bytes": 3636,
+      "path": "docs/validation/failure-gate-reimplementation-supersession.md",
+      "sha256": "9c6d05a1b916ea01f9965e399088ba67b99a4cc52fda0512511e64478113d6eb"
+    },
+    {
+      "bytes": 17124,
+      "path": "docs/validation/failure-gate-v4-task-series.md",
+      "sha256": "0b99207b78e74d2f7a5f6dfd98dcf3d348ae13cdb8eb7ceb14f8e013a9d8a5c6"
+    },
+    {
+      "bytes": 5137,
+      "path": "docs/validation/failure-gate-v4-series-checkpoint.md",
+      "sha256": "6e2340b568b29803227f2c45aced5e77b6e680983561af04778a6775d15aa371"
+    },
+    {
+      "path": "replit.md",
+      "bytes": 4867,
+      "sha256": "06fa5146701bc8d662ceefb62fbdc667793d3777a491c861be57e992f0ef773a"
+    }
+  ],
+  "plans": [
+    {
+      "label": "FG-R01-I",
+      "piece": 1,
+      "role": "I",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r01-i.md",
+      "stage": "Planning/discovery",
+      "report": "docs/validation/failure-gate-reimplementation/piece-01/installer-handoff.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "810f4ad93f10bf4d0e9055752cf1808fd74cfc39af174223acf0b6ce4e82da60"
+    },
+    {
+      "label": "FG-R01-V",
+      "piece": 1,
+      "role": "V",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r01-v.md",
+      "stage": "Planning/discovery",
+      "report": "docs/validation/failure-gate-reimplementation/piece-01/verification.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "d2560eaa3702bf6e0c3254f2bfc3bd0b26b3f3e6091da390a97be3bac454d96d"
+    },
+    {
+      "label": "FG-R02-I",
+      "piece": 2,
+      "role": "I",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r02-i.md",
+      "stage": "Inert source/proposal",
+      "report": "docs/validation/failure-gate-reimplementation/piece-02/installer-handoff.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "83c397ded1f0ad8cb8882896f434bfe839c181ba761fbdc90eb8d6adc7073c10"
+    },
+    {
+      "label": "FG-R02-V",
+      "piece": 2,
+      "role": "V",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r02-v.md",
+      "stage": "Inert source/proposal",
+      "report": "docs/validation/failure-gate-reimplementation/piece-02/verification.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "4db8ae8a608c7866fde0bffea3c19dc8df3811eac1ca9d499fe2344bc02cfb68"
+    },
+    {
+      "label": "FG-R03-I",
+      "piece": 3,
+      "role": "I",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r03-i.md",
+      "stage": "Inert source",
+      "report": "docs/validation/failure-gate-reimplementation/piece-03/installer-handoff.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "856012514ec41aed86144654493c9a28853886e2322ceb99a3dbb0f73e060bc4"
+    },
+    {
+      "label": "FG-R03-V",
+      "piece": 3,
+      "role": "V",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r03-v.md",
+      "stage": "Inert source",
+      "report": "docs/validation/failure-gate-reimplementation/piece-03/verification.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "bc7dd6514acf72ec9b419226383fe7c7ae25960ae7721e0233aef4f00b5c4313"
+    },
+    {
+      "label": "FG-R04-I",
+      "piece": 4,
+      "role": "I",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r04-i.md",
+      "stage": "Inert source",
+      "report": "docs/validation/failure-gate-reimplementation/piece-04/installer-handoff.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "dc3729953c0577a2c85e6396d5827316215d24bd9f1430646f90449bb44360a5"
+    },
+    {
+      "label": "FG-R04-V",
+      "piece": 4,
+      "role": "V",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r04-v.md",
+      "stage": "Inert source",
+      "report": "docs/validation/failure-gate-reimplementation/piece-04/verification.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "985a8f2627455a71335e99f3ba3e760b37cf29e211244e7fd9ec55da53e24c10"
+    },
+    {
+      "label": "FG-R05-I",
+      "piece": 5,
+      "role": "I",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r05-i.md",
+      "stage": "Bootstrap runtime",
+      "report": "docs/validation/failure-gate-reimplementation/piece-05/installer-handoff.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "35c8da9c37318de9d88a15521eb98596f0dd8362d80d59a89aeb8518d1c24a70"
+    },
+    {
+      "label": "FG-R05-V",
+      "piece": 5,
+      "role": "V",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r05-v.md",
+      "stage": "Bootstrap runtime",
+      "report": "docs/validation/failure-gate-reimplementation/piece-05/verification.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "4cb7a50c4e68b79b0c93c0d86f28d69ba009d7994ab37df75d6343aee8aa335d"
+    },
+    {
+      "label": "FG-R06-I",
+      "piece": 6,
+      "role": "I",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r06-i.md",
+      "stage": "Bootstrap runtime",
+      "report": "docs/validation/failure-gate-reimplementation/piece-06/installer-handoff.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "49efb478ea8f8d384c16f12ca8a34799bc2ab25a8e705e67b864b3362421bac5"
+    },
+    {
+      "label": "FG-R06-V",
+      "piece": 6,
+      "role": "V",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r06-v.md",
+      "stage": "Bootstrap runtime",
+      "report": "docs/validation/failure-gate-reimplementation/piece-06/verification.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "304c138b0ece2359ce244d1b715fd89b7ac7c53223fedb4a26e3dd61be4fa3c4"
+    },
+    {
+      "label": "FG-R07-I",
+      "piece": 7,
+      "role": "I",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r07-i.md",
+      "stage": "Bootstrap runtime",
+      "report": "docs/validation/failure-gate-reimplementation/piece-07/installer-handoff.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "297fff172dede3be36250982072951d28ae27efa8946d0785e753e8dee8e1982"
+    },
+    {
+      "label": "FG-R07-V",
+      "piece": 7,
+      "role": "V",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r07-v.md",
+      "stage": "Bootstrap runtime",
+      "report": "docs/validation/failure-gate-reimplementation/piece-07/verification.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "d7338892ff2dd368ac0b5dde045a9118e3739836a4948f07c8d9c5bfd967c8a2"
+    },
+    {
+      "label": "FG-R08-I",
+      "piece": 8,
+      "role": "I",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r08-i.md",
+      "stage": "Bootstrap runtime",
+      "report": "docs/validation/failure-gate-reimplementation/piece-08/installer-handoff.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "7350948be0433a2610ee64701dfddec9504fad32e21916700eb1d18a6dd109df"
+    },
+    {
+      "label": "FG-R08-V",
+      "piece": 8,
+      "role": "V",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r08-v.md",
+      "stage": "Bootstrap runtime",
+      "report": "docs/validation/failure-gate-reimplementation/piece-08/verification.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "9fecc9a9371bbdbf0215c8297822707f7e6e04c25971f4922abf97b4184dc1c5"
+    },
+    {
+      "label": "FG-R09-I",
+      "piece": 9,
+      "role": "I",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r09-i.md",
+      "stage": "Bootstrap runtime",
+      "report": "docs/validation/failure-gate-reimplementation/piece-09/installer-handoff.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "fcfdb0c8ec25c9c346644774d825a7ece47e9a618196c0d815d69770a0314f78"
+    },
+    {
+      "label": "FG-R09-V",
+      "piece": 9,
+      "role": "V",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r09-v.md",
+      "stage": "Bootstrap runtime",
+      "report": "docs/validation/failure-gate-reimplementation/piece-09/verification.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "d590b86bec3a61a24adc9888e9631ed34cf83f28f06d526ed78b0f8786361135"
+    },
+    {
+      "label": "FG-R10-I",
+      "piece": 10,
+      "role": "I",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r10-i.md",
+      "stage": "Bootstrap runtime",
+      "report": "docs/validation/failure-gate-reimplementation/piece-10/installer-handoff.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "d205e4df9985c2cdea119aa600b3804f710f85f9bcf0675bd954508c6e73e098"
+    },
+    {
+      "label": "FG-R10-V",
+      "piece": 10,
+      "role": "V",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r10-v.md",
+      "stage": "Bootstrap runtime",
+      "report": "docs/validation/failure-gate-reimplementation/piece-10/verification.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "4d953625fa48e787a9c7c185264cb5adfed6c1c271be2b5d4f90b7ed445262e8"
+    },
+    {
+      "label": "FG-R11-I",
+      "piece": 11,
+      "role": "I",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r11-i.md",
+      "stage": "Bootstrap runtime",
+      "report": "docs/validation/failure-gate-reimplementation/piece-11/installer-handoff.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "68a70ee4d4993ace0bfd31d54332ca8085f2ff3c880f40769dab1e68b1cbefe9"
+    },
+    {
+      "label": "FG-R11-V",
+      "piece": 11,
+      "role": "V",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r11-v.md",
+      "stage": "Bootstrap runtime",
+      "report": "docs/validation/failure-gate-reimplementation/piece-11/verification.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "1fe72244d7539437238ecdd5075044350c4710322ca5d8d619ced7a742bb9736"
+    },
+    {
+      "label": "FG-R12-I",
+      "piece": 12,
+      "role": "I",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r12-i.md",
+      "stage": "Bootstrap runtime",
+      "report": "docs/validation/failure-gate-reimplementation/piece-12/installer-handoff.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "bd0e55203c7d3ab93bef2798f742d84dddf93380578c6edcddf2b70c483a9bf4"
+    },
+    {
+      "label": "FG-R12-V",
+      "piece": 12,
+      "role": "V",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r12-v.md",
+      "stage": "Bootstrap runtime",
+      "report": "docs/validation/failure-gate-reimplementation/piece-12/verification.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "b6bef2c70135c94b695e587257aa1f54ca5b72c1ea3cded7e80967e6583fcd57"
+    },
+    {
+      "label": "FG-R13-I",
+      "piece": 13,
+      "role": "I",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r13-i.md",
+      "stage": "Bootstrap runtime",
+      "report": "docs/validation/failure-gate-reimplementation/piece-13/installer-handoff.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "1190daa376d262c11ccafc03109f6199019fbc088a6d20dbf539c1732a6a31c5"
+    },
+    {
+      "label": "FG-R13-V",
+      "piece": 13,
+      "role": "V",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r13-v.md",
+      "stage": "Bootstrap runtime",
+      "report": "docs/validation/failure-gate-reimplementation/piece-13/verification.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "463d9a777a54fdcd4be7336ef870703d186051fff98926bb8560d77b569b0827"
+    },
+    {
+      "label": "FG-R14-I",
+      "piece": 14,
+      "role": "I",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r14-i.md",
+      "stage": "Bootstrap runtime",
+      "report": "docs/validation/failure-gate-reimplementation/piece-14/installer-handoff.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "bc90a8ab85bc540578b96a6fa1f92ec788f9d54bcf09e10dbf7ec9924f3774b5"
+    },
+    {
+      "label": "FG-R14-V",
+      "piece": 14,
+      "role": "V",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r14-v.md",
+      "stage": "Bootstrap runtime",
+      "report": "docs/validation/failure-gate-reimplementation/piece-14/verification.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "fa225dd9202aed19a7e366a3d2cb3d960bbb1152089ab2920621a225260ef1e3"
+    },
+    {
+      "label": "FG-R15-I",
+      "piece": 15,
+      "role": "I",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r15-i.md",
+      "stage": "Separately scoped bootstrap recovery/drill",
+      "report": "docs/validation/failure-gate-reimplementation/piece-15/installer-handoff.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "91d2cf76420cebafbe45cec716d06562ec8f58c85f2c9f0d62f95d2d4a2360d5"
+    },
+    {
+      "label": "FG-R15-V",
+      "piece": 15,
+      "role": "V",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r15-v.md",
+      "stage": "Separately scoped bootstrap recovery/drill",
+      "report": "docs/validation/failure-gate-reimplementation/piece-15/verification.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "97bebefd31c253f038210173f2005d2b11568c61a6e04a6f4fa345070a21a108"
+    },
+    {
+      "label": "FG-R16-I",
+      "piece": 16,
+      "role": "I",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r16-i.md",
+      "stage": "Bootstrap runtime",
+      "report": "docs/validation/failure-gate-reimplementation/piece-16/installer-handoff.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "781de0cf83ed07bf60d3033fedc690c50fa5c650859982f0ea768dadc0b1bf7d"
+    },
+    {
+      "label": "FG-R16-V",
+      "piece": 16,
+      "role": "V",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r16-v.md",
+      "stage": "Bootstrap runtime",
+      "report": "docs/validation/failure-gate-reimplementation/piece-16/verification.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "163cd19eda739977b14b51bf73f0d11acda18f89d3c2a9a9b4f9a465e3f827d6"
+    },
+    {
+      "label": "FG-R17-I",
+      "piece": 17,
+      "role": "I",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r17-i.md",
+      "stage": "Conditional separately scoped reclaim",
+      "report": "docs/validation/failure-gate-reimplementation/piece-17/installer-handoff.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "77a5b5a3a1e5c1bdb7ccada42d88ab4bc1b8dee2c41e787701713a3e356faf4c"
+    },
+    {
+      "label": "FG-R17-V",
+      "piece": 17,
+      "role": "V",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r17-v.md",
+      "stage": "Conditional separately scoped reclaim",
+      "report": "docs/validation/failure-gate-reimplementation/piece-17/verification.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "26e0da9eb45e62e4ec1617cb94ce4e9fadff4f056d4ba5ed566b9ecf6e07f42f"
+    },
+    {
+      "label": "FG-R18-I",
+      "piece": 18,
+      "role": "I",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r18-i.md",
+      "stage": "Ordinary-route acceptance and separately approved cutover",
+      "report": "docs/validation/failure-gate-reimplementation/piece-18/installer-handoff.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "d53a9807d75f1e2b84055b64df2e043984379192155e85544b87db43b2239b3a"
+    },
+    {
+      "label": "FG-R18-V",
+      "piece": 18,
+      "role": "V",
+      "path": "docs/validation/task-plans/failure-gate-reimplementation/fg-r18-v.md",
+      "stage": "Ordinary-route acceptance and separately approved cutover",
+      "report": "docs/validation/failure-gate-reimplementation/piece-18/verification.md",
+      "nativeRef": null,
+      "nativeFinalizedDigest": null,
+      "nativeDependency": null,
+      "creationState": "NOT_CREATED",
+      "sha256": "55bbd627c26149effb58da6c7736a15577b7c97889e06e22c72c13d1dbe3ba89"
+    }
+  ],
+  "firstEligiblePair": [
+    "FG-R01-I",
+    "FG-R01-V"
+  ],
+  "laterNativeCards": 0,
+  "inheritedApprovals": [],
+  "inheritedAcceptance": [],
+  "automaticProgression": "NOT_AUTHORIZED_NOT_IMPLEMENTED",
+  "projectChecks": "NOT_RUN",
+  "publicationReadback": "COMPLETE_CONTENT_MATCH_FOR_ALL_36_PAYLOADS_AND_5_PLANNING_DOCUMENTS; REPLIT_POINTER_READ_BACK; HISTORICAL_FG02_BYTES_PRESERVED",
+  "limitations": [
+    "No atomic multi-file or clone-wide coordinator claim",
+    "Tracked hashes do not establish native finalization/dependencies or approval",
+    "Initial native drafting requires Plan mode and actual supported persistence/readback route",
+    "Every source/runtime/independent-acceptance gate remains applicable"
+  ],
+  "readbackAt": "2026-10-11T04:08:30.416Z",
+  "documentDelivery": "COMPLETE_REPOSITORY_AUTHORING_ONLY_NOT_NATIVE_HANDOFF_OR_IMPLEMENTATION_ACCEPTANCE"
+}
