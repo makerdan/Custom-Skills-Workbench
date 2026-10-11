@@ -1,0 +1,1499 @@
+{
+  "authority": {
+    "documentaryAutonomy": "Actual #149/#152 full plans; #152 revision 2 authorizes documentary-leaf changes, explicitly excludes canonical skill edits.",
+    "formalBarrier": "No finalized-plan receipt/version or exact-scope substitute supplied by native records or delivered preparation evidence.",
+    "laterCanonicalRevision": "Patch, Git commit and preparation/renewal reports provide exact changes and reported authorized lineage. Original direct owner approval of the canonical patch is not supplied in inspected records; no waiver inferred.",
+    "originalAmendment": "Complete actual #120 plan contains direct owner request and exact insertion."
+  },
+  "comparison": {
+    "currentLines": 328,
+    "currentSourceEqualsAutonomyCommit": true,
+    "exactCurrentExceptionEqualsNative120": true,
+    "exactOriginalDeliveredExceptionEqualsNative120": true,
+    "frontmatterUnchanged": true,
+    "originalInsertionOnlyReconstruction": true,
+    "relativeLinks": [
+      {
+        "link": "references/series-state-and-handoff.md",
+        "path": ".agents/skills/paired-task-orchestration/references/series-state-and-handoff.md",
+        "present": true
+      },
+      {
+        "link": "references/host-hook-contract.md",
+        "path": ".agents/skills/paired-task-orchestration/references/host-hook-contract.md",
+        "present": true
+      },
+      {
+        "link": "references/acceptance-and-confirmation.md",
+        "path": ".agents/skills/paired-task-orchestration/references/acceptance-and-confirmation.md",
+        "present": true
+      }
+    ]
+  },
+  "entryHead": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4",
+  "immutableSnapshots": [
+    {
+      "bytes": 15475,
+      "locator": "9f6433cddd6554be1c843a320097569d8a529e07:.agents/skills/paired-task-orchestration/SKILL.md",
+      "role": "Pre-amendment complete canonical source",
+      "sha256": "cbc4e9209b00c7b9bf9eee4966cc5e1e31252942b1001b027b923ab5c00d9415"
+    },
+    {
+      "bytes": 18258,
+      "locator": "6b7112b64eb371f6901a5b6e7d2893ad0476dfa8:.agents/skills/paired-task-orchestration/SKILL.md",
+      "role": "Original amendment delivered source",
+      "sha256": "1060bbef83e521a9f591d62e52caf2d3e97cb5d23f904b6a939051ea02708456"
+    },
+    {
+      "bytes": 18258,
+      "locator": "4d2fc3da0dd6b1e4bc24aede289a32a01229c7d0^:.agents/skills/paired-task-orchestration/SKILL.md",
+      "role": "Pre-routine-autonomy source",
+      "sha256": "1060bbef83e521a9f591d62e52caf2d3e97cb5d23f904b6a939051ea02708456"
+    }
+  ],
+  "independence": {
+    "context": "Separately assigned #156 task-agent assessment; no canonical authoring or prerequisite repair in this execution context",
+    "proofLimit": "Assignment and read-only conduct, not authenticated person identities, provider writer exclusion or certified historical authorship separation"
+  },
+  "inputs": [
+    {
+      "bytes": 21071,
+      "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/paired-task-orchestration/SKILL.md",
+      "lines": 328,
+      "path": ".agents/skills/paired-task-orchestration/SKILL.md",
+      "sha256": "d862212f772abdf551698c6aeb9c4733c2572e0766b3606d33ea2fa24ba5b669"
+    },
+    {
+      "bytes": 9475,
+      "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/paired-task-orchestration/references/acceptance-and-confirmation.md",
+      "lines": 131,
+      "path": ".agents/skills/paired-task-orchestration/references/acceptance-and-confirmation.md",
+      "sha256": "b8e3163cb08cce3385013822860ef57d20767294aa0a2883123ee5aaa0a8cb32"
+    },
+    {
+      "bytes": 11859,
+      "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/paired-task-orchestration/references/series-state-and-handoff.md",
+      "lines": 220,
+      "path": ".agents/skills/paired-task-orchestration/references/series-state-and-handoff.md",
+      "sha256": "a2c63fb57e0bcd5ebdec3718683f9c0016d9a5841edde457130d34a3edda33de"
+    },
+    {
+      "bytes": 9914,
+      "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/paired-task-orchestration/references/host-hook-contract.md",
+      "lines": 165,
+      "path": ".agents/skills/paired-task-orchestration/references/host-hook-contract.md",
+      "sha256": "e3101501e6385be500033ba77f272bee1c2370a9cd292bd33337aba922a2a914"
+    },
+    {
+      "bytes": 15816,
+      "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/skill-install-confirmation/SKILL.md",
+      "lines": 200,
+      "path": ".agents/skills/skill-install-confirmation/SKILL.md",
+      "sha256": "a613efe2bea3476b8770b665dd9f0b0b440a320f5aae627a79a815ea6cf6b82a"
+    },
+    {
+      "bytes": 23381,
+      "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/skill-application-router/SKILL.md",
+      "lines": 402,
+      "path": ".agents/skills/skill-application-router/SKILL.md",
+      "sha256": "49e3db86b0f5b8c7efba871d7404c40336cb3caf544427a429065b1088f6586f"
+    },
+    {
+      "bytes": 13829,
+      "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/skill-application-router/references/handoff-binding-and-recovery.md",
+      "lines": 227,
+      "path": ".agents/skills/skill-application-router/references/handoff-binding-and-recovery.md",
+      "sha256": "7e95d74645e0c1184b2ae24488ffd5936237fb6fc1d9596734a3e57bb1fe0ff5"
+    },
+    {
+      "bytes": 11454,
+      "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/skill-application-router/references/delivery-reconciliation.md",
+      "lines": 186,
+      "path": ".agents/skills/skill-application-router/references/delivery-reconciliation.md",
+      "sha256": "fd908bd54a3d2db4d25cc6a3f2e6fbdfece0e9276a28e02db48d5dcfdfa3f3ca"
+    },
+    {
+      "bytes": 23323,
+      "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/skill-application-router/references/installation-verification-plan.md",
+      "lines": 388,
+      "path": ".agents/skills/skill-application-router/references/installation-verification-plan.md",
+      "sha256": "99bc98079967ed47f8f524c187b9823fc99dddca55d4b61a9220dcbb5b3f8cb9"
+    },
+    {
+      "bytes": 16089,
+      "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/skill-application-router/references/router-task-handoff-acceptance.md",
+      "lines": 73,
+      "path": ".agents/skills/skill-application-router/references/router-task-handoff-acceptance.md",
+      "sha256": "811bc5201d5067a4dc09d74c73880c4798f3407d7955182a923c95b3b897c849"
+    },
+    {
+      "bytes": 27399,
+      "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-prerequisites-refresh.md",
+      "lines": 136,
+      "path": "docs/validation/paired-prerequisites-refresh.md",
+      "sha256": "9b367396b090c29c8cbbe5840e482ff773b83fd9e19cd69ea384af45988f0cf0"
+    },
+    {
+      "bytes": 478754,
+      "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-prerequisites-refresh-evidence.json",
+      "lines": 2573,
+      "path": "docs/validation/paired-prerequisites-refresh-evidence.json",
+      "sha256": "742c1bc4fb2871bf3e2021336077ba7b991360abfff7c26eda94e32c596e897e"
+    },
+    {
+      "bytes": 324579,
+      "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-prerequisites-refresh-manifest.json",
+      "lines": 3986,
+      "path": "docs/validation/paired-prerequisites-refresh-manifest.json",
+      "sha256": "b8ead21e19868c3837e8fe30e12c394475ee94438b0053bf44c401b12f8482aa"
+    },
+    {
+      "bytes": 6239,
+      "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-prerequisites-refresh-index.json",
+      "lines": 132,
+      "path": "docs/validation/paired-prerequisites-refresh-index.json",
+      "sha256": "04f8241f0b7ad40997a0e511b8ad16a63ccfe37f58930f8b6a48432e59323e82"
+    },
+    {
+      "bytes": 12584,
+      "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-planner-staging-amendment.md",
+      "lines": 89,
+      "path": "docs/validation/paired-planner-staging-amendment.md",
+      "sha256": "f6e7db50606b86033db70e95860fbf6035f9d9bccfa12bf38071196eb4da3160"
+    },
+    {
+      "bytes": 17585,
+      "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-planner-staging-independent-confirmation.md",
+      "lines": 212,
+      "path": "docs/validation/paired-planner-staging-independent-confirmation.md",
+      "sha256": "8cd0024b14c26a813296f6e38aab52aadf258f94e3694f561c9c8d481766d310"
+    },
+    {
+      "bytes": 33498,
+      "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-planner-staging-independent-readback.json",
+      "lines": 109,
+      "path": "docs/validation/paired-planner-staging-independent-readback.json",
+      "sha256": "6972e3e3cfce3afaa61242576902f4e9bbd85603c8a6d883375658bc453f3fe6"
+    },
+    {
+      "bytes": 16576,
+      "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-task-orchestration-definition-confirmation.md",
+      "lines": 207,
+      "path": "docs/validation/paired-task-orchestration-definition-confirmation.md",
+      "sha256": "c78f42534f713c9e3b1ef7fcb9fa92ade3055ad0723cd893b67e5bdb1ed2a236"
+    },
+    {
+      "bytes": 35900,
+      "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-source-binding-renewal.json",
+      "lines": 884,
+      "path": "docs/validation/paired-source-binding-renewal.json",
+      "sha256": "4a87ee5fbc31a95f32f9786621c4df0a97dcbd50ebe2d3a879582f9f27ef1509"
+    },
+    {
+      "bytes": 9973,
+      "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-source-binding-renewal.md",
+      "lines": 82,
+      "path": "docs/validation/paired-source-binding-renewal.md",
+      "sha256": "e085ce339416c2c0a87cbef88c4548cf83a0350ba1d23da4b403b4ee31b15665"
+    },
+    {
+      "bytes": 8659,
+      "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/skill-install-confirmation-rule-conflict-resolution-review.md",
+      "lines": 53,
+      "path": "docs/validation/skill-install-confirmation-rule-conflict-resolution-review.md",
+      "sha256": "52ed92444076f95851541df906e2463376089bb8873543492b7984ee5fd83084"
+    },
+    {
+      "bytes": 11260,
+      "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/skill-install-confirmation-source-delivery.md",
+      "lines": 182,
+      "path": "docs/validation/skill-install-confirmation-source-delivery.md",
+      "sha256": "d4fbf17511eac04cbc4cc242df2f1b8b47ec45f82c182bbbde7f2fdbd285819b"
+    },
+    {
+      "bytes": 27693,
+      "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/skill-install-confirmation-applicability-review.md",
+      "lines": 311,
+      "path": "docs/validation/skill-install-confirmation-applicability-review.md",
+      "sha256": "dadeaf8dd69708614a1e467264367c59e94dd5dfb14998ea6fcdc90dc7034be0"
+    },
+    {
+      "bytes": 23801,
+      "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/failure-gate-implementation-autonomy-amendment.md",
+      "lines": 130,
+      "path": "docs/validation/failure-gate-implementation-autonomy-amendment.md",
+      "sha256": "3f2e879f8af4212264bdfc7b717cc05184a0b911413e7f5bec0562393015f894"
+    },
+    {
+      "bytes": 49651,
+      "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/failure-gate-implementation-autonomy-verification.md",
+      "lines": 525,
+      "path": "docs/validation/failure-gate-implementation-autonomy-verification.md",
+      "sha256": "d2953aee4147cfdc461d2b0479793473250e9068e9dfe6754565de5a44ab9ddc"
+    },
+    {
+      "bytes": 20798,
+      "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:attached_assets/revision_1791664086258.patch",
+      "lines": 347,
+      "path": "attached_assets/revision_1791664086258.patch",
+      "sha256": "37d44582e1ffeadf8899a2f0714189645e58eae60a918acb8eefdb3021600e3f"
+    },
+    {
+      "bytes": 9291,
+      "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:scripts/test/paired-planner-staging-source.test.mjs",
+      "lines": 176,
+      "path": "scripts/test/paired-planner-staging-source.test.mjs",
+      "sha256": "69bebf8a9a13c14c9ddd7e7d0430c20119dd45af244ed5e10b472239096f495a"
+    },
+    {
+      "bytes": 6165,
+      "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/task-plans/fg-v4-review-current-definition.md",
+      "lines": 54,
+      "path": "docs/validation/task-plans/fg-v4-review-current-definition.md",
+      "sha256": "01943997ec1cec4424ede8d7432fe85ce089af107d173c7444482f59bc31314f"
+    },
+    {
+      "bytes": 4397,
+      "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:replit.md",
+      "lines": 61,
+      "path": "replit.md",
+      "sha256": "b1aa215ec3fee6152e93762b2511bd5dcc8a844a082f038da831394ebc7c405d"
+    }
+  ],
+  "nativeRecords": [
+    {
+      "descriptionBytes": 11221,
+      "descriptionSha256": "06c6ac3d94578cd027f3972fd55790974df4be0a0cae2c944504078cd6065495",
+      "ref": "#120",
+      "response": {
+        "task": {
+          "artifactKinds": [],
+          "createdAt": "2026-10-07T21:18:15.761Z",
+          "dependsOn": [
+            "#116"
+          ],
+          "description": "[REGRESSION-GUARD] Classification: compatibility-contract. Guard: covered — scripts/test/paired-planner-staging-source.test.mjs.\n<!-- regression-guard: required -->\n\n# Amend canonical Paired Task Orchestration for Failure Gate v4 planner staging\n\n## What & Why\n\nOwner request: \"change the canonical skill paired task orchestration for Failure Gate v4 so this amendment is included\". Implement the approved limited planner-staging language in the current project's canonical .agents/skills/paired-task-orchestration/SKILL.md. This is a bounded definition update, NOT a Failure Gate installation, cutover, series restart, native-review amendment, or workspace-skill publication. Existing canonical .agents sources alone govern implementation; no mirror or copied skill definition may substitute.\n\n## Task and source identity\n\nProject: /@makerdantheman/Custom-Skills-Workbench; origin https://github.com/makerdan/Custom-Skills-Workbench. Use the actual returned task ref for this amendment, not a guessed local Failure Gate ID. Actual predecessor #116 — Confirm the SKILL.md-only orchestration review — replacement for #107 was observed Merged. Keep its report/history intact; that historical review cannot certify this newly changed definition. Re-read current sources and native records before editing; report concurrent drift rather than overwrite it.\n\nThe canonical skill is tracked in the project. GitHub main's .agents/skills/paired-task-orchestration/SKILL.md returned 404 during this planning invocation; GitHub main was at e8038f36ba88615ea7cd4c8c288cf39f396baf6c while the connected project was ahead. Do not use the older GitHub tree as the source or publish unrelated project/package contents to manufacture a PR. Ordinary project branch/review delivery is the implementation route; record external PR delivery as unavailable if the verified remote baseline still lacks this package.\n\n## Scope and ordered implementation\n\n1. Read the complete current canonical Paired SKILL.md, references/series-state-and-handoff.md and references/acceptance-and-confirmation.md, canonical Router binding/delivery requirements, canonical Failure Gate and applicable project instructions. Capture the pre-edit canonical bytes/digests outside .local/. Preserve any separately authorized predecessor corrections. The separately named canonical skill-install-confirmation package was absent during discovery; record actual current applicability/absence, never fabricate or copy it.\n2. Insert the complete section below after the canonical-source and Failure Gate authority paragraphs, before Recognize the requested mode. Preserve frontmatter, all existing unrelated wording, required links, one-current-pair rules, full task payloads, separate approvals, duplicate/uncertain-write recovery and independent acceptance. Keep SKILL.md below 500 lines. Existing requirements to keep durable records outside .local/ remain intact: the exception permits only duplicate temporary transport, never the sole authoritative deliverable.\n3. Add a narrowly scoped static source regression guard at scripts/test/paired-planner-staging-source.test.mjs covering every condition below, its Failure Gate v4 scope, blocked handoff on missing durable/readback proof, and unchanged canonical-source and execution-authority boundaries. It must read the actual canonical file and assert retained clauses; it must not create .local/ files, submit tasks, impersonate a planner, launch runtime checks, or claim real host integration. Keep the guard inert unless a genuine separately applicable finite validation authorization becomes available.\n4. Publish docs/validation/paired-planner-staging-amendment.md with the owner's exact request, old/new canonical source digests, exact insertion/diff, scope, all six conditions, guard path, actual source readback findings, absent/unavailable inputs and unperformed validation. Record this as a newly authorized definition adaptation; do not rewrite the #102 baseline, original archives, historical acceptance reports, legacy keys, series manifests/checkpoints or task descriptions to hide changed source bytes. Existing/future reviews must reconcile the changed closure against their pinned obligations; don't silently inherit #116's old result.\n5. Read back the entire amended canonical SKILL.md and compare against the pre-edit file plus this exact insertion; inspect guard and report sources. Verify frontmatter, line count, relative-link existence and unchanged authority clauses by source reads. A fresh independent definition-only confirmation must check this changed SKILL.md against the authorized pre-edit definition plus this amendment, using a genuine supported independent host context. If a required dependent native confirmation is supported, prepare it only after this primary's complete committed/finalized-plan barrier and readback, with this actual primary dependency and current bindings. Do not substitute #116 or the old #102 review key, copy the missing companion, create an intake loop, or invent finalization. Missing confirmation route/evidence must remain explicitly pending/blocked; authoring completion is not independent confirmation success.\n\n## Exact section to insert\n\n## Failure Gate v4: deliverable locations and limited planner exception\n\nUse this exception only for paired task planning/handoff of a Failure Gate v4 series. Keep all authoritative deliverables—including scripts, documentation, reports, skills, configuration, code, exports, and complete task plans—outside .local/ in tracked paths that survive task-agent merge and enter repository history.\n\nException: when the actual host planner or task interface demonstrably requires a .local/ path for task creation, submission, or handoff, the Agent may create or use the minimum necessary temporary staging copy there, subject to ALL of these conditions:\n\n1. Establish the requirement from the actual interface, host instructions, or observed rejection. Habit, convenience, or an unsupported assumption is not sufficient.\n2. Before staging an Agent-authored payload, preserve its complete authoritative contents in an appropriate tracked path outside .local/. The staging copy must never be the only copy of a deliverable.\n3. Treat .local/ contents as disposable transport or runtime artifacts—not as canonical sources, durable evidence, accepted reports, or proof of delivery.\n4. Read back and compare the complete staged payload with the authoritative copy. After task submission, independently read back the complete persisted task plan and actual dependencies. A staging file, successful submission message, or task title alone does not establish successful handoff.\n5. Record the required staging path, its purpose, the authoritative tracked path, and the observed submission/readback outcome in evidence outside .local/. Missing or truncated contents remain unresolved, not successfully delivered.\n6. This exception does not permit using .local/ skill definitions or mirrors as canonical instructions. Canonical skill sources remain under .agents/. It grants no additional task execution, validation, approval, lifecycle, merge, deployment, or runtime authority.\n\nIf the required staging workflow cannot preserve the authoritative deliverable outside .local/ or cannot establish complete persisted-task readback, stop the affected handoff and report the specific blocker. Do not silently broaden this exception or claim successful delivery.\n\nA temporary staging path is not a Failure Gate plan/ID binding, approval source, grant, tier assignment, authorization registry, durable run log, or completion evidence. Failure Gate's genuine authority, selected-tier, finite-budget, independent-supervision, writer/lifecycle, source/bootstrap/runtime, recovery/reclaim and delivery gates remain unchanged. This exception cannot override a higher-priority prohibition or unavailable host permission. Authoring it does not establish that this host requires or supports .local/ staging.\n\n## Done looks like\n\nThe current project canonical SKILL.md contains the complete narrow exception; unrelated content and runtime gates are preserved; the authoritative definition, amendment report and inert regression guard are tracked outside .local/. Every six-condition clause and the Failure Gate boundary is accounted for in source readback. Independent confirmation and any real planner-staging demonstration are reported separately, never inferred from file authoring or a task label. No existing reviewer is mutated, no FG-02 or later pair is created/advanced, and no skill publication or runtime activation occurs.\n\n## Pre-existing failures to ignore\n\nNone authorized. Missing host capabilities, local authority, real staging evidence, independent confirmation or a current GitHub source tree are boundaries, not tests to waive. Do not borrow installation or another task's approval/grant.\n\n## Validation\n\nSource/document authoring and readback only. Existing project evidence says Failure Gate ordinary governance is STAGED; UNKNOWN never means INACTIVE. No task-local execution tier, grant, finite budget or supervisor is supplied by this request or native task number. Do not run imports, tests (including the new source guard), builds, plan/scaffold guards, hooks, direct diagnostics, coordinator/store commands, services/signals, remote CI, cleanup/reclaim, activation or deployment without separately verified applicable authority. Record the guard NOT_RUN unless such authority is actually obtained and used. Do not introduce a fake docs tier, passing check or approval event. Source readbacks are not validated runtime completion.\n\n## Regression Guard\n\n**Covers:** Treating planner convenience as mandatory staging, losing the sole deliverable in ignored .local/, using staging as canonical source or delivery/authority proof, weakening full persisted-plan/dependency readback, or leaking this exception beyond Failure Gate v4 planning.\n**Test location:** scripts/test/paired-planner-staging-source.test.mjs\n**What it checks:** Static assertions against the actual canonical definition require verified host necessity, prior complete tracked authoritative copy, temporary-only classification, staged and persisted full readbacks including actual dependencies, durable external evidence, canonical .agents-only inputs, unchanged approval/runtime gates and explicit stop on missing prerequisites. Guard source is delivered within this task; execution remains NOT_RUN unless authentically separately authorized.\n\n## Relevant files\n\n- .agents/skills/paired-task-orchestration/SKILL.md (the definition to amend)\n- .agents/skills/paired-task-orchestration/references/series-state-and-handoff.md (read-only)\n- .agents/skills/paired-task-orchestration/references/acceptance-and-confirmation.md (read-only)\n- .agents/skills/skill-application-router/ (canonical read-only binding/delivery closure)\n- .agents/skills/failure-gate-v4/ (canonical read-only authority contract)\n- .agents/skills/regression-guard/SKILL.md (canonical planning contract)\n- scripts/test/paired-planner-staging-source.test.mjs (inert source regression guard)\n- docs/validation/paired-planner-staging-amendment.md (tracked amendment evidence)\n",
+          "displayState": "MERGED",
+          "state": "MERGED",
+          "taskRef": "#120",
+          "title": "Amend canonical Paired Task Orchestration with the Failure Gate v4 planner-staging exception",
+          "updatedAt": "2026-10-07T21:23:13.337Z"
+        }
+      }
+    },
+    {
+      "descriptionBytes": 2953,
+      "descriptionSha256": "70411ae6f9787814418fb8abbae09890671e00e7756a63e0bc3bb2a360f0572d",
+      "ref": "#121",
+      "response": {
+        "task": {
+          "artifactKinds": [],
+          "createdAt": "2026-10-07T21:22:50.183Z",
+          "dependsOn": [
+            "#120"
+          ],
+          "description": "# Independently confirm the amended orchestration rule\n\n## What & Why\nTask #120 adds a narrow Failure Gate v4 planner-staging exception to the canonical Paired Task Orchestration definition. The merged #116 confirmation reviewed the prior source bytes, and the separate #119 review covers resources and the full plan, not this changed definition. A fresh independent definition-only review must not inherit either result.\n\n## Done looks like\n- In a genuine independent review context, read the current canonical .agents/skills/paired-task-orchestration/SKILL.md, the tracked amendment report, the authorized pre-edit Git version, and the applicable canonical Paired and Router procedures. Bind actual source bytes and the real primary record; do not use mirrors or copies as canonical inputs.\n- Confirm the precise insertion against the prior definition and amendment, including all six staging conditions, the missing-proof stop, the Failure Gate v4-only scope, retained links, and unchanged approval/runtime boundaries. Keep this review limited to SKILL.md; do not absorb the resource/full-plan review.\n- Use a supported dependent native confirmation route only after the actual #120 plan has a verified complete committed/finalized-plan barrier and full readback. Bind the real #120 dependency and current source/task identities; do not substitute #116 or the old #102 review key.\n- Resolve the absent canonical .agents/skills/skill-install-confirmation contract only from its authentic canonical source or an authoritative applicability resolution. If that source/resolution or the host finalization/confirmation route is still unavailable, publish a distinct tracked blocked report with the exact owner action. Do not copy a mirror, invent finalization, or create another intake task.\n- Preserve docs/validation/paired-task-orchestration-definition-confirmation.md and all historical records. Publish the new review under a separate tracked report path and state independent acceptance separately from authoring and runtime validation.\n\n## Out of scope\nNo edits to the canonical skill or existing reviewer records, no tests/imports/builds/runtime checks, no .local/ staging, no task approval or activation, no resource/18-piece review, no Failure Gate installation/cutover, and no FG-02 or later pair creation.\n\n## Validation\nSource and native-record readback only, within separately verified authority. Missing finalization, companion, or delivery evidence remains blocked; task status and dependency links alone are insufficient.\n\n## Relevant files\n- .agents/skills/paired-task-orchestration/SKILL.md\n- .agents/skills/paired-task-orchestration/references/acceptance-and-confirmation.md\n- .agents/skills/skill-application-router/SKILL.md\n- .agents/skills/skill-application-router/references/handoff-binding-and-recovery.md\n- docs/validation/paired-planner-staging-amendment.md\n- docs/validation/paired-task-orchestration-definition-confirmation.md",
+          "displayState": "MERGED",
+          "followUpCategory": "incomplete_scope",
+          "proposedFromRef": "#120",
+          "state": "MERGED",
+          "taskRef": "#121",
+          "title": "Independently confirm the amended orchestration rule",
+          "updatedAt": "2026-10-08T03:26:04.299Z"
+        }
+      }
+    },
+    {
+      "descriptionBytes": 6165,
+      "descriptionSha256": "01943997ec1cec4424ede8d7432fe85ce089af107d173c7444482f59bc31314f",
+      "ref": "#156",
+      "response": {
+        "task": {
+          "artifactKinds": [],
+          "createdAt": "2026-10-11T00:26:39.710Z",
+          "dependsOn": [
+            "#155",
+            "#120"
+          ],
+          "description": "# Review Current Orchestration Definition\n\n<!-- regression-guard: not-applicable -->\n\n## What & Why\nIndependently reconcile formal definition acceptance for the current canonical Paired Task Orchestration SKILL.md, including the existing #120/#121 amendment obligation and later authorized source revisions. Prior definition findings and renewal hashes do not accept altered inputs.\n\nKeep this definition-only track distinct from resource/full-plan verification and the original #102 retrospective Task B. This task does not declare itself a compliant replacement Task B, mutate #121 or extend the #102-specific cooperative exception to another primary.\n\n## Done looks like\n- A genuine independent review context reads locally delivered inputs, full #120/#121 plans, applicable authoring authority for later changes, immutable pre-edit sources and complete current canonical confirmation/Paired/Router contracts.\n- Publish a new distinct definition-review report and evidence annex outside `.local/`, preserving all earlier reports. Bind current SKILL.md bytes, original scope, authorized revisions, real native records, independent context and limits.\n- Check original #120 acceptance without weakening it: the complete limited exception; all six staging conditions and missing-proof stop; frontmatter, links and entry point below 500 lines; retained canonical sources, durable deliverables, one-pair/full-payload/approval/runtime boundaries; tracked amendment evidence and inert source guard; separate independent confirmation and real host demonstration claims.\n- Reconcile later authorized outcomes/routine-method autonomy with the same original requirements and authority. Routine method freedom must not waive required evidence, fixed methods, protected-plan amendment, stage gates or independent post-repair acceptance.\n- Resolve amendment-specific applicability against the authentic present companion rather than reviving the obsolete missing-companion finding. Verify the exact #120 finalized/committed barrier and a permitted existing-obligation reconciliation or expressly authorized current-byte acceptance route before granting formal acceptance.\n- Distinguish structural/source adequacy, formal definition acceptance, resource acceptance and runtime proof. If authentic barrier, applicability, revision authority, delivery or independence evidence is unavailable, retain the precise blocked requirement and owner; do not manufacture a provider receipt or self-certify.\n- Record acceptance only for its exact independently reviewed scope and bytes. Accepted D-01/D-02 rule repairs and narrowly accepted autonomy leaves retain existing scope, not new package acceptance.\n\n## Out of scope\nResource/full-plan acceptance, #102 retrospective confirmation, canonical skill edits, native task creation/mutation, historical report replacement, tests/imports/checks/builds, runtime/store operations, settings changes, account access, source projection/publication, FG-02 drafting, approval, execution, hooks, merge or deployment.\n\n## Steps\n1. **Establish independent inputs** — Verify actual recipient-local delivery, approved scope, current canonical closure and original/current native authoring lineage.\n2. **Review fixed definition obligations** — Compare the entire current definition against original amendment criteria and later genuinely authorized changes; list every gap before acceptance.\n3. **Resolve formal applicability** — Examine supplied exact-scope finalization/applicability evidence and supported reconciliation routes without substituting status or another primary's exception.\n4. **Publish separate findings** — Deliver current-byte accepted, partial, failed or blocked results with complete evidence, next owners and a bounded resume input; never extend findings to resources or runtime.\n\n## Independence and continuation\nThe reviewer must be independent of the canonical revisions and prerequisite repairs. Available context separation may be evidenced without inventing person identities; preserve actual limits and do not impose a roster on Replit plan approval. If an applicable contract requires stronger independence that cannot be evidenced, block that claim.\n\nNo source correction is authorized here. A definition defect requires separately scoped authorized correction and independent post-repair review; no automatic recursive task or waiver follows. A complete blocked report may satisfy this finding contract, but formal acceptance remains unavailable. Downstream gates must inspect its verdict rather than lifecycle labels.\n\nApproval permits this independent documentary assessment only. It does not finalize the old primary, grant retrospective applicability, expand amendment scope or approve execution.\n\n## Pre-existing failures to ignore\nNone authorized. Missing formal evidence is not an ignored test. Do not revive B2-R1/B5-R1 or use them to waive definition requirements.\n\n## Validation\nSource/document and supported native-record readback only; zero project validation launches. Bind complete actual inputs and compare original acceptance, source, authority and delivery evidence without importing project code. No task-local tier/grant, budget, supervisor or Gate PASS is supplied. Keep guards/tests/builds and host/runtime demonstrations NOT_RUN.\n\n## Regression Guard\n**Self-satisfying** — the deliverable is independent current-definition verification and formal applicability reporting; no product behavior or canonical contract is changed.\n\n## Relevant files\n- `.agents/skills/paired-task-orchestration/SKILL.md`\n- `.agents/skills/paired-task-orchestration/references/acceptance-and-confirmation.md`\n- `.agents/skills/skill-install-confirmation/SKILL.md`\n- `.agents/skills/skill-application-router/SKILL.md`\n- `docs/validation/paired-planner-staging-amendment.md`\n- `docs/validation/paired-planner-staging-independent-confirmation.md`\n- `docs/validation/paired-task-orchestration-definition-confirmation.md`\n- `docs/validation/paired-source-binding-renewal.json`\n- `docs/validation/skill-install-confirmation-rule-conflict-resolution-review.md`\n- `scripts/test/paired-planner-staging-source.test.mjs`\n",
+          "displayState": "IN_PROGRESS",
+          "followUpCategory": "next_steps",
+          "state": "IN_PROGRESS",
+          "taskRef": "#156",
+          "title": "Review Current Orchestration Definition",
+          "updatedAt": "2026-10-11T02:06:25.112Z"
+        }
+      }
+    },
+    {
+      "descriptionBytes": 8086,
+      "descriptionSha256": "850b4edfbfb23792d928759c50e831b0f57c8776e42df87a4384adbb336e6117",
+      "ref": "#155",
+      "response": {
+        "task": {
+          "artifactKinds": [],
+          "createdAt": "2026-10-11T00:26:39.710Z",
+          "dependsOn": [],
+          "description": "# Refresh Failure Gate Prerequisites\n\n<!-- regression-guard: required -->\n\n## What & Why\nPrepare the current Failure Gate v4 handoff after the authorized canonical package revisions and source-binding renewals. This is narrowly scoped documentary repair and authentic evidence intake, not a repeat of the completed readiness assessments and not permission to implement FG-02.\n\nThe owner requested tasks to reach the next Failure Gate stage. Approval of this draft authorizes only its stated documentary work. It does not itself grant an exact-scope finalization equivalent, settings changes, native confirmation creation, validation, acceptance or progression.\n\nBind repository `https://github.com/makerdan/Custom-Skills-Workbench`, series `Custom-Skills-Workbench/failure-gate-v4/18-piece`, the actual assigned native task and current checkout. No native number is a local Failure Gate authorization. Planning found no active Failure Gate task covering this scope; recheck bounded exact/legacy candidates before work.\n\n## Done looks like\n- Publish a new preparation report and evidence annex outside `.local/`, preserving original reports, archives, native histories, keys and previous renewal generations. Distinguish current byte observations from historical verdicts.\n- Refresh the prospective retrospective confirmation payload and active preparation material against actual current canonical sources and the accepted narrow confirmation-rule review. Preserve all six original #102 criteria verbatim, both fixed additions, all five restrictions, the exact #102-only broader read-only exception, target-SKILL.md-only correction and task-conversation-only findings boundary.\n- Preserve all 22 original resource criteria: D1–D4, S1–S6, H1–H3, B1–B5, C1–C4. Exclude only B2-R1/B5-R1; never remove parent rows, recreate retired narratives, weaken fixed methods or introduce a waiver.\n- Preserve separate obligation, pre-install and current-delivered baselines. The original four-file ZIP is an installation/parity baseline, not unchanged-current-source proof after authorized revisions.\n- Identify active handoff consumers of legacy source bindings. Repair only current documentary pointers/bindings and narrowly applicable inert source assertions; preserve dated evidence and publish a new superseding generation where necessary. Do not claim guards or application consumers understand renewal records without inspecting their source.\n- Obtain available authentic evidence for the exact #102 retrospective finalized-plan barrier or an expressly scoped equivalent, the separate #120 amendment barrier/applicability route, contemporary draft-only settings, complete #142 findings or an explicit owner statement that none exist, and the authorized publisher's findings delivery/readback route. Missing host inputs remain named blockers, not agent-created receipts or approvals.\n- Supply a complete delivered-input manifest for the separate definition and resource reviewers, with actual paths, byte counts, hashes, source lineage and limitations. Local availability does not attest delivery to either recipient.\n- Finish with repaired current documentary material and a requirement-linked readiness disposition. A complete blocked finding may complete preparation, but does not fulfill the missing gate or establish FG-02 readiness.\n\n## Out of scope\nCanonical skill revisions, installation, rewriting historical evidence, modifying existing native plans/dependencies/statuses, actual formal confirmation, resource self-acceptance, successor creation, settings/account changes, skill publication, hooks, recurring polling, remote CI, runtime/store/coordinator operations, grant issuance, imports, checks, builds, services, cleanup/reclaim, activation, merge or deployment. Executable consumer/schema changes beyond the stated documentary/source-assertion scope require separate authorization.\n\n## Steps\n1. **Reconcile current delivery** — Read the full approved task, current canonical contracts, renewed bindings, existing prospective material and bounded relevant native records; identify changed inputs and unsupported historical claims.\n2. **Repair active handoff material** — Renew current source pointers and the complete prospective payload while preserving original criteria, separate baselines, historical records and protected amendment boundaries.\n3. **Collect exact missing evidence** — Use existing supported read-only routes and supplied owner evidence for finalization, applicability, draft safety and conversation delivery. If unavailable, issue one consolidated exact owner-input request and stop only the affected action.\n4. **Deliver review inputs** — Publish new source-bound preparation evidence and recipient manifests, with exact remaining blockers and finite resume conditions.\n\n## Evidence and repair boundaries\nUse only canonical custom skill sources under `.agents`; read complete applicable Paired, Router, confirmation and Failure Gate references. Routine choices within this approved documentary scope need no per-choice approval or diary. Changes to acceptance, fixed methods, authority, protected native payloads, policy or execution limits require their genuine amendment route.\n\nRead supported task records once initially and once for materially changed final bindings; do not poll. Never infer provider finalization, global duplicate exclusion, settings, findings delivery or approval from task labels, repeated hashes or platform documentation. Preserve narrowly resolved D-01/D-02 findings for unchanged accepted rule bytes.\n\nProspective-file updates remain drafts, not amendments to existing protected native tasks. If a consumer needs broader code/schema changes, list the gap and seek separate scope. Do not write deliverables under `.local/` or use copied skills as canonical sources.\n\n## Pre-existing failures to ignore\nNone authorized. Missing authority, acceptance, delivery or capabilities are not ignored failures. The two resource exclusions supply no other waiver.\n\n## Validation\nSource/document authoring and supported read-only evidence intake only; zero project validation launches. Verify complete text, actual byte/hash bindings, lineage, retained criteria and current-versus-historical publication semantics without importing project code. Governance is not established for this task; no registered docs tier, local ID, approval adapter, finite grant, supervisor or PASS is invented. Tests, guards, syntax/build/package checks and runtime proof remain NOT_RUN. Later execution requires a separate genuinely applicable authorization, finite limits, accounting and supervision.\n\n## Regression Guard\n**Covers:** Reusing superseded rule/package bindings as current, dropping original criteria or restrictions during prospective renewal, confusing byte renewal with acceptance, or using historical lifecycle labels as current creation authority.\n**Test location:** `scripts/test/paired-current-handoff-source.test.mjs`\n**What it checks:** Preserve and, where needed for the authorized documentary outputs, extend inert source assertions for actual current bindings, separate immutable history, all 22 parent rows, exactly two exclusions, complete prospective criteria/restrictions and rejection of status-only acceptance. Do not change executable dispatch or run the guard.\n\n## Relevant files\n- `.agents/skills/paired-task-orchestration/SKILL.md`\n- `.agents/skills/skill-install-confirmation/SKILL.md`\n- `.agents/skills/skill-application-router/SKILL.md`\n- `.agents/skills/failure-gate-v4/SKILL.md`\n- `docs/validation/task-plans/paired-retrospective-confirmation.md`\n- `docs/validation/paired-retrospective-confirmation-preparation.md`\n- `docs/validation/paired-source-binding-renewal.json`\n- `docs/validation/paired-source-binding-renewal.md`\n- `docs/validation/paired-confirmation-handoff-readiness-renewal.md`\n- `docs/validation/paired-planner-staging-independent-confirmation.md`\n- `docs/validation/skill-install-confirmation-rule-conflict-resolution-review.md`\n- `scripts/test/paired-current-handoff-source.test.mjs`\n",
+          "displayState": "MERGED",
+          "followUpCategory": "next_steps",
+          "state": "MERGED",
+          "taskRef": "#155",
+          "title": "Refresh Failure Gate Prerequisites",
+          "updatedAt": "2026-10-11T02:06:22.693Z"
+        }
+      }
+    },
+    {
+      "descriptionBytes": 10362,
+      "descriptionSha256": "62cdb6c6fa030784a7ce4ca78c8efe39020167483ff1a4afe789c001b93c75e2",
+      "ref": "#149",
+      "response": {
+        "task": {
+          "artifactKinds": [],
+          "createdAt": "2026-10-10T19:44:16.564Z",
+          "dependsOn": [],
+          "description": "# Streamline Failure Gate plans with bounded implementation autonomy\n<!-- regression-guard: required -->\n\n## What & Why\nApply the owner's current request, “ok please make all these changes,” to the preceding implementation-autonomy recommendations. Amend the existing Custom Skills Workbench Failure Gate v4 paired-series plan so normal Replit programming resolves routine implementation details inside approved boundaries without repeated owner design decisions. This is a source/documentary plan amendment, not Failure Gate runtime activation or a new FG-02 implementation pair.\n\nProject: /@makerdantheman/Custom-Skills-Workbench; verify repository/task context before writes. Series: Custom-Skills-Workbench/failure-gate-v4/18-piece. Scope key: fgv4-implementation-autonomy-plan-amendment-v1. Canonical custom instructions come only from .agents. All durable deliverables, complete task plans, guards, reports and handoffs stay outside .local.\n\n## Done looks like\n- The single active docs/validation/failure-gate-v4-task-series.md explicitly delegates routine programming within approved scope. Preserve all 18 ordered pieces, the semantic completeness of all 36 primary/verifier payload templates, original acceptance/outcome contracts, source/bootstrap/runtime staging, evidence requirements, independent review, and retained history. Do not replace original acceptance with criteria derived from rewritten output.\n- One concise shared implementation-autonomy section separates required observable behavior from agent-selected methods. It states permitted read/write/repair scope, execution authority, fixed safety/acceptance boundaries, method-resolution bounds and specific escalation triggers. Remove redundant explanatory restatements only where all applicable obligations remain accessible and are included in fully materialized native task payloads under canonical handoff rules. A reference alone cannot substitute for undelivered instructions or required full readback.\n- Apply the complete preceding delegation map: FG-02 adapter/schema organization and authored rejection cases; FG-03 internal schema/transaction/index/ID/idempotency design; FG-04/09 supervision-adapter decomposition, event plumbing, bounded capture and parsing; FG-08 existing config-loader reuse, redaction and deterministic snapshot comparison; FG-10/16 bounded queries/report formatting/pagination; FG-11/12 fixture authoring and classification/signature implementation; FG-13/14 state-machine/readers/transaction structure/messages; FG-15 approved-format checkpoint helpers and isolated test authoring; every verifier's already-authorized scoped defect repairs and equivalent methods. These are authoring/method choices, not authorization to initialize stores, dispatch processes, obtain secrets, change public semantics, delete evidence, expand diagnostics or perform live recovery.\n- Explain that ordinary app edits within approved scope do not require renewed tier authorization, but relevant prior evidence becomes stale and authorized validation must cover new inputs. Changed governing runner/checker/wrapper/tier/policy versions still require their applicable review and binding before results are accepted. Equivalent methods use the documented permitted resolution route, retaining old/new method, evidence impact and payload bindings; do not silently amend protected native plans.\n- Explain reuse of a genuinely verified, current, already-approved deterministic policy for exactly matching tasks with a fresh bound decision for each. Do not request repeated human policy approval for matching instances; unmatched/uncertain inputs or changed policy terms still require the applicable decision. This task neither approves a new deterministic policy nor asserts one is active or available.\n- Update both tracked FG-02 g02 drafts and the active checkpoint/locators as necessary to point to this amendment without creating a competing plan, erasing original snapshots or presenting new acceptance. Preserve the current runtime exclusions: source-only work is not permission for imports, syntax checks, tests/builds, CLI/store operations or live wiring. Any later relaxation needs a separately scoped decision. Keep later piece execution deferred to its existing gates.\n- Publish docs/validation/failure-gate-implementation-autonomy-amendment.md containing the user-authorized scope, pre-edit and delivered bindings, old-to-new requirement map, decisions delegated versus escalation triggers, known limitations, performed/unperformed checks, and the independent-review handoff. Source delivery is not host acceptance, task lifecycle is not authority, and report/guard creation is not activation.\n\n## Steps\n1. Inspect fresh complete relevant task records and delivered evidence, current project instructions, active plan, both FG-02 drafts and checkpoint. Pin pre-edit snapshots and complete applicable canonical Failure Gate, Paired and Router references. Reuse confirmed owner decisions; do not revive retired resource subcriteria B2-R1 or B5-R1, reopen history, or infer outcomes from merged labels. If a needed read/task route is unavailable, report the precise limitation and continue independent authorized document work.\n2. List gaps between current plan language and the delegation map before editing. Distinguish routine method decisions from semantic changes, new authority, live operations and genuinely unavailable capabilities.\n3. Amend the active planning documents within the scope above. Use existing host tools and equivalent interfaces where verified, not new services or hypothetical platform APIs. Keep project-specific resource/evidence/approval bindings explicit, while centralizing repetitive explanation. Leave canonical .agents skills, runtime implementation, policies, approval records and historical task plans unchanged.\n4. Author a small inert static guard at docs/validation/tests/failure-gate-implementation-autonomy.test.mjs using existing standard tooling, no new packages or hooks. It checks the documented delegation/escalation contract, retained 18-piece/36-template structure and FG-02 source-only exclusions. Pair it with independent semantic scenario review: routine helper choice allowed within scope; test authoring does not imply test launch; changed tier/coverage/limits or governing versions require review; missing authority cannot be synthesized; same-scope repair still needs independent acceptance. The guard is not runtime enforcement or host evidence.\n5. Record complete source/document readback, criterion coverage, changed-input bindings and evidence impact in the amendment report. Do not claim guard/test execution. Deliver the plan, amendment and guard to the dependent reviewer's actual workspace; missing delivery blocks review with exact owner/input/resume action. Do not create FG-02 cards, advance the series or accept your own amendment.\n\n## Independent verification handoff\nA separate dependent verification-and-repair task must be attached after this primary's complete committed plan has been read back and bound to its actual project task reference/revision. The reviewer independently checks every item against pre-edit obligations and current canonical sources, reviews all positive/negative delegation scenarios, lists gaps before scoped repairs, and obtains fresh independent post-repair review if it authors corrections. Expected destination: docs/validation/failure-gate-implementation-autonomy-verification.md. This task does not create recursive verification tasks or certify its own final acceptance. Report this amendment as pending independent review until current bound evidence supports acceptance.\n\n## Out of scope\nCanonical skill editing/compression or workspace publication/provisioning; installing a new enforcement service; modifying active/terminal native tasks; erasing source/approval/task history; altering original technical acceptance or the 18-piece order; relaxing runtime gates; additional diagnostics or budgets; live stores, package installation, tests/builds/imports, services, CI, signals/recovery/reclaim, activation/cutover, deployment, automatic hooks/polling/merge or successor pair creation.\n\n## Pre-existing failures to ignore\nNone newly authorized. Preserve existing failures, exclusions and unresolved evidence. Historical source status and missing authority are not baseline waivers.\n\n## Validation\nBounded canonical-source and document readback plus independent requirement/scenario comparison only. Runtime validation NOT AUTHORIZED by this task; author the static guard but do not execute it or any test/import/build/CLI/store operation. Do not invent a tier, local ID, approval, finite grant, supervisory provider or passing result. Record NOT_RUN for unexecuted guard/runtime checks, separately from documentary acceptance. Execution of the guard later requires an actually permitted route with applicable bounds; task approval alone does not supply a missing Failure Gate capability.\n\n## Regression Guard\n**Covers:** Delegating routine programming without weakening approval, execution, evidence, completion, recovery or independent-review boundaries, and without breaking piece/payload/outcome coverage.\n**Test location:** docs/validation/tests/failure-gate-implementation-autonomy.test.mjs\n**What it checks:** Static contract assertions retain all 18 piece/36 template entries, positive in-scope method delegation and explicit escalation/source-only exclusions. Independent scenario review checks semantic coverage and unchanged criteria; neither text assertions nor fixtures establish host activation. Author the guard; execution remains NOT_RUN unless separately authorized.\n\n## Relevant files\n- docs/validation/failure-gate-v4-task-series.md\n- docs/validation/task-plans/fg-02-g02-i.md\n- docs/validation/task-plans/fg-02-g02-v.md\n- docs/validation/failure-gate-v4-series-checkpoint.md\n- docs/validation/failure-gate-v4-series-handoff-policy.md\n- docs/validation/failure-gate-fg-01-obligation-ledger.md\n- docs/validation/paired-current-handoff-status.md\n- .agents/skills/failure-gate-v4/SKILL.md and applicable reference closure\n- .agents/skills/paired-task-orchestration/SKILL.md and applicable references\n- .agents/skills/skill-application-router/SKILL.md and reconciliation/binding references\n- .agents/skills/regression-guard/SKILL.md\n- replit.md\n",
+          "displayState": "MERGED",
+          "state": "MERGED",
+          "taskRef": "#149",
+          "title": "Streamline Failure Gate plans with bounded implementation autonomy",
+          "updatedAt": "2026-10-10T20:20:08.303Z"
+        }
+      }
+    },
+    {
+      "descriptionBytes": 12115,
+      "descriptionSha256": "59899fc05ddd1bd81d9cfaef2f157a9bf41be1c99bd76bce0224fe99adc7e544",
+      "ref": "#152",
+      "response": {
+        "task": {
+          "artifactKinds": [],
+          "createdAt": "2026-10-10T19:51:28.235Z",
+          "dependsOn": [
+            "#149"
+          ],
+          "description": "[REGRESSION-GUARD] Classification: not-applicable. Guard: self-satisfying.\n# Verify the bounded implementation-autonomy amendment\n<!-- regression-guard: not-applicable -->\n\n## Owner-authorized revision 2 — govern exceptions, not coding steps\n\nThe owner's current request authorizes editing the revised bundle and amendment to follow: “The skill should control exceptions and changes to the acceptance rules—not narrate or separately approve every routine programming step.” This is a deliberate later documentary amendment, not silent reinterpretation of the original #149 plan. Previous full verifier-plan SHA-256: 14ab636ca30a29b4be2686b0610d3e57756b657db5aaac84e2e0a1b64d30a692. Keep the original #149 digest/baseline and history unchanged. This update changes this waiting review/repair plan, not the live primary's instructions or any execution grant.\n\nAfter genuine #149 delivery, reconcile its amendment, active series, both FG-02 drafts, actual checkpoint/locators and guard to one short autonomy default plus focused exception triggers. Required outcomes and acceptance evidence remain; work-family examples are optional. No mandatory per-choice classification, diary, routine-method ledger or exhaustive method checklist. Required approval/run/incident/provenance/acceptance records and genuine protected-plan change records are unchanged.\n\nCurrent user authorization covers these documentary corrections and affected guard-source corrections within the already enumerated repair paths. It does not install or formally confirm the separately downloadable skill revision, change original Failure Gate technical/safety acceptance, relax inert execution gates, create extra diagnostics/budgets, or authorize automatic advancement. Rebind this revised full plan and affected inputs before substantive review; record the explicit old-to-new requirement change once rather than requiring a record for each coding step. Any authored corrections still need applicable fresh independent post-repair acceptance. If actual concurrent dispatch, delivery or required amendment/approval binding cannot be established, block only that dependent claim and report the exact route needed.\n\n## What & Why\nIndependently verify and repair scoped gaps in Task #149 (Streamline Failure Gate plans with bounded implementation autonomy). Routine implementation details should be handled by normal Replit programming, without weakening the original technical obligations, acceptance, authority, execution or evidence boundaries. This is a plan-amendment review, not an FG-02 pair, skill installation or runtime activation.\n\n## Binding and delivery readiness\nProject: /@makerdantheman/Custom-Skills-Workbench. Series: Custom-Skills-Workbench/failure-gate-v4/18-piece. Primary: actual project Task #149. Actual required dependency: #149. Primary full committed-plan SHA-256: 62cdb6c6fa030784a7ce4ca78c8efe39020167483ff1a4afe789c001b93c75e2. Duplicate scope key: fgv4-implementation-autonomy-plan-amendment-v1/verify; normalized binding components are project, failure-gate-v4, project-task:#149, the exact digest above, and documentary autonomy-amendment verification/scoped repair. Preserve the key and full components, not just a title.\nCreation followed a full authoritative primary readback matching the intended plan, and duplicate search found no matching reviewer. Re-read complete current primary/verifier plans and actual dependencies before substantive review and report acceptance; changed protected bindings require reconciliation, not silent substitution. The committed-readback evidence is not atomic attachment, global exclusion or a platform scheduling guarantee.\nReview only after actual #149 outputs, pinned original/pre-edit obligations and amendment handoff are accessible in this reviewer's workspace. Ready/Merged labels or a dependency are insufficient delivery evidence. Missing inputs: retain this task, identify exact missing input/delivery owner, and report the invocation-driven resume check. No auto-merge, indefinite polling or invented readiness.\nThe newly downloadable skill ZIP prepared in the conversation is a separate definition revision, not installed project source and not this task's governing baseline. Use actual canonical .agents project sources and pinned original obligations. Do not silently rebase #149 onto that ZIP or claim to confirm/install it.\n\n## Required acceptance coverage\n1. Build a fixed requirement/evidence matrix covering every applicable item of the full actual #149 plan against immutable original/source clauses, pre-edit snapshots and delivered bytes. Keep original obligations distinct from the delivered implementation; expected criteria must not be derived solely from amended output.\n2. Preserve all 18 ordered pieces and semantic completeness of all 36 primary/verifier payloads, original technical acceptance/expected outcomes, evidence, repair and staging/source/bootstrap/runtime gates. Deduplicate explanatory text only when every obligation remains accessible and fully materialized actual native task plans meet complete-plan/readback requirements. No inaccessible shared reference or abridged checklist is coverage. Preserve historical snapshots and retired B2-R1/B5-R1 exclusions.\n3. Routine programming is the default within approved boundaries. Verify the shared rule eliminates separate per-choice approvals, routine decision records, step-by-step narration and method-change ledgers. The earlier work-family delegation map becomes optional illustration, not an acceptance checklist or prescribed architecture. Evaluate required outcomes, preserved technical coverage and genuine exceptions rather than enumerating every implementation choice. Keep authentic authority, independent supervision, approved persistence/public contracts, original failure/provenance/ignore rules, required records, retention/privacy and completion/recovery boundaries.\n4. Independently review boundary scenarios: in-scope module/helper design needs no new owner design decision; test/code authorship is not launch permission; ordinary app edits stale affected run evidence without renewing unchanged tier authority; changed governing runner/checker/wrapper/tier/policy versions still need applicable review and bindings before use; coverage/parameters/limits and live initialization/migration/restore/reclaim need actual scope/authority. Missing capability cannot be replaced with a fabricated host route or approval.\n5. Verify exactly matching tasks reuse only a current verified already-approved deterministic policy after actual integration and authorized cutover, with a fresh exact-bound decision and no repeated human policy approval. Unmatched/uncertain plans or changed policy terms still need the applicable decision. Neither the amendment nor authored policy text activates a policy.\n6. Selecting among unspecified equivalent methods is not itself a protected-plan amendment and creates no per-method change-record duty. Actual exceptions, changes to fixed acceptance/behavior/coverage/scope/policy/safety requirements, explicitly constrained methods or protected executable plans still use their applicable amendment route, record the real changed rule/exception and renew affected bindings/evidence. No silent scope increase, history rewrite or task/dependency change. Scoped repairs retain applicable independent post-repair acceptance, not review of each coding step.\n7. Inspect both FG-02 g02 drafts and the active checkpoint/locators for consistent amendment binding without competing plans, false acceptance or advancement. Keep current inert exclusions for imports/syntax/tests/builds/CLI/store/live wiring. This source/documentary task does not relax those exclusions or require intentionally deferred host proof for inert-stage acceptance.\n8. Update and inspect the authored static guard at docs/validation/tests/failure-gate-implementation-autonomy.test.mjs for promised structure/boundary assertions without importing or running it. Ensure the guard source checks default autonomy and real exception/acceptance boundaries, not mandatory method maps, per-choice records or programming narration. Perform independent semantic scenario review for what text assertions cannot establish. Mark all guard/runtime execution NOT_RUN, never PASS. Authored tests/fixtures and task status do not establish host enforcement or activation.\n9. Publish docs/validation/failure-gate-implementation-autonomy-verification.md with criterion-level expected/actual outcomes and evidence, actual bindings, gap-before-edit record, permitted repairs, fresh independent post-repair review if needed, raw observations, unperformed checks, verified snapshot and precise responsible next actions. Accept only the delivered documentary scope if all applicable obligations pass; unavailable authority/delivery/evidence remains blocked.\n\n## Steps and scoped repair\nRead the complete primary and actual project instructions first. Read canonical .agents Failure Gate, Paired, Router and Regression Guard sources and complete applicable references, current original obligation ledger and delivered evidence. Never use mirrors or assume a file/task route exists.\nAudit and list gaps before editing. Repair only missing/incorrect autonomy language and mappings in the active series document, both FG-02 g02 drafts, related active checkpoint/locators, docs/validation/failure-gate-implementation-autonomy-amendment.md and its static guard. Preserve unrelated/historical bytes. Actual additional scope/authority changes require a precise proposal; continue independent permitted checks.\nRebind changed inputs and invalidate affected evidence. If this reviewer authors repairs, obtain genuinely fresh independent read-only post-repair assessment using an actually available authorized context; self-review alone cannot accept them. No recursive reviewer-task creation. If independence is unavailable report that specific acceptance blocker.\nRecheck full plans/source/delivery bindings at acceptance and retain unresolved evidence. Do not merge, activate, close or advance the series through this report.\n\n## Out of scope\nCanonical .agents skill edits or ZIP installation/confirmation; publishing workspace skills; editing active/terminal native tasks or original historical criteria; runtime tooling/policy/approval changes; live stores, imports/syntax/tests/builds/guard execution, packages/scripts/CLI/services/remote CI, signals/recovery/reclaim, budget renewal, activation/cutover/deployment, automatic hooks/polling/merge or FG-02/successor task creation.\n\n## Pre-existing failures to ignore\nNone newly authorized. Preserve recorded failures/exclusions/lineage; missing authority is not an ignored baseline or passing result.\n\n## Validation\nBounded canonical-source/document/complete-plan comparison and independent boundary-scenario review, plus scoped documentary repairs only. No executable guard/test/host validation. No invented local task ID, tier, grant, finite budget, approval or supervisor. NOT_RUN is distinct from documentary acceptance; only affected missing evidence blocks its criterion. Report actual snapshot and cooperative race/delivery limitations.\n\n## Regression Guard\n**Self-satisfying** — this task's purpose is independent verification, including source inspection of docs/validation/tests/failure-gate-implementation-autonomy.test.mjs and explicit boundary scenarios. Automated execution remains excluded. Any permitted correction retains the primary's guard obligations and needs independent post-repair review.\n\n## Relevant files\n- docs/validation/failure-gate-v4-task-series.md\n- docs/validation/task-plans/fg-02-g02-i.md\n- docs/validation/task-plans/fg-02-g02-v.md\n- Discover the actual active checkpoint/locator; do not guess its filename\n- docs/validation/failure-gate-implementation-autonomy-amendment.md\n- docs/validation/tests/failure-gate-implementation-autonomy.test.mjs\n- docs/validation/failure-gate-fg-01-obligation-ledger.md\n- Canonical .agents Failure Gate/Paired/Router/Regression Guard sources and applicable references\n- replit.md\n",
+          "displayState": "MERGED",
+          "state": "MERGED",
+          "taskRef": "#152",
+          "title": "Verify the bounded implementation-autonomy amendment",
+          "updatedAt": "2026-10-10T20:34:19.473Z"
+        }
+      }
+    },
+    {
+      "descriptionBytes": 1368,
+      "descriptionSha256": "de7689f5d9b0719660352fbb934e4938c04b2e19849cff195793be977704a870",
+      "ref": "#141",
+      "response": {
+        "task": {
+          "artifactKinds": [],
+          "createdAt": "2026-10-09T20:44:40.001Z",
+          "dependsOn": [
+            "#138"
+          ],
+          "description": "# Resolve the two rule conflicts before the #102 confirmation can proceed\n\n## What & Why\nThe current independent review did not accept the confirmation rule because its escalation cross-reference and its new-install versus existing-primary task rules conflict. The retrospective draft is therefore blocked from native creation. Resolve these issues under separate source-owner authority, then obtain a fresh independent review of the exact revised rule.\n\n## Done looks like\n- The source owner authorizes and resolves both D-01 and D-02 consistently in .agents/skills/skill-install-confirmation/SKILL.md.\n- The exact #102 read-only evidence exception, six original criteria, SKILL.md-only correction limit, separate resource review, and approval/execution boundaries remain intact.\n- A reviewer distinct from the source author reads the complete changed source and issues an explicit accepted or blocked result bound to its actual bytes and digest.\n- No paired-task-orchestration source, original #102 record, or native Task B is changed, created, approved, or executed.\n\n## Relevant files\n- .agents/skills/skill-install-confirmation/SKILL.md\n- docs/validation/skill-install-confirmation-current-independent-review.md\n- docs/validation/skill-install-confirmation-current-independent-review-evidence.json\n- docs/validation/task-plans/paired-retrospective-confirmation.md",
+          "displayState": "CANCELLED",
+          "followUpCategory": "incomplete_scope",
+          "proposedFromRef": "#138",
+          "state": "CANCELLED",
+          "taskRef": "#141",
+          "title": "Resolve the two rule conflicts before the #102 confirmation can proceed",
+          "updatedAt": "2026-10-10T18:45:32.528Z"
+        }
+      }
+    }
+  ],
+  "observedAt": "2026-10-11T02:08:51.857Z",
+  "originalRequestedException": "## Failure Gate v4: deliverable locations and limited planner exception\n\nUse this exception only for paired task planning/handoff of a Failure Gate v4 series. Keep all authoritative deliverables—including scripts, documentation, reports, skills, configuration, code, exports, and complete task plans—outside .local/ in tracked paths that survive task-agent merge and enter repository history.\n\nException: when the actual host planner or task interface demonstrably requires a .local/ path for task creation, submission, or handoff, the Agent may create or use the minimum necessary temporary staging copy there, subject to ALL of these conditions:\n\n1. Establish the requirement from the actual interface, host instructions, or observed rejection. Habit, convenience, or an unsupported assumption is not sufficient.\n2. Before staging an Agent-authored payload, preserve its complete authoritative contents in an appropriate tracked path outside .local/. The staging copy must never be the only copy of a deliverable.\n3. Treat .local/ contents as disposable transport or runtime artifacts—not as canonical sources, durable evidence, accepted reports, or proof of delivery.\n4. Read back and compare the complete staged payload with the authoritative copy. After task submission, independently read back the complete persisted task plan and actual dependencies. A staging file, successful submission message, or task title alone does not establish successful handoff.\n5. Record the required staging path, its purpose, the authoritative tracked path, and the observed submission/readback outcome in evidence outside .local/. Missing or truncated contents remain unresolved, not successfully delivered.\n6. This exception does not permit using .local/ skill definitions or mirrors as canonical instructions. Canonical skill sources remain under .agents/. It grants no additional task execution, validation, approval, lifecycle, merge, deployment, or runtime authority.\n\nIf the required staging workflow cannot preserve the authoritative deliverable outside .local/ or cannot establish complete persisted-task readback, stop the affected handoff and report the specific blocker. Do not silently broaden this exception or claim successful delivery.\n\nA temporary staging path is not a Failure Gate plan/ID binding, approval source, grant, tier assignment, authorization registry, durable run log, or completion evidence. Failure Gate's genuine authority, selected-tier, finite-budget, independent-supervision, writer/lifecycle, source/bootstrap/runtime, recovery/reclaim and delivery gates remain unchanged. This exception cannot override a higher-priority prohibition or unavailable host permission. Authoring it does not establish that this host requires or supports .local/ staging.",
+  "project": {
+    "namespace": "Current Skills Workbench Project task-board; immutable UUID unavailable",
+    "origin": "https://github.com/makerdan/Custom-Skills-Workbench",
+    "root": "/home/runner/workspace"
+  },
+  "recipientLocalDelivery": {
+    "inventory": [
+      {
+        "bytes": 21554,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/failure-gate-v4/README.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/failure-gate-v4/README.md",
+        "sha256": "c7bcae08f4e707413bf8f3a4d8bb9563e66bb75b6c4942fb1875411644973860"
+      },
+      {
+        "bytes": 33817,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/failure-gate-v4/SKILL.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/failure-gate-v4/SKILL.md",
+        "sha256": "e348abd53d69bb37f74bea3a54bf46b89d2d782fb7fa570d5dad875fcfa5ccf2"
+      },
+      {
+        "bytes": 49228,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/failure-gate-v4/reference/acceptance.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/failure-gate-v4/reference/acceptance.md",
+        "sha256": "5d89de3cac03813485cc1781fa67c47c59e659c46fae59ef1d39dd2b1db21bfe"
+      },
+      {
+        "bytes": 7987,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/failure-gate-v4/reference/adapters/posix-writer-lock/README.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/failure-gate-v4/reference/adapters/posix-writer-lock/README.md",
+        "sha256": "3d635b1ae2307beb79e2369a616ac7b2a9d28bedec6daf80655fd1d4aa9a39d2"
+      },
+      {
+        "bytes": 6398,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/failure-gate-v4/reference/adapters/posix-writer-lock/tests/test_writer_lock.py",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/failure-gate-v4/reference/adapters/posix-writer-lock/tests/test_writer_lock.py",
+        "sha256": "777035d2a9ceae4c976734125869686b9d713f0dec008dba18692e119a8eedb8"
+      },
+      {
+        "bytes": 6101,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/failure-gate-v4/reference/adapters/posix-writer-lock/writer_lock.py",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/failure-gate-v4/reference/adapters/posix-writer-lock/writer_lock.py",
+        "sha256": "791a20ee9909127f2d03b577a6573cc382317cf8a58a898f146a89db5befe503"
+      },
+      {
+        "bytes": 7988,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/failure-gate-v4/reference/authorized-continuation.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/failure-gate-v4/reference/authorized-continuation.md",
+        "sha256": "3dc5590aca87c679b4dbfdcc0fe29c5fdc73192a816b3f82bfd326b28933d8b3"
+      },
+      {
+        "bytes": 14678,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/failure-gate-v4/reference/evidence-and-recovery.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/failure-gate-v4/reference/evidence-and-recovery.md",
+        "sha256": "91a06ce5ed37eb161c45c440f26cdf42256ddf2265e64f17c47e7ccc03c49075"
+      },
+      {
+        "bytes": 17740,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/failure-gate-v4/reference/execution-monitoring.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/failure-gate-v4/reference/execution-monitoring.md",
+        "sha256": "9759842ae03a7f5cb5206a0e3f583c99a6cb7dcd4ff5e44570c6188c47d2f563"
+      },
+      {
+        "bytes": 57307,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/failure-gate-v4/reference/implementation.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/failure-gate-v4/reference/implementation.md",
+        "sha256": "4b1b756c0d1726b240451a6a82e563a722be2dc9c879f4bb7d54f347d26f2a16"
+      },
+      {
+        "bytes": 9031,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/failure-gate-v4/reference/owner-directed-closure.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/failure-gate-v4/reference/owner-directed-closure.md",
+        "sha256": "9dff9d6e28e10b70224755d63a0f1aeb44be9f789c47a5700bab86dc46d3b4e4"
+      },
+      {
+        "bytes": 23857,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/failure-gate-v4/reference/runtime-reclaim.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/failure-gate-v4/reference/runtime-reclaim.md",
+        "sha256": "bceea11fe66e7d4ef0433ee8306f87f3ec5cdc1520215fdf59393afcbbedb51f"
+      },
+      {
+        "bytes": 12335,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/failure-gate-v4/reference/staging-and-lifecycle.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/failure-gate-v4/reference/staging-and-lifecycle.md",
+        "sha256": "a9ab52d787e44c7aa4e199c8662882521d8ccf0ef8a6de0706c7853b5fa69800"
+      },
+      {
+        "bytes": 21279,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/failure-gate-v4/reference/validation-budgets.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/failure-gate-v4/reference/validation-budgets.md",
+        "sha256": "62c19d7ef9cbedf9505ba45b3d45460fa909126db30a83fbeb43fa2ae7a09866"
+      },
+      {
+        "bytes": 2494,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/failure-gate-v4/scripts/run-authoring-tests.py",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/failure-gate-v4/scripts/run-authoring-tests.py",
+        "sha256": "02e14d9c90eb07d214de1c0b7cc64ba546d891a882feadf292477b85d861b094"
+      },
+      {
+        "bytes": 11418,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/failure-gate-v4/tests/authoring_supervision.py",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/failure-gate-v4/tests/authoring_supervision.py",
+        "sha256": "c759dee01e36b2ea0acee65d80b7e2a0d2b0977725f52d09dc6ccf2d672a7698"
+      },
+      {
+        "bytes": 4531,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/failure-gate-v4/tests/test_activation_policy_guidance.py",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/failure-gate-v4/tests/test_activation_policy_guidance.py",
+        "sha256": "de8f609fe222255d68c471c86d3735d983fabc4ca54583f9aadd7858f72a6e44"
+      },
+      {
+        "bytes": 9759,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/failure-gate-v4/tests/test_audit_regressions.py",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/failure-gate-v4/tests/test_audit_regressions.py",
+        "sha256": "f27ec34c92cbac232df86d31dc909784e8c2ed27bacc91a733df050a9fec0df9"
+      },
+      {
+        "bytes": 6692,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/failure-gate-v4/tests/test_authorized_continuation.py",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/failure-gate-v4/tests/test_authorized_continuation.py",
+        "sha256": "b527434f87f37a36f1fcbea9f0946ac8f5c1d6a1ddab3b3b0712d6b21dfb24d0"
+      },
+      {
+        "bytes": 30166,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/failure-gate-v4/tests/test_runtime_reclaim_contract.py",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/failure-gate-v4/tests/test_runtime_reclaim_contract.py",
+        "sha256": "4c4d5d589b662642e8eef20347af34514a0cb6fb657b0eb81e61fcd7626b2bbd"
+      },
+      {
+        "bytes": 24668,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/failure-gate-v4/tests/test_staging_lifecycle.py",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/failure-gate-v4/tests/test_staging_lifecycle.py",
+        "sha256": "ac1e3a013980d051e99ee182b5ae2200497af19d415d76c64961365742020381"
+      },
+      {
+        "bytes": 28973,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/failure-gate-v4/tests/test_validation_budgets.py",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/failure-gate-v4/tests/test_validation_budgets.py",
+        "sha256": "75823a4f3b274a58b7312b77409c722df5a89136be71f98fc026b36f068c26e2"
+      },
+      {
+        "bytes": 21071,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/paired-task-orchestration/SKILL.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/paired-task-orchestration/SKILL.md",
+        "sha256": "d862212f772abdf551698c6aeb9c4733c2572e0766b3606d33ea2fa24ba5b669"
+      },
+      {
+        "bytes": 9475,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/paired-task-orchestration/references/acceptance-and-confirmation.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/paired-task-orchestration/references/acceptance-and-confirmation.md",
+        "sha256": "b8e3163cb08cce3385013822860ef57d20767294aa0a2883123ee5aaa0a8cb32"
+      },
+      {
+        "bytes": 9914,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/paired-task-orchestration/references/host-hook-contract.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/paired-task-orchestration/references/host-hook-contract.md",
+        "sha256": "e3101501e6385be500033ba77f272bee1c2370a9cd292bd33337aba922a2a914"
+      },
+      {
+        "bytes": 11859,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/paired-task-orchestration/references/series-state-and-handoff.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/paired-task-orchestration/references/series-state-and-handoff.md",
+        "sha256": "a2c63fb57e0bcd5ebdec3718683f9c0016d9a5841edde457130d34a3edda33de"
+      },
+      {
+        "bytes": 20467,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/regression-guard/SKILL.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/regression-guard/SKILL.md",
+        "sha256": "99b8edc59eeac835656b1098402d18b53525163fd763e18f832c6ebda2f91285"
+      },
+      {
+        "bytes": 1725,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/skill-application-router/CHANGELOG.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/skill-application-router/CHANGELOG.md",
+        "sha256": "5fdc24c93ff3db13866f6d80e37df10f780be4fa292b5476e4818cf1e6885b51"
+      },
+      {
+        "bytes": 4954,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/skill-application-router/README.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/skill-application-router/README.md",
+        "sha256": "873ea815bfbd1d0f88834e0e2c6a5b66b69d39bc21681f21d4bfa51bb1da6a12"
+      },
+      {
+        "bytes": 23381,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/skill-application-router/SKILL.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/skill-application-router/SKILL.md",
+        "sha256": "49e3db86b0f5b8c7efba871d7404c40336cb3caf544427a429065b1088f6586f"
+      },
+      {
+        "bytes": 2164,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/skill-application-router/references/custom-skill-command-manifest.json",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/skill-application-router/references/custom-skill-command-manifest.json",
+        "sha256": "4b143695c17095a9321e024b540ebb0459088cb6851507e83a9322ae72d3644c"
+      },
+      {
+        "bytes": 23452,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/skill-application-router/references/custom-skill-commands.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/skill-application-router/references/custom-skill-commands.md",
+        "sha256": "b65b8d5ff288b289fc7ab0ca2d11cc9bd45ae7a0cc6d22045d73016208260bd2"
+      },
+      {
+        "bytes": 11454,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/skill-application-router/references/delivery-reconciliation.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/skill-application-router/references/delivery-reconciliation.md",
+        "sha256": "fd908bd54a3d2db4d25cc6a3f2e6fbdfece0e9276a28e02db48d5dcfdfa3f3ca"
+      },
+      {
+        "bytes": 13829,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/skill-application-router/references/handoff-binding-and-recovery.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/skill-application-router/references/handoff-binding-and-recovery.md",
+        "sha256": "7e95d74645e0c1184b2ae24488ffd5936237fb6fc1d9596734a3e57bb1fe0ff5"
+      },
+      {
+        "bytes": 23323,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/skill-application-router/references/installation-verification-plan.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/skill-application-router/references/installation-verification-plan.md",
+        "sha256": "99bc98079967ed47f8f524c187b9823fc99dddca55d4b61a9220dcbb5b3f8cb9"
+      },
+      {
+        "bytes": 16089,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/skill-application-router/references/router-task-handoff-acceptance.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/skill-application-router/references/router-task-handoff-acceptance.md",
+        "sha256": "811bc5201d5067a4dc09d74c73880c4798f3407d7955182a923c95b3b897c849"
+      },
+      {
+        "bytes": 15816,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:.agents/skills/skill-install-confirmation/SKILL.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": ".agents/skills/skill-install-confirmation/SKILL.md",
+        "sha256": "a613efe2bea3476b8770b665dd9f0b0b440a320f5aae627a79a815ea6cf6b82a"
+      },
+      {
+        "bytes": 2162,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:attached_assets/0_skill-install-confirmation_(08.27.2026)_1791430044182.zip",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "attached_assets/0_skill-install-confirmation_(08.27.2026)_1791430044182.zip",
+        "sha256": "fc8d202d2e3a857666c40103bb7cba11246db05b13e733176ec17397456b13f6"
+      },
+      {
+        "bytes": 39951,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:attached_assets/Pasted--REGRESSION-GUARD-Classification-not-applicable-Guard-s_1791407249689.txt",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "attached_assets/Pasted--REGRESSION-GUARD-Classification-not-applicable-Guard-s_1791407249689.txt",
+        "sha256": "827f83be1c45008872bb1f2c52b940e977b7217b38f755cad8bd985c2091d152"
+      },
+      {
+        "bytes": 2594,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:attached_assets/Pasted-These-are-the-steps-to-finish-the-current-handoff-and-p_1791522438711.txt",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "attached_assets/Pasted-These-are-the-steps-to-finish-the-current-handoff-and-p_1791522438711.txt",
+        "sha256": "2c1ed2a5c470d0621b061c06ae4f2450042e55fe078ead9a1d149852650a3937"
+      },
+      {
+        "bytes": 59658,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:attached_assets/failure-gate-v4-piecemeal-task-series_1791259976201.txt",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "attached_assets/failure-gate-v4-piecemeal-task-series_1791259976201.txt",
+        "sha256": "7bd8aadd6007ed7c01f118d6cbb83d70ea52d79cecfc6eaafc2234ee869eb026"
+      },
+      {
+        "bytes": 18622,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:attached_assets/paired-task-orchestration_1791347147544.zip",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "attached_assets/paired-task-orchestration_1791347147544.zip",
+        "sha256": "5e99a095a57a7646ac5203b43642312ffa0bd2cef19106c8b77897fdb2a520b7"
+      },
+      {
+        "bytes": 20798,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:attached_assets/revision_1791664086258.patch",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "attached_assets/revision_1791664086258.patch",
+        "sha256": "37d44582e1ffeadf8899a2f0714189645e58eae60a918acb8eefdb3021600e3f"
+      },
+      {
+        "bytes": 3272,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:attached_assets/skill-install-confirmation_(10.08.2026)_1791515286288.zip",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "attached_assets/skill-install-confirmation_(10.08.2026)_1791515286288.zip",
+        "sha256": "c86cb59959dddc36ca8276dad24b96ab79a17125aee9b5e928ace505d7eb09bb"
+      },
+      {
+        "bytes": 29751,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/failure-gate-capabilities.json",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/failure-gate-capabilities.json",
+        "sha256": "8897219580b372b934592e18f022471d5fa78ede58603d25af4b8144aa7616a7"
+      },
+      {
+        "bytes": 46650,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/failure-gate-fg-01-obligation-ledger.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/failure-gate-fg-01-obligation-ledger.md",
+        "sha256": "9f4801eaba872423abb9cd565e3de59c30950d514f1589a8643c037847e0ce77"
+      },
+      {
+        "bytes": 25530,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/failure-gate-fg-01-source-manifest.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/failure-gate-fg-01-source-manifest.md",
+        "sha256": "40034926aa094bef673a67623146783d52f682b63a54b7ef58312a5d875c885b"
+      },
+      {
+        "bytes": 76141,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/failure-gate-fg-01-verifier-report.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/failure-gate-fg-01-verifier-report.md",
+        "sha256": "6be495b2168d499633bdfb6dbac019762e93e80aa7ceb71c3a0746643589ec30"
+      },
+      {
+        "bytes": 23985,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/failure-gate-fg-02-bootstrap-admission-proposal.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/failure-gate-fg-02-bootstrap-admission-proposal.md",
+        "sha256": "7a518dfe3d1fbee07df004405abc74a5be136564863378b46a5b427461e84117"
+      },
+      {
+        "bytes": 8687,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/failure-gate-fg-02-factual-recheck.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/failure-gate-fg-02-factual-recheck.md",
+        "sha256": "91820486267c7132479ea9470a4789965bfe15c6b487e80c343972b7e2419baa"
+      },
+      {
+        "bytes": 3169,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/failure-gate-fg-02-owner-closeout.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/failure-gate-fg-02-owner-closeout.md",
+        "sha256": "9f42ab4be0f58995924b8de8564798c55657bdd59e7f1115344d4c6f47cc4b83"
+      },
+      {
+        "bytes": 12973,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/failure-gate-fg-02-stage-handoff.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/failure-gate-fg-02-stage-handoff.md",
+        "sha256": "3e53c935b9698bf92c8d6d9941610291f9ced6716559beb333640b5c16ff341f"
+      },
+      {
+        "bytes": 23801,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/failure-gate-implementation-autonomy-amendment.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/failure-gate-implementation-autonomy-amendment.md",
+        "sha256": "3f2e879f8af4212264bdfc7b717cc05184a0b911413e7f5bec0562393015f894"
+      },
+      {
+        "bytes": 25395,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/failure-gate-implementation-autonomy-bindings-source-renewal.json",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/failure-gate-implementation-autonomy-bindings-source-renewal.json",
+        "sha256": "d18adc263cba85c345075696d44b31b2d6d05f9cdb34f6c961c193c2da8cc175"
+      },
+      {
+        "bytes": 19146,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/failure-gate-implementation-autonomy-bindings.json",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/failure-gate-implementation-autonomy-bindings.json",
+        "sha256": "4129d505b06b815873a891c7eb276bb91f78536acec334873cf5e966e7bb56b6"
+      },
+      {
+        "bytes": 116250,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/failure-gate-implementation-autonomy-native-readback.json",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/failure-gate-implementation-autonomy-native-readback.json",
+        "sha256": "796ec88d54402a648d6707079e05ba4e68d140f161fac18b3eaafdd9cc035a26"
+      },
+      {
+        "bytes": 49651,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/failure-gate-implementation-autonomy-verification.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/failure-gate-implementation-autonomy-verification.md",
+        "sha256": "d2953aee4147cfdc461d2b0479793473250e9068e9dfe6754565de5a44ab9ddc"
+      },
+      {
+        "bytes": 19563,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/failure-gate-v4-series-checkpoint.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/failure-gate-v4-series-checkpoint.md",
+        "sha256": "66046782de9c16d8688bdcead32562cc4481089decc7582419bd7aeeb9f38a4c"
+      },
+      {
+        "bytes": 13129,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/failure-gate-v4-series-handoff-policy.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/failure-gate-v4-series-handoff-policy.md",
+        "sha256": "5ba6bbc5cf3a9106ed6d4ed2cbacca80fc20b95a3d2fa43ceec5bbe91c3d4228"
+      },
+      {
+        "bytes": 469552,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/failure-gate-v4-task-series.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/failure-gate-v4-task-series.md",
+        "sha256": "a6d73ca85e2447f005f8cfa452f2c5427aec8799894d8115538520c84f7e70ad"
+      },
+      {
+        "bytes": 24333,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-confirmation-handoff-readiness-renewal-evidence-source-renewal.json",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-confirmation-handoff-readiness-renewal-evidence-source-renewal.json",
+        "sha256": "cf173cf794c331458e6437c91f07e7b65c9e76999ad8de821ca2c7511fdb026a"
+      },
+      {
+        "bytes": 23355,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-confirmation-handoff-readiness-renewal-evidence.json",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-confirmation-handoff-readiness-renewal-evidence.json",
+        "sha256": "9bc1a97fab8f8b9a9c84026fba3c2ce10cfc1998d1fb6460d9ec7d2d0982648e"
+      },
+      {
+        "bytes": 23533,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-confirmation-handoff-readiness-renewal.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-confirmation-handoff-readiness-renewal.md",
+        "sha256": "513758932b9fe3f3d176c4a99d4d924ad4d38be6c8c99e9f5e3f0327ffebd161"
+      },
+      {
+        "bytes": 27744,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-current-handoff-manifest-source-renewal.json",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-current-handoff-manifest-source-renewal.json",
+        "sha256": "bad993afbcc4ad665dfe75aa4f5acdea35d26ad973be350eb47bcdca82c44b71"
+      },
+      {
+        "bytes": 33249,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-current-handoff-manifest.json",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-current-handoff-manifest.json",
+        "sha256": "944b3451a5cc283da753ceb0ae957fabba1415b058b294581c096c27d52e078c"
+      },
+      {
+        "bytes": 15064,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-current-handoff-renewal.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-current-handoff-renewal.md",
+        "sha256": "da4ca1251f4cf8efce4bfddbd4212f62dd46cb99e95594ae013d42060f7eae42"
+      },
+      {
+        "bytes": 11417,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-current-handoff-status.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-current-handoff-status.md",
+        "sha256": "e18635312b11f958bb2da2e2adda78339f7d34e8a1f16a9631625e43d2a313f2"
+      },
+      {
+        "bytes": 24349,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-current-resource-acceptance-evidence.json",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-current-resource-acceptance-evidence.json",
+        "sha256": "064d492de84c3b1cd2ec9af8ba133bab96045d15bd10a935cf1bef05675a3b06"
+      },
+      {
+        "bytes": 15486,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-current-resource-acceptance.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-current-resource-acceptance.md",
+        "sha256": "f30c377a12bf4981890cf6d85045a4a26ebf1b74cbc32237032abd041a189bde"
+      },
+      {
+        "bytes": 481883,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-native-handoff-current-readback-annex.json",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-native-handoff-current-readback-annex.json",
+        "sha256": "ae13b5280c9a80b7390f137d39179a3542e8d74973be084d7a07698edd1d2b70"
+      },
+      {
+        "bytes": 27286,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-native-handoff-current-review.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-native-handoff-current-review.md",
+        "sha256": "9d1e16955e818d864d80ac1d6fa3ba6cf1b3652852cac3be3baadac5c27613d3"
+      },
+      {
+        "bytes": 12584,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-planner-staging-amendment.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-planner-staging-amendment.md",
+        "sha256": "f6e7db50606b86033db70e95860fbf6035f9d9bccfa12bf38071196eb4da3160"
+      },
+      {
+        "bytes": 17585,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-planner-staging-independent-confirmation.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-planner-staging-independent-confirmation.md",
+        "sha256": "8cd0024b14c26a813296f6e38aab52aadf258f94e3694f561c9c8d481766d310"
+      },
+      {
+        "bytes": 33498,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-planner-staging-independent-readback.json",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-planner-staging-independent-readback.json",
+        "sha256": "6972e3e3cfce3afaa61242576902f4e9bbd85603c8a6d883375658bc453f3fe6"
+      },
+      {
+        "bytes": 66429,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-resource-acceptance-post-cleanup-evidence-source-renewal.json",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-resource-acceptance-post-cleanup-evidence-source-renewal.json",
+        "sha256": "3ea1273868fcb015941ccfa4bcb7c67235f7c11e1b1198c3f9bdfc06f9f71c32"
+      },
+      {
+        "bytes": 368189,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-resource-acceptance-post-cleanup-evidence.json",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-resource-acceptance-post-cleanup-evidence.json",
+        "sha256": "7b62615b251cf6b6b4b3f2c03f0a11e297f766f2ff7f593561b2ade43c682ec4"
+      },
+      {
+        "bytes": 31224,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-resource-acceptance-post-cleanup.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-resource-acceptance-post-cleanup.md",
+        "sha256": "1dd16065eacefe662810853ed84f74759a58e65923a7394b91523de1758e5c44"
+      },
+      {
+        "bytes": 17432,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-retrospective-confirmation-preparation.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-retrospective-confirmation-preparation.md",
+        "sha256": "07b43760bd4f2a4c0054dfbe420db458a20f59bed05941f7a8c375a96966e89c"
+      },
+      {
+        "bytes": 35900,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-source-binding-renewal.json",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-source-binding-renewal.json",
+        "sha256": "4a87ee5fbc31a95f32f9786621c4df0a97dcbd50ebe2d3a879582f9f27ef1509"
+      },
+      {
+        "bytes": 9973,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-source-binding-renewal.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-source-binding-renewal.md",
+        "sha256": "e085ce339416c2c0a87cbef88c4548cf83a0350ba1d23da4b403b4ee31b15665"
+      },
+      {
+        "bytes": 16576,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-task-orchestration-definition-confirmation.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-task-orchestration-definition-confirmation.md",
+        "sha256": "c78f42534f713c9e3b1ef7fcb9fa92ade3055ad0723cd893b67e5bdb1ed2a236"
+      },
+      {
+        "bytes": 27509,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-task-orchestration-handoff-amendment-manifest.json",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-task-orchestration-handoff-amendment-manifest.json",
+        "sha256": "6b6e8a006d30a1944594e9665c007db844f766f280cae82d605c03395be52b5b"
+      },
+      {
+        "bytes": 13778,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-task-orchestration-handoff-repair.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-task-orchestration-handoff-repair.md",
+        "sha256": "38b4b910deda9bffd1d9e941cfbd7b23de693eccc30a249630ba57d1bcbdc799"
+      },
+      {
+        "bytes": 12458,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-task-orchestration-install-handoff.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-task-orchestration-install-handoff.md",
+        "sha256": "5274cf28815a51297ad351e78e7bc84b589df49d6db042c8c1289ca495d100f2"
+      },
+      {
+        "bytes": 14755,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-task-orchestration-manifest.json",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-task-orchestration-manifest.json",
+        "sha256": "490cda28a2285690c18971ac3f697a7bd6fcbe83b44346204fef8751616086f1"
+      },
+      {
+        "bytes": 81981,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-task-orchestration-native-readback.json",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-task-orchestration-native-readback.json",
+        "sha256": "0443cf3d759f455b1e6df56a26cc37f334a1bbd18e6231add38481e06ab3587a"
+      },
+      {
+        "bytes": 3313,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-task-orchestration-readiness-proposal.json",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-task-orchestration-readiness-proposal.json",
+        "sha256": "3fcf2436ff86caccb10b25f506820b043a61149c7829ab620e2cd990cb4bf958"
+      },
+      {
+        "bytes": 572146,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-task-orchestration-review-2026-10-08-evidence.json",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-task-orchestration-review-2026-10-08-evidence.json",
+        "sha256": "8099e83c6a042155f1ecbad009df8adb15d9aaf962ba7cf296494c40b6c7bd8c"
+      },
+      {
+        "bytes": 11927,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-task-orchestration-review-amendments.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-task-orchestration-review-amendments.md",
+        "sha256": "58ade6e109a36acdef5f30ace1d3853a8ba52b4af3eec28233e6c4a0dbd656b1"
+      },
+      {
+        "bytes": 34383,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-task-orchestration-verification-plan.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-task-orchestration-verification-plan.md",
+        "sha256": "946e0987e2b7c1a9c7140a624432a92e6b3f1e4ca7f207482899615aaf97adaa"
+      },
+      {
+        "bytes": 50910,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-task-orchestration-verification.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-task-orchestration-verification.md",
+        "sha256": "a336fcdf5c8d488d54d8b08e5bc6cd4e3070cf2d28f998ae82ffecde4e14c5c9"
+      },
+      {
+        "bytes": 14465,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/retired-review-cleanup-bindings.json",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/retired-review-cleanup-bindings.json",
+        "sha256": "ca9322d301329b119e9726ad3cc36ad43b328400ab7b0b67c65536717f48302a"
+      },
+      {
+        "bytes": 72003,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/retired-review-cleanup-native-readback.json",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/retired-review-cleanup-native-readback.json",
+        "sha256": "a1fedb93cbc2de8ba6b9b0229fc504501dfdebea442eef1cb6f5ef4c4db64649"
+      },
+      {
+        "bytes": 27693,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/skill-install-confirmation-applicability-review.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/skill-install-confirmation-applicability-review.md",
+        "sha256": "dadeaf8dd69708614a1e467264367c59e94dd5dfb14998ea6fcdc90dc7034be0"
+      },
+      {
+        "bytes": 19088,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/skill-install-confirmation-current-independent-review-evidence.json",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/skill-install-confirmation-current-independent-review-evidence.json",
+        "sha256": "e2a7d1b523c9a88d36f274c980676822dcd8f79a2c3d194ca310a8b9271f867b"
+      },
+      {
+        "bytes": 27448,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/skill-install-confirmation-current-independent-review.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/skill-install-confirmation-current-independent-review.md",
+        "sha256": "0fa6cf0c21943b99abde717a5d47b07e8bc1e3c3cdd162bcf5be6add2110f7bf"
+      },
+      {
+        "bytes": 8659,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/skill-install-confirmation-rule-conflict-resolution-review.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/skill-install-confirmation-rule-conflict-resolution-review.md",
+        "sha256": "52ed92444076f95851541df906e2463376089bb8873543492b7984ee5fd83084"
+      },
+      {
+        "bytes": 114028,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/skill-install-confirmation-scope-readback.json",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/skill-install-confirmation-scope-readback.json",
+        "sha256": "14d8e4cf6f8e1b1289192790f457f210ed23303b79441ef13b00e9e265470f03"
+      },
+      {
+        "bytes": 11260,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/skill-install-confirmation-source-delivery.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/skill-install-confirmation-source-delivery.md",
+        "sha256": "d4fbf17511eac04cbc4cc242df2f1b8b47ec45f82c182bbbde7f2fdbd285819b"
+      },
+      {
+        "bytes": 18249,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/task-plans/fg-02-g02-i.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/task-plans/fg-02-g02-i.md",
+        "sha256": "b944ad5399820200d7f8b4b9efb9980ea5ac8ef372b41cbff839471faf1076b1"
+      },
+      {
+        "bytes": 19672,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/task-plans/fg-02-g02-v.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/task-plans/fg-02-g02-v.md",
+        "sha256": "7199ec947adbefda4a9219e78460527ac95966133a38cddf9ef4f502576d0f4d"
+      },
+      {
+        "bytes": 8086,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/task-plans/fg-v4-refresh-confirmation-prerequisites.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/task-plans/fg-v4-refresh-confirmation-prerequisites.md",
+        "sha256": "850b4edfbfb23792d928759c50e831b0f57c8776e42df87a4384adbb336e6117"
+      },
+      {
+        "bytes": 6165,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/task-plans/fg-v4-review-current-definition.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/task-plans/fg-v4-review-current-definition.md",
+        "sha256": "01943997ec1cec4424ede8d7432fe85ce089af107d173c7444482f59bc31314f"
+      },
+      {
+        "bytes": 14939,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/task-plans/fg-v4-verify-current-resources.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/task-plans/fg-v4-verify-current-resources.md",
+        "sha256": "b7f308140480dde6436cb13b416412ee389faf95cfb9979060b2f330115cec59"
+      },
+      {
+        "bytes": 28551,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/task-plans/paired-retrospective-confirmation.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/task-plans/paired-retrospective-confirmation.md",
+        "sha256": "02d219fe73a930c3a4ca70d34ef883d830207a3c320f6533b9c1c6ad2b461e4f"
+      },
+      {
+        "bytes": 12385,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/task-plans/paired-task-orchestration-definition-confirmation.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/task-plans/paired-task-orchestration-definition-confirmation.md",
+        "sha256": "60f7ec6e83d96399d1826bbcd4672cae01efb5ce6c242dd1879e5273fd0f0c5c"
+      },
+      {
+        "bytes": 8682,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/task-plans/reassess-current-resource-acceptance.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/task-plans/reassess-current-resource-acceptance.md",
+        "sha256": "bd84c47d0c006a8eb955b0a9c85f0a67cbe378f973833152eb054ad926a4435b"
+      },
+      {
+        "bytes": 10074,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/task-plans/remove-retired-review-requirements.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/task-plans/remove-retired-review-requirements.md",
+        "sha256": "075c0d6671e7b18e399f73fe39b297e78b0f7bd49e9adf3452460d3e85929c01"
+      },
+      {
+        "bytes": 6493,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/task-plans/task-137-reconcile-confirmation-handoff-evidence.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/task-plans/task-137-reconcile-confirmation-handoff-evidence.md",
+        "sha256": "7db1994e584edcf9dc767c5e4d639032293aa2c11a311a749f479f1a387e50f3"
+      },
+      {
+        "bytes": 7982,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/task-plans/task-139-renew-current-resource-handoff-evidence.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/task-plans/task-139-renew-current-resource-handoff-evidence.md",
+        "sha256": "d535edc7950d2a4d3962d68acb03fe016cd7da2d9e144aa9d44f98f9c2820747"
+      },
+      {
+        "bytes": 8147,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/task-plans/task-140-independently-accept-renewed-handoff-evidence.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/task-plans/task-140-independently-accept-renewed-handoff-evidence.md",
+        "sha256": "987fdbb55de078689902b13515b9f9c256189aa8c2f2341e5353049d907811cd"
+      },
+      {
+        "bytes": 7537,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/tests/failure-gate-implementation-autonomy.test.mjs",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/tests/failure-gate-implementation-autonomy.test.mjs",
+        "sha256": "47577f767b186b31c0afc2589441456991c388f608aecde9a4309cf8a85447b0"
+      },
+      {
+        "bytes": 4397,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:replit.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "replit.md",
+        "sha256": "b1aa215ec3fee6152e93762b2511bd5dcc8a844a082f038da831394ebc7c405d"
+      },
+      {
+        "bytes": 16748,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:scripts/test/paired-current-handoff-source.test.mjs",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "scripts/test/paired-current-handoff-source.test.mjs",
+        "sha256": "902cd0f2f1d1b68fc843191d0d21887dfd59792c9bb9e59f16ef3030b63e8d82"
+      },
+      {
+        "bytes": 9291,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:scripts/test/paired-planner-staging-source.test.mjs",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "scripts/test/paired-planner-staging-source.test.mjs",
+        "sha256": "69bebf8a9a13c14c9ddd7e7d0430c20119dd45af244ed5e10b472239096f495a"
+      },
+      {
+        "bytes": 6620,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:scripts/test/paired-task-handoff-policy.test.mjs",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "scripts/test/paired-task-handoff-policy.test.mjs",
+        "sha256": "2951eaefd3d096e230ef07151e117c127df240187b3b8f3e3777b0857318e8e9"
+      },
+      {
+        "bytes": 27399,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-prerequisites-refresh.md",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-prerequisites-refresh.md",
+        "sha256": "9b367396b090c29c8cbbe5840e482ff773b83fd9e19cd69ea384af45988f0cf0"
+      },
+      {
+        "bytes": 478754,
+        "gitLocator": "5b8f4dc639439f82766e96c2c030e9ae9ade76b4:docs/validation/paired-prerequisites-refresh-evidence.json",
+        "matchesPreparation": true,
+        "meaning": "Recipient-local byte inventory only; not resource/content acceptance",
+        "path": "docs/validation/paired-prerequisites-refresh-evidence.json",
+        "sha256": "742c1bc4fb2871bf3e2021336077ba7b991360abfff7c26eda94e32c596e897e"
+      }
+    ],
+    "mismatches": [],
+    "receiptScope": "Local presence and complete byte comparison only, not scheduler or remote recipient delivery",
+    "total": 118
+  },
+  "schema": "paired-current-definition-review-evidence-v1",
+  "scope": "Independent current SKILL.md documentary assessment; no resource/full-plan, retrospective Task B or runtime acceptance",
+  "sourceDiffs": {
+    "laterCanonicalRevision": "diff --git a/.agents/skills/paired-task-orchestration/SKILL.md b/.agents/skills/paired-task-orchestration/SKILL.md\nindex bfc423a..1a4ad60 100644\n--- a/.agents/skills/paired-task-orchestration/SKILL.md\n+++ b/.agents/skills/paired-task-orchestration/SKILL.md\n@@ -33,6 +33,40 @@ Use this skill alongside, not instead of, canonical target contracts and the\n canonical skill-application-router. It manages batching and progression; the\n router governs Install/Apply handoff and verification bindings.\n \n+## Outcomes, routine work, and material exceptions\n+\n+Normal programming within approved boundaries is the default. Choose routine\n+implementation details without separate approvals, per-choice decision records,\n+step-by-step narration, exhaustive method checklists, or routine method-change\n+ledgers. Selecting among unspecified equivalent methods is not itself a\n+protected-plan amendment.\n+\n+The primary delivers the required outcome. Its plan states scope, required\n+outcomes, fixed acceptance criteria and evidence, execution permissions, resource\n+limits, and material escalation triggers. Prescribe an internal coding method\n+only when that method is genuinely necessary to an explicit contract requirement;\n+do not turn an illustrative example into a required architecture or extra gate.\n+\n+The verifier independently assesses the delivered outcome against the approved\n+criteria, not the author's individual coding decisions. Retain complete required\n+coverage and independently establish the relevant evidence; do not reconstruct a\n+programming diary or derive easier acceptance criteria from the delivered output.\n+\n+Use the applicable exception or amendment route for:\n+\n+- Exceptions, waivers, changed acceptance criteria, or reduced required coverage.\n+- Material changes to approved scope, authority, execution permissions, or limits.\n+- Material changes to safety, privacy, compatibility, data integrity, ownership,\n+  recovery, or completion boundaries.\n+- Changes to expressly fixed requirements or protected executable plans.\n+\n+Routine method selection does not waive a fixed method, authorize an unavailable\n+capability, or silently rewrite a protected plan. Actual protected-payload changes\n+still require their governing amendment route, bindings, and full readback.\n+Retain required approval, execution, incident, provenance, repair, and acceptance\n+evidence, including invalidation of evidence affected by changed inputs. Record\n+material exceptions and actual protected-plan amendments, not every coding choice.\n+\n ## Read before acting\n \n Read the complete applicable references:\n@@ -85,6 +119,7 @@ A temporary staging path is not a Failure Gate plan/ID binding, approval source,\n | Mode | Authorized outcome |\n |---|---|\n | Plan | Write/reconcile backlog and task payloads; no native task creation |\n+| Revise definition/resources | Author only the requested definition/resource changes; no implied task creation, feature implementation, checks, publication, or enforcement |\n | Install definition/package | Install/update the canonical definition and required resources; include any target-required definition confirmation |\n | Initialize | Bind the series and prepare the first proposed pair |\n | Prepare next pair / Resume | Reconcile the current pair; advance only if accepted |\n@@ -93,7 +128,9 @@ A temporary staging path is not a Failure Gate plan/ID binding, approval source,\n | Enable automatic progression | Enable only a verified, approved wake-up route |\n | Pause / Finish | Stop further progression; preserve history and unresolved work |\n \n-Definition/package installation and series initialization are distinct. A request\n+Definition revision, package installation, and series initialization are distinct.\n+An authoring-only revision follows the user's stated scope; it does not create\n+confirmation/review tasks or run checks unless separately authorized. A request\n to install or update this skill does not authorize binding a series, preparing\n implementation/verifier pairs, or installing/enabling the optional hook. If both\n are expressly requested, report each outcome separately.\n@@ -180,8 +217,12 @@ The full plan must require:\n \n - Fresh inspection of actual delivered files, wiring, records, canonical closure,\n   and tested inputs, independent of the installer's success statement.\n-- Clause-by-clause acceptance for the piece's declared stage. Inert source\n-  verification is not runtime readiness; carry deferred proof explicitly.\n+- Complete acceptance coverage for every applicable obligation at the piece's\n+  declared stage, with requirement-level evidence rather than a coding-method\n+  checklist. Inert source verification is not runtime readiness; carry deferred\n+  proof explicitly. Unspecified equivalent verification methods may be selected\n+  within approval and execution boundaries; fixed methods and actual protected\n+  payload changes retain their applicable amendment requirements.\n - A gap list before edits, followed by building/correcting missing or wrong\n   implementation in the same verifier task within explicitly authorized scope.\n   A result matching an expected negative/non-zero outcome is not a repair gap;\n@@ -279,6 +320,9 @@ State project/series, requested mode, actual current piece and task references,\n creation/reuse/readback outcome, verified declared stage, dependency/delivery\n readiness, remaining blockers, and the real next action.\n \n+Summarize substantive outcomes and material exceptions. Required evidence and\n+actual amendments remain reportable; routine programming does not need a diary.\n+\n Separately state hook status and whether another invocation is necessary. Do not\n claim a workspace skill was published or another project installed it merely\n because files were written in this conversation.\ndiff --git a/.agents/skills/paired-task-orchestration/references/acceptance-and-confirmation.md b/.agents/skills/paired-task-orchestration/references/acceptance-and-confirmation.md\nindex d3cbd49..cf6c9f6 100644\n--- a/.agents/skills/paired-task-orchestration/references/acceptance-and-confirmation.md\n+++ b/.agents/skills/paired-task-orchestration/references/acceptance-and-confirmation.md\n@@ -4,6 +4,27 @@ These are checks to perform, not assertions that a host installation or tests\n already passed. Use actual source/plan/environment bindings and applicable safe\n authorization. Do not run platform writes just to verify this skill's text.\n \n+## Outcome-based control\n+\n+Normal programming within approved boundaries is the default. A primary delivers\n+the required outcome; its independent verifier assesses that outcome against\n+approved acceptance criteria and evidence. Do not require separate approval,\n+per-choice decision records, step-by-step narration, exhaustive method checklists,\n+or routine method-change ledgers for routine coding.\n+\n+Selecting among unspecified equivalent methods is not itself a protected-plan\n+amendment. Exceptions, waivers, changed criteria/coverage, material changes to\n+scope/authority/execution/limits or safety/privacy/compatibility/data integrity/\n+ownership/recovery/completion, and changes to fixed requirements or protected\n+plans retain their applicable approval and amendment routes. Actual protected\n+payload changes retain full readback and affected-evidence renewal requirements.\n+Required approval, execution, incident, provenance, and acceptance evidence\n+remains mandatory; omitting a programming diary does not waive that evidence.\n+\n+The tables below state required acceptance outcomes, not mandatory internal coding\n+methods or extra work-family gates. Optional examples do not add obligations.\n+Assess every applicable requirement; do not invent an assertion for every example.\n+\n ## Definition-only confirmation\n \n When installing this skill through project tasks, create the required dependent\n@@ -27,6 +48,9 @@ Compare the installed package against the authorized original specification:\n   recovery, and uncertain-write reconciliation precede retries.\n - Verifiers audit first, list gaps, repair only explicitly approved scope, rebind\n   changed evidence, renew validation, and obtain independent post-repair acceptance.\n+- Routine programming is delegated within approved boundaries; the verifier\n+  independently checks outcomes rather than each coding choice. Material\n+  exceptions and actual protected-plan amendments remain controlled.\n - Source-only/bootstrap/runtime stages are distinguished without circular initial\n   proof, hidden checks, or false operational readiness.\n - User task approval remains separate; future drafting permission is conditional\n@@ -67,6 +91,9 @@ Instrumented fixtures can test logic but cannot prove real UI/task integration.\n | Later backlog | Remaining pieces are durably recorded, not created as extra draft cards |\n | Approval boundary | Neither task runs merely because created; verifier does not execute before delivered inputs |\n | Shared instructions | Every materialized plan includes all applicable specification/shared safeguards |\n+| Routine programming | Equivalent unspecified methods need no new task, approval, choice ledger, or diary; the approved outcome and its evidence still pass independent review |\n+| Material exception | Changed criteria/coverage, scope, authority, execution, limits, or protected safety/ownership/recovery/completion boundaries follow the applicable authorized route |\n+| Protected plan | Routine choices do not themselves amend a plan; actual fixed-requirement or protected-payload changes retain amendment, binding/readback, and evidence-renewal controls |\n | Source stage | Only its declared source scope accepts; deferred runtime proof gates the runtime successor |\n | Missing implementation | Verifier lists gaps, repairs within authority, invalidates old evidence, and gets independent final acceptance |\n | Missing external authority | Blocked requirement and concrete next proposal; no synthetic grant or fake provider |\n@@ -97,4 +124,8 @@ raw outcomes/evidence, gaps before repair, amendments, independently accepted\n post-repair snapshot, blocked/unperformed cases, responsible next actions, and\n manual/automatic capability state.\n \n+Keep the report concise and requirement-linked. Retain actual amendments and\n+material exceptions, not a routine-method diary; preserve approval, execution,\n+incident, and provenance evidence needed to establish a valid outcome.\n+\n No recursive verification task creation or self-certified host proof.\ndiff --git a/.agents/skills/paired-task-orchestration/references/host-hook-contract.md b/.agents/skills/paired-task-orchestration/references/host-hook-contract.md\nindex 9248168..8fa15bf 100644\n--- a/.agents/skills/paired-task-orchestration/references/host-hook-contract.md\n+++ b/.agents/skills/paired-task-orchestration/references/host-hook-contract.md\n@@ -4,6 +4,19 @@ Read before discovery/proposal, implementation, verification, enablement, or use\n of automatic progression. This contract supplies no webhook, scheduler, platform\n token, event API, daemon, or approval.\n \n+Within an approved hook implementation scope, normal programming is the default.\n+Choose unspecified equivalent implementation methods without separate approvals,\n+per-choice records, narration of each step, or a routine method-change ledger.\n+The acceptance matrix specifies required observable outcomes, not a mandatory\n+internal architecture or checklist of coding choices.\n+\n+Escalate material changes to scope, authority, execution permissions, resource\n+limits, safety/privacy/compatibility/data integrity/ownership/recovery/completion,\n+acceptance criteria or required coverage, and expressly fixed requirements or\n+protected plans. Retain the applicable amendment route and required approval,\n+execution, incident, provenance, and acceptance evidence. Routine autonomy does\n+not authorize the hook, polling, task execution, or automatic enablement.\n+\n ## 1. What can actually be installed first\n \n A skill can instruct Agent to install a supported host integration before starting\n@@ -76,7 +89,10 @@ Authenticate origin and bind the exact project/series and preparation permission\n Recheck pause/revocation, current payload revisions, delivered evidence, and\n expected current piece immediately before creation.\n \n-Use one real shared controller reservation/CAS for a progression attempt.\n+Use real shared coordination that serializes and binds a progression attempt.\n+An ownership-aware reservation/CAS is one example, not a required internal\n+architecture; an equivalent verified mechanism must provide the applicable\n+exclusion, version, and conflict guarantees.\n Duplicate/delayed/out-of-order events, simultaneous completion events and manual\n invocations must converge on the same current pair. Exactly-once native creation\n can be claimed only where host write idempotency and authoritative reconciliation\n@@ -143,3 +159,7 @@ Report the actual provider/interface mapping, scope, source/registration/deploy\n versions, real proof, enabled state, remaining blockers, responsible integration\n role, and manual fallback. Do not promise background advancement without those\n facts. Hook installation and series installation remain separate claims.\n+\n+Report the substantive result and material exceptions, not a programming diary.\n+This does not remove the real registration, trigger, execution, incident,\n+provenance, consumption, pause, or acceptance evidence required above.\ndiff --git a/.agents/skills/paired-task-orchestration/references/series-state-and-handoff.md b/.agents/skills/paired-task-orchestration/references/series-state-and-handoff.md\nindex c7fc376..cd1a830 100644\n--- a/.agents/skills/paired-task-orchestration/references/series-state-and-handoff.md\n+++ b/.agents/skills/paired-task-orchestration/references/series-state-and-handoff.md\n@@ -18,13 +18,27 @@ Treat changes to pieces, contracts, validation/repair obligations, approval mode\n or specification as changes needing reconciliation and applicable renewed scope.\n Do not silently rebase current tasks on a new attachment or self-modified backlog.\n \n+These controls protect requirements and governing plans, not routine programming.\n+Normal programming within approved boundaries is the default. Selecting among\n+unspecified equivalent methods is not itself a protected-plan amendment; it needs\n+no separate approval, per-choice record, or routine method-change ledger.\n+Changes to fixed requirements, acceptance/coverage, scope, authority, execution\n+permissions, limits, or material safety/privacy/compatibility/data-integrity/\n+ownership/recovery/completion boundaries use the applicable escalation route.\n+Actual protected-payload changes still require authorized amendment and readback.\n+Preserve required approval, execution, incident, provenance, and acceptance\n+evidence; changed relevant inputs still invalidate affected prior evidence.\n+\n Optional source preparation with missing future installed definitions uses the\n authorized specification/package exception only. Source-dependent checks stay\n pending until the actual canonical destination/resource closure is available.\n \n ## 2. Durable records\n \n-Reuse host equivalents. Example semantic fields, not a mandated schema:\n+Reuse host equivalents. The following layout is optional guidance, not a mandated\n+schema, architecture, work-family checklist, or additional acceptance gate.\n+Required identity, authority, delivery, and acceptance bindings remain mandatory;\n+equivalent records may establish them without these literal field names:\n \n ```text\n series:\n@@ -172,6 +186,11 @@ behavior merely to produce zero/PASS. A completed finding task can still expose\n a genuine blocker for a later task; carry that blocker forward without falsely\n blocking completion of the finding task.\n \n+This is a requirement-level acceptance record, not a ledger of implementation\n+choices. Shared evidence may cover multiple criteria when their mappings remain\n+clear and complete. The verifier assesses the approved outcomes independently;\n+it does not approve or reconstruct every coding decision.\n+\n Do not require future runtime proof for an expressly inert source stage, and do\n not let that source-stage acceptance satisfy a runtime prerequisite. Deferred\n obligations must have an explicit later owner/task/gate.\n",
+    "laterGuardChanges": "diff --git a/scripts/test/paired-planner-staging-source.test.mjs b/scripts/test/paired-planner-staging-source.test.mjs\nindex 3e1430b..96c954a 100644\n--- a/scripts/test/paired-planner-staging-source.test.mjs\n+++ b/scripts/test/paired-planner-staging-source.test.mjs\n@@ -7,6 +7,18 @@ const canonical = readFileSync(\n   \"utf8\",\n );\n \n+// Contract text is compared across harmless wrapping, not internal coding methods.\n+const normalize = (text) => text.replace(/\\s+/g, \" \").trim();\n+const canonicalNormalized = normalize(canonical);\n+const reference = (name) =>\n+  readFileSync(\n+    new URL(\n+      `../../.agents/skills/paired-task-orchestration/references/${name}`,\n+      import.meta.url,\n+    ),\n+    \"utf8\",\n+  );\n+\n const heading =\n   \"## Failure Gate v4: deliverable locations and limited planner exception\";\n \n@@ -78,32 +90,87 @@ test(\"canonical-source, pairing, approval, and execution boundaries remain intac\n   const sectionStart = canonical.indexOf(heading);\n   assert.notEqual(sectionStart, -1, \"the canonical exception section must exist\");\n   const priorAuthority = canonical.slice(0, sectionStart);\n+  const priorAuthorityNormalized = normalize(priorAuthority);\n \n   assert.ok(\n-    priorAuthority.includes(\n-      \"Never use alternate/copied skill definitions or .local mirrors as canonical inputs.\",\n+    priorAuthorityNormalized.includes(\n+      \"Never use alternate/copied skill definitions or `.local` mirrors as canonical inputs.\",\n     ),\n   );\n   assert.ok(\n-    priorAuthority.includes(\"Do not impose Failure Gate on unrelated work.\"),\n+    priorAuthorityNormalized.includes(\"Do not impose Failure Gate on unrelated work.\"),\n   );\n   assert.ok(\n-    canonical.includes(\n+    canonicalNormalized.includes(\n       \"Task creation, task execution, and advancement are separate decisions.\",\n     ),\n   );\n-  assert.ok(canonical.includes(\"Approval remains with the user.\"));\n+  assert.ok(canonicalNormalized.includes(\"Approval remains with the user.\"));\n   assert.ok(\n-    canonical.includes(\n+    canonicalNormalized.includes(\n       \"No automatic retry, activation, cancellation, status/dependency rewrite, scope waiver, budget renewal, new repair task, merge, or deployment follows from this state machine.\",\n     ),\n   );\n   assert.ok(\n-    canonical.includes(\n+    canonicalNormalized.includes(\n       \"Read the complete committed primary back and verify finalized scope/revision.\",\n     ),\n   );\n   assert.ok(\n-    canonical.includes(\"Read the entire persisted verifier back, recheck primary bindings around\"),\n+    canonicalNormalized.includes(\"Read the entire persisted verifier back, recheck primary bindings around\"),\n   );\n });\n+\n+test(\"routine work is delegated while material exceptions and protected plans remain controlled\", () => {\n+  const start = canonical.indexOf(\"## Outcomes, routine work, and material exceptions\");\n+  const end = canonical.indexOf(\"\\n## Read before acting\", start);\n+  assert.ok(start >= 0 && end > start);\n+  const policy = normalize(canonical.slice(start, end));\n+\n+  assert.ok(policy.includes(\"Normal programming within approved boundaries is the default.\"));\n+  assert.ok(policy.includes(\"without separate approvals, per-choice decision records, step-by-step narration, exhaustive method checklists, or routine method-change ledgers.\"));\n+  assert.ok(policy.includes(\"Selecting among unspecified equivalent methods is not itself a protected-plan amendment.\"));\n+  assert.ok(policy.includes(\"Exceptions, waivers, changed acceptance criteria, or reduced required coverage.\"));\n+  assert.ok(policy.includes(\"Material changes to approved scope, authority, execution permissions, or limits.\"));\n+  assert.ok(policy.includes(\"Material changes to safety, privacy, compatibility, data integrity, ownership, recovery, or completion boundaries.\"));\n+  assert.ok(policy.includes(\"Changes to expressly fixed requirements or protected executable plans.\"));\n+  assert.ok(policy.includes(\"Actual protected-payload changes still require their governing amendment route, bindings, and full readback.\"));\n+  assert.ok(policy.includes(\"Retain required approval, execution, incident, provenance, repair, and acceptance evidence\"));\n+});\n+\n+test(\"the verifier checks approved outcomes rather than reconstructing coding decisions\", () => {\n+  assert.ok(canonicalNormalized.includes(\"The primary delivers the required outcome.\"));\n+  assert.ok(canonicalNormalized.includes(\"The verifier independently assesses the delivered outcome against the approved criteria, not the author's individual coding decisions.\"));\n+  assert.ok(canonicalNormalized.includes(\"Independent post-repair readback/review\"));\n+  assert.ok(canonicalNormalized.includes(\"A repair author's claim alone is not independent evidence.\"));\n+  assert.ok(canonicalNormalized.includes(\"Require actual delivered inputs\"));\n+});\n+\n+test(\"supporting references preserve routine autonomy and required acceptance evidence\", () => {\n+  for (const name of [\n+    \"acceptance-and-confirmation.md\",\n+    \"series-state-and-handoff.md\",\n+    \"host-hook-contract.md\",\n+  ]) {\n+    const text = normalize(reference(name));\n+    assert.match(text, /(?:[Nn]ormal programming|routine coding)/, name);\n+    assert.match(text, /acceptance/, name);\n+    assert.match(text, /protected.*(?:plan|payload)/, name);\n+    assert.match(text, /approval.*execution.*incident.*provenance.*acceptance/, name);\n+  }\n+});\n+\n+test(\"illustrative layouts and coordination choices do not become new acceptance gates\", () => {\n+  const series = normalize(reference(\"series-state-and-handoff.md\"));\n+  const hook = normalize(reference(\"host-hook-contract.md\"));\n+  assert.ok(series.includes(\"optional guidance, not a mandated schema, architecture, work-family checklist, or additional acceptance gate.\"));\n+  assert.ok(series.includes(\"Required identity, authority, delivery, and acceptance bindings remain mandatory\"));\n+  assert.ok(hook.includes(\"An ownership-aware reservation/CAS is one example, not a required internal architecture\"));\n+  assert.ok(hook.includes(\"equivalent verified mechanism must provide the applicable exclusion, version, and conflict guarantees.\"));\n+});\n+\n+test(\"authoring-only revision implies neither checks nor task creation\", () => {\n+  assert.ok(canonicalNormalized.includes(\"Revise definition/resources\"));\n+  assert.ok(canonicalNormalized.includes(\"no implied task creation, feature implementation, checks, publication, or enforcement\"));\n+  assert.ok(canonicalNormalized.includes(\"it does not create confirmation/review tasks or run checks unless separately authorized.\"));\n+});\n",
+    "originalStaging": "diff --git a/.agents/skills/paired-task-orchestration/SKILL.md b/.agents/skills/paired-task-orchestration/SKILL.md\nindex d5c379e..bfc423a 100644\n--- a/.agents/skills/paired-task-orchestration/SKILL.md\n+++ b/.agents/skills/paired-task-orchestration/SKILL.md\n@@ -63,6 +63,23 @@ rules, finite budgets, independent supervision, retained accounting, evidence,\n writer/lifecycle safety, and owner-closure boundaries. No companion skill or\n specific framework, task API, database, timeout value, or OS is assumed.\n \n+## Failure Gate v4: deliverable locations and limited planner exception\n+\n+Use this exception only for paired task planning/handoff of a Failure Gate v4 series. Keep all authoritative deliverables—including scripts, documentation, reports, skills, configuration, code, exports, and complete task plans—outside .local/ in tracked paths that survive task-agent merge and enter repository history.\n+\n+Exception: when the actual host planner or task interface demonstrably requires a .local/ path for task creation, submission, or handoff, the Agent may create or use the minimum necessary temporary staging copy there, subject to ALL of these conditions:\n+\n+1. Establish the requirement from the actual interface, host instructions, or observed rejection. Habit, convenience, or an unsupported assumption is not sufficient.\n+2. Before staging an Agent-authored payload, preserve its complete authoritative contents in an appropriate tracked path outside .local/. The staging copy must never be the only copy of a deliverable.\n+3. Treat .local/ contents as disposable transport or runtime artifacts—not as canonical sources, durable evidence, accepted reports, or proof of delivery.\n+4. Read back and compare the complete staged payload with the authoritative copy. After task submission, independently read back the complete persisted task plan and actual dependencies. A staging file, successful submission message, or task title alone does not establish successful handoff.\n+5. Record the required staging path, its purpose, the authoritative tracked path, and the observed submission/readback outcome in evidence outside .local/. Missing or truncated contents remain unresolved, not successfully delivered.\n+6. This exception does not permit using .local/ skill definitions or mirrors as canonical instructions. Canonical skill sources remain under .agents/. It grants no additional task execution, validation, approval, lifecycle, merge, deployment, or runtime authority.\n+\n+If the required staging workflow cannot preserve the authoritative deliverable outside .local/ or cannot establish complete persisted-task readback, stop the affected handoff and report the specific blocker. Do not silently broaden this exception or claim successful delivery.\n+\n+A temporary staging path is not a Failure Gate plan/ID binding, approval source, grant, tier assignment, authorization registry, durable run log, or completion evidence. Failure Gate's genuine authority, selected-tier, finite-budget, independent-supervision, writer/lifecycle, source/bootstrap/runtime, recovery/reclaim and delivery gates remain unchanged. This exception cannot override a higher-priority prohibition or unavailable host permission. Authoring it does not establish that this host requires or supports .local/ staging.\n+\n ## Recognize the requested mode\n \n | Mode | Authorized outcome |\n"
+  },
+  "verdict": {
+    "formalDefinitionAcceptance": "BLOCKED",
+    "repairs": "NONE",
+    "resourceAcceptance": "OUT_OF_SCOPE",
+    "runtimeProof": "NOT_RUN",
+    "structuralSourceAdequacy": "VERIFIED_FOR_BOUND_SOURCE_PROPERTIES"
+  },
+  "blockedRequirements": [
+    {
+      "id": "F1",
+      "status": "BLOCKED",
+      "requirement": "Exact #120 finalized/committed native-plan barrier",
+      "owner": "Workspace owner and supported host-record authority",
+      "available": "Full native #120 description and actual #121 dependency; exact source insertion",
+      "missing": "Authentic scope/revision-bound finalization receipt or governing-contract-permitted expressly authorized exact-scope equivalent",
+      "notSubstitutes": [
+        "MERGED",
+        "updatedAt",
+        "dependency alone",
+        "Git commit",
+        "identical repeated hashes"
+      ],
+      "resume": "Deliver the authentic exact-bound record or permitted explicit resolution; do not recreate or mutate a primary."
+    },
+    {
+      "id": "F2",
+      "status": "BLOCKED",
+      "requirement": "Amendment-specific present-companion applicability and permitted existing-obligation/current-byte acceptance route",
+      "owner": "Workspace owner",
+      "available": "Authentic current companion, complete #120/#121 plans, exact #102-only exception, narrow D-01/D-02 accepted rule review",
+      "missing": "Explicit #120 applicability decision and permitted reconciliation/current-byte assessment route preserving original criteria, existing history, finalization and delivery gates",
+      "obsoleteFinding": "Missing companion is not a current defect",
+      "notSubstitutes": [
+        "#102-only exception",
+        "#156 assessment approval",
+        "#121 MERGED",
+        "renaming #156 Task B"
+      ],
+      "resume": "Resolve applicability and route explicitly; preserve all original acceptance and required companion criteria if that route applies. Native mutation/creation requires separate authority."
+    },
+    {
+      "id": "F3",
+      "status": "BLOCKED",
+      "requirement": "Original authority provenance for exact later canonical revisions",
+      "owner": "Workspace owner/source-authority custodian",
+      "available": "Current assignment and preparation describe authorized revisions; exact patch, canonical Git diff, unchanged current bytes",
+      "missing": "Original exact-scope canonical revision authorizing instruction in delivered authority inputs",
+      "limit": "Unavailable provenance, not a determination that revisions were unauthorized. Actual #149/#152 plans explicitly exclude canonical edits.",
+      "resume": "Deliver authentic canonical-revision authority/change binding or a separately authorized permitted reconciliation; routine-method autonomy cannot waive fixed methods or protected-plan routes."
+    }
+  ],
+  "stagingConditionFindings": [
+    {
+      "condition": 1,
+      "status": "VERIFIED_SOURCE_ONLY",
+      "meaning": "Actual host requirement evidence; no habit/convenience/assumption"
+    },
+    {
+      "condition": 2,
+      "status": "VERIFIED_SOURCE_ONLY",
+      "meaning": "Complete durable tracked payload preserved before staging; never sole staging copy"
+    },
+    {
+      "condition": 3,
+      "status": "VERIFIED_SOURCE_ONLY",
+      "meaning": "Disposable transport/runtime only; no canonical/evidence/report/delivery substitution"
+    },
+    {
+      "condition": 4,
+      "status": "VERIFIED_SOURCE_ONLY",
+      "meaning": "Complete staged comparison plus independent complete persisted plan and actual dependencies; no title/message substitute"
+    },
+    {
+      "condition": 5,
+      "status": "VERIFIED_SOURCE_ONLY",
+      "meaning": "Tracked staging purpose/location/outcomes; missing or truncated data unresolved"
+    },
+    {
+      "condition": 6,
+      "status": "VERIFIED_SOURCE_ONLY",
+      "meaning": "Canonical .agents only; no execution/validation/approval/lifecycle/merge/deploy/runtime authority"
+    }
+  ],
+  "retainedControls": {
+    "missingProofStop": "VERIFIED_SOURCE_ONLY",
+    "completeFailureGateBoundary": "VERIFIED_SOURCE_ONLY",
+    "canonicalSourcesAndDurableDeliverables": "VERIFIED_SOURCE_ONLY",
+    "frontmatterEntryPointAndLinks": "VERIFIED_SOURCE_ONLY",
+    "oneCurrentPairAndFullPayloads": "VERIFIED_SOURCE_ONLY",
+    "userApprovalAndExecutionSeparation": "VERIFIED_SOURCE_ONLY",
+    "independentRepairAcceptance": "VERIFIED_SOURCE_ONLY",
+    "declaredStageGates": "VERIFIED_SOURCE_ONLY",
+    "trackedAmendmentAndInertGuard": "PRESENT_NOT_RUN",
+    "formalBarrierAndApplicability": "BLOCKED_F1_F2",
+    "requiredEvidenceVersusRoutineMethodDiary": "Required evidence retained; diary/per-choice approvals not added",
+    "fixedMethodsAndProtectedPlans": "Retained actual amendment/readback routes; old imperative CAS wording not retroactively declared optional; later source authorization remains F3",
+    "acceptedNarrowLeaves": "D-01/D-02 rule and autonomy documentary-leaf acceptance preserved at exact existing scope, not expanded to canonical package"
+  },
+  "originalArchive": {
+    "path": "attached_assets/paired-task-orchestration_1791347147544.zip",
+    "bytes": 18622,
+    "sha256": "5e99a095a57a7646ac5203b43642312ffa0bd2cef19106c8b77897fdb2a520b7",
+    "skillMemberBytes": 15475,
+    "skillMemberSha256": "cbc4e9209b00c7b9bf9eee4966cc5e1e31252942b1001b027b923ab5c00d9415",
+    "skillMemberEqualsImmutablePreAmendment": true,
+    "meaning": "Read directly as original SKILL.md source baseline; no current resource/parity acceptance"
+  },
+  "inspectionLimits": {
+    "canonicalSourceEdits": "NONE",
+    "nativeTaskWrites": "NONE",
+    "historicalReportChanges": "NONE",
+    "resourceAndFullPlanAcceptance": "OUT_OF_SCOPE",
+    "retrospective102Confirmation": "OUT_OF_SCOPE",
+    "projectValidationLaunches": 0,
+    "guardTestsBuildsImports": "NOT_RUN",
+    "hostStagingAndTaskCreationDemonstration": "NOT_RUN",
+    "runtimeStoreSettingsAccountProjectionHookActivationDeployment": "NOT_PERFORMED",
+    "approvalTierBudgetSupervisorGatePass": "NOT_INVENTED",
+    "noSourceDefectFound": "Source-property assessment only, not formal acceptance or proof of required historical source authority",
+    "followUpTaskWrites": "NONE; existing dependent resource track #157; no recursive task creation"
+  },
+  "reportBinding": {
+    "bytes": 19524,
+    "path": "docs/validation/paired-current-definition-review.md",
+    "sha256": "8c3c493b43a99672175f62796176b266276bc432d9cfa4491d06726de76c22b8"
+  }
+}
